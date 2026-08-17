@@ -1,0 +1,15 @@
+{"device": "TPU v5 lite", "jax": "0.7.2", "kind": "metadata", "libtpu_init_args": "--xla_tpu_scoped_vmem_limit_kib=49152 --xla_tpu_use_enhanced_launch_barrier=true", "mode": "48m", "repeat": "0", "runs": 20, "warmups": 10}
+{"kind": "tokens", "sha256": "72f8f6f494c49f29503155845c11dc1a5c4854d47fdc7d1f97e001f9f658d123", "shape": [8, 1024], "unique_tokens": 190}
+{"bytes": 262144000, "kind": "tensor", "name": "model.embed_tokens.weight", "sha256": "0a542d704d6b576b9c0c4be5301b2f25fc710d583f2889918b2cf5cf7ed7d952", "shape": [32000, 4096]}
+{"bytes": 117440512, "kind": "tensor", "name": "model.layers.0.mlp.gate_proj.weight", "sha256": "5e4ab908d791294e4a544c8b453bee658856cc64dd74ea37bfb24f2fef7c7bbf", "shape": [14336, 4096]}
+{"bytes": 117440512, "kind": "tensor", "name": "model.layers.0.mlp.up_proj.weight", "sha256": "ffdbbdbd5dda0d0be98d5cbf7d0b2cf8f449b97b123c9c175689c1b81fdb3fc1", "shape": [14336, 4096]}
+{"bytes": 8192, "kind": "tensor", "name": "model.layers.0.input_layernorm.weight", "sha256": "c9861d090dc661e4b8c9a7f3a04ff8af00da68e74aaaed0dcd9e9d2038266014", "shape": [4096]}
+{"bytes": 33554432, "kind": "tensor", "name": "model.layers.0.self_attn.q_proj.weight", "sha256": "f6b98e5835e8f7413515039170ec0668afb3f8220fb3ffc12b952eca176a03f3", "shape": [4096, 4096]}
+{"bytes": 8388608, "kind": "tensor", "name": "model.layers.0.self_attn.k_proj.weight", "sha256": "7d7310d2c78ebcd54ea745915d5300df1870defb0593125ebcf224fe93a9dfed", "shape": [1024, 4096]}
+{"bytes": 8388608, "kind": "tensor", "name": "model.layers.0.self_attn.v_proj.weight", "sha256": "410b909464c4e9baffd833da036ea826aa336c16d6c16439c893a0da1301221e", "shape": [1024, 4096]}
+{"bytes": 33554432, "kind": "tensor", "name": "model.layers.0.self_attn.o_proj.weight", "sha256": "7b697e38d4a25ccc29f8b154a7cd37c6ee3a7dafc423815147f3c58d4a47d4c6", "shape": [4096, 4096]}
+{"bytes": 8192, "kind": "tensor", "name": "model.layers.0.post_attention_layernorm.weight", "sha256": "c57ec5712589cf28b74c37c113b1698368a2bbc7edbc50fa37ecb8730e10786d", "shape": [4096]}
+{"bytes": 117440512, "kind": "tensor", "name": "model.layers.0.mlp.down_proj.weight", "sha256": "d96bf7e7811e86f155ae453ed131c93a3690a59045a26804691b431e82da28c9", "shape": [4096, 14336]}
+{"compile_s": 9.891723361000004, "kind": "compile"}
+{"kind": "performance", "mean_ms": 31.821819299999998, "median_ms": 31.820194, "mode": "48m", "repeat": "0", "samples_ms": [31.821959, 31.823449, 31.884279, 31.793029, 31.818429, 31.765431, 31.850958, 31.849939, 31.78793, 31.786063, 31.809119, 31.851379, 31.793378, 31.784149, 31.902739, 31.745998, 31.797539, 31.90933, 31.822529, 31.83876], "std_ms": 0.042476894274534854}
+{"kind": "final", "success": true}

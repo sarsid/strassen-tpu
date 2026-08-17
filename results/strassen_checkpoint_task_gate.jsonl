@@ -1,0 +1,12 @@
+{"calibration": "frozen from calibration-text run; none on this corpus", "candidates": ["strassen_control", "hybrid_frozen"], "device": "TPU v5 lite", "jax": "0.7.2", "kind": "metadata", "libtpu_init_args": "--xla_tpu_scoped_vmem_limit_kib=98304 --xla_tpu_use_enhanced_launch_barrier=true", "predeclared_gate": {"abs_loss_delta_max": 0.01, "mean_kl_max_nats": 0.005, "top1_agreement_min": 0.99}, "repository": "mistralai/Mistral-7B-v0.1", "revision": "27d67f1b5f57dc0953326b2601d68371d40ea8da"}
+{"corpus": "wikitext-2-raw-v1/test first contiguous tokens", "kind": "tokens", "sha256": "b34db13dfd3c57dc271fdc6fce489e2bb745110193a0fe3b8d3c12288b4256c9", "shape": [8, 1024], "unique_tokens": 2080}
+{"bytes": 9942981696, "download_s": 81.98461822299942, "filename": "model-00001-of-00002.safetensors", "kind": "shard"}
+{"bytes": 4540516344, "download_s": 40.40256030299861, "filename": "model-00002-of-00002.safetensors", "kind": "shard"}
+{"compile_s": 17.03510763899976, "kind": "compile"}
+{"kind": "progress", "layer": 7}
+{"kind": "progress", "layer": 15}
+{"kind": "progress", "layer": 23}
+{"kind": "progress", "layer": 31}
+{"abs_loss_delta": 0.0022051334381103516, "candidate": "strassen_control", "candidate_loss": 1.9525164365768433, "kind": "task_metrics", "mean_kl_nats": 0.0023651227820664644, "native_loss": 1.950311303138733, "passes": false, "top1_agreement": 0.9859482049942017}
+{"abs_loss_delta": 3.3020973205566406e-05, "candidate": "hybrid_frozen", "candidate_loss": 1.9503443241119385, "kind": "task_metrics", "mean_kl_nats": 0.00026460696244612336, "native_loss": 1.950311303138733, "passes": true, "top1_agreement": 0.9925464391708374}
+{"kind": "final", "success": false, "verdicts": {"hybrid_frozen": true, "strassen_control": false}}
