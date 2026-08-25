@@ -18,13 +18,6 @@ deployment gate. A full writeup is forthcoming.
 | `results/` | Raw JSONL output of every run, SHA-256-hashed; `results/README.md` maps questions to files. |
 | `COLAB_RUNBOOK.md` | The exact one-session reproduction procedure (Colab TPU v5e, pinned JAX/libtpu). |
 
-## Why so many benchmark files
-
-One file per registered experiment, on purpose: each declares its gate
-before running, produces one hashed JSONL, and is never edited to fit a
-result. The layout separates the experiments that back current claims
-(`benchmarks/`) from the closed investigations (`benchmarks/screens/`),
-but both stay reproducible.
 
 ## Requirements
 
