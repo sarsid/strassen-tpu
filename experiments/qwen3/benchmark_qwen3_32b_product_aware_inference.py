@@ -30,8 +30,9 @@ CUBIC_BM, CUBIC_BN, CUBIC_BK = (int(v) for v in os.environ.get(
     "QWEN3_CUBIC_TILE", f"{BM},{BN},{BK}").split(","))
 SUFFIX = os.environ.get("QWEN3_OUTPUT_SUFFIX", "")
 WARMUPS, RUNS = 3, 20
-OUTPUT = Path(
-    f"/content/results/strassen_qwen3_{layer.MODEL_NAME}"
+OUTPUT_ROOT = Path(os.environ.get("STRASSEN_OUTPUT_DIR", "/content/runs"))
+OUTPUT = OUTPUT_ROOT / (
+    f"strassen_qwen3_{layer.MODEL_NAME}"
     f"_product_aware_inference{SUFFIX}.jsonl")
 
 

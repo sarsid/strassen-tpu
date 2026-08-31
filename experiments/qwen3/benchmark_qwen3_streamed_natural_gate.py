@@ -60,8 +60,9 @@ THRESHOLDS = {
     "mean_kl_nats_max": 0.02,
     "top1_agreement_min": 0.97,
 }
-OUTPUT = Path(
-    f"/content/results/strassen_qwen3_{layer.MODEL_NAME}_natural_task_gate.jsonl")
+OUTPUT_ROOT = Path(os.environ.get("STRASSEN_OUTPUT_DIR", "/content/runs"))
+OUTPUT = OUTPUT_ROOT / (
+    f"strassen_qwen3_{layer.MODEL_NAME}_natural_task_gate.jsonl")
 
 
 def emit(record):

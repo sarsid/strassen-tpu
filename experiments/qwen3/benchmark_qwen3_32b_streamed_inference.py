@@ -36,11 +36,12 @@ import strassen_pallas as sp
 
 PRODUCT_AWARE = os.environ.get("QWEN3_STREAM_PRODUCT_AWARE", "0") == "1"
 SUFFIX = os.environ.get("QWEN3_OUTPUT_SUFFIX", "")
-OUTPUT = Path(
-    f"/content/results/strassen_qwen3_{layer.MODEL_NAME}"
+OUTPUT_ROOT = Path(os.environ.get("STRASSEN_OUTPUT_DIR", "/content/runs"))
+OUTPUT = OUTPUT_ROOT / (
+    f"strassen_qwen3_{layer.MODEL_NAME}"
     f"_streamed_product_inference{SUFFIX}.jsonl"
     if PRODUCT_AWARE else
-    f"/content/results/strassen_qwen3_{layer.MODEL_NAME}"
+    f"strassen_qwen3_{layer.MODEL_NAME}"
     f"_streamed_inference{SUFFIX}.jsonl")
 NUM_LAYERS = layer.NUM_LAYERS
 WARMUPS, RUNS = 2, 5

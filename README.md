@@ -78,21 +78,28 @@ or a training speedup.
 
 ## Repository map
 
-- `strassen_pallas.py` — Strassen kernel and conservative native fallback.
-- `benchmark_qwen3_32b_product_aware_inference.py` — isolated gate/up plus
-  SwiGLU comparison.
-- `benchmark_qwen3_32b_full_layer_product_inference.py` — real layer-0
-  comparison.
-- `benchmark_qwen3_32b_streamed_inference.py` — all-layer resident-compute and
-  frozen-task harness.
-- `benchmark_qwen3_streamed_natural_gate.py` — pinned WikiText-2 quality gate.
-- `benchmark_qwen3_scaling_tile_tune.py` — equal-budget tile selection for all
-  three model sizes.
-- `RESULTS.md` — exact findings and evidence map.
-- `COLAB_RUNBOOK.md` — reproduction order and environment.
-- `results/` — immutable JSONL measurements.
-- `benchmarks/` — the earlier kernel, VMEM, Mistral, and numerical-stability
-  evidence retained from the first public snapshot.
+- [`strassen_pallas.py`](strassen_pallas.py) — kernel and conservative native
+  fallback.
+- [`experiments/qwen3/`](experiments/qwen3/) — the promoted experiment, one
+  runner, and its matched controls.
+- [`evidence/qwen3/`](evidence/qwen3/) — immutable Qwen3 JSONL artifacts and
+  their SHA-256 index.
+- [`docs/RESULTS.md`](docs/RESULTS.md) — exact findings and interpretation.
+- [`docs/COLAB_RUNBOOK.md`](docs/COLAB_RUNBOOK.md) — one-session reproduction
+  procedure.
+- [`tools/`](tools/) — TPU compatibility and evidence-integrity checks.
+- [`archive/initial-snapshot/`](archive/initial-snapshot/) — the earlier
+  kernel, VMEM, Mistral, and numerical-stability snapshot retained for
+  provenance, not as the main reproduction path.
+
+Fresh experiments write to the ignored `runs/` directory. They never
+overwrite the published evidence tree.
+
+Verify the public artifacts locally with:
+
+```bash
+python tools/verify_evidence.py
+```
 
 ## Requirements
 
@@ -101,8 +108,9 @@ Colab TPU v5e runtime. The included compatibility probe should pass before a
 measurement campaign:
 
 ```bash
-python tools_check_tpu.py
+python tools/check_tpu.py
 ```
 
-See `COLAB_RUNBOOK.md` before running any benchmark. Use one TPU session and
-run the permanent XLA, cubic Pallas, and Strassen arms in the same session.
+See [`docs/COLAB_RUNBOOK.md`](docs/COLAB_RUNBOOK.md) before running any
+benchmark. Use one TPU session and run the permanent XLA, cubic Pallas, and
+Strassen arms in the same session.

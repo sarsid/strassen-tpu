@@ -42,7 +42,8 @@ from jax.experimental.pallas import tpu as pltpu
 import benchmark_common as bench
 
 
-OUTPUT = Path("/content/results/strassen_cubic_control.jsonl")
+OUTPUT_ROOT = Path(os.environ.get("STRASSEN_OUTPUT_DIR", "/content/runs"))
+OUTPUT = OUTPUT_ROOT / "strassen_cubic_control.jsonl"
 ACCURACY_SHAPE = (2048, 14336, 2048)
 PERFORMANCE_CASES = (
     ("square_8192", (8192, 8192, 8192)),

@@ -64,10 +64,11 @@ MODEL_NAME = os.environ.get("QWEN3_MODEL", "32b")
 if MODEL_NAME not in MODELS:
     raise ValueError(f"unknown QWEN3_MODEL={MODEL_NAME!r}")
 _MODEL = MODELS[MODEL_NAME]
-OUTPUT = Path(
-    f"/content/results/strassen_qwen3_{MODEL_NAME}_layer_up_only.jsonl"
+OUTPUT_ROOT = Path(os.environ.get("STRASSEN_OUTPUT_DIR", "/content/runs"))
+OUTPUT = OUTPUT_ROOT / (
+    f"strassen_qwen3_{MODEL_NAME}_layer_up_only.jsonl"
     if POLICY == "up_only"
-    else f"/content/results/strassen_qwen3_{MODEL_NAME}_layer.jsonl"
+    else f"strassen_qwen3_{MODEL_NAME}_layer.jsonl"
 )
 REPOSITORY = _MODEL["repository"]
 REVISION = _MODEL["revision"]

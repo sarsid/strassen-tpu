@@ -58,8 +58,9 @@ BM_CANDIDATES = (1024, 2048)
 BN_CANDIDATES = (1024, 2048, 2560, 3072)
 BK_CANDIDATES = (512, 1024)
 SEED = 20260907
-OUTPUT = Path(
-    f"/content/results/strassen_qwen3_{layer.MODEL_NAME}_scaling_tiles.jsonl")
+OUTPUT_ROOT = Path(os.environ.get("STRASSEN_OUTPUT_DIR", "/content/runs"))
+OUTPUT = OUTPUT_ROOT / (
+    f"strassen_qwen3_{layer.MODEL_NAME}_scaling_tiles.jsonl")
 
 
 def emit(record):

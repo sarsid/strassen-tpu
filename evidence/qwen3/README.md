@@ -55,9 +55,7 @@ The immutable runs predate the explicit `dataset_revision` field now emitted
 by the harness; the pinned revision was independently checked to reproduce
 that exact token hash.
 
-## Earlier evidence
-
-The remaining JSONL and NPY files are the kernel, VMEM, numerical-stability,
-and Mistral evidence retained from the first public snapshot. They are useful
-historical context but are not required for the current Qwen3 claim. OOM
+Earlier kernel, VMEM, numerical-stability, and Mistral evidence is retained in
+[`../../archive/initial-snapshot/evidence/`](../../archive/initial-snapshot/evidence/).
+It is historical context and is not required for the current Qwen3 claim. OOM
 records are feasibility evidence, not successful performance measurements.

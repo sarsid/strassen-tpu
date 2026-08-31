@@ -33,8 +33,9 @@ ARMS = (
     "regular_xla", "cubic_pallas",
     "strassen_fused", "product_strassen_fused",
 )
-OUTPUT = Path(
-    f"/content/results/strassen_qwen3_{layer.MODEL_NAME}"
+OUTPUT_ROOT = Path(os.environ.get("STRASSEN_OUTPUT_DIR", "/content/runs"))
+OUTPUT = OUTPUT_ROOT / (
+    f"strassen_qwen3_{layer.MODEL_NAME}"
     f"_full_layer_product_inference{SUFFIX}.jsonl")
 
 

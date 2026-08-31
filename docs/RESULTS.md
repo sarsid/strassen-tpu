@@ -87,6 +87,6 @@ Strassen, the ordinary-XLA comparison remains the deployment-facing control.
 ## Evidence
 
 The exact JSONL artifacts and SHA-256 values are indexed in
-`results/README.md`. The broader post-snapshot search, including most failed
-Qwen3 scheduling probes, stays on the research branch and is intentionally
-absent from this public update.
+[`../evidence/qwen3/README.md`](../evidence/qwen3/README.md). The broader
+post-snapshot search, including most failed Qwen3 scheduling probes, stays on
+the research branch and is intentionally absent from this public update.

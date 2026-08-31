@@ -11,6 +11,14 @@ Pallas compile -- after a session, an upload and a benchmark's first arm have
 already been spent. This fails in seconds instead.
 """
 import json
+from pathlib import Path
+import sys
+
+
+HERE = Path(__file__).resolve().parent
+REPOSITORY_ROOT = HERE.parent if HERE.name == "tools" else HERE
+if str(REPOSITORY_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPOSITORY_ROOT))
 
 import jax, jax.numpy as jnp
 
