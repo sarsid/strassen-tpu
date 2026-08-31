@@ -1,0 +1,43 @@
+{"arms": ["regular_xla", "gated_cubic", "gated_strassen"], "cubic_tile": [2048, 2048, 512], "device": "TPU v5 lite", "jax": "0.7.2", "kind": "metadata", "layers": 36, "model": "8b", "mosaic_compat": {"jax": "0.7.2", "libtpu": "0.0.21.1", "override_enabled": true, "supported_jax": "0.7.2", "supported_libtpu": ["0.0.21", "0.0.21.1"], "target_ir_version": 7}, "policy": "product-aware fused gate/up+SwiGLU; XLA down", "product_tile": [2048, 2048, 512], "repository": "Qwen/Qwen3-8B", "revision": "b968826d9c46dd6066d109eabc6255188de91218", "scope": "quality only; no timing; thresholds registered before the first run; logit drift diagnostic, never gated", "segments": 4, "thresholds": {"absolute_loss_delta_max": 0.01, "mean_kl_nats_max": 0.02, "top1_agreement_min": 0.97}}
+{"corpus": "wikitext-2-raw-v1/test first contiguous tokens", "kind": "tokens", "sha256": "4aa8e3628d16c9a26876aedb8c99525c6a15ee601c88d93deadae15855a84d74", "shape": [4, 8, 1024], "unique_tokens": 4815}
+{"arm": "regular_xla", "kind": "compile", "seconds": 5.114806475999956}
+{"arm": "gated_cubic", "kind": "compile", "seconds": 5.260937266999974}
+{"arm": "gated_strassen", "kind": "compile", "seconds": 11.737421341000015}
+{"finite": true, "kind": "layer", "layer": 0, "mean_l2_vs_xla": {"gated_cubic": 0.0014871862949803472, "gated_strassen": 0.002652276190929115}, "transfer_s": 4.6000002384971594e-07}
+{"finite": true, "kind": "layer", "layer": 1, "mean_l2_vs_xla": {"gated_cubic": 0.002558661624789238, "gated_strassen": 0.003858399752061814}, "transfer_s": 8.688006389000009}
+{"finite": true, "kind": "layer", "layer": 2, "mean_l2_vs_xla": {"gated_cubic": 0.003516975208185613, "gated_strassen": 0.004942670930176973}, "transfer_s": 8.80113744199997}
+{"finite": true, "kind": "layer", "layer": 3, "mean_l2_vs_xla": {"gated_cubic": 0.004281576490029693, "gated_strassen": 0.005746726877987385}, "transfer_s": 7.824574697999992}
+{"finite": true, "kind": "layer", "layer": 4, "mean_l2_vs_xla": {"gated_cubic": 0.0047433830332010984, "gated_strassen": 0.006320864777080715}, "transfer_s": 8.847884021000027}
+{"finite": true, "kind": "layer", "layer": 5, "mean_l2_vs_xla": {"gated_cubic": 0.005083530209958553, "gated_strassen": 0.0067502009915187955}, "transfer_s": 8.18730769399997}
+{"finite": true, "kind": "layer", "layer": 6, "mean_l2_vs_xla": {"gated_cubic": 0.0037280358956195414, "gated_strassen": 0.00889768241904676}, "transfer_s": 8.400957506000054}
+{"finite": true, "kind": "layer", "layer": 7, "mean_l2_vs_xla": {"gated_cubic": 0.003781433857511729, "gated_strassen": 0.008918303647078574}, "transfer_s": 9.187617972999988}
+{"finite": true, "kind": "layer", "layer": 8, "mean_l2_vs_xla": {"gated_cubic": 0.003844943130388856, "gated_strassen": 0.008938718121498823}, "transfer_s": 8.172013682000056}
+{"finite": true, "kind": "layer", "layer": 9, "mean_l2_vs_xla": {"gated_cubic": 0.0039003328420221806, "gated_strassen": 0.008959793718531728}, "transfer_s": 8.010374283000033}
+{"finite": true, "kind": "layer", "layer": 10, "mean_l2_vs_xla": {"gated_cubic": 0.0039417086518369615, "gated_strassen": 0.008968286449089646}, "transfer_s": 8.237785150999912}
+{"finite": true, "kind": "layer", "layer": 11, "mean_l2_vs_xla": {"gated_cubic": 0.004008551477454603, "gated_strassen": 0.008993855910375714}, "transfer_s": 8.492547797999919}
+{"finite": true, "kind": "layer", "layer": 12, "mean_l2_vs_xla": {"gated_cubic": 0.0040746829472482204, "gated_strassen": 0.009011284681037068}, "transfer_s": 8.028004683999939}
+{"finite": true, "kind": "layer", "layer": 13, "mean_l2_vs_xla": {"gated_cubic": 0.004184404504485428, "gated_strassen": 0.009063777979463339}, "transfer_s": 8.398403168999948}
+{"finite": true, "kind": "layer", "layer": 14, "mean_l2_vs_xla": {"gated_cubic": 0.0042720052297227085, "gated_strassen": 0.009105521254241467}, "transfer_s": 8.460694702000069}
+{"finite": true, "kind": "layer", "layer": 15, "mean_l2_vs_xla": {"gated_cubic": 0.004411850648466498, "gated_strassen": 0.009237312828190625}, "transfer_s": 8.305540134000012}
+{"finite": true, "kind": "layer", "layer": 16, "mean_l2_vs_xla": {"gated_cubic": 0.07994610292371362, "gated_strassen": 0.14338971104007214}, "transfer_s": 8.329166343999987}
+{"finite": true, "kind": "layer", "layer": 17, "mean_l2_vs_xla": {"gated_cubic": 0.0797303895233199, "gated_strassen": 0.14328405051492155}, "transfer_s": 8.855008789000067}
+{"finite": true, "kind": "layer", "layer": 18, "mean_l2_vs_xla": {"gated_cubic": 0.07957269588951021, "gated_strassen": 0.1429271933156997}, "transfer_s": 8.167315156999962}
+{"finite": true, "kind": "layer", "layer": 19, "mean_l2_vs_xla": {"gated_cubic": 0.07909860648214817, "gated_strassen": 0.1420182934962213}, "transfer_s": 8.273294035000049}
+{"finite": true, "kind": "layer", "layer": 20, "mean_l2_vs_xla": {"gated_cubic": 0.07878786022774875, "gated_strassen": 0.14147365151438862}, "transfer_s": 8.26167434499996}
+{"finite": true, "kind": "layer", "layer": 21, "mean_l2_vs_xla": {"gated_cubic": 0.07846463227178901, "gated_strassen": 0.14087995025329292}, "transfer_s": 8.487573325000085}
+{"finite": true, "kind": "layer", "layer": 22, "mean_l2_vs_xla": {"gated_cubic": 0.0775286554126069, "gated_strassen": 0.13920524495188147}, "transfer_s": 7.94577798499995}
+{"finite": true, "kind": "layer", "layer": 23, "mean_l2_vs_xla": {"gated_cubic": 0.07589367835316807, "gated_strassen": 0.13620569580234587}, "transfer_s": 8.458084969999959}
+{"finite": true, "kind": "layer", "layer": 24, "mean_l2_vs_xla": {"gated_cubic": 0.07317636348307133, "gated_strassen": 0.13141870172694325}, "transfer_s": 8.163110821000032}
+{"finite": true, "kind": "layer", "layer": 25, "mean_l2_vs_xla": {"gated_cubic": 0.07114295253995806, "gated_strassen": 0.12767453817650676}, "transfer_s": 8.553812752999988}
+{"finite": true, "kind": "layer", "layer": 26, "mean_l2_vs_xla": {"gated_cubic": 0.06851995969191194, "gated_strassen": 0.12291286629624665}, "transfer_s": 8.456354750999935}
+{"finite": true, "kind": "layer", "layer": 27, "mean_l2_vs_xla": {"gated_cubic": 0.06564371741842479, "gated_strassen": 0.11766802915371954}, "transfer_s": 8.753011810999965}
+{"finite": true, "kind": "layer", "layer": 28, "mean_l2_vs_xla": {"gated_cubic": 0.062225628178566694, "gated_strassen": 0.11138663231395185}, "transfer_s": 8.368171843000027}
+{"finite": true, "kind": "layer", "layer": 29, "mean_l2_vs_xla": {"gated_cubic": 0.05779875861480832, "gated_strassen": 0.10337507468648255}, "transfer_s": 8.532603496999968}
+{"finite": true, "kind": "layer", "layer": 30, "mean_l2_vs_xla": {"gated_cubic": 0.05228323792107403, "gated_strassen": 0.09307458251714706}, "transfer_s": 8.485136299999908}
+{"finite": true, "kind": "layer", "layer": 31, "mean_l2_vs_xla": {"gated_cubic": 0.04777601733803749, "gated_strassen": 0.0847761353943497}, "transfer_s": 8.435791946999984}
+{"finite": true, "kind": "layer", "layer": 32, "mean_l2_vs_xla": {"gated_cubic": 0.04414075776003301, "gated_strassen": 0.07820522878319025}, "transfer_s": 8.011631202999979}
+{"finite": true, "kind": "layer", "layer": 33, "mean_l2_vs_xla": {"gated_cubic": 0.03987148543819785, "gated_strassen": 0.07035027327947319}, "transfer_s": 8.186549015999958}
+{"finite": true, "kind": "layer", "layer": 34, "mean_l2_vs_xla": {"gated_cubic": 0.01168461050838232, "gated_strassen": 0.014381443848833442}, "transfer_s": 7.9616059589999395}
+{"finite": true, "kind": "layer", "layer": 35, "mean_l2_vs_xla": {"gated_cubic": 0.012466369895264506, "gated_strassen": 0.015420246869325638}, "transfer_s": 8.555382193000014}
+{"kind": "task", "results": {"gated_cubic": {"absolute_loss_delta": 3.732614153628688e-05, "candidate_loss": 2.384172722041782, "candidate_perplexity": 10.850082916616977, "logit_l2_relative": 0.016976025973245504, "logit_maxnorm_relative": 0.21745867768595042, "mean_kl_nats": 0.0007722262499757468, "native_loss": 2.384210048183318, "native_perplexity": 10.850487915906085, "passes_task_gate": true, "positions": 32736, "relative_perplexity_delta": -3.7325444924518614e-05, "top1_agreement": 0.9883614369501467}, "gated_strassen": {"absolute_loss_delta": 0.00031621388559344155, "candidate_loss": 2.3845262620689116, "candidate_perplexity": 10.853919533384513, "logit_l2_relative": 0.019810153643616026, "logit_maxnorm_relative": 0.2215909090909091, "mean_kl_nats": 0.0008723607945928709, "native_loss": 2.384210048183318, "native_perplexity": 10.850487915906085, "passes_task_gate": true, "positions": 32736, "relative_perplexity_delta": 0.0003162638864744327, "top1_agreement": 0.9876893939393939}}}
+{"all_finite": true, "cubic_task_passes": true, "kind": "verdict", "passes": true, "scope": "natural-corpus streamed quality gate for the frozen product-aware policy", "task_passes": true}

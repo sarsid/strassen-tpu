@@ -14,7 +14,6 @@ already supplied one.
 from __future__ import annotations
 
 import functools
-import importlib.metadata as importlib_metadata
 import os
 
 
@@ -71,8 +70,21 @@ TUNED_INTERLEAVED_SHAPES = frozenset({
 
 _SCOPED_VMEM_OPTION = "--xla_tpu_scoped_vmem_limit_kib="
 _libtpu_args = os.environ.get("LIBTPU_INIT_ARGS", "").strip()
-if (VMEM_PROFILE != "compact16"
-        and _SCOPED_VMEM_OPTION not in _libtpu_args):
+# Installing a process-wide scoped-VMEM ceiling affects every compilation in
+# the process, including GEMMs that fall back to native XLA -- so it is an
+# application-level decision, not something a library should do invisibly.
+# It stays the default for the non-default profiles (which exist precisely to
+# raise the ceiling, and whose measurements assume it), but is now named,
+# suppressible via strassen_config.configure(manage_ceiling=False), and
+# reported in MANAGES_PROCESS_CEILING / PROFILE_INFO. The default profile
+# compact16 has never installed a ceiling.
+MANAGE_CEILING = os.environ.get("STRASSEN_MANAGE_CEILING", "1") != "0"
+MANAGES_PROCESS_CEILING = (
+    MANAGE_CEILING
+    and VMEM_PROFILE != "compact16"
+    and _SCOPED_VMEM_OPTION not in _libtpu_args
+)
+if MANAGES_PROCESS_CEILING:
     os.environ["LIBTPU_INIT_ARGS"] = " ".join(
         value
         for value in (
@@ -82,11 +94,24 @@ if (VMEM_PROFILE != "compact16"
         if value
     )
 
+# Recorded by benchmarks so an executable's provenance names the profile it was
+# compiled under, rather than leaving it implicit in the environment.
+PROFILE_INFO = {
+    "profile": VMEM_PROFILE,
+    "tile": (TUNED_BM, TUNED_BN, TUNED_BK),
+    "kernel_limit_bytes": TUNED_VMEM_LIMIT_BYTES,
+    "scoped_vmem_kib": TUNED_SCOPED_VMEM_KIB,
+    "installed_process_ceiling": MANAGES_PROCESS_CEILING,
+    "libtpu_init_args": os.environ.get("LIBTPU_INIT_ARGS", ""),
+}
+
 
 import jax
 import jax.numpy as jnp
 from jax.experimental import pallas as pl
 from jax.experimental.pallas import tpu as pltpu
+
+import mosaic_compat
 
 
 LANE = 128
@@ -96,33 +121,7 @@ if TPU_COMPILER_PARAMS is None:
     TPU_COMPILER_PARAMS = pltpu.CompilerParams
 
 
-def _enable_colab_mosaic_v7_compat():
-    """Narrow workaround for the pinned JAX 0.7.2/libtpu 0.0.21 image."""
-    try:
-        libtpu_version = importlib_metadata.version("libtpu")
-    except importlib_metadata.PackageNotFoundError:
-        return False
-    if jax.__version__ != "0.7.2" or libtpu_version != "0.0.21":
-        return False
-
-    from jax._src import tpu_custom_call  # pylint: disable=g-import-not-at-top
-
-    original = getattr(
-        tpu_custom_call,
-        "_strassen_original_get_ir_version",
-        tpu_custom_call.get_ir_version,
-    )
-    tpu_custom_call._strassen_original_get_ir_version = original
-
-    def get_ir_version_v7(ctx):
-        version = original(ctx)
-        return 7 if version is None else min(version, 7)
-
-    tpu_custom_call.get_ir_version = get_ir_version_v7
-    return True
-
-
-MOSAIC_IR_V7_COMPAT = _enable_colab_mosaic_v7_compat()
+MOSAIC_IR_V7_COMPAT = mosaic_compat.enable_v7_compat()
 
 
 def check_tiling(bm, bn, bk):
@@ -155,6 +154,12 @@ def _classical_strassen_kernel(
     formula_variant,
     output_is_accumulator,
     classical_panels=(),
+    panel_schedule_ref=None,
+    epilogue=None,
+    residual_ref=None,
+    bias_ref=None,
+    finalize_quadrant=None,
+    product_aware_swiglu=False,
 ):
     step = pl.program_id(2)
     m, k = a_ref.shape
@@ -256,6 +261,28 @@ def _classical_strassen_kernel(
             o_ref[hm:, hn:] = value.astype(o_ref.dtype)
 
     cd = compute_dtype
+
+    if finalize_quadrant is not None and (
+        not output_is_accumulator
+        or formula_variant != "classical"
+        or block_permutation != 0
+        or classical_panels
+        or panel_schedule_ref is not None
+    ):
+        raise ValueError(
+            "quadrant finalization requires unpermuted classical Strassen "
+            "with an output accumulator and no exact-panel policy")
+    if product_aware_swiglu and (
+        output_is_accumulator
+        or formula_variant != "classical"
+        or block_permutation != 0
+        or classical_panels
+        or panel_schedule_ref is not None
+        or epilogue != "swiglu"
+    ):
+        raise ValueError(
+            "product-aware SwiGLU requires unpermuted classical Strassen "
+            "with quadrant accumulators and no exact-panel policy")
 
     def p1():
         # P1=(A0+A3)(B0+B3): C0 += P1, C3 += P1.
@@ -521,7 +548,72 @@ def _classical_strassen_kernel(
         update(2, dot(a3.astype(cd), b2.astype(cd)))
         update(3, dot(a3.astype(cd), b3.astype(cd)))
 
-    if classical_panels:
+    # Two ways to say "this K panel is exact". The static form bakes the panel
+    # set into the traced predicate, so every distinct budget compiles its own
+    # executable -- fine for experiments, poor for a per-layer deployment
+    # policy. The prefetched form reads the decision from a scalar array, so a
+    # single executable serves every budget.
+    if product_aware_swiglu:
+        def store_swiglu_pair(top):
+            gate_index, up_index = ((0, 1) if top else (2, 3))
+            destination = slice(0, hm) if top else slice(hm, m)
+            o_ref[destination, :] = (
+                jax.nn.silu(acc_ref[gate_index]) * acc_ref[up_index]
+            ).astype(o_ref.dtype)
+
+        @pl.when(step != nk - 1)
+        def _ordinary_panel():
+            run_seven_products()
+
+        @pl.when(step == nk - 1)
+        def _product_aware_final_panel():
+            # Complete the top gate/up pair first, then expose its SwiGLU VPU
+            # work while the two full-size P6/P2 MXU products complete the
+            # bottom pair. This deliberately changes bottom-quadrant FP32
+            # accumulation order, so callers must requalify numerical error.
+            p4()
+            p5()
+            p7()
+            p3()
+            p1()
+            store_swiglu_pair(True)
+            p6()
+            p2()
+            store_swiglu_pair(False)
+    elif finalize_quadrant is not None:
+        # Keep the dependency-spaced product order, and preserve the relative
+        # accumulation order within every output quadrant.  C21 is complete
+        # after P2, leaving P7/P3/P1 as independent MXU work; C12 is complete
+        # after P3, leaving P1.  The callback can expose their vector epilogues
+        # to Mosaic without shrinking any MXU product.  C11/C22 finish at P1.
+        @pl.when(step != nk - 1)
+        def _ordinary_panel():
+            run_seven_products()
+
+        @pl.when(step == nk - 1)
+        def _product_aware_final_panel():
+            p4()
+            p6()
+            p5()
+            p2()
+            finalize_quadrant(2)
+            p7()
+            p3()
+            finalize_quadrant(1)
+            p1()
+            finalize_quadrant(0)
+            finalize_quadrant(3)
+    elif panel_schedule_ref is not None:
+        is_exact_panel = panel_schedule_ref[step] != 0
+
+        @pl.when(is_exact_panel)
+        def _exact_panel_scheduled():
+            run_exact_panel()
+
+        @pl.when(jnp.logical_not(is_exact_panel))
+        def _strassen_panel_scheduled():
+            run_seven_products()
+    elif classical_panels:
         is_exact_panel = functools.reduce(
             jnp.logical_or,
             [step == panel for panel in classical_panels],
@@ -540,6 +632,8 @@ def _classical_strassen_kernel(
     if not output_is_accumulator:
         @pl.when(step == nk - 1)
         def _store_output():
+            if product_aware_swiglu:
+                return
             if formula_variant == "powers":
                 z0, z1, z2, z3 = tuple(acc_ref[index] for index in range(4))
                 # Decode and store one quadrant at a time.  Keeping c0..c3
@@ -558,6 +652,45 @@ def _classical_strassen_kernel(
                     + z3
                     + z0 * jnp.asarray(0.5, dtype=z0.dtype)
                 ))
+            elif epilogue == "swiglu":
+                # The quadrant layout already separates the operands: with the
+                # combined gate/up weight column-blocked so each N tile holds
+                # gate channels then the matching up channels, quadrants 0/2
+                # are gate and 1/3 are up. So SwiGLU is a pure register-level
+                # epilogue over accumulators that are already in FP32 -- no
+                # extra pass over HBM, and the activation is computed at
+                # accumulator precision rather than after a BF16 round trip.
+                gate_top, up_top = acc_ref[0], acc_ref[1]
+                gate_bottom, up_bottom = acc_ref[2], acc_ref[3]
+                o_ref[:hm, :] = (
+                    jax.nn.silu(gate_top) * up_top
+                ).astype(o_ref.dtype)
+                o_ref[hm:, :] = (
+                    jax.nn.silu(gate_bottom) * up_bottom
+                ).astype(o_ref.dtype)
+            elif epilogue == "residual_add":
+                # Fold the residual add into the store so the output tile is
+                # written once instead of being re-read by a separate kernel.
+                o_ref[:hm, :hn] = (
+                    acc_ref[0] + residual_ref[:hm, :hn].astype(jnp.float32)
+                ).astype(o_ref.dtype)
+                o_ref[:hm, hn:] = (
+                    acc_ref[1] + residual_ref[:hm, hn:].astype(jnp.float32)
+                ).astype(o_ref.dtype)
+                o_ref[hm:, :hn] = (
+                    acc_ref[2] + residual_ref[hm:, :hn].astype(jnp.float32)
+                ).astype(o_ref.dtype)
+                o_ref[hm:, hn:] = (
+                    acc_ref[3] + residual_ref[hm:, hn:].astype(jnp.float32)
+                ).astype(o_ref.dtype)
+            elif epilogue == "bias_add":
+                # Fold a Linear bias into the final store.  The bias arrives
+                # as (1, bn) so Mosaic can use a legal 2-D tiled layout.
+                bias = bias_ref[0].astype(jnp.float32)
+                o_ref[:hm, :hn] = (acc_ref[0] + bias[:hn]).astype(o_ref.dtype)
+                o_ref[:hm, hn:] = (acc_ref[1] + bias[hn:]).astype(o_ref.dtype)
+                o_ref[hm:, :hn] = (acc_ref[2] + bias[:hn]).astype(o_ref.dtype)
+                o_ref[hm:, hn:] = (acc_ref[3] + bias[hn:]).astype(o_ref.dtype)
             else:
                 o_ref[:hm, :hn] = acc_ref[0].astype(o_ref.dtype)
                 o_ref[:hm, hn:] = acc_ref[1].astype(o_ref.dtype)
@@ -577,7 +710,13 @@ def strassen_matmul(
     block_permutation=0,
     formula_variant="classical",
     classical_panels=(),
+    panel_schedule=None,
+    epilogue=None,
+    residual=None,
+    bias=None,
     output_dtype=None,
+    allow_input_fusion=None,
+    product_aware_swiglu=False,
     interpret=False,
     vmem_limit_bytes=None,
 ):
@@ -591,6 +730,10 @@ def strassen_matmul(
     same formula and maps the quadrants back before returning.
     ``formula_variant`` exposes classical, dual, and lower-growth power-of-two
     research formulas; the tuned dispatcher selects classical only.
+    ``allow_input_fusion`` is a tuple aligned with the user-visible operands
+    ``(a, b)`` or ``(a, b, residual)``.  It is forwarded to Mosaic's TPU
+    custom-call backend configuration so XLA may absorb eligible producers.
+    This is a permission, not a guarantee that the backend will fuse them.
     """
     if a.ndim != 2 or b.ndim != 2:
         raise ValueError("strassen_matmul expects two rank-2 matrices")
@@ -609,6 +752,49 @@ def strassen_matmul(
             "formula_variant must be 'classical', 'dual', or 'powers'"
         )
     classical_panels = tuple(sorted({int(p) for p in classical_panels}))
+    if epilogue is not None:
+        if epilogue not in ("swiglu", "residual_add", "bias_add"):
+            raise ValueError(
+                f"unknown epilogue {epilogue!r}; choose 'swiglu' or "
+                "'residual_add' or 'bias_add'"
+            )
+        if formula_variant == "powers":
+            raise ValueError("fused epilogues require a quadrant-basis formula")
+        if output_dtype is not None and jnp.dtype(output_dtype) != jnp.dtype(
+                jnp.bfloat16):
+            raise ValueError("fused epilogues write a BF16 output tile")
+        if epilogue == "swiglu" and bn % 2:
+            raise ValueError(f"swiglu epilogue needs an even bn, got {bn}")
+        if epilogue == "residual_add" and residual is None:
+            raise ValueError("residual_add epilogue requires residual=")
+        if epilogue == "bias_add" and bias is None:
+            raise ValueError("bias_add epilogue requires bias=")
+        if epilogue == "bias_add" and formula_variant == "powers":
+            raise ValueError("bias_add requires a quadrant-basis formula")
+    if residual is not None and epilogue != "residual_add":
+        raise ValueError("residual= is only used by the residual_add epilogue")
+    if bias is not None and epilogue != "bias_add":
+        raise ValueError("bias= is only used by the bias_add epilogue")
+    if product_aware_swiglu and epilogue != "swiglu":
+        raise ValueError(
+            "product_aware_swiglu is only valid with epilogue='swiglu'")
+    if epilogue == "bias_add" and bias.shape != (n,):
+        raise ValueError(f"bias shape {bias.shape} != output width {(n,)}")
+    operand_count = 3 if epilogue in ("residual_add", "bias_add") else 2
+    if allow_input_fusion is not None:
+        allow_input_fusion = tuple(allow_input_fusion)
+        if len(allow_input_fusion) != operand_count:
+            raise ValueError(
+                "allow_input_fusion must contain one boolean per operand: "
+                f"expected {operand_count}, got {len(allow_input_fusion)}"
+            )
+        if not all(isinstance(value, bool) for value in allow_input_fusion):
+            raise TypeError("allow_input_fusion entries must be bool")
+    if panel_schedule is not None and classical_panels:
+        raise ValueError(
+            "pass either classical_panels (static) or panel_schedule "
+            "(prefetched), not both"
+        )
     if classical_panels:
         if formula_variant == "powers":
             raise ValueError(
@@ -644,7 +830,188 @@ def strassen_matmul(
         formula_variant=formula_variant,
         output_is_accumulator=output_is_accumulator,
         classical_panels=classical_panels,
+        epilogue=epilogue,
+        product_aware_swiglu=product_aware_swiglu,
     )
+    scratch_shape = (
+        pltpu.VMEM((1,), jnp.float32)
+        if output_is_accumulator
+        else pltpu.VMEM((4, bm // 2, bn // 2), jnp.float32)
+    )
+    if panel_schedule is not None:
+        if epilogue is not None:
+            raise ValueError("panel_schedule does not support fused epilogues")
+        # One executable serves every per-layer budget: the exact-panel
+        # decision is read from a prefetched scalar array instead of being
+        # baked into the traced predicate.
+        schedule = jnp.asarray(panel_schedule, dtype=jnp.int32)
+        if schedule.shape != (nk,):
+            raise ValueError(
+                f"panel_schedule must have shape ({nk},), got {schedule.shape}"
+            )
+
+        def scheduled_kernel(schedule_ref, a_ref, b_ref, o_ref, acc_ref):
+            return _classical_strassen_kernel(
+                a_ref, b_ref, o_ref, acc_ref,
+                nk=nk,
+                compute_dtype=a.dtype,
+                dot_precision=dot_precision,
+                interleave_products=interleave_products,
+                block_permutation=block_permutation,
+                formula_variant=formula_variant,
+                output_is_accumulator=output_is_accumulator,
+                panel_schedule_ref=schedule_ref,
+            )
+
+        grid_spec = pltpu.PrefetchScalarGridSpec(
+            num_scalar_prefetch=1,
+            grid=(m // bm, n // bn, nk),
+            in_specs=[
+                pl.BlockSpec((bm, bk), lambda i, j, step, _: (i, step)),
+                pl.BlockSpec((bk, bn), lambda i, j, step, _: (step, j)),
+            ],
+            out_specs=pl.BlockSpec((bm, bn), lambda i, j, step, _: (i, j)),
+            scratch_shapes=[scratch_shape],
+        )
+        return pl.pallas_call(
+            scheduled_kernel,
+            grid_spec=grid_spec,
+            out_shape=jax.ShapeDtypeStruct((m, n), output_dtype),
+            compiler_params=TPU_COMPILER_PARAMS(
+                dimension_semantics=("parallel", "parallel", "arbitrary"),
+                allow_input_fusion=(
+                    None
+                    if allow_input_fusion is None
+                    # The prefetched schedule is an implementation operand,
+                    # not one of the user-visible matrix operands.
+                    else (False,) + allow_input_fusion
+                ),
+                vmem_limit_bytes=vmem_limit_bytes,
+            ),
+            interpret=interpret,
+        )(schedule, a, b)
+
+    in_specs = [
+        pl.BlockSpec((bm, bk), lambda i, j, step: (i, step)),
+        pl.BlockSpec((bk, bn), lambda i, j, step: (step, j)),
+    ]
+    operands = [a, b]
+    if epilogue == "swiglu":
+        # SwiGLU halves the output width: each (bm, bn) tile of gate|up
+        # produces a (bm, bn // 2) tile of activated intermediate.
+        out_specs = pl.BlockSpec((bm, bn // 2), lambda i, j, step: (i, j))
+        out_shape = jax.ShapeDtypeStruct((m, n // 2), output_dtype)
+    else:
+        out_specs = pl.BlockSpec((bm, bn), lambda i, j, step: (i, j))
+        out_shape = jax.ShapeDtypeStruct((m, n), output_dtype)
+    if epilogue == "residual_add":
+        if residual.shape != (m, n):
+            raise ValueError(
+                f"residual shape {residual.shape} != output shape {(m, n)}"
+            )
+        in_specs.append(pl.BlockSpec((bm, bn), lambda i, j, step: (i, j)))
+        operands.append(residual)
+        # Pallas passes refs positionally, so the residual arrives between
+        # b_ref and o_ref; adapt rather than reorder the kernel's signature.
+        base_kernel = kernel
+
+        def kernel(a_ref, b_ref, residual_ref, o_ref, acc_ref):
+            return base_kernel(
+                a_ref, b_ref, o_ref, acc_ref, residual_ref=residual_ref
+            )
+    elif epilogue == "bias_add":
+        bias_matrix = bias.reshape(1, n)
+        in_specs.append(pl.BlockSpec((1, bn), lambda i, j, step: (0, j)))
+        operands.append(bias_matrix)
+        # As above, adapt the positional input-ref order Pallas constructs.
+        base_kernel = kernel
+
+        def kernel(a_ref, b_ref, bias_ref, o_ref, acc_ref):
+            return base_kernel(a_ref, b_ref, o_ref, acc_ref, bias_ref=bias_ref)
+
+    return pl.pallas_call(
+        kernel,
+        grid=(m // bm, n // bn, nk),
+        in_specs=in_specs,
+        out_specs=out_specs,
+        out_shape=out_shape,
+        scratch_shapes=[scratch_shape],
+        compiler_params=TPU_COMPILER_PARAMS(
+            dimension_semantics=("parallel", "parallel", "arbitrary"),
+            allow_input_fusion=allow_input_fusion,
+            vmem_limit_bytes=vmem_limit_bytes,
+        ),
+        interpret=interpret,
+    )(*operands)
+
+
+def strassen_matmul_lhs_transposed(
+    a,
+    b,
+    *,
+    bm=TUNED_BM,
+    bn=TUNED_BN,
+    bk=TUNED_BK,
+    dot_precision=jax.lax.Precision.DEFAULT,
+    interleave_products=False,
+    output_dtype=None,
+    allow_input_fusion=None,
+    interpret=False,
+    vmem_limit_bytes=None,
+):
+    """Compute ``a.T @ b`` without materializing a global transpose.
+
+    The first input remains in its producer layout ``(K, M)``. Each program
+    loads a ``(bk, bm)`` HBM tile and transposes that tile in VMEM before the
+    ordinary Strassen body sees it. This is intended for weight-gradient
+    products where XLA's dot can express transpose semantics but an opaque
+    Pallas call would otherwise receive a materialized ``swapaxes`` result.
+
+    This deliberately exposes only the options used by the training policy;
+    add other epilogues or formula variants only after they receive their own
+    matched cubic control.
+    """
+    if a.ndim != 2 or b.ndim != 2:
+        raise ValueError("strassen_matmul_lhs_transposed expects rank-2 inputs")
+    k, m = a.shape
+    k2, n = b.shape
+    if k != k2:
+        raise ValueError(f"contracting dimensions disagree: {k} vs {k2}")
+    if a.dtype != b.dtype:
+        raise ValueError(f"input dtypes disagree: {a.dtype} vs {b.dtype}")
+    if a.dtype not in (jnp.dtype(jnp.bfloat16), jnp.dtype(jnp.float32)):
+        raise ValueError("inputs must be BF16 or FP32")
+    for name, dimension, block in (("M", m, bm), ("N", n, bn), ("K", k, bk)):
+        if dimension % block:
+            raise ValueError(f"{name}={dimension} is not divisible by {block}")
+    check_tiling(bm, bn, bk)
+    if allow_input_fusion is not None:
+        allow_input_fusion = tuple(allow_input_fusion)
+        if len(allow_input_fusion) != 2:
+            raise ValueError("allow_input_fusion must contain two booleans")
+
+    output_dtype = jnp.dtype(a.dtype if output_dtype is None else output_dtype)
+    output_is_accumulator = output_dtype == jnp.dtype(jnp.float32)
+    nk = k // bk
+
+    def kernel(a_physical_ref, b_ref, o_ref, acc_ref):
+        # The block spec preserves the producer's (K, M) layout. Only the
+        # resident tile is transposed; no KxM temporary exists in HBM.
+        a_tile = jnp.swapaxes(a_physical_ref[...], 0, 1)
+        return _classical_strassen_kernel(
+            a_tile,
+            b_ref,
+            o_ref,
+            acc_ref,
+            nk=nk,
+            compute_dtype=a.dtype,
+            dot_precision=dot_precision,
+            interleave_products=interleave_products,
+            block_permutation=0,
+            formula_variant="classical",
+            output_is_accumulator=output_is_accumulator,
+        )
+
     scratch_shape = (
         pltpu.VMEM((1,), jnp.float32)
         if output_is_accumulator
@@ -654,7 +1021,7 @@ def strassen_matmul(
         kernel,
         grid=(m // bm, n // bn, nk),
         in_specs=[
-            pl.BlockSpec((bm, bk), lambda i, j, step: (i, step)),
+            pl.BlockSpec((bk, bm), lambda i, j, step: (step, i)),
             pl.BlockSpec((bk, bn), lambda i, j, step: (step, j)),
         ],
         out_specs=pl.BlockSpec((bm, bn), lambda i, j, step: (i, j)),
@@ -662,10 +1029,44 @@ def strassen_matmul(
         scratch_shapes=[scratch_shape],
         compiler_params=TPU_COMPILER_PARAMS(
             dimension_semantics=("parallel", "parallel", "arbitrary"),
+            allow_input_fusion=allow_input_fusion,
             vmem_limit_bytes=vmem_limit_bytes,
         ),
         interpret=interpret,
     )(a, b)
+
+
+def swiglu_weight_layout(gate_up, bn):
+    """Reorder a combined gate/up weight so SwiGLU can be fused in-kernel.
+
+    A combined projection is stored as ``[gate(0..I-1) | up(0..I-1)]``, so a
+    single (bm, bn) output tile holds either gate channels or up channels --
+    never a matching pair -- and the activation cannot be computed inside the
+    kernel. Blocking the columns as
+    ``gate[0:h] up[0:h] gate[h:2h] up[h:2h] ...`` with ``h = bn // 2`` puts
+    each gate channel in the same tile as its partner, at which point the
+    kernel's own quadrant layout separates them exactly (quadrants 0/2 gate,
+    1/3 up).
+
+    This is a free offline relayout of the weights -- the same class of
+    transformation as the hybrid's intermediate permutation -- and changes
+    nothing the model computes.
+    """
+    two_i = gate_up.shape[1]
+    if two_i % 2:
+        raise ValueError(f"combined gate/up width {two_i} is not even")
+    intermediate = two_i // 2
+    half = bn // 2
+    if intermediate % half:
+        raise ValueError(
+            f"intermediate {intermediate} is not divisible by bn//2={half}"
+        )
+    order = []
+    for block in range(intermediate // half):
+        start = block * half
+        order.extend(range(start, start + half))
+        order.extend(range(intermediate + start, intermediate + start + half))
+    return gate_up[:, jnp.asarray(order)]
 
 
 def native_matmul(a, b):
