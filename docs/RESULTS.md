@@ -90,3 +90,72 @@ The exact JSONL artifacts and SHA-256 values are indexed in
 [`../evidence/qwen3/README.md`](../evidence/qwen3/README.md). The broader
 post-snapshot search, including most failed Qwen3 scheduling probes, stays on
 the research branch and is intentionally absent from this public update.
+
+## Trillium (TPU v6e) and the fused q/k epilogue
+
+Added 2026-09-05. Same protocol: same-run arms on one chip, compilation
+excluded, raw samples retained in the artifacts.
+
+### Pure GEMM, no epilogue
+
+The bare BF16 GEMM at the gate/up geometry, with SwiGLU, product-aware
+finalization and residuals all removed, so the rank-7 saving is separated
+from the fusion work layered on top of it. On v6e all four arms select the
+same tile `(2048, 1024, 5120)`, which makes the matched-tile cubic a fair
+control.
+
+| Arm | v6e mean | vs XLA |
+|---|---:|---:|
+| `strassen` | `4.673 ms` | `1.1117x` |
+| `cubic_matched` | `5.091 ms` | — |
+| `cubic_best` | `5.108 ms` | `0.9339x`* |
+| `regular_xla` | `5.194 ms` | `1.0000x` |
+
+Strassen against cubic at the identical tile is `1.0896x`, below the
+`8/7 = 1.1429x` ceiling. On v5e the matched-tile figure reads `1.3101x`,
+above the ceiling and therefore not an algorithm effect: there the cubic arm
+is forced `8%` off its own optimum. Where the two chips disagree, the v6e
+number is the trustworthy one. (*v5e figure.)
+
+### The scoped-vmem flag, priced on one chip
+
+| Arm | 48 MiB | 128 MiB | cost |
+|---|---:|---:|---:|
+| `regular_xla` | `5.194 ms` | `5.409 ms` | `+4.1%` |
+| `strassen` | `4.673 ms` | `4.668 ms` | `-0.1%` |
+
+At the layer rather than the GEMM the same flag costs XLA `37%`, so the
+penalty is in the surrounding work, not the matmul. Left unfixed it would
+have inflated the pure-GEMM headline from `1.1117x` to `1.1586x`.
+
+### Fused q_norm+RoPE, paired on and off
+
+One block, identical policy and budget, differing only in whether q and k
+carry their per-head RMSNorm and RoPE inside the kernel.
+
+| Chip | off | on | ratio |
+|---|---:|---:|---:|
+| v5e | `60.469 ms` | `55.346 ms` | `1.0562x` -> `1.1566x` |
+| v6e | `16.100 ms` | `14.552 ms` | `1.0914x` -> `1.2093x` |
+
+The saving is `8.0%` and `8.8%` of the respective blocks, close to a constant
+fraction rather than a constant absolute cost.
+
+### Streamed, all 64 layers
+
+| Arm | total | vs XLA |
+|---|---:|---:|
+| `gated_strassen` | `871.73 ms` | `1.2950x` |
+| `regular_xla` | `1128.88 ms` | `1.0000x` |
+| `gated_cubic` | `1144.01 ms` | `0.9868x` |
+
+Task gate passes: top-1 agreement `0.99963`, mean KL `1.374e-4` nats,
+absolute loss delta `8.93e-5`, all finite. The per-layer logit L2 of
+`0.15-0.20` is the accumulated-drift artifact documented for streamed mode
+and is present in the cubic control as well.
+
+This streamed figure exceeds the single-block `1.2093x` under the same
+policy. The harnesses differ in arm count, sample budget and when the q/k
+layouts are materialised; the gap is unexplained and should not be read as
+the fusion improving with depth.
+

@@ -59,3 +59,64 @@ Earlier kernel, VMEM, numerical-stability, and Mistral evidence is retained in
 [`../../archive/initial-snapshot/evidence/`](../../archive/initial-snapshot/evidence/).
 It is historical context and is not required for the current Qwen3 claim. OOM
 records are feasibility evidence, not successful performance measurements.
+
+## Trillium: pure GEMM attribution
+
+Bare BF16 GEMM at the gate/up geometry, no epilogue of any kind, so the
+rank-7 saving is separated from the fusion work layered on it. The two v6e
+rows differ only in the XLA scoped-vmem flag, which prices the flag itself.
+
+| Artifact | SHA-256 |
+|---|---|
+| `strassen_qwen3_32b_v6e_pure_gemm.jsonl` | `b4ab9545d440107195c10bc297ce6d32cd9ee7876d53a913492117801ea79f80` |
+| `strassen_qwen3_32b_v6e_pure_gemm_bigflag.jsonl` | `eae27333ada41c36961544319b566db592d4b20cae640ae2f66fcb6d0287e517` |
+| `strassen_qwen3_32b_pure_gemm_v5e.jsonl` | `049965abc1d01a70c971182a66bed7915bb95b6504592baa52e4bdaa8c3e26fe` |
+
+## Fused q/k RMSNorm+RoPE, paired on and off
+
+One transformer block, identical policy and budget, differing only in
+whether q and k carry their per-head RMSNorm and RoPE inside the kernel.
+
+| Artifact | SHA-256 |
+|---|---|
+| `strassen_qwen3_32b_full_layer_product_inference_v5e_fusedqk_on.jsonl` | `e0c9d81ea62c7acdaeb0e1f3ef9412bd27a6cddf320c1fe9f15f7a5751762011` |
+| `strassen_qwen3_32b_full_layer_product_inference_v5e_fusedqk_off.jsonl` | `f6832cf83a6d59c9892b8a2ddc90f1b564a8e3d713442f5a9900e6ab714911ff` |
+| `strassen_qwen3_32b_full_layer_product_inference_v6e_fusedqk_on.jsonl` | `253e5f161d91185b989b673dfd6422a8424ac5f2b9d59b8eedbf179520c5991e` |
+| `strassen_qwen3_32b_full_layer_product_inference_v6e_fusedqk_off.jsonl` | `d4684098b6b48eba4d09fdfdfd2b44562b1ead650f32028393e5cbfd2a2ce8f1` |
+
+## Trillium scoped-vmem flag, paired at one tile
+
+Identical tile and budget on one chip; only the XLA scoped-vmem flag moves.
+
+| Artifact | SHA-256 |
+|---|---|
+| `strassen_qwen3_32b_full_layer_product_inference_v6e_fused_a2.jsonl` | `a829d5bb205f807d9325ca5423987e76d4b6ea35286267baa30ce52c169173ad` |
+| `strassen_qwen3_32b_full_layer_product_inference_v6e_fused_c2.jsonl` | `1aeaf0a4f548548e20d0553675b1cb0b91bcd22ca88ab6bc721d893159a7b6d2` |
+
+## Tile and per-site selection
+
+Trillium retune under a raised kernel budget, and the per-site screens for
+q, k, v, o and down that the flat heuristic never covered.
+
+| Artifact | SHA-256 |
+|---|---|
+| `strassen_qwen3_32b_scaling_tiles_v6e_retune.jsonl` | `3084e2bbb883536ccb67a615330a090ad246f4764513e64e68b4c3346f10325a` |
+| `strassen_qwen3_32b_site_tiles_v5e.jsonl` | `32517422bbb99304ce21cc5b3ea615e8fc9e08784acb31248c6ab2142e4e5bc8` |
+| `strassen_qwen3_32b_site_tiles_v6e_deep.jsonl` | `b5818d12af01fc8b2b5689227c7421403726be44f309f2be6a0cd89d6310eadb` |
+
+## Streamed all-layer gates
+
+All 64 layers with weights streamed; the registered end-to-end measurement.
+
+| Artifact | SHA-256 |
+|---|---|
+| `strassen_qwen3_32b_streamed_product_inference_extended.jsonl` | `3f6df9ea49de2bb343efed15863364c7eebb0eb73d7f74f43f01c03bc507869c` |
+| `strassen_qwen3_32b_streamed_product_inference_v6e_fusedqk.jsonl` | `a747ef79eb3eae2736d54c7d72f2eee4d5f5311a7ed74ec880a744a1ef2c8346` |
+
+## Downstream-task agreement
+
+Zero-shot HellaSwag and LAMBADA agreement against the native path.
+
+| Artifact | SHA-256 |
+|---|---|
+| `strassen_qwen3_32b_downstream_tasks.jsonl` | `7d9d066ba8ec066e2b54f9a5f3250f32d5faaf0389b8a8c66c22f8b977cbdfce` |

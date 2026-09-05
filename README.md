@@ -1,116 +1,91 @@
-# Strassen GEMM on TPU v5e
+# Strassen GEMM on TPU
 
-This repository is a public research snapshot of one-level, tile-local
-Strassen GEMM in JAX Pallas. The strongest result is a selective Qwen3 MLP
-inference policy that beats ordinary XLA on summed resident layer compute for
-8B, 14B, and 32B models on one TPU v5e.
+Public research snapshot of one-level, tile-local Strassen GEMM in JAX Pallas
+(Mosaic), on a single TPU v5e or v6e (Trillium). The kernel replaces eight
+quadrant multiplies with seven and folds the surrounding elementwise work —
+SwiGLU, residual adds, per-head RMSNorm, RoPE — into the same kernel, so the
+intermediate never reaches HBM.
+
+All timings are same-run measurements on one Colab chip. Compilation and
+checkpoint transfer are excluded. Every artifact is indexed with its SHA-256
+in `evidence/qwen3/README.md`; `tools/verify_evidence.py` checks them.
 
 ## Main result
 
-All timings are same-run measurements on Colab `TPU v5 lite`. Compilation and
-checkpoint transfer are excluded.
+Qwen3-32B, batch 8 x 1024 tokens, real weights:
 
-| Model | Layers | Strassen vs XLA | Strassen vs cubic Pallas |
-|---|---:|---:|---:|
-| Qwen3-8B | 36 | `1.0411x` | `1.0578x` |
-| Qwen3-14B | 40 | `1.0507x` | `1.0645x` |
-| Qwen3-32B | 64 | `1.0368x` | `1.0809x` |
+| Workload | v5e | v6e |
+|---|---:|---:|
+| **Streamed, all 64 layers (registered gate)** | `1.0544x` | **`1.2950x`** |
+| Single transformer block, layer 0 | `1.1566x` | `1.2093x` |
+| Pure GEMM, no epilogue, vs XLA | `1.1312x` | `1.1117x` |
+| Pure GEMM, vs matched cubic at the same tile | — | `1.0896x` |
 
-Strassen was faster than XLA in every measured layer: 36/36, 40/40, and
-64/64. The trend is roughly flat rather than improving monotonically with
-model size.
+The last row is the algorithm by itself. **Rank-7 is worth about 9%**, below
+the `8/7 = 1.1429x` ceiling as a genuine Strassen saving should be. Everything
+above that comes from fusion and tile selection, not from the multiply count.
+That makes this a scheduling and fusion-boundary result rather than a
+fast-matmul one.
 
-The primary control is ordinary XLA applied to the complete gate/up plus
-SwiGLU function, with its normal fusion opportunities. The cubic Pallas arm
-uses the same blocked custom-kernel substrate, but its epilogue boundary is
-not identical to the product-aware Strassen arm. It is useful attribution
-evidence, not a pure seven-versus-eight-product comparison.
+Quality passes the registered gates at every width (8B/14B/32B): streamed
+top-1 agreement `0.99963`, mean KL `1.374e-4` nats, WikiText-2 perplexity
+delta under `4e-4`, HellaSwag choice agreement `1.000`, LAMBADA `0.991`.
 
-## What worked
+## What actually produced the speedup
 
-The successful policy is narrow:
+Four findings, each measured on both chips:
 
-1. Use Strassen only for large, favorable gate/up projections.
-2. Keep full-size MXU products rather than shrinking the hardware tile.
-3. Order the final K panel so the top gate/up pair becomes complete before the
-   final products for the bottom pair.
-4. Place the top SwiGLU store between those product groups, exposing VPU work
-   to Mosaic while independent MXU work remains available.
-5. Leave attention, down projections, thin shapes, and unsupported shapes on
-   ordinary XLA.
+1. **Fuse the epilogue or don't route the site.** Every projection wins in
+   isolation — `k` most of all, at `1.175x` — yet routing `q`/`k`/`v` through
+   the kernel *loses* inside a real block, because it breaks fusion XLA would
+   otherwise do. `down` and `o` carry a fusable residual and win. Fusing
+   `q_norm`+RoPE into the q/k kernel converts them from losing sites into the
+   single biggest win here: **+8% of the block on both chips**.
+2. **Never raise the XLA scoped-vmem flag to give the kernel a bigger budget.**
+   The two are independent. On one chip at one tile the 128 MiB flag costs
+   native XLA `37%` at the layer — but only `4.1%` on a bare GEMM, so the cost
+   lands on the surrounding layer work, not the matmul.
+3. **Tile heuristics do not port across generations.** A `bk=512` heuristic
+   tuned for v5e is near-optimal there and `4.4%` off on v6e, whose 256x256
+   MXU wants the whole contraction depth in one panel (`bk=5120`, no K loop).
+4. **Product-aware quadrant finalization is v5e-specific.** Worth `-0.62 ms`
+   there and `+0.05` to `+0.21 ms` on v6e across eight measurements: the MXU
+   got roughly 4.7x faster while the VPU did not, so the epilogue no longer
+   has room to hide behind the products.
 
-The arithmetic saving alone was insufficient. The measurable model-level win
-appeared only after the product schedule and consumer epilogue were designed
-together.
+**Measure in a full transformer block, never in isolation.** Isolated screens
+misled in both directions — they said all five projection sites advance, and
+they scored the q/k fusion at `3.05x` against a baseline that materialises
+work XLA fuses away.
 
-## Natural-text quality
+## Layout
 
-The quality follow-up uses the first 32,768 contiguous tokens of the
-WikiText-2 test split, divided into 32 non-overlapping 1024-token windows. The
-dataset is pinned to revision
-`b08601e04326c79dfdd32d625aee71d232d685c3`.
+| | |
+|---|---|
+| `strassen_pallas.py` | the kernel: 7 products, 4 FP32 quadrant accumulators, the `swiglu` / `residual_add` / `bias_add` / `qk_norm_rope` epilogues, and the free weight relayouts they need |
+| `experiments/qwen3/` | block, streamed, tile-selection and pure-GEMM harnesses |
+| `evidence/qwen3/` | raw JSONL for every claim above, hashed and indexed |
+| `docs/RESULTS.md` | per-experiment protocol and numbers |
+| `docs/COLAB_RUNBOOK.md` | how the runs are driven |
+| `tools/verify_evidence.py` | re-hashes every artifact against the index |
 
-| Model | Native perplexity | Loss delta | Mean KL | Top-1 agreement | Logit L2 drift |
-|---|---:|---:|---:|---:|---:|
-| Qwen3-8B | `10.850` | `0.000316` | `0.000872` | `98.769%` | `1.981%` |
-| Qwen3-14B | `9.547` | `0.000070` | `0.000693` | `98.925%` | `1.619%` |
-| Qwen3-32B | `8.456` | `0.000633` | `0.001154` | `98.463%` | `2.543%` |
+## Limitations
 
-The harness declares a gate of absolute loss delta `<= 0.01` nats, mean KL
-`<= 0.02` nats, and top-1 agreement `>= 0.97`; every model passes. These
-thresholds are declared in the harness and emitted before evaluation, but are
-not claimed as an independently timestamped preregistration.
+- One chip, free-tier Colab; no multi-chip and no serving-stack integration.
+- BF16 only. The v5e/v6e MXU also offers INT8; there is no FP8 story here.
+- Two-level Strassen is closed: VMEM on v5e, and on v6e a second halving puts
+  K at 128 inside a 256-wide MXU.
+- The matched cubic control runs at about `93%` of XLA's GEMM efficiency while
+  the Strassen substrate reaches `99%`, so "vs cubic" ratios carry a few
+  points of substrate artifact and overstate the algorithm.
+- The XLA baseline is measured with the scoped-vmem flag set to 48 MiB, which
+  beat 128 MiB. XLA has not been measured at its own unset default, so the
+  baseline may not be at its optimum.
+- The streamed `1.2950x` sits above the single-block `1.2093x` under the same
+  policy. The harnesses differ in protocol and the gap is not yet explained;
+  it should not be read as the fusion improving with depth.
 
-## Scope
+## Environment
 
-This is not an end-to-end serving benchmark. The all-layer totals measure
-resident layer compute and exclude checkpoint transfer, embedding lookup, and
-final-logit work. A v5e cannot hold the 32B checkpoint, so layers are streamed
-for quality evaluation.
-
-The quality results are teacher-forced next-token measurements on one corpus.
-Generation-mode error compounding and downstream task accuracy remain
-unmeasured. The kernel is faster but not numerically equivalent to cubic GEMM.
-
-Training is not a public claim of this snapshot. Short single-layer studies
-found promising schedules, but they do not establish full-model convergence
-or a training speedup.
-
-## Repository map
-
-- [`strassen_pallas.py`](strassen_pallas.py) — kernel and conservative native
-  fallback.
-- [`experiments/qwen3/`](experiments/qwen3/) — the promoted experiment, one
-  runner, and its matched controls.
-- [`evidence/qwen3/`](evidence/qwen3/) — immutable Qwen3 JSONL artifacts and
-  their SHA-256 index.
-- [`docs/RESULTS.md`](docs/RESULTS.md) — exact findings and interpretation.
-- [`docs/COLAB_RUNBOOK.md`](docs/COLAB_RUNBOOK.md) — one-session reproduction
-  procedure.
-- [`tools/`](tools/) — TPU compatibility and evidence-integrity checks.
-- [`archive/initial-snapshot/`](archive/initial-snapshot/) — the earlier
-  kernel, VMEM, Mistral, and numerical-stability snapshot retained for
-  provenance, not as the main reproduction path.
-
-Fresh experiments write to the ignored `runs/` directory. They never
-overwrite the published evidence tree.
-
-Verify the public artifacts locally with:
-
-```bash
-python tools/verify_evidence.py
-```
-
-## Requirements
-
-The measured environment used JAX/jaxlib `0.7.2`, libtpu `0.0.21.1`, and a
-Colab TPU v5e runtime. The included compatibility probe should pass before a
-measurement campaign:
-
-```bash
-python tools/check_tpu.py
-```
-
-See [`docs/COLAB_RUNBOOK.md`](docs/COLAB_RUNBOOK.md) before running any
-benchmark. Use one TPU session and run the permanent XLA, cubic Pallas, and
-Strassen arms in the same session.
+JAX `0.7.2`, libtpu `0.0.21.1`, with the Mosaic IR-v7 compatibility override
+in `mosaic_compat.py`. Upgrading either breaks the override.

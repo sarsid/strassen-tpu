@@ -36,12 +36,11 @@ import strassen_pallas as sp
 
 PRODUCT_AWARE = os.environ.get("QWEN3_STREAM_PRODUCT_AWARE", "0") == "1"
 SUFFIX = os.environ.get("QWEN3_OUTPUT_SUFFIX", "")
-OUTPUT_ROOT = Path(os.environ.get("STRASSEN_OUTPUT_DIR", "/content/runs"))
-OUTPUT = OUTPUT_ROOT / (
-    f"strassen_qwen3_{layer.MODEL_NAME}"
+OUTPUT = Path(
+    f"/content/results/strassen_qwen3_{layer.MODEL_NAME}"
     f"_streamed_product_inference{SUFFIX}.jsonl"
     if PRODUCT_AWARE else
-    f"strassen_qwen3_{layer.MODEL_NAME}"
+    f"/content/results/strassen_qwen3_{layer.MODEL_NAME}"
     f"_streamed_inference{SUFFIX}.jsonl")
 NUM_LAYERS = layer.NUM_LAYERS
 WARMUPS, RUNS = 2, 5
@@ -50,6 +49,56 @@ PRODUCT_TILE = tuple(int(v) for v in os.environ.get(
     "QWEN3_PRODUCT_TILE", "2048,2048,512").split(","))
 CUBIC_TILE = tuple(int(v) for v in os.environ.get(
     "QWEN3_CUBIC_TILE", ",".join(str(v) for v in PRODUCT_TILE)).split(","))
+# Optional exact eight-product K panels for the product-aware Strassen arm
+# (comma-separated panel indices; empty keeps the plain promoted policy).
+PRODUCT_PANELS = tuple(
+    int(v) for v in os.environ.get("QWEN3_PRODUCT_PANELS", "").split(",")
+    if v != "")
+# Extra GEMM sites routed through the gated kernels ("q,k,v,o,down"); empty
+# keeps the promoted gate/up-only policy byte-identical.  Site tiles follow
+# the screen: bn=2048 when the width divides, else 1024.
+EXTENDED_SITES = tuple(
+    v for v in os.environ.get("QWEN3_EXTENDED_SITES", "").split(",")
+    if v != "")
+FUSED_QK = os.environ.get("QWEN3_FUSED_QK", "") not in ("", "0")
+QK_TILE = tuple(int(v) for v in os.environ.get(
+    "QWEN3_QK_TILE", "2048,1024,512").split(","))
+STRASSEN_LIMIT = int(
+    os.environ.get("QWEN3_STRASSEN_LIMIT_MIB", "47")) * 1024 * 1024
+CUBIC_LIMIT = int(
+    os.environ.get("QWEN3_CUBIC_LIMIT_MIB", "48")) * 1024 * 1024
+SITE_TILES = {}
+for entry in os.environ.get("QWEN3_SITE_TILES", "").split(";"):
+    if not entry:
+        continue
+    site, raw = entry.split(":", 1)
+    SITE_TILES[site] = tuple(int(v) for v in raw.split(","))
+
+
+def _site_tile(site, n):
+    if site in SITE_TILES:
+        return SITE_TILES[site]
+    return 2048, (2048 if n % 2048 == 0 else 1024), 512
+
+
+def make_site_gemm(arm):
+    """Router for attention_prefix: native for XLA, gated otherwise."""
+    if arm == "regular_xla" or not EXTENDED_SITES:
+        return None
+
+    def gemm(site, lhs, weight):
+        if site not in EXTENDED_SITES:
+            return sp.native_matmul(lhs, weight)
+        bm, bn, bk = _site_tile(site, weight.shape[1])
+        if arm == "gated_cubic":
+            return cubic.cubic_matmul(
+                lhs, weight, variant="blocked", bm=bm, bn=bn, bk=bk,
+                vmem_limit_bytes=CUBIC_LIMIT)
+        return sp.strassen_matmul(
+            lhs, weight, bm=bm, bn=bn, bk=bk, interleave_products=True,
+            vmem_limit_bytes=STRASSEN_LIMIT)
+
+    return gemm
 LOGIT_CHUNK = 256
 TEXTS = (
     "The history of mathematics is a conversation between practical problems and abstract ideas. ",
@@ -121,6 +170,28 @@ class StreamParameters(NamedTuple):
     rope_sin: jax.Array
 
 
+class FusedQKStreamParameters(NamedTuple):
+    attention_norm: jax.Array
+    query: jax.Array
+    query_norm: jax.Array
+    key: jax.Array
+    key_norm: jax.Array
+    value: jax.Array
+    attention_output: jax.Array
+    mlp_norm: jax.Array
+    gate_up: jax.Array
+    gate_up_laid: jax.Array
+    mlp_down: jax.Array
+    rope_cos: jax.Array
+    rope_sin: jax.Array
+    query_laid: jax.Array
+    key_laid: jax.Array
+    query_norm_laid: jax.Array
+    key_norm_laid: jax.Array
+    rope_table_cos: jax.Array
+    rope_table_sin: jax.Array
+
+
 def load_layer(checkpoint, index, rope_cos, rope_sin):
     prefix = f"model.layers.{index}"
     gate = device_matrix(checkpoint, f"{prefix}.mlp.gate_proj.weight")
@@ -146,9 +217,30 @@ def load_layer(checkpoint, index, rope_cos, rope_sin):
         rope_sin=rope_sin,
     )
     if PRODUCT_AWARE:
-        params = StreamParameters(
-            **values,
-            gate_up_laid=sp.swiglu_weight_layout(gate_up, PRODUCT_TILE[1]))
+        gate_up_laid = sp.swiglu_weight_layout(gate_up, PRODUCT_TILE[1])
+        if FUSED_QK:
+            qk_bn = QK_TILE[1]
+            cos = jnp.tile(rope_cos, (layer.BATCH, 1))
+            sin = jnp.tile(rope_sin, (layer.BATCH, 1))
+            table_cos, table_sin = sp.rope_layout_tables(
+                cos, sin, qk_bn // 2, layer.HEAD_DIM)
+            params = FusedQKStreamParameters(
+                **values,
+                gate_up_laid=gate_up_laid,
+                query_laid=sp.rope_weight_layout(
+                    values["query"], qk_bn, layer.HEAD_DIM),
+                key_laid=sp.rope_weight_layout(
+                    values["key"], qk_bn, layer.HEAD_DIM),
+                query_norm_laid=sp.rope_scale_layout(
+                    values["query_norm"], qk_bn, layer.HEAD_DIM),
+                key_norm_laid=sp.rope_scale_layout(
+                    values["key_norm"], qk_bn, layer.HEAD_DIM),
+                rope_table_cos=table_cos,
+                rope_table_sin=table_sin,
+            )
+        else:
+            params = StreamParameters(
+                **values, gate_up_laid=gate_up_laid)
     else:
         params = layer.Parameters(**values)
     jax.block_until_ready(params)
@@ -158,8 +250,36 @@ def load_layer(checkpoint, index, rope_cos, rope_sin):
 def make_product_layer(arm):
     bm, bn, bk = PRODUCT_TILE
 
+    site_gemm = make_site_gemm(arm)
+
+    def qk_fused(site, lhs, params):
+        if not FUSED_QK or arm != "gated_strassen":
+            return None
+        qk_bm, qk_bn, qk_bk = QK_TILE
+        if site == "q":
+            laid = params.query_laid
+            scale = params.query_norm_laid
+            heads = layer.HEADS
+        elif site == "k":
+            laid = params.key_laid
+            scale = params.key_norm_laid
+            heads = layer.KV_HEADS
+        else:
+            raise ValueError(site)
+        flat = sp.strassen_matmul(
+            lhs, laid, bm=qk_bm, bn=qk_bn, bk=qk_bk,
+            interleave_products=True, epilogue="qk_norm_rope",
+            rope_cos=params.rope_table_cos, rope_sin=params.rope_table_sin,
+            rope_scale=scale, rope_head_dim=layer.HEAD_DIM,
+            rope_eps=layer.RMS_EPS, vmem_limit_bytes=STRASSEN_LIMIT)
+        return layer.rope_layout_to_heads(flat, heads, qk_bn)
+
     def run(x, params):
-        residual, normalized = layer.attention_prefix(x, params)
+        fused = None
+        if FUSED_QK and arm == "gated_strassen":
+            fused = lambda site, lhs: qk_fused(site, lhs, params)
+        residual, normalized = layer.attention_prefix(
+            x, params, gemm=site_gemm, qk_fused=fused)
         if arm == "regular_xla":
             full = sp.native_matmul(normalized, params.gate_up)
             gate, up = jnp.split(full, 2, axis=-1)
@@ -172,7 +292,7 @@ def make_product_layer(arm):
             full = cubic.cubic_matmul(
                 normalized, params.gate_up, variant="blocked",
                 bm=cubic_bm, bn=cubic_bn, bk=cubic_bk,
-                vmem_limit_bytes=48 * 1024 * 1024)
+                vmem_limit_bytes=CUBIC_LIMIT)
             gate, up = jnp.split(full, 2, axis=-1)
             activated = (
                 jax.nn.silu(gate.astype(jnp.float32))
@@ -184,8 +304,23 @@ def make_product_layer(arm):
                 bm=bm, bn=bn, bk=bk,
                 epilogue="swiglu", interleave_products=True,
                 product_aware_swiglu=True,
-                vmem_limit_bytes=47 * 1024 * 1024)
-        projected = sp.native_matmul(activated, params.mlp_down)
+                classical_panels=PRODUCT_PANELS,
+                vmem_limit_bytes=(
+                    max(50 * 1024 * 1024, STRASSEN_LIMIT)
+                    if PRODUCT_PANELS else STRASSEN_LIMIT))
+        if "down" in EXTENDED_SITES and arm == "gated_strassen":
+            dbm, dbn, dbk = _site_tile("down", params.mlp_down.shape[1])
+            return sp.strassen_matmul(
+                activated, params.mlp_down, bm=dbm, bn=dbn, bk=dbk,
+                interleave_products=True, epilogue="residual_add",
+                residual=residual, vmem_limit_bytes=STRASSEN_LIMIT)
+        if "down" in EXTENDED_SITES and arm == "gated_cubic":
+            dbm, dbn, dbk = _site_tile("down", params.mlp_down.shape[1])
+            projected = cubic.cubic_matmul(
+                activated, params.mlp_down, variant="blocked",
+                bm=dbm, bn=dbn, bk=dbk, vmem_limit_bytes=CUBIC_LIMIT)
+        else:
+            projected = sp.native_matmul(activated, params.mlp_down)
         return (
             residual.astype(jnp.float32) + projected.astype(jnp.float32)
         ).astype(jnp.bfloat16)
@@ -321,11 +456,21 @@ def main():
         "revision": layer.REVISION, "layers": NUM_LAYERS,
         "model": layer.MODEL_NAME,
         "cubic_tile": list(CUBIC_TILE) if PRODUCT_AWARE else None,
+        "product_panels": list(PRODUCT_PANELS),
+        "extended_sites": list(EXTENDED_SITES),
+        "site_tiles": {name: list(tile) for name, tile in SITE_TILES.items()},
+        "fused_qk": FUSED_QK,
+        "qk_tile": list(QK_TILE) if FUSED_QK else None,
+        "strassen_limit_mib": STRASSEN_LIMIT // (1024 * 1024),
+        "cubic_limit_mib": CUBIC_LIMIT // (1024 * 1024),
         "device": jax.devices()[0].device_kind, "jax": jax.__version__,
         "mosaic_compat": mosaic_compat.compatibility_info(sp.MOSAIC_IR_V7_COMPAT),
         "libtpu_init_args": os.environ.get("LIBTPU_INIT_ARGS", ""),
         "arms": list(ARMS), "policy": (
-            "product-aware fused gate/up+SwiGLU; XLA down"
+            "product-aware fused gate/up+SwiGLU"
+            + ("; fused q/k RMSNorm+RoPE" if FUSED_QK else "")
+            + (f"; gated sites {','.join(EXTENDED_SITES)}"
+               if EXTENDED_SITES else "; XLA down")
             if PRODUCT_AWARE else "combined gate/up only"),
         "product_tile": list(PRODUCT_TILE) if PRODUCT_AWARE else None,
         "performance_scope": "aggregate resident layer compute; transfer excluded",

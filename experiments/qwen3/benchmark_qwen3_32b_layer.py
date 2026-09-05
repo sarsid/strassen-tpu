@@ -64,16 +64,18 @@ MODEL_NAME = os.environ.get("QWEN3_MODEL", "32b")
 if MODEL_NAME not in MODELS:
     raise ValueError(f"unknown QWEN3_MODEL={MODEL_NAME!r}")
 _MODEL = MODELS[MODEL_NAME]
-OUTPUT_ROOT = Path(os.environ.get("STRASSEN_OUTPUT_DIR", "/content/runs"))
-OUTPUT = OUTPUT_ROOT / (
-    f"strassen_qwen3_{MODEL_NAME}_layer_up_only.jsonl"
+OUTPUT = Path(
+    f"/content/results/strassen_qwen3_{MODEL_NAME}_layer_up_only.jsonl"
     if POLICY == "up_only"
-    else f"strassen_qwen3_{MODEL_NAME}_layer.jsonl"
+    else f"/content/results/strassen_qwen3_{MODEL_NAME}_layer.jsonl"
 )
 REPOSITORY = _MODEL["repository"]
 REVISION = _MODEL["revision"]
 BASE = f"https://huggingface.co/{REPOSITORY}/resolve/{REVISION}"
-BATCH, SEQUENCE = 8, 1024
+BATCH = 8
+# Downstream-task evaluation compiles the layer at a shorter sequence so many
+# scored sequences fit in HBM at once; the default is byte-identical.
+SEQUENCE = int(os.environ.get("QWEN3_SEQUENCE", "1024"))
 TOKENS = BATCH * SEQUENCE
 MODEL_DIM, INTERMEDIATE_DIM = _MODEL["model_dim"], _MODEL["intermediate_dim"]
 HEADS, KV_HEADS, HEAD_DIM = _MODEL["heads"], _MODEL["kv_heads"], 128
@@ -253,34 +255,68 @@ def selected_gemm(lhs, rhs, *, arm, direction):
     return jax.lax.optimization_barrier(output)
 
 
-def attention_prefix(x, params):
+def rope_layout_to_heads(flat, heads, bn):
+    """Regroup a qk_norm_rope output into head-contiguous order.
+
+    The rope layout writes each tile as ``a(h0..hH-1) | b(h0..hH-1)``, so a
+    head's two halves sit bn//2 apart rather than side by side and a plain
+    reshape would fuse the first halves of two different heads into one
+    "head".  Viewing the tile as (blocks, 2, heads_per_half, half_head) and
+    swapping the middle axes restores ``a(h) b(h)`` adjacency.  This is a
+    structured transpose rather than a gather, so XLA can fuse it into the
+    consumer; the isolated screen's 1.861 ms figure was for a general gather
+    and is an upper bound on what this costs.
+    """
+    half_head = HEAD_DIM // 2
+    heads_per_half = (bn // 2) // half_head
+    blocks = (heads * HEAD_DIM) // bn
+    return (
+        flat.reshape(TOKENS, blocks, 2, heads_per_half, half_head)
+        .transpose(0, 1, 3, 2, 4)
+        .reshape(BATCH, SEQUENCE, heads, HEAD_DIM)
+    )
+
+
+def attention_prefix(x, params, gemm=None, qk_fused=None):
+    """Attention prefix; ``gemm(site, lhs, weight)`` optionally routes the
+    q/k/v/o projections (default: the native XLA projection, byte-identical).
+    ``qk_fused(site, lhs)`` optionally returns a q/k projection that already
+    carries its per-head RMSNorm and RoPE, replacing both separate passes."""
+    if gemm is None:
+        gemm = lambda site, lhs, weight: native_projection(lhs, weight)
     normalized = rms_norm(x, params.attention_norm)
-    query = native_projection(normalized, params.query).reshape(
-        BATCH, SEQUENCE, HEADS, HEAD_DIM
-    )
-    key = native_projection(normalized, params.key).reshape(
+    if qk_fused is not None:
+        query = qk_fused("q", normalized)
+        key = qk_fused("k", normalized)
+    else:
+        query = gemm("q", normalized, params.query).reshape(
+            BATCH, SEQUENCE, HEADS, HEAD_DIM
+        )
+        key = gemm("k", normalized, params.key).reshape(
+            BATCH, SEQUENCE, KV_HEADS, HEAD_DIM
+        )
+    value = gemm("v", normalized, params.value).reshape(
         BATCH, SEQUENCE, KV_HEADS, HEAD_DIM
     )
-    value = native_projection(normalized, params.value).reshape(
-        BATCH, SEQUENCE, KV_HEADS, HEAD_DIM
-    )
-    query = rms_norm(query, params.query_norm)
-    key = rms_norm(key, params.key_norm)
-    query = apply_rope(query, params.rope_cos, params.rope_sin)
-    key = apply_rope(key, params.rope_cos, params.rope_sin)
+    if qk_fused is None:
+        query = rms_norm(query, params.query_norm)
+        key = rms_norm(key, params.key_norm)
+        query = apply_rope(query, params.rope_cos, params.rope_sin)
+        key = apply_rope(key, params.rope_cos, params.rope_sin)
     attended = jax.nn.dot_product_attention(
         query, key, value, is_causal=True, implementation="xla"
     ).reshape(TOKENS, HEADS * HEAD_DIM).astype(jnp.bfloat16)
-    attention_output = native_projection(attended, params.attention_output)
+    attention_output = gemm("o", attended, params.attention_output)
     residual = (
         x.astype(jnp.float32) + attention_output.astype(jnp.float32)
     ).astype(jnp.bfloat16)
     return residual, rms_norm(residual, params.mlp_norm)
 
 
-def make_layer(arm):
+def make_layer(arm, gemm=None, qk_fused=None):
     def layer(x, params):
-        residual, normalized = attention_prefix(x, params)
+        residual, normalized = attention_prefix(
+            x, params, gemm=gemm, qk_fused=qk_fused)
         gate_up = selected_gemm(
             normalized, params.gate_up, arm=arm, direction="up"
         )

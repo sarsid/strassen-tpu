@@ -1,0 +1,74 @@
+{"arms": ["regular_xla", "gated_cubic", "gated_strassen"], "cubic_tile": [2048, 2048, 512], "device": "TPU v5 lite", "jax": "0.7.2", "kind": "metadata", "layers": 64, "model": "32b", "mosaic_compat": {"jax": "0.7.2", "libtpu": "0.0.21.1", "override_enabled": true, "supported_jax": "0.7.2", "supported_libtpu": ["0.0.21", "0.0.21.1"], "target_ir_version": 7}, "policy": "product-aware fused gate/up+SwiGLU; XLA down", "product_panels": [], "product_tile": [2048, 2048, 512], "repository": "Qwen/Qwen3-32B", "revision": "9216db5781bf21249d130ec9da846c4624c16137", "scope": "zero-shot task agreement; teacher-forced scoring; no timing; thresholds registered before the first run", "sequence": 256, "tasks": {"hellaswag": 160, "lambada": 320}, "thresholds": {"absolute_accuracy_delta_max": 0.02, "choice_agreement_min": 0.97, "greedy_agreement_min": 0.97}}
+{"hellaswag_examples": 160, "kind": "tokens", "lambada_examples": 320, "scored_positions": 9369, "scored_sequences": 960, "sha256": "668ab71ab27d52cdc3f0290fe2068eb1f202f33610519473857ecc41fadd89e8", "shape": [960, 256]}
+{"arm": "regular_xla", "kind": "compile", "seconds": 7.716298606999999}
+{"arm": "gated_cubic", "kind": "compile", "seconds": 5.4619719510000095}
+{"arm": "gated_strassen", "kind": "compile", "seconds": 11.829532841999992}
+{"kind": "layer", "layer": 0, "transfer_s": 5.300000225361146e-07}
+{"kind": "layer", "layer": 1, "transfer_s": 13.401620960999992}
+{"kind": "layer", "layer": 2, "transfer_s": 14.481982704000018}
+{"kind": "layer", "layer": 3, "transfer_s": 13.714756367999996}
+{"kind": "layer", "layer": 4, "transfer_s": 13.51899444199995}
+{"kind": "layer", "layer": 5, "transfer_s": 14.418085244999986}
+{"kind": "layer", "layer": 6, "transfer_s": 13.99942508600003}
+{"kind": "layer", "layer": 7, "transfer_s": 13.255750402999979}
+{"kind": "layer", "layer": 8, "transfer_s": 13.201024946000018}
+{"kind": "layer", "layer": 9, "transfer_s": 13.219601871000009}
+{"kind": "layer", "layer": 10, "transfer_s": 14.368575007000004}
+{"kind": "layer", "layer": 11, "transfer_s": 14.500289800000019}
+{"kind": "layer", "layer": 12, "transfer_s": 14.079598241999975}
+{"kind": "layer", "layer": 13, "transfer_s": 13.671186512999952}
+{"kind": "layer", "layer": 14, "transfer_s": 14.70890823000002}
+{"kind": "layer", "layer": 15, "transfer_s": 14.155059448000088}
+{"kind": "layer", "layer": 16, "transfer_s": 13.968998590999945}
+{"kind": "layer", "layer": 17, "transfer_s": 13.932686815000011}
+{"kind": "layer", "layer": 18, "transfer_s": 14.45485098100005}
+{"kind": "layer", "layer": 19, "transfer_s": 15.012494041000082}
+{"kind": "layer", "layer": 20, "transfer_s": 14.787312926000027}
+{"kind": "layer", "layer": 21, "transfer_s": 14.369813164999982}
+{"kind": "layer", "layer": 22, "transfer_s": 15.40407135099997}
+{"kind": "layer", "layer": 23, "transfer_s": 14.144257516000039}
+{"kind": "layer", "layer": 24, "transfer_s": 14.468323348000013}
+{"kind": "layer", "layer": 25, "transfer_s": 14.51722435900001}
+{"kind": "layer", "layer": 26, "transfer_s": 15.084597964000068}
+{"kind": "layer", "layer": 27, "transfer_s": 14.205165822000026}
+{"kind": "layer", "layer": 28, "transfer_s": 13.469027169000015}
+{"kind": "layer", "layer": 29, "transfer_s": 14.635971708000056}
+{"kind": "layer", "layer": 30, "transfer_s": 16.338178947000074}
+{"kind": "layer", "layer": 31, "transfer_s": 13.80919543899995}
+{"kind": "layer", "layer": 32, "transfer_s": 13.553604124999993}
+{"kind": "layer", "layer": 33, "transfer_s": 13.660196315000007}
+{"kind": "layer", "layer": 34, "transfer_s": 14.456203082999991}
+{"kind": "layer", "layer": 35, "transfer_s": 13.616835833000096}
+{"kind": "layer", "layer": 36, "transfer_s": 13.797951399999874}
+{"kind": "layer", "layer": 37, "transfer_s": 14.267375160000029}
+{"kind": "layer", "layer": 38, "transfer_s": 13.88755065800001}
+{"kind": "layer", "layer": 39, "transfer_s": 13.33948916899999}
+{"kind": "layer", "layer": 40, "transfer_s": 13.400404002000187}
+{"kind": "layer", "layer": 41, "transfer_s": 13.302860253999825}
+{"kind": "layer", "layer": 42, "transfer_s": 14.60694394899997}
+{"kind": "layer", "layer": 43, "transfer_s": 14.275732542000014}
+{"kind": "layer", "layer": 44, "transfer_s": 14.710488981000026}
+{"kind": "layer", "layer": 45, "transfer_s": 14.725952809000091}
+{"kind": "layer", "layer": 46, "transfer_s": 15.206556509999928}
+{"kind": "layer", "layer": 47, "transfer_s": 14.574292448000051}
+{"kind": "layer", "layer": 48, "transfer_s": 14.677050705000056}
+{"kind": "layer", "layer": 49, "transfer_s": 14.129573863000132}
+{"kind": "layer", "layer": 50, "transfer_s": 14.661638878999838}
+{"kind": "layer", "layer": 51, "transfer_s": 14.678062645999944}
+{"kind": "layer", "layer": 52, "transfer_s": 15.845405774000028}
+{"kind": "layer", "layer": 53, "transfer_s": 15.372871469000074}
+{"kind": "layer", "layer": 54, "transfer_s": 14.77752542899998}
+{"kind": "layer", "layer": 55, "transfer_s": 15.550944393000009}
+{"kind": "layer", "layer": 56, "transfer_s": 13.682687494999982}
+{"kind": "layer", "layer": 57, "transfer_s": 14.542892536000181}
+{"kind": "layer", "layer": 58, "transfer_s": 15.751219826999886}
+{"kind": "layer", "layer": 59, "transfer_s": 14.623261084999967}
+{"kind": "layer", "layer": 60, "transfer_s": 15.121415260000049}
+{"kind": "layer", "layer": 61, "transfer_s": 14.226270300999886}
+{"kind": "layer", "layer": 62, "transfer_s": 15.264227877000167}
+{"kind": "layer", "layer": 63, "transfer_s": 14.577773240999932}
+{"all_finite": true, "kind": "finite"}
+{"arm": "regular_xla", "hellaswag_accuracy": 0.50625, "kind": "task", "lambada_accuracy": 0.6625, "mean_gold_logprob": -3.3346033667469985}
+{"arm": "gated_cubic", "hellaswag_accuracy": 0.50625, "hellaswag_accuracy_delta": 0.0, "hellaswag_choice_agreement": 1.0, "kind": "task", "lambada_accuracy": 0.6625, "lambada_accuracy_delta": 0.0, "lambada_greedy_agreement": 0.99375, "mean_gold_logprob": -3.335093490430347, "passes_task_gate": true}
+{"arm": "gated_strassen", "hellaswag_accuracy": 0.50625, "hellaswag_accuracy_delta": 0.0, "hellaswag_choice_agreement": 1.0, "kind": "task", "lambada_accuracy": 0.6625, "lambada_accuracy_delta": 0.0, "lambada_greedy_agreement": 0.990625, "mean_gold_logprob": -3.3345998216120347, "passes_task_gate": true}
+{"all_finite": true, "cubic_passes": true, "kind": "verdict", "passes": true, "scope": "zero-shot downstream-task agreement gate", "strassen_passes": true}

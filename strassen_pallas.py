@@ -160,6 +160,14 @@ def _classical_strassen_kernel(
     bias_ref=None,
     finalize_quadrant=None,
     product_aware_swiglu=False,
+    product_aware_residual=False,
+    rope_cos_ref=None,
+    rope_sin_ref=None,
+    rope_scale_ref=None,
+    rope_seg_ref=None,
+    rope_segt_ref=None,
+    rope_head_dim=128,
+    rope_eps=1e-6,
 ):
     step = pl.program_id(2)
     m, k = a_ref.shape
@@ -276,13 +284,26 @@ def _classical_strassen_kernel(
         output_is_accumulator
         or formula_variant != "classical"
         or block_permutation != 0
-        or classical_panels
+        or (nk - 1) in classical_panels
         or panel_schedule_ref is not None
         or epilogue != "swiglu"
     ):
         raise ValueError(
             "product-aware SwiGLU requires unpermuted classical Strassen "
-            "with quadrant accumulators and no exact-panel policy")
+            "with quadrant accumulators; exact panels are allowed except on "
+            "the final K panel, whose product order the schedule owns")
+    if product_aware_residual and (
+        output_is_accumulator
+        or formula_variant != "classical"
+        or block_permutation != 0
+        or (nk - 1) in classical_panels
+        or panel_schedule_ref is not None
+        or epilogue != "residual_add"
+    ):
+        raise ValueError(
+            "product-aware residual requires unpermuted classical Strassen "
+            "with quadrant accumulators and the residual_add epilogue; exact "
+            "panels are allowed except on the final K panel")
 
     def p1():
         # P1=(A0+A3)(B0+B3): C0 += P1, C3 += P1.
@@ -561,9 +582,24 @@ def _classical_strassen_kernel(
                 jax.nn.silu(acc_ref[gate_index]) * acc_ref[up_index]
             ).astype(o_ref.dtype)
 
-        @pl.when(step != nk - 1)
-        def _ordinary_panel():
-            run_seven_products()
+        if classical_panels:
+            is_exact_panel = functools.reduce(
+                jnp.logical_or,
+                [step == panel for panel in classical_panels],
+            )
+
+            @pl.when(jnp.logical_and(step != nk - 1, is_exact_panel))
+            def _ordinary_exact_panel():
+                run_exact_panel()
+
+            @pl.when(jnp.logical_and(
+                step != nk - 1, jnp.logical_not(is_exact_panel)))
+            def _ordinary_strassen_panel():
+                run_seven_products()
+        else:
+            @pl.when(step != nk - 1)
+            def _ordinary_panel():
+                run_seven_products()
 
         @pl.when(step == nk - 1)
         def _product_aware_final_panel():
@@ -580,6 +616,39 @@ def _classical_strassen_kernel(
             p6()
             p2()
             store_swiglu_pair(False)
+    elif product_aware_residual:
+        # Same dependency-spaced order and quadrant completion points as the
+        # SwiGLU/Adam product-aware epilogues, but each output quadrant's
+        # residual is added and the quadrant stored the instant its two
+        # products are final -- exposing the VPU add to Mosaic while the
+        # remaining full-size MXU products run. FP32 accumulation order is
+        # unchanged, so the result is bitwise-identical to standard
+        # residual_add.
+        def store_residual_quadrant(quadrant):
+            row = slice(0, hm) if quadrant < 2 else slice(hm, m)
+            col = slice(0, hn) if quadrant % 2 == 0 else slice(hn, n)
+            o_ref[row, col] = (
+                acc_ref[quadrant]
+                + residual_ref[row, col].astype(jnp.float32)
+            ).astype(o_ref.dtype)
+
+        @pl.when(step != nk - 1)
+        def _ordinary_residual_panel():
+            run_seven_products()
+
+        @pl.when(step == nk - 1)
+        def _product_aware_residual_final_panel():
+            p4()
+            p6()
+            p5()
+            p2()
+            store_residual_quadrant(2)
+            p7()
+            p3()
+            store_residual_quadrant(1)
+            p1()
+            store_residual_quadrant(0)
+            store_residual_quadrant(3)
     elif finalize_quadrant is not None:
         # Keep the dependency-spaced product order, and preserve the relative
         # accumulation order within every output quadrant.  C21 is complete
@@ -632,7 +701,7 @@ def _classical_strassen_kernel(
     if not output_is_accumulator:
         @pl.when(step == nk - 1)
         def _store_output():
-            if product_aware_swiglu:
+            if product_aware_swiglu or product_aware_residual:
                 return
             if formula_variant == "powers":
                 z0, z1, z2, z3 = tuple(acc_ref[index] for index in range(4))
@@ -683,6 +752,49 @@ def _classical_strassen_kernel(
                 o_ref[hm:, hn:] = (
                     acc_ref[3] + residual_ref[hm:, hn:].astype(jnp.float32)
                 ).astype(o_ref.dtype)
+            elif epilogue == "qk_norm_rope":
+                # Qwen3 applies a per-head RMSNorm to q/k before RoPE, so the
+                # fusable unit is q_norm+RoPE together, not RoPE alone.  The
+                # rope layout puts each head's first-half channels in
+                # quadrants 0/2 and its matching second-half channels in 1/3,
+                # so a pair is always co-resident.  The per-head sum of
+                # squares is a segmented reduction along lanes, which Mosaic
+                # will not express as a reshape; a multiply by a 0/1 segment
+                # matrix does it on the MXU instead, which is idle here, and
+                # the transpose scatters the result back.  The segment matrix
+                # is padded to a full lane width so no narrow matmul appears.
+                scale = rope_scale_ref[0].astype(jnp.float32)
+                scale_a, scale_b = scale[:hn], scale[hn:]
+                segment = rope_seg_ref[...].astype(jnp.float32)
+                segment_t = rope_segt_ref[...].astype(jnp.float32)
+                inverse_width = jnp.asarray(
+                    1.0 / rope_head_dim, dtype=jnp.float32)
+                eps = jnp.asarray(rope_eps, dtype=jnp.float32)
+
+                def rotate(first, second, rows):
+                    cos = rope_cos_ref[rows, :].astype(jnp.float32)
+                    sin = rope_sin_ref[rows, :].astype(jnp.float32)
+                    sums = (
+                        jnp.dot(first * first, segment,
+                                preferred_element_type=jnp.float32)
+                        + jnp.dot(second * second, segment,
+                                  preferred_element_type=jnp.float32)
+                    )
+                    recip = jnp.dot(
+                        jax.lax.rsqrt(sums * inverse_width + eps), segment_t,
+                        preferred_element_type=jnp.float32)
+                    normed_a = first * recip * scale_a
+                    normed_b = second * recip * scale_b
+                    return (normed_a * cos - normed_b * sin,
+                            normed_b * cos + normed_a * sin)
+
+                top_a, top_b = rotate(acc_ref[0], acc_ref[1], slice(0, hm))
+                bottom_a, bottom_b = rotate(
+                    acc_ref[2], acc_ref[3], slice(hm, None))
+                o_ref[:hm, :hn] = top_a.astype(o_ref.dtype)
+                o_ref[:hm, hn:] = top_b.astype(o_ref.dtype)
+                o_ref[hm:, :hn] = bottom_a.astype(o_ref.dtype)
+                o_ref[hm:, hn:] = bottom_b.astype(o_ref.dtype)
             elif epilogue == "bias_add":
                 # Fold a Linear bias into the final store.  The bias arrives
                 # as (1, bn) so Mosaic can use a legal 2-D tiled layout.
@@ -714,9 +826,15 @@ def strassen_matmul(
     epilogue=None,
     residual=None,
     bias=None,
+    rope_cos=None,
+    rope_sin=None,
+    rope_scale=None,
+    rope_head_dim=128,
+    rope_eps=1e-6,
     output_dtype=None,
     allow_input_fusion=None,
     product_aware_swiglu=False,
+    product_aware_residual=False,
     interpret=False,
     vmem_limit_bytes=None,
 ):
@@ -753,7 +871,8 @@ def strassen_matmul(
         )
     classical_panels = tuple(sorted({int(p) for p in classical_panels}))
     if epilogue is not None:
-        if epilogue not in ("swiglu", "residual_add", "bias_add"):
+        if epilogue not in (
+                "swiglu", "residual_add", "bias_add", "qk_norm_rope"):
             raise ValueError(
                 f"unknown epilogue {epilogue!r}; choose 'swiglu' or "
                 "'residual_add' or 'bias_add'"
@@ -775,12 +894,38 @@ def strassen_matmul(
         raise ValueError("residual= is only used by the residual_add epilogue")
     if bias is not None and epilogue != "bias_add":
         raise ValueError("bias= is only used by the bias_add epilogue")
+    if epilogue == "qk_norm_rope":
+        if rope_cos is None or rope_sin is None or rope_scale is None:
+            raise ValueError(
+                "qk_norm_rope epilogue requires rope_cos=, rope_sin= and "
+                "rope_scale= (use rope_layout_tables and rope_scale_layout)")
+        if bn % (2 * rope_head_dim):
+            raise ValueError(
+                f"qk_norm_rope needs bn a multiple of 2*head_dim="
+                f"{2 * rope_head_dim} so a tile half holds whole heads, "
+                f"got bn={bn}")
+        if rope_cos.shape != (m, bn // 2) or rope_sin.shape != (m, bn // 2):
+            raise ValueError(
+                f"rope tables must be {(m, bn // 2)}, got "
+                f"{rope_cos.shape} and {rope_sin.shape}")
+        if rope_scale.shape != (bn,):
+            raise ValueError(
+                f"rope_scale must be laid out to {(bn,)}, got "
+                f"{rope_scale.shape}")
+    if rope_cos is not None and epilogue != "qk_norm_rope":
+        raise ValueError("rope_* are only used by the qk_norm_rope epilogue")
     if product_aware_swiglu and epilogue != "swiglu":
         raise ValueError(
             "product_aware_swiglu is only valid with epilogue='swiglu'")
+    if product_aware_residual and epilogue != "residual_add":
+        raise ValueError(
+            "product_aware_residual is only valid with "
+            "epilogue='residual_add'")
     if epilogue == "bias_add" and bias.shape != (n,):
         raise ValueError(f"bias shape {bias.shape} != output width {(n,)}")
     operand_count = 3 if epilogue in ("residual_add", "bias_add") else 2
+    if epilogue == "qk_norm_rope":
+        operand_count = 6
     if allow_input_fusion is not None:
         allow_input_fusion = tuple(allow_input_fusion)
         if len(allow_input_fusion) != operand_count:
@@ -832,6 +977,7 @@ def strassen_matmul(
         classical_panels=classical_panels,
         epilogue=epilogue,
         product_aware_swiglu=product_aware_swiglu,
+        product_aware_residual=product_aware_residual,
     )
     scratch_shape = (
         pltpu.VMEM((1,), jnp.float32)
@@ -928,6 +1074,34 @@ def strassen_matmul(
 
         def kernel(a_ref, b_ref, bias_ref, o_ref, acc_ref):
             return base_kernel(a_ref, b_ref, o_ref, acc_ref, bias_ref=bias_ref)
+    elif epilogue == "qk_norm_rope":
+        half = bn // 2
+        segment_width = rope_head_dim // 2
+        columns = jnp.arange(half)
+        # Padded to a full lane width so the reduction never becomes a narrow
+        # matmul; the padding columns are zero, so their rsqrt garbage is
+        # multiplied away by the transpose.
+        segment = jnp.zeros((half, LANE), dtype=jnp.float32).at[
+            columns, columns // segment_width].set(1.0)
+        segment_t = segment.T
+        in_specs.extend([
+            pl.BlockSpec((bm, half), lambda i, j, step: (i, 0)),
+            pl.BlockSpec((bm, half), lambda i, j, step: (i, 0)),
+            pl.BlockSpec((1, bn), lambda i, j, step: (0, 0)),
+            pl.BlockSpec((half, LANE), lambda i, j, step: (0, 0)),
+            pl.BlockSpec((LANE, half), lambda i, j, step: (0, 0)),
+        ])
+        operands.extend([rope_cos, rope_sin, rope_scale.reshape(1, bn),
+                         segment, segment_t])
+        base_kernel = kernel
+
+        def kernel(a_ref, b_ref, cos_ref, sin_ref, scale_ref, seg_ref,
+                   segt_ref, o_ref, acc_ref):
+            return base_kernel(
+                a_ref, b_ref, o_ref, acc_ref, rope_cos_ref=cos_ref,
+                rope_sin_ref=sin_ref, rope_scale_ref=scale_ref,
+                rope_seg_ref=seg_ref, rope_segt_ref=segt_ref,
+                rope_head_dim=rope_head_dim, rope_eps=rope_eps)
 
     return pl.pallas_call(
         kernel,
@@ -1034,6 +1208,72 @@ def strassen_matmul_lhs_transposed(
         ),
         interpret=interpret,
     )(a, b)
+
+
+def rope_weight_layout(weight, bn, head_dim=128):
+    """Reorder a q/k projection weight so q_norm+RoPE can be fused in-kernel.
+
+    RoPE pairs channel ``h*head_dim + j`` with ``h*head_dim + head_dim//2 + j``
+    inside every head, so a natural (bm, bn) output tile holds both members of
+    a pair only by accident of alignment. Blocking the columns as
+    ``a[0:h] b[0:h] a[h:2h] b[h:2h] ...`` with ``h = bn // 2`` -- where ``a``
+    lists every head's first-half channels in order and ``b`` the matching
+    second-half channels -- puts each channel beside its rotation partner, at
+    which point the kernel's own quadrant layout separates them exactly
+    (quadrants 0/2 are the ``a`` half, 1/3 the ``b`` half). This is the same
+    free offline relayout as ``swiglu_weight_layout``, and it also makes the
+    per-head RMSNorm segments contiguous inside each half.
+    """
+    n = weight.shape[1]
+    if n % head_dim:
+        raise ValueError(f"width {n} is not a multiple of head_dim {head_dim}")
+    if bn % (2 * head_dim):
+        raise ValueError(
+            f"bn={bn} must be a multiple of 2*head_dim={2 * head_dim} so each "
+            "tile half holds whole heads")
+    half_head = head_dim // 2
+    heads = n // head_dim
+    a_cols = [h * head_dim + j for h in range(heads) for j in range(half_head)]
+    b_cols = [h * head_dim + half_head + j
+              for h in range(heads) for j in range(half_head)]
+    half = bn // 2
+    if (n // 2) % half:
+        raise ValueError(f"half width {n // 2} is not divisible by bn//2={half}")
+    order = []
+    for block in range((n // 2) // half):
+        lo, hi = block * half, (block + 1) * half
+        order.extend(a_cols[lo:hi])
+        order.extend(b_cols[lo:hi])
+    return weight[:, jnp.asarray(order)]
+
+
+def rope_layout_tables(cos, sin, half_width, head_dim=128):
+    """Half-width RoPE tables matching ``rope_weight_layout``.
+
+    ``cos``/``sin`` arrive as (positions, head_dim) with the usual
+    ``concat(inv, inv)`` angle structure, so both halves are identical and only
+    the first is needed. The laid-out ``a`` half of every tile holds whole
+    heads back to back, so one (positions, half_width) table serves every
+    column block and the kernel can index it with a block map that ignores the
+    column index.
+    """
+    half_head = head_dim // 2
+    if half_width % half_head:
+        raise ValueError(
+            f"half_width {half_width} is not a multiple of {half_head}")
+    repeats = half_width // half_head
+    return (jnp.tile(cos[:, :half_head], (1, repeats)),
+            jnp.tile(sin[:, :half_head], (1, repeats)))
+
+
+def rope_scale_layout(scale, bn, head_dim=128):
+    """Per-head RMSNorm scale reordered to match ``rope_weight_layout``."""
+    half_head = head_dim // 2
+    half = bn // 2
+    repeats = half // half_head
+    return jnp.concatenate(
+        (jnp.tile(scale[:half_head], repeats),
+         jnp.tile(scale[half_head:], repeats)))
 
 
 def swiglu_weight_layout(gate_up, bn):

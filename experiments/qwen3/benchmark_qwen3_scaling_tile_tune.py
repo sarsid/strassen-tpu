@@ -33,9 +33,10 @@ from pathlib import Path
 import statistics
 import time
 
+SCOPED_VMEM_KIB = int(os.environ.get("QWEN3_SCOPED_VMEM_KIB", "49152"))
 os.environ["LIBTPU_INIT_ARGS"] = (
     "--xla_tpu_use_enhanced_launch_barrier=true "
-    "--xla_tpu_scoped_vmem_limit_kib=49152")
+    f"--xla_tpu_scoped_vmem_limit_kib={SCOPED_VMEM_KIB}")
 
 import jax
 import jax.numpy as jnp
@@ -51,16 +52,24 @@ TOKENS = layer.TOKENS
 MODEL_DIM = layer.MODEL_DIM
 INTERMEDIATE = layer.INTERMEDIATE_DIM
 WIDTH = 2 * INTERMEDIATE
-STRASSEN_LIMIT = 47 * 1024 * 1024
-CUBIC_LIMIT = 48 * 1024 * 1024
+def _tile_axis(name, default):
+    raw = os.environ.get(name)
+    if not raw:
+        return default
+    return tuple(int(token) for token in raw.replace(",", " ").split())
+
+
+STRASSEN_LIMIT = int(os.environ.get("QWEN3_STRASSEN_LIMIT_MIB", "47")) * 1024 * 1024
+CUBIC_LIMIT = int(os.environ.get("QWEN3_CUBIC_LIMIT_MIB", "48")) * 1024 * 1024
 TUNE_WARMUPS, TUNE_RUNS = 2, 5
-BM_CANDIDATES = (1024, 2048)
-BN_CANDIDATES = (1024, 2048, 2560, 3072)
-BK_CANDIDATES = (512, 1024)
+BM_CANDIDATES = _tile_axis("QWEN3_TILE_BM", (1024, 2048))
+BN_CANDIDATES = _tile_axis("QWEN3_TILE_BN", (1024, 2048, 2560, 3072))
+BK_CANDIDATES = _tile_axis("QWEN3_TILE_BK", (512, 1024))
 SEED = 20260907
-OUTPUT_ROOT = Path(os.environ.get("STRASSEN_OUTPUT_DIR", "/content/runs"))
-OUTPUT = OUTPUT_ROOT / (
-    f"strassen_qwen3_{layer.MODEL_NAME}_scaling_tiles.jsonl")
+SUFFIX = os.environ.get("QWEN3_OUTPUT_SUFFIX", "")
+OUTPUT = Path(
+    f"/content/results/strassen_qwen3_{layer.MODEL_NAME}"
+    f"_scaling_tiles{SUFFIX}.jsonl")
 
 
 def emit(record):
@@ -208,7 +217,7 @@ def main():
             plans.append(("cubic", cubic_fn, (x, weight)))
         else:
             emit({"kind": "tune_skip", "arm": "cubic", "tile": [bm, bn, bk],
-                  "reason": "cubic vmem estimate exceeds 48 MiB"})
+                  "reason": f"cubic vmem estimate exceeds {CUBIC_LIMIT // (1024 * 1024)} MiB"})
         for arm, function, args in plans:
             try:
                 values = time_function(function, args)
