@@ -47,8 +47,11 @@ STRASSEN_LIMIT = int(
 TUNE_WARMUPS, TUNE_RUNS = 2, 5
 SEED = 20260902
 SUFFIX = os.environ.get("QWEN3_OUTPUT_SUFFIX", "")
+# run.py exports STRASSEN_OUTPUT_DIR so --output-dir actually takes effect;
+# the Colab default is kept for direct invocation.
+RESULTS_DIR = os.environ.get("STRASSEN_OUTPUT_DIR", "/content/results")
 OUTPUT = Path(
-    f"/content/results/strassen_qwen3_{layer.MODEL_NAME}"
+    f"{RESULTS_DIR}/strassen_qwen3_{layer.MODEL_NAME}"
     f"_site_tiles{SUFFIX}.jsonl")
 
 # site -> (contraction depth, output width, fused residual?)

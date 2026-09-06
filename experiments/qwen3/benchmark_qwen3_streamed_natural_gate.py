@@ -60,9 +60,13 @@ THRESHOLDS = {
     "mean_kl_nats_max": 0.02,
     "top1_agreement_min": 0.97,
 }
-OUTPUT_ROOT = Path(os.environ.get("STRASSEN_OUTPUT_DIR", "/content/runs"))
-OUTPUT = OUTPUT_ROOT / (
-    f"strassen_qwen3_{layer.MODEL_NAME}_natural_task_gate.jsonl")
+SUFFIX = os.environ.get("QWEN3_OUTPUT_SUFFIX", "")
+# run.py exports STRASSEN_OUTPUT_DIR so --output-dir actually takes effect;
+# the Colab default is kept for direct invocation.
+RESULTS_DIR = os.environ.get("STRASSEN_OUTPUT_DIR", "/content/results")
+OUTPUT = Path(
+    f"{RESULTS_DIR}/strassen_qwen3_{layer.MODEL_NAME}"
+    f"_natural_task_gate{SUFFIX}.jsonl")
 
 
 def emit(record):

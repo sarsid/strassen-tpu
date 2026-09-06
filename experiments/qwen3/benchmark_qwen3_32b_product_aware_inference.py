@@ -30,8 +30,11 @@ CUBIC_BM, CUBIC_BN, CUBIC_BK = (int(v) for v in os.environ.get(
     "QWEN3_CUBIC_TILE", f"{BM},{BN},{BK}").split(","))
 SUFFIX = os.environ.get("QWEN3_OUTPUT_SUFFIX", "")
 WARMUPS, RUNS = 3, 20
+# run.py exports STRASSEN_OUTPUT_DIR so --output-dir actually takes effect;
+# the Colab default is kept for direct invocation.
+RESULTS_DIR = os.environ.get("STRASSEN_OUTPUT_DIR", "/content/results")
 OUTPUT = Path(
-    f"/content/results/strassen_qwen3_{layer.MODEL_NAME}"
+    f"{RESULTS_DIR}/strassen_qwen3_{layer.MODEL_NAME}"
     f"_product_aware_inference{SUFFIX}.jsonl")
 
 

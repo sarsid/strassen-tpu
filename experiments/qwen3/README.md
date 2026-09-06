@@ -1,7 +1,10 @@
 # Qwen3 experiment
 
 This directory contains the complete promoted experiment. One runner selects
-the model and stage while keeping the tile, policy, and output naming fixed.
+the model, stage and platform profile.  The profile carries the promoted
+tiles, budgets and scoped-vmem flag, because those differ between v5e and
+v6e; `--device v6e` reproduces the Trillium result and `--tile` overrides
+the gate/up tile for a one-off.
 
 From the repository root:
 
@@ -28,6 +31,8 @@ The modules retain their original research filenames so published artifacts
 can be traced directly to the code that emitted them:
 
 - `benchmark_qwen3_scaling_tile_tune.py` — equal-budget tile search.
+- `benchmark_qwen3_downstream_tasks.py` — zero-shot HellaSwag and
+  LAMBADA agreement; generates the downstream artifact in `evidence/`.
 - `benchmark_qwen3_32b_product_aware_inference.py` — isolated gate/up plus
   SwiGLU.
 - `benchmark_qwen3_32b_full_layer_product_inference.py` — real layer 0.

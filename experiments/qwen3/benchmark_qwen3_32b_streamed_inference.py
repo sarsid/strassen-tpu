@@ -36,11 +36,14 @@ import strassen_pallas as sp
 
 PRODUCT_AWARE = os.environ.get("QWEN3_STREAM_PRODUCT_AWARE", "0") == "1"
 SUFFIX = os.environ.get("QWEN3_OUTPUT_SUFFIX", "")
+# run.py exports STRASSEN_OUTPUT_DIR so --output-dir actually takes effect;
+# the Colab default is kept for direct invocation.
+RESULTS_DIR = os.environ.get("STRASSEN_OUTPUT_DIR", "/content/results")
 OUTPUT = Path(
-    f"/content/results/strassen_qwen3_{layer.MODEL_NAME}"
+    f"{RESULTS_DIR}/strassen_qwen3_{layer.MODEL_NAME}"
     f"_streamed_product_inference{SUFFIX}.jsonl"
     if PRODUCT_AWARE else
-    f"/content/results/strassen_qwen3_{layer.MODEL_NAME}"
+    f"{RESULTS_DIR}/strassen_qwen3_{layer.MODEL_NAME}"
     f"_streamed_inference{SUFFIX}.jsonl")
 NUM_LAYERS = layer.NUM_LAYERS
 WARMUPS, RUNS = 2, 5

@@ -59,6 +59,26 @@ MODELS = {
         "model_dim": 5120, "intermediate_dim": 25600,
         "heads": 64, "kv_heads": 8, "num_layers": 64,
     },
+    # Gemma 3 differs from Qwen3 in three ways that matter here.  Its model
+    # dimension 5376 = 256 x 21 is not a power of two, so q/k/v/gate_up admit
+    # only the contraction depths 256, 768, 1792 and 5376 -- our tuned Qwen
+    # depth of 512 is illegal.  It gates with GeGLU rather than SwiGLU.  And
+    # it carries four norms per block rather than two, with a norm between
+    # each projection and its residual add, so the residual_add epilogue that
+    # wins at o and down on Qwen cannot fuse there.  QK-norm is present, so
+    # the qk_norm_rope epilogue ports unchanged.  Gated repository: the
+    # weights need a bearer token, and the checkpoint nests the text model
+    # under language_model.
+    "gemma3-27b": {
+        "repository": "google/gemma-3-27b-it",
+        "revision": "005ad3404e59d6023443cb575daa05336842228a",
+        "model_dim": 5376, "intermediate_dim": 21504,
+        "heads": 32, "kv_heads": 16, "num_layers": 62,
+        "tensor_prefix": "language_model.model",
+        "activation": "geglu",
+        "query_pre_attn_scalar": 168,
+        "sliding_window": 1024,
+    },
 }
 MODEL_NAME = os.environ.get("QWEN3_MODEL", "32b")
 if MODEL_NAME not in MODELS:
@@ -78,6 +98,10 @@ BATCH = 8
 SEQUENCE = int(os.environ.get("QWEN3_SEQUENCE", "1024"))
 TOKENS = BATCH * SEQUENCE
 MODEL_DIM, INTERMEDIATE_DIM = _MODEL["model_dim"], _MODEL["intermediate_dim"]
+# Qwen keeps its layers at model.layers.N; Gemma 3 ships as a multimodal
+# checkpoint and nests the text model one level deeper.
+TENSOR_PREFIX = _MODEL.get("tensor_prefix", "model")
+ACTIVATION = _MODEL.get("activation", "swiglu")
 HEADS, KV_HEADS, HEAD_DIM = _MODEL["heads"], _MODEL["kv_heads"], 128
 NUM_LAYERS = _MODEL["num_layers"]
 RMS_EPS, ROPE_THETA = 1e-6, 1e6
@@ -96,9 +120,49 @@ def emit(record):
     print("QWEN3_LAYER_JSON " + line, flush=True)
 
 
+def _hub_token():
+    """Bearer token for gated repositories, or None.
+
+    Qwen3 is ungated and needs nothing.  Gemma is gated, and the fetch runs
+    on the Colab runtime rather than the driving machine, so a local login
+    does not reach it.  Colab's secret store does not work either: it raises
+    "Secrets can only be fetched when running from the Colab UI", and it
+    times out rather than failing fast, so it is not consulted at all.
+
+    What does work headless is a token file uploaded to the runtime.  The
+    order below prefers the environment, then the standard huggingface cache
+    locations, then whatever huggingface_hub itself resolves.  The value is
+    never logged or emitted.
+    """
+    value = (os.environ.get("HF_TOKEN") or "").strip()
+    if value:
+        return value
+    for candidate in (
+        "/content/.hf_token",
+        "/root/.cache/huggingface/token",
+        os.path.expanduser("~/.cache/huggingface/token"),
+    ):
+        try:
+            with open(candidate, encoding="utf-8") as handle:
+                value = handle.read().strip()
+            if value:
+                return value
+        except OSError:
+            continue
+    try:
+        import huggingface_hub
+
+        return (huggingface_hub.get_token() or "").strip() or None
+    except Exception:
+        return None
+
+
 class ShardedSafetensors:
     def __init__(self):
         self.session = requests.Session()
+        token = _hub_token()
+        if token:
+            self.session.headers["Authorization"] = f"Bearer {token}"
         index = self._get(f"{BASE}/model.safetensors.index.json").json()
         self.shard_of = index["weight_map"]
         self.headers = {}
@@ -338,10 +402,12 @@ def load_params():
     checkpoint = ShardedSafetensors()
 
     def weight(name):
-        return jnp.asarray(checkpoint.tensor(f"model.layers.0.{name}").T)
+        return jnp.asarray(
+            checkpoint.tensor(f"{TENSOR_PREFIX}.layers.0.{name}").T)
 
     def vector(name):
-        return jnp.asarray(checkpoint.tensor(f"model.layers.0.{name}"))
+        return jnp.asarray(
+            checkpoint.tensor(f"{TENSOR_PREFIX}.layers.0.{name}"))
 
     gate = weight("mlp.gate_proj.weight")
     up = weight("mlp.up_proj.weight")

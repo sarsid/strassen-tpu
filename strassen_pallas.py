@@ -140,6 +140,19 @@ def check_tiling(bm, bn, bk):
         raise ValueError("tile breaks TPU v5e alignment:\n  " + "\n  ".join(errors))
 
 
+def _gated_activation(epilogue):
+    """SwiGLU and GeGLU differ only in the gate nonlinearity.
+
+    Qwen3 gates with SiLU; Gemma gates with the tanh approximation of GELU
+    (``gelu_pytorch_tanh``).  Both consume the same quadrant layout, so the
+    epilogue and the product-aware schedule are shared and only this function
+    changes.
+    """
+    if epilogue == "geglu":
+        return functools.partial(jax.nn.gelu, approximate=True)
+    return jax.nn.silu
+
+
 def _classical_strassen_kernel(
     a_ref,
     b_ref,
@@ -168,6 +181,9 @@ def _classical_strassen_kernel(
     rope_segt_ref=None,
     rope_head_dim=128,
     rope_eps=1e-6,
+    norm_scale_ref=None,
+    norm_eps=1e-6,
+    norm_width=None,
 ):
     step = pl.program_id(2)
     m, k = a_ref.shape
@@ -286,7 +302,7 @@ def _classical_strassen_kernel(
         or block_permutation != 0
         or (nk - 1) in classical_panels
         or panel_schedule_ref is not None
-        or epilogue != "swiglu"
+        or epilogue not in ("swiglu", "geglu")
     ):
         raise ValueError(
             "product-aware SwiGLU requires unpermuted classical Strassen "
@@ -579,7 +595,8 @@ def _classical_strassen_kernel(
             gate_index, up_index = ((0, 1) if top else (2, 3))
             destination = slice(0, hm) if top else slice(hm, m)
             o_ref[destination, :] = (
-                jax.nn.silu(acc_ref[gate_index]) * acc_ref[up_index]
+                _gated_activation(epilogue)(acc_ref[gate_index])
+                * acc_ref[up_index]
             ).astype(o_ref.dtype)
 
         if classical_panels:
@@ -632,9 +649,30 @@ def _classical_strassen_kernel(
                 + residual_ref[row, col].astype(jnp.float32)
             ).astype(o_ref.dtype)
 
-        @pl.when(step != nk - 1)
-        def _ordinary_residual_panel():
-            run_seven_products()
+        # Ordinary panels must honour classical_panels exactly as the
+        # product-aware SwiGLU path does.  Calling run_seven_products()
+        # unconditionally here silently downgraded requested exact panels to
+        # Strassen ones: with nk=2 and panel 0 exact, the kernel executed 14
+        # products where the policy asks for 15, and nothing reported it.
+        if classical_panels:
+            is_exact_panel = functools.reduce(
+                jnp.logical_or,
+                [step == panel for panel in classical_panels],
+            )
+
+            @pl.when(jnp.logical_and(step != nk - 1, is_exact_panel))
+            def _ordinary_exact_residual_panel():
+                run_exact_panel()
+
+            @pl.when(jnp.logical_and(
+                step != nk - 1, jnp.logical_not(is_exact_panel)))
+            def _ordinary_strassen_residual_panel():
+                run_seven_products()
+        else:
+
+            @pl.when(step != nk - 1)
+            def _ordinary_residual_panel():
+                run_seven_products()
 
         @pl.when(step == nk - 1)
         def _product_aware_residual_final_panel():
@@ -721,7 +759,7 @@ def _classical_strassen_kernel(
                     + z3
                     + z0 * jnp.asarray(0.5, dtype=z0.dtype)
                 ))
-            elif epilogue == "swiglu":
+            elif epilogue in ("swiglu", "geglu"):
                 # The quadrant layout already separates the operands: with the
                 # combined gate/up weight column-blocked so each N tile holds
                 # gate channels then the matching up channels, quadrants 0/2
@@ -732,10 +770,10 @@ def _classical_strassen_kernel(
                 gate_top, up_top = acc_ref[0], acc_ref[1]
                 gate_bottom, up_bottom = acc_ref[2], acc_ref[3]
                 o_ref[:hm, :] = (
-                    jax.nn.silu(gate_top) * up_top
+                    _gated_activation(epilogue)(gate_top) * up_top
                 ).astype(o_ref.dtype)
                 o_ref[hm:, :] = (
-                    jax.nn.silu(gate_bottom) * up_bottom
+                    _gated_activation(epilogue)(gate_bottom) * up_bottom
                 ).astype(o_ref.dtype)
             elif epilogue == "residual_add":
                 # Fold the residual add into the store so the output tile is
@@ -795,6 +833,37 @@ def _classical_strassen_kernel(
                 o_ref[:hm, hn:] = top_b.astype(o_ref.dtype)
                 o_ref[hm:, :hn] = bottom_a.astype(o_ref.dtype)
                 o_ref[hm:, hn:] = bottom_b.astype(o_ref.dtype)
+            elif epilogue == "norm_residual_add":
+                # Gemma-style blocks put a norm between a projection and its
+                # residual add, which is why the plain residual_add epilogue
+                # cannot fuse at o and down there.  Folding both in needs the
+                # row's whole sum of squares, and a tile only sees its own
+                # column block, so this epilogue requires bn == n -- the
+                # caller-side guard enforces it.  The scale carries whatever
+                # convention the model uses; Gemma's (1 + w) is folded in
+                # offline, exactly as it is for qk_norm_rope.
+                scale = norm_scale_ref[0].astype(jnp.float32)
+                eps = jnp.asarray(norm_eps, dtype=jnp.float32)
+                inverse_width = jnp.asarray(
+                    1.0 / norm_width, dtype=jnp.float32)
+
+                def finish(left, right, rows):
+                    squares = (
+                        jnp.sum(left * left, axis=1, keepdims=True)
+                        + jnp.sum(right * right, axis=1, keepdims=True))
+                    recip = jax.lax.rsqrt(squares * inverse_width + eps)
+                    return (
+                        left * recip * scale[:hn]
+                        + residual_ref[rows, :hn].astype(jnp.float32),
+                        right * recip * scale[hn:]
+                        + residual_ref[rows, hn:].astype(jnp.float32))
+
+                top_l, top_r = finish(acc_ref[0], acc_ref[1], slice(0, hm))
+                bot_l, bot_r = finish(acc_ref[2], acc_ref[3], slice(hm, None))
+                o_ref[:hm, :hn] = top_l.astype(o_ref.dtype)
+                o_ref[:hm, hn:] = top_r.astype(o_ref.dtype)
+                o_ref[hm:, :hn] = bot_l.astype(o_ref.dtype)
+                o_ref[hm:, hn:] = bot_r.astype(o_ref.dtype)
             elif epilogue == "bias_add":
                 # Fold a Linear bias into the final store.  The bias arrives
                 # as (1, bn) so Mosaic can use a legal 2-D tiled layout.
@@ -831,6 +900,8 @@ def strassen_matmul(
     rope_scale=None,
     rope_head_dim=128,
     rope_eps=1e-6,
+    norm_scale=None,
+    norm_eps=1e-6,
     output_dtype=None,
     allow_input_fusion=None,
     product_aware_swiglu=False,
@@ -872,7 +943,8 @@ def strassen_matmul(
     classical_panels = tuple(sorted({int(p) for p in classical_panels}))
     if epilogue is not None:
         if epilogue not in (
-                "swiglu", "residual_add", "bias_add", "qk_norm_rope"):
+                "swiglu", "geglu", "residual_add", "bias_add",
+                "qk_norm_rope", "norm_residual_add"):
             raise ValueError(
                 f"unknown epilogue {epilogue!r}; choose 'swiglu' or "
                 "'residual_add' or 'bias_add'"
@@ -882,18 +954,35 @@ def strassen_matmul(
         if output_dtype is not None and jnp.dtype(output_dtype) != jnp.dtype(
                 jnp.bfloat16):
             raise ValueError("fused epilogues write a BF16 output tile")
-        if epilogue == "swiglu" and bn % 2:
-            raise ValueError(f"swiglu epilogue needs an even bn, got {bn}")
+        if epilogue in ("swiglu", "geglu") and bn % 2:
+            raise ValueError(f"{epilogue} epilogue needs an even bn, got {bn}")
         if epilogue == "residual_add" and residual is None:
             raise ValueError("residual_add epilogue requires residual=")
         if epilogue == "bias_add" and bias is None:
             raise ValueError("bias_add epilogue requires bias=")
         if epilogue == "bias_add" and formula_variant == "powers":
             raise ValueError("bias_add requires a quadrant-basis formula")
-    if residual is not None and epilogue != "residual_add":
-        raise ValueError("residual= is only used by the residual_add epilogue")
+    if residual is not None and epilogue not in (
+            "residual_add", "norm_residual_add"):
+        raise ValueError(
+            "residual= is only used by the residual_add and "
+            "norm_residual_add epilogues")
     if bias is not None and epilogue != "bias_add":
         raise ValueError("bias= is only used by the bias_add epilogue")
+    if epilogue == "norm_residual_add":
+        if residual is None or norm_scale is None:
+            raise ValueError(
+                "norm_residual_add requires residual= and norm_scale=")
+        if bn != n:
+            raise ValueError(
+                "norm_residual_add normalises over the whole output row, so "
+                f"the tile must span it: bn={bn} must equal n={n}")
+        if residual.shape != (m, n):
+            raise ValueError(
+                f"residual shape {residual.shape} != output {(m, n)}")
+        if norm_scale.shape != (n,):
+            raise ValueError(
+                f"norm_scale shape {norm_scale.shape} != output width {(n,)}")
     if epilogue == "qk_norm_rope":
         if rope_cos is None or rope_sin is None or rope_scale is None:
             raise ValueError(
@@ -914,9 +1003,10 @@ def strassen_matmul(
                 f"{rope_scale.shape}")
     if rope_cos is not None and epilogue != "qk_norm_rope":
         raise ValueError("rope_* are only used by the qk_norm_rope epilogue")
-    if product_aware_swiglu and epilogue != "swiglu":
+    if product_aware_swiglu and epilogue not in ("swiglu", "geglu"):
         raise ValueError(
-            "product_aware_swiglu is only valid with epilogue='swiglu'")
+            "product_aware_swiglu is only valid with epilogue='swiglu' or "
+            "'geglu'")
     if product_aware_residual and epilogue != "residual_add":
         raise ValueError(
             "product_aware_residual is only valid with "
@@ -924,6 +1014,8 @@ def strassen_matmul(
     if epilogue == "bias_add" and bias.shape != (n,):
         raise ValueError(f"bias shape {bias.shape} != output width {(n,)}")
     operand_count = 3 if epilogue in ("residual_add", "bias_add") else 2
+    if epilogue == "norm_residual_add":
+        operand_count = 4
     if epilogue == "qk_norm_rope":
         operand_count = 6
     if allow_input_fusion is not None:
@@ -1042,8 +1134,8 @@ def strassen_matmul(
         pl.BlockSpec((bk, bn), lambda i, j, step: (step, j)),
     ]
     operands = [a, b]
-    if epilogue == "swiglu":
-        # SwiGLU halves the output width: each (bm, bn) tile of gate|up
+    if epilogue in ("swiglu", "geglu"):
+        # A gated activation halves the output width: each (bm, bn) tile of gate|up
         # produces a (bm, bn // 2) tile of activated intermediate.
         out_specs = pl.BlockSpec((bm, bn // 2), lambda i, j, step: (i, j))
         out_shape = jax.ShapeDtypeStruct((m, n // 2), output_dtype)
@@ -1074,6 +1166,16 @@ def strassen_matmul(
 
         def kernel(a_ref, b_ref, bias_ref, o_ref, acc_ref):
             return base_kernel(a_ref, b_ref, o_ref, acc_ref, bias_ref=bias_ref)
+    elif epilogue == "norm_residual_add":
+        in_specs.append(pl.BlockSpec((bm, bn), lambda i, j, step: (i, j)))
+        in_specs.append(pl.BlockSpec((1, bn), lambda i, j, step: (0, 0)))
+        operands.extend([residual, norm_scale.reshape(1, n)])
+        base_kernel = kernel
+
+        def kernel(a_ref, b_ref, residual_ref, scale_ref, o_ref, acc_ref):
+            return base_kernel(
+                a_ref, b_ref, o_ref, acc_ref, residual_ref=residual_ref,
+                norm_scale_ref=scale_ref, norm_eps=norm_eps, norm_width=n)
     elif epilogue == "qk_norm_rope":
         half = bn // 2
         segment_width = rope_head_dim // 2

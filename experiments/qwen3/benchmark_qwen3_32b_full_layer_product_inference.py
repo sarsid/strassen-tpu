@@ -82,8 +82,11 @@ ARMS = (
     "regular_xla", "cubic_pallas",
     "strassen_fused", "product_strassen_fused",
 )
+# run.py exports STRASSEN_OUTPUT_DIR so --output-dir actually takes effect;
+# the Colab default is kept for direct invocation.
+RESULTS_DIR = os.environ.get("STRASSEN_OUTPUT_DIR", "/content/results")
 OUTPUT = Path(
-    f"/content/results/strassen_qwen3_{layer.MODEL_NAME}"
+    f"{RESULTS_DIR}/strassen_qwen3_{layer.MODEL_NAME}"
     f"_full_layer_product_inference{SUFFIX}.jsonl")
 
 
@@ -193,7 +196,19 @@ def main():
         "model": layer.MODEL_NAME,
         "tile": [BM, BN, BK], "cubic_tile": [CUBIC_BM, CUBIC_BN, CUBIC_BK],
         "extended_sites": list(EXTENDED_SITES),
-        "policy": "gate/up+SwiGLU only; down and attention ordinary XLA",
+        # Built from the actual configuration.  This string previously read
+        # "gate/up+SwiGLU only" even when extended sites were routed, so
+        # artifacts described a policy the run did not use.
+        "policy": ("product-aware fused gate/up+SwiGLU"
+                   + ("; fused q/k RMSNorm+RoPE" if FUSED_QK else "")
+                   + (f"; gated sites {','.join(EXTENDED_SITES)}"
+                      if EXTENDED_SITES else "; no extended sites")),
+        "fused_qk": FUSED_QK,
+        "qk_tile": list(QK_TILE),
+        "site_tiles": {k: list(v) for k, v in SITE_TILES.items()},
+        "strassen_limit_bytes": STRASSEN_LIMIT,
+        "cubic_limit_bytes": CUBIC_LIMIT,
+        "scoped_vmem_kib": SCOPED_VMEM_KIB,
         "scope": f"complete real-weight Qwen3-{layer.MODEL_NAME} layer-0 inference",
         "mosaic_compat": mosaic_compat.compatibility_info(
             sp.MOSAIC_IR_V7_COMPAT),

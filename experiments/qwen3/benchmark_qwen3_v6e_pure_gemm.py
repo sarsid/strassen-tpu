@@ -46,7 +46,10 @@ import mosaic_compat
 import strassen_pallas as sp
 
 
-SHAPE = (8192, 5120, 51200)
+# Default is the Qwen3-32B gate/up geometry; override to screen another
+# model's shape, which needs no checkpoint at all.
+SHAPE = tuple(int(v) for v in os.environ.get(
+    "PURE_GEMM_SHAPE", "8192,5120,51200").split(","))
 SEED = 20260902
 SCREEN_WARMUPS = 2
 SCREEN_RUNS = 5
@@ -55,14 +58,17 @@ CONFIRM_RUNS = 30
 KERNEL_LIMIT_BYTES = int(
     os.environ.get("QWEN3_STRASSEN_LIMIT_MIB", "104")) * 1024 * 1024
 SUFFIX = os.environ.get("QWEN3_OUTPUT_SUFFIX", "")
+# run.py exports STRASSEN_OUTPUT_DIR so --output-dir actually takes effect;
+# the Colab default is kept for direct invocation.
+RESULTS_DIR = os.environ.get("STRASSEN_OUTPUT_DIR", "/content/results")
 OUTPUT = Path(
-    f"/content/results/strassen_qwen3_32b_v6e_pure_gemm{SUFFIX}.jsonl"
+    f"{RESULTS_DIR}/strassen_qwen3_32b_v6e_pure_gemm{SUFFIX}.jsonl"
 )
 
 # All candidates divide the real geometry and keep every half-tile aligned to
 # v6e's 256x256 MXU.  The list was declared before the run and is identical
 # for Strassen and cubic Pallas.
-CANDIDATES = (
+_DEFAULT_CANDIDATES = (
     (1024, 1024, 2560),
     (1024, 1024, 5120),
     (1024, 2560, 2560),
@@ -71,6 +77,12 @@ CANDIDATES = (
     (2048, 1024, 5120),
     (2048, 2560, 2560),
 )
+if os.environ.get("PURE_GEMM_TILES"):
+    CANDIDATES = tuple(
+        tuple(int(v) for v in clause.split(","))
+        for clause in os.environ["PURE_GEMM_TILES"].split(";") if clause)
+else:
+    CANDIDATES = _DEFAULT_CANDIDATES
 
 
 def emit(record):

@@ -67,8 +67,11 @@ BN_CANDIDATES = _tile_axis("QWEN3_TILE_BN", (1024, 2048, 2560, 3072))
 BK_CANDIDATES = _tile_axis("QWEN3_TILE_BK", (512, 1024))
 SEED = 20260907
 SUFFIX = os.environ.get("QWEN3_OUTPUT_SUFFIX", "")
+# run.py exports STRASSEN_OUTPUT_DIR so --output-dir actually takes effect;
+# the Colab default is kept for direct invocation.
+RESULTS_DIR = os.environ.get("STRASSEN_OUTPUT_DIR", "/content/results")
 OUTPUT = Path(
-    f"/content/results/strassen_qwen3_{layer.MODEL_NAME}"
+    f"{RESULTS_DIR}/strassen_qwen3_{layer.MODEL_NAME}"
     f"_scaling_tiles{SUFFIX}.jsonl")
 
 
