@@ -115,7 +115,7 @@ def make_epilogue(algorithm, shape, tile, *, kind, fused=False, early=False,
     variant=variant or default_variant
     if not fused and not packed:
         matrix=mm.make_matmul(algorithm,shape,tile,variant=variant,interpret=interpret,
-                              vmem_limit_bytes=vmem_limit_bytes)
+                              vmem_limit_bytes=None if algorithm=='native' else vmem_limit_bytes)
         def prepare(a,b,residual=None):
             if kind=='residual' and (residual is None or residual.shape!=(m,n) or residual.dtype!=jnp.bfloat16):
                 raise ValueError('Residual must have requested shape and BF16 dtype')

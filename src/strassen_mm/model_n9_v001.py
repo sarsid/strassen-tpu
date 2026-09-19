@@ -12,6 +12,7 @@ import hashlib
 import json
 from pathlib import Path
 import struct
+import sys
 
 import jax
 import jax.numpy as jnp
@@ -33,6 +34,7 @@ class Checkpoint:
         self.manifest_path=Path(manifest_path)
         self.manifest=json.loads(self.manifest_path.read_text())
         self.root=Path(self.manifest['cache_dir']).resolve()
+        if sys.byteorder!='little': raise ValueError('BF16 checkpoint loader requires little-endian host')
         self.config=self.manifest['config']
         self.tables={};self.locations={};self.verified=[]
         if self.config['model_type'] not in ('qwen3','mistral'):
@@ -49,6 +51,8 @@ class Checkpoint:
             if not path.is_relative_to(self.root): raise ValueError('Checkpoint path escapes cache')
             if path.stat().st_size!=row['bytes'] or sha256(path)!=row['sha256']:
                 raise ValueError('Checkpoint file size/hash mismatch: '+row['path'])
+            if row['path']=='config.json' and json.loads(path.read_text())!=self.config:
+                raise ValueError('Manifest config differs from verified official config file')
             self.verified.append(dict(row))
             if path.suffix!='.safetensors': continue
             with path.open('rb') as handle:
@@ -63,6 +67,8 @@ class Checkpoint:
                 lo,hi=info['data_offsets'];shape=info['shape']
                 widths={'BF16':2,'F32':4}
                 if info['dtype'] not in widths: raise ValueError('Unsupported tensor dtype '+info['dtype'])
+                if len(shape)>1 and info['dtype']!='BF16':
+                    raise ValueError('This application study requires BF16 matrix and embedding tensors')
                 if lo<0 or hi-lo!=int(np.prod(shape))*widths[info['dtype']] or 8+size+hi>path.stat().st_size:
                     raise ValueError('Invalid tensor byte bounds')
                 self.locations[name]=(path,8+size+lo,shape,info['dtype'])
@@ -94,7 +100,7 @@ class Checkpoint:
         return np.array(self.tensor('model.embed_tokens.weight')[np.asarray(tokens)],copy=True)
 
     def head(self):
-        name='lm_head.weight'
+        name='model.embed_tokens.weight' if self.config.get('tie_word_embeddings') else 'lm_head.weight'
         if name not in self.locations:
             if not self.config.get('tie_word_embeddings'): raise ValueError('Missing untied LM head')
             name='model.embed_tokens.weight'
