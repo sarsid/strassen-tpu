@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Strassen MM Focus — Status</title>
+<style>
+:root{color-scheme:light dark;--bg:light-dark(#f6f8fb,#101720);--panel:light-dark(#fff,#182330);--ink:light-dark(#18273a,#edf4ff);--muted:light-dark(#58687c,#b0bfd0);--line:light-dark(#dbe3ed,#304355);--blue:light-dark(#285d9a,#94c1ff)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 system-ui,sans-serif}main{max-width:1150px;margin:auto;padding:30px}h1{font-size:27px;margin:0}h2{font-size:19px;margin:24px 0 12px}p{margin:8px 0}.muted{color:var(--muted)}.banner,.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}.banner{margin-top:20px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:12px}.state{font-weight:650;color:var(--blue)}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:13px;color:var(--muted)}code{font-size:12px;overflow-wrap:anywhere}a{color:var(--blue)}.scroll{overflow-x:auto}li{margin-bottom:8px}small{color:var(--muted)}
+</style>
+<main><h1>Strassen MM Focus</h1><p class="muted">N1–N4 · v5e first · one allocation · sequential TPU timing</p>
+<p id="updated" class="muted">Loading recorded status…</p>
+<div class="banner"><strong id="campaign">Preparing campaign</strong><p id="detail"></p><small>Only actual execution artifacts appear as results. v6e replication is deferred.</small></div>
+<h2>Agents</h2><div id="agents" class="grid"></div>
+<h2>Executions and results</h2><div class="scroll"><table><thead><tr><th>Execution</th><th>State</th><th>Cases / failures</th><th>Latest evidence</th></tr></thead><tbody id="runs"></tbody></table></div>
+<h2>Recent commits</h2><ul id="commits"></ul>
+<h2>Activity</h2><ul id="events"></ul>
+<p class="muted">Source and results are retained per execution. Status refreshes every five seconds.</p></main>
+<script>
+const esc = x => String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function update(){try{const s=await(await fetch('/api/status',{cache:'no-store'})).json();document.getElementById('updated').textContent='View refreshed '+new Date(s.generated_utc).toLocaleTimeString();
+const campaign=[...s.events].reverse().find(e=>e.kind==='campaign');if(campaign){document.getElementById('campaign').textContent=campaign.state;document.getElementById('detail').textContent=campaign.detail;}
+document.getElementById('agents').innerHTML=s.agents.map(a=>`<div class="card"><strong>${esc(a.name)}</strong><div class="state">${esc(a.state)}</div><p>${esc(a.detail)}</p><small>${esc(a.utc)}</small></div>`).join('');
+document.getElementById('runs').innerHTML=s.runs.length?s.runs.map(r=>`<tr><td><a href="/files/runs/${encodeURIComponent(r.run_id)}/execution.json"><code>${esc(r.run_id)}</code></a></td><td>${esc(r.completion?.status??'in progress / awaiting artifact')}</td><td>${r.completed_cases} / ${r.failed_cases}</td><td>${esc(r.last_record?.kind??r.label??'Created')}<br><small>${esc(r.last_record?.shape_id??'')} ${esc(r.last_record?.arm_id??'')}</small></td></tr>`).reverse().join(''):'<tr><td colspan="4">No benchmark results yet.</td></tr>';
+document.getElementById('commits').innerHTML=s.commits.map(c=>`<li><code>${esc(c)}</code></li>`).join('')||'<li>No commits yet.</li>';
+document.getElementById('events').innerHTML=[...s.events].reverse().map(e=>`<li><strong>${esc(e.name??e.kind)}: ${esc(e.state??'')}</strong> — ${esc(e.detail??'')}<br><small>${esc(e.utc)}</small></li>`).join('');
+}catch(e){document.getElementById('updated').textContent='Status refresh failed; displayed data may be stale.';}}
+update();setInterval(update,5000);
+</script></html>
