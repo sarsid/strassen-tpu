@@ -7,6 +7,8 @@ untouched; reused implementations are copied here with provenance.
 
 **Graphs: [N1–N9 chart gallery, PDF and reading guide](docs/CHARTS_v002.md).**
 
+**Explained PDF: [Flowchart, graph interpretations and per-shape best-result markers](docs/CHARTS_EXPLAINED_v001.md).**
+
 The subsequent N5–N9 study and its separately reported fresh-v5e replication
 are documented in the [N5–N9 protocol](protocols/N5_N9_v1.md),
 [decision log](decisions/N5_N9_v001.md), and versioned `START_HERE` review notes.
