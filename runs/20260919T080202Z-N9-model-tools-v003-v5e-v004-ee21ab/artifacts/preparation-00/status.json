@@ -1,0 +1,162 @@
+{
+  "action": "model-tools-v003",
+  "child_snapshot_scope": "Provisional until adapter process-group cleanup; adapter artifact_manifest.json seals final file bytes",
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/python3",
+        "-m",
+        "venv",
+        "--without-pip",
+        "/content/Strassen_MM_Focus/model-tools-v003"
+      ],
+      "elapsed_seconds": 0.06381380600032571,
+      "finished_utc": "2026-09-19T08:02:07.837532+00:00",
+      "index": 0,
+      "label": "create_without_pip",
+      "returncode": 0,
+      "started_utc": "2026-09-19T08:02:07.770836+00:00",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "/content/Strassen_MM_Focus/model-tools-v003/bin/python",
+        "-I",
+        "-c",
+        "import json,site,sys\nfrom pathlib import Path\ntarget=Path(sys.argv[1]).resolve()\nvalue={'prefix':sys.prefix,'base_prefix':sys.base_prefix,'executable':sys.executable,\n       'user_site_enabled':site.ENABLE_USER_SITE}\nwith Path(sys.argv[2]).open('x') as f:json.dump(value,f,indent=2,sort_keys=True)\nassert Path(sys.prefix).resolve()==target and sys.prefix!=sys.base_prefix\nassert site.ENABLE_USER_SITE is False\n",
+        "/content/Strassen_MM_Focus/model-tools-v003",
+        "/content/Strassen_MM_Focus/runs/20260919T080202Z-N9-model-tools-v003-v5e-v004-ee21ab/artifacts/preparation-00/prefix_probe.json"
+      ],
+      "elapsed_seconds": 0.03171431800001301,
+      "finished_utc": "2026-09-19T08:02:07.877227+00:00",
+      "index": 1,
+      "label": "verify_new_prefix",
+      "returncode": 0,
+      "started_utc": "2026-09-19T08:02:07.842647+00:00",
+      "timeout_seconds": 60
+    },
+    {
+      "argv": [
+        "/usr/bin/python3",
+        "-m",
+        "pip",
+        "--isolated",
+        "--python",
+        "/content/Strassen_MM_Focus/model-tools-v003/bin/python",
+        "install",
+        "--disable-pip-version-check",
+        "--no-cache-dir",
+        "--only-binary=:all:",
+        "--index-url",
+        "https://download.pytorch.org/whl/cpu",
+        "--report",
+        "/content/Strassen_MM_Focus/runs/20260919T080202Z-N9-model-tools-v003-v5e-v004-ee21ab/artifacts/preparation-00/torch_install_report.json",
+        "torch==2.8.0"
+      ],
+      "elapsed_seconds": 20.804114631999255,
+      "finished_utc": "2026-09-19T08:02:28.688022+00:00",
+      "index": 2,
+      "label": "cpu_torch",
+      "returncode": 0,
+      "started_utc": "2026-09-19T08:02:07.880775+00:00",
+      "timeout_seconds": 1800
+    },
+    {
+      "argv": [
+        "/usr/bin/python3",
+        "-m",
+        "pip",
+        "--isolated",
+        "--python",
+        "/content/Strassen_MM_Focus/model-tools-v003/bin/python",
+        "install",
+        "--disable-pip-version-check",
+        "--no-cache-dir",
+        "--only-binary=:all:",
+        "--index-url",
+        "https://pypi.org/simple",
+        "--report",
+        "/content/Strassen_MM_Focus/runs/20260919T080202Z-N9-model-tools-v003-v5e-v004-ee21ab/artifacts/preparation-00/tools_install_report.json",
+        "transformers==4.56.2",
+        "tokenizers==0.22.0",
+        "huggingface-hub==0.34.4",
+        "safetensors==0.6.2",
+        "numpy==2.2.6",
+        "pyarrow==21.0.0",
+        "sentencepiece==0.2.1",
+        "accelerate==1.10.1",
+        "protobuf==6.32.1"
+      ],
+      "elapsed_seconds": 15.994777695999801,
+      "finished_utc": "2026-09-19T08:02:44.692130+00:00",
+      "index": 3,
+      "label": "pinned_tools",
+      "returncode": 0,
+      "started_utc": "2026-09-19T08:02:28.693060+00:00",
+      "timeout_seconds": 1800
+    },
+    {
+      "argv": [
+        "/usr/bin/python3",
+        "-m",
+        "pip",
+        "--isolated",
+        "--python",
+        "/content/Strassen_MM_Focus/model-tools-v003/bin/python",
+        "check"
+      ],
+      "elapsed_seconds": 0.5146153360001335,
+      "finished_utc": "2026-09-19T08:02:45.214432+00:00",
+      "index": 4,
+      "label": "pip_check",
+      "returncode": 0,
+      "started_utc": "2026-09-19T08:02:44.697001+00:00",
+      "timeout_seconds": 1800
+    },
+    {
+      "argv": [
+        "/usr/bin/python3",
+        "-m",
+        "pip",
+        "--isolated",
+        "--python",
+        "/content/Strassen_MM_Focus/model-tools-v003/bin/python",
+        "freeze",
+        "--all"
+      ],
+      "elapsed_seconds": 0.4646741100004874,
+      "finished_utc": "2026-09-19T08:02:45.686186+00:00",
+      "index": 5,
+      "label": "pip_freeze",
+      "returncode": 0,
+      "started_utc": "2026-09-19T08:02:45.218639+00:00",
+      "timeout_seconds": 1800
+    },
+    {
+      "argv": [
+        "/content/Strassen_MM_Focus/model-tools-v003/bin/python",
+        "-I",
+        "-c",
+        "import importlib,importlib.metadata as md,importlib.util,json,sys\nfrom pathlib import Path\ntarget=Path(sys.argv[1]).resolve()\nnames=['torch','transformers','tokenizers','huggingface-hub','safetensors','numpy','pyarrow','sentencepiece','accelerate','protobuf']\nversions={name:md.version(name) for name in names}\nmodules={}\nfor name in ['torch','transformers','tokenizers','huggingface_hub','safetensors','numpy','pyarrow','sentencepiece','accelerate','google.protobuf']:\n    module=importlib.import_module(name);modules[name]=str(Path(module.__file__).resolve())\n    assert Path(module.__file__).resolve().is_relative_to(target), name+' imported outside target environment'\nimport torch\nimport google.protobuf\nassert google.protobuf.__version__=='6.32.1','Expected pinned protobuf runtime'\nassert torch.version.cuda is None,'Expected CPU-only PyTorch distribution'\nassert importlib.util.find_spec('jax') is None,'Isolated model tools must not expose core JAX'\nvalue={'prefix':sys.prefix,'base_prefix':sys.base_prefix,'python':sys.version,'versions':versions,\n       'module_paths':modules,'torch_cuda_version':torch.version.cuda,'jax_visible':False,\n       'all_distributions':sorted([{'name':d.metadata['Name'],'version':d.version} for d in md.distributions()],key=lambda x:x['name'].lower())}\nwith Path(sys.argv[2]).open('x') as f:json.dump(value,f,indent=2,sort_keys=True)\n",
+        "/content/Strassen_MM_Focus/model-tools-v003",
+        "/content/Strassen_MM_Focus/runs/20260919T080202Z-N9-model-tools-v003-v5e-v004-ee21ab/artifacts/preparation-00/installed.json"
+      ],
+      "elapsed_seconds": 3.9715099109998846,
+      "finished_utc": "2026-09-19T08:02:49.664955+00:00",
+      "index": 6,
+      "label": "verify_installed_imports",
+      "returncode": 0,
+      "started_utc": "2026-09-19T08:02:45.690481+00:00",
+      "timeout_seconds": 300
+    }
+  ],
+  "core_versions_unchanged": true,
+  "descendant_state_requires_adapter_verification": true,
+  "elapsed_seconds": 41.954350641999554,
+  "error": null,
+  "finished_utc": "2026-09-19T08:02:49.700773+00:00",
+  "process_group_id": 46840,
+  "started_monotonic": 8610.967078965,
+  "status": "completed",
+  "timeout_descendants_may_still_be_running": false
+}
