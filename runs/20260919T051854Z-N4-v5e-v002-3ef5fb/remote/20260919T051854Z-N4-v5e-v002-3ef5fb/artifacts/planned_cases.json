@@ -1,0 +1,845 @@
+[
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "square_512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      },
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      },
+      {
+        "distribution": "gaussian",
+        "seed": 20260921
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260919
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260920
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260921
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260919
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260920
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260921
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260919
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260920
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260921
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260919
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260920
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260921
+      }
+    ],
+    "scopes": [
+      "call"
+    ],
+    "shape": {
+      "family": "square",
+      "id": "square_512",
+      "k": 512,
+      "m": 512,
+      "n": 512,
+      "source_id": "synthetic_design",
+      "stage": "smoke"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": null
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "tail_513__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      },
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      },
+      {
+        "distribution": "gaussian",
+        "seed": 20260921
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260919
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260920
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260921
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260919
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260920
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260921
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260919
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260920
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260921
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260919
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260920
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260921
+      }
+    ],
+    "scopes": [
+      "call"
+    ],
+    "shape": {
+      "family": "nonaligned",
+      "id": "tail_513",
+      "k": 513,
+      "m": 513,
+      "n": 513,
+      "source_id": "synthetic_design",
+      "stage": "smoke"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": null
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "small_m_8__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      },
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      },
+      {
+        "distribution": "gaussian",
+        "seed": 20260921
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260919
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260920
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260921
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260919
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260920
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260921
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260919
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260920
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260921
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260919
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260920
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260921
+      }
+    ],
+    "scopes": [
+      "call"
+    ],
+    "shape": {
+      "family": "small_m",
+      "id": "small_m_8",
+      "k": 2048,
+      "m": 8,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "smoke"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": null
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "square_2048__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      },
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      },
+      {
+        "distribution": "gaussian",
+        "seed": 20260921
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260919
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260920
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260921
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260919
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260920
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260921
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260919
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260920
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260921
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260919
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260920
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260921
+      }
+    ],
+    "scopes": [
+      "call"
+    ],
+    "shape": {
+      "family": "square",
+      "id": "square_2048",
+      "k": 2048,
+      "m": 2048,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": null
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "vary_k_8192__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      },
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      },
+      {
+        "distribution": "gaussian",
+        "seed": 20260921
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260919
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260920
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260921
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260919
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260920
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260921
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260919
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260920
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260921
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260919
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260920
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260921
+      }
+    ],
+    "scopes": [
+      "call"
+    ],
+    "shape": {
+      "family": "axis_sweep",
+      "id": "vary_k_8192",
+      "k": 8192,
+      "m": 2048,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": null
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "gemma9_gate_up_m512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      },
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      },
+      {
+        "distribution": "gaussian",
+        "seed": 20260921
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260919
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260920
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260921
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260919
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260920
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260921
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260919
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260920
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260921
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260919
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260920
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260921
+      }
+    ],
+    "scopes": [
+      "call"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "gemma9_gate_up_m512",
+      "k": 3584,
+      "m": 512,
+      "n": 28672,
+      "projection": "gate_up",
+      "source_id": "gemma2_9b",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": null
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "mistral7_gate_up_m512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      },
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      },
+      {
+        "distribution": "gaussian",
+        "seed": 20260921
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260919
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260920
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260921
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260919
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260920
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260921
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260919
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260920
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260921
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260919
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260920
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260921
+      }
+    ],
+    "scopes": [
+      "call"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "mistral7_gate_up_m512",
+      "k": 4096,
+      "m": 512,
+      "n": 28672,
+      "projection": "gate_up",
+      "source_id": "mistral7_v01",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": null
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "qwen32_gate_up_m512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      },
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      },
+      {
+        "distribution": "gaussian",
+        "seed": 20260921
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260919
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260920
+      },
+      {
+        "distribution": "uniform",
+        "seed": 20260921
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260919
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260920
+      },
+      {
+        "distribution": "log_scale",
+        "seed": 20260921
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260919
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260920
+      },
+      {
+        "distribution": "outliers",
+        "seed": 20260921
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260919
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260920
+      },
+      {
+        "distribution": "cancellation",
+        "seed": 20260921
+      }
+    ],
+    "scopes": [
+      "call"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "qwen32_gate_up_m512",
+      "k": 5120,
+      "m": 512,
+      "n": 51200,
+      "projection": "gate_up",
+      "source_id": "qwen3_32b",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": null
+  }
+]
