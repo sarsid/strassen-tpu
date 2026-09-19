@@ -33,6 +33,139 @@ def verify(directory,records,issues):
         if not p.is_relative_to(directory.resolve()) or not p.is_file():issues.append('Missing/unsafe sealed path: '+name)
         elif sha(p)!=expected:issues.append('Hash mismatch: '+name)
 
+def finite_number(value):
+    return isinstance(value,(int,float)) and not isinstance(value,bool) and math.isfinite(value)
+
+def same_mean(values,reported):
+    return bool(values) and finite_number(reported) and math.isclose(
+        statistics.mean(values),reported,rel_tol=1e-10,abs_tol=1e-10)
+
+def quality_gate(value,thresholds):
+    keys=('nll_delta','mean_kl','top1_agreement')
+    if 'max_relative_l2' in thresholds:keys+=('relative_l2',)
+    return bool(value.get('all_finite') is True and all(finite_number(value.get(k)) for k in keys)
+        and abs(value['nll_delta'])<=thresholds['max_abs_nll_delta']
+        and value['mean_kl']<=thresholds['max_mean_kl']
+        and value['top1_agreement']>=thresholds['min_top1_agreement']
+        and ('max_relative_l2' not in thresholds or value['relative_l2']<=thresholds['max_relative_l2']))
+
+def audit_n9(art,summary,rows,cases,issues):
+    """Validate terminal failures as evidence, and complete policy claims from raw events."""
+    campaign=load(art/'effective_campaign.json');planned=campaign['models']
+    if load(art/'planned_cases.json')!=planned:issues.append('N9 planned cases differ from effective campaign')
+    expected_models=[item['model_id'] for item in planned]
+    terminal=summary.get('results',[]);model_ids=[item.get('model_id') for item in terminal]
+    if len(set(model_ids))!=len(model_ids):issues.append('Duplicate N9 terminal model outcome')
+    if set(model_ids)!=set(expected_models):issues.append('N9 planned/terminal model coverage differs')
+    if any(row.get('model_id') not in expected_models for row in cases):issues.append('Unexpected N9 case-result model')
+    observed={item['model_id']:item for item in terminal};outcomes=[]
+    for index,item in enumerate(planned):
+        model_id=item['model_id'];result=observed.get(model_id)
+        if result is None:continue
+        events=[r for r in rows if r.get('model_id')==model_id]
+        model_cases=[r for r in cases if r.get('model_id')==model_id]
+        directory=art/f'model-{index:02d}';status=result.get('status')
+        if status=='failed':
+            failures=[r for r in events if r.get('event')=='model_error']
+            if len(failures)!=1:issues.append('N9 failed model lacks one terminal error: '+model_id)
+            elif any(failures[0].get(k)!=v for k,v in result.items()):issues.append('N9 model error differs from summary: '+model_id)
+            outcomes.append({'model_id':model_id,'status':status,'scope':'model-level terminal outcome'})
+            continue
+        if not (directory/'model_summary.json').is_file():issues.append('Missing N9 model summary: '+model_id)
+        elif load(directory/'model_summary.json')!=result:issues.append('N9 model summary differs from run summary: '+model_id)
+        if status=='blocked_access':
+            if item.get('status')!='blocked_access':issues.append('Unexpected N9 access blocker: '+model_id)
+        elif status not in ('completed','failed_native_qualification'):
+            issues.append('Unknown N9 terminal model status: '+model_id+'/'+str(status));continue
+        if status!='blocked_access':
+            qualification=result.get('qualification') or {}
+            qualified=quality_gate(qualification,campaign['qualification_thresholds'])
+            if qualification.get('positions')!=63 or qualification.get('thresholds')!=campaign['qualification_thresholds']:
+                issues.append('N9 qualification scope/threshold mismatch: '+model_id)
+            if qualification.get('passed') is not qualified:issues.append('N9 qualification gate inconsistent: '+model_id)
+            if (status=='completed')!=qualified:issues.append('N9 terminal outcome contradicts native qualification: '+model_id)
+            records=[r for r in events if r.get('event')=='native_qualification']
+            if len(records)!=1 or any(records[0].get(k)!=v for k,v in qualification.items()):
+                issues.append('N9 qualification journal differs from summary: '+model_id)
+            if not (directory/'qualification.json').is_file() or load(directory/'qualification.json')!=qualification:
+                issues.append('N9 qualification artifact missing/different: '+model_id)
+        if status!='completed':
+            if len(model_cases)!=1 or model_cases[0].get('arm_id') is not None or any(model_cases[0].get(k)!=v for k,v in result.items()):
+                issues.append('N9 model-level case outcome differs/missing: '+model_id)
+            if result.get('quality_measured') is not False or result.get('eligible_for_speedup_claim') is not False:
+                issues.append('N9 unqualified/blocked model claims quality or speedup: '+model_id)
+            outcomes.append({'model_id':model_id,'status':status,'scope':'model-level terminal outcome'});continue
+        arms={'native',*item.get('policies',{})};quality=result.get('quality') or {};failures=result.get('failures') or {}
+        eligibility=result.get('eligible_for_speedup_claim') or {}
+        actual_arms=[r.get('arm_id') for r in model_cases]
+        if set(actual_arms)!=arms or len(actual_arms)!=len(arms) or any(r.get('scope') is not None for r in model_cases):
+            issues.append('N9 planned/per-policy case-result coverage differs: '+model_id)
+        if set(quality)|set(failures)!=arms or set(eligibility)!=arms or 'native' not in quality:
+            issues.append('N9 planned policy outcome/eligibility coverage differs: '+model_id)
+        if result.get('quality_measured') is not True:issues.append('N9 completed model lacks measured quality: '+model_id)
+        window_rows=[r for r in events if r.get('event')=='quality_window']
+        if len(window_rows)!=32 or {r.get('window') for r in window_rows}!=set(range(32)):
+            issues.append('N9 quality-window coverage differs: '+model_id)
+        if not (directory/'quality.json').is_file() or load(directory/'quality.json')!=quality:
+            issues.append('N9 quality artifact missing/different: '+model_id)
+        for arm,value in quality.items():
+            if value.get('positions')!=32736 or value.get('thresholds')!=campaign['quality_thresholds']:
+                issues.append('N9 quality scope/threshold mismatch: '+model_id+'/'+arm)
+            if value.get('passed') is not quality_gate(value,campaign['quality_thresholds']):
+                issues.append('N9 quality gate inconsistent: '+model_id+'/'+arm)
+            if any((r.get('metrics',{}).get(arm) or {}).get('positions')!=1023 for r in window_rows):
+                issues.append('N9 policy lacks every scored window: '+model_id+'/'+arm)
+        manifest_path=directory/'model_manifest.json'
+        if not manifest_path.is_file():issues.append('Missing N9 model manifest: '+model_id);continue
+        manifest=load(manifest_path);layers=manifest['config']['num_hidden_layers']
+        if manifest.get('model_id')!=model_id or manifest.get('revision')!=item['revision']:
+            issues.append('N9 model manifest identity differs: '+model_id)
+        resident=defaultdict(list);streamed=defaultdict(list)
+        for record in events:
+            target=resident if record.get('event')=='resident_layer_sample' else streamed if record.get('event')=='streamed_forward_sample' else None
+            if target is None:continue
+            arm=record.get('arm_id');target[arm].append(record)
+            if arm not in arms:issues.append('Unexpected N9 timing arm: '+model_id+'/'+str(arm))
+            if not finite_number(record.get('elapsed_ms')) or record['elapsed_ms']<=0:
+                issues.append('Invalid N9 raw latency: '+model_id+'/'+str(arm))
+        resident_expected={(layer,repeat) for layer in range(layers) for repeat in range(campaign['resident_timing']['repeats'])}
+        streamed_expected=set(range(campaign['streamed_repeats']))
+        coverage=result.get('resident_sample_coverage') or {};resident_means=result.get('resident_layer_mean_ms') or {}
+        streamed_values=result.get('streamed_forward_samples_ms') or {};streamed_means=result.get('streamed_forward_mean_ms') or {}
+        if set(resident_means)!=set(quality):issues.append('N9 resident headline policy coverage differs: '+model_id)
+        if set(streamed_values)!=set(quality):issues.append('N9 streamed policy coverage differs: '+model_id)
+        for arm in arms:
+            resident_rows=resident[arm];rkeys=[(r.get('layer'),r.get('repeat')) for r in resident_rows]
+            if len(set(rkeys))!=len(rkeys) or not set(rkeys)<=resident_expected:
+                issues.append('Invalid/duplicate N9 resident rounds: '+model_id+'/'+arm)
+            full_resident=len(rkeys)==len(resident_expected) and set(rkeys)==resident_expected
+            if arm in quality and not full_resident:issues.append('N9 surviving policy lacks complete resident timing: '+model_id+'/'+arm)
+            if arm in coverage:
+                expected_coverage={'observed':len(rkeys),'expected':len(resident_expected),'complete':full_resident}
+                if coverage[arm]!=expected_coverage:issues.append('N9 resident coverage differs from raw samples: '+model_id+'/'+arm)
+            elif resident_rows or arm in quality:issues.append('Missing N9 resident sample coverage: '+model_id+'/'+arm)
+            if arm in resident_means and not same_mean([r['elapsed_ms'] for r in resident_rows],resident_means[arm]):
+                issues.append('N9 resident mean differs from raw timings: '+model_id+'/'+arm)
+            stream_rows=streamed[arm];skeys=[r.get('repeat') for r in stream_rows];times=[r['elapsed_ms'] for r in stream_rows]
+            if len(set(skeys))!=len(skeys) or not set(skeys)<=streamed_expected:
+                issues.append('Invalid/duplicate N9 streamed rounds: '+model_id+'/'+arm)
+            full_stream=len(skeys)==len(streamed_expected) and set(skeys)==streamed_expected
+            if arm in streamed_values and streamed_values[arm]!=times:issues.append('N9 streamed sample list differs from journal: '+model_id+'/'+arm)
+            if (arm in streamed_means)!=full_stream:issues.append('N9 streamed headline coverage differs: '+model_id+'/'+arm)
+            if arm in streamed_means and not same_mean(times,streamed_means[arm]):issues.append('N9 streamed mean differs from raw timings: '+model_id+'/'+arm)
+            expected_eligible=bool(arm in quality and quality[arm].get('passed') is True and arm not in failures and full_stream)
+            if eligibility.get(arm) is not expected_eligible:issues.append('N9 speedup eligibility inconsistent: '+model_id+'/'+arm)
+            case=next((r for r in model_cases if r.get('arm_id')==arm),None)
+            value=quality.get(arm);failure=failures.get(arm)
+            expected_status=failure.get('status') if failure else 'ok' if value and value.get('passed') else 'failed_quality'
+            if case and (case.get('status')!=expected_status or case.get('quality')!=value or case.get('eligible_for_speedup_claim') is not expected_eligible):
+                issues.append('N9 policy case differs from terminal summary: '+model_id+'/'+arm)
+            if failure and not any(r.get('event')=='policy_error' and r.get('arm_id')==arm and all(r.get(k)==v for k,v in failure.items()) for r in events):
+                issues.append('N9 policy failure missing from journal: '+model_id+'/'+arm)
+            outcomes.append({'model_id':model_id,'arm_id':arm,'status':expected_status,'failure':failure,
+                             'quality_passed':value.get('passed') if value else None})
+    return outcomes
+
 def audit(path):
     path=path.resolve();issues=[]
     execution=load(path/'execution.json');completion=load(path/'completion.json')

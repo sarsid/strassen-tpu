@@ -1,0 +1,28 @@
+HloModule jit_complete, is_scheduled=true, entry_computation_layout={(bf16[8192,2048]{1,0:T(8,128)(2,1)}, bf16[2048,2048]{1,0:T(8,128)(2,1)})->f32[8192,2048]{1,0:T(8,128)}}, allow_spmd_sharding_propagation_to_parameters={true,true}, allow_spmd_sharding_propagation_to_output={true}
+
+%bitcast_fusion (bitcast_input: bf16[8192,2048]) -> bf16[8192,2048] {
+  %bitcast_input = bf16[8192,2048]{1,0:T(8,128)(2,1)S(1)} parameter(0)
+  ROOT %bitcast = bf16[8192,2048]{1,0:T(8,128)(2,1)} bitcast(%bitcast_input)
+}
+
+%bitcast_fusion.1 (bitcast_input.1: bf16[2048,2048]) -> bf16[2048,2048] {
+  %bitcast_input.1 = bf16[2048,2048]{1,0:T(8,128)(2,1)} parameter(0)
+  ROOT %bitcast.1 = bf16[2048,2048]{1,0:T(8,128)(2,1)} bitcast(%bitcast_input.1)
+}
+
+%fused_computation (param_0: bf16[8192,2048], param_1: bf16[2048,2048]) -> f32[8192,2048] {
+  %param_0 = bf16[8192,2048]{1,0:T(8,128)(2,1)S(1)} parameter(0)
+  %fusion.1 = bf16[8192,2048]{1,0:T(8,128)(2,1)} fusion(%param_0), kind=kLoop, calls=%bitcast_fusion
+  %param_1 = bf16[2048,2048]{1,0:T(8,128)(2,1)} parameter(1)
+  %fusion.2 = bf16[2048,2048]{1,0:T(8,128)(2,1)} fusion(%param_1), kind=kLoop, calls=%bitcast_fusion.1
+  ROOT %convolution.1 = f32[8192,2048]{1,0:T(8,128)} convolution(%fusion.1, %fusion.2), dim_labels=bf_io->bf, metadata={op_name="jit(complete)/dot_general" source_file="/content/Strassen_MM_Focus/runs/20260919T063959Z-N6-v5e-v004-d93a61/source/src/strassen_mm/kernels_v001.py" source_line=117 source_end_line=118 source_column=11 source_end_column=55}
+}
+
+ENTRY %main.4 (Arg_0.1: bf16[8192,2048], Arg_1.2: bf16[2048,2048]) -> f32[8192,2048] {
+  %Arg_0.1 = bf16[8192,2048]{1,0:T(8,128)(2,1)} parameter(0), metadata={op_name="a"}
+  %copy-start = (bf16[8192,2048]{1,0:T(8,128)(2,1)S(1)}, bf16[8192,2048]{1,0:T(8,128)(2,1)}, u32[]{:S(2)}) copy-start(%Arg_0.1), cross_program_prefetch_index=0
+  %Arg_1.2 = bf16[2048,2048]{1,0:T(8,128)(2,1)} parameter(1), metadata={op_name="b"}
+  %copy-done = bf16[8192,2048]{1,0:T(8,128)(2,1)S(1)} copy-done(%copy-start)
+  ROOT %fusion = f32[8192,2048]{1,0:T(8,128)} fusion(%copy-done, %Arg_1.2), kind=kOutput, calls=%fused_computation, metadata={op_name="jit(complete)/dot_general" source_file="/content/Strassen_MM_Focus/runs/20260919T063959Z-N6-v5e-v004-d93a61/source/src/strassen_mm/kernels_v001.py" source_line=117 source_end_line=118 source_column=11 source_end_column=55}, backend_config={"flag_configs":[],"window_config":{"kernel_window_bounds":["256","2"],"output_window_bounds":["256","2"],"input_window_bounds":["256","16"],"estimated_cycles":"542476","iteration_bounds":["8","4","1"]},"scoped_memory_configs":[],"used_scoped_memory_configs":[{"memory_space":"1","offset":"0","size":"14491648"}],"retry_config":{"retry_count":"0"},"convolution_algorithm_config":{"emitter":"EmitAllBatchInSublanes"}}
+}
+
