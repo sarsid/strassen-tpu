@@ -104,37 +104,25 @@ def _body(a, b, residual, output, acc, *, nk, algorithm, kind, early):
 
 
 def make_epilogue(algorithm, shape, tile, *, kind, fused=False, early=False,
-                  packed=False, variant=None, interpret=False, vmem_limit_bytes=48*1024**2):
-    if algorithm not in ('native','cubic_full','cubic_quadrant','strassen'):
-        raise ValueError('Unknown algorithm')
+                  variant=None, interpret=False, vmem_limit_bytes=48*1024**2):
     if kind not in ('swiglu','residual'): raise ValueError('Unknown epilogue')
     if early and (not fused or algorithm!='strassen'): raise ValueError('Early mode requires fused Strassen')
     m,k,n=shape; bm,bn,bk=tile
     if kind=='swiglu' and n%2: raise ValueError('SwiGLU requires combined even gate/up width')
     default_variant='interleaved' if algorithm in ('strassen','cubic_quadrant') else 'plain'
     variant=variant or default_variant
-    if not fused and not packed:
+    if not fused:
         matrix=mm.make_matmul(algorithm,shape,tile,variant=variant,interpret=interpret,
                               vmem_limit_bytes=vmem_limit_bytes)
-        def prepare(a,b,residual=None):
-            if kind=='residual' and (residual is None or residual.shape!=(m,n) or residual.dtype!=jnp.bfloat16):
-                raise ValueError('Residual must have requested shape and BF16 dtype')
-            operands=matrix.prepare(a,b)
-            return operands if kind=='swiglu' else (*operands,residual)
-        def prepared(*operands):
-            product=matrix.finish(matrix.kernel(*operands[:2]))
-            return epilogue(product,None if kind=='swiglu' else operands[2],kind)
-        def complete(a,b,residual=None): return prepared(*prepare(a,b,residual))
-        complete.prepare=prepare
-        complete.prepared=prepared
+        def complete(a,b,residual=None): return epilogue(matrix(a,b),residual,kind)
+        complete.prepare=lambda a,b,r=None:(a,b,r)
+        complete.prepared=complete
         complete.metadata={**matrix.metadata,'epilogue':kind,'fusion':'outside_custom_mm',
                            'projection_rounding':'BF16 before epilogue','output_dtype':'bfloat16'}
         return complete
-    if algorithm=='native': raise ValueError('Native joint graph uses fused=False and packed=False; XLA owns fusion')
+    if algorithm=='native': raise ValueError('Native joint graph uses fused=False; XLA owns fusion')
     if variant not in ('plain','interleaved'):
         raise ValueError('Fused BF16-output kernels require scratch accumulators; output-accumulator variant is a separate unfused baseline')
-    if fused and algorithm in ('strassen','cubic_quadrant') and variant!='interleaved':
-        raise ValueError('Fused split kernels implement interleaved schedule; use matched interleaved baseline')
     core.check_tile('strassen' if algorithm!='cubic_full' else algorithm,tile)
     if bm%16 or bn%256: raise ValueError('Epilogue tile alignment requires BM multiple16 and BN multiple256')
     mp=((m+bm-1)//bm)*bm; kp=((k+bk-1)//bk)*bk
@@ -168,27 +156,15 @@ def make_epilogue(algorithm, shape, tile, *, kind, fused=False, early=False,
             b=jnp.stack((gate.reshape(kp,width//(bn//2),bn//2),
                          up.reshape(kp,width//(bn//2),bn//2)),axis=2).reshape(kp,np_)
             return a,b
-        if residual is None or residual.shape!=(m,n) or residual.dtype!=jnp.bfloat16:
-            raise ValueError('Residual must have requested shape and BF16 dtype')
+        if residual is None or residual.shape!=(m,n): raise ValueError('Residual shape mismatch')
         return a,jnp.pad(b,((0,kp-k),(0,np_-n))),jnp.pad(residual,((0,mp-m),(0,np_-n)))
 
     def prepared(*operands): return call(*operands)[:m,:(n//2 if kind=='swiglu' else n)]
-    if not fused:
-        matrix=mm.make_matmul(algorithm,(mp,kp,np_),tile,variant=variant,interpret=interpret,
-                             vmem_limit_bytes=vmem_limit_bytes)
-        def prepared(*operands):
-            product=matrix.kernel(*operands[:2]).astype(jnp.bfloat16)
-            if kind=='swiglu':
-                paired=product.reshape(mp,np_//bn,2,bn//2)
-                result=activation(paired[:,:,0,:].reshape(mp,width),paired[:,:,1,:].reshape(mp,width))
-            else:
-                result=epilogue(product,operands[2],kind)
-            return result[:m,:(n//2 if kind=='swiglu' else n)]
     def complete(a,b,residual=None): return prepared(*prepare(a,b,residual))
     complete.prepare=prepare; complete.prepared=prepared
     complete.metadata={'kernel_version':'kernels_n8_v001','algorithm':algorithm,'variant':variant,
         'shape_mkn':list(shape),'tile_bm_bn_bk':list(tile),'epilogue':kind,
-        'fusion':'early_finalization' if early else ('standard_fused' if fused else 'packed_unfused_control'),'output_dtype':'bfloat16',
+        'fusion':'early_finalization' if early else 'standard_fused','output_dtype':'bfloat16',
         'projection_rounding':'BF16 before epilogue','accumulation_dtype':'float32',
         'input_dtype':'bfloat16','dot_precision':'DEFAULT','accumulator_storage':'scratch',
         'preparation':'device padding and paired gate/up weight relayout; separately report reuse',
