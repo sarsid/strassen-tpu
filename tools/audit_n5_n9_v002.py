@@ -214,7 +214,8 @@ def audit(path):
         expected={(g['id'],a['arm_id'],scope) for g in planned for a in g['arms'] for scope in ('call','prepared_kernel')}
         actual={(r.get('group_id'),r.get('arm_id'),r.get('scope')) for r in cases}
         if expected!=actual:issues.append(f'N8 planned/result coverage mismatch: missing={len(expected-actual)}, unexpected={len(actual-expected)}')
-        policy=load(art/'effective_campaign.json')['application_timing']
+        application_campaign=load(art/'effective_campaign.json')
+        policy=application_campaign['application_timing'];gate=application_campaign['correctness']['gate']
         raw=defaultdict(list)
         for row in rows:
             if row.get('event')=='timing_sample':
@@ -227,12 +228,27 @@ def audit(path):
             if len({r['repeat'] for r in values})!=len(values):issues.append('Duplicate N8 timing round: '+str(key))
         for row in cases:
             key=(row.get('group_id'),row.get('arm_id'),row.get('scope'))
+            check=row.get('correctness')
+            if check is not None:
+                passed=bool(check.get('finite') is True and all(finite_number(check.get(k)) for k in ('relative_l2','max_abs_error','max_abs_reference'))
+                    and check['relative_l2']<=gate['relative_l2_max']
+                    and check['max_abs_error']<=gate['max_abs_atol']+gate['max_abs_reference_rtol']*check['max_abs_reference'])
+                if check.get('gate')!=gate or check.get('pass') is not passed or check.get('passed') is not passed:
+                    issues.append('N8 numerical gate inconsistent: '+str(key))
+                expected_raw=[{'round':r['repeat'],'elapsed_ms':r['elapsed_ms']} for r in raw[key]]
+                timing=row.get('timing') or {}
+                if timing.get('sample_count')!=len(expected_raw) or timing.get('raw_samples')!=expected_raw or row.get('raw_ms')!=[r['elapsed_ms'] for r in raw[key]]:
+                    issues.append('N8 case timing payload differs from journal: '+str(key))
             if row.get('status')=='ok':
                 samples8=raw[key]
                 if len(samples8)!=policy['repeats'] or {x['repeat'] for x in samples8}!=set(range(policy['repeats'])):issues.append('N8 incomplete timing rounds: '+str(key))
                 values=[x['elapsed_ms'] for x in samples8]
                 if not same_mean(values,row['timing'].get('mean_ms')):issues.append('N8 mean differs from raw timings: '+str(key))
+                if row.get('mean_ms')!=row['timing'].get('mean_ms'):issues.append('N8 top-level mean differs from timing payload: '+str(key))
                 if (row.get('correctness') or {}).get('pass') is not True:issues.append('N8 passing case lacks numerical gate: '+str(key))
+                preparation=row.get('preparation_raw_ms') or []
+                if len(preparation)!=policy['preparation_repeats'] or any(not finite_number(v) or v<=0 for v in preparation):
+                    issues.append('N8 successful case lacks valid preparation samples: '+str(key))
     samples=defaultdict(list)
     for r in rows:
         if r.get('event')=='sample':samples[(r.get('case_id') or r.get('group_id') or r.get('model_id'),r.get('arm_id'),r.get('scope'))].append(r)
