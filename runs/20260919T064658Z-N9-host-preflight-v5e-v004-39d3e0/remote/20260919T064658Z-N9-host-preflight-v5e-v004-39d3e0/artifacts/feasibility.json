@@ -1,0 +1,36 @@
+{
+  "checkpoint_payload_bytes": {
+    "Qwen/Qwen3-0.6B": 1503300328,
+    "mistralai/Mistral-7B-v0.3": 14496080928
+  },
+  "checkpoint_provenance": "Official access-probe repository manifests, run20260919T055501Z-N9-access-probe-v5e-v004-ebb556; weights only, no duplicate consolidated Mistral file",
+  "combined_checkpoint_payload_bytes": 15999381256,
+  "conservative_effective_remaining_bytes": 45849866240,
+  "disk_plan": {
+    "cache_filesystem_meets_combined_space_estimate": true,
+    "combined_checkpoint_bytes": 15999381256,
+    "feasible_under_conservative_preflight": true,
+    "isolated_tools_and_pip_cache_margin_bytes": 3221225472,
+    "measured_free_bytes": 220688662528,
+    "metadata_reference_archive_and_free_space_margin_bytes": 4294967296,
+    "separate_filesystem_policy": "If locations differ, inspect each recorded filesystem budget before acquisition; a cache-only pass cannot certify tools/pip capacity.",
+    "shared_cache_tools_pip_filesystem": true,
+    "total_new_space_estimate_bytes": 23515574024
+  },
+  "host_and_visible_cgroup_limits_observed": true,
+  "host_available_bytes": 48398802944,
+  "mistral_cpu_reference_resident": {
+    "feasible_under_conservative_preflight": true,
+    "meets_recorded_capacity_estimate": true,
+    "required_available_bytes_estimate": 21474836480,
+    "status": "within_conservative_budget"
+  },
+  "not_a_fit_proof": "Margins are planning estimates. mmap/file-cache reclamation, hidden ancestor limits, loader transients and concurrent host activity may change actual peak RSS. Swap is not counted as RAM capacity.",
+  "qwen_cpu_reference": {
+    "feasible_under_conservative_preflight": true,
+    "meets_recorded_capacity_estimate": true,
+    "required_available_bytes_estimate": 4294967296,
+    "status": "within_conservative_budget"
+  },
+  "recovery_if_mistral_below_budget": "Preserve current outputs. Use a new version of the official Transformers reference with explicit CPU max_memory and immutable disk offload, or recorded official-layer streaming. Retain checkpoint/token hashes, BF16/eager semantics and original numerical gates; do not substitute the custom JAX implementation for its independent reference."
+}
