@@ -1,0 +1,27 @@
+{
+  "changes": {
+    "ProfileOptions.device_tracer_level": {
+      "from": "implicit runtime default",
+      "to": 1
+    },
+    "experiments.N6.profiler.tpu_trace_mode": {
+      "from": "TRACE_ONLY",
+      "to": "TRACE_COMPUTE_AND_SYNC"
+    }
+  },
+  "device_tracer_level": 1,
+  "effective_mode": "TRACE_COMPUTE_AND_SYNC",
+  "original_campaign_sha256": "535808e9832f4c800c653f5b51eb8707828b2e27c94e705e5bc26c2543da2a5a",
+  "original_mode": "TRACE_ONLY",
+  "original_profile_artifact_manifest_sha256": "c77739ac1d2dc0f64b88b190825745ff7f7a9cee9718fa7d16024e66396ddc32",
+  "original_profile_directory": "/content/Strassen_MM_Focus/runs/20260919T063959Z-N6-v5e-v004-d93a61/artifacts",
+  "qualification": "Device trace coverage remains mandatory; no utilization-counter or speedup inference from profiler wall times.",
+  "reason": "TRACE_ONLY was an erroneous unsupported value; archived traces contain host events only.",
+  "recovery_version": "benchmark_n6_recovery_v001",
+  "references": [
+    "https://docs.jax.dev/en/latest/profiling.html",
+    "strassen-tpu/evidence/validation/2026-09-11-v5e-profiling/plan.json"
+  ],
+  "same_representatives_choices_inputs_gates_timings_and_cohort": true,
+  "schema_version": 1
+}

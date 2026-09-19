@@ -1,0 +1,170 @@
+{
+  "absent_classes": [],
+  "available_class_counts": {
+    "loss": 2,
+    "tie": 8,
+    "win": 6
+  },
+  "representatives": [
+    {
+      "category": "win",
+      "paired_comparison": {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_selected",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.0445489194145732,
+          1.0716137956028347
+        ],
+        "speedup_ratio_of_means": 1.058007869698235,
+        "time_reduction_fraction": 0.05482744633532821,
+        "valid_numerical_comparison": true
+      },
+      "shape_id": "vary_m_8192",
+      "shape_mkn": [
+        8192,
+        2048,
+        2048
+      ]
+    },
+    {
+      "category": "tie",
+      "paired_comparison": {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_selected",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9681247146984063,
+          1.0413691938279268
+        ],
+        "speedup_ratio_of_means": 1.0032111386568727,
+        "time_reduction_fraction": 0.0032008602507862527,
+        "valid_numerical_comparison": true
+      },
+      "shape_id": "mkn_512_8192_2048",
+      "shape_mkn": [
+        512,
+        8192,
+        2048
+      ]
+    },
+    {
+      "category": "loss",
+      "paired_comparison": {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_selected",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9310764191062222,
+          0.986946062812196
+        ],
+        "speedup_ratio_of_means": 0.956902170729489,
+        "time_reduction_fraction": -0.04503890845775338,
+        "valid_numerical_comparison": true
+      },
+      "shape_id": "small_m_8",
+      "shape_mkn": [
+        8,
+        2048,
+        2048
+      ]
+    }
+  ],
+  "rule": "lower median by M*K*N then shape ID within each available eligible Strassen-vs-selected-cubic class"
+}
