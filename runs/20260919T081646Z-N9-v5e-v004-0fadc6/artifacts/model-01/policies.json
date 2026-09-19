@@ -1,0 +1,92 @@
+{
+  "cubic_n8_selected": {
+    "down": {
+      "algorithm": "cubic_quadrant",
+      "fused": true,
+      "tile": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "gateup": {
+      "algorithm": "cubic_full",
+      "tile": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "plain"
+    },
+    "selection_provenance": {
+      "custom_projection_count": 2,
+      "projections": {
+        "down": {
+          "arm_id": "cubic_quadrant_fused",
+          "group": "mistral7b_m1024_residual",
+          "mean_ms": 0.9188119999999999
+        },
+        "gateup": {
+          "arm_id": "cubic_full_unpacked_unfused",
+          "group": "mistral7b_m1024_swiglu",
+          "mean_ms": 1.8959586333333334
+        }
+      },
+      "quality_data_used": false,
+      "source_sha256": "b178f8b5daa9ed8a4d3822e2bd1f6e70c1b79928db689f0cffa51bbd28ea3f3e"
+    }
+  },
+  "native": {
+    "down": {
+      "algorithm": "native",
+      "fused": false,
+      "tile": null,
+      "variant": "plain"
+    },
+    "gateup": {
+      "algorithm": "native",
+      "fused": false,
+      "tile": null,
+      "variant": "plain"
+    }
+  },
+  "strassen_n8_selected": {
+    "down": {
+      "algorithm": "strassen",
+      "fused": true,
+      "tile": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "gateup": {
+      "algorithm": "strassen",
+      "tile": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "selection_provenance": {
+      "custom_projection_count": 2,
+      "projections": {
+        "down": {
+          "arm_id": "strassen_fused",
+          "group": "mistral7b_m1024_residual",
+          "mean_ms": 0.8587408333333333
+        },
+        "gateup": {
+          "arm_id": "strassen_unpacked_unfused",
+          "group": "mistral7b_m1024_swiglu",
+          "mean_ms": 1.8256845333333336
+        }
+      },
+      "quality_data_used": false,
+      "source_sha256": "b178f8b5daa9ed8a4d3822e2bd1f6e70c1b79928db689f0cffa51bbd28ea3f3e"
+    }
+  }
+}

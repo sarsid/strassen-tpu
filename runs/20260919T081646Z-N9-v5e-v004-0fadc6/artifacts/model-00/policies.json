@@ -1,0 +1,92 @@
+{
+  "cubic_n8_selected": {
+    "down": {
+      "algorithm": "cubic_quadrant",
+      "fused": true,
+      "tile": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "gateup": {
+      "algorithm": "cubic_full",
+      "tile": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "plain"
+    },
+    "selection_provenance": {
+      "custom_projection_count": 2,
+      "projections": {
+        "down": {
+          "arm_id": "cubic_quadrant_fused",
+          "group": "qwen06_m1024_residual",
+          "mean_ms": 0.297465
+        },
+        "gateup": {
+          "arm_id": "cubic_full_unpacked_unfused",
+          "group": "qwen06_m1024_swiglu",
+          "mean_ms": 0.33985403333333336
+        }
+      },
+      "quality_data_used": false,
+      "source_sha256": "b178f8b5daa9ed8a4d3822e2bd1f6e70c1b79928db689f0cffa51bbd28ea3f3e"
+    }
+  },
+  "native": {
+    "down": {
+      "algorithm": "native",
+      "fused": false,
+      "tile": null,
+      "variant": "plain"
+    },
+    "gateup": {
+      "algorithm": "native",
+      "fused": false,
+      "tile": null,
+      "variant": "plain"
+    }
+  },
+  "strassen_n8_selected": {
+    "down": {
+      "algorithm": "strassen",
+      "fused": true,
+      "tile": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "gateup": {
+      "algorithm": "strassen",
+      "tile": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "selection_provenance": {
+      "custom_projection_count": 2,
+      "projections": {
+        "down": {
+          "arm_id": "strassen_fused",
+          "group": "qwen06_m1024_residual",
+          "mean_ms": 0.2899669666666666
+        },
+        "gateup": {
+          "arm_id": "strassen_unpacked_unfused",
+          "group": "qwen06_m1024_swiglu",
+          "mean_ms": 0.33142559999999993
+        }
+      },
+      "quality_data_used": false,
+      "source_sha256": "b178f8b5daa9ed8a4d3822e2bd1f6e70c1b79928db689f0cffa51bbd28ea3f3e"
+    }
+  }
+}
