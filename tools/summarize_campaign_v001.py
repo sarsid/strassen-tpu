@@ -32,7 +32,7 @@ LIMITATIONS = [
     "These are current fixed-tile elementary kernels and bounded tile screens, not the strongest independently tuned cubic or Strassen baselines.",
     "N2 minima are best observed screening measurements; they are not fresh confirmations, globally optimal tiles, or a deployed selection rule.",
     "There are no held-out generalization, v6e replication, model-quality, or end-to-end LLM performance claims in N1--N4.",
-    "LLM-associated shapes use synthetic BF16 matrices, not checkpoint weights or recorded activations.",
+    "LLM-associated shapes use synthetic BF16 matrices, not checkpoint weights or recorded activations. The originally discussed real-matrix-value N4 component remains outstanding until a separately archived supplement is completed.",
     "Complete-call timing includes device preparation/padding and output cropping; it excludes compilation and host transfers. Prepared-kernel results remain separate in the evidence.",
     "A confidence interval containing one is inconclusive at this measurement precision; it does not establish equal performance. Intervals are per-comparison, without familywise multiplicity correction.",
     "Sampled-reference errors cover a saved row-column cross-product using all K, not a certified maximum over the complete output. Whole-output finite checks are separate.",
@@ -73,7 +73,7 @@ def case_key(row):
 
 
 def status_buckets(rows):
-    statuses = Counter(row.get("status", "missing_status") for row in rows)
+    statuses = Counter(str(row.get("status") or "missing_status") for row in rows)
     buckets = {"ok": 0, "numerical_failure": 0, "errors": 0, "skips": 0, "incomplete": 0}
     for status, count in statuses.items():
         category = (status if status in ("ok", "numerical_failure") else
@@ -197,6 +197,14 @@ def audit_run(run_path):
         metrics = row.get("correctness") or {}
         if row.get("status") == "ok" and (metrics.get("pass") is not True or metrics.get("finite") is not True):
             issues.append(f"ok status without passing finite numerical gate for {key}")
+        if row.get("status") in ("ok", "numerical_failure"):
+            values = [metrics.get(name) for name in ("relative_l2", "max_abs_error", "max_abs_reference")]
+            expected_gate = (metrics.get("finite") is True and all(finite_number(value) for value in values)
+                             and values[0] <= 0.02 and values[1] <= 0.001 + 0.05 * values[2])
+            if metrics.get("pass") is not expected_gate:
+                issues.append(f"saved numerical gate disagrees with frozen thresholds for {key}")
+        if raw and (not finite_number((row.get("timing") or {}).get("mean_ms")) or row["timing"]["mean_ms"] <= 0):
+            issues.append(f"invalid/missing summary mean for {key}")
         metadata = row.get("kernel_metadata")
         if metadata and (metadata.get("input_dtype") != "bfloat16" or metadata.get("output_dtype") != "float32"
                          or metadata.get("accumulation_dtype") != "float32" or metadata.get("dot_precision") != "DEFAULT"):
@@ -292,10 +300,10 @@ def summarize_n3(run):
     index = {(row["group_id"], row["arm_id"]): row for row in rows}
     comparisons, counts = [], defaultdict(Counter)
     for row in rows:
-        if row.get("variant") == "plain":
-            continue
         group = run["groups"][row["group_id"]]
         arm = next(arm for arm in group["arms"] if arm["arm_id"] == row["arm_id"])
+        if arm["variant"] == "plain":
+            continue
         reference = f"{arm['algorithm']}__plain"
         item = {**describe_group(run, row["group_id"]), "algorithm": arm["algorithm"], "variant": arm["variant"],
                 **contrast(row, index.get((row["group_id"], reference)), reference)}
@@ -342,7 +350,8 @@ def summarize_n4(run):
                               "max_abs_error": metric_distribution(rows, "max_abs_error"),
                               "normwise_error": metric_distribution(rows, "normwise_error")})
     return {"interpretation": "Synthetic numerical characterization, including retained failures and near cancellation. Reported maxima are maxima of the saved reference-check scopes, not global certification.",
-            "timing_claims": False, "distributions": distributions, "cases": cases,
+            "timing_claims": False, "real_matrix_values": "Not covered by synthetic v1; separate supplement remains required for the original N4 scope.",
+            "distributions": distributions, "cases": cases,
             **status_buckets(run["rows"])}
 
 
@@ -360,7 +369,7 @@ def format_number(value):
 
 def render_markdown(report):
     audit = report["audit"]
-    lines = ["# N1–N4 v5e experiment summary", "", f"Evidence audit: **{'PASS' if audit['passed'] else 'FAIL'}**.", ""]
+    lines = ["# N1–N4 v5e v1 experiment summary", "", f"Evidence audit: **{'PASS' if audit['passed'] else 'FAIL'}**.", ""]
     if not audit["passed"]:
         lines += ["No scientific summaries were produced because the required evidence contract was not satisfied.", ""]
         lines += [f"- {escape(item)}" for item in audit["issues"]]
