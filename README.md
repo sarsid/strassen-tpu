@@ -3,7 +3,12 @@
 Fresh, self-contained matrix multiplication study. The original project remains
 untouched; reused implementations are copied here with provenance.
 
-## Authorized campaign
+The subsequent N5–N9 study and its separately reported fresh-v5e replication
+are documented in the [N5–N9 protocol](protocols/N5_N9_v1.md),
+[decision log](decisions/N5_N9_v001.md), and versioned `START_HERE` review notes.
+The scope below records the initial N1–N4 authorization.
+
+## Initial authorized campaign
 
 Execute N1–N4 on one TPU v5e allocation first. v6e replication and N5 onward
 are later phases. Two-level Strassen is an optional future note, not an active
