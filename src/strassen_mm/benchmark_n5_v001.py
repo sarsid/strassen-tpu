@@ -236,6 +236,24 @@ def verify_selection(selection, campaign, manifest, phase, identity):
     return True
 
 
+def verify_heldout_selector(selector, manifest, shape_ids, identity=None):
+    """Reject training-shape reuse or a silently changed held-out reserve."""
+    training = {tuple(shape) for shape in selector.get("training_shapes", [])}
+    reserved = {tuple(shape) for shape in selector.get("reserved_heldout_shapes", [])}
+    if not training or not reserved:
+        raise ValueError("frozen selector must declare training and reserved held-out geometries")
+    shapes = {shape["id"]: tuple(shape[axis] for axis in ("m", "k", "n"))
+              for shape in manifest["shapes"]}
+    requested = {shapes[key] for key in shape_ids}
+    if requested & training:
+        raise ValueError("held-out phase includes a selector training geometry")
+    if not requested.issubset(reserved):
+        raise ValueError("held-out phase includes geometry outside the frozen reserve")
+    if identity is not None and selector.get("source_identity") != identity:
+        raise ValueError("selector training and held-out evaluation identities differ")
+    return True
+
+
 def group_memory_estimate(group):
     shape = tuple(group["shape"][axis] for axis in ("m", "k", "n"))
     m, k, n = shape
@@ -342,6 +360,7 @@ def main(argv=None):
     out = args.output_dir
     journal = TuningJournal(out, args.phase)
     start, planned, done, completed, error_summary = time.monotonic(), [], [], False, None
+    selection_output = None
     try:
         campaign = json.loads(args.campaign.read_text())
         experiment = campaign["experiments"][args.phase]
@@ -366,6 +385,7 @@ def main(argv=None):
             if selector_path is None:
                 raise ValueError("held-out evaluation requires a previously frozen selector before any timing")
             selector = json.loads(selector_path.read_text())
+            verify_heldout_selector(selector, manifest, experiment["shape_ids"])
             selector_hash = base.digest_file(selector_path)
             base.exclusive_json(out / "frozen_selector_input.json", selector)
             base.exclusive_json(out / "selector_input_provenance.json", {
@@ -388,8 +408,12 @@ def main(argv=None):
         environment = base.capture_environment(args, campaign, enable_qualified_mosaic_v7_compat())
         base.exclusive_json(out / "environment.json", environment)
         journal.emit("identity_check", **base.verify_identity(environment, args.expected_identity, campaign))
+        if args.phase.startswith("N7"):
+            verify_heldout_selector(selector, manifest, experiment["shape_ids"], environment["identity"])
         if selection is not None:
             verify_selection(selection, campaign, manifest, args.phase, environment["identity"])
+            if args.phase.startswith("N7") and selection.get("frozen_selector_sha256") != selector_hash:
+                raise ValueError("N7 screen and confirmation require the identical frozen selector")
         planned = build_groups(campaign, manifest, args.phase, selection)
         journal.groups = {group["group_id"]: group for group in planned}
         base.exclusive_json(out / "planned_cases.json", planned)
@@ -404,15 +428,12 @@ def main(argv=None):
             journal.emit("group_complete", group_id=group["group_id"], index=index + 1, total=len(planned))
             print(f"[{index + 1}/{len(planned)}] complete; {dict(journal.status_counts)}", flush=True)
         if args.phase.endswith("screen"):
-            selections = select_winners(journal.selection_rows, campaign, manifest, args.phase)
-            selections.update(created_utc=base.utc_now(), environment_identity=environment["identity"],
+            selection_output = select_winners(journal.selection_rows, campaign, manifest, args.phase)
+            selection_output.update(created_utc=base.utc_now(), environment_identity=environment["identity"],
                               campaign_sha256=base.digest_file(args.campaign),
                               shape_manifest_sha256=base.digest_file(shape_path),
                               source_manifest_sha256=base.digest_file(out / "source_manifest.json"),
-                              screen_results_sha256=base.digest_file(out / "results.jsonl"),
-                              results_hash_scope="journal prefix through final group_complete; final seal covers complete journal",
                               frozen_selector_sha256=selector_hash)
-            base.exclusive_json(out / "selections.json", selections)
         completed = True
     except BaseException as error:
         error_summary = {"type": type(error).__name__, "message": str(error),
@@ -431,6 +452,10 @@ def main(argv=None):
         journal.emit("run_complete", **summary)
         journal.close()
         base.exclusive_json(out / "summary.json", summary)
+        if completed and selection_output is not None:
+            selection_output["screen_results_sha256"] = base.digest_file(out / "results.jsonl")
+            selection_output["results_hash_scope"] = "complete sealed journal including run_complete"
+            base.exclusive_json(out / "selections.json", selection_output)
         hashes = {str(path.relative_to(out)): base.digest_file(path) for path in sorted(out.rglob("*")) if path.is_file()}
         base.exclusive_json(out / "artifact_manifest.json", {"sha256": hashes, "sealed_utc": base.utc_now()})
     return 0 if completed else 1
