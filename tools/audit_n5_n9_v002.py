@@ -187,6 +187,9 @@ def audit(path):
     if phase in ('N5-screen','N5-confirm','N6','N7-screen','N7-confirm','N7-evaluate','N7-replicate','N8','N9'):
         for name in ('artifact_manifest.json','summary.json','environment.json','results.jsonl'):
             if not (art/name).is_file():issues.append('Required canonical benchmark artifact missing: '+name)
+    if phase in ('N8','N9'):
+        for name in ('planned_cases.json','effective_campaign.json'):
+            if not (art/name).is_file():issues.append('Required application protocol artifact missing: '+name)
     if (art/'artifact_manifest.json').is_file():
         seal=load(art/'artifact_manifest.json')
         if 'sha256' in seal:verify(art,seal['sha256'],issues)
@@ -206,7 +209,7 @@ def audit(path):
         issues.append(f'Completed phase has {len(cases)} rows, expected {EXPECTED[phase]}')
     counts=dict(Counter(r.get('status','unknown') for r in cases))
     if 'case_status_counts' in summary and summary['case_status_counts']!=counts:issues.append('Summary status counts differ from journal')
-    if phase=='N8' and (art/'planned_cases.json').is_file():
+    if phase=='N8' and all((art/name).is_file() for name in ('planned_cases.json','effective_campaign.json')):
         planned=load(art/'planned_cases.json')
         expected={(g['id'],a['arm_id'],scope) for g in planned for a in g['arms'] for scope in ('call','prepared_kernel')}
         actual={(r.get('group_id'),r.get('arm_id'),r.get('scope')) for r in cases}
@@ -214,14 +217,21 @@ def audit(path):
         policy=load(art/'effective_campaign.json')['application_timing']
         raw=defaultdict(list)
         for row in rows:
-            if row.get('event')=='timing_sample':raw[(row['group_id'],row['arm_id'],row['scope'])].append(row)
+            if row.get('event')=='timing_sample':
+                key=(row['group_id'],row['arm_id'],row['scope']);raw[key].append(row)
+                if key not in expected:issues.append('Unexpected N8 timing identity: '+str(key))
+                if not finite_number(row.get('elapsed_ms')) or row['elapsed_ms']<=0:issues.append('Invalid N8 raw latency: '+str(key))
+                if row.get('repeat') not in range(policy['repeats']) or row.get('round')!=row.get('repeat'):
+                    issues.append('Invalid N8 timing round: '+str(key))
+        for key,values in raw.items():
+            if len({r['repeat'] for r in values})!=len(values):issues.append('Duplicate N8 timing round: '+str(key))
         for row in cases:
             key=(row.get('group_id'),row.get('arm_id'),row.get('scope'))
             if row.get('status')=='ok':
                 samples8=raw[key]
-                if len(samples8)!=policy['repeats'] or len({x['repeat'] for x in samples8})!=policy['repeats']:issues.append('N8 incomplete timing rounds: '+str(key))
+                if len(samples8)!=policy['repeats'] or {x['repeat'] for x in samples8}!=set(range(policy['repeats'])):issues.append('N8 incomplete timing rounds: '+str(key))
                 values=[x['elapsed_ms'] for x in samples8]
-                if values and not math.isclose(statistics.mean(values),row['timing']['mean_ms'],rel_tol=1e-10,abs_tol=1e-10):issues.append('N8 mean differs from raw timings: '+str(key))
+                if not same_mean(values,row['timing'].get('mean_ms')):issues.append('N8 mean differs from raw timings: '+str(key))
                 if (row.get('correctness') or {}).get('pass') is not True:issues.append('N8 passing case lacks numerical gate: '+str(key))
     samples=defaultdict(list)
     for r in rows:
@@ -245,21 +255,8 @@ def audit(path):
             verdict='win' if ci[0]>1 else 'loss' if ci[1]<1 else 'inconclusive'
             contrasts[label][verdict]+=1;ratios[label].append(pair['speedup_ratio_of_means'])
     policy_outcomes=[]
-    if phase=='N9' and (art/'effective_campaign.json').is_file():
-        planned=load(art/'effective_campaign.json')['models']
-        observed={item['model_id']:item for item in summary.get('results',[])}
-        for item in planned:
-            result=observed.get(item['model_id'])
-            if result is None:
-                issues.append('Missing terminal model outcome: '+item['model_id']);continue
-            if result.get('status')!='completed':
-                policy_outcomes.append({'model_id':item['model_id'],'status':result.get('status'),'scope':'model-level terminal outcome'});continue
-            for arm in ('native',*item.get('policies',{})):
-                quality=(result.get('quality') or {}).get(arm)
-                failure=(result.get('failures') or {}).get(arm)
-                if quality is None and failure is None:issues.append('Missing planned N9 policy outcome: '+item['model_id']+'/'+arm)
-                if failure and (result.get('eligible_for_speedup_claim') or {}).get(arm):issues.append('Failed N9 policy marked speedup eligible: '+arm)
-                policy_outcomes.append({'model_id':item['model_id'],'arm_id':arm,'status':failure.get('status') if failure else 'ok' if quality and quality.get('passed') else 'failed_quality','failure':failure,'quality_passed':quality.get('passed') if quality else None})
+    if phase=='N9' and all((art/name).is_file() for name in ('planned_cases.json','effective_campaign.json')):
+        policy_outcomes=audit_n9(art,summary,rows,cases,issues)
     log=subprocess.run(['git','log','-1','--format=%H %s','--',str((path/'artifact-manifest.json').relative_to(root))],cwd=root,text=True,capture_output=True,check=True).stdout.strip()
     if not log:issues.append('No Git commit contains execution artifact manifest')
     else:
