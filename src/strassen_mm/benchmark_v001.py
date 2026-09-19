@@ -102,8 +102,8 @@ class Journal:
 
     def emit(self, event, **fields):
         self.sequence += 1
-        row = dict(event=event, sequence=self.sequence, utc=utc_now(),
-                   monotonic_ns=time.monotonic_ns(), phase=self.phase, **fields)
+        row = {"event": event, "sequence": self.sequence, "utc": utc_now(),
+               "monotonic_ns": time.monotonic_ns(), "phase": self.phase, **fields}
         self.handle.write(json.dumps(json_safe(row), sort_keys=True, allow_nan=False) + "\n")
         self.handle.flush()
         os.fsync(self.handle.fileno())
@@ -146,8 +146,20 @@ def capture_environment(args, campaign, compatibility):
     devices = jax.devices()
     device = devices[0] if len(devices) == 1 else None
     kind = device.device_kind if device else None
+    versions = {name: installed_version(name) for name in (
+        "jax", "jaxlib", "libtpu", "numpy", "ml_dtypes", "scipy", "requests"
+    )}
+    device_records = []
+    for item in devices:
+        record = {"kind": item.device_kind, "id": int(item.id),
+                  "platform": item.platform, "process_index": int(item.process_index)}
+        for field in ("coords", "core_on_chip", "slice_index", "local_hardware_id"):
+            if hasattr(item, field):
+                record[field] = json_safe(getattr(item, field))
+        device_records.append(record)
     identity = {
         "allocation_id": args.allocation_id,
+        "colab_endpoint": args.allocation_id,
         "hostname": socket.gethostname(),
         "host_id": socket.gethostname(),
         "boot_id": read_optional("/proc/sys/kernel/random/boot_id"),
@@ -160,6 +172,7 @@ def capture_environment(args, campaign, compatibility):
         "runtime_image": os.environ.get("TPU_RUNTIME_VERSION") or os.environ.get("COLAB_RELEASE_TAG"),
         "runtime_flags": {name: os.environ.get(name) for name in FLAG_NAMES},
         "mosaic_compatibility": compatibility,
+        "versions": versions, "devices": device_records,
     }
     normalized = (kind or "").lower().replace(" ", "").replace("-", "")
     qualified = (len(devices) == 1 and jax.local_device_count() == 1
@@ -168,7 +181,7 @@ def capture_environment(args, campaign, compatibility):
     environment = {
         "created_utc": utc_now(), "identity": identity,
         "device_count": len(devices), "local_device_count": jax.local_device_count(),
-        "process_count": jax.process_count(), "devices": [str(d) for d in devices],
+        "process_count": jax.process_count(), "devices": device_records,
         "backend": jax.default_backend(), "platform": platform.platform(),
         "python": sys.version, "pid": os.getpid(), "qualified_single_v5e": qualified,
         "fixed_environment_policy": FIXED_ENVIRONMENT,
@@ -188,9 +201,14 @@ def verify_identity(environment, expected_path, campaign):
     prior = json.loads(expected_path.read_text())
     prior = prior.get("identity", prior)
     current = environment["identity"]
-    fields = set(campaign["device"]["identity_fields"]) | {
-        "hostname", "boot_id", "numpy_version", "mosaic_compatibility"
-    }
+    if "versions" in prior and "colab_endpoint" in prior and "runtime_flags" not in prior:
+        # First smoke compares to immutable provisioning identity. Later runs
+        # should use smoke's environment.json, also sealing runtime flags.
+        fields = {"colab_endpoint", "hostname", "boot_id", "versions", "devices"}
+    else:
+        fields = set(campaign["device"]["identity_fields"]) | {
+            "hostname", "boot_id", "numpy_version", "mosaic_compatibility"
+        }
     mismatches = {key: {"expected": prior.get(key), "actual": current.get(key)}
                   for key in sorted(fields) if prior.get(key) != current.get(key)}
     if mismatches:
@@ -290,8 +308,8 @@ def generate_inputs(shape, distribution, seed):
 
 
 def input_fingerprint(a, b):
-    return {"a_sha256": hashlib.sha256(memoryview(a).cast("B")).hexdigest(),
-            "b_sha256": hashlib.sha256(memoryview(b).cast("B")).hexdigest(),
+    return {"a_sha256": hashlib.sha256(memoryview(a.view(np.uint8))).hexdigest(),
+            "b_sha256": hashlib.sha256(memoryview(b.view(np.uint8))).hexdigest(),
             "quantized_dtype": "bfloat16"}
 
 
