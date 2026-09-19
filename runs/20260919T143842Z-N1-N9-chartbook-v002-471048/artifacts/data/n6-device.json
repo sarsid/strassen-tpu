@@ -1,0 +1,277 @@
+{
+  "id": "n6-device",
+  "experiment": "N6",
+  "kind": "bar",
+  "scope": "device",
+  "title": "N6 | Profiled TPU module",
+  "subtitle": "Mean of two 8-call captures; whiskers/dots show capture means. Profiler-instrumented, not ordinary call latency.",
+  "categories": [
+    {
+      "id": "vary_m_8192",
+      "label": "vary m 8192\n8192 x 2048 x 2048"
+    },
+    {
+      "id": "mkn_512_8192_2048",
+      "label": "mkn 512 8192 2048\n512 x 8192 x 2048"
+    },
+    {
+      "id": "small_m_8",
+      "label": "small m 8\n8 x 2048 x 2048"
+    }
+  ],
+  "series": [
+    {
+      "id": "native_xla",
+      "label": "Native XLA",
+      "color": "#3772C8"
+    },
+    {
+      "id": "cubic_selected",
+      "label": "Cubic (selected)",
+      "color": "#DD8734"
+    },
+    {
+      "id": "strassen_selected",
+      "label": "Strassen (selected)",
+      "color": "#24936D"
+    }
+  ],
+  "points": [
+    {
+      "category": "vary_m_8192",
+      "series": "native_xla",
+      "value": 0.3589363135,
+      "lo": 0.35887745125,
+      "hi": 0.35899517575,
+      "status": "ok",
+      "raw_points": [
+        0.35887745125,
+        0.35899517575
+      ],
+      "row_refs": [
+        "20260919T064743Z-N6-v5e-v004-e7bc5e:109",
+        "20260919T064743Z-N6-v5e-v004-e7bc5e:114"
+      ],
+      "extra": {
+        "capture_means_ms": [
+          0.35887745125,
+          0.35899517575
+        ],
+        "module_calls_per_capture": 8,
+        "arm_id": "native_xla"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "cubic_selected",
+      "value": 0.420328247125,
+      "lo": 0.42031667,
+      "hi": 0.42033982425,
+      "status": "ok",
+      "raw_points": [
+        0.42031667,
+        0.42033982425
+      ],
+      "row_refs": [
+        "20260919T064743Z-N6-v5e-v004-e7bc5e:110",
+        "20260919T064743Z-N6-v5e-v004-e7bc5e:113"
+      ],
+      "extra": {
+        "capture_means_ms": [
+          0.42031667,
+          0.42033982425
+        ],
+        "module_calls_per_capture": 8,
+        "arm_id": "cubic_selected"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "strassen_selected",
+      "value": 0.39172803712500004,
+      "lo": 0.39163951175,
+      "hi": 0.3918165625,
+      "status": "ok",
+      "raw_points": [
+        0.39163951175,
+        0.3918165625
+      ],
+      "row_refs": [
+        "20260919T064743Z-N6-v5e-v004-e7bc5e:111",
+        "20260919T064743Z-N6-v5e-v004-e7bc5e:112"
+      ],
+      "extra": {
+        "capture_means_ms": [
+          0.39163951175,
+          0.3918165625
+        ],
+        "module_calls_per_capture": 8,
+        "arm_id": "strassen_selected"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "native_xla",
+      "value": 0.09272871099999999,
+      "lo": 0.09271916025,
+      "hi": 0.09273826175,
+      "status": "ok",
+      "raw_points": [
+        0.09273826175,
+        0.09271916025
+      ],
+      "row_refs": [
+        "20260919T064743Z-N6-v5e-v004-e7bc5e:318",
+        "20260919T064743Z-N6-v5e-v004-e7bc5e:323"
+      ],
+      "extra": {
+        "capture_means_ms": [
+          0.09273826175,
+          0.09271916025
+        ],
+        "module_calls_per_capture": 8,
+        "arm_id": "native_xla"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "cubic_selected",
+      "value": 0.1013613965,
+      "lo": 0.10134423825,
+      "hi": 0.10137855475,
+      "status": "ok",
+      "raw_points": [
+        0.10134423825,
+        0.10137855475
+      ],
+      "row_refs": [
+        "20260919T064743Z-N6-v5e-v004-e7bc5e:319",
+        "20260919T064743Z-N6-v5e-v004-e7bc5e:322"
+      ],
+      "extra": {
+        "capture_means_ms": [
+          0.10134423825,
+          0.10137855475
+        ],
+        "module_calls_per_capture": 8,
+        "arm_id": "cubic_selected"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "strassen_selected",
+      "value": 0.10317150875,
+      "lo": 0.1031611035,
+      "hi": 0.103181914,
+      "status": "ok",
+      "raw_points": [
+        0.103181914,
+        0.1031611035
+      ],
+      "row_refs": [
+        "20260919T064743Z-N6-v5e-v004-e7bc5e:320",
+        "20260919T064743Z-N6-v5e-v004-e7bc5e:321"
+      ],
+      "extra": {
+        "capture_means_ms": [
+          0.103181914,
+          0.1031611035
+        ],
+        "module_calls_per_capture": 8,
+        "arm_id": "strassen_selected"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "native_xla",
+      "value": 0.003181777375,
+      "lo": 0.0031713575000000003,
+      "hi": 0.00319219725,
+      "status": "ok",
+      "raw_points": [
+        0.00319219725,
+        0.0031713575000000003
+      ],
+      "row_refs": [
+        "20260919T064743Z-N6-v5e-v004-e7bc5e:527",
+        "20260919T064743Z-N6-v5e-v004-e7bc5e:532"
+      ],
+      "extra": {
+        "capture_means_ms": [
+          0.00319219725,
+          0.0031713575000000003
+        ],
+        "module_calls_per_capture": 8,
+        "arm_id": "native_xla"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "cubic_selected",
+      "value": 0.015744282249999998,
+      "lo": 0.01571857425,
+      "hi": 0.01576999025,
+      "status": "ok",
+      "raw_points": [
+        0.01571857425,
+        0.01576999025
+      ],
+      "row_refs": [
+        "20260919T064743Z-N6-v5e-v004-e7bc5e:528",
+        "20260919T064743Z-N6-v5e-v004-e7bc5e:531"
+      ],
+      "extra": {
+        "capture_means_ms": [
+          0.01571857425,
+          0.01576999025
+        ],
+        "module_calls_per_capture": 8,
+        "arm_id": "cubic_selected"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "strassen_selected",
+      "value": 0.02803622075,
+      "lo": 0.02801622075,
+      "hi": 0.02805622075,
+      "status": "ok",
+      "raw_points": [
+        0.02805622075,
+        0.02801622075
+      ],
+      "row_refs": [
+        "20260919T064743Z-N6-v5e-v004-e7bc5e:529",
+        "20260919T064743Z-N6-v5e-v004-e7bc5e:530"
+      ],
+      "extra": {
+        "capture_means_ms": [
+          0.02805622075,
+          0.02801622075
+        ],
+        "module_calls_per_capture": 8,
+        "arm_id": "strassen_selected"
+      }
+    }
+  ],
+  "baseline": "native_xla",
+  "ylabel": "Device module time (ms) - lower is better",
+  "error_note": "Capture-mean range is descriptive; no utilization, overlap or HBM-traffic claim.",
+  "takeaway": "Native has the shortest profiled module for these three representatives, despite some host-call ranking reversals.",
+  "detail": false,
+  "source_run_ids": [
+    "20260919T064743Z-N6-v5e-v004-e7bc5e"
+  ],
+  "cohort": "N5-N9 allocation",
+  "data_file": "data/n6-device.json",
+  "files": {
+    "absolute": {
+      "png": "figures/n6-device-absolute.png",
+      "svg": "figures/n6-device-absolute.svg"
+    },
+    "relative": {
+      "png": "figures/n6-device-relative.png",
+      "svg": "figures/n6-device-relative.svg"
+    }
+  }
+}
