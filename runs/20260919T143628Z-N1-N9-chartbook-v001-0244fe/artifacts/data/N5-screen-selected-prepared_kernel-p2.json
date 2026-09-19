@@ -1,0 +1,850 @@
+{
+  "id": "N5-screen-selected-prepared_kernel-p2",
+  "experiment": "N5",
+  "kind": "bar",
+  "title": "N5 | Screen selections (exploratory) - shapes 11-16",
+  "subtitle": "Selected on these same 7-repeat measurements; use the separate fresh evaluation for claims.",
+  "scope": "prepared_kernel",
+  "detail": true,
+  "takeaway": "",
+  "categories": [
+    {
+      "id": "square_8192",
+      "label": "square 8192\n8192 x 8192 x 8192"
+    },
+    {
+      "id": "tail_513",
+      "label": "tail 513\n513 x 513 x 513"
+    },
+    {
+      "id": "tail_wide",
+      "label": "tail wide\n1023 x 2047 x 4095"
+    },
+    {
+      "id": "vary_k_8192",
+      "label": "vary k 8192\n2048 x 8192 x 2048"
+    },
+    {
+      "id": "vary_m_8192",
+      "label": "vary m 8192\n8192 x 2048 x 2048"
+    },
+    {
+      "id": "vary_n_8192",
+      "label": "vary n 8192\n2048 x 2048 x 8192"
+    }
+  ],
+  "series": [
+    {
+      "id": "native_xla",
+      "label": "Native XLA",
+      "color": "#3772C8"
+    },
+    {
+      "id": "cubic_selected",
+      "label": "Cubic (selected)",
+      "color": "#DD8734"
+    },
+    {
+      "id": "strassen_selected",
+      "label": "Strassen (selected)",
+      "color": "#24936D"
+    }
+  ],
+  "points": [
+    {
+      "category": "square_8192",
+      "series": "native_xla",
+      "value": 6.370126714285713,
+      "lo": 6.34432008765795,
+      "hi": 6.395933340913476,
+      "status": "ok",
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12535"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "reference_arm": "c_output_accumulator_1024_2048_512",
+          "screen_results_are_not_confirmation": true,
+          "speedup_ci95": [
+            0.9796911982453673,
+            0.9891294210395649
+          ],
+          "speedup_ratio_of_means": 0.984741501105372,
+          "time_reduction_fraction": -0.015494928240051165,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "native_xla",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile_bm_bn_bk": null,
+        "shape_mkn": [
+          8192,
+          8192,
+          8192
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "cubic_selected",
+      "value": 6.110182285714286,
+      "lo": 6.067675889553573,
+      "hi": 6.152688681874999,
+      "status": "ok",
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13025"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_1024",
+        "algorithm": "cubic_full",
+        "variant": "output_accumulator",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "shape_mkn": [
+          8192,
+          8192,
+          8192
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "strassen_selected",
+      "value": 5.6113668571428565,
+      "lo": 5.587622702378448,
+      "hi": 5.635111011907265,
+      "status": "ok",
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13342"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "reference_arm": "c_output_accumulator_512_1024_512",
+          "screen_results_are_not_confirmation": true,
+          "speedup_ci95": [
+            1.1781985987833161,
+            1.1877688323403617
+          ],
+          "speedup_ratio_of_means": 1.1826432765248336,
+          "time_reduction_fraction": 0.15443648997990844,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "s_interleaved_output_accumulator_2048_2048_512",
+        "algorithm": "strassen",
+        "variant": "interleaved_output_accumulator",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          8192,
+          8192,
+          8192
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "native_xla",
+      "value": 0.27878857142857144,
+      "lo": 0.2297718306051305,
+      "hi": 0.32780531225201237,
+      "status": "ok",
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:998"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "native_xla",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile_bm_bn_bk": null,
+        "shape_mkn": [
+          513,
+          513,
+          513
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "cubic_selected",
+      "value": 0.25173999999999996,
+      "lo": 0.24764063826106222,
+      "hi": 0.25583936173893773,
+      "status": "ok",
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1397"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_512",
+        "algorithm": "cubic_full",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "shape_mkn": [
+          513,
+          513,
+          513
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "strassen_selected",
+      "value": 0.2392857142857143,
+      "lo": 0.20286773619011667,
+      "hi": 0.2757036923813119,
+      "status": "ok",
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1399"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "reference_arm": "c_plain_1024_1024_512",
+          "screen_results_are_not_confirmation": true,
+          "speedup_ci95": [
+            0.9685236784050539,
+            1.1853858132321275
+          ],
+          "speedup_ratio_of_means": 1.0520477611940298,
+          "time_reduction_fraction": 0.04947281208503085,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "s_plain_512_1024_512",
+        "algorithm": "strassen",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "shape_mkn": [
+          513,
+          513,
+          513
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "native_xla",
+      "value": 0.3447571428571429,
+      "lo": 0.32096113358787975,
+      "hi": 0.368553152126406,
+      "status": "ok",
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5513"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "reference_arm": "c_plain_1024_512_512",
+          "screen_results_are_not_confirmation": true,
+          "speedup_ci95": [
+            0.9776424215714727,
+            1.0681124578423942
+          ],
+          "speedup_ratio_of_means": 1.0250776944432936,
+          "time_reduction_fraction": 0.0244641889870727,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "native_xla",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile_bm_bn_bk": null,
+        "shape_mkn": [
+          1023,
+          2047,
+          4095
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "cubic_selected",
+      "value": 0.34384571428571425,
+      "lo": 0.33224818889285157,
+      "hi": 0.35544323967857694,
+      "status": "ok",
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5556"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_512",
+        "algorithm": "cubic_full",
+        "variant": "output_accumulator",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "shape_mkn": [
+          1023,
+          2047,
+          4095
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "strassen_selected",
+      "value": 0.3203385714285715,
+      "lo": 0.2819206922408064,
+      "hi": 0.35875645061633654,
+      "status": "ok",
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6279"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "reference_arm": "c_output_accumulator_512_512_256",
+          "screen_results_are_not_confirmation": true,
+          "speedup_ci95": [
+            1.0987772402359388,
+            1.3021045336580401
+          ],
+          "speedup_ratio_of_means": 1.17689765738928,
+          "time_reduction_fraction": 0.1503084454953315,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "s_output_accumulator_1024_1024_1024",
+        "algorithm": "strassen",
+        "variant": "output_accumulator",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "shape_mkn": [
+          1023,
+          2047,
+          4095
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "native_xla",
+      "value": 0.6336198571428573,
+      "lo": 0.6177374036125347,
+      "hi": 0.6495023106731799,
+      "status": "ok",
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6390"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "reference_arm": "c_plain_512_1024_512",
+          "screen_results_are_not_confirmation": true,
+          "speedup_ci95": [
+            0.9764704422647958,
+            1.0263162119332265
+          ],
+          "speedup_ratio_of_means": 0.9998741922545265,
+          "time_reduction_fraction": -0.00012582357505386277,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "native_xla",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile_bm_bn_bk": null,
+        "shape_mkn": [
+          2048,
+          8192,
+          2048
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "cubic_selected",
+      "value": 0.5963901428571429,
+      "lo": 0.5651210180403283,
+      "hi": 0.6276592676739574,
+      "status": "ok",
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6507"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_1024",
+        "algorithm": "cubic_full",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "shape_mkn": [
+          2048,
+          8192,
+          2048
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "strassen_selected",
+      "value": 0.5660171428571428,
+      "lo": 0.5493484589316037,
+      "hi": 0.5826858267826819,
+      "status": "ok",
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6779"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "reference_arm": "c_output_accumulator_512_1024_1024",
+          "screen_results_are_not_confirmation": true,
+          "speedup_ci95": [
+            1.065273665850704,
+            1.1208353718041308
+          ],
+          "speedup_ratio_of_means": 1.0913904677293977,
+          "time_reduction_fraction": 0.08373764517068993,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "s_interleaved_2048_1024_512",
+        "algorithm": "strassen",
+        "variant": "interleaved",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "shape_mkn": [
+          2048,
+          8192,
+          2048
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "native_xla",
+      "value": 0.695487,
+      "lo": 0.670806609477698,
+      "hi": 0.7201673905223019,
+      "status": "ok",
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7262"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "reference_arm": "c_plain_1024_1024_1024",
+          "screen_results_are_not_confirmation": true,
+          "speedup_ci95": [
+            0.9680180632475252,
+            1.059680401328423
+          ],
+          "speedup_ratio_of_means": 1.0134994820689882,
+          "time_reduction_fraction": 0.01331967337706974,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "native_xla",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile_bm_bn_bk": null,
+        "shape_mkn": [
+          8192,
+          2048,
+          2048
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "cubic_selected",
+      "value": 0.6435324285714286,
+      "lo": 0.6380056944285812,
+      "hi": 0.6490591627142759,
+      "status": "ok",
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7649"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_2048_512",
+        "algorithm": "cubic_full",
+        "variant": "output_accumulator",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          8192,
+          2048,
+          2048
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "strassen_selected",
+      "value": 0.6234501428571428,
+      "lo": 0.610351829983232,
+      "hi": 0.6365484557310537,
+      "status": "ok",
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7606"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "reference_arm": "c_output_accumulator_2048_2048_512",
+          "screen_results_are_not_confirmation": true,
+          "speedup_ci95": [
+            1.0443107507193305,
+            1.0916338339599825
+          ],
+          "speedup_ratio_of_means": 1.0661203061030657,
+          "time_reduction_fraction": 0.06201955419529703,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "s_interleaved_output_accumulator_1024_1024_1024",
+        "algorithm": "strassen",
+        "variant": "interleaved_output_accumulator",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "shape_mkn": [
+          8192,
+          2048,
+          2048
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "native_xla",
+      "value": 0.6545144285714286,
+      "lo": 0.6155102851083847,
+      "hi": 0.6935185720344725,
+      "status": "ok",
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8134"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "reference_arm": "c_output_accumulator_128_512_512",
+          "screen_results_are_not_confirmation": true,
+          "speedup_ci95": [
+            1.996972977482974,
+            2.1091264253578235
+          ],
+          "speedup_ratio_of_means": 2.054026310890014,
+          "time_reduction_fraction": 0.5131513190954706,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "native_xla",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile_bm_bn_bk": null,
+        "shape_mkn": [
+          2048,
+          2048,
+          8192
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "cubic_selected",
+      "value": 0.635833,
+      "lo": 0.6267407518548307,
+      "hi": 0.6449252481451693,
+      "status": "ok",
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8357"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_1024",
+        "algorithm": "cubic_full",
+        "variant": "output_accumulator",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "shape_mkn": [
+          2048,
+          2048,
+          8192
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "strassen_selected",
+      "value": 0.6106842857142857,
+      "lo": 0.5785435935120619,
+      "hi": 0.6428249779165095,
+      "status": "ok",
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8568"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "reference_arm": "c_output_accumulator_1024_1024_512",
+          "screen_results_are_not_confirmation": true,
+          "speedup_ci95": [
+            1.0282064935445527,
+            1.0984257636747963
+          ],
+          "speedup_ratio_of_means": 1.0617574196627202,
+          "time_reduction_fraction": 0.058165281936375046,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "s_interleaved_output_accumulator_1024_1024_1024",
+        "algorithm": "strassen",
+        "variant": "interleaved_output_accumulator",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "shape_mkn": [
+          2048,
+          2048,
+          8192
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    }
+  ],
+  "ylabel": "Mean time (ms) - lower is better",
+  "baseline": "native_xla",
+  "error_note": "Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).",
+  "relative_note": "Relative whiskers: archived paired 95% intervals where available; unadjusted for multiple comparisons.",
+  "source_run_ids": [
+    "20260919T055706Z-N5-screen-v5e-v004-25842c"
+  ],
+  "cohort": "N5-N9 allocation",
+  "data_file": "data/N5-screen-selected-prepared_kernel-p2.json",
+  "files": {
+    "absolute": {
+      "png": "figures/N5-screen-selected-prepared_kernel-p2-absolute.png",
+      "svg": "figures/N5-screen-selected-prepared_kernel-p2-absolute.svg"
+    },
+    "relative": {
+      "png": "figures/N5-screen-selected-prepared_kernel-p2-relative.png",
+      "svg": "figures/N5-screen-selected-prepared_kernel-p2-relative.svg"
+    }
+  }
+}
