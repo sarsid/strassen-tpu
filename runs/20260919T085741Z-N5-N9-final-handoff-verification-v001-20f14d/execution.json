@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/opt/homebrew/bin/python3",
+    "-c",
+    "import json,hashlib,re,urllib.request; from pathlib import Path; import sys; root=Path(sys.argv[1]); docs=[root/\"START_HERE_v003.md\",root/\"docs/N7_REPLICATION_FINDINGS_v002.md\",root/\"docs/N9_FINDINGS_v001.md\"]; missing=[]; checked=0\nfor p in docs:\n for target in re.findall(r\"\\]\\(([^)]+)\\)\",p.read_text()):\n  if target.startswith((\"https://\",\"http://\")): continue\n  checked+=1\n  if not (p.parent/target.split(\"#\")[0]).exists(): missing.append(str(p)+\" -> \"+target)\nassert not missing,missing\nentries=[json.loads(x) for x in (root/\"protocols/code_freezes_v001.jsonl\").read_text().splitlines()]; changed=[x[\"path\"] for x in entries if hashlib.sha256((root/x[\"path\"]).read_bytes()).hexdigest()!=x[\"sha256\"]]; assert not changed,changed\napi=json.load(urllib.request.urlopen(\"http://127.0.0.1:8765/api/status\",timeout=30)); assert len(api[\"n9_model_results\"])==7 and not api[\"n9_verification_issues\"]; assert all(a[\"state\"]==\"complete\" for a in api[\"agents\"]); campaign=next(e for e in reversed(api[\"events\"]) if e[\"kind\"]==\"campaign\"); assert campaign[\"state\"]==\"complete\"; replica=next(r for r in api[\"runs\"] if r[\"run_id\"]==\"20260919T084449Z-N7-replicate-v5e-v004-955768\"); assert replica[\"completion\"][\"status\"]==\"completed\"; out=Path(\"../artifacts\"); out.mkdir(exist_ok=True); result={\"passed\":True,\"local_links_checked\":checked,\"missing_links\":missing,\"frozen_files_checked\":len(entries),\"changed_frozen_files\":changed,\"final_n9_rows\":7,\"all_agents_complete\":True,\"campaign_complete\":True,\"replica_completed\":True,\"document_sha256\":{str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in docs}}; (out/\"handoff_verification.json\").write_text(json.dumps(result,indent=2)); (out/\"status_snapshot.json\").write_text(json.dumps(api,indent=2)); print(json.dumps(result))",
+    "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus"
+  ],
+  "created_utc": "2026-09-19T08:57:41.811955+00:00",
+  "label": "N5-N9-final-handoff-verification-v001",
+  "run_id": "20260919T085741Z-N5-N9-final-handoff-verification-v001-20f14d",
+  "scope": "local_validation",
+  "source_commit": "4fe995f2b171abb0c26c16152b8d95dc25c425cb"
+}
