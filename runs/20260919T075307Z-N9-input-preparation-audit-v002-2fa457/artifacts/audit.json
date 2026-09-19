@@ -1,0 +1,394 @@
+{
+  "audit_pass": true,
+  "created_utc": "2026-09-19T07:53:08.765079+00:00",
+  "frozen_working_source_issues": [],
+  "interpretation": "Hash/protocol audit is separate from scientific success. Screens are not confirmation; cohorts are never pooled; CIs are per-comparison without multiplicity correction.",
+  "runs": [
+    {
+      "archive_commit": "c2c4c8ee2c9173ebdc228ecb5d9ec014ec319c41 Archive 20260919T074551Z-N9-model-tools-v002-v5e-v004-34afbd (completed)",
+      "artifact_manifest_sha256": "91e1158f8e34289efb93ef302ca8d0cb134515924eaaadad846a6dfaeb45f71e",
+      "audit_pass": true,
+      "case_status_counts": {},
+      "complete_call_comparisons": {},
+      "execution_status": "completed",
+      "identity": {
+        "boot_id": "64fe01c7-4c57-43e9-9f49-6805fb8a887d",
+        "colab_endpoint": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+        "hostname": "6f3b9b8cc92c",
+        "versions": {
+          "jax": "0.7.2",
+          "jaxlib": "0.7.2",
+          "libtpu": "0.0.21.1",
+          "ml_dtypes": "0.6.0",
+          "numpy": "2.1.3",
+          "requests": "2.32.4",
+          "scipy": "1.16.3"
+        }
+      },
+      "issues": [],
+      "phase": "N9-model-tools-v002",
+      "record_count": 3,
+      "run_id": "20260919T074551Z-N9-model-tools-v002-v5e-v004-34afbd",
+      "source_commit": "7275ede45d5868e741c36681b76a2437f676c61c",
+      "summary": {
+        "completed": true,
+        "elapsed_seconds": 41.870499128999654,
+        "error": null,
+        "jax_imported": false,
+        "phase": "N9-model-tools-v002",
+        "record": {
+          "exit_code": 0,
+          "status": {
+            "action": "model-tools-v002",
+            "child_snapshot_scope": "Provisional until adapter process-group cleanup; adapter artifact_manifest.json seals final file bytes",
+            "commands": [
+              {
+                "argv": [
+                  "/usr/bin/python3",
+                  "-m",
+                  "venv",
+                  "--without-pip",
+                  "/content/Strassen_MM_Focus/model-tools-v002"
+                ],
+                "elapsed_seconds": 0.11422675299945695,
+                "finished_utc": "2026-09-19T07:45:56.117107+00:00",
+                "index": 0,
+                "label": "create_without_pip",
+                "returncode": 0,
+                "started_utc": "2026-09-19T07:45:55.999388+00:00",
+                "timeout_seconds": 120
+              },
+              {
+                "argv": [
+                  "/content/Strassen_MM_Focus/model-tools-v002/bin/python",
+                  "-I",
+                  "-c",
+                  "import json,site,sys\nfrom pathlib import Path\ntarget=Path(sys.argv[1]).resolve()\nvalue={'prefix':sys.prefix,'base_prefix':sys.base_prefix,'executable':sys.executable,\n       'user_site_enabled':site.ENABLE_USER_SITE}\nwith Path(sys.argv[2]).open('x') as f:json.dump(value,f,indent=2,sort_keys=True)\nassert Path(sys.prefix).resolve()==target and sys.prefix!=sys.base_prefix\nassert site.ENABLE_USER_SITE is False\n",
+                  "/content/Strassen_MM_Focus/model-tools-v002",
+                  "/content/Strassen_MM_Focus/runs/20260919T074551Z-N9-model-tools-v002-v5e-v004-34afbd/artifacts/preparation-00/prefix_probe.json"
+                ],
+                "elapsed_seconds": 0.031878228999630664,
+                "finished_utc": "2026-09-19T07:45:56.156643+00:00",
+                "index": 1,
+                "label": "verify_new_prefix",
+                "returncode": 0,
+                "started_utc": "2026-09-19T07:45:56.121412+00:00",
+                "timeout_seconds": 60
+              },
+              {
+                "argv": [
+                  "/usr/bin/python3",
+                  "-m",
+                  "pip",
+                  "--isolated",
+                  "--python",
+                  "/content/Strassen_MM_Focus/model-tools-v002/bin/python",
+                  "install",
+                  "--disable-pip-version-check",
+                  "--no-cache-dir",
+                  "--only-binary=:all:",
+                  "--index-url",
+                  "https://download.pytorch.org/whl/cpu",
+                  "--report",
+                  "/content/Strassen_MM_Focus/runs/20260919T074551Z-N9-model-tools-v002-v5e-v004-34afbd/artifacts/preparation-00/torch_install_report.json",
+                  "torch==2.8.0"
+                ],
+                "elapsed_seconds": 21.056195062999905,
+                "finished_utc": "2026-09-19T07:46:17.220628+00:00",
+                "index": 2,
+                "label": "cpu_torch",
+                "returncode": 0,
+                "started_utc": "2026-09-19T07:45:56.160740+00:00",
+                "timeout_seconds": 1800
+              },
+              {
+                "argv": [
+                  "/usr/bin/python3",
+                  "-m",
+                  "pip",
+                  "--isolated",
+                  "--python",
+                  "/content/Strassen_MM_Focus/model-tools-v002/bin/python",
+                  "install",
+                  "--disable-pip-version-check",
+                  "--no-cache-dir",
+                  "--only-binary=:all:",
+                  "--index-url",
+                  "https://pypi.org/simple",
+                  "--report",
+                  "/content/Strassen_MM_Focus/runs/20260919T074551Z-N9-model-tools-v002-v5e-v004-34afbd/artifacts/preparation-00/tools_install_report.json",
+                  "transformers==4.56.2",
+                  "tokenizers==0.22.0",
+                  "huggingface-hub==0.34.4",
+                  "safetensors==0.6.2",
+                  "numpy==2.2.6",
+                  "pyarrow==21.0.0",
+                  "sentencepiece==0.2.1",
+                  "accelerate==1.10.1"
+                ],
+                "elapsed_seconds": 15.294165590000375,
+                "finished_utc": "2026-09-19T07:46:32.524293+00:00",
+                "index": 3,
+                "label": "pinned_tools",
+                "returncode": 0,
+                "started_utc": "2026-09-19T07:46:17.225736+00:00",
+                "timeout_seconds": 1800
+              },
+              {
+                "argv": [
+                  "/usr/bin/python3",
+                  "-m",
+                  "pip",
+                  "--isolated",
+                  "--python",
+                  "/content/Strassen_MM_Focus/model-tools-v002/bin/python",
+                  "check"
+                ],
+                "elapsed_seconds": 0.515468518000489,
+                "finished_utc": "2026-09-19T07:46:33.063645+00:00",
+                "index": 4,
+                "label": "pip_check",
+                "returncode": 0,
+                "started_utc": "2026-09-19T07:46:32.536799+00:00",
+                "timeout_seconds": 1800
+              },
+              {
+                "argv": [
+                  "/usr/bin/python3",
+                  "-m",
+                  "pip",
+                  "--isolated",
+                  "--python",
+                  "/content/Strassen_MM_Focus/model-tools-v002/bin/python",
+                  "freeze",
+                  "--all"
+                ],
+                "elapsed_seconds": 0.46467192999989493,
+                "finished_utc": "2026-09-19T07:46:33.543197+00:00",
+                "index": 5,
+                "label": "pip_freeze",
+                "returncode": 0,
+                "started_utc": "2026-09-19T07:46:33.075131+00:00",
+                "timeout_seconds": 1800
+              },
+              {
+                "argv": [
+                  "/content/Strassen_MM_Focus/model-tools-v002/bin/python",
+                  "-I",
+                  "-c",
+                  "import importlib,importlib.metadata as md,importlib.util,json,sys\nfrom pathlib import Path\ntarget=Path(sys.argv[1]).resolve()\nnames=['torch','transformers','tokenizers','huggingface-hub','safetensors','numpy','pyarrow','sentencepiece','accelerate']\nversions={name:md.version(name) for name in names}\nmodules={}\nfor name in ['torch','transformers','tokenizers','huggingface_hub','safetensors','numpy','pyarrow','sentencepiece','accelerate']:\n    module=importlib.import_module(name);modules[name]=str(Path(module.__file__).resolve())\n    assert Path(module.__file__).resolve().is_relative_to(target), name+' imported outside target environment'\nimport torch\nassert torch.version.cuda is None,'Expected CPU-only PyTorch distribution'\nassert importlib.util.find_spec('jax') is None,'Isolated model tools must not expose core JAX'\nvalue={'prefix':sys.prefix,'base_prefix':sys.base_prefix,'python':sys.version,'versions':versions,\n       'module_paths':modules,'torch_cuda_version':torch.version.cuda,'jax_visible':False,\n       'all_distributions':sorted([{'name':d.metadata['Name'],'version':d.version} for d in md.distributions()],key=lambda x:x['name'].lower())}\nwith Path(sys.argv[2]).open('x') as f:json.dump(value,f,indent=2,sort_keys=True)\n",
+                  "/content/Strassen_MM_Focus/model-tools-v002",
+                  "/content/Strassen_MM_Focus/runs/20260919T074551Z-N9-model-tools-v002-v5e-v004-34afbd/artifacts/preparation-00/installed.json"
+                ],
+                "elapsed_seconds": 4.124240676000227,
+                "finished_utc": "2026-09-19T07:46:37.674813+00:00",
+                "index": 6,
+                "label": "verify_installed_imports",
+                "returncode": 0,
+                "started_utc": "2026-09-19T07:46:33.547302+00:00",
+                "timeout_seconds": 300
+              }
+            ],
+            "core_versions_unchanged": true,
+            "descendant_state_requires_adapter_verification": true,
+            "elapsed_seconds": 41.74107475799974,
+            "error": null,
+            "finished_utc": "2026-09-19T07:46:37.714236+00:00",
+            "process_group_id": 42759,
+            "started_monotonic": 7639.193819793,
+            "status": "completed",
+            "timeout_descendants_may_still_be_running": false
+          }
+        },
+        "status": "completed",
+        "subprocess_cleanup": {
+          "elapsed_seconds": 1.607999911357183e-05,
+          "leader_returncode": 0,
+          "pgid": 42759,
+          "proven_stopped": true,
+          "signals": []
+        },
+        "subprocess_cleanup_all_proven": true
+      },
+      "terminal_model_policy_outcomes": []
+    },
+    {
+      "archive_commit": "0da946576b8435555d8a6b5999cd9578fe690965 Archive 20260919T074649Z-N9-tokenize-qwen-v002-v5e-v004-1fdbd7 (completed)",
+      "artifact_manifest_sha256": "56a38b6cb99c9b72129b0a26182419929e2dcfe3570c19ea91c47ce50cfbe55c",
+      "audit_pass": true,
+      "case_status_counts": {},
+      "complete_call_comparisons": {},
+      "execution_status": "completed",
+      "identity": {
+        "boot_id": "64fe01c7-4c57-43e9-9f49-6805fb8a887d",
+        "colab_endpoint": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+        "hostname": "6f3b9b8cc92c",
+        "versions": {
+          "jax": "0.7.2",
+          "jaxlib": "0.7.2",
+          "libtpu": "0.0.21.1",
+          "ml_dtypes": "0.6.0",
+          "numpy": "2.1.3",
+          "requests": "2.32.4",
+          "scipy": "1.16.3"
+        }
+      },
+      "issues": [],
+      "phase": "N9-tokenize-qwen-v002",
+      "record_count": 0,
+      "run_id": "20260919T074649Z-N9-tokenize-qwen-v002-v5e-v004-1fdbd7",
+      "source_commit": "4851355846581cd8b2cc1dbe4437c35e215c8a8a",
+      "summary": {
+        "action": "tokenize",
+        "blocked_access_is_not_successful_model": true,
+        "elapsed_seconds": 57.53102811200006,
+        "phase": "N9-tokenize-qwen-v002",
+        "records": [
+          {
+            "action": "tokenize",
+            "command": [
+              "/content/Strassen_MM_Focus/model-tools-v002/bin/python",
+              "/content/Strassen_MM_Focus/runs/20260919T074649Z-N9-tokenize-qwen-v002-v5e-v004-1fdbd7/source/tools/prepare_model_application_v001.py",
+              "tokenize",
+              "--output-dir",
+              "/content/Strassen_MM_Focus/runs/20260919T074649Z-N9-tokenize-qwen-v002-v5e-v004-1fdbd7/artifacts/preparation-00",
+              "--model-manifest",
+              "/content/Strassen_MM_Focus/models/Qwen--Qwen3-0.6B/c1899de289a04d12100db370d81485cdf75e47ca/manifest.json",
+              "--corpus-manifest",
+              "/content/Strassen_MM_Focus/models/corpus/b08601e04326c79dfdd32d625aee71d232d685c3/manifest.json"
+            ],
+            "exit_code": 0,
+            "model_id": null,
+            "status": {
+              "action": "tokenize",
+              "finished_utc": "2026-09-19T07:47:50+00:00",
+              "started_utc": "2026-09-19T07:46:53+00:00",
+              "status": "completed"
+            }
+          }
+        ],
+        "status": "completed"
+      },
+      "terminal_model_policy_outcomes": []
+    },
+    {
+      "archive_commit": "c0454a93e0b9a9e83e7957f97b0db1c08d222c1f Archive 20260919T074805Z-N9-reference-qwen-v002-v5e-v004-6928ce (completed)",
+      "artifact_manifest_sha256": "d774e2e3fb22339cb0dcdb7e08a3b4d8ca831865c419c35cf8ba550a55bc912c",
+      "audit_pass": true,
+      "case_status_counts": {},
+      "complete_call_comparisons": {},
+      "execution_status": "completed",
+      "identity": {
+        "boot_id": "64fe01c7-4c57-43e9-9f49-6805fb8a887d",
+        "colab_endpoint": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+        "hostname": "6f3b9b8cc92c",
+        "versions": {
+          "jax": "0.7.2",
+          "jaxlib": "0.7.2",
+          "libtpu": "0.0.21.1",
+          "ml_dtypes": "0.6.0",
+          "numpy": "2.1.3",
+          "requests": "2.32.4",
+          "scipy": "1.16.3"
+        }
+      },
+      "issues": [],
+      "phase": "N9-reference-qwen-v002",
+      "record_count": 0,
+      "run_id": "20260919T074805Z-N9-reference-qwen-v002-v5e-v004-6928ce",
+      "source_commit": "202d7e68c02c64785dab0e07cd9260177136d2fc",
+      "summary": {
+        "action": "reference",
+        "blocked_access_is_not_successful_model": true,
+        "elapsed_seconds": 11.439375187999758,
+        "phase": "N9-reference-qwen-v002",
+        "records": [
+          {
+            "action": "reference",
+            "command": [
+              "/content/Strassen_MM_Focus/model-tools-v002/bin/python",
+              "/content/Strassen_MM_Focus/runs/20260919T074805Z-N9-reference-qwen-v002-v5e-v004-6928ce/source/tools/prepare_model_application_v001.py",
+              "reference",
+              "--output-dir",
+              "/content/Strassen_MM_Focus/runs/20260919T074805Z-N9-reference-qwen-v002-v5e-v004-6928ce/artifacts/preparation-00",
+              "--model-manifest",
+              "/content/Strassen_MM_Focus/models/Qwen--Qwen3-0.6B/c1899de289a04d12100db370d81485cdf75e47ca/manifest.json",
+              "--tokens",
+              "/content/Strassen_MM_Focus/runs/20260919T074649Z-N9-tokenize-qwen-v002-v5e-v004-1fdbd7/artifacts/preparation-00/token_ids.npy"
+            ],
+            "exit_code": 0,
+            "model_id": null,
+            "status": {
+              "action": "reference",
+              "finished_utc": "2026-09-19T07:48:20+00:00",
+              "started_utc": "2026-09-19T07:48:09+00:00",
+              "status": "completed"
+            }
+          }
+        ],
+        "status": "completed"
+      },
+      "terminal_model_policy_outcomes": []
+    },
+    {
+      "archive_commit": "f623647f56f76eb0780d53876a19705453c818a8 Archive 20260919T074921Z-N9-tokenize-mistral-v002-v5e-v004-ab489e (failed)",
+      "artifact_manifest_sha256": "718f5fa6949926948bb6e8c46029450b7e1977b0d568d14a6ff3c1f5a41b5090",
+      "audit_pass": true,
+      "case_status_counts": {},
+      "complete_call_comparisons": {},
+      "execution_status": "failed",
+      "identity": {
+        "boot_id": "64fe01c7-4c57-43e9-9f49-6805fb8a887d",
+        "colab_endpoint": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+        "hostname": "6f3b9b8cc92c",
+        "versions": {
+          "jax": "0.7.2",
+          "jaxlib": "0.7.2",
+          "libtpu": "0.0.21.1",
+          "ml_dtypes": "0.6.0",
+          "numpy": "2.1.3",
+          "requests": "2.32.4",
+          "scipy": "1.16.3"
+        }
+      },
+      "issues": [],
+      "phase": "N9-tokenize-mistral-v002",
+      "record_count": 0,
+      "run_id": "20260919T074921Z-N9-tokenize-mistral-v002-v5e-v004-ab489e",
+      "source_commit": "25ab1dd4f35a0a2b28cd6c6f6d4fe7054c9516dd",
+      "summary": {
+        "action": "tokenize",
+        "blocked_access_is_not_successful_model": true,
+        "elapsed_seconds": 136.93786919600007,
+        "phase": "N9-tokenize-mistral-v002",
+        "records": [
+          {
+            "action": "tokenize",
+            "command": [
+              "/content/Strassen_MM_Focus/model-tools-v002/bin/python",
+              "/content/Strassen_MM_Focus/runs/20260919T074921Z-N9-tokenize-mistral-v002-v5e-v004-ab489e/source/tools/prepare_model_application_v001.py",
+              "tokenize",
+              "--output-dir",
+              "/content/Strassen_MM_Focus/runs/20260919T074921Z-N9-tokenize-mistral-v002-v5e-v004-ab489e/artifacts/preparation-00",
+              "--model-manifest",
+              "/content/Strassen_MM_Focus/models/mistralai--Mistral-7B-v0.3/caa1feb0e54d415e2df31207e5f4e273e33509b1/manifest.json",
+              "--corpus-manifest",
+              "/content/Strassen_MM_Focus/models/corpus/b08601e04326c79dfdd32d625aee71d232d685c3/manifest.json"
+            ],
+            "exit_code": 1,
+            "model_id": null,
+            "status": {
+              "action": "tokenize",
+              "error_type": "ImportError",
+              "finished_utc": "2026-09-19T07:51:42+00:00",
+              "started_utc": "2026-09-19T07:49:25+00:00",
+              "status": "failed"
+            }
+          }
+        ],
+        "status": "failed"
+      },
+      "terminal_model_policy_outcomes": []
+    }
+  ]
+}
