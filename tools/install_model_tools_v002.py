@@ -3,6 +3,8 @@
 
 Official pip documents --python for an environment created --without-pip:
 https://pip.pypa.io/en/stable/topics/python-option/ (added in pip22.3).
+Invoke through application_tools_v002, which owns a dedicated process group
+and verifies that pip descendants stop, including after timeout or termination.
 This installs only into the explicit new interpreter. Global core packages and
 the failed model-tools-v001 path are never installation targets or modified.
 """
@@ -15,6 +17,7 @@ import json
 import os
 from pathlib import Path
 import re
+import signal
 import subprocess
 import sys
 import time
@@ -102,18 +105,23 @@ with Path(sys.argv[2]).open('x') as f:json.dump(value,f,indent=2,sort_keys=True)
 
 
 def main(argv=None):
+    # The adapter masks TERM/INT only while creating and recording our group.
+    # Unblock the inherited mask before launching any package subprocesses.
+    signal.pthread_sigmask(signal.SIG_UNBLOCK,{signal.SIGTERM,signal.SIGINT})
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--output-dir',type=Path,required=True)
     p.add_argument('--venv-dir',type=Path,default=PROJECT/'model-tools-v002')
     p.add_argument('--max-wall-seconds',type=float,default=5400)
+    p.add_argument('--managed-process-group',action='store_true')
     args=p.parse_args(argv)
     out=args.output_dir;out.mkdir(parents=True,exist_ok=False)
     started=time.monotonic();deadline=started+args.max_wall_seconds
-    before=core_versions();commands=[];result=None;error=None;status='failed'
+    before=core_versions();commands=[];result=None;error=None;status='failed';descendants_uncertain=False
     env={key:value for key,value in os.environ.items() if not key.startswith('PIP_')
          and key not in ('PYTHONPATH','PYTHONHOME','VIRTUAL_ENV')}
     env.update(PIP_CONFIG_FILE=os.devnull,PYTHONDONTWRITEBYTECODE='1')
     def run(label,command,limit=1800):
+        nonlocal descendants_uncertain
         remaining=deadline-time.monotonic()
         if remaining<=0:raise TimeoutError('Model-tools installation wall budget exhausted')
         index=len(commands);record={'index':index,'label':label,'argv':command,'started_utc':utc(),
@@ -126,12 +134,18 @@ def main(argv=None):
             record['returncode']=child.returncode
             if child.returncode:raise RuntimeError('Installation command failed: '+label)
         except BaseException as problem:
+            # pip --python may leave its target interpreter alive when the
+            # direct pip process is killed. All descendants inherit our group;
+            # the owning adapter always terminates and verifies that group.
+            if isinstance(problem,subprocess.TimeoutExpired):descendants_uncertain=True
             record['error_type']=type(problem).__name__;raise
         finally:
             record.update(finished_utc=utc(),elapsed_seconds=time.monotonic()-start)
             save(out/f'command-{index:02d}.result.json',record);commands.append(record)
     try:
         if args.max_wall_seconds<=0:raise ValueError('Positive wall budget required')
+        if not args.managed_process_group or os.getpgrp()!=os.getpid():
+            raise RuntimeError('Run through application_tools_v002; adapter-owned process group required')
         if 'jax' in sys.modules:raise RuntimeError('Installer must run without importing JAX')
         target=validate_new_target(args.venv_dir)
         version=re.match(r'^(\d+)\.(\d+)',before.get('pip') or '')
@@ -172,8 +186,12 @@ def main(argv=None):
         summary={'action':'model-tools-v002','status':status,'started_monotonic':started,
                  'finished_utc':utc(),'elapsed_seconds':time.monotonic()-started,
                  'core_versions_unchanged':before==after,'error':error,'commands':commands}
+        summary.update(process_group_id=os.getpgrp(),descendant_state_requires_adapter_verification=True,
+                       timeout_descendants_may_still_be_running=descendants_uncertain,
+                       child_snapshot_scope='Provisional until adapter process-group cleanup; adapter artifact_manifest.json seals final file bytes')
         save(out/'status.json',summary)
-        save(out/'artifact_manifest.json',{'files':{str(path.relative_to(out)):{'bytes':path.stat().st_size,'sha256':digest(path)}
+        save(out/'artifact_manifest.json',{'scope':'Provisional child snapshot; authoritative final bytes are sealed by adapter after process-group cleanup',
+            'files':{str(path.relative_to(out)):{'bytes':path.stat().st_size,'sha256':digest(path)}
             for path in sorted(out.rglob('*')) if path.is_file()}})
         print(json.dumps({'action':'model-tools-v002','status':status,'venv_dir':str(args.venv_dir),
                           'core_versions_unchanged':before==after,'error':error}),flush=True)
