@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "manifest_id": "heldout_v1",
+  "shape_order": [
+    "m",
+    "k",
+    "n"
+  ],
+  "status": "reserved_before_N5_tuning",
+  "input_semantics": "Synthetic Gaussian inputs only. LLM shape sources are frozen in shapes_v1.json. No checkpoint weights or real activations.",
+  "holdout_contract": "No N7 execution, profiling, timing, selection or accuracy observation may inform selector fitting. N7 alternative tuning is allowed only after selector.json is frozen and hashed.",
+  "shapes": [
+    {
+      "id": "held_square_768",
+      "m": 768,
+      "k": 768,
+      "n": 768,
+      "family": "square",
+      "stage": "heldout",
+      "source_id": "frozen_geometries_v1"
+    },
+    {
+      "id": "held_square_1536",
+      "m": 1536,
+      "k": 1536,
+      "n": 1536,
+      "family": "square",
+      "stage": "heldout",
+      "source_id": "frozen_geometries_v1"
+    },
+    {
+      "id": "held_square_3072",
+      "m": 3072,
+      "k": 3072,
+      "n": 3072,
+      "family": "square",
+      "stage": "heldout",
+      "source_id": "frozen_geometries_v1"
+    },
+    {
+      "id": "held_square_6144",
+      "m": 6144,
+      "k": 6144,
+      "n": 6144,
+      "family": "square",
+      "stage": "heldout",
+      "source_id": "frozen_geometries_v1"
+    },
+    {
+      "id": "held_rect_wide",
+      "m": 1024,
+      "k": 3072,
+      "n": 6144,
+      "family": "rectangle",
+      "stage": "heldout",
+      "source_id": "frozen_geometries_v1"
+    },
+    {
+      "id": "held_rect_tall",
+      "m": 6144,
+      "k": 3072,
+      "n": 1024,
+      "family": "rectangle",
+      "stage": "heldout",
+      "source_id": "frozen_geometries_v1"
+    },
+    {
+      "id": "held_rect_short_k",
+      "m": 3072,
+      "k": 1024,
+      "n": 6144,
+      "family": "rectangle",
+      "stage": "heldout",
+      "source_id": "frozen_geometries_v1"
+    },
+    {
+      "id": "held_rect_deep_k",
+      "m": 3072,
+      "k": 6144,
+      "n": 1024,
+      "family": "rectangle",
+      "stage": "heldout",
+      "source_id": "frozen_geometries_v1"
+    },
+    {
+      "id": "held_small_m16",
+      "m": 16,
+      "k": 4096,
+      "n": 8192,
+      "family": "small_m",
+      "stage": "heldout",
+      "source_id": "frozen_geometries_v1"
+    },
+    {
+      "id": "held_small_m128",
+      "m": 128,
+      "k": 3072,
+      "n": 6144,
+      "family": "small_m",
+      "stage": "heldout",
+      "source_id": "frozen_geometries_v1"
+    },
+    {
+      "id": "held_tail_a",
+      "m": 1001,
+      "k": 3001,
+      "n": 5003,
+      "family": "nonaligned",
+      "stage": "heldout",
+      "source_id": "frozen_geometries_v1"
+    },
+    {
+      "id": "held_tail_b",
+      "m": 2051,
+      "k": 4099,
+      "n": 1537,
+      "family": "nonaligned",
+      "stage": "heldout",
+      "source_id": "frozen_geometries_v1"
+    },
+    {
+      "id": "held_qwen_gateup",
+      "m": 256,
+      "k": 5120,
+      "n": 51200,
+      "family": "llm_projection",
+      "stage": "heldout",
+      "source_id": "frozen_geometries_v1"
+    },
+    {
+      "id": "held_qwen_down",
+      "m": 1024,
+      "k": 25600,
+      "n": 5120,
+      "family": "llm_projection",
+      "stage": "heldout",
+      "source_id": "frozen_geometries_v1"
+    },
+    {
+      "id": "held_mistral_gateup",
+      "m": 1024,
+      "k": 4096,
+      "n": 28672,
+      "family": "llm_projection",
+      "stage": "heldout",
+      "source_id": "frozen_geometries_v1"
+    },
+    {
+      "id": "held_gemma_gateup",
+      "m": 1024,
+      "k": 3584,
+      "n": 28672,
+      "family": "llm_projection",
+      "stage": "heldout",
+      "source_id": "frozen_geometries_v1"
+    }
+  ]
+}
