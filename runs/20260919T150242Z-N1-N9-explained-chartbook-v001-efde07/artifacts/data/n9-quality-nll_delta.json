@@ -1,0 +1,112 @@
+{
+  "id": "n9-quality-nll_delta",
+  "experiment": "N9",
+  "kind": "bar",
+  "scope": "quality",
+  "title": "N9 | Corpus quality - nll delta",
+  "subtitle": "32,736 scored positions per model and policy. Native zeros are self-comparisons; independent qualification is separate.",
+  "categories": [
+    {
+      "id": "Qwen/Qwen3-0.6B",
+      "label": "Qwen3-0.6B"
+    },
+    {
+      "id": "mistralai/Mistral-7B-v0.3",
+      "label": "Mistral-7B-v0.3"
+    }
+  ],
+  "series": [
+    {
+      "id": "native",
+      "label": "Native",
+      "color": "#3772C8"
+    },
+    {
+      "id": "cubic_n8_selected",
+      "label": "Cubic MLP policy",
+      "color": "#DD8734"
+    },
+    {
+      "id": "strassen_n8_selected",
+      "label": "Strassen MLP policy",
+      "color": "#24936D"
+    }
+  ],
+  "points": [
+    {
+      "category": "Qwen/Qwen3-0.6B",
+      "series": "native",
+      "value": 0.0,
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:665"
+      ]
+    },
+    {
+      "category": "Qwen/Qwen3-0.6B",
+      "series": "cubic_n8_selected",
+      "value": 0.0002394174667164073,
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:666"
+      ]
+    },
+    {
+      "category": "Qwen/Qwen3-0.6B",
+      "series": "strassen_n8_selected",
+      "value": 0.00022558592631316543,
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:667"
+      ]
+    },
+    {
+      "category": "mistralai/Mistral-7B-v0.3",
+      "series": "native",
+      "value": 0.0,
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:1419"
+      ]
+    },
+    {
+      "category": "mistralai/Mistral-7B-v0.3",
+      "series": "cubic_n8_selected",
+      "value": 2.584848935294204e-05,
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:1420"
+      ]
+    },
+    {
+      "category": "mistralai/Mistral-7B-v0.3",
+      "series": "strassen_n8_selected",
+      "value": 0.00029719027372854256,
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:1421"
+      ]
+    }
+  ],
+  "ylabel": "NLL difference vs native (nats/token)",
+  "hline": 0.01,
+  "negative_hline": true,
+  "error_note": "Dotted line: predeclared aggregate gate. No statistical interval is inferred.",
+  "takeaway": "Both custom policies pass these fixed corpus gates; this does not establish arbitrary-input or downstream-task accuracy.",
+  "detail": false,
+  "source_run_ids": [
+    "20260919T081646Z-N9-v5e-v004-0fadc6"
+  ],
+  "cohort": "N5-N9 allocation",
+  "data_file": "data/n9-quality-nll_delta.json",
+  "files": {
+    "absolute": {
+      "png": "figures/n9-quality-nll_delta-absolute.png",
+      "svg": "figures/n9-quality-nll_delta-absolute.svg"
+    }
+  },
+  "explanation": {
+    "observation": "Strassen values are Qwen3-0.6B: 0.00022559; Mistral-7B-v0.3: 0.00029719. The sign of NLL difference matters; the acceptance gate uses its absolute magnitude. Native is zero by self-comparison. Red lines show acceptance gates; these are not timing races.",
+    "interpretation": "Both custom policies pass all measured aggregate corpus gates over 32,736 positions per model. Strassen top-1 agreement is 97.73% on Qwen and 98.94% on Mistral, with NLL differences below 0.0003 nats/token. This supports tolerance-based agreement on this corpus, not identical predictions, task accuracy, or universal numerical safety."
+  }
+}

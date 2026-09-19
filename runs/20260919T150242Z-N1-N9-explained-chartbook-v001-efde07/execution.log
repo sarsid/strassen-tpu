@@ -1,0 +1,83 @@
+mkdir -p failed for path /Users/bagheera/.matplotlib: [Errno 1] Operation not permitted: '/Users/bagheera/.matplotlib'
+Matplotlib created a temporary cache directory at /var/folders/xx/kh2csrxx21z4d80xqhvg0hh80000gn/T/matplotlib-cvxs0_6h because there was an issue with the default path (/Users/bagheera/.matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/bagheera/.cache/fontconfig
+	/Users/bagheera/.fontconfig
+2026-09-19 11:02:43.396 system_profiler[17337:56488302] XType: Using static font registry.
+Matplotlib is building the font cache; this may take a moment.
+Rendered 1/47: n1-call-p1
+Rendered 2/47: n1-call-p2
+Rendered 3/47: n1-call-p3
+Rendered 4/47: n1-call-p4
+Rendered 5/47: n1-call-p5
+Rendered 6/47: n2-sweep-call
+Rendered 7/47: n2-sweep-prepared_kernel
+Rendered 8/47: n3-cubic_quadrant-call-p1
+Rendered 9/47: n3-strassen-call-p1
+Rendered 10/47: n3-cubic_quadrant-prepared_kernel-p1
+Rendered 11/47: n3-strassen-prepared_kernel-p1
+Rendered 12/47: n4-gaussian-relative_l2
+Rendered 13/47: n4-uniform-relative_l2
+Rendered 14/47: n4-log_scale-relative_l2
+Rendered 15/47: n4-outliers-relative_l2
+Rendered 16/47: n4-cancellation-relative_l2
+Rendered 17/47: n4-real-real_weight_gaussian_activation-relative_l2
+Rendered 18/47: n5-call-p1
+Rendered 19/47: n5-call-p2
+Rendered 20/47: n5-prepared_kernel-p1
+Rendered 21/47: n5-prepared_kernel-p2
+Rendered 22/47: n6-before-p1
+Rendered 23/47: n6-after-p1
+Rendered 24/47: n6-device
+Rendered 25/47: n6-supplement-before-p1
+Rendered 26/47: n6-supplement-after-p1
+Rendered 27/47: n6-supplement-device
+Rendered 28/47: n7-call-p1
+Rendered 29/47: n7-call-p2
+Rendered 30/47: n7-prepared_kernel-p1
+Rendered 31/47: n7-prepared_kernel-p2
+Rendered 32/47: n7-replica-call-p1
+Rendered 33/47: n7-replica-call-p2
+Rendered 34/47: n7-replica-prepared_kernel-p1
+Rendered 35/47: n7-replica-prepared_kernel-p2
+Rendered 36/47: n8-selected-swiglu-call-p1
+Rendered 37/47: n8-selected-residual-call-p1
+Rendered 38/47: n8-selected-swiglu-prepared_kernel-p1
+Rendered 39/47: n8-selected-residual-prepared_kernel-p1
+Rendered 40/47: n9-resident-qwen3-0.6b
+Rendered 41/47: n9-resident-mistral-7b-v0.3
+Rendered 42/47: n9-streamed-qwen3-0.6b
+Rendered 43/47: n9-streamed-mistral-7b-v0.3
+Rendered 44/47: n9-quality-nll_delta
+Rendered 45/47: n9-quality-mean_kl
+Rendered 46/47: n9-quality-top1_disagreement
+Rendered 47/47: n9-native-qualification
+Traceback (most recent call last):
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260919T150242Z-N1-N9-explained-chartbook-v001-efde07/source/tools/assemble_explained_pdf_v001.py", line 166, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260919T150242Z-N1-N9-explained-chartbook-v001-efde07/source/tools/assemble_explained_pdf_v001.py", line 132, in main
+    flowchart(c);guide(c,charts)
+                 ^^^^^^^^^^^^^^^
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260919T150242Z-N1-N9-explained-chartbook-v001-efde07/source/tools/assemble_explained_pdf_v001.py", line 111, in guide
+    c.setFillColor(HexColor('white'));c.saveState();c.translate(877,base+58);c.rotate(45);c.rect(-3,-3,6,6,fill=1,stroke=1);c.restoreState()
+                   ^^^^^^^^^^^^^^^^^
+  File "/Users/bagheera/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/reportlab/lib/colors.py", line 391, in HexColor
+    val = int(val,b)
+          ^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'white'
+Traceback (most recent call last):
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260919T150242Z-N1-N9-explained-chartbook-v001-efde07/source/tools/explain_chartbook_v001.py", line 137, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260919T150242Z-N1-N9-explained-chartbook-v001-efde07/source/tools/explain_chartbook_v001.py", line 130, in main
+    subprocess.run([args.pdf_python,str(Path(__file__).with_name('assemble_explained_pdf_v001.py')),
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    '--artifacts',str(out)],check=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.6/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/Users/bagheera/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3', '/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260919T150242Z-N1-N9-explained-chartbook-v001-efde07/source/tools/assemble_explained_pdf_v001.py', '--artifacts', '/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260919T150242Z-N1-N9-explained-chartbook-v001-efde07/artifacts']' returned non-zero exit status 1.
