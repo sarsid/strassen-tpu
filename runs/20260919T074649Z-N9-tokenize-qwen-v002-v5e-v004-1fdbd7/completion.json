@@ -1,0 +1,53 @@
+{
+  "allocation_id": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+  "archive_grace_seconds": 600,
+  "archive_sha256": "a31c49cd787dc2316ecfb38323b0693d1c22ea17b14ec7c780dedb9e1856d236",
+  "finished_utc": "2026-09-19T07:48:04.398206+00:00",
+  "launch_acknowledged": true,
+  "launch_attempted": true,
+  "orchestration_budget_seconds": 4500,
+  "orchestration_wall_seconds": 75.05818975018337,
+  "remote_completion": {
+    "allocation_id": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+    "elapsed_seconds": 57.646469814999364,
+    "finished_utc": "2026-09-19T07:47:50+00:00",
+    "phase": "N9-tokenize-qwen-v002",
+    "process_exit_code": 0,
+    "run_id": "20260919T074649Z-N9-tokenize-qwen-v002-v5e-v004-1fdbd7",
+    "started_utc": "2026-09-19T07:46:53+00:00",
+    "status": "completed"
+  },
+  "remote_may_still_be_running": false,
+  "status": "completed",
+  "summary": {
+    "action": "tokenize",
+    "blocked_access_is_not_successful_model": true,
+    "elapsed_seconds": 57.53102811200006,
+    "phase": "N9-tokenize-qwen-v002",
+    "records": [
+      {
+        "action": "tokenize",
+        "command": [
+          "/content/Strassen_MM_Focus/model-tools-v002/bin/python",
+          "/content/Strassen_MM_Focus/runs/20260919T074649Z-N9-tokenize-qwen-v002-v5e-v004-1fdbd7/source/tools/prepare_model_application_v001.py",
+          "tokenize",
+          "--output-dir",
+          "/content/Strassen_MM_Focus/runs/20260919T074649Z-N9-tokenize-qwen-v002-v5e-v004-1fdbd7/artifacts/preparation-00",
+          "--model-manifest",
+          "/content/Strassen_MM_Focus/models/Qwen--Qwen3-0.6B/c1899de289a04d12100db370d81485cdf75e47ca/manifest.json",
+          "--corpus-manifest",
+          "/content/Strassen_MM_Focus/models/corpus/b08601e04326c79dfdd32d625aee71d232d685c3/manifest.json"
+        ],
+        "exit_code": 0,
+        "model_id": null,
+        "status": {
+          "action": "tokenize",
+          "finished_utc": "2026-09-19T07:47:50+00:00",
+          "started_utc": "2026-09-19T07:46:53+00:00",
+          "status": "completed"
+        }
+      }
+    ],
+    "status": "completed"
+  }
+}
