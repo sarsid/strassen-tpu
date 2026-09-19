@@ -154,7 +154,7 @@ def capture_environment(args, campaign, compatibility):
         record = {"kind": item.device_kind, "id": int(item.id),
                   "platform": item.platform, "process_index": int(item.process_index)}
         for field in ("coords", "core_on_chip", "slice_index", "local_hardware_id"):
-            if hasattr(item, field):
+            if hasattr(item, field) and getattr(item, field) is not None:
                 record[field] = json_safe(getattr(item, field))
         device_records.append(record)
     identity = {
@@ -207,7 +207,7 @@ def verify_identity(environment, expected_path, campaign):
         fields = {"colab_endpoint", "hostname", "boot_id", "versions", "devices"}
     else:
         fields = set(campaign["device"]["identity_fields"]) | {
-            "hostname", "boot_id", "numpy_version", "mosaic_compatibility"
+            "hostname", "boot_id", "numpy_version", "mosaic_compatibility", "versions", "devices"
         }
     mismatches = {key: {"expected": prior.get(key), "actual": current.get(key)}
                   for key in sorted(fields) if prior.get(key) != current.get(key)}
@@ -436,7 +436,8 @@ class Runner:
             try:
                 fn = make_matmul(arm["algorithm"], shape, tuple(group["tile"]),
                                  variant=arm["variant"], interpret=False,
-                                 vmem_limit_bytes=self.campaign["memory"]["kernel_vmem_limit_mib"] * 1024**2)
+                                 vmem_limit_bytes=(None if arm["algorithm"] == "native" else
+                                                   self.campaign["memory"]["kernel_vmem_limit_mib"] * 1024**2))
             except Exception as error:
                 self.emit_error(context, error, "compile")
                 for scope in group["scopes"]:
@@ -566,6 +567,8 @@ class Runner:
             comparisons = []
             for other in live_entries:
                 is_baseline = (other["arm_id"] in ("native_xla", "cubic_basic")
+                               or (other["algorithm"] == "cubic_quadrant"
+                                   and other["variant"] == entry["variant"])
                                or (other["algorithm"] == entry["algorithm"] and other["variant"] == "plain"))
                 if is_baseline and other is not entry and other["scope"] == entry["scope"]:
                     pair = paired_comparison(other["samples"], entry["samples"], input_case["seed"])
@@ -634,6 +637,8 @@ def main(argv=None):
     args = parser.parse_args(argv)
     if args.max_wall_seconds <= 0:
         parser.error("--max-wall-seconds must be positive")
+    if args.phase != "smoke" and args.expected_identity is None:
+        parser.error("N1--N4 require --expected-identity from the qualified smoke run")
     args.campaign = args.campaign.resolve()
     args.output_dir.mkdir(parents=True, exist_ok=False)
     out = args.output_dir
