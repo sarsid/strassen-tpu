@@ -96,6 +96,10 @@ class Study:
             base.exclusive_json(directory/'model_summary.json',result)
             self.record('case_result',**result);return result
         path=support.resolve(self.args.campaign,item['model_manifest'])
+        for name in ('model_manifest','tokens_manifest','reference_manifest'):
+            input_path=support.resolve(self.args.campaign,item[name])
+            if base.digest_file(input_path)!=item['input_sha256'][name]:
+                raise ValueError('Frozen application input manifest hash changed: '+name)
         checkpoint=model.Checkpoint(path);config=checkpoint.config
         if checkpoint.manifest['model_id']!=item['model_id'] or checkpoint.manifest['revision']!=item['revision']:
             raise ValueError('Checkpoint does not match preregistered model/revision')
@@ -173,16 +177,29 @@ class Study:
             order=list(functions);rng.shuffle(order)
             for repeat in range(timing['repeats']):
                 for arm in order[repeat%len(order):]+order[:repeat%len(order)]:
-                    self.budget.check();start=time.perf_counter_ns()
-                    output=functions[arm](incoming,weights);output.block_until_ready()
-                    elapsed=(time.perf_counter_ns()-start)/1e6;resident[arm].append(elapsed)
-                    self.record('resident_layer_sample',model_id=item['model_id'],layer=layer,arm_id=arm,
-                                repeat=repeat,elapsed_ms=elapsed,scope='device resident full layer, same native incoming first-window state')
-                    del output
-            for arm in functions:
-                for window in range(32):
-                    self.budget.check();states[arm][window]=functions[arm](states[arm][window],weights)
-                    states[arm][window].block_until_ready()
+                    if arm not in functions: continue
+                    self.budget.check()
+                    try:
+                        start=time.perf_counter_ns();output=functions[arm](incoming,weights);output.block_until_ready()
+                        elapsed=(time.perf_counter_ns()-start)/1e6;resident[arm].append(elapsed)
+                        self.record('resident_layer_sample',model_id=item['model_id'],layer=layer,arm_id=arm,
+                                    repeat=repeat,elapsed_ms=elapsed,scope='device resident full layer, same native incoming first-window state')
+                        del output
+                    except Exception as problem:
+                        if arm=='native': raise
+                        failures[arm]={'status':'resident_timing_failed','layer':layer,'repeat':repeat,
+                                       'type':type(problem).__name__,'message':str(problem)}
+                        self.record('policy_error',model_id=item['model_id'],arm_id=arm,**failures[arm]);del functions[arm],states[arm]
+            for arm in list(functions):
+                try:
+                    for window in range(32):
+                        self.budget.check();states[arm][window]=functions[arm](states[arm][window],weights)
+                        states[arm][window].block_until_ready()
+                except Exception as problem:
+                    if arm=='native': raise
+                    failures[arm]={'status':'quality_propagation_failed','layer':layer,'window':window,
+                                   'type':type(problem).__name__,'message':str(problem)}
+                    self.record('policy_error',model_id=item['model_id'],arm_id=arm,**failures[arm]);del functions[arm],states[arm]
             del incoming,weights,host;gc.collect()
             self.record('quality_layer_complete',model_id=item['model_id'],layer=layer,arms=list(functions))
             print(f"N9 {item['model_id']}: propagated layer {layer+1}/{config['num_hidden_layers']} across32windows",flush=True)
@@ -194,11 +211,18 @@ class Study:
                 self.budget.check();hi=min(lo+128,1023)
                 native=model.head_logits(states['native'][window][lo:hi],norm,weight,config['rms_norm_eps'])
                 targets=jax.device_put(ids[window,lo+1:hi+1])
-                for arm in functions:
-                    candidate=native if arm=='native' else model.head_logits(states[arm][window][lo:hi],norm,weight,config['rms_norm_eps'])
-                    raw=self.host_metrics(native,candidate,targets)
-                    subtotal[arm]=combine(subtotal[arm],raw);totals[arm]=combine(totals[arm],raw)
-                    del candidate
+                for arm in list(functions):
+                    try:
+                        candidate=native if arm=='native' else model.head_logits(states[arm][window][lo:hi],norm,weight,config['rms_norm_eps'])
+                        raw=self.host_metrics(native,candidate,targets)
+                        subtotal[arm]=combine(subtotal[arm],raw);totals[arm]=combine(totals[arm],raw)
+                        del candidate
+                    except Exception as problem:
+                        if arm=='native': raise
+                        failures[arm]={'status':'quality_head_failed','window':window,'block':lo,
+                                       'type':type(problem).__name__,'message':str(problem)}
+                        self.record('policy_error',model_id=item['model_id'],arm_id=arm,**failures[arm])
+                        del functions[arm],states[arm],subtotal[arm],totals[arm]
                 del native,targets
             row={'window':window,'metrics':{arm:metrics(raw) for arm,raw in subtotal.items()}}
             window_results.append(row);self.record('quality_window',model_id=item['model_id'],**row)
@@ -215,27 +239,48 @@ class Study:
         streamed={arm:[] for arm in functions};order=list(functions);rng.shuffle(order)
         for repeat in range(self.campaign['streamed_repeats']):
             for arm in order[repeat%len(order):]+order[:repeat%len(order)]:
+                if arm in failures: continue
                 self.budget.check()
                 # Warm the full-width head shape outside the measured call once;
                 # chunk128 quality and sequence64 qualification compile other shapes.
-                if repeat==0:
-                    warm=self.full_forward(checkpoint,ids[0],functions[arm]);del warm;gc.collect()
-                start=time.perf_counter_ns();logits=self.full_forward(checkpoint,ids[0],functions[arm]);logits.block_until_ready()
-                elapsed=(time.perf_counter_ns()-start)/1e6;streamed[arm].append(elapsed)
-                self.record('streamed_forward_sample',model_id=item['model_id'],arm_id=arm,repeat=repeat,elapsed_ms=elapsed,
-                            input_window=0,sequence_length=1024,scope='single-window full-forward with host/disk/layout/device transfers; excludes download/tokenization/compile')
-                del logits;gc.collect()
+                try:
+                    if repeat==0:
+                        warm=self.full_forward(checkpoint,ids[0],functions[arm]);del warm;gc.collect()
+                    start=time.perf_counter_ns();logits=self.full_forward(checkpoint,ids[0],functions[arm]);logits.block_until_ready()
+                    elapsed=(time.perf_counter_ns()-start)/1e6;streamed[arm].append(elapsed)
+                    self.record('streamed_forward_sample',model_id=item['model_id'],arm_id=arm,repeat=repeat,elapsed_ms=elapsed,
+                                input_window=0,sequence_length=1024,scope='single-window full-forward with host/disk/layout/device transfers; excludes download/tokenization/compile')
+                    del logits;gc.collect()
+                except Exception as problem:
+                    if arm=='native': raise
+                    failures[arm]={'status':'streamed_forward_failed','repeat':repeat,
+                                   'type':type(problem).__name__,'message':str(problem)}
+                    self.record('policy_error',model_id=item['model_id'],arm_id=arm,**failures[arm])
         result={'model_id':item['model_id'],'revision':item['revision'],'status':'completed','quality_measured':True,
                 'qualification':qualified,'quality':quality,'failures':failures,
-                'resident_layer_mean_ms':{arm:float(np.mean(values)) for arm,values in resident.items() if values},
+                'resident_layer_mean_ms':{arm:float(np.mean(resident[arm])) for arm in functions
+                    if len(resident[arm])==config['num_hidden_layers']*timing['repeats']},
+                'resident_sample_coverage':{arm:{'observed':len(values),'expected':config['num_hidden_layers']*timing['repeats'],
+                    'complete':len(values)==config['num_hidden_layers']*timing['repeats']} for arm,values in resident.items()},
                 'streamed_forward_samples_ms':streamed,
-                'streamed_forward_mean_ms':{arm:float(np.mean(values)) for arm,values in streamed.items()},
-                'eligible_for_speedup_claim':{arm:quality[arm]['passed'] for arm in functions},
+                'streamed_forward_mean_ms':{arm:float(np.mean(values)) for arm,values in streamed.items()
+                    if len(values)==self.campaign['streamed_repeats']},
+                'streamed_descriptive_statistics':{arm:{'count':len(values),'mean_ms':float(np.mean(values)),
+                    'std_ms':float(np.std(values,ddof=1)) if len(values)>1 else None,
+                    'min_ms':float(np.min(values)),'max_ms':float(np.max(values))} for arm,values in streamed.items() if values},
+                'uncertainty_scope':'Three paired streamed repeats are descriptive; resident samples are paired by layer and repeat in results.jsonl. Layers are not independent statistical replicates.',
+                'eligible_for_speedup_claim':{arm:arm in quality and quality[arm]['passed'] and arm not in failures
+                    and len(streamed.get(arm,[]))==self.campaign['streamed_repeats'] for arm in policies},
                 'scope':'Teacher-forced full-model prefill quality; resident-layer and transfer-inclusive streamed full-forward performance; no generation/task capability claim'}
         base.exclusive_json(directory/'model_summary.json',result)
         for arm,value in quality.items():
-            self.record('case_result',model_id=item['model_id'],arm_id=arm,status='ok' if value['passed'] else 'failed_quality',
-                        quality=value,eligible_for_speedup_claim=value['passed'])
+            self.record('case_result',model_id=item['model_id'],arm_id=arm,
+                        status=failures[arm]['status'] if arm in failures else ('ok' if value['passed'] else 'failed_quality'),
+                        quality=value,eligible_for_speedup_claim=result['eligible_for_speedup_claim'][arm])
+        for arm,failure in failures.items():
+            if arm not in quality:
+                self.record('case_result',model_id=item['model_id'],arm_id=arm,status=failure['status'],
+                            error=failure,quality=None,eligible_for_speedup_claim=False)
         del functions,checkpoint;gc.collect();jax.clear_caches()
         return result
 
@@ -244,7 +289,9 @@ def main(argv=None):
     args=support.parser('N9').parse_args(argv);started=time.monotonic()
     campaign=support.begin(args);journal=base.Journal(args.output_dir,'N9');results=[];completed=False;error=None
     try:
-        support.initialize_device(args,campaign,journal)
+        environment=support.initialize_device(args,campaign,journal)
+        if campaign.get('selection_environment_identity')!=environment['identity']:
+            raise ValueError('Frozen N8 policy-selection environment differs from current runtime')
         global jax,jnp,np,model
         import jax
         import jax.numpy as jnp

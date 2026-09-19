@@ -66,10 +66,38 @@ def correctness(output,reference,rows,cols,gate):
     error=actual.astype(np.float64)-reference.astype(np.float64)
     relative=float(np.linalg.norm(error)/max(np.linalg.norm(reference.astype(np.float64)),1e-30))
     absolute=float(np.max(np.abs(error)));scale=float(np.max(np.abs(reference)))
+    passed=bool(finite and relative<=gate['relative_l2_max'] and absolute<=gate['max_abs_atol']+gate['max_abs_reference_rtol']*scale)
     return {'finite':finite,'relative_l2':relative,'max_abs_error':absolute,'max_abs_reference':scale,
-        'passed':bool(finite and relative<=gate['relative_l2_max'] and absolute<=gate['max_abs_atol']+gate['max_abs_reference_rtol']*scale),
+        'passed':passed,'pass':passed,
         'reference_scope':'sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries',
         'sample_rows':rows.tolist(),'sample_columns':cols.tolist(),'gate':gate}
+
+
+def contrasts(key,entry,entries,scope,kind,seed,repeats):
+    """Fixed contrasts: layout, standard fusion, early, native and cubic controls."""
+    refs=[];algorithm=entry['arm']['algorithm']
+    if key.endswith('_packed_unfused'): refs.append(algorithm+'_unpacked_unfused')
+    if key.endswith('_fused'):
+        refs.append(algorithm+('_packed_unfused' if kind=='swiglu' else '_unpacked_unfused'))
+    if key=='strassen_early': refs.append('strassen_fused')
+    if algorithm=='strassen':
+        refs.append('native_joint_graph')
+        suffix=key.removeprefix('strassen')
+        if suffix=='_early': suffix='_fused'
+        refs.extend(['cubic_full'+suffix,'cubic_quadrant'+suffix])
+        if key=='strassen_n5_selected_unfused': refs.append('cubic_n5_selected_unfused')
+    rows=[]
+    def samples(which): return [{'round':i,'elapsed_ms':value} for i,value in enumerate(which['samples'][scope])]
+    for ref in dict.fromkeys(refs):
+        if ref not in entries or ref==key: continue
+        other=entries[ref];comparison=base.paired_comparison(samples(other),samples(entry),seed)
+        if comparison:
+            comparison.update(reference_arm=ref,valid_numerical_comparison=bool(
+                other['correctness'][scope]['passed'] and entry['correctness'][scope]['passed']
+                and not other['errors'].get(scope) and not entry['errors'].get(scope)
+                and len(other['samples'][scope])==repeats and len(entry['samples'][scope])==repeats))
+            rows.append(comparison)
+    return rows
 
 
 def main(argv=None):
@@ -87,6 +115,8 @@ def main(argv=None):
         selections=None
         if campaign.get('n5_selections'):
             path=support.resolve(args.campaign,campaign['n5_selections']);selections=json.loads(path.read_text())
+            if base.digest_file(path)!=campaign['n5_selections_sha256']:
+                raise ValueError('Frozen N5 selection hash differs')
             if selections['environment_identity']!=environment['identity']:
                 raise ValueError('N5 selection environment identity differs from this application run')
             shutil.copyfile(path,args.output_dir/'n5_selections.json')
@@ -121,7 +151,7 @@ def main(argv=None):
                     prepared=prepare(*inputs);jax.block_until_ready(prepared)
                     kernel=jax.jit(fn.prepared).lower(*prepared).compile()
                     entry={'arm':arm,'fn':fn,'prepare':prepare,'call':call,'prepared_kernel':kernel,'prepared':prepared,
-                           'samples':{'call':[],'prepared_kernel':[]},'correctness':{}}
+                           'samples':{'call':[],'prepared_kernel':[]},'correctness':{},'errors':{}}
                     journal.emit('compile',group_id=group['id'],arm_id=key,compile_seconds=time.monotonic()-compile_start,
                                  metadata=fn.metadata,prepared_shapes=[list(a.shape) for a in prepared])
                     for scope,operands in (('call',inputs),('prepared_kernel',prepared)):
@@ -130,37 +160,55 @@ def main(argv=None):
                         del output
                     entries[key]=entry
                 except Exception as problem:
-                    row={'group_id':group['id'],'arm_id':key,'status':'compile_or_correctness_error',
-                         'error_type':type(problem).__name__,'error':str(problem),'eligible_for_speedup_claim':False}
-                    journal.emit('case_result',**row);group_results.append(row)
+                    for scope in ('call','prepared_kernel'):
+                        row={'group_id':group['id'],'shape_mkn':group['shape_mkn'],'arm_id':key,'scope':scope,
+                             'status':base.error_status(problem,'compile'),'failure_scope':'whole_arm_compile_or_initial_check',
+                             'error_type':type(problem).__name__,'error':str(problem),'eligible_for_speedup_claim':False}
+                        journal.emit('case_result',**row);group_results.append(row)
             timing=campaign['application_timing']
             for scope in ('call','prepared_kernel'):
                 eligible_arms=[key for key,entry in entries.items() if entry['correctness'][scope]['passed']]
                 for key in eligible_arms:
                     entry=entries[key];operands=inputs if scope=='call' else entry['prepared']
-                    for _ in range(timing['warmups']):
-                        budget.check();entry[scope](*operands).block_until_ready()
+                    try:
+                        for _ in range(timing['warmups']):
+                            budget.check();entry[scope](*operands).block_until_ready()
+                    except Exception as problem:
+                        entry['errors'][scope]={'type':type(problem).__name__,'message':str(problem),'during':'warmup'}
                 order=list(eligible_arms);rng.shuffle(order)
                 for repeat in range(timing['repeats']):
                     if not order: break
                     for key in order[repeat%len(order):]+order[:repeat%len(order)]:
                         budget.check();entry=entries[key];operands=inputs if scope=='call' else entry['prepared']
-                        start=time.perf_counter_ns();output=entry[scope](*operands);output.block_until_ready()
-                        elapsed=(time.perf_counter_ns()-start)/1e6;entry['samples'][scope].append(elapsed)
-                        journal.emit('timing_sample',group_id=group['id'],arm_id=key,scope=scope,repeat=repeat,elapsed_ms=elapsed)
-                        del output
+                        if scope in entry['errors']: continue
+                        try:
+                            start=time.perf_counter_ns();output=entry[scope](*operands);output.block_until_ready()
+                            elapsed=(time.perf_counter_ns()-start)/1e6;entry['samples'][scope].append(elapsed)
+                            journal.emit('timing_sample',group_id=group['id'],arm_id=key,scope=scope,repeat=repeat,round=repeat,elapsed_ms=elapsed)
+                            del output
+                        except Exception as problem:
+                            entry['errors'][scope]={'type':type(problem).__name__,'message':str(problem),'during':'timing','round':repeat}
             for key,entry in entries.items():
                 # Preparation gets separate measured samples, never attributed to the prepared kernel.
                 prep_samples=[]
-                for repeat in range(timing['preparation_repeats']):
-                    budget.check();start=time.perf_counter_ns();prepared=entry['prepare'](*inputs);jax.block_until_ready(prepared)
-                    prep_samples.append((time.perf_counter_ns()-start)/1e6);del prepared
+                try:
+                    for repeat in range(timing['preparation_repeats']):
+                        budget.check();start=time.perf_counter_ns();prepared=entry['prepare'](*inputs);jax.block_until_ready(prepared)
+                        prep_samples.append((time.perf_counter_ns()-start)/1e6);del prepared
+                except Exception as problem:
+                    for scope in ('call','prepared_kernel'):
+                        entry['errors'].setdefault(scope,{'type':type(problem).__name__,'message':str(problem),'during':'preparation_timing'})
                 for scope in ('call','prepared_kernel'):
                     samples=entry['samples'][scope];check=entry['correctness'][scope]
-                    passed=check['passed'] and len(samples)==timing['repeats']
-                    row={'group_id':group['id'],'arm_id':key,'scope':scope,'status':'ok' if passed else 'failed_correctness',
+                    passed=check['passed'] and len(samples)==timing['repeats'] and not entry['errors'].get(scope)
+                    raw=[{'round':i,'elapsed_ms':value} for i,value in enumerate(samples)]
+                    row={'group_id':group['id'],'shape_mkn':group['shape_mkn'],'arm_id':key,'scope':scope,
+                         'status':'execution_error' if scope in entry['errors'] else ('ok' if passed else 'numerical_failure'),
+                         'error':entry['errors'].get(scope),
                          'algorithm':entry['arm']['algorithm'],'variant':entry['arm']['variant'],'tile':entry['arm']['tile'],
-                         'correctness':check,'metadata':entry['fn'].metadata,'raw_ms':samples,
+                         'correctness':check,'metadata':entry['fn'].metadata,'kernel_metadata':entry['fn'].metadata,'raw_ms':samples,
+                         'timing':{**base.basic_statistics(raw),'raw_samples':raw},
+                         'comparisons':contrasts(key,entry,entries,scope,group['kind'],campaign['seed']+index,timing['repeats']),
                          'mean_ms':float(np.mean(samples)) if samples else None,'median_ms':float(np.median(samples)) if samples else None,
                          'std_ms':float(np.std(samples,ddof=1)) if len(samples)>1 else None,
                          'preparation_raw_ms':prep_samples,'eligible_for_speedup_claim':passed,
@@ -181,6 +229,10 @@ def main(argv=None):
             if 'entry' in locals(): del entry
             if 'fn' in locals(): del fn
             if 'prepared' in locals(): del prepared
+            if 'operands' in locals(): del operands
+            if 'kernel' in locals(): del kernel
+            if 'call' in locals(): del call
+            if 'prepare' in locals(): del prepare
             gc.collect();jax.clear_caches()
             print(f"N8 [{index+1}/{len(planned)}] {group['id']} complete",flush=True)
         base.exclusive_json(args.output_dir/'application_selections.json',{'phase':'N8','environment_identity':environment['identity'],
