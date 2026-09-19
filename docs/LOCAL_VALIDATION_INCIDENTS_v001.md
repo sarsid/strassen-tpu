@@ -10,3 +10,9 @@ These failures concern local validation infrastructure or fixtures. They are sep
 The original v002 negative path tests could also pass at the wrong guard. The v003 assertions now require the intended rejection reason, so those passing checks are meaningful. The production continuation derives its root from a resolved source-file path; the installer targets the canonical Linux `/content/Strassen_MM_Focus` directory recorded by the host preflight.
 
 The successful local tests establish guard behavior, not successful remote installation. The remote model-tools repair and reference preparation still require their own archived executions.
+
+## N9 input finalization layout mismatch
+
+`20260919T081201Z-N9-input-finalization-v003-73bb4e` failed locally before producing a combined input bundle (commit `d1204ce4`). The v003 validator incorrectly required an additional `artifacts/artifact_manifest.json` in every preparation run. The frozen `application_prep_v001` actually emits a child `preparation-00/artifact_manifest.json`; the orchestrator's outer `artifact-manifest.json` seals that child manifest and every preparation artifact. The newer installer and tokenizer diagnostic also emit the additional canonical manifest. No original evidence was missing from its applicable archive layout, and no checkpoint, token or reference file was changed.
+
+The failed v003 code and new partial plan directory remain preserved. Recovery uses a new v004 validator that recognizes the existing preparation layout, verifies every artifact against the outer seal and every child artifact against its child seal, and continues to require the canonical seal for the newer installer and diagnostic formats. The agents' initial static review missed this schema difference; the repair review explicitly checks the actual completed preparation fixtures.
