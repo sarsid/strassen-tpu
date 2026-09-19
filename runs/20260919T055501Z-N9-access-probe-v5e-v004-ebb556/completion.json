@@ -1,0 +1,96 @@
+{
+  "allocation_id": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+  "archive_grace_seconds": 600,
+  "archive_sha256": "cae8a162c7ee0a0254176da8812c407b907af95950237f88e8a7825220b40b80",
+  "finished_utc": "2026-09-19T05:55:25.742444+00:00",
+  "launch_acknowledged": true,
+  "launch_attempted": true,
+  "orchestration_budget_seconds": 1800,
+  "orchestration_wall_seconds": 24.283419208135456,
+  "remote_completion": {
+    "allocation_id": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+    "elapsed_seconds": 2.2788894949999303,
+    "finished_utc": "2026-09-19T05:55:07+00:00",
+    "phase": "N9-access-probe",
+    "process_exit_code": 0,
+    "run_id": "20260919T055501Z-N9-access-probe-v5e-v004-ebb556",
+    "started_utc": "2026-09-19T05:55:05+00:00",
+    "status": "completed"
+  },
+  "remote_may_still_be_running": false,
+  "status": "completed",
+  "summary": {
+    "action": "probe",
+    "blocked_access_is_not_successful_model": true,
+    "elapsed_seconds": 2.1469307739999977,
+    "phase": "N9-access-probe",
+    "records": [
+      {
+        "action": "probe",
+        "command": [
+          "/usr/bin/python3",
+          "/content/Strassen_MM_Focus/runs/20260919T055501Z-N9-access-probe-v5e-v004-ebb556/source/tools/prepare_model_application_v001.py",
+          "probe",
+          "--output-dir",
+          "/content/Strassen_MM_Focus/runs/20260919T055501Z-N9-access-probe-v5e-v004-ebb556/artifacts/preparation-00",
+          "--model-id",
+          "Qwen/Qwen3-0.6B",
+          "--use-existing-token"
+        ],
+        "exit_code": 0,
+        "model_id": "Qwen/Qwen3-0.6B",
+        "status": {
+          "action": "probe",
+          "finished_utc": "2026-09-19T05:55:06+00:00",
+          "started_utc": "2026-09-19T05:55:06+00:00",
+          "status": "completed"
+        }
+      },
+      {
+        "action": "probe",
+        "command": [
+          "/usr/bin/python3",
+          "/content/Strassen_MM_Focus/runs/20260919T055501Z-N9-access-probe-v5e-v004-ebb556/source/tools/prepare_model_application_v001.py",
+          "probe",
+          "--output-dir",
+          "/content/Strassen_MM_Focus/runs/20260919T055501Z-N9-access-probe-v5e-v004-ebb556/artifacts/preparation-01",
+          "--model-id",
+          "mistralai/Mistral-7B-v0.3",
+          "--use-existing-token"
+        ],
+        "exit_code": 0,
+        "model_id": "mistralai/Mistral-7B-v0.3",
+        "status": {
+          "action": "probe",
+          "finished_utc": "2026-09-19T05:55:07+00:00",
+          "started_utc": "2026-09-19T05:55:06+00:00",
+          "status": "completed"
+        }
+      },
+      {
+        "action": "probe",
+        "command": [
+          "/usr/bin/python3",
+          "/content/Strassen_MM_Focus/runs/20260919T055501Z-N9-access-probe-v5e-v004-ebb556/source/tools/prepare_model_application_v001.py",
+          "probe",
+          "--output-dir",
+          "/content/Strassen_MM_Focus/runs/20260919T055501Z-N9-access-probe-v5e-v004-ebb556/artifacts/preparation-02",
+          "--model-id",
+          "google/gemma-3-1b-pt",
+          "--use-existing-token"
+        ],
+        "exit_code": 1,
+        "model_id": "google/gemma-3-1b-pt",
+        "status": {
+          "action": "probe",
+          "error": "Official repository denied access; no terms acceptance attempted",
+          "error_type": "AccessBlocked",
+          "finished_utc": "2026-09-19T05:55:07+00:00",
+          "started_utc": "2026-09-19T05:55:07+00:00",
+          "status": "blocked_access"
+        }
+      }
+    ],
+    "status": "completed"
+  }
+}
