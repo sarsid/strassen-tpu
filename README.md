@@ -3,6 +3,8 @@
 Fresh, self-contained matrix multiplication study. The original project remains
 untouched; reused implementations are copied here with provenance.
 
+**Current results: [Start here — completed N5–N9 and fresh-v5e replication](START_HERE_v003.md).**
+
 The subsequent N5–N9 study and its separately reported fresh-v5e replication
 are documented in the [N5–N9 protocol](protocols/N5_N9_v1.md),
 [decision log](decisions/N5_N9_v001.md), and versioned `START_HERE` review notes.
