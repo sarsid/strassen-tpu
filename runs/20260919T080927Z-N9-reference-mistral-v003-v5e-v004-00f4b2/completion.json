@@ -1,0 +1,53 @@
+{
+  "allocation_id": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+  "archive_grace_seconds": 600,
+  "archive_sha256": "59503b15bcdacaad550b50456f910135b58c270550c386376bdb0c64da30b937",
+  "finished_utc": "2026-09-19T08:11:35.128104+00:00",
+  "launch_acknowledged": true,
+  "launch_attempted": true,
+  "orchestration_budget_seconds": 8100,
+  "orchestration_wall_seconds": 127.53197541600093,
+  "remote_completion": {
+    "allocation_id": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+    "elapsed_seconds": 95.87409524500072,
+    "finished_utc": "2026-09-19T08:11:08+00:00",
+    "phase": "N9-reference-mistral-v003",
+    "process_exit_code": 0,
+    "run_id": "20260919T080927Z-N9-reference-mistral-v003-v5e-v004-00f4b2",
+    "started_utc": "2026-09-19T08:09:32+00:00",
+    "status": "completed"
+  },
+  "remote_may_still_be_running": false,
+  "status": "completed",
+  "summary": {
+    "action": "reference",
+    "blocked_access_is_not_successful_model": true,
+    "elapsed_seconds": 95.75047288300084,
+    "phase": "N9-reference-mistral-v003",
+    "records": [
+      {
+        "action": "reference",
+        "command": [
+          "/content/Strassen_MM_Focus/model-tools-v003/bin/python",
+          "/content/Strassen_MM_Focus/runs/20260919T080927Z-N9-reference-mistral-v003-v5e-v004-00f4b2/source/tools/prepare_model_application_v001.py",
+          "reference",
+          "--output-dir",
+          "/content/Strassen_MM_Focus/runs/20260919T080927Z-N9-reference-mistral-v003-v5e-v004-00f4b2/artifacts/preparation-00",
+          "--model-manifest",
+          "/content/Strassen_MM_Focus/models/mistralai--Mistral-7B-v0.3/caa1feb0e54d415e2df31207e5f4e273e33509b1/manifest.json",
+          "--tokens",
+          "/content/Strassen_MM_Focus/runs/20260919T080427Z-N9-tokenize-mistral-v003-v5e-v004-1b9bce/artifacts/preparation-00/token_ids.npy"
+        ],
+        "exit_code": 0,
+        "model_id": null,
+        "status": {
+          "action": "reference",
+          "finished_utc": "2026-09-19T08:11:07+00:00",
+          "started_utc": "2026-09-19T08:09:32+00:00",
+          "status": "completed"
+        }
+      }
+    ],
+    "status": "completed"
+  }
+}
