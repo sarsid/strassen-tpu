@@ -1,0 +1,26 @@
+HloModule jit_complete, is_scheduled=true, entry_computation_layout={(bf16[8192,8192]{1,0:T(8,128)(2,1)}, bf16[8192,8192]{1,0:T(8,128)(2,1)})->f32[8192,8192]{1,0:T(8,128)}}, allow_spmd_sharding_propagation_to_parameters={true,true}, allow_spmd_sharding_propagation_to_output={true}
+
+%bitcast_fusion (bitcast_input: bf16[8192,8192]) -> bf16[8192,8192] {
+  %bitcast_input = bf16[8192,8192]{1,0:T(8,128)(2,1)} parameter(0)
+  ROOT %bitcast = bf16[8192,8192]{1,0:T(8,128)(2,1)} bitcast(%bitcast_input)
+}
+
+%bitcast_fusion.1 (bitcast_input.1: bf16[8192,8192]) -> bf16[8192,8192] {
+  %bitcast_input.1 = bf16[8192,8192]{1,0:T(8,128)(2,1)} parameter(0)
+  ROOT %bitcast.1 = bf16[8192,8192]{1,0:T(8,128)(2,1)} bitcast(%bitcast_input.1)
+}
+
+%fused_computation (param_0: bf16[8192,8192], param_1: bf16[8192,8192]) -> f32[8192,8192] {
+  %param_0 = bf16[8192,8192]{1,0:T(8,128)(2,1)} parameter(0)
+  %fusion.1 = bf16[8192,8192]{1,0:T(8,128)(2,1)} fusion(%param_0), kind=kLoop, calls=%bitcast_fusion
+  %param_1 = bf16[8192,8192]{1,0:T(8,128)(2,1)} parameter(1)
+  %fusion.2 = bf16[8192,8192]{1,0:T(8,128)(2,1)} fusion(%param_1), kind=kLoop, calls=%bitcast_fusion.1
+  ROOT %convolution.1 = f32[8192,8192]{1,0:T(8,128)} convolution(%fusion.1, %fusion.2), dim_labels=bf_io->bf, metadata={op_name="jit(complete)/dot_general" source_file="/content/Strassen_MM_Focus/runs/20260919T073356Z-N6-v5e-v004-dde5c0/source/src/strassen_mm/kernels_v001.py" source_line=117 source_end_line=118 source_column=11 source_end_column=55}
+}
+
+ENTRY %main.4 (Arg_0.1: bf16[8192,8192], Arg_1.2: bf16[8192,8192]) -> f32[8192,8192] {
+  %Arg_1.2 = bf16[8192,8192]{1,0:T(8,128)(2,1)} parameter(1), metadata={op_name="b"}
+  %Arg_0.1 = bf16[8192,8192]{1,0:T(8,128)(2,1)} parameter(0), metadata={op_name="a"}
+  ROOT %fusion = f32[8192,8192]{1,0:T(8,128)} fusion(%Arg_0.1, %Arg_1.2), kind=kOutput, calls=%fused_computation, metadata={op_name="jit(complete)/dot_general" source_file="/content/Strassen_MM_Focus/runs/20260919T073356Z-N6-v5e-v004-dde5c0/source/src/strassen_mm/kernels_v001.py" source_line=117 source_end_line=118 source_column=11 source_end_column=55}, backend_config={"flag_configs":[],"window_config":{"kernel_window_bounds":["64","8"],"output_window_bounds":["128","8"],"input_window_bounds":["128","4"],"estimated_cycles":"9284096","iteration_bounds":["8","8","16"]},"scoped_memory_configs":[],"used_scoped_memory_configs":[{"memory_space":"1","offset":"0","size":"13459456"}],"retry_config":{"retry_count":"0"},"convolution_algorithm_config":{"emitter":"EmitAllBatchInSublanes"}}
+}
+
