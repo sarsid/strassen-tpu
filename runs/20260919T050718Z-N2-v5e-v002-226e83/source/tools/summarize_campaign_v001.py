@@ -19,7 +19,6 @@ from datetime import datetime, timezone
 import hashlib
 import json
 import math
-import re
 from pathlib import Path
 import statistics
 import sys
@@ -33,7 +32,7 @@ LIMITATIONS = [
     "These are current fixed-tile elementary kernels and bounded tile screens, not the strongest independently tuned cubic or Strassen baselines.",
     "N2 minima are best observed screening measurements; they are not fresh confirmations, globally optimal tiles, or a deployed selection rule.",
     "There are no held-out generalization, v6e replication, model-quality, or end-to-end LLM performance claims in N1--N4.",
-    "Core v1 LLM-associated shapes use synthetic BF16 matrices. The optional separately reported real-weight supplement uses actual weight tensors with synthetic activations; it does not test real activation distributions or model quality.",
+    "LLM-associated shapes use synthetic BF16 matrices, not checkpoint weights or recorded activations. The originally discussed real-matrix-value N4 component remains outstanding until a separately archived supplement is completed.",
     "Complete-call timing includes device preparation/padding and output cropping; it excludes compilation and host transfers. Prepared-kernel results remain separate in the evidence.",
     "A confidence interval containing one is inconclusive at this measurement precision; it does not establish equal performance. Intervals are per-comparison, without familywise multiplicity correction.",
     "Sampled-reference errors cover a saved row-column cross-product using all K, not a certified maximum over the complete output. Whole-output finite checks are separate.",
@@ -111,11 +110,10 @@ def verify_seal(artifacts, issues):
         elif sha256(target) != expected:
             issues.append(f"sealed artifact hash mismatch: {relative}")
     return {"artifact_manifest_sha256": sha256(artifacts / "artifact_manifest.json"),
-            "sealed_file_count": len(hashes), "sealed_utc": seal.get("sealed_utc"),
-            "sealed_paths": sorted(hashes)}
+            "sealed_file_count": len(hashes), "sealed_utc": seal.get("sealed_utc")}
 
 
-def audit_run(run_path, *, supplement=False):
+def audit_run(run_path):
     issues = []
     artifacts = canonical_artifacts(run_path)
     seal = verify_seal(artifacts, issues)
@@ -124,10 +122,8 @@ def audit_run(run_path, *, supplement=False):
     planned = load_json(artifacts / "planned_cases.json")
     source = load_json(artifacts / "source_manifest.json")
     phase = summary.get("phase")
-    if phase not in EXPECTED_RESULTS or (supplement and phase != "N4"):
-        raise ValueError(f"Unexpected phase {phase!r} at {artifacts}")
-    expected_results = 48 if supplement else EXPECTED_RESULTS[phase]
-    expected_groups = 4 if supplement else EXPECTED_GROUPS[phase]
+    if phase not in EXPECTED_RESULTS:
+        raise ValueError(f"Expected an N1--N4 run, got phase {phase!r} at {artifacts}")
     rows, samples, event_counts = [], defaultdict(list), Counter()
     completed_events = []
     with (artifacts / "results.jsonl").open(encoding="utf-8") as handle:
@@ -151,10 +147,10 @@ def audit_run(run_path, *, supplement=False):
         issues.append("phase did not complete")
     if len(completed_events) != 1 or completed_events[0].get("completed") is not True:
         issues.append("journal does not have exactly one completed run_complete event")
-    if len(rows) != expected_results:
-        issues.append(f"case_result count {len(rows)} != expected {expected_results}")
-    if len(planned) != expected_groups or summary.get("planned_group_count") != len(planned):
-        issues.append(f"planned group count does not match expected {expected_groups}")
+    if len(rows) != EXPECTED_RESULTS[phase]:
+        issues.append(f"case_result count {len(rows)} != expected {EXPECTED_RESULTS[phase]}")
+    if len(planned) != EXPECTED_GROUPS[phase] or summary.get("planned_group_count") != len(planned):
+        issues.append(f"planned group count does not match expected {EXPECTED_GROUPS[phase]}")
     expected = set()
     groups = {}
     for group in planned:
@@ -217,41 +213,13 @@ def audit_run(run_path, *, supplement=False):
         issues.append("raw samples have no corresponding case_result")
     config_hashes = {key: value for key, value in source.get("sha256", {}).items()
                      if key.startswith("config_snapshot/")}
-    if (not supplement and len(config_hashes) != 3) or (supplement and not config_hashes):
-        issues.append("source manifest must identify the frozen configuration files")
-    provenance = {}
-    if supplement:
-        for relative in seal.get("sealed_paths", []):
-            path = artifacts / relative
-            if path.suffix == ".json" and any(term in path.name.lower() for term in ("weight", "provenance", "supplement")):
-                provenance[relative] = load_json(path)
-        weight_manifest = provenance.get("weights_provenance.json")
-        if not isinstance(weight_manifest, dict):
-            issues.append("supplement missing sealed weights_provenance.json")
-        else:
-            if weight_manifest.get("model_id") != "Qwen/Qwen3-0.6B":
-                issues.append("supplement model provenance is not Qwen/Qwen3-0.6B")
-            if not re.fullmatch(r"[0-9a-fA-F]{40}", str(weight_manifest.get("revision", ""))):
-                issues.append("supplement does not identify a frozen 40-hex checkpoint revision")
-            tensors = weight_manifest.get("tensors", [])
-            expected_tensors = {"model.layers.0.self_attn.q_proj.weight": [2048, 1024],
-                                "model.layers.0.mlp.down_proj.weight": [1024, 3072]}
-            observed_tensors = {tensor.get("name"): tensor for tensor in tensors}
-            if set(observed_tensors) != set(expected_tensors) or len(tensors) != 2:
-                issues.append("supplement provenance does not contain exactly the two specified actual weight tensors")
-            for name, expected_shape in expected_tensors.items():
-                tensor = observed_tensors.get(name, {})
-                if (tensor.get("shape") != expected_shape or tensor.get("dtype") != "BF16"
-                        or not re.fullmatch(r"[0-9a-fA-F]{64}", str(tensor.get("sha256", "")))):
-                    issues.append(f"supplement tensor shape/dtype/hash invalid: {name}")
-        shapes = {tuple(group["shape"][axis] for axis in ("m", "k", "n")) for group in planned}
-        if shapes != {(512, 1024, 2048), (2048, 1024, 2048), (512, 3072, 1024), (2048, 3072, 1024)}:
-            issues.append("supplement planned shapes do not match the two weights and two M values")
+    if len(config_hashes) != 3:
+        issues.append("source manifest must identify campaign, shapes and distribution configurations")
     return {"phase": phase, "run_path": str(run_path.resolve()), "artifacts": str(artifacts),
             "issues": issues, "summary": summary, "environment": environment, "identity": identity,
             "source_manifest": source, "configuration_hashes": config_hashes, "seal": seal,
             "event_counts": dict(event_counts), "rows": rows, "groups": groups,
-            "sample_rows": samples, "supplement": supplement, "weight_provenance": provenance}
+            "sample_rows": samples}
 
 
 def eligible(row):
@@ -444,15 +412,6 @@ def render_markdown(report):
         categories, relative = row["categories"], row["relative_l2"]
         other = categories["errors"] + categories["skips"] + categories["incomplete"]
         lines.append(f"| {row['arm_id']} | {row['distribution']} | {categories['ok']} | {categories['numerical_failure']} | {other} | {format_number(relative.get('median'))} | {format_number(relative.get('max'))} |")
-    supplement = report.get("n4_real_weight_supplement")
-    lines += ["", "## N4 actual-weight supplement", ""]
-    if supplement is None:
-        lines += ["Not supplied. The original real-matrix-value component remains outstanding beyond the synthetic v1 cohort.", ""]
-    else:
-        categories = supplement["categories"]
-        lines += ["Separately archived 48-case study: actual BF16 Qwen3-0.6B layer-0 q_proj/down_proj weights, synthetic Gaussian activations, M=512/2048, three seeds and four plain algorithms. No real-activation or model-quality claim.", "",
-                  f"Passed: **{categories['ok']}**; numerical failures: **{categories['numerical_failure']}**; errors: **{categories['errors']}**; skips: **{categories['skips']}**.", "",
-                  "Weight provenance, planned cases and numerical details are retained in the JSON report. This supplement does not change the core N4 count of 480.", ""]
     lines += ["", "## Scope and limits", ""]
     lines += [f"- {text}" for text in LIMITATIONS]
     lines += ["", "Exact selected runs, configuration hashes, per-shape comparisons, all screen candidates, and numerical cases are in `summary.json`. Source measurements remain in the supplied immutable run artifacts.", ""]
@@ -462,7 +421,6 @@ def render_markdown(report):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run", action="append", type=Path, required=True, help="Explicit run or canonical artifacts directory; repeat exactly once per N1--N4 phase.")
-    parser.add_argument("--supplement", type=Path, help="Optional separately archived N4 actual-weight supplement: 48 cases, four groups, same machine identity.")
     parser.add_argument("--output-dir", type=Path, required=True, help="New directory; existing paths are rejected.")
     args = parser.parse_args(argv)
     output = args.output_dir.resolve()
@@ -487,13 +445,6 @@ def main(argv=None):
             issues.append(f"Cannot audit {path}: {type(error).__name__}: {error}")
     if set(runs) != set(EXPECTED_RESULTS):
         issues.append(f"Exactly N1--N4 required; received {sorted(runs)}")
-    supplement = None
-    if args.supplement is not None:
-        try:
-            supplement = audit_run(args.supplement, supplement=True)
-            issues.extend(f"N4 supplement: {message}" for message in supplement["issues"])
-        except (OSError, ValueError, TypeError, KeyError) as error:
-            issues.append(f"Cannot audit N4 supplement {args.supplement}: {type(error).__name__}: {error}")
     identity = runs.get("N1", {}).get("identity", {})
     config_hashes = runs.get("N1", {}).get("configuration_hashes", {})
     for phase, run in runs.items():
@@ -503,10 +454,6 @@ def main(argv=None):
             issues.append(f"{phase}: identity differs from N1 in {differing}")
         if run["configuration_hashes"] != config_hashes:
             issues.append(f"{phase}: frozen configuration hashes differ from N1")
-    if supplement is not None and supplement["identity"] != identity:
-        differing = sorted(key for key in set(identity) | set(supplement["identity"])
-                           if identity.get(key) != supplement["identity"].get(key))
-        issues.append(f"N4 supplement: identity differs from N1 in {differing}")
     report = {"schema_version": 1, "generator": VERSION, "created_utc": now(),
               "audit": {"passed": not issues, "issues": issues, "identity": identity,
                         "configuration_hashes": config_hashes, "expected_case_results": EXPECTED_RESULTS,
@@ -514,24 +461,10 @@ def main(argv=None):
                                   "result_count": len(run["rows"]), "event_counts": run["event_counts"],
                                   "seal": run["seal"], "source_manifest": run["source_manifest"],
                                   **status_buckets(run["rows"])} for phase, run in sorted(runs.items())]},
-              "limitations": LIMITATIONS, "experiments": {}, "n4_real_weight_supplement": None,
-              "original_n4_real_value_scope": "Not provided; outstanding beyond synthetic v1." if args.supplement is None else "Provided separately; validity depends on the evidence audit."}
-    if supplement is not None:
-        report["audit"]["supplement_run"] = {"run_path": supplement["run_path"], "artifacts": supplement["artifacts"],
-            "result_count": len(supplement["rows"]), "expected_case_results": 48, "seal": supplement["seal"],
-            "configuration_hashes": supplement["configuration_hashes"], "source_manifest": supplement["source_manifest"],
-            **status_buckets(supplement["rows"])}
+              "limitations": LIMITATIONS, "experiments": {}}
     if not issues:
         report["experiments"] = {"N1": summarize_n1(runs["N1"]), "N2": summarize_n2(runs["N2"]),
                                  "N3": summarize_n3(runs["N3"]), "N4": summarize_n4(runs["N4"])}
-        if supplement is not None:
-            supplement_summary = summarize_n4(supplement)
-            supplement_summary.update(
-                interpretation="Actual BF16 Qwen3-0.6B layer-0 q_proj/down_proj weights with synthetic Gaussian A; B is weight.T. Four plain algorithms, M=512/2048, three seeds: 48 numerical cases.",
-                real_matrix_values="Actual weight tensors only; activations remain synthetic. This is separate from the 480-case synthetic core v1 N4 cohort.",
-                weight_provenance=supplement["weight_provenance"], planned_groups=list(supplement["groups"].values()))
-            report["n4_real_weight_supplement"] = supplement_summary
-            report["original_n4_real_value_scope"] = "A bounded actual-weight supplement is present; real activations and model quality are not tested."
     write_json(output / "summary.json", report)
     with (output / "summary.md").open("x", encoding="utf-8") as handle:
         handle.write(render_markdown(report))
