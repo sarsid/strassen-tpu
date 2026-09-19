@@ -1,0 +1,1550 @@
+[
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_plain_1024_1024_512",
+        "family": "cubic",
+        "mean_ms": 0.2583727142857143,
+        "prepared_mean_ms": 0.2524057142857143,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "full",
+        "relative_l2": 1.327386543649948e-07,
+        "screen_record_id": {
+          "arm_id": "c_plain_1024_1024_512",
+          "case_id": "held_square_768__candidate_pair_001__gaussian__20260923",
+          "group_id": "held_square_768__candidate_pair_001",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_output_accumulator_1024_1024_1024",
+        "family": "strassen",
+        "mean_ms": 0.2533542857142857,
+        "prepared_mean_ms": 0.2736572857142857,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "full",
+        "relative_l2": 0.0030108240027221997,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_output_accumulator_1024_1024_1024",
+          "case_id": "held_square_768__candidate_pair_018__gaussian__20260923",
+          "group_id": "held_square_768__candidate_pair_018",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "native",
+        "arm_id": "selector",
+        "candidate_id": "native",
+        "family": "selector",
+        "public_arm_id": "selector",
+        "tile": null,
+        "variant": "plain"
+      }
+    ],
+    "group_id": "held_square_768__frozen_rule",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260924
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "square",
+      "id": "held_square_768",
+      "k": 768,
+      "m": 768,
+      "n": 768,
+      "source_id": "frozen_geometries_v1",
+      "stage": "heldout"
+    },
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_plain_512_512_256",
+        "family": "cubic",
+        "mean_ms": 0.3107657142857142,
+        "prepared_mean_ms": 0.32230299999999995,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.4444033760294025e-07,
+        "screen_record_id": {
+          "arm_id": "c_plain_512_512_256",
+          "case_id": "held_square_1536__candidate_pair_016__gaussian__20260923",
+          "group_id": "held_square_1536__candidate_pair_016",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_512_1024_512",
+        "family": "strassen",
+        "mean_ms": 0.310577,
+        "prepared_mean_ms": 0.29842142857142856,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004123313430910572,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_512_1024_512",
+          "case_id": "held_square_1536__candidate_pair_014__gaussian__20260923",
+          "group_id": "held_square_1536__candidate_pair_014",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      },
+      {
+        "algorithm": "native",
+        "arm_id": "selector",
+        "candidate_id": "native",
+        "family": "selector",
+        "public_arm_id": "selector",
+        "tile": null,
+        "variant": "plain"
+      }
+    ],
+    "group_id": "held_square_1536__frozen_rule",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260924
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "square",
+      "id": "held_square_1536",
+      "k": 1536,
+      "m": 1536,
+      "n": 1536,
+      "source_id": "frozen_geometries_v1",
+      "stage": "heldout"
+    },
+    "tile": [
+      512,
+      512,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_plain_128_512_512",
+        "family": "cubic",
+        "mean_ms": 0.3229484285714285,
+        "prepared_mean_ms": 0.3242344285714286,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.5429493660558766e-07,
+        "screen_record_id": {
+          "arm_id": "c_plain_128_512_512",
+          "case_id": "held_small_m128__candidate_pair_013__gaussian__20260923",
+          "group_id": "held_small_m128__candidate_pair_013",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          128,
+          512,
+          512
+        ],
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_output_accumulator_512_1024_512",
+        "family": "strassen",
+        "mean_ms": 0.365533,
+        "prepared_mean_ms": 0.38741557142857147,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.0028482461358642678,
+        "screen_record_id": {
+          "arm_id": "s_output_accumulator_512_1024_512",
+          "case_id": "held_small_m128__candidate_pair_016__gaussian__20260923",
+          "group_id": "held_small_m128__candidate_pair_016",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "native",
+        "arm_id": "selector",
+        "candidate_id": "native",
+        "family": "selector",
+        "public_arm_id": "selector",
+        "tile": null,
+        "variant": "plain"
+      }
+    ],
+    "group_id": "held_small_m128__frozen_rule",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260924
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "small_m",
+      "id": "held_small_m128",
+      "k": 3072,
+      "m": 128,
+      "n": 6144,
+      "source_id": "frozen_geometries_v1",
+      "stage": "heldout"
+    },
+    "tile": [
+      128,
+      512,
+      512
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_plain_512_1024_512",
+        "family": "cubic",
+        "mean_ms": 0.6783642857142859,
+        "prepared_mean_ms": 0.5256912857142857,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.6371982399560079e-07,
+        "screen_record_id": {
+          "arm_id": "c_plain_512_1024_512",
+          "case_id": "held_tail_b__candidate_pair_017__gaussian__20260923",
+          "group_id": "held_tail_b__candidate_pair_017",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_output_accumulator_512_1024_512",
+        "family": "strassen",
+        "mean_ms": 0.6754914285714285,
+        "prepared_mean_ms": 0.5276614285714286,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004007643122331101,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_output_accumulator_512_1024_512",
+          "case_id": "held_tail_b__candidate_pair_009__gaussian__20260923",
+          "group_id": "held_tail_b__candidate_pair_009",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "native",
+        "arm_id": "selector",
+        "candidate_id": "native",
+        "family": "selector",
+        "public_arm_id": "selector",
+        "tile": null,
+        "variant": "plain"
+      }
+    ],
+    "group_id": "held_tail_b__frozen_rule",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260924
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "nonaligned",
+      "id": "held_tail_b",
+      "k": 4099,
+      "m": 2051,
+      "n": 1537,
+      "source_id": "frozen_geometries_v1",
+      "stage": "heldout"
+    },
+    "tile": [
+      512,
+      1024,
+      512
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_128_512_512",
+        "family": "cubic",
+        "mean_ms": 0.36902557142857145,
+        "prepared_mean_ms": 0.38534285714285715,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "full",
+        "relative_l2": 1.5784797738486268e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_128_512_512",
+          "case_id": "held_small_m16__candidate_pair_001__gaussian__20260923",
+          "group_id": "held_small_m16__candidate_pair_001",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          128,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_output_accumulator_512_1024_512",
+        "family": "strassen",
+        "mean_ms": 0.43311242857142856,
+        "prepared_mean_ms": 0.44474142857142857,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "full",
+        "relative_l2": 0.0028506489022099963,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_output_accumulator_512_1024_512",
+          "case_id": "held_small_m16__candidate_pair_000__gaussian__20260923",
+          "group_id": "held_small_m16__candidate_pair_000",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "native",
+        "arm_id": "selector",
+        "candidate_id": "native",
+        "family": "selector",
+        "public_arm_id": "selector",
+        "tile": null,
+        "variant": "plain"
+      }
+    ],
+    "group_id": "held_small_m16__frozen_rule",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260924
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "small_m",
+      "id": "held_small_m16",
+      "k": 4096,
+      "m": 16,
+      "n": 8192,
+      "source_id": "frozen_geometries_v1",
+      "stage": "heldout"
+    },
+    "tile": [
+      128,
+      512,
+      512
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_512_1024_1024",
+        "family": "cubic",
+        "mean_ms": 0.4283501428571429,
+        "prepared_mean_ms": 0.4320114285714286,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.7003651322646335e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_512_1024_1024",
+          "case_id": "held_rect_deep_k__candidate_pair_016__gaussian__20260923",
+          "group_id": "held_rect_deep_k__candidate_pair_016",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_output_accumulator_1024_1024_512",
+        "family": "strassen",
+        "mean_ms": 0.4318044285714286,
+        "prepared_mean_ms": 0.43419714285714284,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004444149396197589,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_output_accumulator_1024_1024_512",
+          "case_id": "held_rect_deep_k__candidate_pair_018__gaussian__20260923",
+          "group_id": "held_rect_deep_k__candidate_pair_018",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "selector",
+        "candidate_id": "c_plain_1024_1024_1024",
+        "family": "selector",
+        "public_arm_id": "selector",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    ],
+    "group_id": "held_rect_deep_k__frozen_rule",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260924
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "rectangle",
+      "id": "held_rect_deep_k",
+      "k": 6144,
+      "m": 3072,
+      "n": 1024,
+      "source_id": "frozen_geometries_v1",
+      "stage": "heldout"
+    },
+    "tile": [
+      512,
+      1024,
+      1024
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_1024_1024_1024",
+        "family": "cubic",
+        "mean_ms": 0.5273298571428571,
+        "prepared_mean_ms": 0.409267,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.5815084474466114e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_1024_1024_1024",
+          "case_id": "held_tail_a__candidate_pair_004__gaussian__20260923",
+          "group_id": "held_tail_a__candidate_pair_004",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_output_accumulator_1024_1024_1024",
+        "family": "strassen",
+        "mean_ms": 0.5190370000000001,
+        "prepared_mean_ms": 0.4117741428571428,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004368122024315706,
+        "screen_record_id": {
+          "arm_id": "s_output_accumulator_1024_1024_1024",
+          "case_id": "held_tail_a__candidate_pair_004__gaussian__20260923",
+          "group_id": "held_tail_a__candidate_pair_004",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "native",
+        "arm_id": "selector",
+        "candidate_id": "native",
+        "family": "selector",
+        "public_arm_id": "selector",
+        "tile": null,
+        "variant": "plain"
+      }
+    ],
+    "group_id": "held_tail_a__frozen_rule",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260924
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "nonaligned",
+      "id": "held_tail_a",
+      "k": 3001,
+      "m": 1001,
+      "n": 5003,
+      "source_id": "frozen_geometries_v1",
+      "stage": "heldout"
+    },
+    "tile": [
+      1024,
+      1024,
+      1024
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_1024_1024_1024",
+        "family": "cubic",
+        "mean_ms": 0.4552957142857143,
+        "prepared_mean_ms": 0.45371871428571436,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.5659020332262783e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_1024_1024_1024",
+          "case_id": "held_rect_tall__candidate_pair_009__gaussian__20260923",
+          "group_id": "held_rect_tall__candidate_pair_009",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_1024_1024_1024",
+        "family": "strassen",
+        "mean_ms": 0.44638,
+        "prepared_mean_ms": 0.4663471428571429,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004364052556103698,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_1024_1024_1024",
+          "case_id": "held_rect_tall__candidate_pair_009__gaussian__20260923",
+          "group_id": "held_rect_tall__candidate_pair_009",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "interleaved"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "selector",
+        "candidate_id": "s_interleaved_output_accumulator_1024_1024_1024",
+        "family": "selector",
+        "public_arm_id": "selector",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "interleaved_output_accumulator"
+      }
+    ],
+    "group_id": "held_rect_tall__frozen_rule",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260924
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "rectangle",
+      "id": "held_rect_tall",
+      "k": 3072,
+      "m": 6144,
+      "n": 1024,
+      "source_id": "frozen_geometries_v1",
+      "stage": "heldout"
+    },
+    "tile": [
+      1024,
+      1024,
+      1024
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_plain_1024_1024_1024",
+        "family": "cubic",
+        "mean_ms": 0.47011842857142866,
+        "prepared_mean_ms": 0.45562857142857144,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.5597263384369623e-07,
+        "screen_record_id": {
+          "arm_id": "c_plain_1024_1024_1024",
+          "case_id": "held_rect_wide__candidate_pair_009__gaussian__20260923",
+          "group_id": "held_rect_wide__candidate_pair_009",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_1024_1024_1024",
+        "family": "strassen",
+        "mean_ms": 0.4604384285714285,
+        "prepared_mean_ms": 0.45282871428571425,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004428321242983247,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_1024_1024_1024",
+          "case_id": "held_rect_wide__candidate_pair_010__gaussian__20260923",
+          "group_id": "held_rect_wide__candidate_pair_010",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "interleaved"
+      },
+      {
+        "algorithm": "native",
+        "arm_id": "selector",
+        "candidate_id": "native",
+        "family": "selector",
+        "public_arm_id": "selector",
+        "tile": null,
+        "variant": "plain"
+      }
+    ],
+    "group_id": "held_rect_wide__frozen_rule",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260924
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "rectangle",
+      "id": "held_rect_wide",
+      "k": 3072,
+      "m": 1024,
+      "n": 6144,
+      "source_id": "frozen_geometries_v1",
+      "stage": "heldout"
+    },
+    "tile": [
+      1024,
+      1024,
+      1024
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_1024_1024_1024",
+        "family": "cubic",
+        "mean_ms": 0.5708728571428571,
+        "prepared_mean_ms": 0.552937,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.5589295778945253e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_1024_1024_1024",
+          "case_id": "held_square_3072__candidate_pair_002__gaussian__20260923",
+          "group_id": "held_square_3072__candidate_pair_002",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_output_accumulator_1024_1024_1024",
+        "family": "strassen",
+        "mean_ms": 0.554323,
+        "prepared_mean_ms": 0.5596014285714286,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004300608183445827,
+        "screen_record_id": {
+          "arm_id": "s_output_accumulator_1024_1024_1024",
+          "case_id": "held_square_3072__candidate_pair_000__gaussian__20260923",
+          "group_id": "held_square_3072__candidate_pair_000",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "native",
+        "arm_id": "selector",
+        "candidate_id": "native",
+        "family": "selector",
+        "public_arm_id": "selector",
+        "tile": null,
+        "variant": "plain"
+      }
+    ],
+    "group_id": "held_square_3072__frozen_rule",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260924
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "square",
+      "id": "held_square_3072",
+      "k": 3072,
+      "m": 3072,
+      "n": 3072,
+      "source_id": "frozen_geometries_v1",
+      "stage": "heldout"
+    },
+    "tile": [
+      1024,
+      1024,
+      1024
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_1024_1024_1024",
+        "family": "cubic",
+        "mean_ms": 0.4798628571428572,
+        "prepared_mean_ms": 0.4605871428571429,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.3805388380170782e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_1024_1024_1024",
+          "case_id": "held_rect_short_k__candidate_pair_010__gaussian__20260923",
+          "group_id": "held_rect_short_k__candidate_pair_010",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_1024_1024_1024",
+        "family": "strassen",
+        "mean_ms": 0.44091142857142857,
+        "prepared_mean_ms": 0.44035557142857146,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004394923435151673,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_1024_1024_1024",
+          "case_id": "held_rect_short_k__candidate_pair_006__gaussian__20260923",
+          "group_id": "held_rect_short_k__candidate_pair_006",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "interleaved"
+      },
+      {
+        "algorithm": "native",
+        "arm_id": "selector",
+        "candidate_id": "native",
+        "family": "selector",
+        "public_arm_id": "selector",
+        "tile": null,
+        "variant": "plain"
+      }
+    ],
+    "group_id": "held_rect_short_k__frozen_rule",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260924
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "rectangle",
+      "id": "held_rect_short_k",
+      "k": 1024,
+      "m": 3072,
+      "n": 6144,
+      "source_id": "frozen_geometries_v1",
+      "stage": "heldout"
+    },
+    "tile": [
+      1024,
+      1024,
+      1024
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_512_1024_1024",
+        "family": "cubic",
+        "mean_ms": 1.6783914285714288,
+        "prepared_mean_ms": 1.6662538571428573,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 2.3689917814330023e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_512_1024_1024",
+          "case_id": "held_qwen_down__candidate_pair_018__gaussian__20260923",
+          "group_id": "held_qwen_down__candidate_pair_018",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_output_accumulator_1024_1024_1024",
+        "family": "strassen",
+        "mean_ms": 1.5829444285714287,
+        "prepared_mean_ms": 1.5740455714285715,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004369877400947903,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_output_accumulator_1024_1024_1024",
+          "case_id": "held_qwen_down__candidate_pair_006__gaussian__20260923",
+          "group_id": "held_qwen_down__candidate_pair_006",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "native",
+        "arm_id": "selector",
+        "candidate_id": "native",
+        "family": "selector",
+        "public_arm_id": "selector",
+        "tile": null,
+        "variant": "plain"
+      }
+    ],
+    "group_id": "held_qwen_down__frozen_rule",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260924
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "held_qwen_down",
+      "k": 25600,
+      "m": 1024,
+      "n": 5120,
+      "source_id": "frozen_geometries_v1",
+      "stage": "heldout"
+    },
+    "tile": [
+      512,
+      1024,
+      1024
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_plain_1024_2048_512",
+        "family": "cubic",
+        "mean_ms": 1.4491585714285713,
+        "prepared_mean_ms": 1.457962857142857,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.585463678641162e-07,
+        "screen_record_id": {
+          "arm_id": "c_plain_1024_2048_512",
+          "case_id": "held_gemma_gateup__candidate_pair_009__gaussian__20260923",
+          "group_id": "held_gemma_gateup__candidate_pair_009",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_output_accumulator_1024_1024_512",
+        "family": "strassen",
+        "mean_ms": 1.4044828571428574,
+        "prepared_mean_ms": 1.401846857142857,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004382557383050269,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_output_accumulator_1024_1024_512",
+          "case_id": "held_gemma_gateup__candidate_pair_001__gaussian__20260923",
+          "group_id": "held_gemma_gateup__candidate_pair_001",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "native",
+        "arm_id": "selector",
+        "candidate_id": "native",
+        "family": "selector",
+        "public_arm_id": "selector",
+        "tile": null,
+        "variant": "plain"
+      }
+    ],
+    "group_id": "held_gemma_gateup__frozen_rule",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260924
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "held_gemma_gateup",
+      "k": 3584,
+      "m": 1024,
+      "n": 28672,
+      "source_id": "frozen_geometries_v1",
+      "stage": "heldout"
+    },
+    "tile": [
+      1024,
+      2048,
+      512
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_1024_1024_1024",
+        "family": "cubic",
+        "mean_ms": 2.727547857142857,
+        "prepared_mean_ms": 2.7381457142857144,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.689345736271499e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_1024_1024_1024",
+          "case_id": "held_square_6144__candidate_pair_005__gaussian__20260923",
+          "group_id": "held_square_6144__candidate_pair_005",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_output_accumulator_2048_2048_512",
+        "family": "strassen",
+        "mean_ms": 2.558607142857143,
+        "prepared_mean_ms": 2.568993857142857,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004424284053887029,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_output_accumulator_2048_2048_512",
+          "case_id": "held_square_6144__candidate_pair_012__gaussian__20260923",
+          "group_id": "held_square_6144__candidate_pair_012",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "selector",
+        "candidate_id": "s_interleaved_output_accumulator_2048_2048_512",
+        "family": "selector",
+        "public_arm_id": "selector",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      }
+    ],
+    "group_id": "held_square_6144__frozen_rule",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260924
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "square",
+      "id": "held_square_6144",
+      "k": 6144,
+      "m": 6144,
+      "n": 6144,
+      "source_id": "frozen_geometries_v1",
+      "stage": "heldout"
+    },
+    "tile": [
+      1024,
+      1024,
+      1024
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_1024_1024_1024",
+        "family": "cubic",
+        "mean_ms": 1.5434014285714288,
+        "prepared_mean_ms": 1.5506397142857142,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.6159279054939413e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_1024_1024_1024",
+          "case_id": "held_mistral_gateup__candidate_pair_017__gaussian__20260923",
+          "group_id": "held_mistral_gateup__candidate_pair_017",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_output_accumulator_1024_1024_1024",
+        "family": "strassen",
+        "mean_ms": 1.5105527142857142,
+        "prepared_mean_ms": 1.5053514285714285,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004399412372577453,
+        "screen_record_id": {
+          "arm_id": "s_output_accumulator_1024_1024_1024",
+          "case_id": "held_mistral_gateup__candidate_pair_002__gaussian__20260923",
+          "group_id": "held_mistral_gateup__candidate_pair_002",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "native",
+        "arm_id": "selector",
+        "candidate_id": "native",
+        "family": "selector",
+        "public_arm_id": "selector",
+        "tile": null,
+        "variant": "plain"
+      }
+    ],
+    "group_id": "held_mistral_gateup__frozen_rule",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260924
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "held_mistral_gateup",
+      "k": 4096,
+      "m": 1024,
+      "n": 28672,
+      "source_id": "frozen_geometries_v1",
+      "stage": "heldout"
+    },
+    "tile": [
+      1024,
+      1024,
+      1024
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_512_1024_1024",
+        "family": "cubic",
+        "mean_ms": 1.9421255714285715,
+        "prepared_mean_ms": 1.8426011428571427,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.660430120200353e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_512_1024_1024",
+          "case_id": "held_qwen_gateup__candidate_pair_017__gaussian__20260923",
+          "group_id": "held_qwen_gateup__candidate_pair_017",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_output_accumulator_512_1024_512",
+        "family": "strassen",
+        "mean_ms": 1.990414142857143,
+        "prepared_mean_ms": 1.8246497142857143,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.0027820323272617076,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_output_accumulator_512_1024_512",
+          "case_id": "held_qwen_gateup__candidate_pair_009__gaussian__20260923",
+          "group_id": "held_qwen_gateup__candidate_pair_009",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "native",
+        "arm_id": "selector",
+        "candidate_id": "native",
+        "family": "selector",
+        "public_arm_id": "selector",
+        "tile": null,
+        "variant": "plain"
+      }
+    ],
+    "group_id": "held_qwen_gateup__frozen_rule",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260924
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "held_qwen_gateup",
+      "k": 5120,
+      "m": 256,
+      "n": 51200,
+      "source_id": "frozen_geometries_v1",
+      "stage": "heldout"
+    },
+    "tile": [
+      512,
+      1024,
+      1024
+    ],
+    "timing": "confirm"
+  }
+]
