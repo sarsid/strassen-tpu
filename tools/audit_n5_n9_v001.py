@@ -15,8 +15,8 @@ from pathlib import Path
 import statistics
 import subprocess
 
-EXPECTED={'N5-screen':1312,'N5-confirm':96,'N7-screen':1312,'N7-confirm':96,'N7-evaluate':128}
-REPEATS={'N5-screen':7,'N5-confirm':30,'N7-screen':7,'N7-confirm':30,'N7-evaluate':30}
+EXPECTED={'N5-screen':1312,'N5-confirm':96,'N7-screen':1312,'N7-confirm':96,'N7-evaluate':128,'N7-replicate':128}
+REPEATS={'N5-screen':7,'N5-confirm':30,'N7-screen':7,'N7-confirm':30,'N7-evaluate':30,'N7-replicate':30}
 
 def load(path): return json.loads(path.read_text())
 def sha(path):
@@ -97,7 +97,15 @@ def main():
     for path in args.run:
         try:reports.append(audit(path))
         except Exception as e:reports.append({'run_id':path.name,'audit_pass':False,'issues':[type(e).__name__+': '+str(e)]})
-    value={'created_utc':datetime.now(timezone.utc).isoformat(),'audit_pass':all(r['audit_pass'] for r in reports),'runs':reports,
+    registry_issues=[]
+    root=args.run[0].resolve().parent.parent
+    registry=root/'protocols/code_freezes_v001.jsonl'
+    if registry.is_file():
+        for line in registry.read_text().splitlines():
+            entry=json.loads(line); target=(root/entry['path']).resolve()
+            if not target.is_relative_to(root) or not target.is_file() or sha(target)!=entry['sha256']:
+                registry_issues.append('Executed code differs from frozen fingerprint: '+entry['path'])
+    value={'frozen_working_source_issues':registry_issues,'created_utc':datetime.now(timezone.utc).isoformat(),'audit_pass':not registry_issues and all(r['audit_pass'] for r in reports),'runs':reports,
       'interpretation':'Hash/protocol audit is separate from scientific success. Screens are not confirmation; cohorts are never pooled; CIs are per-comparison without multiplicity correction.'}
     save(args.output_dir/'audit.json',value)
     lines=['# N5–N9 evidence audit','', 'Audit: '+('PASS' if value['audit_pass'] else 'FAIL'),'']
