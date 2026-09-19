@@ -1,0 +1,152 @@
+[
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "square_512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "square",
+      "id": "square_512",
+      "k": 512,
+      "m": 512,
+      "n": 512,
+      "source_id": "synthetic_design",
+      "stage": "smoke"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "smoke"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "tail_513__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "nonaligned",
+      "id": "tail_513",
+      "k": 513,
+      "m": 513,
+      "n": 513,
+      "source_id": "synthetic_design",
+      "stage": "smoke"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "smoke"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "small_m_8__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "small_m",
+      "id": "small_m_8",
+      "k": 2048,
+      "m": 8,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "smoke"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "smoke"
+  }
+]
