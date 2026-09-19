@@ -49,6 +49,54 @@ def quality_gate(value,thresholds):
         and value['top1_agreement']>=thresholds['min_top1_agreement']
         and ('max_relative_l2' not in thresholds or value['relative_l2']<=thresholds['max_relative_l2']))
 
+def reconcile_quality(windows,total,issues,label):
+    """Reconcile host aggregation; null keeps recorded nonfinite outcomes valid."""
+    def check(key,expected):
+        actual=total.get(key)
+        matches=actual is None if expected is None else (
+            finite_number(actual) and math.isclose(actual,expected,rel_tol=1e-9,abs_tol=1e-7))
+        if not matches:issues.append('N9 aggregate '+key+' differs from windows: '+label)
+    sums={}
+    for key in ('positions','reference_nll_sum','candidate_nll_sum','kl_sum','top1_equal',
+                'squared_error_sum','reference_squared_sum'):
+        values=[window.get(key) for window in windows]
+        if all(finite_number(value) for value in values):sums[key]=math.fsum(values)
+        else:
+            # json_safe maps nonfinite raw reductions to null; adding any such
+            # reduction keeps the aggregate nonfinite, regardless of sign.
+            sums[key]=None
+            if any(value is not None and not finite_number(value) for value in values):
+                issues.append('Invalid N9 window reduction '+key+': '+label)
+        check(key,sums[key])
+    flags=[window.get('all_finite') for window in windows]
+    if any(type(flag) is not bool for flag in flags):issues.append('Missing/invalid N9 window finite flag: '+label)
+    if total.get('all_finite') is not all(flag is True for flag in flags):
+        issues.append('N9 aggregate all_finite differs from windows: '+label)
+    maxima=[window.get('max_abs_error') for window in windows]
+    # Python max can retain a finite value when a later raw NaN appears. The
+    # JSON null cannot distinguish NaN from infinity, so do not infer that case.
+    if maxima and all(finite_number(value) for value in maxima):check('max_abs_error',max(maxima))
+    count=sums['positions']
+    if not finite_number(count) or count<=0:return
+    reference=sums['reference_nll_sum']/count if sums['reference_nll_sum'] is not None else None
+    candidate=sums['candidate_nll_sum']/count if sums['candidate_nll_sum'] is not None else None
+    check('reference_nll',reference);check('candidate_nll',candidate)
+    check('nll_delta',candidate-reference if candidate is not None and reference is not None else None)
+    check('mean_kl',sums['kl_sum']/count if sums['kl_sum'] is not None else None)
+    check('top1_agreement',sums['top1_equal']/count if sums['top1_equal'] is not None else None)
+    numerator=sums['squared_error_sum'];denominator=sums['reference_squared_sum']
+    relative=None
+    if numerator is not None and denominator is not None:
+        if numerator<0 or denominator<0:issues.append('Negative N9 squared-error reduction: '+label)
+        else:relative=math.sqrt(numerator/max(denominator,1e-30))
+    if numerator is not None and denominator is None:
+        # A null reference norm could have been +inf (finite numerator / inf
+        # gives zero) or NaN (gives null). Its JSON representation loses that
+        # distinction; both results are consistent with the preserved evidence.
+        if total.get('relative_l2') is not None and total.get('relative_l2')!=0:
+            issues.append('N9 aggregate relative_l2 differs from nonfinite windows: '+label)
+    else:check('relative_l2',relative)
+
 def audit_n9(art,summary,rows,cases,issues):
     """Validate terminal failures as evidence, and complete policy claims from raw events."""
     campaign=load(art/'effective_campaign.json');planned=campaign['models']
@@ -69,6 +117,8 @@ def audit_n9(art,summary,rows,cases,issues):
             failures=[r for r in events if r.get('event')=='model_error']
             if len(failures)!=1:issues.append('N9 failed model lacks one terminal error: '+model_id)
             elif any(failures[0].get(k)!=v for k,v in result.items()):issues.append('N9 model error differs from summary: '+model_id)
+            if result.get('eligible_for_speedup_claim') is not False or result.get('quality_measured') is True:
+                issues.append('N9 failed model claims quality or speedup: '+model_id)
             outcomes.append({'model_id':model_id,'status':status,'scope':'model-level terminal outcome'})
             continue
         if not (directory/'model_summary.json').is_file():issues.append('Missing N9 model summary: '+model_id)
@@ -106,6 +156,9 @@ def audit_n9(art,summary,rows,cases,issues):
         window_rows=[r for r in events if r.get('event')=='quality_window']
         if len(window_rows)!=32 or {r.get('window') for r in window_rows}!=set(range(32)):
             issues.append('N9 quality-window coverage differs: '+model_id)
+        windows_payload=[{'window':r.get('window'),'metrics':r.get('metrics')} for r in window_rows]
+        if not (directory/'quality_windows.json').is_file() or load(directory/'quality_windows.json')!=windows_payload:
+            issues.append('N9 quality-window artifact differs/missing: '+model_id)
         if not (directory/'quality.json').is_file() or load(directory/'quality.json')!=quality:
             issues.append('N9 quality artifact missing/different: '+model_id)
         for arm,value in quality.items():
@@ -115,6 +168,8 @@ def audit_n9(art,summary,rows,cases,issues):
                 issues.append('N9 quality gate inconsistent: '+model_id+'/'+arm)
             if any((r.get('metrics',{}).get(arm) or {}).get('positions')!=1023 for r in window_rows):
                 issues.append('N9 policy lacks every scored window: '+model_id+'/'+arm)
+            else:
+                reconcile_quality([r['metrics'][arm] for r in window_rows],value,issues,model_id+'/'+arm)
         manifest_path=directory/'model_manifest.json'
         if not manifest_path.is_file():issues.append('Missing N9 model manifest: '+model_id);continue
         manifest=load(manifest_path);layers=manifest['config']['num_hidden_layers']
@@ -134,6 +189,9 @@ def audit_n9(art,summary,rows,cases,issues):
         streamed_values=result.get('streamed_forward_samples_ms') or {};streamed_means=result.get('streamed_forward_mean_ms') or {}
         if set(resident_means)!=set(quality):issues.append('N9 resident headline policy coverage differs: '+model_id)
         if set(streamed_values)!=set(quality):issues.append('N9 streamed policy coverage differs: '+model_id)
+        complete_streamed={arm for arm in arms if len(streamed[arm])==len(streamed_expected)
+            and {r.get('repeat') for r in streamed[arm]}==streamed_expected}
+        if set(streamed_means)!=complete_streamed:issues.append('N9 streamed headline keyset differs from complete raw timings: '+model_id)
         for arm in arms:
             resident_rows=resident[arm];rkeys=[(r.get('layer'),r.get('repeat')) for r in resident_rows]
             if len(set(rkeys))!=len(rkeys) or not set(rkeys)<=resident_expected:
