@@ -1,0 +1,2029 @@
+The study, question by question
+Completed v5e evidence. Arrows show the research logic, not the exact launch order.
+N1 What happens with basic implementations?
+Fixed tile, broad shape suite. Strassen beats the matched quadrant control on some
+shapes, but has no supported win over Native or full-tile Cubic.
+N2 How much does tile choice matter?
+Six tile choices per custom algorithm. Performance depends on shape; the largest
+tile can exceed on-chip memory.
+N3 Which changes help?
+Hold the tile fixed. Product order and
+output accumulation help selectively;
+gains depend on the algorithm and
+shape.
+N4 When does accuracy fail?
+Stress the inputs. All 24 cancellation
+cases fail for Strassen; ordinary and
+actual-weight tests can still pass.
+N5 Who wins after independent tuning?
+Tune tile and variant separately for Cubic and Strassen on 16 shapes, then confirm
+with fresh samples. Strassen versus Native: 6 supported complete-call wins, 4
+inconclusive, 6 losses.
+N6 Do device traces support the timing story?
+Original representatives show ranking reversals. A post-hoc large-shape
+supplement also shows Strassen gains inside the TPU module.
+N6a Freeze a rule from the N5 results
+Choose Native, Cubic or Strassen, including its tile and variant. Freeze before any
+N7 measurements. This is a selection step, not another timing race.
+N7 Does the frozen rule transfer?
+Evaluate on 16 reserved shapes against independently tuned comparators. All 3
+custom choices beat Native; the same gains repeat on a fresh v5e allocation.
+N8 Do gains survive additional operations?
+Test activation and residual work. Fused Strassen is strong against custom Cubic;
+Native comparisons depend on the operation and preparation scope.
+N9 Do the gains help actual models?
+Qwen and Mistral pass the measured quality gates. Mistral resident layers improve,
+but transfer-inclusive model timing is near parity. Gemma is access-blocked.
+How to follow the tree
+N1-N7 form the matrix-multiplication study. N8-N9 test whether those results survive
+progressively more realistic application work. N6a uses N5 data; N7 never refits it.
+Future work: v6e replication and optional two-level Strassen. Neither is included in these results.
+Fast matrix multiplication on TPU | v5e results
+1 / 49
+
+
+How to read the graphs
+Start with the question, then read the bar heights, then the interpretation beneath the graph.
+1. Compare within one shape
+Each cluster is one matrix shape, written M x K x N for (M x K) times (K x N). Blue is
+Native, orange is Cubic and green is Strassen. Extra controls and N3 optimization
+variants use the legend shown on their graph.
+2. Find the lowest measured bar
+For timing graphs, lower is faster. A short black horizontal segment marks the lowest
+eligible mean for that shape; a diamond identifies the bar. Different shapes get separate
+segments. These marks show the observed ordering, not statistical certainty.
+3. Read uncertainty separately
+Ordinary timing whiskers show sample standard deviation, not confidence intervals. The
+explanations classify supported comparisons using the archived paired 95% intervals,
+without multiple-comparison correction. Inconclusive does not mean equal.
+4. Keep scopes and accuracy separate
+Complete call includes required device preparation and finishing. Prepared kernel reuses
+prepared buffers. Neither is full inference. Device traces, resident layers and streamed
+forwards are separate scopes. In N4 the black marker means lowest median error; red
+dashed lines are tolerance gates.
+A marker is not a significance test
+Native
+Cubic
+Strassen
+Illustration only; these are not experiment measurements.
+Experiment index
+N1 Basic baselines
+3
+N2 Tile sweeps
+8
+N3 Optimization changes
+10
+N4 Numerical accuracy
+14
+N5 Independent tuning and confirmation
+20
+N6 Device profiling and its supplement
+24
+N7 Held-out evaluation and fresh-v5e repeat
+30
+N8 MM plus application operations
+38
+N9 Real-model timing and quality
+42
+Failures are retained. Selection screens are exploratory. Different allocations are never
+pooled. All 47 original overview comparisons are included.
+Fast matrix multiplication on TPU | v5e results
+2 / 49
+
+
+N1 | call | Original N1-N4 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Strassen 1, Native XLA 9. Archived paired intervals for Strassen
+versus Native: 0 faster, 7 slower, 3 inconclusive.
+OUR INTERPRETATION
+Saving one block multiplication helps against the matched quadrant-cubic control, but is
+insufficient against stronger baselines. Across all 44 complete-call shapes, Strassen has
+27 supported wins over the quadrant control and none over Native or full-tile Cubic. All
+custom kernels here use the same small, untuned 256/256/256 tile; this is a starting point,
+not each algorithm at its best.
+Fast matrix multiplication on TPU | v5e results
+3 / 49
+square 512
+512 x 512 x 512
+tail 513
+513 x 513 x 513
+small m 1
+1 x 2048 x 2048
+small m 8
+8 x 2048 x 2048
+small m 64
+64 x 2048 x 2048
+square 1024
+1024 x 1024 x 1024
+tail deep
+257 x 4097 x 1023
+small m 256
+256 x 2048 x 2048
+tail tall
+2049 x 1025 x 513
+Mistral7 kv m512
+512 x 4096 x 1024
+0.0
+0.1
+0.2
+0.3
+0.4Mean time (ms) - lower is better
+Native XLA Cubic (full tile) Cubic (quadrant control) Strassen
+N1 | Fixed-tile baselines - shapes 1-10
+All custom kernels use tile (BM,BN,BK)=(256,256,256). All 44 shapes are included.
+Complete call  |  Original N1-N4 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T050233Z-N1-v5e-v001-93e39b
+
+N1 | call | Original N1-N4 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Native XLA 10. Archived paired intervals for Strassen versus Native: 0
+faster, 10 slower, 0 inconclusive.
+OUR INTERPRETATION
+Saving one block multiplication helps against the matched quadrant-cubic control, but is
+insufficient against stronger baselines. Across all 44 complete-call shapes, Strassen has
+27 supported wins over the quadrant control and none over Native or full-tile Cubic. All
+custom kernels here use the same small, untuned 256/256/256 tile; this is a starting point,
+not each algorithm at its best.
+Fast matrix multiplication on TPU | v5e results
+4 / 49
+vary m 512
+512 x 2048 x 2048
+vary n 512
+2048 x 2048 x 512
+Qwen32 kv m512
+512 x 5120 x 1024
+vary k 512
+2048 x 512 x 2048
+Gemma9 q m512
+512 x 3584 x 4096mkn 2048 8192 5122048 x 8192 x 512mkn 512 8192 2048512 x 8192 x 2048
+square 2048
+2048 x 2048 x 2048
+tail wide
+1023 x 2047 x 4095
+mkn 512 2048 8192512 x 2048 x 8192
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7Mean time (ms) - lower is better
+Native XLA Cubic (full tile) Cubic (quadrant control) Strassen
+N1 | Fixed-tile baselines - shapes 11-20
+All custom kernels use tile (BM,BN,BK)=(256,256,256). All 44 shapes are included.
+Complete call  |  Original N1-N4 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T050233Z-N1-v5e-v001-93e39b
+
+N1 | call | Original N1-N4 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Native XLA 10. Archived paired intervals for Strassen versus Native: 0
+faster, 10 slower, 0 inconclusive.
+OUR INTERPRETATION
+Saving one block multiplication helps against the matched quadrant-cubic control, but is
+insufficient against stronger baselines. Across all 44 complete-call shapes, Strassen has
+27 supported wins over the quadrant control and none over Native or full-tile Cubic. All
+custom kernels here use the same small, untuned 256/256/256 tile; this is a starting point,
+not each algorithm at its best.
+Fast matrix multiplication on TPU | v5e results
+5 / 49
+mkn 8192 2048 5128192 x 2048 x 512
+vary k 8192
+2048 x 8192 x 2048
+Qwen32 o m512
+512 x 8192 x 5120
+Qwen32 q m512
+512 x 5120 x 8192Gemma9 down m512512 x 14336 x 3584
+mkn 2048 512 81922048 x 512 x 8192mkn 8192 512 20488192 x 512 x 2048Mistral7 down m512
+512 x 14336 x 4096
+vary m 8192
+8192 x 2048 x 2048
+vary n 8192
+2048 x 2048 x 8192
+0.00
+0.25
+0.50
+0.75
+1.00
+1.25
+1.50
+1.75
+2.00Mean time (ms) - lower is better
+Native XLA Cubic (full tile) Cubic (quadrant control) Strassen
+N1 | Fixed-tile baselines - shapes 21-30
+All custom kernels use tile (BM,BN,BK)=(256,256,256). All 44 shapes are included.
+Complete call  |  Original N1-N4 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T050233Z-N1-v5e-v001-93e39b
+
+N1 | call | Original N1-N4 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Native XLA 10. Archived paired intervals for Strassen versus Native: 0
+faster, 10 slower, 0 inconclusive.
+OUR INTERPRETATION
+Saving one block multiplication helps against the matched quadrant-cubic control, but is
+insufficient against stronger baselines. Across all 44 complete-call shapes, Strassen has
+27 supported wins over the quadrant control and none over Native or full-tile Cubic. All
+custom kernels here use the same small, untuned 256/256/256 tile; this is a starting point,
+not each algorithm at its best.
+Fast matrix multiplication on TPU | v5e results
+6 / 49
+square 4096
+4096 x 4096 x 4096Gemma9 gate/up m6464 x 3584 x 28672Mistral7 gate/up m6464 x 4096 x 28672Qwen32 down m512
+512 x 25600 x 5120Gemma9 gate/up m512512 x 3584 x 28672Mistral7 gate/up m512512 x 4096 x 28672
+Qwen32 gate/up m11 x 5120 x 51200Qwen32 gate/up m6464 x 5120 x 51200Gemma9 gate/up m20482048 x 3584 x 28672Mistral7 gate/up m20482048 x 4096 x 28672
+0
+2
+4
+6
+8
+10
+12Mean time (ms) - lower is better
+Native XLA Cubic (full tile) Cubic (quadrant control) Strassen
+N1 | Fixed-tile baselines - shapes 31-40
+All custom kernels use tile (BM,BN,BK)=(256,256,256). All 44 shapes are included.
+Complete call  |  Original N1-N4 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T050233Z-N1-v5e-v001-93e39b
+
+N1 | call | Original N1-N4 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Native XLA 4. Archived paired intervals for Strassen versus Native: 0
+faster, 4 slower, 0 inconclusive.
+OUR INTERPRETATION
+Saving one block multiplication helps against the matched quadrant-cubic control, but is
+insufficient against stronger baselines. Across all 44 complete-call shapes, Strassen has
+27 supported wins over the quadrant control and none over Native or full-tile Cubic. All
+custom kernels here use the same small, untuned 256/256/256 tile; this is a starting point,
+not each algorithm at its best.
+Fast matrix multiplication on TPU | v5e results
+7 / 49
+Qwen32 gate/up m512
+512 x 5120 x 51200
+square 8192
+8192 x 8192 x 8192
+Qwen32 gate/up m2048
+2048 x 5120 x 51200
+Qwen32 gate/up m8192
+8192 x 5120 x 51200
+0
+20
+40
+60
+80
+100Mean time (ms) - lower is better
+1.671
+6.33 5.913
+22.82
+5.396
+20.28 20.87
+82.36
+5.574
+20.93 21.52
+84.96
+5.469
+20.54 21.13
+83.43
+Native XLA Cubic (full tile) Cubic (quadrant control) Strassen
+N1 | Fixed-tile baselines - shapes 41-44
+All custom kernels use tile (BM,BN,BK)=(256,256,256). All 44 shapes are included.
+Complete call  |  Original N1-N4 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T050233Z-N1-v5e-v001-93e39b
+
+N2 | call | Original N1-N4 allocation
+WHAT THIS GRAPH SHOWS
+Each column is a matrix shape; each row is an algorithm/tile combination. This scope has
+189 measured cells and 27 memory failures. Smaller numbers mean less time; the color
+scale is logarithmic. Compare algorithms within the same column, then compare tile
+choices. OOM means no valid timing, never zero.
+OUR INTERPRETATION
+Tile size is an important performance choice, and the useful choice depends on the matrix
+shape and algorithm. The largest tile can exceed fast on-chip memory. These
+seven-repeat screening results identify candidates; they do not prove a globally optimal tile
+or an independently confirmed advantage. Native XLA was not measured in N2.
+Fast matrix multiplication on TPU | v5e results
+8 / 49
+square 512
+512 x 512 x 512
+tail 513
+513 x 513 x 513
+small m 8
+8 x 2048 x 2048
+square 2048
+2048 x 2048 x 2048
+vary k 8192
+2048 x 8192 x 2048
+vary m 8192
+8192 x 2048 x 2048
+vary n 8192
+2048 x 2048 x 8192
+square 4096
+4096 x 4096 x 4096Gemma9 gate/up m512512 x 3584 x 28672Mistral7 gate/up m512512 x 4096 x 28672Qwen32 gate/up m512512 x 5120 x 51200Qwen32 gate/up m81928192 x 5120 x 51200
+Cubic (full tile) | 1024/1024/512
+Cubic (quadrant control) | 1024/1024/512
+Strassen | 1024/1024/512
+Cubic (full tile) | 512/512/256
+Cubic (quadrant control) | 512/512/256
+Strassen | 512/512/256
+Cubic (full tile) | 256/256/256
+Cubic (quadrant control) | 256/256/256
+Strassen | 256/256/256
+Cubic (full tile) | 2048/2048/512
+Cubic (quadrant control) | 2048/2048/512
+Strassen | 2048/2048/512
+Cubic (full tile) | 512/1024/512
+Cubic (quadrant control) | 512/1024/512
+Strassen | 512/1024/512
+Cubic (full tile) | 1024/512/512
+Cubic (quadrant control) | 1024/512/512
+Strassen | 1024/512/512
+0.25 0.26 0.3 0.39 0.68 0.7 0.68 1.1 1.7 1.8 3.7 25
+0.23 0.26 0.32 0.39 0.7 0.73 0.71 1.2 1.8 2 3.9 27
+0.24 0.26 0.3 0.39 0.65 0.68 0.67 1.1 1.7 1.8 3.6 24
+0.2 0.26 0.27 0.45 0.8 0.92 0.89 1.5 1.2 1.3 2.6 38
+0.19 0.25 0.26 0.45 0.83 0.96 0.93 1.5 1.2 1.3 2.8 39
+0.21 0.27 0.29 0.45 0.81 0.93 0.9 1.5 1.2 1.3 2.6 38
+0.23 0.29 0.28 0.58 1.5 1.5 1.6 2.8 2.3 2.6 5.4 82
+0.21 0.26 0.27 0.59 1.5 1.6 1.7 2.9 2.3 2.6 5.6 85
+0.22 0.29 0.29 0.57 1.5 1.6 1.6 2.9 2.3 2.6 5.5 84
+0.24 0.32 0.36 OOM OOM OOM OOM OOM OOM OOM OOM OOM
+0.22 0.32 0.36 OOM OOM OOM OOM OOM OOM OOM OOM OOM
+0.24 0.3 0.34 OOM OOM OOM OOM OOM OOM OOM OOM OOM
+0.24 0.24 0.27 0.4 0.67 0.75 0.74 1.2 0.92 1 1.9 27
+0.23 0.24 0.26 0.4 0.71 0.78 0.78 1.3 0.99 1.1 2.1 30
+0.24 0.26 0.26 0.4 0.67 0.75 0.73 1.2 0.92 1 1.9 27
+0.26 0.27 0.3 0.38 0.66 0.74 0.76 1.1 1.8 1.9 3.9 27
+0.25 0.27 0.29 0.38 0.71 0.77 0.81 1.3 1.9 2.1 4.3 30
+0.28 0.28 0.31 0.38 0.66 0.73 0.75 1.1 1.9 1.9 3.8 26
+100
+101
+Mean time (ms; log color scale)
+N2 | Every tile and algorithm
+Exploratory screen: 7 timings per passing cell. Tile order is BM/BN/BK. Native was not measured.
+Complete call  |  Original N1-N4 allocation
+Numbers are archived measurements; missing cells are not measured or failed.
+Sources: 20260919T050718Z-N2-v5e-v002-226e83
+
+N2 | prepared kernel | Original N1-N4 allocation
+WHAT THIS GRAPH SHOWS
+Each column is a matrix shape; each row is an algorithm/tile combination. This scope has
+183 measured cells and 33 memory failures. Smaller numbers mean less time; the color
+scale is logarithmic. Compare algorithms within the same column, then compare tile
+choices. OOM means no valid timing, never zero.
+OUR INTERPRETATION
+Tile size is an important performance choice, and the useful choice depends on the matrix
+shape and algorithm. The largest tile can exceed fast on-chip memory. These
+seven-repeat screening results identify candidates; they do not prove a globally optimal tile
+or an independently confirmed advantage. Native XLA was not measured in N2.
+Fast matrix multiplication on TPU | v5e results
+9 / 49
+square 512
+512 x 512 x 512
+tail 513
+513 x 513 x 513
+small m 8
+8 x 2048 x 2048
+square 2048
+2048 x 2048 x 2048
+vary k 8192
+2048 x 8192 x 2048
+vary m 8192
+8192 x 2048 x 2048
+vary n 8192
+2048 x 2048 x 8192
+square 4096
+4096 x 4096 x 4096Gemma9 gate/up m512512 x 3584 x 28672Mistral7 gate/up m512512 x 4096 x 28672Qwen32 gate/up m512512 x 5120 x 51200Qwen32 gate/up m81928192 x 5120 x 51200
+Cubic (full tile) | 1024/1024/512
+Cubic (quadrant control) | 1024/1024/512
+Strassen | 1024/1024/512
+Cubic (full tile) | 512/512/256
+Cubic (quadrant control) | 512/512/256
+Strassen | 512/512/256
+Cubic (full tile) | 256/256/256
+Cubic (quadrant control) | 256/256/256
+Strassen | 256/256/256
+Cubic (full tile) | 2048/2048/512
+Cubic (quadrant control) | 2048/2048/512
+Strassen | 2048/2048/512
+Cubic (full tile) | 512/1024/512
+Cubic (quadrant control) | 512/1024/512
+Strassen | 512/1024/512
+Cubic (full tile) | 1024/512/512
+Cubic (quadrant control) | 1024/512/512
+Strassen | 1024/512/512
+0.25 0.27 0.32 0.39 0.66 0.72 0.69 1.1 1.5 1.7 3.3 25
+0.25 0.27 0.31 0.4 0.7 0.73 0.74 1.2 1.6 1.8 3.6 27
+0.25 0.27 0.31 0.41 0.65 0.69 0.69 1.1 1.5 1.6 3.2 24
+0.22 0.27 0.28 0.46 0.8 0.93 0.89 1.5 1.2 1.3 2.6 37
+0.21 0.28 0.28 0.45 0.83 0.96 0.93 1.5 1.2 1.3 2.7 39
+0.21 0.27 0.27 0.44 0.8 0.92 0.89 1.5 1.2 1.3 2.6 37
+0.24 0.27 0.28 0.57 1.5 1.6 1.6 2.8 2.3 2.6 5.4 81
+0.24 0.28 0.29 0.58 1.5 1.6 1.7 2.8 2.3 2.7 5.5 84
+0.22 0.28 0.31 0.58 1.5 1.6 1.6 2.8 2.3 2.6 5.5 82
+0.27 OOM OOM OOM OOM OOM OOM OOM OOM OOM OOM OOM
+0.28 OOM OOM OOM OOM OOM OOM OOM OOM OOM OOM OOM
+0.27 OOM OOM OOM OOM OOM OOM OOM OOM OOM OOM OOM
+0.25 0.26 0.28 0.4 0.68 0.74 0.74 1.2 0.92 1 1.9 27
+0.25 0.26 0.26 0.42 0.72 0.79 0.78 1.3 1 1.1 2.1 30
+0.25 0.25 0.26 0.4 0.66 0.74 0.75 1.2 0.92 1 1.9 27
+0.28 0.28 0.31 0.39 0.65 0.74 0.75 1.1 1.6 1.8 3.6 27
+0.29 0.28 0.31 0.41 0.72 0.78 0.8 1.2 1.8 2 4 30
+0.27 0.27 0.31 0.38 0.66 0.75 0.76 1.1 1.6 1.8 3.6 26
+100
+101
+Mean time (ms; log color scale)
+N2 | Every tile and algorithm
+Exploratory screen: 7 timings per passing cell. Tile order is BM/BN/BK. Native was not measured.
+Prepared kernel  |  Original N1-N4 allocation
+Numbers are archived measurements; missing cells are not measured or failed.
+Sources: 20260919T050718Z-N2-v5e-v002-226e83
+
+N3 | call | Original N1-N4 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Plain 1, Both changes 3, Output accumulator 2. A lowest mean alone
+is not proof of a clear win.
+OUR INTERPRETATION
+These changes can improve the implementation, but the effect depends on shape and
+algorithm. Compare each variant with its own plain version. The fixed tile is 1024/1024/512;
+there is no Native XLA or full-tile Cubic baseline here. Product reordering alone does not
+prove that the TPU overlaps vector work and matrix multiplication.
+Fast matrix multiplication on TPU | v5e results
+10 / 49
+square 2048
+2048 x 2048 x 2048
+vary k 8192
+2048 x 8192 x 2048
+vary n 8192
+2048 x 2048 x 8192
+Gemma9 gate/up m512
+512 x 3584 x 28672
+Mistral7 gate/up m512
+512 x 4096 x 28672
+Qwen32 gate/up m8192
+8192 x 5120 x 51200
+0
+5
+10
+15
+20
+25
+30Mean time (ms) - lower is better
+Plain Product order Output accumulator Both changes
+N3 | Cubic (quadrant control) optimization ablation
+Fixed tile 1024/1024/512. Native and full-tile cubic were not measured.
+Complete call  |  Original N1-N4 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T051615Z-N3-v5e-v002-bc2214
+
+N3 | call | Original N1-N4 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Both changes 6. A lowest mean alone is not proof of a clear win.
+OUR INTERPRETATION
+These changes can improve the implementation, but the effect depends on shape and
+algorithm. Compare each variant with its own plain version. The fixed tile is 1024/1024/512;
+there is no Native XLA or full-tile Cubic baseline here. Product reordering alone does not
+prove that the TPU overlaps vector work and matrix multiplication.
+Fast matrix multiplication on TPU | v5e results
+11 / 49
+square 2048
+2048 x 2048 x 2048
+vary k 8192
+2048 x 8192 x 2048
+vary n 8192
+2048 x 2048 x 8192
+Gemma9 gate/up m512
+512 x 3584 x 28672
+Mistral7 gate/up m512
+512 x 4096 x 28672
+Qwen32 gate/up m8192
+8192 x 5120 x 51200
+0
+5
+10
+15
+20
+25Mean time (ms) - lower is better
+Plain Product order Output accumulator Both changes
+N3 | Strassen optimization ablation
+Fixed tile 1024/1024/512. Native and full-tile cubic were not measured.
+Complete call  |  Original N1-N4 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T051615Z-N3-v5e-v002-bc2214
+
+N3 | prepared kernel | Original N1-N4 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Output accumulator 4, Both changes 2. A lowest mean alone is not
+proof of a clear win.
+OUR INTERPRETATION
+These changes can improve the implementation, but the effect depends on shape and
+algorithm. Compare each variant with its own plain version. The fixed tile is 1024/1024/512;
+there is no Native XLA or full-tile Cubic baseline here. Product reordering alone does not
+prove that the TPU overlaps vector work and matrix multiplication.
+Fast matrix multiplication on TPU | v5e results
+12 / 49
+square 2048
+2048 x 2048 x 2048
+vary k 8192
+2048 x 8192 x 2048
+vary n 8192
+2048 x 2048 x 8192
+Gemma9 gate/up m512
+512 x 3584 x 28672
+Mistral7 gate/up m512
+512 x 4096 x 28672
+Qwen32 gate/up m8192
+8192 x 5120 x 51200
+0
+5
+10
+15
+20
+25
+30Mean time (ms) - lower is better
+Plain Product order Output accumulator Both changes
+N3 | Cubic (quadrant control) optimization ablation
+Fixed tile 1024/1024/512. Native and full-tile cubic were not measured.
+Prepared kernel  |  Original N1-N4 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T051615Z-N3-v5e-v002-bc2214
+
+N3 | prepared kernel | Original N1-N4 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Both changes 5, Product order 1. A lowest mean alone is not proof of
+a clear win.
+OUR INTERPRETATION
+These changes can improve the implementation, but the effect depends on shape and
+algorithm. Compare each variant with its own plain version. The fixed tile is 1024/1024/512;
+there is no Native XLA or full-tile Cubic baseline here. Product reordering alone does not
+prove that the TPU overlaps vector work and matrix multiplication.
+Fast matrix multiplication on TPU | v5e results
+13 / 49
+square 2048
+2048 x 2048 x 2048
+vary k 8192
+2048 x 8192 x 2048
+vary n 8192
+2048 x 2048 x 8192
+Gemma9 gate/up m512
+512 x 3584 x 28672
+Mistral7 gate/up m512
+512 x 4096 x 28672
+Qwen32 gate/up m8192
+8192 x 5120 x 51200
+0
+5
+10
+15
+20
+25Mean time (ms) - lower is better
+Plain Product order Output accumulator Both changes
+N3 | Strassen optimization ablation
+Fixed tile 1024/1024/512. Native and full-tile cubic were not measured.
+Prepared kernel  |  Original N1-N4 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T051615Z-N3-v5e-v002-bc2214
+
+N4 | accuracy | Original N1-N4 allocation
+WHAT THIS GRAPH SHOWS
+Bars show median relative L2 error across three seeds; dots and whiskers retain the
+individual seed values. Strassen's medians range from 0.00285 to 0.00441. 0 Strassen
+seed cases fail here. The red line is the 0.02 tolerance; the black segment marks the
+lowest eligible median error. No speed was measured.
+OUR INTERPRETATION
+Strassen introduces extra additions and subtractions and can have substantially larger
+numerical error. Passing a fixed tolerance is different from matching the accuracy of Cubic
+or Native. Performance gains must therefore be restricted to input conditions that have
+been checked; choosing a shape or tile alone cannot certify accuracy.
+Fast matrix multiplication on TPU | v5e results
+14 / 49
+square 512
+512 x 512 x 512
+tail 513
+513 x 513 x 513
+small m 8
+8 x 2048 x 2048
+square 2048
+2048 x 2048 x 2048
+vary k 8192
+2048 x 8192 x 2048Gemma9 gate/up m512512 x 3584 x 28672 Mistral7 gate/up m512512 x 4096 x 28672Qwen32 gate/up m512512 x 5120 x 51200
+10−7
+10−6
+10−5
+10−4
+10−3
+10−2
+Relative L2 error (log scale)
+Native XLA Cubic (full tile) Cubic (quadrant control) Strassen
+N4 | gaussian - relative error
+Accuracy only: median of 3 seeds; whiskers and dots show all seed values. No latency was measured.
+Numerical accuracy  |  Original N1-N4 allocation
+Black dashed segment + diamond: lowest eligible median error within each shape; descriptive, not a significance test.
+Seed range is descriptive, not a confidence interval. Hatched bars failed the unchanged numerical gate.
+Sources: 20260919T051854Z-N4-v5e-v002-3ef5fb
+
+N4 | accuracy | Original N1-N4 allocation
+WHAT THIS GRAPH SHOWS
+Bars show median relative L2 error across three seeds; dots and whiskers retain the
+individual seed values. Strassen's medians range from 0.00291 to 0.00459. 0 Strassen
+seed cases fail here. The red line is the 0.02 tolerance; the black segment marks the
+lowest eligible median error. No speed was measured.
+OUR INTERPRETATION
+Strassen introduces extra additions and subtractions and can have substantially larger
+numerical error. Passing a fixed tolerance is different from matching the accuracy of Cubic
+or Native. Performance gains must therefore be restricted to input conditions that have
+been checked; choosing a shape or tile alone cannot certify accuracy.
+Fast matrix multiplication on TPU | v5e results
+15 / 49
+square 512
+512 x 512 x 512
+tail 513
+513 x 513 x 513
+small m 8
+8 x 2048 x 2048
+square 2048
+2048 x 2048 x 2048
+vary k 8192
+2048 x 8192 x 2048Gemma9 gate/up m512512 x 3584 x 28672 Mistral7 gate/up m512512 x 4096 x 28672Qwen32 gate/up m512512 x 5120 x 51200
+10−7
+10−6
+10−5
+10−4
+10−3
+10−2
+Relative L2 error (log scale)
+Native XLA Cubic (full tile) Cubic (quadrant control) Strassen
+N4 | uniform - relative error
+Accuracy only: median of 3 seeds; whiskers and dots show all seed values. No latency was measured.
+Numerical accuracy  |  Original N1-N4 allocation
+Black dashed segment + diamond: lowest eligible median error within each shape; descriptive, not a significance test.
+Seed range is descriptive, not a confidence interval. Hatched bars failed the unchanged numerical gate.
+Sources: 20260919T051854Z-N4-v5e-v002-3ef5fb
+
+N4 | accuracy | Original N1-N4 allocation
+WHAT THIS GRAPH SHOWS
+Bars show median relative L2 error across three seeds; dots and whiskers retain the
+individual seed values. Strassen's medians range from 0.00216 to 0.00375. 0 Strassen
+seed cases fail here. The red line is the 0.02 tolerance; the black segment marks the
+lowest eligible median error. No speed was measured.
+OUR INTERPRETATION
+Strassen introduces extra additions and subtractions and can have substantially larger
+numerical error. Passing a fixed tolerance is different from matching the accuracy of Cubic
+or Native. Performance gains must therefore be restricted to input conditions that have
+been checked; choosing a shape or tile alone cannot certify accuracy.
+Fast matrix multiplication on TPU | v5e results
+16 / 49
+square 512
+512 x 512 x 512
+tail 513
+513 x 513 x 513
+small m 8
+8 x 2048 x 2048
+square 2048
+2048 x 2048 x 2048
+vary k 8192
+2048 x 8192 x 2048Gemma9 gate/up m512512 x 3584 x 28672 Mistral7 gate/up m512512 x 4096 x 28672Qwen32 gate/up m512512 x 5120 x 51200
+10−7
+10−6
+10−5
+10−4
+10−3
+10−2
+Relative L2 error (log scale)
+Native XLA Cubic (full tile) Cubic (quadrant control) Strassen
+N4 | log scale - relative error
+Accuracy only: median of 3 seeds; whiskers and dots show all seed values. No latency was measured.
+Numerical accuracy  |  Original N1-N4 allocation
+Black dashed segment + diamond: lowest eligible median error within each shape; descriptive, not a significance test.
+Seed range is descriptive, not a confidence interval. Hatched bars failed the unchanged numerical gate.
+Sources: 20260919T051854Z-N4-v5e-v002-3ef5fb
+
+N4 | accuracy | Original N1-N4 allocation
+WHAT THIS GRAPH SHOWS
+Bars show median relative L2 error across three seeds; dots and whiskers retain the
+individual seed values. Strassen's medians range from 0.00292 to 0.00476. 0 Strassen
+seed cases fail here. The red line is the 0.02 tolerance; the black segment marks the
+lowest eligible median error. No speed was measured.
+OUR INTERPRETATION
+Strassen introduces extra additions and subtractions and can have substantially larger
+numerical error. Passing a fixed tolerance is different from matching the accuracy of Cubic
+or Native. Performance gains must therefore be restricted to input conditions that have
+been checked; choosing a shape or tile alone cannot certify accuracy.
+Fast matrix multiplication on TPU | v5e results
+17 / 49
+square 512
+512 x 512 x 512
+tail 513
+513 x 513 x 513
+small m 8
+8 x 2048 x 2048
+square 2048
+2048 x 2048 x 2048
+vary k 8192
+2048 x 8192 x 2048Gemma9 gate/up m512512 x 3584 x 28672 Mistral7 gate/up m512512 x 4096 x 28672Qwen32 gate/up m512512 x 5120 x 51200
+10−7
+10−6
+10−5
+10−4
+10−3
+10−2
+Relative L2 error (log scale)
+Native XLA Cubic (full tile) Cubic (quadrant control) Strassen
+N4 | outliers - relative error
+Accuracy only: median of 3 seeds; whiskers and dots show all seed values. No latency was measured.
+Numerical accuracy  |  Original N1-N4 allocation
+Black dashed segment + diamond: lowest eligible median error within each shape; descriptive, not a significance test.
+Seed range is descriptive, not a confidence interval. Hatched bars failed the unchanged numerical gate.
+Sources: 20260919T051854Z-N4-v5e-v002-3ef5fb
+
+N4 | accuracy | Original N1-N4 allocation
+WHAT THIS GRAPH SHOWS
+Bars show median relative L2 error across three seeds; dots and whiskers retain the
+individual seed values. Strassen's medians range from 0.306 to 0.531. 24 Strassen seed
+cases fail here. The red line is the 0.02 tolerance; the black segment marks the lowest
+eligible median error. No speed was measured.
+OUR INTERPRETATION
+All 24 Strassen cancellation cases fail, while the other algorithms pass. The median
+checked Strassen error is about 0.527, far above the 0.02 limit. This is a real
+input-sensitivity limit of the tested numerical contract; the speed plots cannot justify
+replacing Native or Cubic for arbitrary input values.
+Fast matrix multiplication on TPU | v5e results
+18 / 49
+square 512
+512 x 512 x 512
+tail 513
+513 x 513 x 513
+small m 8
+8 x 2048 x 2048
+square 2048
+2048 x 2048 x 2048
+vary k 8192
+2048 x 8192 x 2048Gemma9 gate/up m512512 x 3584 x 28672 Mistral7 gate/up m512512 x 4096 x 28672Qwen32 gate/up m512512 x 5120 x 51200
+10−5
+10−4
+10−3
+10−2
+10−1
+100
+Relative L2 error (log scale)
+Native XLA Cubic (full tile) Cubic (quadrant control) Strassen
+N4 | cancellation - relative error
+Accuracy only: median of 3 seeds; whiskers and dots show all seed values. No latency was measured.
+Numerical accuracy  |  Original N1-N4 allocation
+Black dashed segment + diamond: lowest eligible median error within each shape; descriptive, not a significance test.
+Seed range is descriptive, not a confidence interval. Hatched bars failed the unchanged numerical gate.
+Sources: 20260919T051854Z-N4-v5e-v002-3ef5fb
+
+N4 | accuracy | Original N1-N4 allocation
+WHAT THIS GRAPH SHOWS
+Bars show median relative L2 error across three seeds; dots and whiskers retain the
+individual seed values. Strassen's medians range from 0.00281 to 0.00439. 0 Strassen
+seed cases fail here. The red line is the 0.02 tolerance; the black segment marks the
+lowest eligible median error. No speed was measured.
+OUR INTERPRETATION
+All 48 cases using actual Qwen projection weights pass. However, the activations are
+synthetic Gaussian values. This checks compatibility with those weights, not real-model
+quality or arbitrary-input safety; the cancellation failures in the previous graph still apply.
+Fast matrix multiplication on TPU | v5e results
+19 / 49
+Qwen0.6 down m512
+512 x 3072 x 1024
+Qwen0.6 q m512
+512 x 1024 x 2048
+Qwen0.6 down m2048
+2048 x 3072 x 1024
+Qwen0.6 q m2048
+2048 x 1024 x 2048
+10−7
+10−6
+10−5
+10−4
+10−3
+10−2
+Relative L2 error (log scale)
+Native XLA Cubic (full tile) Cubic (quadrant control) Strassen
+N4 | Actual Qwen weights - relative error
+Accuracy only: median of 3 seeds; whiskers and dots show all seed values. No latency was measured.
+Numerical accuracy  |  Original N1-N4 allocation
+Black dashed segment + diamond: lowest eligible median error within each shape; descriptive, not a significance test.
+Seed range is descriptive, not a confidence interval. Hatched bars failed the unchanged numerical gate.
+Sources: 20260919T052151Z-N4-real-weights-v5e-v003-cb86b9
+
+N5 | call | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Strassen (selected) 5, Native XLA 5. Archived paired intervals for
+Strassen versus Native: 3 faster, 3 slower, 4 inconclusive.
+OUR INTERPRETATION
+This is the fairer comparison: Cubic and Strassen each received 20 attempted tile/variant
+configurations per shape, then separate winners were frozen and measured on fresh data.
+Across 16 complete-call shapes, Strassen has 6 supported wins, 4 inconclusive
+comparisons and 6 losses versus Native; versus tuned Cubic it has 6 wins, 8 inconclusive
+and 2 losses. The benefit is selective, not universal.
+Fast matrix multiplication on TPU | v5e results
+20 / 49
+square 512
+512 x 512 x 512
+tail 513
+513 x 513 x 513
+small m 8
+8 x 2048 x 2048
+small m 64
+64 x 2048 x 2048mkn 512 8192 2048512 x 8192 x 2048
+square 2048
+2048 x 2048 x 2048
+tail wide
+1023 x 2047 x 4095
+vary k 8192
+2048 x 8192 x 2048
+vary m 8192
+8192 x 2048 x 2048
+vary n 8192
+2048 x 2048 x 8192
+0.0
+0.2
+0.4
+0.6
+0.8Mean time (ms) - lower is better
+Native XLA Cubic (selected) Strassen (selected)
+N5 | Fresh confirmation - shapes 1-10
+30 paired rounds; independent family selections. Matrix dimensions are M x K x N.
+Complete call  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T063644Z-N5-confirm-v5e-v004-155d9f
+
+N5 | call | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Strassen (selected) 3, Native XLA 3. Archived paired intervals for
+Strassen versus Native: 3 faster, 3 slower, 0 inconclusive.
+OUR INTERPRETATION
+This is the fairer comparison: Cubic and Strassen each received 20 attempted tile/variant
+configurations per shape, then separate winners were frozen and measured on fresh data.
+Across 16 complete-call shapes, Strassen has 6 supported wins, 4 inconclusive
+comparisons and 6 losses versus Native; versus tuned Cubic it has 6 wins, 8 inconclusive
+and 2 losses. The benefit is selective, not universal.
+Fast matrix multiplication on TPU | v5e results
+21 / 49
+square 4096
+4096 x 4096 x 4096
+Gemma9 gate/up m512
+512 x 3584 x 28672
+Mistral7 gate/up m512
+512 x 4096 x 28672
+Qwen32 gate/up m512
+512 x 5120 x 51200
+square 8192
+8192 x 8192 x 8192
+Qwen32 gate/up m8192
+8192 x 5120 x 51200
+0
+5
+10
+15
+20
+25Mean time (ms) - lower is better
+Native XLA Cubic (selected) Strassen (selected)
+N5 | Fresh confirmation - shapes 11-16
+30 paired rounds; independent family selections. Matrix dimensions are M x K x N.
+Complete call  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T063644Z-N5-confirm-v5e-v004-155d9f
+
+N5 | prepared kernel | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Strassen (selected) 7, Native XLA 3. Archived paired intervals for
+Strassen versus Native: 4 faster, 1 slower, 5 inconclusive.
+OUR INTERPRETATION
+Prepared inputs change the practical comparison: across all 16 shapes, Strassen has 7
+wins, 5 inconclusive comparisons and 4 losses versus Native, and 5 wins, 9 inconclusive
+and 2 losses versus tuned Cubic. The chosen configurations were selected by
+complete-call timing. Prepared performance assumes reusable prepared buffers and
+should not replace complete-call results.
+Fast matrix multiplication on TPU | v5e results
+22 / 49
+square 512
+512 x 512 x 512
+tail 513
+513 x 513 x 513
+small m 8
+8 x 2048 x 2048
+small m 64
+64 x 2048 x 2048mkn 512 8192 2048512 x 8192 x 2048
+square 2048
+2048 x 2048 x 2048
+tail wide
+1023 x 2047 x 4095
+vary k 8192
+2048 x 8192 x 2048
+vary m 8192
+8192 x 2048 x 2048
+vary n 8192
+2048 x 2048 x 8192
+0.0
+0.2
+0.4
+0.6
+0.8Mean time (ms) - lower is better
+Native XLA Cubic (selected) Strassen (selected)
+N5 | Fresh confirmation - shapes 1-10
+30 paired rounds; independent family selections. Matrix dimensions are M x K x N.
+Prepared kernel  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T063644Z-N5-confirm-v5e-v004-155d9f
+
+N5 | prepared kernel | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Strassen (selected) 3, Native XLA 3. Archived paired intervals for
+Strassen versus Native: 3 faster, 3 slower, 0 inconclusive.
+OUR INTERPRETATION
+Prepared inputs change the practical comparison: across all 16 shapes, Strassen has 7
+wins, 5 inconclusive comparisons and 4 losses versus Native, and 5 wins, 9 inconclusive
+and 2 losses versus tuned Cubic. The chosen configurations were selected by
+complete-call timing. Prepared performance assumes reusable prepared buffers and
+should not replace complete-call results.
+Fast matrix multiplication on TPU | v5e results
+23 / 49
+square 4096
+4096 x 4096 x 4096
+Gemma9 gate/up m512
+512 x 3584 x 28672
+Mistral7 gate/up m512
+512 x 4096 x 28672
+Qwen32 gate/up m512
+512 x 5120 x 51200
+square 8192
+8192 x 8192 x 8192
+Qwen32 gate/up m8192
+8192 x 5120 x 51200
+0
+5
+10
+15
+20
+25Mean time (ms) - lower is better
+Native XLA Cubic (selected) Strassen (selected)
+N5 | Fresh confirmation - shapes 11-16
+30 paired rounds; independent family selections. Matrix dimensions are M x K x N.
+Prepared kernel  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T063644Z-N5-confirm-v5e-v004-155d9f
+
+N6 | call | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Strassen (selected) 1, Cubic (selected) 1, Native XLA 1. Archived
+paired intervals for Strassen versus Native: 2 faster, 0 slower, 1 inconclusive.
+OUR INTERPRETATION
+Host-observed complete-call latency and profiled TPU-module duration answer different
+questions. Native has the shortest device module for all three original representatives,
+despite some different call-time rankings. These traces do not establish MXU utilization,
+vector overlap, or a measured decomposition of dispatch and memory costs.
+Fast matrix multiplication on TPU | v5e results
+24 / 49
+vary m 8192
+8192 x 2048 x 2048
+mkn 512 8192 2048
+512 x 8192 x 2048
+small m 8
+8 x 2048 x 2048
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8Mean time (ms) - lower is better
+0.6505
+0.3663
+0.252
+0.6599
+0.3293
+0.2537
+0.6329
+0.3337
+0.2633
+Native XLA Cubic (selected) Strassen (selected)
+N6 | Registered representatives - before profiling
+Ordinary synchronized host-observed latency; profiled device duration is a separate chart.
+Complete call  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T064743Z-N6-v5e-v004-e7bc5e
+
+N6 | call | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Strassen (selected) 1, Cubic (selected) 2. Archived paired intervals for
+Strassen versus Native: 2 faster, 0 slower, 1 inconclusive.
+OUR INTERPRETATION
+Host-observed complete-call latency and profiled TPU-module duration answer different
+questions. Native has the shortest device module for all three original representatives,
+despite some different call-time rankings. These traces do not establish MXU utilization,
+vector overlap, or a measured decomposition of dispatch and memory costs.
+Fast matrix multiplication on TPU | v5e results
+25 / 49
+vary m 8192
+8192 x 2048 x 2048
+mkn 512 8192 2048
+512 x 8192 x 2048
+small m 8
+8 x 2048 x 2048
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8Mean time (ms) - lower is better
+0.6579
+0.3717
+0.2405
+0.6739
+0.3271
+0.2315
+0.6446
+0.3315
+0.2474
+Native XLA Cubic (selected) Strassen (selected)
+N6 | Registered representatives - after profiling
+Ordinary synchronized host-observed latency; profiled device duration is a separate chart.
+Complete call  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T064743Z-N6-v5e-v004-e7bc5e
+
+N6 | device | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Native XLA 3. A lowest mean alone is not proof of a clear win.
+OUR INTERPRETATION
+Host-observed complete-call latency and profiled TPU-module duration answer different
+questions. Native has the shortest device module for all three original representatives,
+despite some different call-time rankings. These traces do not establish MXU utilization,
+vector overlap, or a measured decomposition of dispatch and memory costs.
+Fast matrix multiplication on TPU | v5e results
+26 / 49
+vary m 8192
+8192 x 2048 x 2048
+mkn 512 8192 2048
+512 x 8192 x 2048
+small m 8
+8 x 2048 x 2048
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5Device module time (ms) - lower is better
+0.3589
+0.09273
+0.003182
+0.4203
+0.1014
+0.01574
+0.3917
+0.1032
+0.02804
+Native XLA Cubic (selected) Strassen (selected)
+N6 | Profiled TPU module
+Mean of two 8-call captures; whiskers/dots show capture means. Profiler-instrumented, not ordinary call latency.
+Profiled TPU module  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Capture-mean range is descriptive; no utilization, overlap or HBM-traffic claim.
+Sources: 20260919T064743Z-N6-v5e-v004-e7bc5e
+
+N6 | call | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Strassen (selected) 2. Archived paired intervals for Strassen versus
+Native: 2 faster, 0 slower, 0 inconclusive.
+OUR INTERPRETATION
+The large Qwen and 8192-square cases also show a Strassen advantage inside the
+profiled device module: 1.061x and 1.129x versus Native. Before/after ordinary timings
+retain the same favorable direction. These shapes were chosen afterward from N5
+winners, so this is a diagnostic of favorable cases, not an independent estimate of how
+often Strassen wins.
+Fast matrix multiplication on TPU | v5e results
+27 / 49
+Qwen32 gate/up m8192
+8192 x 5120 x 51200
+square 8192
+8192 x 8192 x 8192
+0
+5
+10
+15
+20
+25Mean time (ms) - lower is better
+22.83
+6.291
+23.3
+6.097
+21.43
+5.605
+Native XLA Cubic (selected) Strassen (selected)
+N6 | Large-shape supplement - before profiling
+Ordinary synchronized host-observed latency; profiled device duration is a separate chart.
+Complete call  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T073356Z-N6-v5e-v004-dde5c0
+
+N6 | call | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Strassen (selected) 2. Archived paired intervals for Strassen versus
+Native: 2 faster, 0 slower, 0 inconclusive.
+OUR INTERPRETATION
+The large Qwen and 8192-square cases also show a Strassen advantage inside the
+profiled device module: 1.061x and 1.129x versus Native. Before/after ordinary timings
+retain the same favorable direction. These shapes were chosen afterward from N5
+winners, so this is a diagnostic of favorable cases, not an independent estimate of how
+often Strassen wins.
+Fast matrix multiplication on TPU | v5e results
+28 / 49
+Qwen32 gate/up m8192
+8192 x 5120 x 51200
+square 8192
+8192 x 8192 x 8192
+0
+5
+10
+15
+20
+25Mean time (ms) - lower is better
+22.82
+6.332
+23.29
+6.143
+21.39
+5.658
+Native XLA Cubic (selected) Strassen (selected)
+N6 | Large-shape supplement - after profiling
+Ordinary synchronized host-observed latency; profiled device duration is a separate chart.
+Complete call  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T073356Z-N6-v5e-v004-dde5c0
+
+N6 | device | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Strassen (selected) 2. A lowest mean alone is not proof of a clear win.
+OUR INTERPRETATION
+The large Qwen and 8192-square cases also show a Strassen advantage inside the
+profiled device module: 1.061x and 1.129x versus Native. Before/after ordinary timings
+retain the same favorable direction. These shapes were chosen afterward from N5
+winners, so this is a diagnostic of favorable cases, not an independent estimate of how
+often Strassen wins.
+Fast matrix multiplication on TPU | v5e results
+29 / 49
+Qwen32 gate/up m8192
+8192 x 5120 x 51200
+square 8192
+8192 x 8192 x 8192
+0
+5
+10
+15
+20
+25Device module time (ms) - lower is better
+22.3
+6.013
+22.88
+5.822
+21.02
+5.326
+Native XLA Cubic (selected) Strassen (selected)
+N6 | Profiled TPU module - large-shape supplement
+Mean of two 8-call captures; whiskers/dots show capture means. Profiler-instrumented, not ordinary call latency.
+Profiled TPU module  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Capture-mean range is descriptive; no utilization, overlap or HBM-traffic claim.
+Sources: 20260919T073356Z-N6-v5e-v004-dde5c0
+
+N7 | call | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Native XLA 3, Frozen rule 4, Strassen (selected) 3. Archived paired
+intervals for the independently tuned Strassen alternative versus Native: 3 faster, 5 slower,
+2 inconclusive.
+OUR INTERPRETATION
+The rule was frozen from N5 before these held-out shapes were measured. It chooses
+Native on 13 shapes, Strassen on 2 and Cubic on 1. All 3 custom routes beat Native in
+complete-call timing, and those gains repeat on a fresh v5e allocation. Independent
+comparator tuning did not update the rule. Duplicate Native/rule bars can differ through
+timing noise rather than algorithmic improvement.
+Fast matrix multiplication on TPU | v5e results
+30 / 49
+square 768
+768 x 768 x 768
+square 1536
+1536 x 1536 x 1536
+small m128
+128 x 3072 x 6144
+tail b
+2051 x 4099 x 1537
+small m16
+16 x 4096 x 8192
+rect deep k
+3072 x 6144 x 1024
+tail a
+1001 x 3001 x 5003
+rect tall
+6144 x 3072 x 1024
+rect wide
+1024 x 3072 x 6144
+square 3072
+3072 x 3072 x 3072
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8Mean time (ms) - lower is better
+Native XLA Cubic (selected) Strassen (selected) Frozen rule
+N7 | Frozen-rule evaluation - shapes 1-10
+30 paired rounds; independent family selections. Matrix dimensions are M x K x N.
+Complete call  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T073017Z-N7-evaluate-v5e-v004-8036b5
+
+N7 | call | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Strassen (selected) 2, Native XLA 1, Frozen rule 3. Archived paired
+intervals for the independently tuned Strassen alternative versus Native: 3 faster, 2 slower,
+1 inconclusive.
+OUR INTERPRETATION
+The rule was frozen from N5 before these held-out shapes were measured. It chooses
+Native on 13 shapes, Strassen on 2 and Cubic on 1. All 3 custom routes beat Native in
+complete-call timing, and those gains repeat on a fresh v5e allocation. Independent
+comparator tuning did not update the rule. Duplicate Native/rule bars can differ through
+timing noise rather than algorithmic improvement.
+Fast matrix multiplication on TPU | v5e results
+31 / 49
+rect short k
+3072 x 1024 x 6144
+qwen down
+1024 x 25600 x 5120
+Gemma gateup
+1024 x 3584 x 28672
+square 6144
+6144 x 6144 x 6144
+mistral gateup
+1024 x 4096 x 28672
+qwen gateup
+256 x 5120 x 51200
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0Mean time (ms) - lower is better
+Native XLA Cubic (selected) Strassen (selected) Frozen rule
+N7 | Frozen-rule evaluation - shapes 11-16
+30 paired rounds; independent family selections. Matrix dimensions are M x K x N.
+Complete call  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T073017Z-N7-evaluate-v5e-v004-8036b5
+
+N7 | prepared kernel | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Native XLA 3, Frozen rule 1, Cubic (selected) 1, Strassen (selected)
+5. Archived paired intervals for the independently tuned Strassen alternative versus Native:
+5 faster, 5 slower, 0 inconclusive.
+OUR INTERPRETATION
+The rule was frozen from N5 before these held-out shapes were measured. It chooses
+Native on 13 shapes, Strassen on 2 and Cubic on 1. All 3 custom routes beat Native in
+complete-call timing, and those gains repeat on a fresh v5e allocation. Independent
+comparator tuning did not update the rule. Duplicate Native/rule bars can differ through
+timing noise rather than algorithmic improvement.
+Fast matrix multiplication on TPU | v5e results
+32 / 49
+square 768
+768 x 768 x 768
+square 1536
+1536 x 1536 x 1536
+small m128
+128 x 3072 x 6144
+tail b
+2051 x 4099 x 1537
+small m16
+16 x 4096 x 8192
+rect deep k
+3072 x 6144 x 1024
+tail a
+1001 x 3001 x 5003
+rect tall
+6144 x 3072 x 1024
+rect wide
+1024 x 3072 x 6144
+square 3072
+3072 x 3072 x 3072
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7Mean time (ms) - lower is better
+Native XLA Cubic (selected) Strassen (selected) Frozen rule
+N7 | Frozen-rule evaluation - shapes 1-10
+30 paired rounds; independent family selections. Matrix dimensions are M x K x N.
+Prepared kernel  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T073017Z-N7-evaluate-v5e-v004-8036b5
+
+N7 | prepared kernel | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Strassen (selected) 2, Native XLA 2, Frozen rule 2. Archived paired
+intervals for the independently tuned Strassen alternative versus Native: 3 faster, 2 slower,
+1 inconclusive.
+OUR INTERPRETATION
+The rule was frozen from N5 before these held-out shapes were measured. It chooses
+Native on 13 shapes, Strassen on 2 and Cubic on 1. All 3 custom routes beat Native in
+complete-call timing, and those gains repeat on a fresh v5e allocation. Independent
+comparator tuning did not update the rule. Duplicate Native/rule bars can differ through
+timing noise rather than algorithmic improvement.
+Fast matrix multiplication on TPU | v5e results
+33 / 49
+rect short k
+3072 x 1024 x 6144
+qwen down
+1024 x 25600 x 5120
+Gemma gateup
+1024 x 3584 x 28672
+square 6144
+6144 x 6144 x 6144
+mistral gateup
+1024 x 4096 x 28672
+qwen gateup
+256 x 5120 x 51200
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0Mean time (ms) - lower is better
+Native XLA Cubic (selected) Strassen (selected) Frozen rule
+N7 | Frozen-rule evaluation - shapes 11-16
+30 paired rounds; independent family selections. Matrix dimensions are M x K x N.
+Prepared kernel  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T073017Z-N7-evaluate-v5e-v004-8036b5
+
+N7 | call | Fresh v5e replication
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Native XLA 5, Frozen rule 3, Strassen (selected) 2. Archived paired
+intervals for the independently tuned Strassen alternative versus Native: 3 faster, 7 slower,
+0 inconclusive.
+OUR INTERPRETATION
+No retuning or rule update occurred on this fresh v5e allocation. The same three custom
+complete-call gains repeat: deep-K Cubic 1.080x, tall Strassen 1.115x and square
+Strassen 1.087x versus Native. A nominal extra Native-versus-Native win is timing
+variability, not a new algorithmic gain. This is fresh-v5e replication; v6e remains future
+work.
+Fast matrix multiplication on TPU | v5e results
+34 / 49
+square 768
+768 x 768 x 768
+square 1536
+1536 x 1536 x 1536
+small m128
+128 x 3072 x 6144
+tail b
+2051 x 4099 x 1537
+small m16
+16 x 4096 x 8192
+rect deep k
+3072 x 6144 x 1024
+tail a
+1001 x 3001 x 5003
+rect tall
+6144 x 3072 x 1024
+rect wide
+1024 x 3072 x 6144
+square 3072
+3072 x 3072 x 3072
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8Mean time (ms) - lower is better
+Native XLA Cubic (selected) Strassen (selected) Frozen rule
+N7 | Fresh-v5e replication - shapes 1-10
+30 paired rounds; independent family selections. Matrix dimensions are M x K x N.
+Complete call  |  Fresh v5e replication
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T084449Z-N7-replicate-v5e-v004-955768
+
+N7 | call | Fresh v5e replication
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Strassen (selected) 2, Native XLA 1, Frozen rule 3. Archived paired
+intervals for the independently tuned Strassen alternative versus Native: 3 faster, 2 slower,
+1 inconclusive.
+OUR INTERPRETATION
+No retuning or rule update occurred on this fresh v5e allocation. The same three custom
+complete-call gains repeat: deep-K Cubic 1.080x, tall Strassen 1.115x and square
+Strassen 1.087x versus Native. A nominal extra Native-versus-Native win is timing
+variability, not a new algorithmic gain. This is fresh-v5e replication; v6e remains future
+work.
+Fast matrix multiplication on TPU | v5e results
+35 / 49
+rect short k
+3072 x 1024 x 6144
+qwen down
+1024 x 25600 x 5120
+Gemma gateup
+1024 x 3584 x 28672
+square 6144
+6144 x 6144 x 6144
+mistral gateup
+1024 x 4096 x 28672
+qwen gateup
+256 x 5120 x 51200
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0Mean time (ms) - lower is better
+Native XLA Cubic (selected) Strassen (selected) Frozen rule
+N7 | Fresh-v5e replication - shapes 11-16
+30 paired rounds; independent family selections. Matrix dimensions are M x K x N.
+Complete call  |  Fresh v5e replication
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T084449Z-N7-replicate-v5e-v004-955768
+
+N7 | prepared kernel | Fresh v5e replication
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Native XLA 3, Frozen rule 2, Strassen (selected) 5. Archived paired
+intervals for the independently tuned Strassen alternative versus Native: 4 faster, 5 slower,
+1 inconclusive.
+OUR INTERPRETATION
+No retuning or rule update occurred on this fresh v5e allocation. The same three custom
+complete-call gains repeat: deep-K Cubic 1.080x, tall Strassen 1.115x and square
+Strassen 1.087x versus Native. A nominal extra Native-versus-Native win is timing
+variability, not a new algorithmic gain. This is fresh-v5e replication; v6e remains future
+work.
+Fast matrix multiplication on TPU | v5e results
+36 / 49
+square 768
+768 x 768 x 768
+square 1536
+1536 x 1536 x 1536
+small m128
+128 x 3072 x 6144
+tail b
+2051 x 4099 x 1537
+small m16
+16 x 4096 x 8192
+rect deep k
+3072 x 6144 x 1024
+tail a
+1001 x 3001 x 5003
+rect tall
+6144 x 3072 x 1024
+rect wide
+1024 x 3072 x 6144
+square 3072
+3072 x 3072 x 3072
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8Mean time (ms) - lower is better
+Native XLA Cubic (selected) Strassen (selected) Frozen rule
+N7 | Fresh-v5e replication - shapes 1-10
+30 paired rounds; independent family selections. Matrix dimensions are M x K x N.
+Prepared kernel  |  Fresh v5e replication
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T084449Z-N7-replicate-v5e-v004-955768
+
+N7 | prepared kernel | Fresh v5e replication
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Strassen (selected) 2, Native XLA 2, Frozen rule 2. Archived paired
+intervals for the independently tuned Strassen alternative versus Native: 3 faster, 2 slower,
+1 inconclusive.
+OUR INTERPRETATION
+No retuning or rule update occurred on this fresh v5e allocation. The same three custom
+complete-call gains repeat: deep-K Cubic 1.080x, tall Strassen 1.115x and square
+Strassen 1.087x versus Native. A nominal extra Native-versus-Native win is timing
+variability, not a new algorithmic gain. This is fresh-v5e replication; v6e remains future
+work.
+Fast matrix multiplication on TPU | v5e results
+37 / 49
+rect short k
+3072 x 1024 x 6144
+qwen down
+1024 x 25600 x 5120
+Gemma gateup
+1024 x 3584 x 28672
+square 6144
+6144 x 6144 x 6144
+mistral gateup
+1024 x 4096 x 28672
+qwen gateup
+256 x 5120 x 51200
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0Mean time (ms) - lower is better
+Native XLA Cubic (selected) Strassen (selected) Frozen rule
+N7 | Fresh-v5e replication - shapes 11-16
+30 paired rounds; independent family selections. Matrix dimensions are M x K x N.
+Prepared kernel  |  Fresh v5e replication
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T084449Z-N7-replicate-v5e-v004-955768
+
+N8 | call | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Strassen (selected) 2, Native XLA 6. Archived paired intervals for
+Strassen versus Native: 0 faster, 6 slower, 2 inconclusive.
+OUR INTERPRETATION
+These bars choose an implementation within each family using the same N8
+measurements; they are not fresh confirmation. Separate matched-fusion tests show that
+Strassen is usually faster than custom Cubic, but Native remains essential: fused Strassen
+loses all 8 complete-call SwiGLU cases and wins 6 of 8 residual cases. Synthetic
+activations here do not establish real-model quality.
+Fast matrix multiplication on TPU | v5e results
+38 / 49
+Qwen0.6 m1024
+1024 x 1024 x 6144
+Qwen0.6 m2048
+2048 x 1024 x 6144
+Mistral7 m512
+512 x 4096 x 28672
+Mistral7 m1024
+1024 x 4096 x 28672
+Mistral7 m2048
+2048 x 4096 x 28672
+Qwen32b m512
+512 x 5120 x 51200
+Qwen32b m1024
+1024 x 5120 x 51200
+Qwen32b m2048
+2048 x 5120 x 51200
+0
+2
+4
+6
+8Mean time (ms) - lower is better
+Native XLA Cubic (selected) Strassen (selected)
+N8 | swiglu - selected family implementations
+N8-selected on these same measurements; not fresh confirmation. Prepared plots retain complete-call selections.
+Complete call  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T073511Z-N8-v5e-v004-0a55e8
+
+N8 | call | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Strassen (selected) 6, Native XLA 2. Archived paired intervals for
+Strassen versus Native: 6 faster, 2 slower, 0 inconclusive.
+OUR INTERPRETATION
+Residual addition is the more favorable application pattern. In the separate matched-fused
+comparison, Strassen beats Native on 6 of 8 shapes and loses on the two M=512 cases.
+The selected-family bars here use the same selection data, and may choose different
+variants; they should not be mistaken for independent confirmation or an isolated
+arithmetic effect.
+Fast matrix multiplication on TPU | v5e results
+39 / 49
+Qwen0.6 m1024
+1024 x 3072 x 1024
+Qwen0.6 m2048
+2048 x 3072 x 1024
+Mistral7 m512
+512 x 14336 x 4096
+Mistral7 m1024
+1024 x 14336 x 4096
+Mistral7 m2048
+2048 x 14336 x 4096
+Qwen32b m512
+512 x 25600 x 5120
+Qwen32b m1024
+1024 x 25600 x 5120
+Qwen32b m2048
+2048 x 25600 x 5120
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+3.5
+4.0Mean time (ms) - lower is better
+Native XLA Cubic (selected) Strassen (selected)
+N8 | residual - selected family implementations
+N8-selected on these same measurements; not fresh confirmation. Prepared plots retain complete-call selections.
+Complete call  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T073511Z-N8-v5e-v004-0a55e8
+
+N8 | prepared kernel | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Strassen (selected) 1, Native XLA 7. Archived paired intervals for
+Strassen versus Native: 1 faster, 6 slower, 1 inconclusive.
+OUR INTERPRETATION
+Reusing prepared operands can materially improve SwiGLU comparisons. The separate
+matched-fused test gives Strassen 5 wins, 1 inconclusive comparison and 2 losses versus
+Native in this scope, despite losing all 8 complete-call cases. These selected-family bars
+retain choices made by complete-call time. A deployment benefit requires an explicit
+assumption that preparation can be reused.
+Fast matrix multiplication on TPU | v5e results
+40 / 49
+Qwen0.6 m1024
+1024 x 1024 x 6144
+Qwen0.6 m2048
+2048 x 1024 x 6144
+Mistral7 m512
+512 x 4096 x 28672
+Mistral7 m1024
+1024 x 4096 x 28672
+Mistral7 m2048
+2048 x 4096 x 28672
+Qwen32b m512
+512 x 5120 x 51200
+Qwen32b m1024
+1024 x 5120 x 51200
+Qwen32b m2048
+2048 x 5120 x 51200
+0
+2
+4
+6
+8Mean time (ms) - lower is better
+Native XLA Cubic (selected) Strassen (selected)
+N8 | swiglu - selected family implementations
+N8-selected on these same measurements; not fresh confirmation. Prepared plots retain complete-call selections.
+Prepared kernel  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T073511Z-N8-v5e-v004-0a55e8
+
+N8 | prepared kernel | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Strassen (selected) 6, Native XLA 2. Archived paired intervals for
+Strassen versus Native: 6 faster, 2 slower, 0 inconclusive.
+OUR INTERPRETATION
+Residual addition is the more favorable application pattern. In the separate matched-fused
+comparison, Strassen beats Native on 6 of 8 shapes and loses on the two M=512 cases.
+The selected-family bars here use the same selection data, and may choose different
+variants; they should not be mistaken for independent confirmation or an isolated
+arithmetic effect.
+Fast matrix multiplication on TPU | v5e results
+41 / 49
+Qwen0.6 m1024
+1024 x 3072 x 1024
+Qwen0.6 m2048
+2048 x 3072 x 1024
+Mistral7 m512
+512 x 14336 x 4096
+Mistral7 m1024
+1024 x 14336 x 4096
+Mistral7 m2048
+2048 x 14336 x 4096
+Qwen32b m512
+512 x 25600 x 5120
+Qwen32b m1024
+1024 x 25600 x 5120
+Qwen32b m2048
+2048 x 25600 x 5120
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+3.5
+4.0Mean time (ms) - lower is better
+Native XLA Cubic (selected) Strassen (selected)
+N8 | residual - selected family implementations
+N8-selected on these same measurements; not fresh confirmation. Prepared plots retain complete-call selections.
+Prepared kernel  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).
+Sources: 20260919T073511Z-N8-v5e-v004-0a55e8
+
+N9 | resident | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Native 1. Native time / Strassen time = 0.9727x; above 1 favors
+Strassen. This ratio is descriptive.
+OUR INTERPRETATION
+Strassen is about 2.81% slower than Native on Qwen, although slightly faster than the
+tested Cubic policy. This is a mean across different resident transformer layers; there is no
+pooled confidence interval and no whole-model speedup claim.
+Fast matrix multiplication on TPU | v5e results
+42 / 49
+Qwen3-0.6B
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7Layer time (ms) - lower is better
+0.5789
+0.6029 0.5952
+Native Cubic MLP policy Strassen MLP policy
+N9 | Qwen3-0.6B - resident layer
+Complete transformer layer; weights resident. Mean across 28 or 32 different layers; layers are not independent replicates.
+Resident layer  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+No pooled layer confidence interval is inferred.
+Sources: 20260919T081646Z-N9-v5e-v004-0fadc6
+
+N9 | resident | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Strassen MLP policy 1. Native time / Strassen time = 1.1057x; above
+1 favors Strassen. This ratio is descriptive.
+OUR INTERPRETATION
+Strassen gives a descriptive 1.106x speedup over Native and 1.044x over the tested Cubic
+policy on resident Mistral layers. This is a useful application result, but the layers are
+different workloads rather than independent replicates. It does not automatically translate
+into transfer-inclusive model speedup.
+Fast matrix multiplication on TPU | v5e results
+43 / 49
+Mistral-7B-v0.3
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+3.5
+4.0Layer time (ms) - lower is better
+3.457
+3.263
+3.126
+Native Cubic MLP policy Strassen MLP policy
+N9 | Mistral-7B-v0.3 - resident layer
+Complete transformer layer; weights resident. Mean across 28 or 32 different layers; layers are not independent replicates.
+Resident layer  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+No pooled layer confidence interval is inferred.
+Sources: 20260919T081646Z-N9-v5e-v004-0fadc6
+
+N9 | streamed | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Native 1. Native time / Strassen time = 0.9941x; above 1 favors
+Strassen. This ratio is descriptive.
+OUR INTERPRETATION
+The three policies are near parity in the transfer-inclusive full forward. Compared with
+Native, Strassen changes the Qwen mean by +0.591% and the Mistral mean by -0.028%.
+Only three repeats were recorded per policy. The lowest-mean line makes the descriptive
+ordering visible; it is not evidence of a reliable serving-speedup gain.
+Fast matrix multiplication on TPU | v5e results
+44 / 49
+Qwen3-0.6B
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+3.5
+4.0Full-forward time (seconds) - lower is better
+3.53 3.55 3.551
+Native Cubic MLP policy Strassen MLP policy
+N9 | Qwen3-0.6B - streamed full forward
+1,024-token full forward including reads, host layout and transfers. All three measured repeats are shown.
+Streamed model  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Whiskers: minimum to maximum of 3 repeats; descriptive, not a confidence interval.
+Sources: 20260919T081646Z-N9-v5e-v004-0fadc6
+
+N9 | streamed | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+The black segments mark the lowest observed mean within each group. Lowest-mean
+counts on this page: Cubic MLP policy 1. Native time / Strassen time = 1.0003x; above 1
+favors Strassen. This ratio is descriptive.
+OUR INTERPRETATION
+The three policies are near parity in the transfer-inclusive full forward. Compared with
+Native, Strassen changes the Qwen mean by +0.591% and the Mistral mean by -0.028%.
+Only three repeats were recorded per policy. The lowest-mean line makes the descriptive
+ordering visible; it is not evidence of a reliable serving-speedup gain.
+Fast matrix multiplication on TPU | v5e results
+45 / 49
+Mistral-7B-v0.3
+0
+10
+20
+30
+40
+50
+60Full-forward time (seconds) - lower is better
+55.11 55.04 55.09
+Native Cubic MLP policy Strassen MLP policy
+N9 | Mistral-7B-v0.3 - streamed full forward
+1,024-token full forward including reads, host layout and transfers. All three measured repeats are shown.
+Streamed model  |  N5-N9 allocation
+Black dashed segment + diamond: lowest eligible mean time within each shape; descriptive, not a significance test.
+Whiskers: minimum to maximum of 3 repeats; descriptive, not a confidence interval.
+Sources: 20260919T081646Z-N9-v5e-v004-0fadc6
+
+N9 | quality | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+Strassen values are Qwen3-0.6B: 0.00022559; Mistral-7B-v0.3: 0.00029719. The sign of
+NLL difference matters; the acceptance gate uses its absolute magnitude. Native is zero by
+self-comparison. Red lines show acceptance gates; these are not timing races.
+OUR INTERPRETATION
+Both custom policies pass all measured aggregate corpus gates over 32,736 positions per
+model. Strassen top-1 agreement is 97.73% on Qwen and 98.94% on Mistral, with NLL
+differences below 0.0003 nats/token. This supports tolerance-based agreement on this
+corpus, not identical predictions, task accuracy, or universal numerical safety.
+Fast matrix multiplication on TPU | v5e results
+46 / 49
+Qwen3-0.6B Mistral-7B-v0.3
+−0.010
+−0.005
+0.000
+0.005
+0.010
+NLL difference vs native (nats/token)
+0 00.0002394 2.585e-050.0002256 0.0002972
+Native Cubic MLP policy Strassen MLP policy
+N9 | Corpus quality - nll delta
+32,736 scored positions per model and policy. Native zeros are self-comparisons; independent qualification is separate.
+Model quality  |  N5-N9 allocation
+Dotted line: predeclared aggregate gate. No statistical interval is inferred.
+Sources: 20260919T081646Z-N9-v5e-v004-0fadc6
+
+N9 | quality | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+Strassen values are Qwen3-0.6B: 0.0016817; Mistral-7B-v0.3: 0.0010361. Lower error or
+disagreement means closer agreement with Native. Native is zero by self-comparison. Red
+lines show acceptance gates; these are not timing races.
+OUR INTERPRETATION
+Both custom policies pass all measured aggregate corpus gates over 32,736 positions per
+model. Strassen top-1 agreement is 97.73% on Qwen and 98.94% on Mistral, with NLL
+differences below 0.0003 nats/token. This supports tolerance-based agreement on this
+corpus, not identical predictions, task accuracy, or universal numerical safety.
+Fast matrix multiplication on TPU | v5e results
+47 / 49
+Qwen3-0.6B Mistral-7B-v0.3
+0.000
+0.005
+0.010
+0.015
+0.020Mean KL vs native
+0 0
+0.001345
+0.000266
+0.001682
+0.001036
+Native Cubic MLP policy Strassen MLP policy
+N9 | Corpus quality - mean kl
+32,736 scored positions per model and policy. Native zeros are self-comparisons; independent qualification is separate.
+Model quality  |  N5-N9 allocation
+Dotted line: predeclared aggregate gate. No statistical interval is inferred.
+Sources: 20260919T081646Z-N9-v5e-v004-0fadc6
+
+N9 | quality | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+Strassen values are Qwen3-0.6B: 2.2727; Mistral-7B-v0.3: 1.0569. Lower error or
+disagreement means closer agreement with Native. Native is zero by self-comparison. Red
+lines show acceptance gates; these are not timing races.
+OUR INTERPRETATION
+Both custom policies pass all measured aggregate corpus gates over 32,736 positions per
+model. Strassen top-1 agreement is 97.73% on Qwen and 98.94% on Mistral, with NLL
+differences below 0.0003 nats/token. This supports tolerance-based agreement on this
+corpus, not identical predictions, task accuracy, or universal numerical safety.
+Fast matrix multiplication on TPU | v5e results
+48 / 49
+Qwen3-0.6B Mistral-7B-v0.3
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+3.5T op-1 disagreement (%)
+0 0
+2.01
+0.8248
+2.273
+1.057
+Native Cubic MLP policy Strassen MLP policy
+N9 | Corpus quality - top1 disagreement
+32,736 scored positions per model and policy. Native zeros are self-comparisons; independent qualification is separate.
+Model quality  |  N5-N9 allocation
+Dotted line: predeclared aggregate gate. No statistical interval is inferred.
+Sources: 20260919T081646Z-N9-v5e-v004-0fadc6
+
+N9 | quality | N5-N9 allocation
+WHAT THIS GRAPH SHOWS
+Each bar is one Native JAX error divided by its allowed limit, checked against official
+Transformers CPU BF16. Every bar is below 1, so both native implementations pass this
+short 63-position qualification. These are different checks and tolerances from the
+full-corpus policy comparison.
+OUR INTERPRETATION
+This independent check gives a basis for using the Native implementation as a comparison
+reference. It covers only the first 64 input tokens (63 scored positions), not the complete
+corpus. The full-corpus custom-policy checks and N4 cancellation tests answer separate
+questions.
+Fast matrix multiplication on TPU | v5e results
+49 / 49
+Qwen3-0.6B
+Logit relative L2
+Qwen3-0.6B
+Absolute NLL difference
+Qwen3-0.6BMean KL Qwen3-0.6B
+T op-1 disagreement
+Mistral-7B-v0.3
+Logit relative L2
+Mistral-7B-v0.3
+Absolute NLL difference
+Mistral-7B-v0.3Mean KL Mistral-7B-v0.3
+T op-1 disagreement
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2Fraction of permitted error (lower is better)
+Native JAX / allowed error
+N9 | Independent native implementation qualification
+Native JAX vs official Transformers CPU BF16 on 64 input tokens / 63 scored positions.
+Model quality  |  N5-N9 allocation
+The limits differ from the full-corpus custom-policy gates. Finite-output checks also passed.
+Sources: 20260919T081646Z-N9-v5e-v004-0fadc6
