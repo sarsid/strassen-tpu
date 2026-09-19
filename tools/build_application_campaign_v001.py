@@ -34,6 +34,9 @@ def n8(args,output):
                 groups.append({'id':f'{model}_m{m}_{kind}','geometry':model,'kind':kind,'shape_mkn':shape})
     campaign={'schema_version':1,'campaign_id':'v5e_n8_applications_v1','base_campaign':args.base_campaign,
        'seed':20260919,'matched_tile':[1024,1024,512],'groups':groups,
+       'precision':{'input_dtype':'bfloat16','pre_add_dtype':'bfloat16','accumulator_dtype':'float32',
+           'projection_output_dtype':'bfloat16','output_dtype':'bfloat16','native_precision':'DEFAULT',
+           'reference_dtype':'NumPy float64 dot, BF16 projection/epilogue boundaries; float32 SiLU'},
        'application_timing':{'warmups':3,'repeats':30,'preparation_repeats':5},
        'sample_rows':32,'sample_columns':128,
        'correctness':{'gate':{'require_finite':True,'relative_l2_max':0.02,'max_abs_atol':0.001,'max_abs_reference_rtol':0.05}},
@@ -111,6 +114,9 @@ def n9(args,output):
         models.append(row)
     if set(geometries)-{m['model_id'] for m in models}: raise ValueError('Both Qwen and Mistral bindings are required')
     campaign={'schema_version':1,'campaign_id':'v5e_n9_real_models_v1','base_campaign':args.base_campaign,'seed':20260919,
+        'precision':{'input_dtype':'bfloat16','pre_add_dtype':'bfloat16','accumulator_dtype':'float32',
+            'projection_output_dtype':'bfloat16','output_dtype':'bfloat16','native_precision':'DEFAULT',
+            'reference_dtype':'Official Transformers CPU BF16 model; FP32 logits storage/quality metrics'},
         'n8_selection_sha256':selection_sha,'selection_environment_identity':source['environment_identity'],
         'qualification_thresholds':{'max_relative_l2':0.03,'max_mean_kl':0.01,'max_abs_nll_delta':0.05,'min_top1_agreement':0.90},
         'quality_thresholds':{'max_abs_nll_delta':0.01,'max_mean_kl':0.02,'min_top1_agreement':0.97},
