@@ -5,7 +5,7 @@ untouched; reused implementations are copied here with provenance.
 
 **Current results: [Start here — completed N5–N9 and fresh-v5e replication](START_HERE_v003.md).**
 
-**Graphs: [N1–N9 chart gallery, PDF and reading guide](docs/CHARTS_v001.md).**
+**Graphs: [N1–N9 chart gallery, PDF and reading guide](docs/CHARTS_v002.md).**
 
 The subsequent N5–N9 study and its separately reported fresh-v5e replication
 are documented in the [N5–N9 protocol](protocols/N5_N9_v1.md),
