@@ -1,0 +1,52 @@
+{
+  "allocation_id": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+  "archive_grace_seconds": 600,
+  "archive_sha256": "2549f1e9625c3337dfe2b8deca93129ace91b0ce19d8dad05ec1e96045980096",
+  "finished_utc": "2026-09-19T06:52:33.268280+00:00",
+  "launch_acknowledged": true,
+  "launch_attempted": true,
+  "orchestration_budget_seconds": 8100,
+  "orchestration_wall_seconds": 23.660529833752662,
+  "remote_completion": {
+    "allocation_id": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+    "elapsed_seconds": 0.32449529900077323,
+    "finished_utc": "2026-09-19T06:52:13+00:00",
+    "phase": "N9-model-tools",
+    "process_exit_code": 1,
+    "run_id": "20260919T065209Z-N9-model-tools-v5e-v004-52799b",
+    "started_utc": "2026-09-19T06:52:13+00:00",
+    "status": "failed"
+  },
+  "remote_may_still_be_running": false,
+  "status": "failed",
+  "summary": {
+    "action": "model-tools",
+    "blocked_access_is_not_successful_model": true,
+    "elapsed_seconds": 0.2143423650004479,
+    "phase": "N9-model-tools",
+    "records": [
+      {
+        "action": "model-tools",
+        "command": [
+          "/usr/bin/python3",
+          "/content/Strassen_MM_Focus/runs/20260919T065209Z-N9-model-tools-v5e-v004-52799b/source/tools/prepare_model_application_v001.py",
+          "model-tools",
+          "--output-dir",
+          "/content/Strassen_MM_Focus/runs/20260919T065209Z-N9-model-tools-v5e-v004-52799b/artifacts/preparation-00",
+          "--venv-dir",
+          "/content/Strassen_MM_Focus/model-tools-v001"
+        ],
+        "exit_code": 1,
+        "model_id": null,
+        "status": {
+          "action": "model-tools",
+          "error_type": "CalledProcessError",
+          "finished_utc": "2026-09-19T06:52:13+00:00",
+          "started_utc": "2026-09-19T06:52:13+00:00",
+          "status": "failed"
+        }
+      }
+    ],
+    "status": "failed"
+  }
+}
