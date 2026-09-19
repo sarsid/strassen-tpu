@@ -1,0 +1,6574 @@
+{
+  "id": "N5-screen-cubic_full-prepared_kernel",
+  "experiment": "N5",
+  "kind": "heat",
+  "title": "N5 | All cubic candidates",
+  "subtitle": "20 candidates per family and shape; all failed attempts count. Numbers are descriptive screening means.",
+  "scope": "prepared_kernel",
+  "detail": true,
+  "categories": [
+    {
+      "id": "square_512",
+      "label": "square 512\n512 x 512 x 512"
+    },
+    {
+      "id": "tail_513",
+      "label": "tail 513\n513 x 513 x 513"
+    },
+    {
+      "id": "small_m_8",
+      "label": "small m 8\n8 x 2048 x 2048"
+    },
+    {
+      "id": "small_m_64",
+      "label": "small m 64\n64 x 2048 x 2048"
+    },
+    {
+      "id": "mkn_512_8192_2048",
+      "label": "mkn 512 8192 2048\n512 x 8192 x 2048"
+    },
+    {
+      "id": "square_2048",
+      "label": "square 2048\n2048 x 2048 x 2048"
+    },
+    {
+      "id": "tail_wide",
+      "label": "tail wide\n1023 x 2047 x 4095"
+    },
+    {
+      "id": "vary_k_8192",
+      "label": "vary k 8192\n2048 x 8192 x 2048"
+    },
+    {
+      "id": "vary_m_8192",
+      "label": "vary m 8192\n8192 x 2048 x 2048"
+    },
+    {
+      "id": "vary_n_8192",
+      "label": "vary n 8192\n2048 x 2048 x 8192"
+    },
+    {
+      "id": "square_4096",
+      "label": "square 4096\n4096 x 4096 x 4096"
+    },
+    {
+      "id": "gemma9_gate_up_m512",
+      "label": "Gemma9 gate/up m512\n512 x 3584 x 28672"
+    },
+    {
+      "id": "mistral7_gate_up_m512",
+      "label": "Mistral7 gate/up m512\n512 x 4096 x 28672"
+    },
+    {
+      "id": "qwen32_gate_up_m512",
+      "label": "Qwen32 gate/up m512\n512 x 5120 x 51200"
+    },
+    {
+      "id": "square_8192",
+      "label": "square 8192\n8192 x 8192 x 8192"
+    },
+    {
+      "id": "qwen32_gate_up_m8192",
+      "label": "Qwen32 gate/up m8192\n8192 x 5120 x 51200"
+    }
+  ],
+  "series": [
+    {
+      "id": "output_acc | 128/512/512",
+      "label": "output_acc | 128/512/512"
+    },
+    {
+      "id": "output_acc | 512/1024/512",
+      "label": "output_acc | 512/1024/512"
+    },
+    {
+      "id": "plain | 2048/2048/512",
+      "label": "plain | 2048/2048/512"
+    },
+    {
+      "id": "plain | 512/1024/1024",
+      "label": "plain | 512/1024/1024"
+    },
+    {
+      "id": "plain | 1024/1024/512",
+      "label": "plain | 1024/1024/512"
+    },
+    {
+      "id": "output_acc | 1024/1024/512",
+      "label": "output_acc | 1024/1024/512"
+    },
+    {
+      "id": "plain | 1024/2048/512",
+      "label": "plain | 1024/2048/512"
+    },
+    {
+      "id": "plain | 512/512/256",
+      "label": "plain | 512/512/256"
+    },
+    {
+      "id": "plain | 1024/512/512",
+      "label": "plain | 1024/512/512"
+    },
+    {
+      "id": "plain | 512/1024/512",
+      "label": "plain | 512/1024/512"
+    },
+    {
+      "id": "output_acc | 1024/2048/512",
+      "label": "output_acc | 1024/2048/512"
+    },
+    {
+      "id": "output_acc | 512/1024/1024",
+      "label": "output_acc | 512/1024/1024"
+    },
+    {
+      "id": "plain | 2048/1024/512",
+      "label": "plain | 2048/1024/512"
+    },
+    {
+      "id": "output_acc | 512/512/256",
+      "label": "output_acc | 512/512/256"
+    },
+    {
+      "id": "output_acc | 1024/512/512",
+      "label": "output_acc | 1024/512/512"
+    },
+    {
+      "id": "plain | 128/512/512",
+      "label": "plain | 128/512/512"
+    },
+    {
+      "id": "output_acc | 2048/1024/512",
+      "label": "output_acc | 2048/1024/512"
+    },
+    {
+      "id": "plain | 1024/1024/1024",
+      "label": "plain | 1024/1024/1024"
+    },
+    {
+      "id": "output_acc | 1024/1024/1024",
+      "label": "output_acc | 1024/1024/1024"
+    },
+    {
+      "id": "output_acc | 2048/2048/512",
+      "label": "output_acc | 2048/2048/512"
+    }
+  ],
+  "points": [
+    {
+      "category": "square_512",
+      "series": "output_acc | 128/512/512",
+      "value": 1.0017420505200592,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:63"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "output_acc | 512/1024/512",
+      "value": 1.102068945022288,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:111"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "plain | 2048/2048/512",
+      "value": 1.2855381872213967,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:157"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "plain | 512/1024/1024",
+      "value": 1.1378068350668646,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:203"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "plain | 1024/1024/512",
+      "value": 0.9785301634472511,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:249"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "output_acc | 1024/1024/512",
+      "value": 1.2529046062407132,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:295"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "plain | 1024/2048/512",
+      "value": 1.2960118870728083,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:341"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "plain | 512/512/256",
+      "value": 1.1327714710252599,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:387"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "plain | 1024/512/512",
+      "value": 1.200486775631501,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:433"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "plain | 512/1024/512",
+      "value": 1.1203803863298663,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:479"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "output_acc | 1024/2048/512",
+      "value": 1.3079524517087666,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:525"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "output_acc | 512/1024/1024",
+      "value": 1.141130460624071,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:571"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "plain | 2048/1024/512",
+      "value": 1.212558692421991,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:616"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "output_acc | 512/512/256",
+      "value": 1.0209271916790488,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:662"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "output_acc | 1024/512/512",
+      "value": 1.147148885586924,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:708"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "plain | 128/512/512",
+      "value": 0.9599054977711737,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:754"
+      ],
+      "extra": {
+        "arm_id": "c_plain_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "output_acc | 2048/1024/512",
+      "value": 1.022115898959881,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:800"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "plain | 1024/1024/1024",
+      "value": 1.0211583952451708,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:846"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "output_acc | 1024/1024/1024",
+      "value": 1.0527780089153045,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:892"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "output_acc | 2048/2048/512",
+      "value": 1.147375928677563,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:938"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "plain | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:994"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "plain | 512/1024/1024",
+      "value": 0.9687940682134951,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1041"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "output_acc | 512/1024/512",
+      "value": 0.9933585102894156,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1078"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "output_acc | 1024/2048/512",
+      "value": 1.1409209231778308,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1124"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "output_acc | 2048/2048/512",
+      "value": 1.2217246044109205,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1170"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "plain | 1024/1024/1024",
+      "value": 0.9730574116586046,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1215"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "plain | 1024/512/512",
+      "value": 1.0615212757235384,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1260"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "output_acc | 512/512/256",
+      "value": 1.0228186234319914,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1306"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "plain | 128/512/512",
+      "value": 1.0017729769615478,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1352"
+      ],
+      "extra": {
+        "arm_id": "c_plain_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "plain | 1024/1024/512",
+      "value": 0.9029781913585306,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1397"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "output_acc | 1024/1024/1024",
+      "value": 0.9804972534229729,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1442"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "plain | 512/512/256",
+      "value": 0.9610657333770598,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1479"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "plain | 2048/1024/512",
+      "value": 1.0621156841846355,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1525"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "output_acc | 1024/512/512",
+      "value": 0.945032589981143,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1570"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "output_acc | 1024/1024/512",
+      "value": 0.970883208985816,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1616"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "plain | 1024/2048/512",
+      "value": 1.025221878330737,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1662"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "output_acc | 512/1024/1024",
+      "value": 0.9554291014183816,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1708"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "output_acc | 128/512/512",
+      "value": 1.0718829425268508,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1754"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "output_acc | 2048/1024/512",
+      "value": 1.2309225629253093,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1799"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "plain | 512/1024/512",
+      "value": 1.07267668279085,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1844"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "output_acc | 2048/1024/512",
+      "value": 1.3044211059091484,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1908"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "output_acc | 1024/1024/1024",
+      "value": 1.1854936100215108,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:1955"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "plain | 1024/1024/1024",
+      "value": 1.1950702264962672,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2001"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "plain | 2048/1024/512",
+      "value": 1.31644185752246,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2038"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "plain | 1024/512/512",
+      "value": 1.1248386688599266,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2075"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "plain | 128/512/512",
+      "value": 0.9536834113627736,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2121"
+      ],
+      "extra": {
+        "arm_id": "c_plain_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "plain | 1024/2048/512",
+      "value": 1.1630768062760977,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2167"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "output_acc | 1024/2048/512",
+      "value": 1.109451600657978,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2213"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "output_acc | 512/1024/512",
+      "value": 0.9804474250284703,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2259"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "output_acc | 512/1024/1024",
+      "value": 1.0056226749335695,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2305"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "plain | 1024/1024/512",
+      "value": 1.1347235227128938,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2351"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "plain | 512/1024/1024",
+      "value": 0.9686093888396812,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2397"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "output_acc | 1024/512/512",
+      "value": 1.1088239908895354,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2442"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "plain | 512/512/256",
+      "value": 1.0172693913703654,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2488"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "plain | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2525"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "output_acc | 128/512/512",
+      "value": 0.8993698595470073,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2571"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "plain | 512/1024/512",
+      "value": 1.014951284322409,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2616"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "output_acc | 2048/2048/512",
+      "value": 1.2986769581171707,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2662"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "output_acc | 512/512/256",
+      "value": 1.0664613437934964,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2707"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "output_acc | 1024/1024/512",
+      "value": 1.114548399342022,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2752"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "small_m_64",
+      "series": "output_acc | 2048/1024/512",
+      "value": 1.3533387021353978,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2816"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "small_m_64",
+      "series": "output_acc | 1024/1024/512",
+      "value": 1.06639528238167,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2863"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "small_m_64",
+      "series": "plain | 512/1024/1024",
+      "value": 1.056258118148283,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2900"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_64",
+      "series": "output_acc | 512/1024/512",
+      "value": 0.9957645347326857,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2946"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "small_m_64",
+      "series": "output_acc | 128/512/512",
+      "value": 1.0651945757780434,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:2992"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "small_m_64",
+      "series": "output_acc | 1024/2048/512",
+      "value": 1.1588138411180964,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3038"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "small_m_64",
+      "series": "plain | 128/512/512",
+      "value": 0.9697771081207461,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3084"
+      ],
+      "extra": {
+        "arm_id": "c_plain_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_64",
+      "series": "output_acc | 512/512/256",
+      "value": 1.1164649036213437,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3130"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "small_m_64",
+      "series": "plain | 1024/512/512",
+      "value": 1.1796898217904088,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3167"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_64",
+      "series": "plain | 1024/1024/512",
+      "value": 1.1901075492284512,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3213"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_64",
+      "series": "output_acc | 1024/1024/1024",
+      "value": 1.0795194056216555,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3259"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "small_m_64",
+      "series": "output_acc | 1024/512/512",
+      "value": 1.1123915415389412,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3305"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "small_m_64",
+      "series": "plain | 1024/1024/1024",
+      "value": 1.1527095131708838,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3350"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_64",
+      "series": "plain | 2048/1024/512",
+      "value": 1.3479248714085312,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3396"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_64",
+      "series": "plain | 512/1024/512",
+      "value": 0.9792954746194213,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3442"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_64",
+      "series": "output_acc | 512/1024/1024",
+      "value": 1.030248350392269,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3487"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "small_m_64",
+      "series": "plain | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3524"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_64",
+      "series": "plain | 1024/2048/512",
+      "value": 1.2100997558060995,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3570"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_64",
+      "series": "plain | 512/512/256",
+      "value": 1.1261027692627423,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3616"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_64",
+      "series": "output_acc | 2048/2048/512",
+      "value": 1.386522574946745,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3662"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "plain | 512/1024/512",
+      "value": 0.8953756174646412,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3726"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "plain | 512/1024/1024",
+      "value": 0.8882755792466037,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3774"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "output_acc | 512/1024/1024",
+      "value": 0.8879900175058653,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3820"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "output_acc | 512/512/256",
+      "value": 0.9574548790978826,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3865"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "output_acc | 128/512/512",
+      "value": 1.2556160475678586,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3911"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "plain | 1024/1024/1024",
+      "value": 1.1584109025898086,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3948"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "plain | 1024/512/512",
+      "value": 1.1625222043934997,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:3993"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "output_acc | 2048/1024/512",
+      "value": 1.6012856719575512,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4038"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "output_acc | 1024/1024/1024",
+      "value": 1.1162887565969057,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4084"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "output_acc | 512/1024/512",
+      "value": 0.9133395264684958,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4130"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "plain | 1024/1024/512",
+      "value": 1.1209336079688186,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4167"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "plain | 1024/2048/512",
+      "value": 1.13103562293254,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4213"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "plain | 2048/1024/512",
+      "value": 1.6750808375905173,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4259"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "output_acc | 2048/2048/512",
+      "value": 1.6182365166906905,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4305"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "output_acc | 1024/2048/512",
+      "value": 1.154113162607014,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4351"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "output_acc | 1024/512/512",
+      "value": 1.121616737496475,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4397"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "plain | 128/512/512",
+      "value": 1.262515691581869,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4443"
+      ],
+      "extra": {
+        "arm_id": "c_plain_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "plain | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4480"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "output_acc | 1024/1024/512",
+      "value": 1.1223542597366531,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4526"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "mkn_512_8192_2048",
+      "series": "plain | 512/512/256",
+      "value": 1.0086484412909393,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4572"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "output_acc | 128/512/512",
+      "value": 1.5420521550048012,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4635"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "plain | 1024/1024/1024",
+      "value": 0.9632565927830552,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4682"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "plain | 1024/1024/512",
+      "value": 1.0673749494083755,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4727"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "output_acc | 1024/1024/512",
+      "value": 0.9558079184820132,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4772"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "plain | 1024/512/512",
+      "value": 1.0450959852074058,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4801"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "output_acc | 512/512/256",
+      "value": 1.2680804545707054,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4846"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "output_acc | 2048/2048/512",
+      "value": 1.0016748803656883,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4891"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "plain | 512/512/256",
+      "value": 1.1563420073169375,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4936"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "plain | 2048/1024/512",
+      "value": 0.9831083494036141,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:4981"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "output_acc | 1024/2048/512",
+      "value": 0.9424961709084272,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5026"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "output_acc | 1024/1024/1024",
+      "value": 0.9247589457895864,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5055"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "output_acc | 512/1024/512",
+      "value": 0.9942428715409217,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5100"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "plain | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5129"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "plain | 128/512/512",
+      "value": 1.4813620455681737,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5174"
+      ],
+      "extra": {
+        "arm_id": "c_plain_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "plain | 512/1024/1024",
+      "value": 0.9726606829670897,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5219"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "output_acc | 512/1024/1024",
+      "value": 0.9526343356426922,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5264"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "plain | 1024/2048/512",
+      "value": 0.9914648953646168,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5309"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "plain | 512/1024/512",
+      "value": 1.0719587489782474,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5354"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "output_acc | 1024/512/512",
+      "value": 1.0092616400415844,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5399"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "output_acc | 2048/1024/512",
+      "value": 0.9717924910125466,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5444"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "plain | 1024/512/512",
+      "value": 1.0250776944432936,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5509"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "output_acc | 512/1024/512",
+      "value": 0.9973563170762025,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5556"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "plain | 2048/1024/512",
+      "value": 1.2273733062611363,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5585"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "output_acc | 2048/1024/512",
+      "value": 1.3377031450710644,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5630"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "plain | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5659"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "plain | 1024/1024/1024",
+      "value": 0.9767703973811793,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5704"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "plain | 512/1024/512",
+      "value": 1.0700870177764885,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5749"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "output_acc | 128/512/512",
+      "value": 1.4619608005635438,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5778"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "plain | 512/1024/1024",
+      "value": 1.0477851904031823,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5823"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "output_acc | 1024/1024/1024",
+      "value": 0.9924290390751254,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5868"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "output_acc | 1024/2048/512",
+      "value": 1.048684788463929,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5914"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "output_acc | 1024/1024/512",
+      "value": 1.0554763187336844,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:5960"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "plain | 512/512/256",
+      "value": 1.1032287738780922,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6006"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "output_acc | 2048/2048/512",
+      "value": 1.4035843036506028,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6052"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "plain | 128/512/512",
+      "value": 1.5332233870633574,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6097"
+      ],
+      "extra": {
+        "arm_id": "c_plain_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "plain | 1024/1024/512",
+      "value": 1.1098868768905648,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6142"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "output_acc | 1024/512/512",
+      "value": 1.0697919860771559,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6187"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "plain | 1024/2048/512",
+      "value": 1.075091368665313,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6232"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "output_acc | 512/512/256",
+      "value": 1.09353996602163,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6277"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "tail_wide",
+      "series": "output_acc | 512/1024/1024",
+      "value": 0.9685451456511831,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6323"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "plain | 512/1024/512",
+      "value": 0.9998741922545265,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6386"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "plain | 2048/1024/512",
+      "value": 0.9894758889906721,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6433"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "output_acc | 2048/1024/512",
+      "value": 0.9882897338850534,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6478"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "plain | 1024/1024/1024",
+      "value": 0.9412428227019398,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6507"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "plain | 1024/512/512",
+      "value": 0.9812530676911052,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6552"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "output_acc | 512/1024/512",
+      "value": 0.9699980091713393,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6597"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "output_acc | 1024/1024/1024",
+      "value": 0.9633020159225708,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6642"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "plain | 128/512/512",
+      "value": 1.9762277471913643,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6687"
+      ],
+      "extra": {
+        "arm_id": "c_plain_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "output_acc | 2048/2048/512",
+      "value": 1.008912734742485,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6732"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "output_acc | 512/1024/1024",
+      "value": 0.9749468980837765,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6777"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "plain | 512/1024/1024",
+      "value": 0.9794944647973919,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6822"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "output_acc | 1024/512/512",
+      "value": 1.034624410896213,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6867"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "output_acc | 128/512/512",
+      "value": 1.965790889940994,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6912"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "plain | 1024/1024/512",
+      "value": 1.0598308269108625,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6957"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "output_acc | 1024/2048/512",
+      "value": 0.9992877658280458,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:6986"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "plain | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7015"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "plain | 512/512/256",
+      "value": 1.289312722206803,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7060"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "output_acc | 512/512/256",
+      "value": 1.2875496100749004,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7105"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "plain | 1024/2048/512",
+      "value": 1.075685533845327,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7150"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "output_acc | 1024/1024/512",
+      "value": 1.077022522968368,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7195"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "plain | 1024/1024/1024",
+      "value": 1.0134994820689882,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7258"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "plain | 1024/1024/512",
+      "value": 0.9978044161860683,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7289"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "plain | 512/1024/1024",
+      "value": 1.0698795027287147,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7334"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "plain | 512/512/256",
+      "value": 1.2809131278822303,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7379"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "plain | 128/512/512",
+      "value": 1.9856667753263957,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7424"
+      ],
+      "extra": {
+        "arm_id": "c_plain_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "output_acc | 512/512/256",
+      "value": 1.2484300312484018,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7469"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "plain | 2048/1024/512",
+      "value": 1.0297220303388646,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7514"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "output_acc | 2048/1024/512",
+      "value": 0.9656236770575358,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7559"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "output_acc | 2048/2048/512",
+      "value": 0.9556941497725439,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7604"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "output_acc | 1024/2048/512",
+      "value": 0.9252975664123536,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7649"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "output_acc | 1024/1024/512",
+      "value": 0.9745382937218299,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7694"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "plain | 1024/512/512",
+      "value": 1.0267420013396573,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7739"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "output_acc | 512/1024/512",
+      "value": 1.0401467912823266,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7784"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "output_acc | 128/512/512",
+      "value": 1.9855149803560057,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7829"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "plain | 512/1024/512",
+      "value": 1.058086943804434,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7874"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "output_acc | 1024/1024/1024",
+      "value": 0.9623700473809822,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7903"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "plain | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7932"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "plain | 1024/2048/512",
+      "value": 0.9806224168922538,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:7977"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "output_acc | 1024/512/512",
+      "value": 1.0294923865270975,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8022"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "output_acc | 512/1024/1024",
+      "value": 0.9808292606475749,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8067"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "output_acc | 128/512/512",
+      "value": 2.054026310890014,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8130"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "plain | 128/512/512",
+      "value": 2.082767355778035,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8177"
+      ],
+      "extra": {
+        "arm_id": "c_plain_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "output_acc | 2048/1024/512",
+      "value": 1.0128708283414467,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8222"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "plain | 1024/2048/512",
+      "value": 1.048231829877809,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8267"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "output_acc | 512/1024/1024",
+      "value": 1.0309319820735154,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8312"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "output_acc | 1024/1024/1024",
+      "value": 0.9714575756378611,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8357"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "output_acc | 1024/512/512",
+      "value": 1.1129057288052802,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8402"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "output_acc | 2048/2048/512",
+      "value": 0.9637022080272812,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8431"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "plain | 1024/1024/512",
+      "value": 1.0294543326666812,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8476"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "plain | 1024/1024/1024",
+      "value": 0.9636349826185212,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8521"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "output_acc | 1024/1024/512",
+      "value": 0.9906558864466808,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8566"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "plain | 1024/512/512",
+      "value": 1.1060129417642435,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8611"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "plain | 2048/1024/512",
+      "value": 1.0138462515614082,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8656"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "output_acc | 512/512/256",
+      "value": 1.3310521802313207,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8701"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "output_acc | 512/1024/512",
+      "value": 1.1172561731150312,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8746"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "plain | 512/1024/512",
+      "value": 1.1160661960742544,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8775"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "plain | 512/1024/1024",
+      "value": 1.0790160470106407,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8820"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "plain | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8849"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "output_acc | 1024/2048/512",
+      "value": 1.0515669085981079,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8894"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "plain | 512/512/256",
+      "value": 1.3562420647280282,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:8939"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "output_acc | 2048/1024/512",
+      "value": 1.0091610190919977,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9002"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "plain | 2048/1024/512",
+      "value": 1.0063004148501342,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9049"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "plain | 512/512/256",
+      "value": 1.3789069685375213,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9094"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "output_acc | 512/512/256",
+      "value": 1.3431655315944637,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9139"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "plain | 1024/1024/1024",
+      "value": 1.0160381395374685,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9184"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "output_acc | 128/512/512",
+      "value": 2.3166865339035088,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9213"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "output_acc | 1024/1024/512",
+      "value": 1.008727552106344,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9258"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "output_acc | 1024/2048/512",
+      "value": 1.0005862918844424,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9303"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "output_acc | 1024/1024/1024",
+      "value": 1.0048595539180136,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9348"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "plain | 512/1024/1024",
+      "value": 1.060489484257646,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9393"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "output_acc | 2048/2048/512",
+      "value": 1.0304065975898122,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9438"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "plain | 1024/512/512",
+      "value": 1.1254135302829484,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9483"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "output_acc | 512/1024/1024",
+      "value": 1.0941622277980152,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9528"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "plain | 512/1024/512",
+      "value": 1.1529207616792956,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9573"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "plain | 1024/2048/512",
+      "value": 1.0466627210056434,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9618"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "output_acc | 1024/512/512",
+      "value": 1.0781949434408942,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9647"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "plain | 128/512/512",
+      "value": 2.348471195285213,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9692"
+      ],
+      "extra": {
+        "arm_id": "c_plain_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "plain | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9721"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "plain | 1024/1024/512",
+      "value": 1.0269263578492256,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9766"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "output_acc | 512/1024/512",
+      "value": 1.080845482912787,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9811"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "output_acc | 1024/1024/512",
+      "value": 1.7916092582027887,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9859"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "plain | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9890"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "output_acc | 1024/2048/512",
+      "value": 1.7288964648336174,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9935"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "output_acc | 512/1024/512",
+      "value": 1.114289924663779,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:9981"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "output_acc | 512/512/256",
+      "value": 1.4008055856697441,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10010"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "plain | 512/1024/1024",
+      "value": 1.1960844468880505,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10056"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "plain | 2048/1024/512",
+      "value": 3.2299586865885668,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10102"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "output_acc | 512/1024/1024",
+      "value": 1.215005368847585,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10148"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "plain | 512/1024/512",
+      "value": 1.1033162759673836,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10193"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "plain | 512/512/256",
+      "value": 1.440676560973045,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10239"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "plain | 1024/2048/512",
+      "value": 1.7629658100065664,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10285"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "plain | 128/512/512",
+      "value": 2.377278830194468,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10331"
+      ],
+      "extra": {
+        "arm_id": "c_plain_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "plain | 1024/512/512",
+      "value": 1.9098081865015275,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10377"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "output_acc | 2048/1024/512",
+      "value": 3.1927817869386192,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10422"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "output_acc | 2048/2048/512",
+      "value": 3.125182739025748,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10467"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "plain | 1024/1024/1024",
+      "value": 1.9703274221430922,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10513"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "output_acc | 1024/512/512",
+      "value": 1.9005253369964443,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10559"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "output_acc | 1024/1024/1024",
+      "value": 1.8729659995966899,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10605"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "output_acc | 128/512/512",
+      "value": 2.339243949058857,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10651"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "plain | 1024/1024/512",
+      "value": 1.833925946097804,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10697"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "output_acc | 512/1024/1024",
+      "value": 1.0712822749826112,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10761"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "plain | 512/1024/1024",
+      "value": 1.0842940621346262,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10809"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "output_acc | 2048/1024/512",
+      "value": 3.202080482101863,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10855"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "output_acc | 128/512/512",
+      "value": 2.339610610750669,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10901"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "output_acc | 2048/2048/512",
+      "value": 3.1386730800319094,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10947"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "plain | 1024/2048/512",
+      "value": 1.7403655487742855,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:10976"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "output_acc | 1024/2048/512",
+      "value": 1.7445460176918315,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11022"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "output_acc | 512/512/256",
+      "value": 1.431245184967891,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11068"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "output_acc | 1024/512/512",
+      "value": 1.9115394452555017,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11113"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "plain | 2048/1024/512",
+      "value": 3.257442500305538,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11158"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "plain | 512/512/256",
+      "value": 1.4057056567862973,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11204"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "plain | 1024/1024/1024",
+      "value": 1.7371974304092466,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11250"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "plain | 1024/1024/512",
+      "value": 1.7947736063330688,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11296"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "plain | 1024/512/512",
+      "value": 1.915027310481656,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11341"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "plain | 512/1024/512",
+      "value": 1.0831045230592773,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11370"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "plain | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11399"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "output_acc | 1024/1024/1024",
+      "value": 1.7043686366065276,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11445"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "output_acc | 512/1024/512",
+      "value": 1.1038736268471827,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11491"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "plain | 128/512/512",
+      "value": 2.368031742989989,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11537"
+      ],
+      "extra": {
+        "arm_id": "c_plain_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "output_acc | 1024/1024/512",
+      "value": 1.7591155419802473,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11583"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "plain | 1024/1024/1024",
+      "value": 1.9021584519592596,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11647"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "output_acc | 512/1024/512",
+      "value": 1.1315704003020641,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11695"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "output_acc | 2048/2048/512",
+      "value": 3.5741327896897452,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11740"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "plain | 2048/1024/512",
+      "value": 3.6746066560580926,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11786"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "output_acc | 1024/2048/512",
+      "value": 1.8950127660755298,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11832"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "plain | 1024/512/512",
+      "value": 2.111037234436314,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11878"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "output_acc | 512/1024/1024",
+      "value": 1.0726571127459485,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11924"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "output_acc | 1024/1024/1024",
+      "value": 1.8623089562021113,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:11970"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "plain | 1024/1024/512",
+      "value": 1.975024532573987,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12015"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "plain | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12044"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "output_acc | 512/512/256",
+      "value": 1.4993603637360715,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12090"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "output_acc | 1024/1024/512",
+      "value": 1.9470033796111148,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12136"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "output_acc | 128/512/512",
+      "value": 2.6571896495084304,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12182"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "plain | 512/512/256",
+      "value": 1.5226922608030677,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12228"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "output_acc | 1024/512/512",
+      "value": 2.0754940842211576,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12273"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "output_acc | 2048/1024/512",
+      "value": 3.656992441369918,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12302"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "plain | 512/1024/512",
+      "value": 1.1224745450486078,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12348"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "plain | 1024/2048/512",
+      "value": 1.9109917014375382,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12394"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "plain | 512/1024/1024",
+      "value": 1.0910779264871342,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12423"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "plain | 128/512/512",
+      "value": 2.6896921057269125,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12468"
+      ],
+      "extra": {
+        "arm_id": "c_plain_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "output_acc | 1024/2048/512",
+      "value": 0.984741501105372,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12531"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "output_acc | 2048/1024/512",
+      "value": 0.9695610674889695,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12578"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "plain | 512/1024/1024",
+      "value": 1.0201067989519925,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12623"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "output_acc | 512/1024/1024",
+      "value": 1.0066982296180833,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12668"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "output_acc | 1024/1024/512",
+      "value": 0.9940691693349811,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12697"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "plain | 128/512/512",
+      "value": 2.567326615413594,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12742"
+      ],
+      "extra": {
+        "arm_id": "c_plain_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "plain | 2048/1024/512",
+      "value": 0.9845360779658859,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12787"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "plain | 1024/2048/512",
+      "value": 0.9793784994678397,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12816"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "output_acc | 512/512/256",
+      "value": 1.4226109922415315,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12861"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "plain | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12890"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "plain | 1024/1024/512",
+      "value": 1.007277922056137,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12935"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "plain | 1024/1024/1024",
+      "value": 0.971980171643592,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:12980"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "output_acc | 1024/1024/1024",
+      "value": 0.95919320914159,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13025"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "plain | 512/512/256",
+      "value": 1.4485243588000394,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13070"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "output_acc | 1024/512/512",
+      "value": 1.039913088071112,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13115"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "plain | 512/1024/512",
+      "value": 1.0620458839493372,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13160"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "output_acc | 128/512/512",
+      "value": 2.5388623240439245,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13205"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "output_acc | 2048/2048/512",
+      "value": 0.9653373793618414,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13250"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "plain | 1024/512/512",
+      "value": 1.0536185566346776,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13295"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "output_acc | 512/1024/512",
+      "value": 1.0417760247738515,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13340"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "output_acc | 2048/1024/512",
+      "value": 1.0419630135704336,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13403"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "output_acc | 1024/512/512",
+      "value": 1.1513233076537743,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13450"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "output_acc | 2048/2048/512",
+      "value": 1.0170019953319285,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13495"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "output_acc | 128/512/512",
+      "value": 3.026067869116328,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13540"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "plain | 1024/1024/512",
+      "value": 1.096934784018991,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13569"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "plain | 1024/1024/1024",
+      "value": 1.0426330494391614,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13614"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "output_acc | 512/512/256",
+      "value": 1.6189676591051516,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13659"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "plain | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13688"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_2048_512",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "output_acc | 512/1024/512",
+      "value": 1.1625524148026272,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13733"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "output_acc | 1024/2048/512",
+      "value": 1.0483282475717417,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13778"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "plain | 512/1024/512",
+      "value": 1.1757277920978082,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13823"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_512",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "plain | 512/512/256",
+      "value": 1.6389055308012888,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13868"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_512_256",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "plain | 1024/512/512",
+      "value": 1.1664441889955286,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13913"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_512_512",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "output_acc | 1024/1024/1024",
+      "value": 1.0294629846062116,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:13958"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_1024",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "plain | 128/512/512",
+      "value": 3.044302525232453,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:14003"
+      ],
+      "extra": {
+        "arm_id": "c_plain_128_512_512",
+        "tile_bm_bn_bk": [
+          128,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "output_acc | 1024/1024/512",
+      "value": 1.080539288512232,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:14032"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_1024_1024_512",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "plain | 512/1024/1024",
+      "value": 1.119560830678447,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:14077"
+      ],
+      "extra": {
+        "arm_id": "c_plain_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "plain | 2048/1024/512",
+      "value": 1.0605430236880997,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:14122"
+      ],
+      "extra": {
+        "arm_id": "c_plain_2048_1024_512",
+        "tile_bm_bn_bk": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "output_acc | 512/1024/1024",
+      "value": 1.1085858300267912,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:14167"
+      ],
+      "extra": {
+        "arm_id": "c_output_accumulator_512_1024_1024",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "plain | 1024/2048/512",
+      "value": 1.0618871645455616,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T055706Z-N5-screen-v5e-v004-25842c:14212"
+      ],
+      "extra": {
+        "arm_id": "c_plain_1024_2048_512",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    }
+  ],
+  "ylabel": "Time / native in this screen (1 = equal; lower is better)",
+  "center_one": true,
+  "higher_better": false,
+  "takeaway": "This displays the whole bounded search, including VMEM failures; it is not independent confirmation.",
+  "source_run_ids": [
+    "20260919T055706Z-N5-screen-v5e-v004-25842c"
+  ],
+  "cohort": "N5-N9 allocation",
+  "data_file": "data/N5-screen-cubic_full-prepared_kernel.json",
+  "files": {
+    "absolute": {
+      "png": "figures/N5-screen-cubic_full-prepared_kernel-absolute.png",
+      "svg": "figures/N5-screen-cubic_full-prepared_kernel-absolute.svg"
+    }
+  }
+}

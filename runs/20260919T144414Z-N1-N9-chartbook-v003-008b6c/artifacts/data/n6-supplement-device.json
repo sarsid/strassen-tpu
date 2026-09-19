@@ -1,0 +1,201 @@
+{
+  "id": "n6-supplement-device",
+  "experiment": "N6",
+  "kind": "bar",
+  "scope": "device",
+  "title": "N6 | Profiled TPU module - large-shape supplement",
+  "subtitle": "Mean of two 8-call captures; whiskers/dots show capture means. Profiler-instrumented, not ordinary call latency.",
+  "categories": [
+    {
+      "id": "qwen32_gate_up_m8192",
+      "label": "Qwen32 gate/up m8192\n8192 x 5120 x 51200"
+    },
+    {
+      "id": "square_8192",
+      "label": "square 8192\n8192 x 8192 x 8192"
+    }
+  ],
+  "series": [
+    {
+      "id": "native_xla",
+      "label": "Native XLA",
+      "color": "#3772C8"
+    },
+    {
+      "id": "cubic_selected",
+      "label": "Cubic (selected)",
+      "color": "#DD8734"
+    },
+    {
+      "id": "strassen_selected",
+      "label": "Strassen (selected)",
+      "color": "#24936D"
+    }
+  ],
+  "points": [
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "native_xla",
+      "value": 22.304621484374998,
+      "lo": 22.30461688475,
+      "hi": 22.304626084,
+      "status": "ok",
+      "raw_points": [
+        22.30461688475,
+        22.304626084
+      ],
+      "row_refs": [
+        "20260919T073356Z-N6-v5e-v004-dde5c0:109",
+        "20260919T073356Z-N6-v5e-v004-dde5c0:114"
+      ],
+      "extra": {
+        "capture_means_ms": [
+          22.30461688475,
+          22.304626084
+        ],
+        "module_calls_per_capture": 8,
+        "arm_id": "native_xla"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "cubic_selected",
+      "value": 22.877192778374997,
+      "lo": 22.877025254,
+      "hi": 22.87736030275,
+      "status": "ok",
+      "raw_points": [
+        22.87736030275,
+        22.877025254
+      ],
+      "row_refs": [
+        "20260919T073356Z-N6-v5e-v004-dde5c0:110",
+        "20260919T073356Z-N6-v5e-v004-dde5c0:113"
+      ],
+      "extra": {
+        "capture_means_ms": [
+          22.87736030275,
+          22.877025254
+        ],
+        "module_calls_per_capture": 8,
+        "arm_id": "cubic_selected"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "strassen_selected",
+      "value": 21.021993584,
+      "lo": 21.02182140625,
+      "hi": 21.02216576175,
+      "status": "ok",
+      "raw_points": [
+        21.02182140625,
+        21.02216576175
+      ],
+      "row_refs": [
+        "20260919T073356Z-N6-v5e-v004-dde5c0:111",
+        "20260919T073356Z-N6-v5e-v004-dde5c0:112"
+      ],
+      "extra": {
+        "capture_means_ms": [
+          21.02182140625,
+          21.02216576175
+        ],
+        "module_calls_per_capture": 8,
+        "arm_id": "strassen_selected"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "native_xla",
+      "value": 6.013274233375,
+      "lo": 6.0131081250000005,
+      "hi": 6.01344034175,
+      "status": "ok",
+      "raw_points": [
+        6.01344034175,
+        6.0131081250000005
+      ],
+      "row_refs": [
+        "20260919T073356Z-N6-v5e-v004-dde5c0:318",
+        "20260919T073356Z-N6-v5e-v004-dde5c0:323"
+      ],
+      "extra": {
+        "capture_means_ms": [
+          6.01344034175,
+          6.0131081250000005
+        ],
+        "module_calls_per_capture": 8,
+        "arm_id": "native_xla"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "cubic_selected",
+      "value": 5.8218538281250005,
+      "lo": 5.82184313475,
+      "hi": 5.8218645215,
+      "status": "ok",
+      "raw_points": [
+        5.82184313475,
+        5.8218645215
+      ],
+      "row_refs": [
+        "20260919T073356Z-N6-v5e-v004-dde5c0:319",
+        "20260919T073356Z-N6-v5e-v004-dde5c0:322"
+      ],
+      "extra": {
+        "capture_means_ms": [
+          5.82184313475,
+          5.8218645215
+        ],
+        "module_calls_per_capture": 8,
+        "arm_id": "cubic_selected"
+      }
+    },
+    {
+      "category": "square_8192",
+      "series": "strassen_selected",
+      "value": 5.325660146500001,
+      "lo": 5.32552796875,
+      "hi": 5.32579232425,
+      "status": "ok",
+      "raw_points": [
+        5.32579232425,
+        5.32552796875
+      ],
+      "row_refs": [
+        "20260919T073356Z-N6-v5e-v004-dde5c0:320",
+        "20260919T073356Z-N6-v5e-v004-dde5c0:321"
+      ],
+      "extra": {
+        "capture_means_ms": [
+          5.32579232425,
+          5.32552796875
+        ],
+        "module_calls_per_capture": 8,
+        "arm_id": "strassen_selected"
+      }
+    }
+  ],
+  "baseline": "native_xla",
+  "ylabel": "Device module time (ms) - lower is better",
+  "error_note": "Capture-mean range is descriptive; no utilization, overlap or HBM-traffic claim.",
+  "takeaway": "The large cases show device gains for Strassen.",
+  "detail": false,
+  "source_run_ids": [
+    "20260919T073356Z-N6-v5e-v004-dde5c0"
+  ],
+  "cohort": "N5-N9 allocation",
+  "data_file": "data/n6-supplement-device.json",
+  "files": {
+    "absolute": {
+      "png": "figures/n6-supplement-device-absolute.png",
+      "svg": "figures/n6-supplement-device-absolute.svg"
+    },
+    "relative": {
+      "png": "figures/n6-supplement-device-relative.png",
+      "svg": "figures/n6-supplement-device-relative.svg"
+    }
+  }
+}

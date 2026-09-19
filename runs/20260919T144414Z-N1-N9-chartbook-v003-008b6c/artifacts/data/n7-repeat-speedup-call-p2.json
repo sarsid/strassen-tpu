@@ -1,0 +1,377 @@
+{
+  "id": "n7-repeat-speedup-call-p2",
+  "experiment": "N7",
+  "kind": "bar",
+  "title": "N7 | Does the frozen rule repeat its gain?",
+  "subtitle": "Each bar is native time / rule time within its own allocation. No timing samples are pooled.",
+  "scope": "call",
+  "detail": true,
+  "categories": [
+    {
+      "id": "held_rect_wide",
+      "label": "rect wide\n1024 x 3072 x 6144"
+    },
+    {
+      "id": "held_square_3072",
+      "label": "square 3072\n3072 x 3072 x 3072"
+    },
+    {
+      "id": "held_rect_short_k",
+      "label": "rect short k\n3072 x 1024 x 6144"
+    },
+    {
+      "id": "held_qwen_down",
+      "label": "qwen down\n1024 x 25600 x 5120"
+    },
+    {
+      "id": "held_gemma_gateup",
+      "label": "Gemma gateup\n1024 x 3584 x 28672"
+    },
+    {
+      "id": "held_square_6144",
+      "label": "square 6144\n6144 x 6144 x 6144"
+    },
+    {
+      "id": "held_mistral_gateup",
+      "label": "mistral gateup\n1024 x 4096 x 28672"
+    },
+    {
+      "id": "held_qwen_gateup",
+      "label": "qwen gateup\n256 x 5120 x 51200"
+    }
+  ],
+  "series": [
+    {
+      "id": "N7",
+      "label": "Original allocation",
+      "color": "#3772C8"
+    },
+    {
+      "id": "N7-replica",
+      "label": "Fresh allocation",
+      "color": "#8553B3"
+    }
+  ],
+  "points": [
+    {
+      "category": "held_rect_wide",
+      "series": "N7",
+      "value": 0.9989523340664602,
+      "lo": 0.978242456565303,
+      "hi": 1.017435273114474,
+      "status": "ok",
+      "row_refs": [
+        "20260919T073017Z-N7-evaluate-v5e-v004-8036b5:2428"
+      ],
+      "extra": {
+        "route": "native",
+        "shape_mkn": [
+          1024,
+          3072,
+          6144
+        ]
+      }
+    },
+    {
+      "category": "held_square_3072",
+      "series": "N7",
+      "value": 1.0091208382951105,
+      "lo": 0.9904073123004301,
+      "hi": 1.0300603626455371,
+      "status": "ok",
+      "row_refs": [
+        "20260919T073017Z-N7-evaluate-v5e-v004-8036b5:2697"
+      ],
+      "extra": {
+        "route": "native",
+        "shape_mkn": [
+          3072,
+          3072,
+          3072
+        ]
+      }
+    },
+    {
+      "category": "held_rect_short_k",
+      "series": "N7",
+      "value": 0.997297977002766,
+      "lo": 0.983270841851953,
+      "hi": 1.01064779941693,
+      "status": "ok",
+      "row_refs": [
+        "20260919T073017Z-N7-evaluate-v5e-v004-8036b5:2966"
+      ],
+      "extra": {
+        "route": "native",
+        "shape_mkn": [
+          3072,
+          1024,
+          6144
+        ]
+      }
+    },
+    {
+      "category": "held_qwen_down",
+      "series": "N7",
+      "value": 1.0015471602969659,
+      "lo": 0.9936933050826996,
+      "hi": 1.0092189447665567,
+      "status": "ok",
+      "row_refs": [
+        "20260919T073017Z-N7-evaluate-v5e-v004-8036b5:3235"
+      ],
+      "extra": {
+        "route": "native",
+        "shape_mkn": [
+          1024,
+          25600,
+          5120
+        ]
+      }
+    },
+    {
+      "category": "held_gemma_gateup",
+      "series": "N7",
+      "value": 0.9981186284091897,
+      "lo": 0.9926155773585382,
+      "hi": 1.0039503131672425,
+      "status": "ok",
+      "row_refs": [
+        "20260919T073017Z-N7-evaluate-v5e-v004-8036b5:3504"
+      ],
+      "extra": {
+        "route": "native",
+        "shape_mkn": [
+          1024,
+          3584,
+          28672
+        ]
+      }
+    },
+    {
+      "category": "held_square_6144",
+      "series": "N7",
+      "value": 1.090404732668802,
+      "lo": 1.0853646575083955,
+      "hi": 1.0956173081382408,
+      "status": "ok",
+      "row_refs": [
+        "20260919T073017Z-N7-evaluate-v5e-v004-8036b5:3773"
+      ],
+      "extra": {
+        "route": "strassen",
+        "shape_mkn": [
+          6144,
+          6144,
+          6144
+        ]
+      }
+    },
+    {
+      "category": "held_mistral_gateup",
+      "series": "N7",
+      "value": 1.0030014427839784,
+      "lo": 0.9912047263363754,
+      "hi": 1.015319122658236,
+      "status": "ok",
+      "row_refs": [
+        "20260919T073017Z-N7-evaluate-v5e-v004-8036b5:4042"
+      ],
+      "extra": {
+        "route": "native",
+        "shape_mkn": [
+          1024,
+          4096,
+          28672
+        ]
+      }
+    },
+    {
+      "category": "held_qwen_gateup",
+      "series": "N7",
+      "value": 1.0027954760161684,
+      "lo": 0.9862616262218569,
+      "hi": 1.0202435973342219,
+      "status": "ok",
+      "row_refs": [
+        "20260919T073017Z-N7-evaluate-v5e-v004-8036b5:4312"
+      ],
+      "extra": {
+        "route": "native",
+        "shape_mkn": [
+          256,
+          5120,
+          51200
+        ]
+      }
+    },
+    {
+      "category": "held_rect_wide",
+      "series": "N7-replica",
+      "value": 0.9990938894349387,
+      "lo": 0.9793919474106715,
+      "hi": 1.0181258662692234,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:2429"
+      ],
+      "extra": {
+        "route": "native",
+        "shape_mkn": [
+          1024,
+          3072,
+          6144
+        ]
+      }
+    },
+    {
+      "category": "held_square_3072",
+      "series": "N7-replica",
+      "value": 0.9930033908197199,
+      "lo": 0.9778772834196258,
+      "hi": 1.009679089425121,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:2698"
+      ],
+      "extra": {
+        "route": "native",
+        "shape_mkn": [
+          3072,
+          3072,
+          3072
+        ]
+      }
+    },
+    {
+      "category": "held_rect_short_k",
+      "series": "N7-replica",
+      "value": 1.0114840674981576,
+      "lo": 0.9975896253407371,
+      "hi": 1.0252854966522762,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:2967"
+      ],
+      "extra": {
+        "route": "native",
+        "shape_mkn": [
+          3072,
+          1024,
+          6144
+        ]
+      }
+    },
+    {
+      "category": "held_qwen_down",
+      "series": "N7-replica",
+      "value": 1.0009038649753772,
+      "lo": 0.9936299213535383,
+      "hi": 1.0081081378355914,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:3236"
+      ],
+      "extra": {
+        "route": "native",
+        "shape_mkn": [
+          1024,
+          25600,
+          5120
+        ]
+      }
+    },
+    {
+      "category": "held_gemma_gateup",
+      "series": "N7-replica",
+      "value": 0.9999590235411115,
+      "lo": 0.9912863606979678,
+      "hi": 1.007792494971027,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:3505"
+      ],
+      "extra": {
+        "route": "native",
+        "shape_mkn": [
+          1024,
+          3584,
+          28672
+        ]
+      }
+    },
+    {
+      "category": "held_square_6144",
+      "series": "N7-replica",
+      "value": 1.0869084628064487,
+      "lo": 1.0811055987571365,
+      "hi": 1.0918215363521109,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:3774"
+      ],
+      "extra": {
+        "route": "strassen",
+        "shape_mkn": [
+          6144,
+          6144,
+          6144
+        ]
+      }
+    },
+    {
+      "category": "held_mistral_gateup",
+      "series": "N7-replica",
+      "value": 1.0046252829975362,
+      "lo": 1.0001962805339664,
+      "hi": 1.0107837014701535,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:4043"
+      ],
+      "extra": {
+        "route": "native",
+        "shape_mkn": [
+          1024,
+          4096,
+          28672
+        ]
+      }
+    },
+    {
+      "category": "held_qwen_gateup",
+      "series": "N7-replica",
+      "value": 1.0053487373673546,
+      "lo": 0.9992329324518772,
+      "hi": 1.0110512044495745,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:4313"
+      ],
+      "extra": {
+        "route": "native",
+        "shape_mkn": [
+          256,
+          5120,
+          51200
+        ]
+      }
+    }
+  ],
+  "ylabel": "Speedup vs native - higher is better",
+  "hline": 1,
+  "error_note": "Whiskers: archived paired 95% bootstrap intervals; per-comparison, not multiplicity-adjusted.",
+  "takeaway": "Three custom routes win in both cohorts. Thirteen other routes use native; small duplicate-route differences reflect timing variability.",
+  "source_run_ids": [
+    "20260919T073017Z-N7-evaluate-v5e-v004-8036b5",
+    "20260919T084449Z-N7-replicate-v5e-v004-955768"
+  ],
+  "cohort": "Separate within-cohort comparisons",
+  "data_file": "data/n7-repeat-speedup-call-p2.json",
+  "files": {
+    "absolute": {
+      "png": "figures/n7-repeat-speedup-call-p2-absolute.png",
+      "svg": "figures/n7-repeat-speedup-call-p2-absolute.svg"
+    }
+  }
+}
