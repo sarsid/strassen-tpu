@@ -1,0 +1,428 @@
+{
+  "arms": {
+    "cubic_basic": {
+      "algorithm": "cubic_full",
+      "variant": "plain"
+    },
+    "cubic_quadrant": {
+      "algorithm": "cubic_quadrant",
+      "variant": "plain"
+    },
+    "native_xla": {
+      "algorithm": "native",
+      "variant": "plain"
+    },
+    "strassen_basic": {
+      "algorithm": "strassen",
+      "variant": "plain"
+    }
+  },
+  "base_campaign": "campaign_v1.json",
+  "campaign_id": "v5e_n4_real_weights_supplement_v1",
+  "campaign_kind": "supplemental_real_weight_numerical_study",
+  "correctness": {
+    "failure_policy": "Record failures and measurements; failing rows cannot count as valid speedup wins. Fixed thresholds never change to rescue an arm.",
+    "gate": {
+      "max_abs_atol": 0.001,
+      "max_abs_reference_rtol": 0.05,
+      "relative_l2_max": 0.02,
+      "require_finite": true
+    },
+    "gate_expression": "finite && relative_l2 <= 0.02 && max_abs_error <= 0.001 + 0.05 * max_abs_reference",
+    "input_reference": "Use the exact BF16-quantized operands cast to NumPy float32, not the pre-quantization random source.",
+    "metrics": [
+      "reference_scope",
+      "sample_count",
+      "relative_l2",
+      "max_abs_error",
+      "max_abs_reference",
+      "rmse",
+      "mean_abs_error",
+      "p50_abs_error",
+      "p99_abs_error",
+      "normwise_error",
+      "finite",
+      "pass"
+    ],
+    "mode": "full_if_both_limits_allow_else_sampled_cross_product",
+    "near_zero_denominator": 1e-30,
+    "reference": "host_numpy_fp32",
+    "sample_columns": 128,
+    "sample_rows": 128,
+    "sampling": "seeded without replacement, always including first and last row/column; record indices; reference uses all K",
+    "scope": "Finite synthetic numerical eligibility only; no bound on model quality or worst-case error."
+  },
+  "deferred": [
+    "Two-level Strassen: optional future experiment only, excluded from N1-N4.",
+    "N5 independent final tuning and fresh confirmation.",
+    "N6 profiling and N6a frozen selection-rule development.",
+    "N7 held-out-shape/device generalization.",
+    "v6e replication only after explicit later campaign activation.",
+    "Fused activations, residuals and end-to-end LLM quality are later N8-N9 work."
+  ],
+  "device": {
+    "allow_concurrent_timing": false,
+    "allow_v6e": false,
+    "identity_fields": [
+      "allocation_id",
+      "device_kind",
+      "device_id",
+      "process_index",
+      "jax_version",
+      "jaxlib_version",
+      "libtpu_version",
+      "runtime_image",
+      "runtime_flags",
+      "host_id"
+    ],
+    "identity_missing_policy": "Record unknown explicitly; do not describe unverified physical identity as the same chip.",
+    "require_identity_match": true,
+    "reuse_same_allocation": true,
+    "single_device": true,
+    "target": "v5e"
+  },
+  "distribution_manifest": null,
+  "execution_contract": {
+    "archive_after_run": [
+      "summary.json",
+      "status snapshot",
+      "artifact SHA256 manifest",
+      "completion/failure marker"
+    ],
+    "archive_before_run": [
+      "source tree snapshot",
+      "configuration JSON",
+      "source/configuration SHA256 manifests",
+      "git commit",
+      "environment fingerprint",
+      "planned cases"
+    ],
+    "archive_during_run": [
+      "append-only events.jsonl",
+      "stdout/stderr",
+      "raw timing samples",
+      "errors"
+    ],
+    "commit_policy": "Root orchestrator commits source snapshot before execution and records a commit after every completed or failed execution. Existing source snapshots and result directories are never overwritten.",
+    "external_changes": "Any device or environment change creates a new cohort; do not pool it silently with the original allocation.",
+    "immutable_run_id": "UTC timestamp plus unique suffix",
+    "record_statuses": [
+      "ok",
+      "input_error",
+      "numerical_failure",
+      "compile_error",
+      "oom",
+      "unsupported",
+      "skipped_memory_preflight",
+      "interrupted",
+      "not_run"
+    ],
+    "resume": "A retry/new version receives a new run id and references previous run ids; never appends measurements to a sealed run."
+  },
+  "expected_model_id": "Qwen/Qwen3-0.6B",
+  "expected_revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+  "experiments": {
+    "N1": {
+      "arm_ids": [
+        "native_xla",
+        "cubic_basic",
+        "cubic_quadrant",
+        "strassen_basic"
+      ],
+      "distribution": "gaussian",
+      "purpose": "Untuned implementations across 44 shapes; cubic_full is practical control, cubic_quadrant isolates split-form overhead.",
+      "selection": false,
+      "shape_ids": [
+        "square_512",
+        "square_1024",
+        "square_2048",
+        "square_4096",
+        "square_8192",
+        "vary_m_512",
+        "vary_m_8192",
+        "vary_k_512",
+        "vary_k_8192",
+        "vary_n_512",
+        "vary_n_8192",
+        "mkn_512_2048_8192",
+        "mkn_512_8192_2048",
+        "mkn_2048_512_8192",
+        "mkn_2048_8192_512",
+        "mkn_8192_512_2048",
+        "mkn_8192_2048_512",
+        "small_m_1",
+        "small_m_8",
+        "small_m_64",
+        "small_m_256",
+        "tail_513",
+        "tail_wide",
+        "tail_tall",
+        "tail_deep",
+        "qwen32_gate_up_m1",
+        "qwen32_gate_up_m64",
+        "qwen32_gate_up_m512",
+        "qwen32_gate_up_m2048",
+        "qwen32_gate_up_m8192",
+        "qwen32_q_m512",
+        "qwen32_kv_m512",
+        "qwen32_o_m512",
+        "qwen32_down_m512",
+        "mistral7_gate_up_m64",
+        "mistral7_gate_up_m512",
+        "mistral7_gate_up_m2048",
+        "mistral7_kv_m512",
+        "mistral7_down_m512",
+        "gemma9_gate_up_m64",
+        "gemma9_gate_up_m512",
+        "gemma9_gate_up_m2048",
+        "gemma9_q_m512",
+        "gemma9_down_m512"
+      ],
+      "tile": [
+        256,
+        256,
+        256
+      ],
+      "timing": "confirm"
+    },
+    "N2": {
+      "arm_ids": [
+        "cubic_basic",
+        "cubic_quadrant",
+        "strassen_basic"
+      ],
+      "attempts_per_shape_per_arm": 6,
+      "candidate_order": "seeded balanced order; identical candidate list and attempts for every algorithm",
+      "distribution": "gaussian",
+      "ineligible_attempts_count_toward_budget": true,
+      "purpose": "Matched tile effect and feasibility; these screen winners are provisional, not independently confirmed N5 claims.",
+      "selection": false,
+      "shape_ids": [
+        "square_512",
+        "square_2048",
+        "square_4096",
+        "vary_m_8192",
+        "vary_k_8192",
+        "vary_n_8192",
+        "small_m_8",
+        "tail_513",
+        "qwen32_gate_up_m512",
+        "qwen32_gate_up_m8192",
+        "mistral7_gate_up_m512",
+        "gemma9_gate_up_m512"
+      ],
+      "tiles": [
+        [
+          256,
+          256,
+          256
+        ],
+        [
+          512,
+          512,
+          256
+        ],
+        [
+          1024,
+          512,
+          512
+        ],
+        [
+          512,
+          1024,
+          512
+        ],
+        [
+          1024,
+          1024,
+          512
+        ],
+        [
+          2048,
+          2048,
+          512
+        ]
+      ],
+      "timing": "screen"
+    },
+    "N3": {
+      "algorithms": [
+        "cubic_quadrant",
+        "strassen"
+      ],
+      "distribution": "gaussian",
+      "fallback_policy": "No adaptive tile substitution; compile failure is a recorded result. A revised common tile requires a new protocol version.",
+      "purpose": "Two single-change ablations and their interaction, held at fixed tiles and precision.",
+      "shape_ids": [
+        "square_2048",
+        "vary_k_8192",
+        "vary_n_8192",
+        "qwen32_gate_up_m8192",
+        "mistral7_gate_up_m512",
+        "gemma9_gate_up_m512"
+      ],
+      "tile": [
+        1024,
+        1024,
+        512
+      ],
+      "timing": "confirm",
+      "variants": [
+        "plain",
+        "interleaved",
+        "output_accumulator",
+        "interleaved_output_accumulator"
+      ]
+    },
+    "N4": {
+      "arm_ids": [
+        "native_xla",
+        "cubic_basic",
+        "cubic_quadrant",
+        "strassen_basic"
+      ],
+      "distributions": [
+        "real_weight_gaussian_activation"
+      ],
+      "purpose": "Supplement the 480 core synthetic numerical cases with 48 separately identified real-weight cases, retaining identical numerical gates.",
+      "real_weights": {
+        "provenance": "Require pinned 40-hex checkpoint revision, config/license hashes, raw tensor hashes, shapes, BF16 dtype, and little-endian byte layout. Save verified manifest and transpose hashes in every run.",
+        "status": "required_verified_artifact",
+        "tensor_names": [
+          "model.layers.0.self_attn.q_proj.weight",
+          "model.layers.0.mlp.down_proj.weight"
+        ]
+      },
+      "seeds": [
+        20260919,
+        20260920,
+        20260921
+      ],
+      "shape_ids": [
+        "qwen06_q_m512",
+        "qwen06_q_m2048",
+        "qwen06_down_m512",
+        "qwen06_down_m2048"
+      ],
+      "tile": [
+        1024,
+        1024,
+        512
+      ],
+      "timing": null
+    },
+    "smoke": {
+      "arm_ids": [
+        "native_xla",
+        "cubic_basic",
+        "cubic_quadrant",
+        "strassen_basic"
+      ],
+      "purpose": "Compile/shape/padding/numerical checks and cost calibration before broad campaign.",
+      "shape_ids": [
+        "square_512",
+        "small_m_8",
+        "tail_513"
+      ],
+      "tile": [
+        256,
+        256,
+        256
+      ],
+      "timing": "smoke"
+    }
+  },
+  "inheritance": "Retain base v1 device, precision, correctness gates, memory limits and immutable execution policy; override only the fields explicitly present here. The effective campaign is saved in each run.",
+  "input_generator_source": "strassen_mm/n4_real_weights_v001.py",
+  "input_semantics": {
+    "a": "Synthetic Gaussian activation-shaped matrix: PCG64(seed).standard_normal((M,K), dtype=float32) / float32(sqrt(K)), then quantize once to BF16.",
+    "b": "Actual layer-0 checkpoint weight transposed from [output,input] to [K,N]; verified stored BF16 values are preserved exactly.",
+    "scope": "Real-weight matrix multiplication accuracy; not real activations, model output quality, or end-to-end inference.",
+    "seed_reuse": "A depends only on its shape and the specified seed. All arms consume the identical A and B. The independent reference uses these exact quantized operands."
+  },
+  "memory": {
+    "estimated_live_device_budget_gib": 8,
+    "execution_order": "smoke first; remaining shapes in ascending estimated live bytes, largest anchor last",
+    "kernel_vmem_limit_mib": 48,
+    "max_full_reference_flops": 2000000000,
+    "max_reference_output_elements": 1048576,
+    "on_device_oom": "Record oom, clear executable/input buffers before the next case; retry only in a new immutable run.",
+    "on_preflight_over_budget": "Record skipped_memory_preflight with estimate and limit; do not silently remove shape.",
+    "preflight": "Estimate and record bytes for original inputs, padded inputs, FP32 output, one result, and reference samples. Conservative estimate is not measured peak memory."
+  },
+  "precision": {
+    "accumulator_dtype": "float32",
+    "input_dtype": "bfloat16",
+    "native_precision": "DEFAULT",
+    "note": "The Strassen pre-add rounding is part of the algorithm under test; its numerical cost must remain visible. FP32 output differs from some historical BF16-output experiments.",
+    "output_dtype": "float32",
+    "pre_add_dtype": "bfloat16",
+    "reference_dtype": "float32"
+  },
+  "preparation": {
+    "materialization": "prepared kernel uses explicitly prepared inputs, synchronizes them before timing, and records their shapes",
+    "output": "crop to original M,N",
+    "padding": "zero pad each needed extent to tile divisibility for custom kernels; native accepts original shape",
+    "reuse_claim": "No reuse claim unless inputs and prepared buffers actually reused; full-call source remains the main comparison."
+  },
+  "schema_version": 1,
+  "seed": 20260919,
+  "shape_manifest": "shapes_real_weights_v1.json",
+  "shape_order": [
+    "m",
+    "k",
+    "n"
+  ],
+  "status": "preregistered_pending_hardware_smoke",
+  "tile_order": [
+    "bm",
+    "bn",
+    "bk"
+  ],
+  "timing": {
+    "clock": "perf_counter_ns",
+    "confirm": {
+      "repeats": 30,
+      "warmups": 5
+    },
+    "exclude": [
+      "compilation",
+      "host_to_device_transfer",
+      "reference_calculation",
+      "one_time_input_generation"
+    ],
+    "headline_scope": "call",
+    "include_in_call": [
+      "device_padding_if_needed",
+      "device_layout_preparation_if_needed",
+      "matmul",
+      "device_output_crop_if_needed"
+    ],
+    "measure_scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "order": "seeded balanced interleaving of arms, raw chronological records retained",
+    "prepared_kernel_note": "Amortized/reused-input scope; always report alongside complete call and original vs padded dimensions.",
+    "repeat_bad_policy": "Keep all completed samples. New complete runs may investigate drift; never replace failed/noisy rows.",
+    "report": [
+      "raw_ms",
+      "median_ms",
+      "mean_ms",
+      "std_ms",
+      "min_ms",
+      "max_ms",
+      "paired_speedup_ci95"
+    ],
+    "screen": {
+      "repeats": 7,
+      "warmups": 2
+    },
+    "smoke": {
+      "repeats": 5,
+      "warmups": 2
+    },
+    "synchronize": "block_until_ready every measured result"
+  },
+  "weights_manifest": "../data/qwen3-0.6b-real-v001/manifest.json"
+}
