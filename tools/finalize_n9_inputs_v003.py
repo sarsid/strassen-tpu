@@ -9,12 +9,12 @@ from __future__ import annotations
 import argparse
 import ast
 import copy
+import hashlib
 import json
 import math
 from pathlib import Path, PurePosixPath
 import re
 import struct
-import sys
 import traceback
 
 import resume_n9_inputs_v002 as prior
@@ -86,6 +86,10 @@ class Evidence:
         if successful: require(completion.get('status') == 'completed', 'Required source run did not complete')
         canonical, inner = verify_seal(path / 'artifacts', 'artifact_manifest.json')
         require({'environment.json', 'summary.json'} <= set(inner), 'Canonical seal omits identity or summary')
+        actual_files = {str(member.relative_to(path / 'artifacts')) for member in (path / 'artifacts').rglob('*')
+                        if member.is_file() and member != path / 'artifacts/artifact_manifest.json'}
+        require(set(inner) == actual_files and all('artifacts/' + relative in members for relative in inner),
+                'Canonical evidence coverage differs from execution seal or files')
         environment = load(prior.sealed_file(path, 'artifacts/environment.json'))
         identity = environment.get('identity', {})
         require(all(key in identity for key in IDENTITY_KEYS), 'Host/core identity fields are missing')
@@ -108,6 +112,9 @@ class Evidence:
             require(relative in inner and 'artifacts/' + relative in members, 'Child seal is not itself sealed')
             seal, child_members = verify_seal(child, 'artifact_manifest.json')
             require('status.json' in child_members, 'Child status is not sealed')
+            actual_child = {str(member.relative_to(child)) for member in child.rglob('*')
+                            if member.is_file() and member != child / 'artifact_manifest.json'}
+            require(set(child_members) == actual_child, 'Child preparation seal does not cover all evidence')
             if successful: require(load(child / 'status.json').get('status') == 'completed', 'Child preparation did not complete')
             seals[subdirectory] = seal
         record = {'run_id': path.name, 'run_path': str(path), 'status': completion['status'],
@@ -180,7 +187,7 @@ def validate_pair(evidence, item, corpus, model, token_run, reference_run, venv)
             and tokens.get('full_corpus_token_count', 0) >= 32768, 'Token corpus selection differs')
     array = prior.sealed_file(token_run, 'artifacts/preparation-00/token_ids.npy')
     raw = npy(array, (32, 1024), '<i4', payload=True)
-    require(prior.hashlib.sha256(raw).hexdigest() == tokens['raw_token_bytes_sha256'], 'Raw token bytes digest differs')
+    require(hashlib.sha256(raw).hexdigest() == tokens['raw_token_bytes_sha256'], 'Raw token bytes digest differs')
     values = [value[0] for value in struct.iter_unpack('<i', raw)]
     require(min(values) >= 0 and max(values) < model['config']['vocab_size'], 'Token IDs are outside model vocabulary')
     require(len(set(values)) == tokens['unique_token_ids'], 'Unique token count differs')
@@ -200,7 +207,16 @@ def validate_pair(evidence, item, corpus, model, token_run, reference_run, venv)
     return token_path, tokens, reference_path, reference
 
 
-def validate_tools(evidence, directory):
+def inventory(value):
+    result = {}
+    for row in value['all_distributions']:
+        name = re.sub(r'[-_.]+', '-', row['name']).lower()
+        require(name not in result, 'Duplicate normalized package inventory name')
+        result[name] = row['version']
+    return result
+
+
+def validate_tools(evidence, directory, preserved):
     evidence.run(directory)
     summary = load(prior.sealed_file(directory, 'artifacts/summary.json'))
     result_path = prior.sealed_file(directory, 'artifacts/preparation-00/result.json')
@@ -215,18 +231,41 @@ def validate_tools(evidence, directory):
     require(all(result['global_core_after'].get(key) == value for key, value in evidence.identity['versions'].items()),
             'Installer core versions differ from preserved cohort')
     require(result.get('versions') == VERSIONS and set(result.get('pins', [])) == PINS, 'Model-tools pins differ, including protobuf')
-    installed = load(prior.sealed_file(directory, 'artifacts/preparation-00/installed.json'))
+    child_status = load(prior.sealed_file(directory, 'artifacts/preparation-00/status.json'))
+    require(child_status.get('action') == 'model-tools-v003' and child_status.get('core_versions_unchanged') is True
+            and child_status.get('timeout_descendants_may_still_be_running') is False, 'Installer completion contract differs')
+    installed_path = prior.sealed_file(directory, 'artifacts/preparation-00/installed.json')
+    installed = load(installed_path)
     require(installed.get('prefix') == VENV and installed.get('base_prefix') != VENV
             and installed.get('jax_visible') is False and installed.get('torch_cuda_version') is None,
             'Installed tools are not isolated CPU-only tools')
     require(installed.get('versions') == VERSIONS, 'Installed module versions differ from result manifest')
     require(all(PurePosixPath(path).is_relative_to(VENV) for path in installed['module_paths'].values()),
             'A tool imported outside its isolated environment')
+    old_run = evidence.root / 'runs' / preserved['run_id']
+    evidence.run(old_run)
+    old_result = prior.sealed_file(old_run, 'artifacts/preparation-00/result.json')
+    require(Path(preserved['local_manifest']).resolve() == old_result and prior.digest(old_result) == preserved['manifest_sha256'],
+            'Preserved Qwen tools manifest differs')
+    old_summary = load(prior.sealed_file(old_run, 'artifacts/summary.json'))
+    require(old_summary.get('subprocess_cleanup_all_proven') is True, 'Preserved installer cleanup is uncertain')
+    old_inventory = prior.sealed_file(old_run, 'artifacts/preparation-00/installed.json')
+    baseline_path = prior.sealed_file(directory, 'artifacts/preparation-00/baseline_inventory.json')
+    require(prior.digest(baseline_path) == prior.digest(old_inventory) == result.get('baseline_inventory_sha256')
+            and prior.digest(installed_path) == result.get('installed_inventory_sha256'), 'Installed/baseline inventory hashes differ')
+    old, new = inventory(load(baseline_path)), inventory(installed)
+    require('protobuf' not in old and new == {**old, 'protobuf': '6.32.1'}, 'Repair changed more than pinned protobuf')
+    comparison = {'added': {'protobuf': '6.32.1'}, 'removed': {}, 'changed': {}, 'only_pinned_protobuf_added': True}
+    require(result.get('inventory_comparison') == comparison
+            and load(prior.sealed_file(directory, 'artifacts/preparation-00/inventory_comparison.json')) == comparison,
+            'Declared inventory comparison differs from independently checked inventories')
     return {'run_id': directory.name, 'venv_dir': VENV, 'local_manifest': str(result_path),
-            'manifest_sha256': prior.digest(result_path), 'versions': VERSIONS}
+            'manifest_sha256': prior.digest(result_path), 'versions': VERSIONS,
+            'baseline_inventory_sha256': prior.digest(baseline_path), 'installed_inventory_sha256': prior.digest(installed_path),
+            'inventory_comparison': comparison}
 
 
-def validate_diagnostic(evidence, directory, mistral):
+def validate_diagnostic(evidence, directory, mistral, tools_run):
     evidence.run(directory)
     summary = load(prior.sealed_file(directory, 'artifacts/summary.json'))
     status = load(prior.sealed_file(directory, 'artifacts/diagnostic/status.json'))
@@ -241,12 +280,15 @@ def validate_diagnostic(evidence, directory, mistral):
     after = load(prior.sealed_file(directory, 'artifacts/diagnostic/installed_after.json'))
     require(before == after and before.get('prefix') == VENV and before.get('base_prefix') != VENV,
             'Diagnostic used or changed the wrong environment')
+    installed = load(prior.sealed_file(tools_run, 'artifacts/preparation-00/installed.json'))
+    require(inventory(before) == inventory(installed), 'Diagnostic inventory differs from installed tools')
     for name, value in before['optional_and_core_versions'].items():
         if name in VERSIONS: require(value == VERSIONS[name], 'Diagnostic package pin differs')
     require(before['optional_and_core_versions'].get('protobuf') == VERSIONS['protobuf'], 'Diagnostic lacks pinned protobuf')
     provenance = load(prior.sealed_file(directory, 'artifacts/diagnostic/input_provenance.json'))
     require(provenance.get('checkpoint_manifest_sha256') == MODEL_HASHES[mistral['model_id']]
-            and provenance.get('model_id') == mistral['model_id'] and provenance.get('revision') == mistral['revision'],
+            and provenance.get('model_id') == mistral['model_id'] and provenance.get('revision') == mistral['revision']
+            and provenance.get('checkpoint_manifest_path') == mistral['model_manifest'],
             'Diagnostic checkpoint identity differs')
     return {'run_id': directory.name, 'tokenizer_loaded': True,
             'status_sha256': prior.digest(directory / 'artifacts/diagnostic/status.json'),
@@ -283,7 +325,7 @@ def finalize(args):
     require(tuple(corpus_manifest.get(key) for key in ('dataset_id', 'revision', 'configuration', 'split'))
             == ('Salesforce/wikitext', prior.CORPUS_REVISION, 'wikitext-2-raw-v1', 'test'), 'Corpus scope differs')
     require(corpus['corpus_manifest'] == BASE + '/models/corpus/' + prior.CORPUS_REVISION + '/manifest.json', 'Corpus remote binding differs')
-    qtoken, _, qreference, _ = validate_pair(evidence, qwen, corpus, configs[qwen['model_id']],
+    qtoken, qtokens, qreference, _ = validate_pair(evidence, qwen, corpus, configs[qwen['model_id']],
         args.canonical_root / 'runs' / qwen['tokenize_run_id'], args.canonical_root / 'runs' / qwen['reference_run_id'],
         original['model_tools']['venv_dir'])
     for name, path in (('tokens', qtoken), ('reference', qreference)):
@@ -291,10 +333,12 @@ def finalize(args):
                 and qwen[name + '_manifest_sha256'] == prior.digest(path)
                 and qwen[name + '_manifest'] == BASE + '/runs/' + path.parents[2].name + '/artifacts/preparation-00/' + path.name,
                 'Preserved Qwen binding changed')
-    tools = validate_tools(evidence, args.model_tools_run)
-    diagnostic = validate_diagnostic(evidence, args.diagnostic_run, mistral)
+    tools = validate_tools(evidence, args.model_tools_run, original['model_tools'])
+    diagnostic = validate_diagnostic(evidence, args.diagnostic_run, mistral, args.model_tools_run)
     token_path, tokens, reference_path, _ = validate_pair(evidence, mistral, corpus, configs[mistral['model_id']],
         args.tokens_run, args.reference_run, VENV)
+    require(tokens.get('text_sha256') == qtokens.get('text_sha256') and bool(tokens.get('text_sha256')),
+            'Qwen and Mistral tokenizations did not use identical corpus text')
     updated = copy.deepcopy(mistral)
     updated.update(status='inputs_ready', tokenize_run_id=args.tokens_run.name, reference_run_id=args.reference_run.name,
         local_tokens_manifest=str(token_path), tokens_manifest_sha256=prior.digest(token_path),
