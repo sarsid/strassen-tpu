@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "/content/Strassen_MM_Focus/model-tools-v002/bin/python",
+    "-I",
+    "-c",
+    "import importlib,importlib.metadata as md,importlib.util,json,sys\nfrom pathlib import Path\ntarget=Path(sys.argv[1]).resolve()\nnames=['torch','transformers','tokenizers','huggingface-hub','safetensors','numpy','pyarrow','sentencepiece','accelerate']\nversions={name:md.version(name) for name in names}\nmodules={}\nfor name in ['torch','transformers','tokenizers','huggingface_hub','safetensors','numpy','pyarrow','sentencepiece','accelerate']:\n    module=importlib.import_module(name);modules[name]=str(Path(module.__file__).resolve())\n    assert Path(module.__file__).resolve().is_relative_to(target), name+' imported outside target environment'\nimport torch\nassert torch.version.cuda is None,'Expected CPU-only PyTorch distribution'\nassert importlib.util.find_spec('jax') is None,'Isolated model tools must not expose core JAX'\nvalue={'prefix':sys.prefix,'base_prefix':sys.base_prefix,'python':sys.version,'versions':versions,\n       'module_paths':modules,'torch_cuda_version':torch.version.cuda,'jax_visible':False,\n       'all_distributions':sorted([{'name':d.metadata['Name'],'version':d.version} for d in md.distributions()],key=lambda x:x['name'].lower())}\nwith Path(sys.argv[2]).open('x') as f:json.dump(value,f,indent=2,sort_keys=True)\n",
+    "/content/Strassen_MM_Focus/model-tools-v002",
+    "/content/Strassen_MM_Focus/runs/20260919T074551Z-N9-model-tools-v002-v5e-v004-34afbd/artifacts/preparation-00/installed.json"
+  ],
+  "index": 6,
+  "label": "verify_installed_imports",
+  "started_utc": "2026-09-19T07:46:33.547302+00:00",
+  "timeout_seconds": 300
+}
