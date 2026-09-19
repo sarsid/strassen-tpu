@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "manifest_id": "shapes_real_weights_v1",
+  "shape_order": ["m", "k", "n"],
+  "source_id": "qwen3_06b_actual_layer0_weights",
+  "input_semantics": "B is an actual checkpoint weight transpose; A remains synthetic Gaussian BF16.",
+  "shapes": [
+    {
+      "id": "qwen06_q_m512", "m": 512, "k": 1024, "n": 2048,
+      "family": "real_weight_projection", "stage": "supplement",
+      "source_id": "qwen3_06b_actual_layer0_weights",
+      "tensor_name": "model.layers.0.self_attn.q_proj.weight",
+      "stored_weight_shape": [2048, 1024], "projection": "q"
+    },
+    {
+      "id": "qwen06_q_m2048", "m": 2048, "k": 1024, "n": 2048,
+      "family": "real_weight_projection", "stage": "supplement",
+      "source_id": "qwen3_06b_actual_layer0_weights",
+      "tensor_name": "model.layers.0.self_attn.q_proj.weight",
+      "stored_weight_shape": [2048, 1024], "projection": "q"
+    },
+    {
+      "id": "qwen06_down_m512", "m": 512, "k": 3072, "n": 1024,
+      "family": "real_weight_projection", "stage": "supplement",
+      "source_id": "qwen3_06b_actual_layer0_weights",
+      "tensor_name": "model.layers.0.mlp.down_proj.weight",
+      "stored_weight_shape": [1024, 3072], "projection": "down"
+    },
+    {
+      "id": "qwen06_down_m2048", "m": 2048, "k": 3072, "n": 1024,
+      "family": "real_weight_projection", "stage": "supplement",
+      "source_id": "qwen3_06b_actual_layer0_weights",
+      "tensor_name": "model.layers.0.mlp.down_proj.weight",
+      "stored_weight_shape": [1024, 3072], "projection": "down"
+    }
+  ]
+}
