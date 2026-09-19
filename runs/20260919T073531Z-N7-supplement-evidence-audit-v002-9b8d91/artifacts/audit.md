@@ -1,0 +1,263 @@
+# N5–N9 evidence audit
+
+Audit: PASS
+
+## 20260919T065405Z-N7-screen-v5e-v004-6ef489
+
+Archive integrity: PASS
+
+Status counts: `{"ok": 1225, "oom": 87}`
+
+- c_output_accumulator_128_512_512 vs native_xla: {"counts": {"loss": 1}, "median_ratio": 0.9343515955226529, "min_ratio": 0.9343515955226529, "max_ratio": 0.9343515955226529}
+- s_output_accumulator_1024_1024_1024 vs c_output_accumulator_128_512_512: {"counts": {"inconclusive": 1}, "median_ratio": 1.0104375733248012, "min_ratio": 1.0104375733248012, "max_ratio": 1.0104375733248012}
+- s_output_accumulator_1024_1024_1024 vs native_xla: {"counts": {"inconclusive": 2, "win": 1}, "median_ratio": 1.0098418637303006, "min_ratio": 0.9441039588120655, "max_ratio": 1.0759274933279328}
+- native_xla vs c_output_accumulator_128_512_512: {"counts": {"win": 1}, "median_ratio": 1.070260921896992, "min_ratio": 1.070260921896992, "max_ratio": 1.070260921896992}
+- s_interleaved_output_accumulator_2048_1024_512 vs c_plain_1024_1024_512: {"counts": {"loss": 2}, "median_ratio": 0.692059635582073, "min_ratio": 0.5291911450858008, "max_ratio": 0.8549281260783451}
+- s_plain_1024_1024_1024 vs c_plain_2048_1024_512: {"counts": {"win": 3}, "median_ratio": 1.1314301537391718, "min_ratio": 1.0425724793408422, "max_ratio": 1.9556559273542449}
+- s_interleaved_2048_2048_512 vs c_output_accumulator_512_1024_512: {"counts": {"loss": 1}, "median_ratio": 0.8624384465092428, "min_ratio": 0.8624384465092428, "max_ratio": 0.8624384465092428}
+- s_interleaved_output_accumulator_512_1024_512 vs c_plain_512_1024_512: {"counts": {"inconclusive": 1}, "median_ratio": 0.9854485429181353, "min_ratio": 0.9854485429181353, "max_ratio": 0.9854485429181353}
+- s_plain_512_1024_512 vs c_output_accumulator_1024_1024_1024: {"counts": {"inconclusive": 1, "loss": 1}, "median_ratio": 0.9596973959066271, "min_ratio": 0.8841588341861232, "max_ratio": 1.035235957627131}
+- s_output_accumulator_1024_1024_512 vs c_plain_1024_1024_1024: {"counts": {"inconclusive": 1, "win": 1}, "median_ratio": 1.0297847993123568, "min_ratio": 1.005844769593892, "max_ratio": 1.0537248290308217}
+- s_output_accumulator_2048_1024_512 vs c_plain_128_512_512: {"counts": {"loss": 1}, "median_ratio": 0.9341610825174957, "min_ratio": 0.9341610825174957, "max_ratio": 0.9341610825174957}
+- s_interleaved_output_accumulator_1024_1024_512 vs c_output_accumulator_2048_1024_512: {"counts": {"win": 3}, "median_ratio": 1.401147212478136, "min_ratio": 1.1307252295145047, "max_ratio": 1.7025188927896215}
+- s_interleaved_output_accumulator_2048_2048_512 vs c_output_accumulator_1024_1024_512: {"counts": {"loss": 2, "win": 1}, "median_ratio": 0.8674334281291162, "min_ratio": 0.665953147947082, "max_ratio": 1.1261606063566951}
+- s_interleaved_2048_1024_512 vs c_output_accumulator_512_1024_1024: {"counts": {"inconclusive": 1, "loss": 1}, "median_ratio": 0.8968569212171749, "min_ratio": 0.8157272527238688, "max_ratio": 0.9779865897104809}
+- s_output_accumulator_2048_2048_512 vs c_plain_2048_2048_512: {"counts": {"win": 1}, "median_ratio": 1.063022272035231, "min_ratio": 1.063022272035231, "max_ratio": 1.063022272035231}
+- s_interleaved_1024_1024_512 vs c_plain_512_512_256: {"counts": {"inconclusive": 1, "win": 1}, "median_ratio": 1.0621712118335416, "min_ratio": 1.00179670503948, "max_ratio": 1.1225457186276029}
+- s_interleaved_1024_1024_1024 vs c_output_accumulator_1024_512_512: {"counts": {"inconclusive": 1}, "median_ratio": 1.0174577891048104, "min_ratio": 1.0174577891048104, "max_ratio": 1.0174577891048104}
+- s_interleaved_512_1024_512 vs c_output_accumulator_512_512_256: {"counts": {"inconclusive": 1}, "median_ratio": 0.9844771909959213, "min_ratio": 0.9844771909959213, "max_ratio": 0.9844771909959213}
+- s_plain_2048_1024_512 vs c_output_accumulator_2048_2048_512: {"counts": {"win": 2}, "median_ratio": 1.388116496297889, "min_ratio": 1.1703361863264317, "max_ratio": 1.6058968062693462}
+- s_plain_2048_2048_512 vs c_output_accumulator_1024_2048_512: {"counts": {"inconclusive": 1}, "median_ratio": 0.9635548950532455, "min_ratio": 0.9635548950532455, "max_ratio": 0.9635548950532455}
+- s_output_accumulator_512_1024_512 vs c_plain_512_1024_1024: {"counts": {"inconclusive": 1}, "median_ratio": 0.997203769156949, "min_ratio": 0.997203769156949, "max_ratio": 0.997203769156949}
+- s_interleaved_output_accumulator_1024_1024_1024 vs c_plain_1024_2048_512: {"counts": {"win": 2, "inconclusive": 1}, "median_ratio": 1.214279270135553, "min_ratio": 0.9766898821063509, "max_ratio": 1.8662959109384851}
+- s_plain_1024_1024_512 vs c_plain_1024_512_512: {"counts": {"win": 2}, "median_ratio": 1.0405572391607867, "min_ratio": 1.0267620277807985, "max_ratio": 1.0543524505407749}
+- c_plain_2048_2048_512 vs native_xla: {"counts": {"loss": 1}, "median_ratio": 0.8155347736016573, "min_ratio": 0.8155347736016573, "max_ratio": 0.8155347736016573}
+- s_interleaved_2048_1024_512 vs c_plain_2048_2048_512: {"counts": {"inconclusive": 1}, "median_ratio": 1.0209409213908724, "min_ratio": 1.0209409213908724, "max_ratio": 1.0209409213908724}
+- s_interleaved_2048_1024_512 vs native_xla: {"counts": {"loss": 1}, "median_ratio": 0.8326128231871727, "min_ratio": 0.8326128231871727, "max_ratio": 0.8326128231871727}
+- native_xla vs c_plain_2048_2048_512: {"counts": {"win": 1}, "median_ratio": 1.2261892838532027, "min_ratio": 1.2261892838532027, "max_ratio": 1.2261892838532027}
+- s_output_accumulator_2048_2048_512 vs c_output_accumulator_1024_512_512: {"counts": {"inconclusive": 1, "loss": 1}, "median_ratio": 0.8374822618766786, "min_ratio": 0.713682534591006, "max_ratio": 0.9612819891623512}
+- s_output_accumulator_512_1024_512 vs c_plain_1024_1024_1024: {"counts": {"win": 2}, "median_ratio": 1.2263439024372769, "min_ratio": 1.120468826013548, "max_ratio": 1.3322189788610057}
+- s_plain_512_1024_512 vs c_plain_128_512_512: {"counts": {"win": 1}, "median_ratio": 1.112307769545298, "min_ratio": 1.112307769545298, "max_ratio": 1.112307769545298}
+- s_interleaved_output_accumulator_2048_2048_512 vs c_output_accumulator_512_1024_512: {"counts": {"loss": 1}, "median_ratio": 0.9319884819203252, "min_ratio": 0.9319884819203252, "max_ratio": 0.9319884819203252}
+- s_plain_2048_2048_512 vs c_output_accumulator_512_1024_1024: {"counts": {"inconclusive": 1}, "median_ratio": 1.0020958196137844, "min_ratio": 1.0020958196137844, "max_ratio": 1.0020958196137844}
+- s_interleaved_output_accumulator_512_1024_512 vs c_output_accumulator_1024_2048_512: {"counts": {"win": 2}, "median_ratio": 1.1699842466216395, "min_ratio": 1.0813730649866, "max_ratio": 1.2585954282566787}
+- s_plain_1024_1024_512 vs c_plain_1024_2048_512: {"counts": {"inconclusive": 1}, "median_ratio": 0.9588810456116736, "min_ratio": 0.9588810456116736, "max_ratio": 0.9588810456116736}
+- s_output_accumulator_2048_1024_512 vs c_output_accumulator_512_512_256: {"counts": {"loss": 2}, "median_ratio": 0.8151334569372277, "min_ratio": 0.7472228082705871, "max_ratio": 0.8830441056038685}
+- s_interleaved_2048_2048_512 vs c_plain_512_1024_512: {"counts": {"loss": 1}, "median_ratio": 0.9431189298572403, "min_ratio": 0.9431189298572403, "max_ratio": 0.9431189298572403}
+- s_output_accumulator_1024_1024_1024 vs c_output_accumulator_1024_1024_1024: {"counts": {"win": 3}, "median_ratio": 1.0390514534549449, "min_ratio": 1.0159773910970835, "max_ratio": 1.052723619621231}
+- s_interleaved_1024_1024_512 vs c_plain_2048_1024_512: {"counts": {"inconclusive": 1}, "median_ratio": 1.0069148168680375, "min_ratio": 1.0069148168680375, "max_ratio": 1.0069148168680375}
+- s_interleaved_output_accumulator_2048_1024_512 vs c_output_accumulator_128_512_512: {"counts": {"win": 1}, "median_ratio": 1.060937548003488, "min_ratio": 1.060937548003488, "max_ratio": 1.060937548003488}
+- s_plain_2048_1024_512 vs c_plain_1024_1024_512: {"counts": {"inconclusive": 1}, "median_ratio": 1.0018652290806243, "min_ratio": 1.0018652290806243, "max_ratio": 1.0018652290806243}
+- s_interleaved_512_1024_512 vs c_output_accumulator_1024_1024_512: {"counts": {"win": 2}, "median_ratio": 1.0850380045344543, "min_ratio": 1.0757985482321155, "max_ratio": 1.0942774608367931}
+- s_interleaved_output_accumulator_1024_1024_1024 vs c_plain_1024_512_512: {"counts": {"loss": 1}, "median_ratio": 0.8542868681778772, "min_ratio": 0.8542868681778772, "max_ratio": 0.8542868681778772}
+- s_interleaved_output_accumulator_1024_1024_512 vs c_plain_512_512_256: {"counts": {"loss": 1, "win": 1}, "median_ratio": 1.1919847109425943, "min_ratio": 0.8760870239355691, "max_ratio": 1.5078823979496194}
+- s_output_accumulator_1024_1024_512 vs c_plain_512_1024_1024: {"counts": {"inconclusive": 2}, "median_ratio": 1.0443591950794664, "min_ratio": 1.004401661864136, "max_ratio": 1.084316728294797}
+- s_interleaved_1024_1024_1024 vs c_output_accumulator_2048_1024_512: {"counts": {"loss": 1, "win": 2}, "median_ratio": 1.3161887090204563, "min_ratio": 0.9371803946732995, "max_ratio": 2.1425189385171755}
+- s_plain_1024_1024_1024 vs c_output_accumulator_2048_2048_512: {"counts": {"inconclusive": 1, "win": 1}, "median_ratio": 1.9368107933909233, "min_ratio": 0.9330080390639811, "max_ratio": 2.9406135477178657}
+- c_plain_2048_1024_512 vs native_xla: {"counts": {"loss": 2}, "median_ratio": 0.46034566826364265, "min_ratio": 0.45646021906744316, "max_ratio": 0.4642311174598422}
+- s_interleaved_1024_1024_1024 vs c_plain_2048_1024_512: {"counts": {"win": 2}, "median_ratio": 1.3306557730218178, "min_ratio": 1.1385614787867202, "max_ratio": 1.5227500672569156}
+- s_interleaved_1024_1024_1024 vs native_xla: {"counts": {"loss": 1}, "median_ratio": 0.7069079653347278, "min_ratio": 0.7069079653347278, "max_ratio": 0.7069079653347278}
+- native_xla vs c_plain_2048_1024_512: {"counts": {"win": 2}, "median_ratio": 2.172435438088786, "min_ratio": 2.1540994612161124, "max_ratio": 2.1907714149614588}
+- s_interleaved_output_accumulator_2048_2048_512 vs c_plain_512_1024_512: {"counts": {"loss": 1}, "median_ratio": 0.5522283809145111, "min_ratio": 0.5522283809145111, "max_ratio": 0.5522283809145111}
+- s_output_accumulator_1024_1024_512 vs c_plain_1024_512_512: {"counts": {"inconclusive": 2, "win": 1}, "median_ratio": 1.0328566540236015, "min_ratio": 1.0160148594316116, "max_ratio": 1.1182544622357073}
+- s_output_accumulator_2048_2048_512 vs c_output_accumulator_512_1024_512: {"counts": {"loss": 1}, "median_ratio": 0.5684997613618284, "min_ratio": 0.5684997613618284, "max_ratio": 0.5684997613618284}
+- s_plain_2048_1024_512 vs c_plain_512_512_256: {"counts": {"loss": 2}, "median_ratio": 0.6661201178290772, "min_ratio": 0.5909631074485828, "max_ratio": 0.7412771282095716}
+- s_interleaved_1024_1024_512 vs c_output_accumulator_1024_512_512: {"counts": {"inconclusive": 1, "win": 1}, "median_ratio": 1.0756315739382274, "min_ratio": 1.0339853856677856, "max_ratio": 1.1172777622086691}
+- s_interleaved_output_accumulator_1024_1024_1024 vs c_plain_512_1024_1024: {"counts": {"loss": 2}, "median_ratio": 0.7365083651269677, "min_ratio": 0.7056465288646208, "max_ratio": 0.7673702013893146}
+- s_output_accumulator_1024_1024_1024 vs c_output_accumulator_512_1024_1024: {"counts": {"loss": 1, "inconclusive": 1, "win": 1}, "median_ratio": 1.0249883351791895, "min_ratio": 0.8244599119037733, "max_ratio": 1.050736188502631}
+- s_interleaved_output_accumulator_1024_1024_512 vs c_plain_1024_1024_512: {"counts": {"win": 2}, "median_ratio": 1.0508446780746297, "min_ratio": 1.0474601123977498, "max_ratio": 1.0542292437515095}
+- s_interleaved_output_accumulator_2048_1024_512 vs c_output_accumulator_2048_1024_512: {"counts": {"win": 2, "inconclusive": 1}, "median_ratio": 1.030156817652485, "min_ratio": 0.9987625378563764, "max_ratio": 1.0501737333410641}
+- s_plain_1024_1024_512 vs c_output_accumulator_512_512_256: {"counts": {"loss": 1}, "median_ratio": 0.837584298781812, "min_ratio": 0.837584298781812, "max_ratio": 0.837584298781812}
+- s_interleaved_2048_1024_512 vs c_output_accumulator_1024_1024_512: {"counts": {"loss": 1}, "median_ratio": 0.6999409956225103, "min_ratio": 0.6999409956225103, "max_ratio": 0.6999409956225103}
+- s_plain_512_1024_512 vs c_output_accumulator_128_512_512: {"counts": {"loss": 1, "win": 1}, "median_ratio": 0.9387731959087277, "min_ratio": 0.8400159874161717, "max_ratio": 1.0375304044012836}
+- s_output_accumulator_2048_1024_512 vs c_output_accumulator_2048_2048_512: {"counts": {"inconclusive": 1}, "median_ratio": 1.0111995415764676, "min_ratio": 1.0111995415764676, "max_ratio": 1.0111995415764676}
+- s_interleaved_512_1024_512 vs c_output_accumulator_1024_1024_1024: {"counts": {"win": 1}, "median_ratio": 1.3297965186633158, "min_ratio": 1.3297965186633158, "max_ratio": 1.3297965186633158}
+- s_output_accumulator_512_1024_512 vs native_xla: {"counts": {"loss": 1}, "median_ratio": 0.6296659583689782, "min_ratio": 0.6296659583689782, "max_ratio": 0.6296659583689782}
+- s_output_accumulator_2048_2048_512 vs c_plain_512_512_256: {"counts": {"loss": 1}, "median_ratio": 0.8230155975759395, "min_ratio": 0.8230155975759395, "max_ratio": 0.8230155975759395}
+- s_interleaved_1024_1024_512 vs c_output_accumulator_512_1024_512: {"counts": {"loss": 1, "win": 1}, "median_ratio": 1.0095996666067306, "min_ratio": 0.9207873395934474, "max_ratio": 1.0984119936200138}
+- s_interleaved_output_accumulator_1024_1024_512 vs c_output_accumulator_2048_2048_512: {"counts": {"win": 2}, "median_ratio": 1.4350716960075864, "min_ratio": 1.226879215381739, "max_ratio": 1.6432641766334337}
+- s_interleaved_output_accumulator_2048_1024_512 vs c_output_accumulator_1024_2048_512: {"counts": {"loss": 1}, "median_ratio": 0.8450632647682238, "min_ratio": 0.8450632647682238, "max_ratio": 0.8450632647682238}
+- s_interleaved_output_accumulator_512_1024_512 vs c_output_accumulator_2048_1024_512: {"counts": {"win": 1}, "median_ratio": 1.3215267614688992, "min_ratio": 1.3215267614688992, "max_ratio": 1.3215267614688992}
+- s_interleaved_output_accumulator_2048_2048_512 vs c_output_accumulator_1024_1024_1024: {"counts": {"loss": 3}, "median_ratio": 0.8162907891075035, "min_ratio": 0.5824901389894112, "max_ratio": 0.9131020239031347}
+- s_plain_2048_1024_512 vs c_output_accumulator_512_512_256: {"counts": {"loss": 1}, "median_ratio": 0.8205903965456697, "min_ratio": 0.8205903965456697, "max_ratio": 0.8205903965456697}
+- s_output_accumulator_1024_1024_1024 vs c_plain_1024_1024_1024: {"counts": {"win": 1}, "median_ratio": 1.0263860255042963, "min_ratio": 1.0263860255042963, "max_ratio": 1.0263860255042963}
+- s_output_accumulator_2048_1024_512 vs c_plain_512_1024_1024: {"counts": {"loss": 1}, "median_ratio": 0.8312818070985586, "min_ratio": 0.8312818070985586, "max_ratio": 0.8312818070985586}
+- s_plain_1024_1024_512 vs c_plain_512_1024_512: {"counts": {"inconclusive": 1, "win": 1}, "median_ratio": 1.0186616976588803, "min_ratio": 0.9586797916021466, "max_ratio": 1.0786436037156137}
+- s_plain_1024_1024_1024 vs c_plain_1024_1024_512: {"counts": {"inconclusive": 1}, "median_ratio": 1.0061879522212547, "min_ratio": 1.0061879522212547, "max_ratio": 1.0061879522212547}
+- c_output_accumulator_512_512_256 vs native_xla: {"counts": {"loss": 1}, "median_ratio": 0.7398330786130483, "min_ratio": 0.7398330786130483, "max_ratio": 0.7398330786130483}
+- s_interleaved_output_accumulator_512_1024_512 vs c_output_accumulator_512_512_256: {"counts": {"win": 3}, "median_ratio": 1.2150533004447344, "min_ratio": 1.1049852776596771, "max_ratio": 1.368768346133403}
+- s_interleaved_output_accumulator_512_1024_512 vs native_xla: {"counts": {"loss": 1}, "median_ratio": 0.817504659793053, "min_ratio": 0.817504659793053, "max_ratio": 0.817504659793053}
+- native_xla vs c_output_accumulator_512_512_256: {"counts": {"win": 1}, "median_ratio": 1.3516562436957833, "min_ratio": 1.3516562436957833, "max_ratio": 1.3516562436957833}
+- s_interleaved_1024_1024_1024 vs c_output_accumulator_128_512_512: {"counts": {"loss": 1}, "median_ratio": 0.5826633244605326, "min_ratio": 0.5826633244605326, "max_ratio": 0.5826633244605326}
+- s_output_accumulator_1024_1024_1024 vs c_plain_2048_1024_512: {"counts": {"win": 2}, "median_ratio": 1.3550016083683682, "min_ratio": 1.0600020694697603, "max_ratio": 1.650001147266976}
+- s_interleaved_2048_1024_512 vs c_plain_1024_1024_512: {"counts": {"loss": 1}, "median_ratio": 0.6786105382008786, "min_ratio": 0.6786105382008786, "max_ratio": 0.6786105382008786}
+- s_plain_2048_1024_512 vs c_plain_1024_2048_512: {"counts": {"loss": 2}, "median_ratio": 0.6583260195836562, "min_ratio": 0.6488411998862944, "max_ratio": 0.6678108392810179}
+- s_plain_1024_1024_1024 vs c_plain_512_1024_512: {"counts": {"loss": 1}, "median_ratio": 0.7284314475666197, "min_ratio": 0.7284314475666197, "max_ratio": 0.7284314475666197}
+- s_interleaved_512_1024_512 vs c_plain_128_512_512: {"counts": {"loss": 1}, "median_ratio": 0.8388241754247246, "min_ratio": 0.8388241754247246, "max_ratio": 0.8388241754247246}
+- s_interleaved_1024_1024_512 vs c_plain_1024_512_512: {"counts": {"win": 2}, "median_ratio": 1.0580392548258042, "min_ratio": 1.0568678826433564, "max_ratio": 1.059210627008252}
+- s_plain_1024_1024_512 vs c_output_accumulator_2048_2048_512: {"counts": {"win": 1, "loss": 1}, "median_ratio": 1.3109189530417324, "min_ratio": 0.9930381014338517, "max_ratio": 1.628799804649613}
+- s_output_accumulator_512_1024_512 vs c_plain_512_512_256: {"counts": {"win": 1}, "median_ratio": 1.1000734669001957, "min_ratio": 1.1000734669001957, "max_ratio": 1.1000734669001957}
+- s_interleaved_output_accumulator_2048_1024_512 vs c_output_accumulator_1024_512_512: {"counts": {"loss": 2, "win": 1}, "median_ratio": 0.7883525971641162, "min_ratio": 0.6599388808779135, "max_ratio": 1.1320356134590424}
+- s_output_accumulator_2048_1024_512 vs c_output_accumulator_512_1024_1024: {"counts": {"loss": 2}, "median_ratio": 0.3990190809978621, "min_ratio": 0.31904805913323864, "max_ratio": 0.4789901028624856}
+- s_output_accumulator_2048_2048_512 vs c_output_accumulator_1024_2048_512: {"counts": {"loss": 2}, "median_ratio": 0.6943314081918107, "min_ratio": 0.6806832299791648, "max_ratio": 0.7079795864044567}
+- c_output_accumulator_1024_1024_512 vs native_xla: {"counts": {"inconclusive": 1}, "median_ratio": 1.0445991235596608, "min_ratio": 1.0445991235596608, "max_ratio": 1.0445991235596608}
+- s_plain_1024_1024_512 vs c_output_accumulator_1024_1024_512: {"counts": {"inconclusive": 1}, "median_ratio": 1.0306943418556318, "min_ratio": 1.0306943418556318, "max_ratio": 1.0306943418556318}
+- s_plain_1024_1024_512 vs native_xla: {"counts": {"win": 1, "loss": 1}, "median_ratio": 0.9806209322905424, "min_ratio": 0.8845794584207902, "max_ratio": 1.0766624061602945}
+- native_xla vs c_output_accumulator_1024_1024_512: {"counts": {"inconclusive": 1}, "median_ratio": 0.9573050344828156, "min_ratio": 0.9573050344828156, "max_ratio": 0.9573050344828156}
+- s_interleaved_output_accumulator_2048_2048_512 vs c_plain_1024_1024_1024: {"counts": {"loss": 3}, "median_ratio": 0.6182913951306527, "min_ratio": 0.5061770135413344, "max_ratio": 0.6187315561120735}
+- s_plain_1024_1024_1024 vs c_output_accumulator_128_512_512: {"counts": {"win": 3}, "median_ratio": 2.0452948150063115, "min_ratio": 1.705440492034132, "max_ratio": 2.582903799326361}
+- s_interleaved_1024_1024_512 vs c_plain_1024_2048_512: {"counts": {"win": 1}, "median_ratio": 1.4837345110837203, "min_ratio": 1.4837345110837203, "max_ratio": 1.4837345110837203}
+- s_interleaved_512_1024_512 vs c_plain_1024_512_512: {"counts": {"win": 2, "inconclusive": 2}, "median_ratio": 1.0325792919711283, "min_ratio": 1.0196360919594327, "max_ratio": 1.0420107473882882}
+- s_output_accumulator_1024_1024_1024 vs c_plain_128_512_512: {"counts": {"win": 1}, "median_ratio": 1.7782277459933147, "min_ratio": 1.7782277459933147, "max_ratio": 1.7782277459933147}
+- s_output_accumulator_2048_1024_512 vs c_plain_512_1024_512: {"counts": {"loss": 1}, "median_ratio": 0.8376930318430938, "min_ratio": 0.8376930318430938, "max_ratio": 0.8376930318430938}
+- s_output_accumulator_2048_2048_512 vs c_plain_2048_1024_512: {"counts": {"loss": 1, "win": 1}, "median_ratio": 0.8915446554488722, "min_ratio": 0.685247348289313, "max_ratio": 1.0978419626084313}
+- s_output_accumulator_1024_1024_512 vs c_output_accumulator_1024_1024_1024: {"counts": {"inconclusive": 1, "win": 1}, "median_ratio": 1.0173809940996918, "min_ratio": 0.9927712702748582, "max_ratio": 1.0419907179245256}
+- s_interleaved_output_accumulator_1024_1024_1024 vs c_plain_1024_1024_512: {"counts": {"win": 3}, "median_ratio": 1.045007125340133, "min_ratio": 1.0366255037489702, "max_ratio": 1.2266125463121027}
+- s_interleaved_output_accumulator_512_1024_512 vs c_plain_512_512_256: {"counts": {"win": 2}, "median_ratio": 1.2188919864782035, "min_ratio": 1.212917776768521, "max_ratio": 1.224866196187886}
+- s_plain_512_1024_512 vs c_output_accumulator_512_512_256: {"counts": {"win": 1}, "median_ratio": 1.1852939330280627, "min_ratio": 1.1852939330280627, "max_ratio": 1.1852939330280627}
+- s_interleaved_2048_1024_512 vs c_output_accumulator_512_1024_512: {"counts": {"loss": 3}, "median_ratio": 0.5630256879885736, "min_ratio": 0.5559026170611285, "max_ratio": 0.7890314619404288}
+- s_interleaved_1024_1024_1024 vs c_output_accumulator_1024_2048_512: {"counts": {"win": 1, "loss": 1}, "median_ratio": 1.1165357459510628, "min_ratio": 0.6737639642473487, "max_ratio": 1.5593075276547768}
+- c_output_accumulator_2048_1024_512 vs native_xla: {"counts": {"loss": 1}, "median_ratio": 0.6065204271825994, "min_ratio": 0.6065204271825994, "max_ratio": 0.6065204271825994}
+- s_interleaved_output_accumulator_2048_1024_512 vs native_xla: {"counts": {"loss": 1}, "median_ratio": 0.6248111531076522, "min_ratio": 0.6248111531076522, "max_ratio": 0.6248111531076522}
+- native_xla vs c_output_accumulator_2048_1024_512: {"counts": {"win": 1}, "median_ratio": 1.6487490860698406, "min_ratio": 1.6487490860698406, "max_ratio": 1.6487490860698406}
+- s_interleaved_output_accumulator_512_1024_512 vs c_output_accumulator_512_1024_512: {"counts": {"inconclusive": 1, "loss": 1}, "median_ratio": 0.9971977129395033, "min_ratio": 0.9724210342785204, "max_ratio": 1.0219743916004862}
+- s_interleaved_512_1024_512 vs c_plain_512_1024_512: {"counts": {"win": 1}, "median_ratio": 1.0320357369059505, "min_ratio": 1.0320357369059505, "max_ratio": 1.0320357369059505}
+- s_interleaved_2048_1024_512 vs c_output_accumulator_128_512_512: {"counts": {"loss": 1}, "median_ratio": 0.8163338583927408, "min_ratio": 0.8163338583927408, "max_ratio": 0.8163338583927408}
+- s_interleaved_1024_1024_1024 vs c_plain_128_512_512: {"counts": {"win": 2}, "median_ratio": 1.6940926188492749, "min_ratio": 1.2400534457610697, "max_ratio": 2.1481317919374803}
+- s_plain_2048_1024_512 vs c_output_accumulator_1024_512_512: {"counts": {"loss": 1}, "median_ratio": 0.7012378348664408, "min_ratio": 0.7012378348664408, "max_ratio": 0.7012378348664408}
+- s_plain_1024_1024_1024 vs c_plain_1024_2048_512: {"counts": {"win": 1}, "median_ratio": 1.12922473058865, "min_ratio": 1.12922473058865, "max_ratio": 1.12922473058865}
+- s_plain_512_1024_512 vs c_output_accumulator_2048_2048_512: {"counts": {"win": 3}, "median_ratio": 1.5707984605782226, "min_ratio": 1.45403625130208, "max_ratio": 2.9590917420078924}
+- s_output_accumulator_512_1024_512 vs c_output_accumulator_512_512_256: {"counts": {"win": 4}, "median_ratio": 1.1597130977289254, "min_ratio": 1.035329670943123, "max_ratio": 1.3415707662954577}
+- s_output_accumulator_2048_1024_512 vs c_plain_2048_1024_512: {"counts": {"win": 1}, "median_ratio": 1.0534445661712615, "min_ratio": 1.0534445661712615, "max_ratio": 1.0534445661712615}
+- c_output_accumulator_512_1024_1024 vs native_xla: {"counts": {"inconclusive": 1}, "median_ratio": 1.0188675347299772, "min_ratio": 1.0188675347299772, "max_ratio": 1.0188675347299772}
+- s_interleaved_2048_2048_512 vs c_output_accumulator_512_1024_1024: {"counts": {"loss": 1}, "median_ratio": 0.7332997588368484, "min_ratio": 0.7332997588368484, "max_ratio": 0.7332997588368484}
+- s_interleaved_2048_2048_512 vs native_xla: {"counts": {"loss": 1}, "median_ratio": 0.7471353175041865, "min_ratio": 0.7471353175041865, "max_ratio": 0.7471353175041865}
+- native_xla vs c_output_accumulator_512_1024_1024: {"counts": {"inconclusive": 1}, "median_ratio": 0.9814818569766506, "min_ratio": 0.9814818569766506, "max_ratio": 0.9814818569766506}
+- s_output_accumulator_1024_1024_1024 vs c_output_accumulator_1024_2048_512: {"counts": {"win": 2}, "median_ratio": 1.4275713028410149, "min_ratio": 1.373051709665922, "max_ratio": 1.4820908960161079}
+- s_plain_2048_1024_512 vs c_plain_128_512_512: {"counts": {"win": 1}, "median_ratio": 1.751618518273981, "min_ratio": 1.751618518273981, "max_ratio": 1.751618518273981}
+- s_output_accumulator_2048_1024_512 vs c_output_accumulator_512_1024_512: {"counts": {"win": 1, "loss": 2}, "median_ratio": 0.8161934830945515, "min_ratio": 0.7015772061128012, "max_ratio": 1.0346514546770451}
+- s_output_accumulator_2048_2048_512 vs c_plain_1024_1024_512: {"counts": {"loss": 1}, "median_ratio": 0.7348761329604074, "min_ratio": 0.7348761329604074, "max_ratio": 0.7348761329604074}
+- s_interleaved_2048_1024_512 vs c_plain_1024_1024_1024: {"counts": {"inconclusive": 1, "loss": 1}, "median_ratio": 0.8043422998497806, "min_ratio": 0.5892080386394789, "max_ratio": 1.0194765610600822}
+- s_plain_2048_2048_512 vs c_plain_2048_2048_512: {"counts": {"inconclusive": 1}, "median_ratio": 1.0284039788556132, "min_ratio": 1.0284039788556132, "max_ratio": 1.0284039788556132}
+- s_interleaved_1024_1024_1024 vs c_output_accumulator_1024_1024_1024: {"counts": {"inconclusive": 1}, "median_ratio": 1.0199733731029936, "min_ratio": 1.0199733731029936, "max_ratio": 1.0199733731029936}
+- s_output_accumulator_1024_1024_512 vs c_output_accumulator_1024_1024_512: {"counts": {"win": 1}, "median_ratio": 1.018214076301569, "min_ratio": 1.018214076301569, "max_ratio": 1.018214076301569}
+- s_plain_1024_1024_512 vs c_plain_512_512_256: {"counts": {"win": 1}, "median_ratio": 1.196940728270678, "min_ratio": 1.196940728270678, "max_ratio": 1.196940728270678}
+- s_interleaved_output_accumulator_2048_2048_512 vs c_output_accumulator_128_512_512: {"counts": {"win": 2}, "median_ratio": 1.2375964979316472, "min_ratio": 1.2117860794588207, "max_ratio": 1.2634069164044737}
+- s_interleaved_output_accumulator_1024_1024_512 vs c_plain_512_1024_1024: {"counts": {"win": 1}, "median_ratio": 1.0255939100013514, "min_ratio": 1.0255939100013514, "max_ratio": 1.0255939100013514}
+- s_interleaved_output_accumulator_1024_1024_1024 vs c_plain_512_1024_512: {"counts": {"win": 1, "loss": 1}, "median_ratio": 0.8650169791348163, "min_ratio": 0.6461526248634756, "max_ratio": 1.083881333406157}
+- s_output_accumulator_512_1024_512 vs c_plain_1024_2048_512: {"counts": {"win": 1}, "median_ratio": 1.4330438776599435, "min_ratio": 1.4330438776599435, "max_ratio": 1.4330438776599435}
+- c_output_accumulator_1024_512_512 vs native_xla: {"counts": {"win": 1}, "median_ratio": 1.0255374465264808, "min_ratio": 1.0255374465264808, "max_ratio": 1.0255374465264808}
+- s_interleaved_output_accumulator_1024_1024_1024 vs c_output_accumulator_1024_512_512: {"counts": {"inconclusive": 1, "win": 1}, "median_ratio": 1.0503175108852987, "min_ratio": 1.0198848980898587, "max_ratio": 1.0807501236807386}
+- s_interleaved_output_accumulator_1024_1024_1024 vs native_xla: {"counts": {"inconclusive": 1}, "median_ratio": 1.045930154137994, "min_ratio": 1.045930154137994, "max_ratio": 1.045930154137994}
+- native_xla vs c_output_accumulator_1024_512_512: {"counts": {"loss": 1}, "median_ratio": 0.9750984748407026, "min_ratio": 0.9750984748407026, "max_ratio": 0.9750984748407026}
+- s_interleaved_output_accumulator_512_1024_512 vs c_output_accumulator_1024_1024_512: {"counts": {"loss": 1}, "median_ratio": 0.973580611428923, "min_ratio": 0.973580611428923, "max_ratio": 0.973580611428923}
+- s_interleaved_output_accumulator_2048_1024_512 vs c_plain_128_512_512: {"counts": {"win": 1}, "median_ratio": 1.1905714103829386, "min_ratio": 1.1905714103829386, "max_ratio": 1.1905714103829386}
+- s_plain_512_1024_512 vs c_plain_512_512_256: {"counts": {"win": 1}, "median_ratio": 1.246943221599531, "min_ratio": 1.246943221599531, "max_ratio": 1.246943221599531}
+- s_output_accumulator_512_1024_512 vs c_output_accumulator_2048_1024_512: {"counts": {"win": 2}, "median_ratio": 2.320594671361967, "min_ratio": 1.4856691493012901, "max_ratio": 3.1555201934226442}
+- s_interleaved_output_accumulator_1024_1024_512 vs c_plain_512_1024_512: {"counts": {"inconclusive": 1}, "median_ratio": 1.0468232088186005, "min_ratio": 1.0468232088186005, "max_ratio": 1.0468232088186005}
+- s_interleaved_512_1024_512 vs c_plain_1024_1024_1024: {"counts": {"loss": 1}, "median_ratio": 0.9696536556604818, "min_ratio": 0.9696536556604818, "max_ratio": 0.9696536556604818}
+- s_interleaved_1024_1024_1024 vs c_output_accumulator_512_512_256: {"counts": {"win": 1}, "median_ratio": 1.2333518146834588, "min_ratio": 1.2333518146834588, "max_ratio": 1.2333518146834588}
+- s_plain_1024_1024_1024 vs c_output_accumulator_1024_1024_1024: {"counts": {"inconclusive": 1}, "median_ratio": 1.0000767355515812, "min_ratio": 1.0000767355515812, "max_ratio": 1.0000767355515812}
+- s_output_accumulator_1024_1024_512 vs c_plain_2048_1024_512: {"counts": {"win": 1}, "median_ratio": 1.6061542349476066, "min_ratio": 1.6061542349476066, "max_ratio": 1.6061542349476066}
+- s_interleaved_2048_1024_512 vs c_output_accumulator_2048_2048_512: {"counts": {"win": 1}, "median_ratio": 1.0236871623755803, "min_ratio": 1.0236871623755803, "max_ratio": 1.0236871623755803}
+- s_plain_1024_1024_512 vs c_output_accumulator_1024_2048_512: {"counts": {"inconclusive": 2, "loss": 1}, "median_ratio": 0.9840652663433929, "min_ratio": 0.9551127099767269, "max_ratio": 0.9899152033883348}
+- c_output_accumulator_1024_2048_512 vs native_xla: {"counts": {"loss": 3}, "median_ratio": 0.7354725656880073, "min_ratio": 0.32357285505894184, "max_ratio": 0.9261519077076722}
+- native_xla vs c_output_accumulator_1024_2048_512: {"counts": {"win": 3}, "median_ratio": 1.3596700225854612, "min_ratio": 1.0797364791647517, "max_ratio": 3.0904941016076286}
+- s_plain_2048_1024_512 vs c_plain_2048_1024_512: {"counts": {"inconclusive": 1}, "median_ratio": 1.0675539017640232, "min_ratio": 1.0675539017640232, "max_ratio": 1.0675539017640232}
+- s_plain_1024_1024_512 vs c_output_accumulator_1024_1024_1024: {"counts": {"inconclusive": 1}, "median_ratio": 0.9670449073032146, "min_ratio": 0.9670449073032146, "max_ratio": 0.9670449073032146}
+- s_plain_1024_1024_1024 vs c_output_accumulator_1024_1024_512: {"counts": {"win": 1}, "median_ratio": 1.0459600467994163, "min_ratio": 1.0459600467994163, "max_ratio": 1.0459600467994163}
+- s_interleaved_2048_1024_512 vs c_plain_512_512_256: {"counts": {"loss": 1}, "median_ratio": 0.9832340258918847, "min_ratio": 0.9832340258918847, "max_ratio": 0.9832340258918847}
+- s_output_accumulator_1024_1024_512 vs c_plain_1024_1024_512: {"counts": {"win": 2}, "median_ratio": 1.0442155794573411, "min_ratio": 1.0329190705203617, "max_ratio": 1.0555120883943203}
+- s_output_accumulator_2048_2048_512 vs c_plain_512_1024_1024: {"counts": {"loss": 1}, "median_ratio": 0.6275640280636301, "min_ratio": 0.6275640280636301, "max_ratio": 0.6275640280636301}
+- s_interleaved_1024_1024_512 vs c_plain_128_512_512: {"counts": {"win": 1}, "median_ratio": 1.935885071426474, "min_ratio": 1.935885071426474, "max_ratio": 1.935885071426474}
+- s_interleaved_output_accumulator_1024_1024_512 vs c_plain_1024_2048_512: {"counts": {"win": 1}, "median_ratio": 1.3026284776890515, "min_ratio": 1.3026284776890515, "max_ratio": 1.3026284776890515}
+- s_interleaved_output_accumulator_2048_1024_512 vs c_output_accumulator_2048_2048_512: {"counts": {"win": 1}, "median_ratio": 1.3526506201124107, "min_ratio": 1.3526506201124107, "max_ratio": 1.3526506201124107}
+- s_plain_512_1024_512 vs c_output_accumulator_512_1024_1024: {"counts": {"loss": 1}, "median_ratio": 0.9696497222379251, "min_ratio": 0.9696497222379251, "max_ratio": 0.9696497222379251}
+- s_interleaved_1024_1024_512 vs c_plain_512_1024_512: {"counts": {"win": 1}, "median_ratio": 1.0839659214526403, "min_ratio": 1.0839659214526403, "max_ratio": 1.0839659214526403}
+- s_output_accumulator_2048_1024_512 vs c_output_accumulator_2048_1024_512: {"counts": {"win": 1}, "median_ratio": 1.0132435735882588, "min_ratio": 1.0132435735882588, "max_ratio": 1.0132435735882588}
+- s_interleaved_output_accumulator_2048_2048_512 vs c_plain_512_512_256: {"counts": {"loss": 1}, "median_ratio": 0.8354655590206241, "min_ratio": 0.8354655590206241, "max_ratio": 0.8354655590206241}
+- s_output_accumulator_1024_1024_512 vs c_plain_1024_2048_512: {"counts": {"inconclusive": 1, "win": 1}, "median_ratio": 1.0144660501546992, "min_ratio": 1.00839962922864, "max_ratio": 1.0205324710807584}
+- s_interleaved_output_accumulator_2048_1024_512 vs c_output_accumulator_512_1024_1024: {"counts": {"loss": 1}, "median_ratio": 0.6400698099267987, "min_ratio": 0.6400698099267987, "max_ratio": 0.6400698099267987}
+- s_plain_2048_1024_512 vs c_plain_512_1024_1024: {"counts": {"loss": 1}, "median_ratio": 0.6403436301696757, "min_ratio": 0.6403436301696757, "max_ratio": 0.6403436301696757}
+- s_plain_512_1024_512 vs c_plain_2048_1024_512: {"counts": {"win": 1}, "median_ratio": 1.4487682545833231, "min_ratio": 1.4487682545833231, "max_ratio": 1.4487682545833231}
+- c_plain_512_512_256 vs native_xla: {"counts": {"loss": 1}, "median_ratio": 0.7354159802228187, "min_ratio": 0.7354159802228187, "max_ratio": 0.7354159802228187}
+- s_output_accumulator_1024_1024_1024 vs c_plain_512_512_256: {"counts": {"win": 1}, "median_ratio": 1.463018920260537, "min_ratio": 1.463018920260537, "max_ratio": 1.463018920260537}
+- native_xla vs c_plain_512_512_256: {"counts": {"win": 1}, "median_ratio": 1.359774640329432, "min_ratio": 1.359774640329432, "max_ratio": 1.359774640329432}
+- s_interleaved_512_1024_512 vs c_plain_2048_1024_512: {"counts": {"win": 1}, "median_ratio": 1.93001503821848, "min_ratio": 1.93001503821848, "max_ratio": 1.93001503821848}
+- s_plain_2048_1024_512 vs c_plain_1024_1024_1024: {"counts": {"loss": 1}, "median_ratio": 0.5542630452088173, "min_ratio": 0.5542630452088173, "max_ratio": 0.5542630452088173}
+- s_interleaved_output_accumulator_512_1024_512 vs c_output_accumulator_1024_512_512: {"counts": {"inconclusive": 2}, "median_ratio": 1.0036806712728965, "min_ratio": 0.9949208123879423, "max_ratio": 1.0124405301578505}
+- s_interleaved_1024_1024_1024 vs c_output_accumulator_1024_1024_512: {"counts": {"win": 1}, "median_ratio": 1.0561656264915125, "min_ratio": 1.0561656264915125, "max_ratio": 1.0561656264915125}
+- s_interleaved_output_accumulator_2048_2048_512 vs c_plain_512_1024_1024: {"counts": {"loss": 1}, "median_ratio": 0.3834907714264009, "min_ratio": 0.3834907714264009, "max_ratio": 0.3834907714264009}
+- s_plain_512_1024_512 vs c_output_accumulator_1024_2048_512: {"counts": {"win": 1}, "median_ratio": 1.6688308647583017, "min_ratio": 1.6688308647583017, "max_ratio": 1.6688308647583017}
+- s_interleaved_output_accumulator_1024_1024_512 vs c_output_accumulator_128_512_512: {"counts": {"win": 1}, "median_ratio": 2.5219518767633975, "min_ratio": 2.5219518767633975, "max_ratio": 2.5219518767633975}
+- s_output_accumulator_512_1024_512 vs c_plain_1024_1024_512: {"counts": {"loss": 1}, "median_ratio": 0.9694536776127516, "min_ratio": 0.9694536776127516, "max_ratio": 0.9694536776127516}
+- s_output_accumulator_2048_2048_512 vs c_plain_1024_512_512: {"counts": {"loss": 1}, "median_ratio": 0.38511124348426706, "min_ratio": 0.38511124348426706, "max_ratio": 0.38511124348426706}
+- s_interleaved_1024_1024_512 vs c_output_accumulator_2048_1024_512: {"counts": {"win": 1}, "median_ratio": 2.076105465629187, "min_ratio": 2.076105465629187, "max_ratio": 2.076105465629187}
+- c_plain_1024_512_512 vs native_xla: {"counts": {"loss": 1}, "median_ratio": 0.8464716243427433, "min_ratio": 0.8464716243427433, "max_ratio": 0.8464716243427433}
+- s_output_accumulator_1024_1024_512 vs native_xla: {"counts": {"loss": 1}, "median_ratio": 0.94657067107718, "min_ratio": 0.94657067107718, "max_ratio": 0.94657067107718}
+- native_xla vs c_plain_1024_512_512: {"counts": {"win": 1}, "median_ratio": 1.181374509483961, "min_ratio": 1.181374509483961, "max_ratio": 1.181374509483961}
+- s_interleaved_output_accumulator_1024_1024_512 vs c_plain_128_512_512: {"counts": {"win": 1}, "median_ratio": 2.5778322066688495, "min_ratio": 2.5778322066688495, "max_ratio": 2.5778322066688495}
+- s_interleaved_512_1024_512 vs c_output_accumulator_2048_2048_512: {"counts": {"win": 1}, "median_ratio": 1.8546892953077494, "min_ratio": 1.8546892953077494, "max_ratio": 1.8546892953077494}
+- s_output_accumulator_2048_2048_512 vs c_plain_512_1024_512: {"counts": {"loss": 1, "win": 1}, "median_ratio": 0.8800630914394457, "min_ratio": 0.5804749614898199, "max_ratio": 1.1796512213890715}
+- s_plain_1024_1024_1024 vs c_output_accumulator_2048_1024_512: {"counts": {"win": 1}, "median_ratio": 1.3444246455258535, "min_ratio": 1.3444246455258535, "max_ratio": 1.3444246455258535}
+- s_interleaved_output_accumulator_1024_1024_1024 vs c_plain_2048_1024_512: {"counts": {"win": 1}, "median_ratio": 1.3991509579560495, "min_ratio": 1.3991509579560495, "max_ratio": 1.3991509579560495}
+- s_interleaved_output_accumulator_2048_1024_512 vs c_plain_1024_1024_1024: {"counts": {"loss": 2}, "median_ratio": 0.6854401895020306, "min_ratio": 0.5669152277092325, "max_ratio": 0.8039651512948285}
+- s_interleaved_1024_1024_512 vs c_plain_1024_1024_512: {"counts": {"win": 1}, "median_ratio": 1.046661424065586, "min_ratio": 1.046661424065586, "max_ratio": 1.046661424065586}
+- s_plain_1024_1024_512 vs c_output_accumulator_128_512_512: {"counts": {"win": 1}, "median_ratio": 2.464666819628413, "min_ratio": 2.464666819628413, "max_ratio": 2.464666819628413}
+- s_plain_512_1024_512 vs c_plain_512_1024_1024: {"counts": {"win": 1}, "median_ratio": 1.4363687455210337, "min_ratio": 1.4363687455210337, "max_ratio": 1.4363687455210337}
+- c_plain_512_1024_1024 vs native_xla: {"counts": {"loss": 1}, "median_ratio": 0.9366300634810755, "min_ratio": 0.9366300634810755, "max_ratio": 0.9366300634810755}
+- native_xla vs c_plain_512_1024_1024: {"counts": {"win": 1}, "median_ratio": 1.0676573804212561, "min_ratio": 1.0676573804212561, "max_ratio": 1.0676573804212561}
+- s_interleaved_2048_1024_512 vs c_output_accumulator_512_512_256: {"counts": {"win": 1}, "median_ratio": 1.5371343250358291, "min_ratio": 1.5371343250358291, "max_ratio": 1.5371343250358291}
+- s_interleaved_output_accumulator_512_1024_512 vs c_plain_1024_512_512: {"counts": {"win": 1}, "median_ratio": 1.0309800559834081, "min_ratio": 1.0309800559834081, "max_ratio": 1.0309800559834081}
+- s_interleaved_output_accumulator_1024_1024_1024 vs c_output_accumulator_1024_1024_1024: {"counts": {"win": 1}, "median_ratio": 1.0422867574939199, "min_ratio": 1.0422867574939199, "max_ratio": 1.0422867574939199}
+- s_interleaved_512_1024_512 vs c_plain_1024_2048_512: {"counts": {"loss": 1}, "median_ratio": 0.9531850935614721, "min_ratio": 0.9531850935614721, "max_ratio": 0.9531850935614721}
+- s_interleaved_1024_1024_1024 vs c_plain_1024_1024_1024: {"counts": {"win": 1}, "median_ratio": 1.0458000482919767, "min_ratio": 1.0458000482919767, "max_ratio": 1.0458000482919767}
+- s_interleaved_output_accumulator_1024_1024_512 vs c_output_accumulator_512_1024_512: {"counts": {"win": 1}, "median_ratio": 1.1122771932583326, "min_ratio": 1.1122771932583326, "max_ratio": 1.1122771932583326}
+- s_interleaved_1024_1024_512 vs c_output_accumulator_1024_2048_512: {"counts": {"win": 2}, "median_ratio": 1.014308517276575, "min_ratio": 1.0059269245072517, "max_ratio": 1.022690110045898}
+- s_output_accumulator_2048_1024_512 vs c_plain_512_512_256: {"counts": {"win": 1}, "median_ratio": 1.5528848656124887, "min_ratio": 1.5528848656124887, "max_ratio": 1.5528848656124887}
+- s_plain_512_1024_512 vs c_output_accumulator_2048_1024_512: {"counts": {"loss": 1}, "median_ratio": 0.927464556390138, "min_ratio": 0.927464556390138, "max_ratio": 0.927464556390138}
+- s_plain_2048_1024_512 vs c_output_accumulator_512_1024_1024: {"counts": {"win": 1}, "median_ratio": 1.0869057435461782, "min_ratio": 1.0869057435461782, "max_ratio": 1.0869057435461782}
+- s_output_accumulator_2048_2048_512 vs native_xla: {"counts": {"loss": 1}, "median_ratio": 0.5011211827536763, "min_ratio": 0.5011211827536763, "max_ratio": 0.5011211827536763}
+- s_output_accumulator_1024_1024_1024 vs c_plain_1024_512_512: {"counts": {"win": 1}, "median_ratio": 1.1505335464246815, "min_ratio": 1.1505335464246815, "max_ratio": 1.1505335464246815}
+- s_output_accumulator_2048_1024_512 vs c_output_accumulator_1024_512_512: {"counts": {"loss": 1}, "median_ratio": 0.546447852160167, "min_ratio": 0.546447852160167, "max_ratio": 0.546447852160167}
+- s_output_accumulator_512_1024_512 vs c_output_accumulator_1024_1024_512: {"counts": {"loss": 1}, "median_ratio": 0.9438665673105789, "min_ratio": 0.9438665673105789, "max_ratio": 0.9438665673105789}
+- s_interleaved_output_accumulator_1024_1024_1024 vs c_plain_1024_1024_1024: {"counts": {"win": 1}, "median_ratio": 1.0412037365834608, "min_ratio": 1.0412037365834608, "max_ratio": 1.0412037365834608}
+- s_interleaved_512_1024_512 vs c_plain_512_1024_1024: {"counts": {"loss": 1}, "median_ratio": 0.9774200926214394, "min_ratio": 0.9774200926214394, "max_ratio": 0.9774200926214394}
+- s_plain_2048_1024_512 vs c_output_accumulator_128_512_512: {"counts": {"win": 1}, "median_ratio": 1.2550394140983305, "min_ratio": 1.2550394140983305, "max_ratio": 1.2550394140983305}
+- s_plain_1024_1024_1024 vs c_output_accumulator_512_1024_1024: {"counts": {"win": 1}, "median_ratio": 1.0757259095615113, "min_ratio": 1.0757259095615113, "max_ratio": 1.0757259095615113}
+- s_interleaved_output_accumulator_2048_2048_512 vs c_plain_128_512_512: {"counts": {"win": 1}, "median_ratio": 1.336283468541358, "min_ratio": 1.336283468541358, "max_ratio": 1.336283468541358}
+- s_interleaved_1024_1024_512 vs native_xla: {"counts": {"loss": 1}, "median_ratio": 0.3254906469434721, "min_ratio": 0.3254906469434721, "max_ratio": 0.3254906469434721}
+- s_interleaved_512_1024_512 vs c_output_accumulator_512_1024_512: {"counts": {"win": 1}, "median_ratio": 1.0102218622756063, "min_ratio": 1.0102218622756063, "max_ratio": 1.0102218622756063}
+- s_output_accumulator_1024_1024_512 vs c_output_accumulator_512_512_256: {"counts": {"loss": 1}, "median_ratio": 0.7250967664861762, "min_ratio": 0.7250967664861762, "max_ratio": 0.7250967664861762}
+- s_plain_2048_1024_512 vs c_output_accumulator_1024_1024_512: {"counts": {"loss": 1}, "median_ratio": 0.5662330749772925, "min_ratio": 0.5662330749772925, "max_ratio": 0.5662330749772925}
+- s_output_accumulator_1024_1024_1024 vs c_plain_512_1024_1024: {"counts": {"loss": 1}, "median_ratio": 0.612078738352771, "min_ratio": 0.612078738352771, "max_ratio": 0.612078738352771}
+- s_interleaved_2048_1024_512 vs c_plain_128_512_512: {"counts": {"loss": 1}, "median_ratio": 0.3947518367361, "min_ratio": 0.3947518367361, "max_ratio": 0.3947518367361}
+- s_output_accumulator_2048_2048_512 vs c_plain_1024_2048_512: {"counts": {"loss": 1}, "median_ratio": 0.5871137130964241, "min_ratio": 0.5871137130964241, "max_ratio": 0.5871137130964241}
+- s_interleaved_1024_1024_1024 vs c_plain_1024_512_512: {"counts": {"win": 1}, "median_ratio": 1.1416482647045254, "min_ratio": 1.1416482647045254, "max_ratio": 1.1416482647045254}
+
+## 20260919T073017Z-N7-evaluate-v5e-v004-8036b5
+
+Archive integrity: PASS
+
+Status counts: `{"ok": 128}`
+
+- native_xla vs cubic_selected: {"counts": {"win": 7, "inconclusive": 3, "loss": 6}, "median_ratio": 1.0207700798010029, "min_ratio": 0.9348811379812758, "max_ratio": 1.7639307298732227}
+- native_xla vs selector: {"counts": {"inconclusive": 12, "win": 1}, "median_ratio": 0.9984552297102943, "min_ratio": 0.9890330351010658, "max_ratio": 1.057578223947844}
+- cubic_selected vs native_xla: {"counts": {"loss": 7, "inconclusive": 3, "win": 6}, "median_ratio": 0.9797567732706051, "min_ratio": 0.5669156861232708, "max_ratio": 1.0696546965952676}
+- strassen_selected vs native_xla: {"counts": {"inconclusive": 3, "loss": 7, "win": 6}, "median_ratio": 0.975677956599603, "min_ratio": 0.5502657173997221, "max_ratio": 1.1014667792474364}
+- strassen_selected vs cubic_selected: {"counts": {"inconclusive": 3, "loss": 4, "win": 9}, "median_ratio": 1.0212667237361897, "min_ratio": 0.8076257056210895, "max_ratio": 1.0720326850034143}
+- selector vs native_xla: {"counts": {"inconclusive": 12, "loss": 1, "win": 3}, "median_ratio": 1.0028984594000734, "min_ratio": 0.9455565341229232, "max_ratio": 1.0944648899901974}
+- selector vs cubic_selected: {"counts": {"win": 11, "inconclusive": 2, "loss": 3}, "median_ratio": 1.0323719081150515, "min_ratio": 0.9477980465929638, "max_ratio": 1.768861755922766}
+- cubic_selected vs selector: {"counts": {"loss": 1}, "median_ratio": 0.9773312112413656, "min_ratio": 0.9773312112413656, "max_ratio": 0.9773312112413656}
+
+## 20260919T073356Z-N6-v5e-v004-dde5c0
+
+Archive integrity: PASS
+
+Status counts: `{"ok": 12}`
+
+- native_xla vs cubic_selected: {"counts": {"win": 2, "loss": 2}, "median_ratio": 0.9954656537944457, "min_ratio": 0.9691705502309347, "max_ratio": 1.0207768855971324}
+- cubic_selected vs native_xla: {"counts": {"loss": 2, "win": 2}, "median_ratio": 1.0051973031719321, "min_ratio": 0.9796460069871405, "max_ratio": 1.0318101388467893}
+- strassen_selected vs native_xla: {"counts": {"win": 4}, "median_ratio": 1.0929997625716483, "min_ratio": 1.0652075654454938, "max_ratio": 1.1224112754034423}
+- strassen_selected vs cubic_selected: {"counts": {"win": 4}, "median_ratio": 1.0874949110920933, "min_ratio": 1.085778943319843, "max_ratio": 1.089157085638487}
+
