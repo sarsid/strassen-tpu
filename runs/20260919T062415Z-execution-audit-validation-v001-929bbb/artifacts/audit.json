@@ -1,0 +1,286 @@
+{
+  "audit_pass": true,
+  "created_utc": "2026-09-19T06:24:16.141971+00:00",
+  "frozen_working_source_issues": [],
+  "interpretation": "Hash/protocol audit is separate from scientific success. Screens are not confirmation; cohorts are never pooled; CIs are per-comparison without multiplicity correction.",
+  "runs": [
+    {
+      "archive_commit": "4d5ab44fdf9d54b24fa2bac23a2124e3ab6f9045 Archive 20260919T055324Z-smoke-v5e-v003-4644df (completed)",
+      "artifact_manifest_sha256": "bdbb0f341d73e0e4cfa2e8f9d3b217db0685825209474e3073cd14fd9f2b11f1",
+      "audit_pass": true,
+      "case_status_counts": {
+        "ok": 24
+      },
+      "complete_call_comparisons": {
+        "cubic_basic vs cubic_quadrant": {
+          "counts": {
+            "inconclusive": 2,
+            "loss": 1
+          },
+          "max_ratio": 1.0267014314147125,
+          "median_ratio": 0.9772373015873016,
+          "min_ratio": 0.8317276135812853
+        },
+        "cubic_basic vs native_xla": {
+          "counts": {
+            "inconclusive": 1,
+            "loss": 2
+          },
+          "max_ratio": 0.9457714285714286,
+          "median_ratio": 0.9309638134727579,
+          "min_ratio": 0.8431580490471995
+        },
+        "cubic_quadrant vs cubic_basic": {
+          "counts": {
+            "inconclusive": 2,
+            "win": 1
+          },
+          "max_ratio": 1.2023167004088764,
+          "median_ratio": 1.023292907849225,
+          "min_ratio": 0.9739929929016267
+        },
+        "cubic_quadrant vs native_xla": {
+          "counts": {
+            "inconclusive": 2,
+            "loss": 1
+          },
+          "max_ratio": 1.0137430034536146,
+          "median_ratio": 0.9678011953035728,
+          "min_ratio": 0.9067522309674433
+        },
+        "native_xla vs cubic_basic": {
+          "counts": {
+            "inconclusive": 1,
+            "win": 2
+          },
+          "max_ratio": 1.1860172610936204,
+          "median_ratio": 1.0741556068325766,
+          "min_ratio": 1.0573379252008943
+        },
+        "native_xla vs cubic_quadrant": {
+          "counts": {
+            "inconclusive": 2,
+            "win": 1
+          },
+          "max_ratio": 1.1028370990971454,
+          "median_ratio": 1.033270060889238,
+          "min_ratio": 0.9864433062356092
+        },
+        "strassen_basic vs cubic_basic": {
+          "counts": {
+            "inconclusive": 3
+          },
+          "max_ratio": 1.17727752948484,
+          "median_ratio": 1.0023706862261537,
+          "min_ratio": 0.9528332665933557
+        },
+        "strassen_basic vs cubic_quadrant": {
+          "counts": {
+            "inconclusive": 3
+          },
+          "max_ratio": 0.9795540245978581,
+          "median_ratio": 0.9791742301212975,
+          "min_ratio": 0.9782752787109545
+        },
+        "strassen_basic vs native_xla": {
+          "counts": {
+            "inconclusive": 2,
+            "loss": 1
+          },
+          "max_ratio": 0.9926310249475447,
+          "median_ratio": 0.9480135558702325,
+          "min_ratio": 0.8870532914714554
+        }
+      },
+      "execution_status": "completed",
+      "identity": {
+        "allocation_id": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+        "boot_id": "64fe01c7-4c57-43e9-9f49-6805fb8a887d",
+        "colab_endpoint": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+        "device_id": 0,
+        "device_kind": "TPU v5 lite",
+        "devices": [
+          {
+            "coords": [
+              0,
+              0,
+              0
+            ],
+            "core_on_chip": 0,
+            "id": 0,
+            "kind": "TPU v5 lite",
+            "local_hardware_id": 0,
+            "platform": "tpu",
+            "process_index": 0
+          }
+        ],
+        "host_id": "6f3b9b8cc92c",
+        "hostname": "6f3b9b8cc92c",
+        "jax_version": "0.7.2",
+        "jaxlib_version": "0.7.2",
+        "libtpu_version": "0.0.21.1",
+        "mosaic_compatibility": {
+          "jax": "0.7.2",
+          "libtpu": "0.0.21.1",
+          "override_enabled": true,
+          "target_ir_version": 7
+        },
+        "numpy_version": "2.1.3",
+        "process_index": 0,
+        "runtime_flags": {
+          "JAX_ENABLE_X64": "false",
+          "JAX_PLATFORMS": "tpu",
+          "LIBTPU_INIT_ARGS": " --xla_tpu_use_enhanced_launch_barrier=true",
+          "MKL_NUM_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1",
+          "PJRT_DEVICE": "TPU",
+          "TPU_CHIPS_PER_HOST_BOUNDS": "2,2,1",
+          "TPU_HOST_BOUNDS": "1,1,1",
+          "TPU_NUM_CHIPS": null,
+          "TPU_VISIBLE_CHIPS": null,
+          "XLA_FLAGS": null,
+          "XLA_PYTHON_CLIENT_PREALLOCATE": "false"
+        },
+        "runtime_image": "release-colab-external-images_20260917-060051_RC00",
+        "versions": {
+          "jax": "0.7.2",
+          "jaxlib": "0.7.2",
+          "libtpu": "0.0.21.1",
+          "ml_dtypes": "0.6.0",
+          "numpy": "2.1.3",
+          "requests": "2.32.4",
+          "scipy": "1.16.3"
+        }
+      },
+      "issues": [],
+      "phase": "smoke",
+      "record_count": 212,
+      "run_id": "20260919T055324Z-smoke-v5e-v003-4644df",
+      "source_commit": "b5a7c1d5d089b486196d3dd932656839801b34d0",
+      "summary": {
+        "case_status_counts": {
+          "ok": 24
+        },
+        "completed": true,
+        "completed_groups": [
+          "square_512__256x256x256",
+          "tail_513__256x256x256",
+          "small_m_8__256x256x256"
+        ],
+        "error": null,
+        "finished_utc": "2026-09-19T05:53:37.536882+00:00",
+        "n4_scope": null,
+        "not_completed_group_ids": [],
+        "phase": "smoke",
+        "planned_group_count": 3,
+        "scientific_success": "Not inferred from phase completion; inspect numerical eligibility and timings.",
+        "status": "completed",
+        "wall_seconds": 7.508427969999957
+      },
+      "terminal_model_policy_outcomes": []
+    },
+    {
+      "archive_commit": "7104f3a9d22fbc4241030a08b9b9b6d4852cfd1a Archive 20260919T055501Z-N9-access-probe-v5e-v004-ebb556 (completed)",
+      "artifact_manifest_sha256": "9fe27e2ad828997206574b6a3ac9512902d7765248eed9f71ae06007cb2aab3f",
+      "audit_pass": true,
+      "case_status_counts": {},
+      "complete_call_comparisons": {},
+      "execution_status": "completed",
+      "identity": {
+        "boot_id": "64fe01c7-4c57-43e9-9f49-6805fb8a887d",
+        "colab_endpoint": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+        "hostname": "6f3b9b8cc92c",
+        "versions": {
+          "jax": "0.7.2",
+          "jaxlib": "0.7.2",
+          "libtpu": "0.0.21.1",
+          "ml_dtypes": "0.6.0",
+          "numpy": "2.1.3",
+          "requests": "2.32.4",
+          "scipy": "1.16.3"
+        }
+      },
+      "issues": [],
+      "phase": "N9-access-probe",
+      "record_count": 0,
+      "run_id": "20260919T055501Z-N9-access-probe-v5e-v004-ebb556",
+      "source_commit": "bf0c828832197ccee0e3dbf4706e24bb9ba1f170",
+      "summary": {
+        "action": "probe",
+        "blocked_access_is_not_successful_model": true,
+        "elapsed_seconds": 2.1469307739999977,
+        "phase": "N9-access-probe",
+        "records": [
+          {
+            "action": "probe",
+            "command": [
+              "/usr/bin/python3",
+              "/content/Strassen_MM_Focus/runs/20260919T055501Z-N9-access-probe-v5e-v004-ebb556/source/tools/prepare_model_application_v001.py",
+              "probe",
+              "--output-dir",
+              "/content/Strassen_MM_Focus/runs/20260919T055501Z-N9-access-probe-v5e-v004-ebb556/artifacts/preparation-00",
+              "--model-id",
+              "Qwen/Qwen3-0.6B",
+              "--use-existing-token"
+            ],
+            "exit_code": 0,
+            "model_id": "Qwen/Qwen3-0.6B",
+            "status": {
+              "action": "probe",
+              "finished_utc": "2026-09-19T05:55:06+00:00",
+              "started_utc": "2026-09-19T05:55:06+00:00",
+              "status": "completed"
+            }
+          },
+          {
+            "action": "probe",
+            "command": [
+              "/usr/bin/python3",
+              "/content/Strassen_MM_Focus/runs/20260919T055501Z-N9-access-probe-v5e-v004-ebb556/source/tools/prepare_model_application_v001.py",
+              "probe",
+              "--output-dir",
+              "/content/Strassen_MM_Focus/runs/20260919T055501Z-N9-access-probe-v5e-v004-ebb556/artifacts/preparation-01",
+              "--model-id",
+              "mistralai/Mistral-7B-v0.3",
+              "--use-existing-token"
+            ],
+            "exit_code": 0,
+            "model_id": "mistralai/Mistral-7B-v0.3",
+            "status": {
+              "action": "probe",
+              "finished_utc": "2026-09-19T05:55:07+00:00",
+              "started_utc": "2026-09-19T05:55:06+00:00",
+              "status": "completed"
+            }
+          },
+          {
+            "action": "probe",
+            "command": [
+              "/usr/bin/python3",
+              "/content/Strassen_MM_Focus/runs/20260919T055501Z-N9-access-probe-v5e-v004-ebb556/source/tools/prepare_model_application_v001.py",
+              "probe",
+              "--output-dir",
+              "/content/Strassen_MM_Focus/runs/20260919T055501Z-N9-access-probe-v5e-v004-ebb556/artifacts/preparation-02",
+              "--model-id",
+              "google/gemma-3-1b-pt",
+              "--use-existing-token"
+            ],
+            "exit_code": 1,
+            "model_id": "google/gemma-3-1b-pt",
+            "status": {
+              "action": "probe",
+              "error": "Official repository denied access; no terms acceptance attempted",
+              "error_type": "AccessBlocked",
+              "finished_utc": "2026-09-19T05:55:07+00:00",
+              "started_utc": "2026-09-19T05:55:07+00:00",
+              "status": "blocked_access"
+            }
+          }
+        ],
+        "status": "completed"
+      },
+      "terminal_model_policy_outcomes": []
+    }
+  ]
+}
