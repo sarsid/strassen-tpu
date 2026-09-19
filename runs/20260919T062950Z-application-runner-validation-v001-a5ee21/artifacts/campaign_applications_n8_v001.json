@@ -1,0 +1,210 @@
+{
+  "ablation": "Unpacked-unfused vs packed-unfused isolates packing; packed-unfused vs standard-fused isolates epilogue fusion withmatchedlayout/schedule; standard-fused vs early changesfinalization anddocumentedFP32order",
+  "application_timing": {
+    "preparation_repeats": 5,
+    "repeats": 30,
+    "warmups": 3
+  },
+  "base_campaign": "../campaign_n5_n9_v1.json",
+  "campaign_id": "v5e_n8_applications_v1",
+  "correctness": {
+    "gate": {
+      "max_abs_atol": 0.001,
+      "max_abs_reference_rtol": 0.05,
+      "relative_l2_max": 0.02,
+      "require_finite": true
+    }
+  },
+  "coverage_refinement": "D009: retain12main M1024/2048groups; add M512SwiGLU/residual for Mistral7B andQwen32B (4groups) toinclude exact N5geometry selectedcontrols whereavailable. Frozen beforeN8outcomes.",
+  "groups": [
+    {
+      "geometry": "qwen06",
+      "id": "qwen06_m1024_swiglu",
+      "kind": "swiglu",
+      "shape_mkn": [
+        1024,
+        1024,
+        6144
+      ]
+    },
+    {
+      "geometry": "qwen06",
+      "id": "qwen06_m1024_residual",
+      "kind": "residual",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ]
+    },
+    {
+      "geometry": "qwen06",
+      "id": "qwen06_m2048_swiglu",
+      "kind": "swiglu",
+      "shape_mkn": [
+        2048,
+        1024,
+        6144
+      ]
+    },
+    {
+      "geometry": "qwen06",
+      "id": "qwen06_m2048_residual",
+      "kind": "residual",
+      "shape_mkn": [
+        2048,
+        3072,
+        1024
+      ]
+    },
+    {
+      "geometry": "mistral7b",
+      "id": "mistral7b_m512_swiglu",
+      "kind": "swiglu",
+      "shape_mkn": [
+        512,
+        4096,
+        28672
+      ]
+    },
+    {
+      "geometry": "mistral7b",
+      "id": "mistral7b_m512_residual",
+      "kind": "residual",
+      "shape_mkn": [
+        512,
+        14336,
+        4096
+      ]
+    },
+    {
+      "geometry": "mistral7b",
+      "id": "mistral7b_m1024_swiglu",
+      "kind": "swiglu",
+      "shape_mkn": [
+        1024,
+        4096,
+        28672
+      ]
+    },
+    {
+      "geometry": "mistral7b",
+      "id": "mistral7b_m1024_residual",
+      "kind": "residual",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ]
+    },
+    {
+      "geometry": "mistral7b",
+      "id": "mistral7b_m2048_swiglu",
+      "kind": "swiglu",
+      "shape_mkn": [
+        2048,
+        4096,
+        28672
+      ]
+    },
+    {
+      "geometry": "mistral7b",
+      "id": "mistral7b_m2048_residual",
+      "kind": "residual",
+      "shape_mkn": [
+        2048,
+        14336,
+        4096
+      ]
+    },
+    {
+      "geometry": "qwen32b",
+      "id": "qwen32b_m512_swiglu",
+      "kind": "swiglu",
+      "shape_mkn": [
+        512,
+        5120,
+        51200
+      ]
+    },
+    {
+      "geometry": "qwen32b",
+      "id": "qwen32b_m512_residual",
+      "kind": "residual",
+      "shape_mkn": [
+        512,
+        25600,
+        5120
+      ]
+    },
+    {
+      "geometry": "qwen32b",
+      "id": "qwen32b_m1024_swiglu",
+      "kind": "swiglu",
+      "shape_mkn": [
+        1024,
+        5120,
+        51200
+      ]
+    },
+    {
+      "geometry": "qwen32b",
+      "id": "qwen32b_m1024_residual",
+      "kind": "residual",
+      "shape_mkn": [
+        1024,
+        25600,
+        5120
+      ]
+    },
+    {
+      "geometry": "qwen32b",
+      "id": "qwen32b_m2048_swiglu",
+      "kind": "swiglu",
+      "shape_mkn": [
+        2048,
+        5120,
+        51200
+      ]
+    },
+    {
+      "geometry": "qwen32b",
+      "id": "qwen32b_m2048_residual",
+      "kind": "residual",
+      "shape_mkn": [
+        2048,
+        25600,
+        5120
+      ]
+    }
+  ],
+  "input_scope": "Synthetic Gaussian BF16 inputs at LLM-like geometries, not model activations or model quality",
+  "matched_tile": [
+    1024,
+    1024,
+    512
+  ],
+  "precision": {
+    "accumulator_dtype": "float32",
+    "input_dtype": "bfloat16",
+    "native_precision": "DEFAULT",
+    "output_dtype": "bfloat16",
+    "pre_add_dtype": "bfloat16",
+    "projection_output_dtype": "bfloat16",
+    "reference_dtype": "NumPy float64 dot, BF16 projection/epilogue boundaries; float32 SiLU"
+  },
+  "precision_contract": "BF16 inputs/preadds; FP32 accumulation; every projection rounds toBF16 before epilogue; SiLU FP32 roundsBF16 before BF16multiply; residual BF16+BF16\u2192BF16",
+  "predeclared_contrasts": [
+    "packed-unfused/unpacked-unfused peralgorithm",
+    "fused/packed-unfused peralgorithm (residual uses unpacked control)",
+    "early/standard-fused Strassen",
+    "each Strassen/native",
+    "each Strassen/matched cubic_full and cubic_quadrant",
+    "N5 selectedStrassen/selectedcubic"
+  ],
+  "sample_columns": 128,
+  "sample_rows": 32,
+  "schema_version": 1,
+  "seed": 20260919,
+  "selection": "Lowest eligible complete-call mean per family/geometry. Used only tofreeze N9policy before real quality measurements."
+}
