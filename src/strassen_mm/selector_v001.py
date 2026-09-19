@@ -147,6 +147,11 @@ def fit(confirmation, selections_path, campaign_path):
     if environment.get("qualified_single_v5e") is not True:
         raise ValueError("N5 confirmation is not from the qualified v5e cohort")
     selections = load(selections_path)
+    recorded_selection = load(directory / "selection_input_provenance.json")
+    if digest(selections_path) != recorded_selection.get("sha256"):
+        raise ValueError("Provided selections are not the exact selections used by N5 confirmation")
+    if selections.get("phase") != "N5-screen" or selections.get("campaign_sha256") != CONFIG_SHA256:
+        raise ValueError("Selector fit requires the preregistered N5-screen selections")
     if selections.get("environment_identity") != environment["identity"]:
         raise ValueError("N5 selection and confirmation machine identities differ")
     expected_ids = set(campaign["training_shape_ids"])
