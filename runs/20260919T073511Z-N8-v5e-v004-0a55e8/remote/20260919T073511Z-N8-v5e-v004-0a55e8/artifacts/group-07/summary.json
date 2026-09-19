@@ -1,0 +1,8148 @@
+[
+  {
+    "algorithm": "native",
+    "arm_id": "native_joint_graph",
+    "comparisons": [],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 4.8125,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.002396893392055375,
+      "sample_columns": [
+        0,
+        38,
+        56,
+        102,
+        123,
+        165,
+        172,
+        197,
+        201,
+        263,
+        264,
+        290,
+        444,
+        470,
+        517,
+        587,
+        606,
+        610,
+        618,
+        647,
+        690,
+        727,
+        733,
+        756,
+        838,
+        839,
+        845,
+        865,
+        905,
+        930,
+        951,
+        968,
+        1011,
+        1026,
+        1033,
+        1070,
+        1093,
+        1160,
+        1342,
+        1344,
+        1389,
+        1416,
+        1454,
+        1523,
+        1537,
+        1639,
+        1701,
+        1740,
+        1750,
+        1778,
+        1815,
+        1837,
+        1845,
+        1847,
+        1866,
+        1879,
+        1889,
+        1925,
+        1932,
+        1946,
+        1984,
+        2002,
+        2007,
+        2079,
+        2142,
+        2281,
+        2324,
+        2338,
+        2396,
+        2409,
+        2412,
+        2500,
+        2518,
+        2609,
+        2627,
+        2652,
+        2737,
+        2749,
+        2767,
+        2811,
+        2836,
+        2866,
+        2869,
+        2873,
+        2917,
+        2940,
+        2974,
+        2990,
+        3018,
+        3046,
+        3118,
+        3167,
+        3174,
+        3177,
+        3191,
+        3201,
+        3239,
+        3241,
+        3243,
+        3312,
+        3366,
+        3406,
+        3442,
+        3449,
+        3451,
+        3460,
+        3498,
+        3519,
+        3550,
+        3554,
+        3565,
+        3566,
+        3580,
+        3604,
+        3628,
+        3684,
+        3714,
+        3843,
+        3847,
+        3848,
+        3916,
+        3923,
+        3931,
+        3972,
+        4003,
+        4016,
+        4032,
+        4095
+      ],
+      "sample_rows": [
+        0,
+        24,
+        165,
+        236,
+        253,
+        256,
+        257,
+        270,
+        275,
+        292,
+        329,
+        367,
+        375,
+        447,
+        499,
+        516,
+        519,
+        530,
+        547,
+        566,
+        576,
+        640,
+        661,
+        673,
+        682,
+        749,
+        892,
+        914,
+        949,
+        1007,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "mistral7b_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "compiler_managed",
+      "algorithm": "native",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": null,
+      "variant": "plain",
+      "vmem_limit_bytes": null
+    },
+    "mean_ms": 1.0667906333333332,
+    "median_ms": 1.06109,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "compiler_managed",
+      "algorithm": "native",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": null,
+      "variant": "plain",
+      "vmem_limit_bytes": null
+    },
+    "preparation_raw_ms": [
+      0.90695,
+      0.79934,
+      0.78179,
+      0.7753,
+      0.78169
+    ],
+    "raw_ms": [
+      1.04471,
+      1.06224,
+      1.05618,
+      1.04963,
+      1.05069,
+      1.06318,
+      1.10811,
+      1.08037,
+      1.06405,
+      1.18165,
+      1.096969,
+      1.05592,
+      1.077529,
+      1.094631,
+      1.09723,
+      1.0708,
+      1.05547,
+      1.04861,
+      1.05458,
+      1.06648,
+      1.04627,
+      1.05994,
+      1.10341,
+      1.07139,
+      1.072511,
+      1.05097,
+      1.018689,
+      1.0203,
+      1.02589,
+      1.05532
+    ],
+    "scope": "call",
+    "shape_mkn": [
+      1024,
+      14336,
+      4096
+    ],
+    "status": "ok",
+    "std_ms": 0.03115149660043843,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 1.18165,
+      "mean_ms": 1.0667906333333332,
+      "median_ms": 1.06109,
+      "min_ms": 1.018689,
+      "raw_samples": [
+        {
+          "elapsed_ms": 1.04471,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 1.06224,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 1.05618,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 1.04963,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 1.05069,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 1.06318,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 1.10811,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 1.08037,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 1.06405,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 1.18165,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 1.096969,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 1.05592,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 1.077529,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 1.094631,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 1.09723,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 1.0708,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 1.05547,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 1.04861,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 1.05458,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 1.06648,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 1.04627,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 1.05994,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 1.10341,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 1.07139,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 1.072511,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 1.05097,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 1.018689,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 1.0203,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 1.02589,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 1.05532,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.03115149660043843
+    },
+    "variant": "plain"
+  },
+  {
+    "algorithm": "native",
+    "arm_id": "native_joint_graph",
+    "comparisons": [],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 4.8125,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.002396893392055375,
+      "sample_columns": [
+        0,
+        38,
+        56,
+        102,
+        123,
+        165,
+        172,
+        197,
+        201,
+        263,
+        264,
+        290,
+        444,
+        470,
+        517,
+        587,
+        606,
+        610,
+        618,
+        647,
+        690,
+        727,
+        733,
+        756,
+        838,
+        839,
+        845,
+        865,
+        905,
+        930,
+        951,
+        968,
+        1011,
+        1026,
+        1033,
+        1070,
+        1093,
+        1160,
+        1342,
+        1344,
+        1389,
+        1416,
+        1454,
+        1523,
+        1537,
+        1639,
+        1701,
+        1740,
+        1750,
+        1778,
+        1815,
+        1837,
+        1845,
+        1847,
+        1866,
+        1879,
+        1889,
+        1925,
+        1932,
+        1946,
+        1984,
+        2002,
+        2007,
+        2079,
+        2142,
+        2281,
+        2324,
+        2338,
+        2396,
+        2409,
+        2412,
+        2500,
+        2518,
+        2609,
+        2627,
+        2652,
+        2737,
+        2749,
+        2767,
+        2811,
+        2836,
+        2866,
+        2869,
+        2873,
+        2917,
+        2940,
+        2974,
+        2990,
+        3018,
+        3046,
+        3118,
+        3167,
+        3174,
+        3177,
+        3191,
+        3201,
+        3239,
+        3241,
+        3243,
+        3312,
+        3366,
+        3406,
+        3442,
+        3449,
+        3451,
+        3460,
+        3498,
+        3519,
+        3550,
+        3554,
+        3565,
+        3566,
+        3580,
+        3604,
+        3628,
+        3684,
+        3714,
+        3843,
+        3847,
+        3848,
+        3916,
+        3923,
+        3931,
+        3972,
+        4003,
+        4016,
+        4032,
+        4095
+      ],
+      "sample_rows": [
+        0,
+        24,
+        165,
+        236,
+        253,
+        256,
+        257,
+        270,
+        275,
+        292,
+        329,
+        367,
+        375,
+        447,
+        499,
+        516,
+        519,
+        530,
+        547,
+        566,
+        576,
+        640,
+        661,
+        673,
+        682,
+        749,
+        892,
+        914,
+        949,
+        1007,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "mistral7b_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "compiler_managed",
+      "algorithm": "native",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": null,
+      "variant": "plain",
+      "vmem_limit_bytes": null
+    },
+    "mean_ms": 1.0607039666666667,
+    "median_ms": 1.0592199999999998,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "compiler_managed",
+      "algorithm": "native",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": null,
+      "variant": "plain",
+      "vmem_limit_bytes": null
+    },
+    "preparation_raw_ms": [
+      0.90695,
+      0.79934,
+      0.78179,
+      0.7753,
+      0.78169
+    ],
+    "raw_ms": [
+      1.05967,
+      1.03433,
+      1.03147,
+      1.06704,
+      1.05958,
+      1.09326,
+      1.05138,
+      1.056851,
+      1.05659,
+      1.06438,
+      1.05551,
+      1.05023,
+      1.05697,
+      1.07125,
+      1.08236,
+      1.06626,
+      1.04974,
+      1.074359,
+      1.08819,
+      1.05886,
+      1.05374,
+      1.0708,
+      1.06147,
+      1.06,
+      1.10795,
+      1.050909,
+      1.04003,
+      1.03557,
+      1.03826,
+      1.07411
+    ],
+    "scope": "prepared_kernel",
+    "shape_mkn": [
+      1024,
+      14336,
+      4096
+    ],
+    "status": "ok",
+    "std_ms": 0.017453653792916485,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 1.10795,
+      "mean_ms": 1.0607039666666667,
+      "median_ms": 1.0592199999999998,
+      "min_ms": 1.03147,
+      "raw_samples": [
+        {
+          "elapsed_ms": 1.05967,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 1.03433,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 1.03147,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 1.06704,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 1.05958,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 1.09326,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 1.05138,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 1.056851,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 1.05659,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 1.06438,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 1.05551,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 1.05023,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 1.05697,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 1.07125,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 1.08236,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 1.06626,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 1.04974,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 1.074359,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 1.08819,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 1.05886,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 1.05374,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 1.0708,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 1.06147,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 1.06,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 1.10795,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 1.050909,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 1.04003,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 1.03557,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 1.03826,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 1.07411,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.017453653792916485
+    },
+    "variant": "plain"
+  },
+  {
+    "algorithm": "cubic_full",
+    "arm_id": "cubic_full_unpacked_unfused",
+    "comparisons": [],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 4.8125,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.0023968673250788996,
+      "sample_columns": [
+        0,
+        38,
+        56,
+        102,
+        123,
+        165,
+        172,
+        197,
+        201,
+        263,
+        264,
+        290,
+        444,
+        470,
+        517,
+        587,
+        606,
+        610,
+        618,
+        647,
+        690,
+        727,
+        733,
+        756,
+        838,
+        839,
+        845,
+        865,
+        905,
+        930,
+        951,
+        968,
+        1011,
+        1026,
+        1033,
+        1070,
+        1093,
+        1160,
+        1342,
+        1344,
+        1389,
+        1416,
+        1454,
+        1523,
+        1537,
+        1639,
+        1701,
+        1740,
+        1750,
+        1778,
+        1815,
+        1837,
+        1845,
+        1847,
+        1866,
+        1879,
+        1889,
+        1925,
+        1932,
+        1946,
+        1984,
+        2002,
+        2007,
+        2079,
+        2142,
+        2281,
+        2324,
+        2338,
+        2396,
+        2409,
+        2412,
+        2500,
+        2518,
+        2609,
+        2627,
+        2652,
+        2737,
+        2749,
+        2767,
+        2811,
+        2836,
+        2866,
+        2869,
+        2873,
+        2917,
+        2940,
+        2974,
+        2990,
+        3018,
+        3046,
+        3118,
+        3167,
+        3174,
+        3177,
+        3191,
+        3201,
+        3239,
+        3241,
+        3243,
+        3312,
+        3366,
+        3406,
+        3442,
+        3449,
+        3451,
+        3460,
+        3498,
+        3519,
+        3550,
+        3554,
+        3565,
+        3566,
+        3580,
+        3604,
+        3628,
+        3684,
+        3714,
+        3843,
+        3847,
+        3848,
+        3916,
+        3923,
+        3931,
+        3972,
+        4003,
+        4016,
+        4032,
+        4095
+      ],
+      "sample_rows": [
+        0,
+        24,
+        165,
+        236,
+        253,
+        256,
+        257,
+        270,
+        275,
+        292,
+        329,
+        367,
+        375,
+        447,
+        499,
+        516,
+        519,
+        530,
+        547,
+        566,
+        576,
+        640,
+        661,
+        673,
+        682,
+        749,
+        892,
+        914,
+        949,
+        1007,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "mistral7b_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "full_tile_scratch",
+      "algorithm": "cubic_full",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "plain",
+      "vmem_limit_bytes": 50331648
+    },
+    "mean_ms": 0.9497602000000002,
+    "median_ms": 0.946925,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "full_tile_scratch",
+      "algorithm": "cubic_full",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "plain",
+      "vmem_limit_bytes": 50331648
+    },
+    "preparation_raw_ms": [
+      0.85585,
+      0.78469,
+      0.76874,
+      0.76136,
+      0.7552
+    ],
+    "raw_ms": [
+      0.93169,
+      0.98942,
+      0.951289,
+      0.93438,
+      0.95797,
+      0.96257,
+      0.94747,
+      0.97025,
+      0.95055,
+      0.968909,
+      0.99628,
+      0.94316,
+      0.96372,
+      0.93906,
+      0.97846,
+      0.949979,
+      0.96143,
+      0.9304,
+      0.93966,
+      0.94364,
+      0.98761,
+      0.938409,
+      0.93974,
+      0.97218,
+      0.94191,
+      0.94638,
+      0.92331,
+      0.90452,
+      0.90485,
+      0.92361
+    ],
+    "scope": "call",
+    "shape_mkn": [
+      1024,
+      14336,
+      4096
+    ],
+    "status": "ok",
+    "std_ms": 0.022619811580970796,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.99628,
+      "mean_ms": 0.9497602000000002,
+      "median_ms": 0.946925,
+      "min_ms": 0.90452,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.93169,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.98942,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.951289,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.93438,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.95797,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.96257,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.94747,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.97025,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.95055,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.968909,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.99628,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.94316,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.96372,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.93906,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.97846,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.949979,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.96143,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.9304,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.93966,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.94364,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.98761,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.938409,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.93974,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.97218,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.94191,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.94638,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.92331,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.90452,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.90485,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.92361,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.022619811580970796
+    },
+    "variant": "plain"
+  },
+  {
+    "algorithm": "cubic_full",
+    "arm_id": "cubic_full_unpacked_unfused",
+    "comparisons": [],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 4.8125,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.0023968673250788996,
+      "sample_columns": [
+        0,
+        38,
+        56,
+        102,
+        123,
+        165,
+        172,
+        197,
+        201,
+        263,
+        264,
+        290,
+        444,
+        470,
+        517,
+        587,
+        606,
+        610,
+        618,
+        647,
+        690,
+        727,
+        733,
+        756,
+        838,
+        839,
+        845,
+        865,
+        905,
+        930,
+        951,
+        968,
+        1011,
+        1026,
+        1033,
+        1070,
+        1093,
+        1160,
+        1342,
+        1344,
+        1389,
+        1416,
+        1454,
+        1523,
+        1537,
+        1639,
+        1701,
+        1740,
+        1750,
+        1778,
+        1815,
+        1837,
+        1845,
+        1847,
+        1866,
+        1879,
+        1889,
+        1925,
+        1932,
+        1946,
+        1984,
+        2002,
+        2007,
+        2079,
+        2142,
+        2281,
+        2324,
+        2338,
+        2396,
+        2409,
+        2412,
+        2500,
+        2518,
+        2609,
+        2627,
+        2652,
+        2737,
+        2749,
+        2767,
+        2811,
+        2836,
+        2866,
+        2869,
+        2873,
+        2917,
+        2940,
+        2974,
+        2990,
+        3018,
+        3046,
+        3118,
+        3167,
+        3174,
+        3177,
+        3191,
+        3201,
+        3239,
+        3241,
+        3243,
+        3312,
+        3366,
+        3406,
+        3442,
+        3449,
+        3451,
+        3460,
+        3498,
+        3519,
+        3550,
+        3554,
+        3565,
+        3566,
+        3580,
+        3604,
+        3628,
+        3684,
+        3714,
+        3843,
+        3847,
+        3848,
+        3916,
+        3923,
+        3931,
+        3972,
+        4003,
+        4016,
+        4032,
+        4095
+      ],
+      "sample_rows": [
+        0,
+        24,
+        165,
+        236,
+        253,
+        256,
+        257,
+        270,
+        275,
+        292,
+        329,
+        367,
+        375,
+        447,
+        499,
+        516,
+        519,
+        530,
+        547,
+        566,
+        576,
+        640,
+        661,
+        673,
+        682,
+        749,
+        892,
+        914,
+        949,
+        1007,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "mistral7b_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "full_tile_scratch",
+      "algorithm": "cubic_full",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "plain",
+      "vmem_limit_bytes": 50331648
+    },
+    "mean_ms": 0.9408016333333332,
+    "median_ms": 0.941325,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "full_tile_scratch",
+      "algorithm": "cubic_full",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "plain",
+      "vmem_limit_bytes": 50331648
+    },
+    "preparation_raw_ms": [
+      0.85585,
+      0.78469,
+      0.76874,
+      0.76136,
+      0.7552
+    ],
+    "raw_ms": [
+      0.9077,
+      0.93804,
+      0.94166,
+      0.95247,
+      0.96461,
+      0.94099,
+      0.93662,
+      0.95963,
+      0.93754,
+      0.92849,
+      0.92894,
+      0.96639,
+      0.93769,
+      0.95098,
+      0.94901,
+      0.9244,
+      0.94283,
+      0.94662,
+      0.943949,
+      0.94837,
+      0.93081,
+      0.95602,
+      0.93538,
+      0.92507,
+      0.91001,
+      0.95388,
+      0.92438,
+      0.9153,
+      0.96737,
+      0.9589
+    ],
+    "scope": "prepared_kernel",
+    "shape_mkn": [
+      1024,
+      14336,
+      4096
+    ],
+    "status": "ok",
+    "std_ms": 0.01594442235301312,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.96737,
+      "mean_ms": 0.9408016333333332,
+      "median_ms": 0.941325,
+      "min_ms": 0.9077,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.9077,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.93804,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.94166,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.95247,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.96461,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.94099,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.93662,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.95963,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.93754,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.92849,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.92894,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.96639,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.93769,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.95098,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.94901,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.9244,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.94283,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.94662,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.943949,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.94837,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.93081,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.95602,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.93538,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.92507,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.91001,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.95388,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.92438,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.9153,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.96737,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.9589,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.01594442235301312
+    },
+    "variant": "plain"
+  },
+  {
+    "algorithm": "cubic_full",
+    "arm_id": "cubic_full_fused",
+    "comparisons": [
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_full_unpacked_unfused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.021271094610491,
+          1.0399641505019084
+        ],
+        "speedup_ratio_of_means": 1.0306934071201928,
+        "time_reduction_fraction": 0.029779376590708728,
+        "valid_numerical_comparison": true
+      }
+    ],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.0,
+      "max_abs_reference": 4.8125,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.0,
+      "sample_columns": [
+        0,
+        38,
+        56,
+        102,
+        123,
+        165,
+        172,
+        197,
+        201,
+        263,
+        264,
+        290,
+        444,
+        470,
+        517,
+        587,
+        606,
+        610,
+        618,
+        647,
+        690,
+        727,
+        733,
+        756,
+        838,
+        839,
+        845,
+        865,
+        905,
+        930,
+        951,
+        968,
+        1011,
+        1026,
+        1033,
+        1070,
+        1093,
+        1160,
+        1342,
+        1344,
+        1389,
+        1416,
+        1454,
+        1523,
+        1537,
+        1639,
+        1701,
+        1740,
+        1750,
+        1778,
+        1815,
+        1837,
+        1845,
+        1847,
+        1866,
+        1879,
+        1889,
+        1925,
+        1932,
+        1946,
+        1984,
+        2002,
+        2007,
+        2079,
+        2142,
+        2281,
+        2324,
+        2338,
+        2396,
+        2409,
+        2412,
+        2500,
+        2518,
+        2609,
+        2627,
+        2652,
+        2737,
+        2749,
+        2767,
+        2811,
+        2836,
+        2866,
+        2869,
+        2873,
+        2917,
+        2940,
+        2974,
+        2990,
+        3018,
+        3046,
+        3118,
+        3167,
+        3174,
+        3177,
+        3191,
+        3201,
+        3239,
+        3241,
+        3243,
+        3312,
+        3366,
+        3406,
+        3442,
+        3449,
+        3451,
+        3460,
+        3498,
+        3519,
+        3550,
+        3554,
+        3565,
+        3566,
+        3580,
+        3604,
+        3628,
+        3684,
+        3714,
+        3843,
+        3847,
+        3848,
+        3916,
+        3923,
+        3931,
+        3972,
+        4003,
+        4016,
+        4032,
+        4095
+      ],
+      "sample_rows": [
+        0,
+        24,
+        165,
+        236,
+        253,
+        256,
+        257,
+        270,
+        275,
+        292,
+        329,
+        367,
+        375,
+        447,
+        499,
+        516,
+        519,
+        530,
+        547,
+        566,
+        576,
+        640,
+        661,
+        673,
+        682,
+        749,
+        892,
+        914,
+        949,
+        1007,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "mistral7b_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "cubic_full",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "plain"
+    },
+    "mean_ms": 0.9214769333333334,
+    "median_ms": 0.9264399999999999,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "cubic_full",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "plain"
+    },
+    "preparation_raw_ms": [
+      0.851269,
+      0.77912,
+      0.86525,
+      0.78403,
+      0.78477
+    ],
+    "raw_ms": [
+      0.89498,
+      0.916389,
+      0.90995,
+      0.911371,
+      0.89973,
+      0.914371,
+      0.92244,
+      0.92909,
+      0.92704,
+      0.96309,
+      0.93006,
+      0.93115,
+      0.906751,
+      0.92849,
+      0.94057,
+      0.94094,
+      0.91174,
+      0.93141,
+      0.941059,
+      0.92134,
+      0.903709,
+      0.92584,
+      0.93156,
+      0.93321,
+      0.933979,
+      0.95504,
+      0.89566,
+      0.874479,
+      0.88638,
+      0.93249
+    ],
+    "scope": "call",
+    "shape_mkn": [
+      1024,
+      14336,
+      4096
+    ],
+    "status": "ok",
+    "std_ms": 0.01960533960154616,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.96309,
+      "mean_ms": 0.9214769333333334,
+      "median_ms": 0.9264399999999999,
+      "min_ms": 0.874479,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.89498,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.916389,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.90995,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.911371,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.89973,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.914371,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.92244,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.92909,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.92704,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.96309,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.93006,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.93115,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.906751,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.92849,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.94057,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.94094,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.91174,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.93141,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.941059,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.92134,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.903709,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.92584,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.93156,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.93321,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.933979,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.95504,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.89566,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.874479,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.88638,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.93249,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.01960533960154616
+    },
+    "variant": "plain"
+  },
+  {
+    "algorithm": "cubic_full",
+    "arm_id": "cubic_full_fused",
+    "comparisons": [
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_full_unpacked_unfused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.0115207760764877,
+          1.024693360439969
+        ],
+        "speedup_ratio_of_means": 1.018394245043329,
+        "time_reduction_fraction": 0.018062008041440092,
+        "valid_numerical_comparison": true
+      }
+    ],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.0,
+      "max_abs_reference": 4.8125,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.0,
+      "sample_columns": [
+        0,
+        38,
+        56,
+        102,
+        123,
+        165,
+        172,
+        197,
+        201,
+        263,
+        264,
+        290,
+        444,
+        470,
+        517,
+        587,
+        606,
+        610,
+        618,
+        647,
+        690,
+        727,
+        733,
+        756,
+        838,
+        839,
+        845,
+        865,
+        905,
+        930,
+        951,
+        968,
+        1011,
+        1026,
+        1033,
+        1070,
+        1093,
+        1160,
+        1342,
+        1344,
+        1389,
+        1416,
+        1454,
+        1523,
+        1537,
+        1639,
+        1701,
+        1740,
+        1750,
+        1778,
+        1815,
+        1837,
+        1845,
+        1847,
+        1866,
+        1879,
+        1889,
+        1925,
+        1932,
+        1946,
+        1984,
+        2002,
+        2007,
+        2079,
+        2142,
+        2281,
+        2324,
+        2338,
+        2396,
+        2409,
+        2412,
+        2500,
+        2518,
+        2609,
+        2627,
+        2652,
+        2737,
+        2749,
+        2767,
+        2811,
+        2836,
+        2866,
+        2869,
+        2873,
+        2917,
+        2940,
+        2974,
+        2990,
+        3018,
+        3046,
+        3118,
+        3167,
+        3174,
+        3177,
+        3191,
+        3201,
+        3239,
+        3241,
+        3243,
+        3312,
+        3366,
+        3406,
+        3442,
+        3449,
+        3451,
+        3460,
+        3498,
+        3519,
+        3550,
+        3554,
+        3565,
+        3566,
+        3580,
+        3604,
+        3628,
+        3684,
+        3714,
+        3843,
+        3847,
+        3848,
+        3916,
+        3923,
+        3931,
+        3972,
+        4003,
+        4016,
+        4032,
+        4095
+      ],
+      "sample_rows": [
+        0,
+        24,
+        165,
+        236,
+        253,
+        256,
+        257,
+        270,
+        275,
+        292,
+        329,
+        367,
+        375,
+        447,
+        499,
+        516,
+        519,
+        530,
+        547,
+        566,
+        576,
+        640,
+        661,
+        673,
+        682,
+        749,
+        892,
+        914,
+        949,
+        1007,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "mistral7b_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "cubic_full",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "plain"
+    },
+    "mean_ms": 0.9238088666666666,
+    "median_ms": 0.91889,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "cubic_full",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "plain"
+    },
+    "preparation_raw_ms": [
+      0.851269,
+      0.77912,
+      0.86525,
+      0.78403,
+      0.78477
+    ],
+    "raw_ms": [
+      0.90462,
+      0.91699,
+      0.91934,
+      0.924939,
+      0.91227,
+      0.92494,
+      0.902891,
+      0.94796,
+      0.93625,
+      0.93496,
+      0.9378,
+      0.94118,
+      0.91344,
+      0.91623,
+      0.91306,
+      0.91844,
+      0.90885,
+      0.923629,
+      0.92891,
+      0.93423,
+      0.91674,
+      0.929389,
+      0.9114,
+      0.903469,
+      0.91572,
+      0.922689,
+      0.90054,
+      0.91053,
+      0.99848,
+      0.94438
+    ],
+    "scope": "prepared_kernel",
+    "shape_mkn": [
+      1024,
+      14336,
+      4096
+    ],
+    "status": "ok",
+    "std_ms": 0.018998902407014587,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.99848,
+      "mean_ms": 0.9238088666666666,
+      "median_ms": 0.91889,
+      "min_ms": 0.90054,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.90462,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.91699,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.91934,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.924939,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.91227,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.92494,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.902891,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.94796,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.93625,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.93496,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.9378,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.94118,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.91344,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.91623,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.91306,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.91844,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.90885,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.923629,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.92891,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.93423,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.91674,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.929389,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.9114,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.903469,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.91572,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.922689,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.90054,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.91053,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.99848,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.94438,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.018998902407014587
+    },
+    "variant": "plain"
+  },
+  {
+    "algorithm": "cubic_quadrant",
+    "arm_id": "cubic_quadrant_unpacked_unfused",
+    "comparisons": [],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 4.8125,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.0023968683462395413,
+      "sample_columns": [
+        0,
+        38,
+        56,
+        102,
+        123,
+        165,
+        172,
+        197,
+        201,
+        263,
+        264,
+        290,
+        444,
+        470,
+        517,
+        587,
+        606,
+        610,
+        618,
+        647,
+        690,
+        727,
+        733,
+        756,
+        838,
+        839,
+        845,
+        865,
+        905,
+        930,
+        951,
+        968,
+        1011,
+        1026,
+        1033,
+        1070,
+        1093,
+        1160,
+        1342,
+        1344,
+        1389,
+        1416,
+        1454,
+        1523,
+        1537,
+        1639,
+        1701,
+        1740,
+        1750,
+        1778,
+        1815,
+        1837,
+        1845,
+        1847,
+        1866,
+        1879,
+        1889,
+        1925,
+        1932,
+        1946,
+        1984,
+        2002,
+        2007,
+        2079,
+        2142,
+        2281,
+        2324,
+        2338,
+        2396,
+        2409,
+        2412,
+        2500,
+        2518,
+        2609,
+        2627,
+        2652,
+        2737,
+        2749,
+        2767,
+        2811,
+        2836,
+        2866,
+        2869,
+        2873,
+        2917,
+        2940,
+        2974,
+        2990,
+        3018,
+        3046,
+        3118,
+        3167,
+        3174,
+        3177,
+        3191,
+        3201,
+        3239,
+        3241,
+        3243,
+        3312,
+        3366,
+        3406,
+        3442,
+        3449,
+        3451,
+        3460,
+        3498,
+        3519,
+        3550,
+        3554,
+        3565,
+        3566,
+        3580,
+        3604,
+        3628,
+        3684,
+        3714,
+        3843,
+        3847,
+        3848,
+        3916,
+        3923,
+        3931,
+        3972,
+        4003,
+        4016,
+        4032,
+        4095
+      ],
+      "sample_rows": [
+        0,
+        24,
+        165,
+        236,
+        253,
+        256,
+        257,
+        270,
+        275,
+        292,
+        329,
+        367,
+        375,
+        447,
+        499,
+        516,
+        519,
+        530,
+        547,
+        566,
+        576,
+        640,
+        661,
+        673,
+        682,
+        749,
+        892,
+        914,
+        949,
+        1007,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "mistral7b_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "quadrant_scratch",
+      "algorithm": "cubic_quadrant",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved",
+      "vmem_limit_bytes": 50331648
+    },
+    "mean_ms": 1.0081559666666666,
+    "median_ms": 1.0085695,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "quadrant_scratch",
+      "algorithm": "cubic_quadrant",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved",
+      "vmem_limit_bytes": 50331648
+    },
+    "preparation_raw_ms": [
+      0.8478,
+      0.77676,
+      0.768139,
+      0.75616,
+      0.751869
+    ],
+    "raw_ms": [
+      1.02675,
+      1.00058,
+      1.02139,
+      1.02171,
+      0.98704,
+      0.99223,
+      1.00883,
+      1.0251,
+      1.12845,
+      1.02201,
+      1.00006,
+      1.0204,
+      1.01736,
+      0.99406,
+      1.01601,
+      1.00467,
+      0.9994,
+      0.99246,
+      1.0101,
+      1.00775,
+      0.97531,
+      1.02518,
+      1.01309,
+      1.02355,
+      1.01604,
+      1.008309,
+      0.97386,
+      0.96656,
+      0.97443,
+      0.97199
+    ],
+    "scope": "call",
+    "shape_mkn": [
+      1024,
+      14336,
+      4096
+    ],
+    "status": "ok",
+    "std_ms": 0.02897999643807042,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 1.12845,
+      "mean_ms": 1.0081559666666666,
+      "median_ms": 1.0085695,
+      "min_ms": 0.96656,
+      "raw_samples": [
+        {
+          "elapsed_ms": 1.02675,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 1.00058,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 1.02139,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 1.02171,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.98704,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.99223,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 1.00883,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 1.0251,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 1.12845,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 1.02201,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 1.00006,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 1.0204,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 1.01736,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.99406,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 1.01601,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 1.00467,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.9994,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.99246,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 1.0101,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 1.00775,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.97531,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 1.02518,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 1.01309,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 1.02355,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 1.01604,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 1.008309,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.97386,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.96656,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.97443,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.97199,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.02897999643807042
+    },
+    "variant": "interleaved"
+  },
+  {
+    "algorithm": "cubic_quadrant",
+    "arm_id": "cubic_quadrant_unpacked_unfused",
+    "comparisons": [],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 4.8125,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.0023968683462395413,
+      "sample_columns": [
+        0,
+        38,
+        56,
+        102,
+        123,
+        165,
+        172,
+        197,
+        201,
+        263,
+        264,
+        290,
+        444,
+        470,
+        517,
+        587,
+        606,
+        610,
+        618,
+        647,
+        690,
+        727,
+        733,
+        756,
+        838,
+        839,
+        845,
+        865,
+        905,
+        930,
+        951,
+        968,
+        1011,
+        1026,
+        1033,
+        1070,
+        1093,
+        1160,
+        1342,
+        1344,
+        1389,
+        1416,
+        1454,
+        1523,
+        1537,
+        1639,
+        1701,
+        1740,
+        1750,
+        1778,
+        1815,
+        1837,
+        1845,
+        1847,
+        1866,
+        1879,
+        1889,
+        1925,
+        1932,
+        1946,
+        1984,
+        2002,
+        2007,
+        2079,
+        2142,
+        2281,
+        2324,
+        2338,
+        2396,
+        2409,
+        2412,
+        2500,
+        2518,
+        2609,
+        2627,
+        2652,
+        2737,
+        2749,
+        2767,
+        2811,
+        2836,
+        2866,
+        2869,
+        2873,
+        2917,
+        2940,
+        2974,
+        2990,
+        3018,
+        3046,
+        3118,
+        3167,
+        3174,
+        3177,
+        3191,
+        3201,
+        3239,
+        3241,
+        3243,
+        3312,
+        3366,
+        3406,
+        3442,
+        3449,
+        3451,
+        3460,
+        3498,
+        3519,
+        3550,
+        3554,
+        3565,
+        3566,
+        3580,
+        3604,
+        3628,
+        3684,
+        3714,
+        3843,
+        3847,
+        3848,
+        3916,
+        3923,
+        3931,
+        3972,
+        4003,
+        4016,
+        4032,
+        4095
+      ],
+      "sample_rows": [
+        0,
+        24,
+        165,
+        236,
+        253,
+        256,
+        257,
+        270,
+        275,
+        292,
+        329,
+        367,
+        375,
+        447,
+        499,
+        516,
+        519,
+        530,
+        547,
+        566,
+        576,
+        640,
+        661,
+        673,
+        682,
+        749,
+        892,
+        914,
+        949,
+        1007,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "mistral7b_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "quadrant_scratch",
+      "algorithm": "cubic_quadrant",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved",
+      "vmem_limit_bytes": 50331648
+    },
+    "mean_ms": 1.015306,
+    "median_ms": 1.014405,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "quadrant_scratch",
+      "algorithm": "cubic_quadrant",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved",
+      "vmem_limit_bytes": 50331648
+    },
+    "preparation_raw_ms": [
+      0.8478,
+      0.77676,
+      0.768139,
+      0.75616,
+      0.751869
+    ],
+    "raw_ms": [
+      0.99561,
+      0.99085,
+      1.01904,
+      0.99857,
+      1.047389,
+      1.04658,
+      0.99591,
+      1.01578,
+      1.0367,
+      1.0177,
+      1.01188,
+      1.02295,
+      1.03066,
+      1.01303,
+      1.00522,
+      1.0028,
+      0.98332,
+      1.00389,
+      1.03502,
+      1.02317,
+      1.00529,
+      1.024531,
+      1.00499,
+      0.99382,
+      0.98615,
+      1.02014,
+      0.98437,
+      1.03534,
+      1.07154,
+      1.03694
+    ],
+    "scope": "prepared_kernel",
+    "shape_mkn": [
+      1024,
+      14336,
+      4096
+    ],
+    "status": "ok",
+    "std_ms": 0.02110406416325766,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 1.07154,
+      "mean_ms": 1.015306,
+      "median_ms": 1.014405,
+      "min_ms": 0.98332,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.99561,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.99085,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 1.01904,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.99857,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 1.047389,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 1.04658,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.99591,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 1.01578,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 1.0367,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 1.0177,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 1.01188,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 1.02295,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 1.03066,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 1.01303,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 1.00522,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 1.0028,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.98332,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 1.00389,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 1.03502,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 1.02317,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 1.00529,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 1.024531,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 1.00499,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.99382,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.98615,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 1.02014,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.98437,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 1.03534,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 1.07154,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 1.03694,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.02110406416325766
+    },
+    "variant": "interleaved"
+  },
+  {
+    "algorithm": "cubic_quadrant",
+    "arm_id": "cubic_quadrant_fused",
+    "comparisons": [
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_quadrant_unpacked_unfused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.0867538244688564,
+          1.1093114281106202
+        ],
+        "speedup_ratio_of_means": 1.0972385718369664,
+        "time_reduction_fraction": 0.08862117531483815,
+        "valid_numerical_comparison": true
+      }
+    ],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.0,
+      "max_abs_reference": 4.8125,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.0,
+      "sample_columns": [
+        0,
+        38,
+        56,
+        102,
+        123,
+        165,
+        172,
+        197,
+        201,
+        263,
+        264,
+        290,
+        444,
+        470,
+        517,
+        587,
+        606,
+        610,
+        618,
+        647,
+        690,
+        727,
+        733,
+        756,
+        838,
+        839,
+        845,
+        865,
+        905,
+        930,
+        951,
+        968,
+        1011,
+        1026,
+        1033,
+        1070,
+        1093,
+        1160,
+        1342,
+        1344,
+        1389,
+        1416,
+        1454,
+        1523,
+        1537,
+        1639,
+        1701,
+        1740,
+        1750,
+        1778,
+        1815,
+        1837,
+        1845,
+        1847,
+        1866,
+        1879,
+        1889,
+        1925,
+        1932,
+        1946,
+        1984,
+        2002,
+        2007,
+        2079,
+        2142,
+        2281,
+        2324,
+        2338,
+        2396,
+        2409,
+        2412,
+        2500,
+        2518,
+        2609,
+        2627,
+        2652,
+        2737,
+        2749,
+        2767,
+        2811,
+        2836,
+        2866,
+        2869,
+        2873,
+        2917,
+        2940,
+        2974,
+        2990,
+        3018,
+        3046,
+        3118,
+        3167,
+        3174,
+        3177,
+        3191,
+        3201,
+        3239,
+        3241,
+        3243,
+        3312,
+        3366,
+        3406,
+        3442,
+        3449,
+        3451,
+        3460,
+        3498,
+        3519,
+        3550,
+        3554,
+        3565,
+        3566,
+        3580,
+        3604,
+        3628,
+        3684,
+        3714,
+        3843,
+        3847,
+        3848,
+        3916,
+        3923,
+        3931,
+        3972,
+        4003,
+        4016,
+        4032,
+        4095
+      ],
+      "sample_rows": [
+        0,
+        24,
+        165,
+        236,
+        253,
+        256,
+        257,
+        270,
+        275,
+        292,
+        329,
+        367,
+        375,
+        447,
+        499,
+        516,
+        519,
+        530,
+        547,
+        566,
+        576,
+        640,
+        661,
+        673,
+        682,
+        749,
+        892,
+        914,
+        949,
+        1007,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "mistral7b_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "cubic_quadrant",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "mean_ms": 0.9188119999999999,
+    "median_ms": 0.91962,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "cubic_quadrant",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "preparation_raw_ms": [
+      0.82748,
+      0.77072,
+      0.75755,
+      0.75162,
+      0.75981
+    ],
+    "raw_ms": [
+      0.89895,
+      0.92993,
+      0.928079,
+      0.9107,
+      0.89639,
+      0.88918,
+      0.91901,
+      0.93052,
+      0.92502,
+      0.93415,
+      0.91829,
+      0.92937,
+      0.91297,
+      0.93355,
+      0.92708,
+      0.94549,
+      0.92031,
+      0.90273,
+      0.92023,
+      0.89794,
+      0.91328,
+      0.93685,
+      0.91419,
+      0.93502,
+      0.98864,
+      0.94606,
+      0.883971,
+      0.88805,
+      0.88513,
+      0.90328
+    ],
+    "scope": "call",
+    "shape_mkn": [
+      1024,
+      14336,
+      4096
+    ],
+    "status": "ok",
+    "std_ms": 0.02204817520168366,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.98864,
+      "mean_ms": 0.9188119999999999,
+      "median_ms": 0.91962,
+      "min_ms": 0.883971,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.89895,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.92993,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.928079,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.9107,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.89639,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.88918,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.91901,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.93052,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.92502,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.93415,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.91829,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.92937,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.91297,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.93355,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.92708,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.94549,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.92031,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.90273,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.92023,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.89794,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.91328,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.93685,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.91419,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.93502,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.98864,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.94606,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.883971,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.88805,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.88513,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.90328,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.02204817520168366
+    },
+    "variant": "interleaved"
+  },
+  {
+    "algorithm": "cubic_quadrant",
+    "arm_id": "cubic_quadrant_fused",
+    "comparisons": [
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_quadrant_unpacked_unfused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.0806195891297687,
+          1.109862210597102
+        ],
+        "speedup_ratio_of_means": 1.0966172443563738,
+        "time_reduction_fraction": 0.08810480124547038,
+        "valid_numerical_comparison": true
+      }
+    ],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.0,
+      "max_abs_reference": 4.8125,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.0,
+      "sample_columns": [
+        0,
+        38,
+        56,
+        102,
+        123,
+        165,
+        172,
+        197,
+        201,
+        263,
+        264,
+        290,
+        444,
+        470,
+        517,
+        587,
+        606,
+        610,
+        618,
+        647,
+        690,
+        727,
+        733,
+        756,
+        838,
+        839,
+        845,
+        865,
+        905,
+        930,
+        951,
+        968,
+        1011,
+        1026,
+        1033,
+        1070,
+        1093,
+        1160,
+        1342,
+        1344,
+        1389,
+        1416,
+        1454,
+        1523,
+        1537,
+        1639,
+        1701,
+        1740,
+        1750,
+        1778,
+        1815,
+        1837,
+        1845,
+        1847,
+        1866,
+        1879,
+        1889,
+        1925,
+        1932,
+        1946,
+        1984,
+        2002,
+        2007,
+        2079,
+        2142,
+        2281,
+        2324,
+        2338,
+        2396,
+        2409,
+        2412,
+        2500,
+        2518,
+        2609,
+        2627,
+        2652,
+        2737,
+        2749,
+        2767,
+        2811,
+        2836,
+        2866,
+        2869,
+        2873,
+        2917,
+        2940,
+        2974,
+        2990,
+        3018,
+        3046,
+        3118,
+        3167,
+        3174,
+        3177,
+        3191,
+        3201,
+        3239,
+        3241,
+        3243,
+        3312,
+        3366,
+        3406,
+        3442,
+        3449,
+        3451,
+        3460,
+        3498,
+        3519,
+        3550,
+        3554,
+        3565,
+        3566,
+        3580,
+        3604,
+        3628,
+        3684,
+        3714,
+        3843,
+        3847,
+        3848,
+        3916,
+        3923,
+        3931,
+        3972,
+        4003,
+        4016,
+        4032,
+        4095
+      ],
+      "sample_rows": [
+        0,
+        24,
+        165,
+        236,
+        253,
+        256,
+        257,
+        270,
+        275,
+        292,
+        329,
+        367,
+        375,
+        447,
+        499,
+        516,
+        519,
+        530,
+        547,
+        566,
+        576,
+        640,
+        661,
+        673,
+        682,
+        749,
+        892,
+        914,
+        949,
+        1007,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "mistral7b_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "cubic_quadrant",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "mean_ms": 0.9258526666666665,
+    "median_ms": 0.9197195,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "cubic_quadrant",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "preparation_raw_ms": [
+      0.82748,
+      0.77072,
+      0.75755,
+      0.75162,
+      0.75981
+    ],
+    "raw_ms": [
+      0.93844,
+      0.93271,
+      0.93585,
+      0.9208,
+      0.91598,
+      0.99161,
+      0.90293,
+      0.92766,
+      0.92928,
+      0.93946,
+      0.91976,
+      0.91325,
+      0.91621,
+      0.91354,
+      0.90141,
+      0.9144,
+      0.89201,
+      1.05763,
+      0.92653,
+      0.92987,
+      0.92261,
+      0.94968,
+      0.909191,
+      0.89337,
+      0.93402,
+      0.91209,
+      0.90581,
+      0.89507,
+      0.91473,
+      0.919679
+    ],
+    "scope": "prepared_kernel",
+    "shape_mkn": [
+      1024,
+      14336,
+      4096
+    ],
+    "status": "ok",
+    "std_ms": 0.03154230984952876,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 1.05763,
+      "mean_ms": 0.9258526666666665,
+      "median_ms": 0.9197195,
+      "min_ms": 0.89201,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.93844,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.93271,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.93585,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.9208,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.91598,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.99161,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.90293,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.92766,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.92928,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.93946,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.91976,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.91325,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.91621,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.91354,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.90141,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.9144,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.89201,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 1.05763,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.92653,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.92987,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.92261,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.94968,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.909191,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.89337,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.93402,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.91209,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.90581,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.89507,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.91473,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.919679,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.03154230984952876
+    },
+    "variant": "interleaved"
+  },
+  {
+    "algorithm": "strassen",
+    "arm_id": "strassen_unpacked_unfused",
+    "comparisons": [
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "native_joint_graph",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.181513813558533,
+          1.2049116444129395
+        ],
+        "speedup_ratio_of_means": 1.192944115683644,
+        "time_reduction_fraction": 0.16173776553906127,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_full_unpacked_unfused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.051502102926859,
+          1.0735094774415883
+        ],
+        "speedup_ratio_of_means": 1.0620742313421647,
+        "time_reduction_fraction": 0.05844622674228739,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_quadrant_unpacked_unfused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.1188169994270374,
+          1.1358447234617195
+        ],
+        "speedup_ratio_of_means": 1.127375597935686,
+        "time_reduction_fraction": 0.11298417152980866,
+        "valid_numerical_comparison": true
+      }
+    ],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.0234375,
+      "max_abs_reference": 4.8125,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.00410183601762733,
+      "sample_columns": [
+        0,
+        38,
+        56,
+        102,
+        123,
+        165,
+        172,
+        197,
+        201,
+        263,
+        264,
+        290,
+        444,
+        470,
+        517,
+        587,
+        606,
+        610,
+        618,
+        647,
+        690,
+        727,
+        733,
+        756,
+        838,
+        839,
+        845,
+        865,
+        905,
+        930,
+        951,
+        968,
+        1011,
+        1026,
+        1033,
+        1070,
+        1093,
+        1160,
+        1342,
+        1344,
+        1389,
+        1416,
+        1454,
+        1523,
+        1537,
+        1639,
+        1701,
+        1740,
+        1750,
+        1778,
+        1815,
+        1837,
+        1845,
+        1847,
+        1866,
+        1879,
+        1889,
+        1925,
+        1932,
+        1946,
+        1984,
+        2002,
+        2007,
+        2079,
+        2142,
+        2281,
+        2324,
+        2338,
+        2396,
+        2409,
+        2412,
+        2500,
+        2518,
+        2609,
+        2627,
+        2652,
+        2737,
+        2749,
+        2767,
+        2811,
+        2836,
+        2866,
+        2869,
+        2873,
+        2917,
+        2940,
+        2974,
+        2990,
+        3018,
+        3046,
+        3118,
+        3167,
+        3174,
+        3177,
+        3191,
+        3201,
+        3239,
+        3241,
+        3243,
+        3312,
+        3366,
+        3406,
+        3442,
+        3449,
+        3451,
+        3460,
+        3498,
+        3519,
+        3550,
+        3554,
+        3565,
+        3566,
+        3580,
+        3604,
+        3628,
+        3684,
+        3714,
+        3843,
+        3847,
+        3848,
+        3916,
+        3923,
+        3931,
+        3972,
+        4003,
+        4016,
+        4032,
+        4095
+      ],
+      "sample_rows": [
+        0,
+        24,
+        165,
+        236,
+        253,
+        256,
+        257,
+        270,
+        275,
+        292,
+        329,
+        367,
+        375,
+        447,
+        499,
+        516,
+        519,
+        530,
+        547,
+        566,
+        576,
+        640,
+        661,
+        673,
+        682,
+        749,
+        892,
+        914,
+        949,
+        1007,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "mistral7b_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "quadrant_scratch",
+      "algorithm": "strassen",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": [
+        4,
+        6,
+        5,
+        2,
+        7,
+        3,
+        1
+      ],
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "strassen_combination_dtype": "bfloat16",
+      "strassen_levels_per_tile": 1,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved",
+      "vmem_limit_bytes": 50331648
+    },
+    "mean_ms": 0.8942502999999999,
+    "median_ms": 0.892695,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "quadrant_scratch",
+      "algorithm": "strassen",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": [
+        4,
+        6,
+        5,
+        2,
+        7,
+        3,
+        1
+      ],
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "strassen_combination_dtype": "bfloat16",
+      "strassen_levels_per_tile": 1,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved",
+      "vmem_limit_bytes": 50331648
+    },
+    "preparation_raw_ms": [
+      0.82088,
+      0.75933,
+      0.76956,
+      0.75097,
+      0.74853
+    ],
+    "raw_ms": [
+      0.88364,
+      0.88849,
+      0.8873,
+      0.89139,
+      0.87473,
+      0.8694,
+      0.89387,
+      0.908851,
+      0.94378,
+      0.91096,
+      0.89517,
+      0.89906,
+      0.8917,
+      0.91714,
+      0.89927,
+      0.947329,
+      0.89162,
+      0.88498,
+      0.89956,
+      0.89648,
+      0.85228,
+      0.89369,
+      0.88777,
+      0.91305,
+      0.92878,
+      0.89377,
+      0.86779,
+      0.87358,
+      0.863169,
+      0.87891
+    ],
+    "scope": "call",
+    "shape_mkn": [
+      1024,
+      14336,
+      4096
+    ],
+    "status": "ok",
+    "std_ms": 0.021454121620171344,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.947329,
+      "mean_ms": 0.8942502999999999,
+      "median_ms": 0.892695,
+      "min_ms": 0.85228,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.88364,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.88849,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.8873,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.89139,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.87473,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.8694,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.89387,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.908851,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.94378,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.91096,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.89517,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.89906,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.8917,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.91714,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.89927,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.947329,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.89162,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.88498,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.89956,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.89648,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.85228,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.89369,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.88777,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.91305,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.92878,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.89377,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.86779,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.87358,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.863169,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.87891,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.021454121620171344
+    },
+    "variant": "interleaved"
+  },
+  {
+    "algorithm": "strassen",
+    "arm_id": "strassen_unpacked_unfused",
+    "comparisons": [
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "native_joint_graph",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.165952709551777,
+          1.1848264630762189
+        ],
+        "speedup_ratio_of_means": 1.1758239078275154,
+        "time_reduction_fraction": 0.1495325164397895,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_full_unpacked_unfused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.0326593777472308,
+          1.0528565662331797
+        ],
+        "speedup_ratio_of_means": 1.0429083776059314,
+        "time_reduction_fraction": 0.04114299829907453,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_quadrant_unpacked_unfused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.1123913855355405,
+          1.1379784141051847
+        ],
+        "speedup_ratio_of_means": 1.1254988253813987,
+        "time_reduction_fraction": 0.11150507006426302,
+        "valid_numerical_comparison": true
+      }
+    ],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.0234375,
+      "max_abs_reference": 4.8125,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.00410183601762733,
+      "sample_columns": [
+        0,
+        38,
+        56,
+        102,
+        123,
+        165,
+        172,
+        197,
+        201,
+        263,
+        264,
+        290,
+        444,
+        470,
+        517,
+        587,
+        606,
+        610,
+        618,
+        647,
+        690,
+        727,
+        733,
+        756,
+        838,
+        839,
+        845,
+        865,
+        905,
+        930,
+        951,
+        968,
+        1011,
+        1026,
+        1033,
+        1070,
+        1093,
+        1160,
+        1342,
+        1344,
+        1389,
+        1416,
+        1454,
+        1523,
+        1537,
+        1639,
+        1701,
+        1740,
+        1750,
+        1778,
+        1815,
+        1837,
+        1845,
+        1847,
+        1866,
+        1879,
+        1889,
+        1925,
+        1932,
+        1946,
+        1984,
+        2002,
+        2007,
+        2079,
+        2142,
+        2281,
+        2324,
+        2338,
+        2396,
+        2409,
+        2412,
+        2500,
+        2518,
+        2609,
+        2627,
+        2652,
+        2737,
+        2749,
+        2767,
+        2811,
+        2836,
+        2866,
+        2869,
+        2873,
+        2917,
+        2940,
+        2974,
+        2990,
+        3018,
+        3046,
+        3118,
+        3167,
+        3174,
+        3177,
+        3191,
+        3201,
+        3239,
+        3241,
+        3243,
+        3312,
+        3366,
+        3406,
+        3442,
+        3449,
+        3451,
+        3460,
+        3498,
+        3519,
+        3550,
+        3554,
+        3565,
+        3566,
+        3580,
+        3604,
+        3628,
+        3684,
+        3714,
+        3843,
+        3847,
+        3848,
+        3916,
+        3923,
+        3931,
+        3972,
+        4003,
+        4016,
+        4032,
+        4095
+      ],
+      "sample_rows": [
+        0,
+        24,
+        165,
+        236,
+        253,
+        256,
+        257,
+        270,
+        275,
+        292,
+        329,
+        367,
+        375,
+        447,
+        499,
+        516,
+        519,
+        530,
+        547,
+        566,
+        576,
+        640,
+        661,
+        673,
+        682,
+        749,
+        892,
+        914,
+        949,
+        1007,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "mistral7b_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "quadrant_scratch",
+      "algorithm": "strassen",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": [
+        4,
+        6,
+        5,
+        2,
+        7,
+        3,
+        1
+      ],
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "strassen_combination_dtype": "bfloat16",
+      "strassen_levels_per_tile": 1,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved",
+      "vmem_limit_bytes": 50331648
+    },
+    "mean_ms": 0.9020942333333334,
+    "median_ms": 0.90053,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "quadrant_scratch",
+      "algorithm": "strassen",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": [
+        4,
+        6,
+        5,
+        2,
+        7,
+        3,
+        1
+      ],
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "strassen_combination_dtype": "bfloat16",
+      "strassen_levels_per_tile": 1,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved",
+      "vmem_limit_bytes": 50331648
+    },
+    "preparation_raw_ms": [
+      0.82088,
+      0.75933,
+      0.76956,
+      0.75097,
+      0.74853
+    ],
+    "raw_ms": [
+      0.914729,
+      0.95276,
+      0.89262,
+      0.90367,
+      0.89598,
+      0.9064,
+      0.870569,
+      0.92112,
+      0.90102,
+      0.91223,
+      0.90613,
+      0.896109,
+      0.91032,
+      0.89398,
+      0.90679,
+      0.88901,
+      0.90417,
+      0.9484,
+      0.90004,
+      0.888011,
+      0.89494,
+      0.88762,
+      0.90246,
+      0.87577,
+      0.92667,
+      0.895829,
+      0.8791,
+      0.88768,
+      0.87773,
+      0.92097
+    ],
+    "scope": "prepared_kernel",
+    "shape_mkn": [
+      1024,
+      14336,
+      4096
+    ],
+    "status": "ok",
+    "std_ms": 0.018889795682952164,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.95276,
+      "mean_ms": 0.9020942333333334,
+      "median_ms": 0.90053,
+      "min_ms": 0.870569,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.914729,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.95276,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.89262,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.90367,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.89598,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.9064,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.870569,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.92112,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.90102,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.91223,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.90613,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.896109,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.91032,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.89398,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.90679,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.88901,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.90417,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.9484,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.90004,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.888011,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.89494,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.88762,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.90246,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.87577,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.92667,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.895829,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.8791,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.88768,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.87773,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.92097,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.018889795682952164
+    },
+    "variant": "interleaved"
+  },
+  {
+    "algorithm": "strassen",
+    "arm_id": "strassen_fused",
+    "comparisons": [
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "strassen_unpacked_unfused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.025544834838925,
+          1.0564306950760254
+        ],
+        "speedup_ratio_of_means": 1.0413506209188066,
+        "time_reduction_fraction": 0.0397086438401717,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "native_joint_graph",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.2262209978058263,
+          1.2584587409343533
+        ],
+        "speedup_ratio_of_means": 1.2422730955885992,
+        "time_reduction_fraction": 0.19502402205193714,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_full_fused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.0587925642245055,
+          1.08646453860891
+        ],
+        "speedup_ratio_of_means": 1.073055918112663,
+        "time_reduction_fraction": 0.06808211657893559,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_quadrant_fused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.0536531078471008,
+          1.085578431566212
+        ],
+        "speedup_ratio_of_means": 1.0699526147295118,
+        "time_reduction_fraction": 0.06537917078430255,
+        "valid_numerical_comparison": true
+      }
+    ],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 4.8125,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.004027646011045769,
+      "sample_columns": [
+        0,
+        38,
+        56,
+        102,
+        123,
+        165,
+        172,
+        197,
+        201,
+        263,
+        264,
+        290,
+        444,
+        470,
+        517,
+        587,
+        606,
+        610,
+        618,
+        647,
+        690,
+        727,
+        733,
+        756,
+        838,
+        839,
+        845,
+        865,
+        905,
+        930,
+        951,
+        968,
+        1011,
+        1026,
+        1033,
+        1070,
+        1093,
+        1160,
+        1342,
+        1344,
+        1389,
+        1416,
+        1454,
+        1523,
+        1537,
+        1639,
+        1701,
+        1740,
+        1750,
+        1778,
+        1815,
+        1837,
+        1845,
+        1847,
+        1866,
+        1879,
+        1889,
+        1925,
+        1932,
+        1946,
+        1984,
+        2002,
+        2007,
+        2079,
+        2142,
+        2281,
+        2324,
+        2338,
+        2396,
+        2409,
+        2412,
+        2500,
+        2518,
+        2609,
+        2627,
+        2652,
+        2737,
+        2749,
+        2767,
+        2811,
+        2836,
+        2866,
+        2869,
+        2873,
+        2917,
+        2940,
+        2974,
+        2990,
+        3018,
+        3046,
+        3118,
+        3167,
+        3174,
+        3177,
+        3191,
+        3201,
+        3239,
+        3241,
+        3243,
+        3312,
+        3366,
+        3406,
+        3442,
+        3449,
+        3451,
+        3460,
+        3498,
+        3519,
+        3550,
+        3554,
+        3565,
+        3566,
+        3580,
+        3604,
+        3628,
+        3684,
+        3714,
+        3843,
+        3847,
+        3848,
+        3916,
+        3923,
+        3931,
+        3972,
+        4003,
+        4016,
+        4032,
+        4095
+      ],
+      "sample_rows": [
+        0,
+        24,
+        165,
+        236,
+        253,
+        256,
+        257,
+        270,
+        275,
+        292,
+        329,
+        367,
+        375,
+        447,
+        499,
+        516,
+        519,
+        530,
+        547,
+        566,
+        576,
+        640,
+        661,
+        673,
+        682,
+        749,
+        892,
+        914,
+        949,
+        1007,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "mistral7b_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "strassen",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "mean_ms": 0.8587408333333333,
+    "median_ms": 0.8478945,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "strassen",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "preparation_raw_ms": [
+      0.8506,
+      0.78087,
+      0.78869,
+      0.75197,
+      0.75096
+    ],
+    "raw_ms": [
+      0.84086,
+      0.84438,
+      0.84681,
+      0.83977,
+      0.90288,
+      0.93968,
+      0.848069,
+      0.85663,
+      0.84873,
+      0.88401,
+      0.846489,
+      0.81982,
+      0.85271,
+      0.85347,
+      0.94521,
+      0.8648,
+      0.84772,
+      0.84633,
+      0.866389,
+      0.83571,
+      0.832809,
+      0.84477,
+      0.89407,
+      0.91844,
+      0.85532,
+      0.85326,
+      0.81279,
+      0.84596,
+      0.82976,
+      0.844579
+    ],
+    "scope": "call",
+    "shape_mkn": [
+      1024,
+      14336,
+      4096
+    ],
+    "status": "ok",
+    "std_ms": 0.031909692184602656,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.94521,
+      "mean_ms": 0.8587408333333333,
+      "median_ms": 0.8478945,
+      "min_ms": 0.81279,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.84086,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.84438,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.84681,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.83977,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.90288,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.93968,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.848069,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.85663,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.84873,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.88401,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.846489,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.81982,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.85271,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.85347,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.94521,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.8648,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.84772,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.84633,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.866389,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.83571,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.832809,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.84477,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.89407,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.91844,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.85532,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.85326,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.81279,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.84596,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.82976,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.844579,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.031909692184602656
+    },
+    "variant": "interleaved"
+  },
+  {
+    "algorithm": "strassen",
+    "arm_id": "strassen_fused",
+    "comparisons": [
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "strassen_unpacked_unfused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.0381441398344795,
+          1.0574066018284807
+        ],
+        "speedup_ratio_of_means": 1.0478947047853466,
+        "time_reduction_fraction": 0.04570564634655494,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "native_joint_graph",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.2178712251384045,
+          1.2445494388485248
+        ],
+        "speedup_ratio_of_means": 1.232139646772467,
+        "time_reduction_fraction": 0.18840368247263695,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_full_fused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.0597439390564514,
+          1.0860297293784615
+        ],
+        "speedup_ratio_of_means": 1.073118953478606,
+        "time_reduction_fraction": 0.06813685774683675,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_quadrant_fused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.0662037161419204,
+          1.0852443218741459
+        ],
+        "speedup_ratio_of_means": 1.0754930815003831,
+        "time_reduction_fraction": 0.07019392574340455,
+        "valid_numerical_comparison": true
+      }
+    ],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 4.8125,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.004027646011045769,
+      "sample_columns": [
+        0,
+        38,
+        56,
+        102,
+        123,
+        165,
+        172,
+        197,
+        201,
+        263,
+        264,
+        290,
+        444,
+        470,
+        517,
+        587,
+        606,
+        610,
+        618,
+        647,
+        690,
+        727,
+        733,
+        756,
+        838,
+        839,
+        845,
+        865,
+        905,
+        930,
+        951,
+        968,
+        1011,
+        1026,
+        1033,
+        1070,
+        1093,
+        1160,
+        1342,
+        1344,
+        1389,
+        1416,
+        1454,
+        1523,
+        1537,
+        1639,
+        1701,
+        1740,
+        1750,
+        1778,
+        1815,
+        1837,
+        1845,
+        1847,
+        1866,
+        1879,
+        1889,
+        1925,
+        1932,
+        1946,
+        1984,
+        2002,
+        2007,
+        2079,
+        2142,
+        2281,
+        2324,
+        2338,
+        2396,
+        2409,
+        2412,
+        2500,
+        2518,
+        2609,
+        2627,
+        2652,
+        2737,
+        2749,
+        2767,
+        2811,
+        2836,
+        2866,
+        2869,
+        2873,
+        2917,
+        2940,
+        2974,
+        2990,
+        3018,
+        3046,
+        3118,
+        3167,
+        3174,
+        3177,
+        3191,
+        3201,
+        3239,
+        3241,
+        3243,
+        3312,
+        3366,
+        3406,
+        3442,
+        3449,
+        3451,
+        3460,
+        3498,
+        3519,
+        3550,
+        3554,
+        3565,
+        3566,
+        3580,
+        3604,
+        3628,
+        3684,
+        3714,
+        3843,
+        3847,
+        3848,
+        3916,
+        3923,
+        3931,
+        3972,
+        4003,
+        4016,
+        4032,
+        4095
+      ],
+      "sample_rows": [
+        0,
+        24,
+        165,
+        236,
+        253,
+        256,
+        257,
+        270,
+        275,
+        292,
+        329,
+        367,
+        375,
+        447,
+        499,
+        516,
+        519,
+        530,
+        547,
+        566,
+        576,
+        640,
+        661,
+        673,
+        682,
+        749,
+        892,
+        914,
+        949,
+        1007,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "mistral7b_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "strassen",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "mean_ms": 0.8608634333333335,
+    "median_ms": 0.8542095000000001,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "strassen",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "preparation_raw_ms": [
+      0.8506,
+      0.78087,
+      0.78869,
+      0.75197,
+      0.75096
+    ],
+    "raw_ms": [
+      0.90814,
+      0.8469,
+      0.84368,
+      0.86213,
+      0.85604,
+      0.855189,
+      0.84342,
+      0.84733,
+      0.88566,
+      0.87919,
+      0.851109,
+      0.84427,
+      0.867029,
+      0.85176,
+      0.845269,
+      0.84038,
+      0.862379,
+      0.95519,
+      0.86186,
+      0.86754,
+      0.848679,
+      0.87023,
+      0.83066,
+      0.82576,
+      0.85499,
+      0.88313,
+      0.84504,
+      0.84765,
+      0.853429,
+      0.89187
+    ],
+    "scope": "prepared_kernel",
+    "shape_mkn": [
+      1024,
+      14336,
+      4096
+    ],
+    "status": "ok",
+    "std_ms": 0.025374910098951778,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.95519,
+      "mean_ms": 0.8608634333333335,
+      "median_ms": 0.8542095000000001,
+      "min_ms": 0.82576,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.90814,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.8469,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.84368,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.86213,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.85604,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.855189,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.84342,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.84733,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.88566,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.87919,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.851109,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.84427,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.867029,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.85176,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.845269,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.84038,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.862379,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.95519,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.86186,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.86754,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.848679,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.87023,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.83066,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.82576,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.85499,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.88313,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.84504,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.84765,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.853429,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.89187,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.025374910098951778
+    },
+    "variant": "interleaved"
+  },
+  {
+    "algorithm": "strassen",
+    "arm_id": "strassen_early",
+    "comparisons": [
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "strassen_fused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9497454921816475,
+          0.9758840886203273
+        ],
+        "speedup_ratio_of_means": 0.962734949073627,
+        "time_reduction_fraction": -0.03870748741616836,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "native_joint_graph",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.183248513647462,
+          1.2088144649147818
+        ],
+        "speedup_ratio_of_means": 1.195979725417027,
+        "time_reduction_fraction": 0.1638654245151946,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_full_fused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.023099833424896,
+          1.0428885601973048
+        ],
+        "speedup_ratio_of_means": 1.0330684346773489,
+        "time_reduction_fraction": 0.0320099168335124,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_quadrant_fused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.0199486830578124,
+          1.0403987949459874
+        ],
+        "speedup_ratio_of_means": 1.0300807760528106,
+        "time_reduction_fraction": 0.029202346798547052,
+        "valid_numerical_comparison": true
+      }
+    ],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 4.8125,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.004027646011045769,
+      "sample_columns": [
+        0,
+        38,
+        56,
+        102,
+        123,
+        165,
+        172,
+        197,
+        201,
+        263,
+        264,
+        290,
+        444,
+        470,
+        517,
+        587,
+        606,
+        610,
+        618,
+        647,
+        690,
+        727,
+        733,
+        756,
+        838,
+        839,
+        845,
+        865,
+        905,
+        930,
+        951,
+        968,
+        1011,
+        1026,
+        1033,
+        1070,
+        1093,
+        1160,
+        1342,
+        1344,
+        1389,
+        1416,
+        1454,
+        1523,
+        1537,
+        1639,
+        1701,
+        1740,
+        1750,
+        1778,
+        1815,
+        1837,
+        1845,
+        1847,
+        1866,
+        1879,
+        1889,
+        1925,
+        1932,
+        1946,
+        1984,
+        2002,
+        2007,
+        2079,
+        2142,
+        2281,
+        2324,
+        2338,
+        2396,
+        2409,
+        2412,
+        2500,
+        2518,
+        2609,
+        2627,
+        2652,
+        2737,
+        2749,
+        2767,
+        2811,
+        2836,
+        2866,
+        2869,
+        2873,
+        2917,
+        2940,
+        2974,
+        2990,
+        3018,
+        3046,
+        3118,
+        3167,
+        3174,
+        3177,
+        3191,
+        3201,
+        3239,
+        3241,
+        3243,
+        3312,
+        3366,
+        3406,
+        3442,
+        3449,
+        3451,
+        3460,
+        3498,
+        3519,
+        3550,
+        3554,
+        3565,
+        3566,
+        3580,
+        3604,
+        3628,
+        3684,
+        3714,
+        3843,
+        3847,
+        3848,
+        3916,
+        3923,
+        3931,
+        3972,
+        4003,
+        4016,
+        4032,
+        4095
+      ],
+      "sample_rows": [
+        0,
+        24,
+        165,
+        236,
+        253,
+        256,
+        257,
+        270,
+        275,
+        292,
+        329,
+        367,
+        375,
+        447,
+        499,
+        516,
+        519,
+        530,
+        547,
+        566,
+        576,
+        640,
+        661,
+        673,
+        682,
+        749,
+        892,
+        914,
+        949,
+        1007,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "mistral7b_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "strassen",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "early_finalization",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "mean_ms": 0.8919805333333333,
+    "median_ms": 0.89017,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "strassen",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "early_finalization",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "preparation_raw_ms": [
+      0.8793,
+      0.78647,
+      0.77361,
+      0.77661,
+      0.80204
+    ],
+    "raw_ms": [
+      0.94669,
+      0.87112,
+      0.92372,
+      0.882811,
+      0.8833,
+      0.88813,
+      0.88263,
+      0.91943,
+      0.91612,
+      0.893409,
+      0.90653,
+      0.89249,
+      0.901099,
+      0.90306,
+      0.9066,
+      0.89675,
+      0.8717,
+      0.883789,
+      0.8909,
+      0.87396,
+      0.89726,
+      0.8819,
+      0.92492,
+      0.88944,
+      0.88254,
+      0.903579,
+      0.87518,
+      0.86204,
+      0.85485,
+      0.853469
+    ],
+    "scope": "call",
+    "shape_mkn": [
+      1024,
+      14336,
+      4096
+    ],
+    "status": "ok",
+    "std_ms": 0.02115569667918334,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.94669,
+      "mean_ms": 0.8919805333333333,
+      "median_ms": 0.89017,
+      "min_ms": 0.853469,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.94669,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.87112,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.92372,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.882811,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.8833,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.88813,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.88263,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.91943,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.91612,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.893409,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.90653,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.89249,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.901099,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.90306,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.9066,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.89675,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.8717,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.883789,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.8909,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.87396,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.89726,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.8819,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.92492,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.88944,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.88254,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.903579,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.87518,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.86204,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.85485,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.853469,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.02115569667918334
+    },
+    "variant": "interleaved"
+  },
+  {
+    "algorithm": "strassen",
+    "arm_id": "strassen_early",
+    "comparisons": [
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "strassen_fused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9568664305518424,
+          0.9805250565139366
+        ],
+        "speedup_ratio_of_means": 0.9683322373657967,
+        "time_reduction_fraction": -0.03270340634362312,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "native_joint_graph",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.182372278177275,
+          1.2042904302814894
+        ],
+        "speedup_ratio_of_means": 1.1931205409062853,
+        "time_reduction_fraction": 0.16186171831355156,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_full_fused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.030264288521614,
+          1.0483831080127741
+        ],
+        "speedup_ratio_of_means": 1.039135677181581,
+        "time_reduction_fraction": 0.03766175874908617,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_quadrant_fused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.0299052834124218,
+          1.0549442852240107
+        ],
+        "speedup_ratio_of_means": 1.0414346218807011,
+        "time_reduction_fraction": 0.03978609987622217,
+        "valid_numerical_comparison": true
+      }
+    ],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 4.8125,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.004027646011045769,
+      "sample_columns": [
+        0,
+        38,
+        56,
+        102,
+        123,
+        165,
+        172,
+        197,
+        201,
+        263,
+        264,
+        290,
+        444,
+        470,
+        517,
+        587,
+        606,
+        610,
+        618,
+        647,
+        690,
+        727,
+        733,
+        756,
+        838,
+        839,
+        845,
+        865,
+        905,
+        930,
+        951,
+        968,
+        1011,
+        1026,
+        1033,
+        1070,
+        1093,
+        1160,
+        1342,
+        1344,
+        1389,
+        1416,
+        1454,
+        1523,
+        1537,
+        1639,
+        1701,
+        1740,
+        1750,
+        1778,
+        1815,
+        1837,
+        1845,
+        1847,
+        1866,
+        1879,
+        1889,
+        1925,
+        1932,
+        1946,
+        1984,
+        2002,
+        2007,
+        2079,
+        2142,
+        2281,
+        2324,
+        2338,
+        2396,
+        2409,
+        2412,
+        2500,
+        2518,
+        2609,
+        2627,
+        2652,
+        2737,
+        2749,
+        2767,
+        2811,
+        2836,
+        2866,
+        2869,
+        2873,
+        2917,
+        2940,
+        2974,
+        2990,
+        3018,
+        3046,
+        3118,
+        3167,
+        3174,
+        3177,
+        3191,
+        3201,
+        3239,
+        3241,
+        3243,
+        3312,
+        3366,
+        3406,
+        3442,
+        3449,
+        3451,
+        3460,
+        3498,
+        3519,
+        3550,
+        3554,
+        3565,
+        3566,
+        3580,
+        3604,
+        3628,
+        3684,
+        3714,
+        3843,
+        3847,
+        3848,
+        3916,
+        3923,
+        3931,
+        3972,
+        4003,
+        4016,
+        4032,
+        4095
+      ],
+      "sample_rows": [
+        0,
+        24,
+        165,
+        236,
+        253,
+        256,
+        257,
+        270,
+        275,
+        292,
+        329,
+        367,
+        375,
+        447,
+        499,
+        516,
+        519,
+        530,
+        547,
+        566,
+        576,
+        640,
+        661,
+        673,
+        682,
+        749,
+        892,
+        914,
+        949,
+        1007,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "mistral7b_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "strassen",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "early_finalization",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "mean_ms": 0.8890165999999999,
+    "median_ms": 0.8852345,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "strassen",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "early_finalization",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "preparation_raw_ms": [
+      0.8793,
+      0.78647,
+      0.77361,
+      0.77661,
+      0.80204
+    ],
+    "raw_ms": [
+      0.86388,
+      0.94065,
+      0.87852,
+      0.89028,
+      0.88252,
+      0.89686,
+      0.86296,
+      0.92195,
+      0.883739,
+      0.89135,
+      0.87462,
+      0.87925,
+      0.89664,
+      0.88084,
+      0.926331,
+      0.87502,
+      0.87253,
+      0.90633,
+      0.88676,
+      0.90204,
+      0.897209,
+      0.88686,
+      0.877959,
+      0.8747,
+      0.87119,
+      0.8737,
+      0.88673,
+      0.87544,
+      0.88912,
+      0.92452
+    ],
+    "scope": "prepared_kernel",
+    "shape_mkn": [
+      1024,
+      14336,
+      4096
+    ],
+    "status": "ok",
+    "std_ms": 0.019004360277542123,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.94065,
+      "mean_ms": 0.8890165999999999,
+      "median_ms": 0.8852345,
+      "min_ms": 0.86296,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.86388,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.94065,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.87852,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.89028,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.88252,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.89686,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.86296,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.92195,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.883739,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.89135,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.87462,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.87925,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.89664,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.88084,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.926331,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.87502,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.87253,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.90633,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.88676,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.90204,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.897209,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.88686,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.877959,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.8747,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.87119,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.8737,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.88673,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.87544,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.88912,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.92452,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.019004360277542123
+    },
+    "variant": "interleaved"
+  }
+]

@@ -1,0 +1,8148 @@
+[
+  {
+    "algorithm": "native",
+    "arm_id": "native_joint_graph",
+    "comparisons": [],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 5.90625,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.002579386259403016,
+      "sample_columns": [
+        0,
+        2,
+        8,
+        9,
+        10,
+        15,
+        18,
+        27,
+        29,
+        30,
+        47,
+        63,
+        76,
+        87,
+        102,
+        114,
+        127,
+        144,
+        174,
+        182,
+        184,
+        215,
+        219,
+        220,
+        221,
+        226,
+        229,
+        243,
+        246,
+        261,
+        263,
+        270,
+        275,
+        279,
+        315,
+        333,
+        341,
+        349,
+        350,
+        353,
+        355,
+        358,
+        373,
+        384,
+        389,
+        390,
+        393,
+        396,
+        400,
+        402,
+        411,
+        415,
+        417,
+        421,
+        430,
+        436,
+        437,
+        442,
+        464,
+        467,
+        479,
+        489,
+        495,
+        511,
+        526,
+        529,
+        533,
+        549,
+        552,
+        555,
+        563,
+        579,
+        580,
+        589,
+        597,
+        602,
+        623,
+        629,
+        637,
+        646,
+        653,
+        676,
+        689,
+        696,
+        707,
+        727,
+        729,
+        732,
+        741,
+        742,
+        746,
+        748,
+        752,
+        764,
+        772,
+        791,
+        792,
+        800,
+        802,
+        805,
+        810,
+        816,
+        829,
+        834,
+        836,
+        837,
+        848,
+        851,
+        852,
+        856,
+        864,
+        892,
+        901,
+        902,
+        919,
+        931,
+        944,
+        962,
+        964,
+        969,
+        984,
+        988,
+        991,
+        993,
+        1005,
+        1011,
+        1013,
+        1023
+      ],
+      "sample_rows": [
+        0,
+        106,
+        114,
+        129,
+        131,
+        153,
+        159,
+        177,
+        187,
+        201,
+        254,
+        291,
+        303,
+        315,
+        321,
+        365,
+        483,
+        570,
+        582,
+        591,
+        638,
+        677,
+        700,
+        716,
+        766,
+        802,
+        821,
+        884,
+        929,
+        999,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "qwen06_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "compiler_managed",
+      "algorithm": "native",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": null,
+      "variant": "plain",
+      "vmem_limit_bytes": null
+    },
+    "mean_ms": 0.2998013333333334,
+    "median_ms": 0.29724,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "compiler_managed",
+      "algorithm": "native",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": null,
+      "variant": "plain",
+      "vmem_limit_bytes": null
+    },
+    "preparation_raw_ms": [
+      0.47236,
+      0.3372,
+      0.2843,
+      0.29775,
+      0.30988
+    ],
+    "raw_ms": [
+      0.29304,
+      0.28273,
+      0.28702,
+      0.30686,
+      0.28004,
+      0.30678,
+      0.29296,
+      0.299209,
+      0.27936,
+      0.28426,
+      0.28874,
+      0.28861,
+      0.28525,
+      0.29799,
+      0.29596,
+      0.31595,
+      0.31879,
+      0.296271,
+      0.30581,
+      0.33371,
+      0.30921,
+      0.32086,
+      0.30549,
+      0.31342,
+      0.2965,
+      0.28587,
+      0.31942,
+      0.3106,
+      0.29798,
+      0.29535
+    ],
+    "scope": "call",
+    "shape_mkn": [
+      1024,
+      3072,
+      1024
+    ],
+    "status": "ok",
+    "std_ms": 0.013737197762564825,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.33371,
+      "mean_ms": 0.2998013333333334,
+      "median_ms": 0.29724,
+      "min_ms": 0.27936,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.29304,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.28273,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.28702,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.30686,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.28004,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.30678,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.29296,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.299209,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.27936,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.28426,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.28874,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.28861,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.28525,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.29799,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.29596,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.31595,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.31879,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.296271,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.30581,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.33371,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.30921,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.32086,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.30549,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.31342,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.2965,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.28587,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.31942,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.3106,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.29798,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.29535,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.013737197762564825
+    },
+    "variant": "plain"
+  },
+  {
+    "algorithm": "native",
+    "arm_id": "native_joint_graph",
+    "comparisons": [],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 5.90625,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.002579386259403016,
+      "sample_columns": [
+        0,
+        2,
+        8,
+        9,
+        10,
+        15,
+        18,
+        27,
+        29,
+        30,
+        47,
+        63,
+        76,
+        87,
+        102,
+        114,
+        127,
+        144,
+        174,
+        182,
+        184,
+        215,
+        219,
+        220,
+        221,
+        226,
+        229,
+        243,
+        246,
+        261,
+        263,
+        270,
+        275,
+        279,
+        315,
+        333,
+        341,
+        349,
+        350,
+        353,
+        355,
+        358,
+        373,
+        384,
+        389,
+        390,
+        393,
+        396,
+        400,
+        402,
+        411,
+        415,
+        417,
+        421,
+        430,
+        436,
+        437,
+        442,
+        464,
+        467,
+        479,
+        489,
+        495,
+        511,
+        526,
+        529,
+        533,
+        549,
+        552,
+        555,
+        563,
+        579,
+        580,
+        589,
+        597,
+        602,
+        623,
+        629,
+        637,
+        646,
+        653,
+        676,
+        689,
+        696,
+        707,
+        727,
+        729,
+        732,
+        741,
+        742,
+        746,
+        748,
+        752,
+        764,
+        772,
+        791,
+        792,
+        800,
+        802,
+        805,
+        810,
+        816,
+        829,
+        834,
+        836,
+        837,
+        848,
+        851,
+        852,
+        856,
+        864,
+        892,
+        901,
+        902,
+        919,
+        931,
+        944,
+        962,
+        964,
+        969,
+        984,
+        988,
+        991,
+        993,
+        1005,
+        1011,
+        1013,
+        1023
+      ],
+      "sample_rows": [
+        0,
+        106,
+        114,
+        129,
+        131,
+        153,
+        159,
+        177,
+        187,
+        201,
+        254,
+        291,
+        303,
+        315,
+        321,
+        365,
+        483,
+        570,
+        582,
+        591,
+        638,
+        677,
+        700,
+        716,
+        766,
+        802,
+        821,
+        884,
+        929,
+        999,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "qwen06_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "compiler_managed",
+      "algorithm": "native",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": null,
+      "variant": "plain",
+      "vmem_limit_bytes": null
+    },
+    "mean_ms": 0.3034416666666667,
+    "median_ms": 0.297935,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "compiler_managed",
+      "algorithm": "native",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": null,
+      "variant": "plain",
+      "vmem_limit_bytes": null
+    },
+    "preparation_raw_ms": [
+      0.47236,
+      0.3372,
+      0.2843,
+      0.29775,
+      0.30988
+    ],
+    "raw_ms": [
+      0.2865,
+      0.27223,
+      0.35063,
+      0.30185,
+      0.29086,
+      0.38345,
+      0.28554,
+      0.29392,
+      0.2948,
+      0.28904,
+      0.28911,
+      0.29473,
+      0.31746,
+      0.29028,
+      0.29968,
+      0.29652,
+      0.3035,
+      0.30814,
+      0.31318,
+      0.29554,
+      0.294,
+      0.29971,
+      0.35039,
+      0.2931,
+      0.28334,
+      0.30331,
+      0.30617,
+      0.29935,
+      0.31565,
+      0.30127
+    ],
+    "scope": "prepared_kernel",
+    "shape_mkn": [
+      1024,
+      3072,
+      1024
+    ],
+    "status": "ok",
+    "std_ms": 0.022462196607562265,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.38345,
+      "mean_ms": 0.3034416666666667,
+      "median_ms": 0.297935,
+      "min_ms": 0.27223,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.2865,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.27223,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.35063,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.30185,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.29086,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.38345,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.28554,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.29392,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.2948,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.28904,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.28911,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.29473,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.31746,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.29028,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.29968,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.29652,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.3035,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.30814,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.31318,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.29554,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.294,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.29971,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.35039,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.2931,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.28334,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.30331,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.30617,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.29935,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.31565,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.30127,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.022462196607562265
+    },
+    "variant": "plain"
+  },
+  {
+    "algorithm": "cubic_full",
+    "arm_id": "cubic_full_unpacked_unfused",
+    "comparisons": [],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 5.90625,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.002579386259403016,
+      "sample_columns": [
+        0,
+        2,
+        8,
+        9,
+        10,
+        15,
+        18,
+        27,
+        29,
+        30,
+        47,
+        63,
+        76,
+        87,
+        102,
+        114,
+        127,
+        144,
+        174,
+        182,
+        184,
+        215,
+        219,
+        220,
+        221,
+        226,
+        229,
+        243,
+        246,
+        261,
+        263,
+        270,
+        275,
+        279,
+        315,
+        333,
+        341,
+        349,
+        350,
+        353,
+        355,
+        358,
+        373,
+        384,
+        389,
+        390,
+        393,
+        396,
+        400,
+        402,
+        411,
+        415,
+        417,
+        421,
+        430,
+        436,
+        437,
+        442,
+        464,
+        467,
+        479,
+        489,
+        495,
+        511,
+        526,
+        529,
+        533,
+        549,
+        552,
+        555,
+        563,
+        579,
+        580,
+        589,
+        597,
+        602,
+        623,
+        629,
+        637,
+        646,
+        653,
+        676,
+        689,
+        696,
+        707,
+        727,
+        729,
+        732,
+        741,
+        742,
+        746,
+        748,
+        752,
+        764,
+        772,
+        791,
+        792,
+        800,
+        802,
+        805,
+        810,
+        816,
+        829,
+        834,
+        836,
+        837,
+        848,
+        851,
+        852,
+        856,
+        864,
+        892,
+        901,
+        902,
+        919,
+        931,
+        944,
+        962,
+        964,
+        969,
+        984,
+        988,
+        991,
+        993,
+        1005,
+        1011,
+        1013,
+        1023
+      ],
+      "sample_rows": [
+        0,
+        106,
+        114,
+        129,
+        131,
+        153,
+        159,
+        177,
+        187,
+        201,
+        254,
+        291,
+        303,
+        315,
+        321,
+        365,
+        483,
+        570,
+        582,
+        591,
+        638,
+        677,
+        700,
+        716,
+        766,
+        802,
+        821,
+        884,
+        929,
+        999,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "qwen06_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "full_tile_scratch",
+      "algorithm": "cubic_full",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "plain",
+      "vmem_limit_bytes": 50331648
+    },
+    "mean_ms": 0.30454126666666664,
+    "median_ms": 0.300805,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "full_tile_scratch",
+      "algorithm": "cubic_full",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "plain",
+      "vmem_limit_bytes": 50331648
+    },
+    "preparation_raw_ms": [
+      0.43761,
+      0.35575,
+      0.35904,
+      0.32274,
+      0.28669
+    ],
+    "raw_ms": [
+      0.30507,
+      0.28478,
+      0.27939,
+      0.28046,
+      0.2845,
+      0.302169,
+      0.28466,
+      0.293989,
+      0.27369,
+      0.31552,
+      0.27695,
+      0.27964,
+      0.276691,
+      0.31057,
+      0.3606,
+      0.31243,
+      0.29938,
+      0.30198,
+      0.30516,
+      0.30846,
+      0.29963,
+      0.30227,
+      0.3109,
+      0.30477,
+      0.30845,
+      0.31346,
+      0.49469,
+      0.29253,
+      0.286069,
+      0.28738
+    ],
+    "scope": "call",
+    "shape_mkn": [
+      1024,
+      3072,
+      1024
+    ],
+    "status": "ok",
+    "std_ms": 0.039886791105390486,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.49469,
+      "mean_ms": 0.30454126666666664,
+      "median_ms": 0.300805,
+      "min_ms": 0.27369,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.30507,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.28478,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.27939,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.28046,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.2845,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.302169,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.28466,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.293989,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.27369,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.31552,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.27695,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.27964,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.276691,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.31057,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.3606,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.31243,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.29938,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.30198,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.30516,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.30846,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.29963,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.30227,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.3109,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.30477,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.30845,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.31346,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.49469,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.29253,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.286069,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.28738,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.039886791105390486
+    },
+    "variant": "plain"
+  },
+  {
+    "algorithm": "cubic_full",
+    "arm_id": "cubic_full_unpacked_unfused",
+    "comparisons": [],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 5.90625,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.002579386259403016,
+      "sample_columns": [
+        0,
+        2,
+        8,
+        9,
+        10,
+        15,
+        18,
+        27,
+        29,
+        30,
+        47,
+        63,
+        76,
+        87,
+        102,
+        114,
+        127,
+        144,
+        174,
+        182,
+        184,
+        215,
+        219,
+        220,
+        221,
+        226,
+        229,
+        243,
+        246,
+        261,
+        263,
+        270,
+        275,
+        279,
+        315,
+        333,
+        341,
+        349,
+        350,
+        353,
+        355,
+        358,
+        373,
+        384,
+        389,
+        390,
+        393,
+        396,
+        400,
+        402,
+        411,
+        415,
+        417,
+        421,
+        430,
+        436,
+        437,
+        442,
+        464,
+        467,
+        479,
+        489,
+        495,
+        511,
+        526,
+        529,
+        533,
+        549,
+        552,
+        555,
+        563,
+        579,
+        580,
+        589,
+        597,
+        602,
+        623,
+        629,
+        637,
+        646,
+        653,
+        676,
+        689,
+        696,
+        707,
+        727,
+        729,
+        732,
+        741,
+        742,
+        746,
+        748,
+        752,
+        764,
+        772,
+        791,
+        792,
+        800,
+        802,
+        805,
+        810,
+        816,
+        829,
+        834,
+        836,
+        837,
+        848,
+        851,
+        852,
+        856,
+        864,
+        892,
+        901,
+        902,
+        919,
+        931,
+        944,
+        962,
+        964,
+        969,
+        984,
+        988,
+        991,
+        993,
+        1005,
+        1011,
+        1013,
+        1023
+      ],
+      "sample_rows": [
+        0,
+        106,
+        114,
+        129,
+        131,
+        153,
+        159,
+        177,
+        187,
+        201,
+        254,
+        291,
+        303,
+        315,
+        321,
+        365,
+        483,
+        570,
+        582,
+        591,
+        638,
+        677,
+        700,
+        716,
+        766,
+        802,
+        821,
+        884,
+        929,
+        999,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "qwen06_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "full_tile_scratch",
+      "algorithm": "cubic_full",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "plain",
+      "vmem_limit_bytes": 50331648
+    },
+    "mean_ms": 0.2972083,
+    "median_ms": 0.295815,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "full_tile_scratch",
+      "algorithm": "cubic_full",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "plain",
+      "vmem_limit_bytes": 50331648
+    },
+    "preparation_raw_ms": [
+      0.43761,
+      0.35575,
+      0.35904,
+      0.32274,
+      0.28669
+    ],
+    "raw_ms": [
+      0.26992,
+      0.28607,
+      0.32199,
+      0.30969,
+      0.28584,
+      0.29838,
+      0.30059,
+      0.2877,
+      0.283499,
+      0.28136,
+      0.29364,
+      0.29185,
+      0.30962,
+      0.2899,
+      0.29247,
+      0.28609,
+      0.29157,
+      0.30518,
+      0.30594,
+      0.31753,
+      0.27386,
+      0.27797,
+      0.32113,
+      0.300771,
+      0.30563,
+      0.28268,
+      0.33774,
+      0.301549,
+      0.29799,
+      0.3081
+    ],
+    "scope": "prepared_kernel",
+    "shape_mkn": [
+      1024,
+      3072,
+      1024
+    ],
+    "status": "ok",
+    "std_ms": 0.015372193970237974,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.33774,
+      "mean_ms": 0.2972083,
+      "median_ms": 0.295815,
+      "min_ms": 0.26992,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.26992,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.28607,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.32199,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.30969,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.28584,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.29838,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.30059,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.2877,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.283499,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.28136,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.29364,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.29185,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.30962,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.2899,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.29247,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.28609,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.29157,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.30518,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.30594,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.31753,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.27386,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.27797,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.32113,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.300771,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.30563,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.28268,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.33774,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.301549,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.29799,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.3081,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.015372193970237974
+    },
+    "variant": "plain"
+  },
+  {
+    "algorithm": "cubic_full",
+    "arm_id": "cubic_full_fused",
+    "comparisons": [
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_full_unpacked_unfused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9823447513976905,
+          1.0754040011801373
+        ],
+        "speedup_ratio_of_means": 1.020961688226135,
+        "time_reduction_fraction": 0.020531317157017726,
+        "valid_numerical_comparison": true
+      }
+    ],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.0,
+      "max_abs_reference": 5.90625,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.0,
+      "sample_columns": [
+        0,
+        2,
+        8,
+        9,
+        10,
+        15,
+        18,
+        27,
+        29,
+        30,
+        47,
+        63,
+        76,
+        87,
+        102,
+        114,
+        127,
+        144,
+        174,
+        182,
+        184,
+        215,
+        219,
+        220,
+        221,
+        226,
+        229,
+        243,
+        246,
+        261,
+        263,
+        270,
+        275,
+        279,
+        315,
+        333,
+        341,
+        349,
+        350,
+        353,
+        355,
+        358,
+        373,
+        384,
+        389,
+        390,
+        393,
+        396,
+        400,
+        402,
+        411,
+        415,
+        417,
+        421,
+        430,
+        436,
+        437,
+        442,
+        464,
+        467,
+        479,
+        489,
+        495,
+        511,
+        526,
+        529,
+        533,
+        549,
+        552,
+        555,
+        563,
+        579,
+        580,
+        589,
+        597,
+        602,
+        623,
+        629,
+        637,
+        646,
+        653,
+        676,
+        689,
+        696,
+        707,
+        727,
+        729,
+        732,
+        741,
+        742,
+        746,
+        748,
+        752,
+        764,
+        772,
+        791,
+        792,
+        800,
+        802,
+        805,
+        810,
+        816,
+        829,
+        834,
+        836,
+        837,
+        848,
+        851,
+        852,
+        856,
+        864,
+        892,
+        901,
+        902,
+        919,
+        931,
+        944,
+        962,
+        964,
+        969,
+        984,
+        988,
+        991,
+        993,
+        1005,
+        1011,
+        1013,
+        1023
+      ],
+      "sample_rows": [
+        0,
+        106,
+        114,
+        129,
+        131,
+        153,
+        159,
+        177,
+        187,
+        201,
+        254,
+        291,
+        303,
+        315,
+        321,
+        365,
+        483,
+        570,
+        582,
+        591,
+        638,
+        677,
+        700,
+        716,
+        766,
+        802,
+        821,
+        884,
+        929,
+        999,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "qwen06_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "cubic_full",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "plain"
+    },
+    "mean_ms": 0.2982886333333334,
+    "median_ms": 0.295295,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "cubic_full",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "plain"
+    },
+    "preparation_raw_ms": [
+      0.37981,
+      0.34067,
+      0.28542,
+      0.27801,
+      0.26975
+    ],
+    "raw_ms": [
+      0.3136,
+      0.27511,
+      0.2833,
+      0.29836,
+      0.29462,
+      0.29874,
+      0.29937,
+      0.29388,
+      0.28739,
+      0.27961,
+      0.279951,
+      0.2887,
+      0.28878,
+      0.30697,
+      0.32433,
+      0.31925,
+      0.29632,
+      0.30552,
+      0.28744,
+      0.31285,
+      0.35849,
+      0.30974,
+      0.304249,
+      0.30434,
+      0.29447,
+      0.29597,
+      0.28771,
+      0.2871,
+      0.280309,
+      0.29219
+    ],
+    "scope": "call",
+    "shape_mkn": [
+      1024,
+      3072,
+      1024
+    ],
+    "status": "ok",
+    "std_ms": 0.01665129456183685,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.35849,
+      "mean_ms": 0.2982886333333334,
+      "median_ms": 0.295295,
+      "min_ms": 0.27511,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.3136,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.27511,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.2833,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.29836,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.29462,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.29874,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.29937,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.29388,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.28739,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.27961,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.279951,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.2887,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.28878,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.30697,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.32433,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.31925,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.29632,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.30552,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.28744,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.31285,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.35849,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.30974,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.304249,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.30434,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.29447,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.29597,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.28771,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.2871,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.280309,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.29219,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.01665129456183685
+    },
+    "variant": "plain"
+  },
+  {
+    "algorithm": "cubic_full",
+    "arm_id": "cubic_full_fused",
+    "comparisons": [
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_full_unpacked_unfused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9731748411900689,
+          1.02379802987684
+        ],
+        "speedup_ratio_of_means": 0.9973809971786401,
+        "time_reduction_fraction": -0.002625880008510606,
+        "valid_numerical_comparison": true
+      }
+    ],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.0,
+      "max_abs_reference": 5.90625,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.0,
+      "sample_columns": [
+        0,
+        2,
+        8,
+        9,
+        10,
+        15,
+        18,
+        27,
+        29,
+        30,
+        47,
+        63,
+        76,
+        87,
+        102,
+        114,
+        127,
+        144,
+        174,
+        182,
+        184,
+        215,
+        219,
+        220,
+        221,
+        226,
+        229,
+        243,
+        246,
+        261,
+        263,
+        270,
+        275,
+        279,
+        315,
+        333,
+        341,
+        349,
+        350,
+        353,
+        355,
+        358,
+        373,
+        384,
+        389,
+        390,
+        393,
+        396,
+        400,
+        402,
+        411,
+        415,
+        417,
+        421,
+        430,
+        436,
+        437,
+        442,
+        464,
+        467,
+        479,
+        489,
+        495,
+        511,
+        526,
+        529,
+        533,
+        549,
+        552,
+        555,
+        563,
+        579,
+        580,
+        589,
+        597,
+        602,
+        623,
+        629,
+        637,
+        646,
+        653,
+        676,
+        689,
+        696,
+        707,
+        727,
+        729,
+        732,
+        741,
+        742,
+        746,
+        748,
+        752,
+        764,
+        772,
+        791,
+        792,
+        800,
+        802,
+        805,
+        810,
+        816,
+        829,
+        834,
+        836,
+        837,
+        848,
+        851,
+        852,
+        856,
+        864,
+        892,
+        901,
+        902,
+        919,
+        931,
+        944,
+        962,
+        964,
+        969,
+        984,
+        988,
+        991,
+        993,
+        1005,
+        1011,
+        1013,
+        1023
+      ],
+      "sample_rows": [
+        0,
+        106,
+        114,
+        129,
+        131,
+        153,
+        159,
+        177,
+        187,
+        201,
+        254,
+        291,
+        303,
+        315,
+        321,
+        365,
+        483,
+        570,
+        582,
+        591,
+        638,
+        677,
+        700,
+        716,
+        766,
+        802,
+        821,
+        884,
+        929,
+        999,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "qwen06_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "cubic_full",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "plain"
+    },
+    "mean_ms": 0.2979887333333334,
+    "median_ms": 0.29303049999999997,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "cubic_full",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "plain"
+    },
+    "preparation_raw_ms": [
+      0.37981,
+      0.34067,
+      0.28542,
+      0.27801,
+      0.26975
+    ],
+    "raw_ms": [
+      0.28778,
+      0.29893,
+      0.28112,
+      0.30938,
+      0.31785,
+      0.31908,
+      0.28491,
+      0.28754,
+      0.31161,
+      0.29042,
+      0.28632,
+      0.298,
+      0.29615,
+      0.293331,
+      0.30094,
+      0.29273,
+      0.28946,
+      0.283189,
+      0.33363,
+      0.30372,
+      0.292371,
+      0.29811,
+      0.34911,
+      0.31147,
+      0.27979,
+      0.281851,
+      0.2807,
+      0.28897,
+      0.31504,
+      0.27616
+    ],
+    "scope": "prepared_kernel",
+    "shape_mkn": [
+      1024,
+      3072,
+      1024
+    ],
+    "status": "ok",
+    "std_ms": 0.016856495847929493,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.34911,
+      "mean_ms": 0.2979887333333334,
+      "median_ms": 0.29303049999999997,
+      "min_ms": 0.27616,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.28778,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.29893,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.28112,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.30938,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.31785,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.31908,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.28491,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.28754,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.31161,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.29042,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.28632,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.298,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.29615,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.293331,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.30094,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.29273,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.28946,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.283189,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.33363,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.30372,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.292371,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.29811,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.34911,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.31147,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.27979,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.281851,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.2807,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.28897,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.31504,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.27616,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.016856495847929493
+    },
+    "variant": "plain"
+  },
+  {
+    "algorithm": "cubic_quadrant",
+    "arm_id": "cubic_quadrant_unpacked_unfused",
+    "comparisons": [],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 5.90625,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.002579384484417117,
+      "sample_columns": [
+        0,
+        2,
+        8,
+        9,
+        10,
+        15,
+        18,
+        27,
+        29,
+        30,
+        47,
+        63,
+        76,
+        87,
+        102,
+        114,
+        127,
+        144,
+        174,
+        182,
+        184,
+        215,
+        219,
+        220,
+        221,
+        226,
+        229,
+        243,
+        246,
+        261,
+        263,
+        270,
+        275,
+        279,
+        315,
+        333,
+        341,
+        349,
+        350,
+        353,
+        355,
+        358,
+        373,
+        384,
+        389,
+        390,
+        393,
+        396,
+        400,
+        402,
+        411,
+        415,
+        417,
+        421,
+        430,
+        436,
+        437,
+        442,
+        464,
+        467,
+        479,
+        489,
+        495,
+        511,
+        526,
+        529,
+        533,
+        549,
+        552,
+        555,
+        563,
+        579,
+        580,
+        589,
+        597,
+        602,
+        623,
+        629,
+        637,
+        646,
+        653,
+        676,
+        689,
+        696,
+        707,
+        727,
+        729,
+        732,
+        741,
+        742,
+        746,
+        748,
+        752,
+        764,
+        772,
+        791,
+        792,
+        800,
+        802,
+        805,
+        810,
+        816,
+        829,
+        834,
+        836,
+        837,
+        848,
+        851,
+        852,
+        856,
+        864,
+        892,
+        901,
+        902,
+        919,
+        931,
+        944,
+        962,
+        964,
+        969,
+        984,
+        988,
+        991,
+        993,
+        1005,
+        1011,
+        1013,
+        1023
+      ],
+      "sample_rows": [
+        0,
+        106,
+        114,
+        129,
+        131,
+        153,
+        159,
+        177,
+        187,
+        201,
+        254,
+        291,
+        303,
+        315,
+        321,
+        365,
+        483,
+        570,
+        582,
+        591,
+        638,
+        677,
+        700,
+        716,
+        766,
+        802,
+        821,
+        884,
+        929,
+        999,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "qwen06_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "quadrant_scratch",
+      "algorithm": "cubic_quadrant",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved",
+      "vmem_limit_bytes": 50331648
+    },
+    "mean_ms": 0.3041213000000001,
+    "median_ms": 0.300445,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "quadrant_scratch",
+      "algorithm": "cubic_quadrant",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved",
+      "vmem_limit_bytes": 50331648
+    },
+    "preparation_raw_ms": [
+      0.36408,
+      0.31836,
+      0.286991,
+      0.278109,
+      0.27502
+    ],
+    "raw_ms": [
+      0.29726,
+      0.28788,
+      0.28875,
+      0.29409,
+      0.312309,
+      0.29652,
+      0.29444,
+      0.2913,
+      0.29209,
+      0.28606,
+      0.29863,
+      0.28982,
+      0.29124,
+      0.30347,
+      0.29805,
+      0.30561,
+      0.30439,
+      0.308231,
+      0.30582,
+      0.37268,
+      0.30075,
+      0.343129,
+      0.30508,
+      0.30014,
+      0.301949,
+      0.31811,
+      0.32131,
+      0.298951,
+      0.30451,
+      0.31107
+    ],
+    "scope": "call",
+    "shape_mkn": [
+      1024,
+      3072,
+      1024
+    ],
+    "status": "ok",
+    "std_ms": 0.017402602237338947,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.37268,
+      "mean_ms": 0.3041213000000001,
+      "median_ms": 0.300445,
+      "min_ms": 0.28606,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.29726,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.28788,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.28875,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.29409,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.312309,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.29652,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.29444,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.2913,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.29209,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.28606,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.29863,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.28982,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.29124,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.30347,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.29805,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.30561,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.30439,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.308231,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.30582,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.37268,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.30075,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.343129,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.30508,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.30014,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.301949,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.31811,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.32131,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.298951,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.30451,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.31107,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.017402602237338947
+    },
+    "variant": "interleaved"
+  },
+  {
+    "algorithm": "cubic_quadrant",
+    "arm_id": "cubic_quadrant_unpacked_unfused",
+    "comparisons": [],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 5.90625,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.002579384484417117,
+      "sample_columns": [
+        0,
+        2,
+        8,
+        9,
+        10,
+        15,
+        18,
+        27,
+        29,
+        30,
+        47,
+        63,
+        76,
+        87,
+        102,
+        114,
+        127,
+        144,
+        174,
+        182,
+        184,
+        215,
+        219,
+        220,
+        221,
+        226,
+        229,
+        243,
+        246,
+        261,
+        263,
+        270,
+        275,
+        279,
+        315,
+        333,
+        341,
+        349,
+        350,
+        353,
+        355,
+        358,
+        373,
+        384,
+        389,
+        390,
+        393,
+        396,
+        400,
+        402,
+        411,
+        415,
+        417,
+        421,
+        430,
+        436,
+        437,
+        442,
+        464,
+        467,
+        479,
+        489,
+        495,
+        511,
+        526,
+        529,
+        533,
+        549,
+        552,
+        555,
+        563,
+        579,
+        580,
+        589,
+        597,
+        602,
+        623,
+        629,
+        637,
+        646,
+        653,
+        676,
+        689,
+        696,
+        707,
+        727,
+        729,
+        732,
+        741,
+        742,
+        746,
+        748,
+        752,
+        764,
+        772,
+        791,
+        792,
+        800,
+        802,
+        805,
+        810,
+        816,
+        829,
+        834,
+        836,
+        837,
+        848,
+        851,
+        852,
+        856,
+        864,
+        892,
+        901,
+        902,
+        919,
+        931,
+        944,
+        962,
+        964,
+        969,
+        984,
+        988,
+        991,
+        993,
+        1005,
+        1011,
+        1013,
+        1023
+      ],
+      "sample_rows": [
+        0,
+        106,
+        114,
+        129,
+        131,
+        153,
+        159,
+        177,
+        187,
+        201,
+        254,
+        291,
+        303,
+        315,
+        321,
+        365,
+        483,
+        570,
+        582,
+        591,
+        638,
+        677,
+        700,
+        716,
+        766,
+        802,
+        821,
+        884,
+        929,
+        999,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "qwen06_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "quadrant_scratch",
+      "algorithm": "cubic_quadrant",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved",
+      "vmem_limit_bytes": 50331648
+    },
+    "mean_ms": 0.30377096666666664,
+    "median_ms": 0.30122499999999997,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "quadrant_scratch",
+      "algorithm": "cubic_quadrant",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": null,
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "strassen_combination_dtype": null,
+      "strassen_levels_per_tile": 0,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved",
+      "vmem_limit_bytes": 50331648
+    },
+    "preparation_raw_ms": [
+      0.36408,
+      0.31836,
+      0.286991,
+      0.278109,
+      0.27502
+    ],
+    "raw_ms": [
+      0.18704,
+      0.29303,
+      0.32588,
+      0.31916,
+      0.29233,
+      0.30024,
+      0.30038,
+      0.31242,
+      0.3215,
+      0.28542,
+      0.29079,
+      0.30208,
+      0.30551,
+      0.30104,
+      0.28593,
+      0.29238,
+      0.30341,
+      0.40066,
+      0.297329,
+      0.28717,
+      0.29158,
+      0.30141,
+      0.35213,
+      0.311689,
+      0.29078,
+      0.29089,
+      0.348671,
+      0.30452,
+      0.30459,
+      0.31317
+    ],
+    "scope": "prepared_kernel",
+    "shape_mkn": [
+      1024,
+      3072,
+      1024
+    ],
+    "status": "ok",
+    "std_ms": 0.032524911998591054,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.40066,
+      "mean_ms": 0.30377096666666664,
+      "median_ms": 0.30122499999999997,
+      "min_ms": 0.18704,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.18704,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.29303,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.32588,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.31916,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.29233,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.30024,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.30038,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.31242,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.3215,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.28542,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.29079,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.30208,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.30551,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.30104,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.28593,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.29238,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.30341,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.40066,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.297329,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.28717,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.29158,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.30141,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.35213,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.311689,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.29078,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.29089,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.348671,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.30452,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.30459,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.31317,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.032524911998591054
+    },
+    "variant": "interleaved"
+  },
+  {
+    "algorithm": "cubic_quadrant",
+    "arm_id": "cubic_quadrant_fused",
+    "comparisons": [
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_quadrant_unpacked_unfused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9982442279860143,
+          1.0508715936833184
+        ],
+        "speedup_ratio_of_means": 1.022376750205907,
+        "time_reduction_fraction": 0.02188699048701981,
+        "valid_numerical_comparison": true
+      }
+    ],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.0,
+      "max_abs_reference": 5.90625,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.0,
+      "sample_columns": [
+        0,
+        2,
+        8,
+        9,
+        10,
+        15,
+        18,
+        27,
+        29,
+        30,
+        47,
+        63,
+        76,
+        87,
+        102,
+        114,
+        127,
+        144,
+        174,
+        182,
+        184,
+        215,
+        219,
+        220,
+        221,
+        226,
+        229,
+        243,
+        246,
+        261,
+        263,
+        270,
+        275,
+        279,
+        315,
+        333,
+        341,
+        349,
+        350,
+        353,
+        355,
+        358,
+        373,
+        384,
+        389,
+        390,
+        393,
+        396,
+        400,
+        402,
+        411,
+        415,
+        417,
+        421,
+        430,
+        436,
+        437,
+        442,
+        464,
+        467,
+        479,
+        489,
+        495,
+        511,
+        526,
+        529,
+        533,
+        549,
+        552,
+        555,
+        563,
+        579,
+        580,
+        589,
+        597,
+        602,
+        623,
+        629,
+        637,
+        646,
+        653,
+        676,
+        689,
+        696,
+        707,
+        727,
+        729,
+        732,
+        741,
+        742,
+        746,
+        748,
+        752,
+        764,
+        772,
+        791,
+        792,
+        800,
+        802,
+        805,
+        810,
+        816,
+        829,
+        834,
+        836,
+        837,
+        848,
+        851,
+        852,
+        856,
+        864,
+        892,
+        901,
+        902,
+        919,
+        931,
+        944,
+        962,
+        964,
+        969,
+        984,
+        988,
+        991,
+        993,
+        1005,
+        1011,
+        1013,
+        1023
+      ],
+      "sample_rows": [
+        0,
+        106,
+        114,
+        129,
+        131,
+        153,
+        159,
+        177,
+        187,
+        201,
+        254,
+        291,
+        303,
+        315,
+        321,
+        365,
+        483,
+        570,
+        582,
+        591,
+        638,
+        677,
+        700,
+        716,
+        766,
+        802,
+        821,
+        884,
+        929,
+        999,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "qwen06_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "cubic_quadrant",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "mean_ms": 0.297465,
+    "median_ms": 0.29232,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "cubic_quadrant",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "preparation_raw_ms": [
+      0.42623,
+      0.32457,
+      0.30907,
+      0.31054,
+      0.29774
+    ],
+    "raw_ms": [
+      0.301929,
+      0.285289,
+      0.27883,
+      0.28537,
+      0.29465,
+      0.29357,
+      0.29031,
+      0.29296,
+      0.27938,
+      0.28036,
+      0.30523,
+      0.28013,
+      0.28777,
+      0.28729,
+      0.28779,
+      0.29501,
+      0.29137,
+      0.30924,
+      0.29168,
+      0.281271,
+      0.29155,
+      0.321531,
+      0.32651,
+      0.32461,
+      0.29896,
+      0.30504,
+      0.37221,
+      0.29687,
+      0.28558,
+      0.30166
+    ],
+    "scope": "call",
+    "shape_mkn": [
+      1024,
+      3072,
+      1024
+    ],
+    "status": "ok",
+    "std_ms": 0.01903326571902558,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.37221,
+      "mean_ms": 0.297465,
+      "median_ms": 0.29232,
+      "min_ms": 0.27883,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.301929,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.285289,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.27883,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.28537,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.29465,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.29357,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.29031,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.29296,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.27938,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.28036,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.30523,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.28013,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.28777,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.28729,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.28779,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.29501,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.29137,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.30924,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.29168,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.281271,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.29155,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.321531,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.32651,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.32461,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.29896,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.30504,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.37221,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.29687,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.28558,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.30166,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.01903326571902558
+    },
+    "variant": "interleaved"
+  },
+  {
+    "algorithm": "cubic_quadrant",
+    "arm_id": "cubic_quadrant_fused",
+    "comparisons": [
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_quadrant_unpacked_unfused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.972023187819383,
+          1.0465022015795202
+        ],
+        "speedup_ratio_of_means": 1.0098735265729393,
+        "time_reduction_fraction": 0.009776993171061399,
+        "valid_numerical_comparison": true
+      }
+    ],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.0,
+      "max_abs_reference": 5.90625,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.0,
+      "sample_columns": [
+        0,
+        2,
+        8,
+        9,
+        10,
+        15,
+        18,
+        27,
+        29,
+        30,
+        47,
+        63,
+        76,
+        87,
+        102,
+        114,
+        127,
+        144,
+        174,
+        182,
+        184,
+        215,
+        219,
+        220,
+        221,
+        226,
+        229,
+        243,
+        246,
+        261,
+        263,
+        270,
+        275,
+        279,
+        315,
+        333,
+        341,
+        349,
+        350,
+        353,
+        355,
+        358,
+        373,
+        384,
+        389,
+        390,
+        393,
+        396,
+        400,
+        402,
+        411,
+        415,
+        417,
+        421,
+        430,
+        436,
+        437,
+        442,
+        464,
+        467,
+        479,
+        489,
+        495,
+        511,
+        526,
+        529,
+        533,
+        549,
+        552,
+        555,
+        563,
+        579,
+        580,
+        589,
+        597,
+        602,
+        623,
+        629,
+        637,
+        646,
+        653,
+        676,
+        689,
+        696,
+        707,
+        727,
+        729,
+        732,
+        741,
+        742,
+        746,
+        748,
+        752,
+        764,
+        772,
+        791,
+        792,
+        800,
+        802,
+        805,
+        810,
+        816,
+        829,
+        834,
+        836,
+        837,
+        848,
+        851,
+        852,
+        856,
+        864,
+        892,
+        901,
+        902,
+        919,
+        931,
+        944,
+        962,
+        964,
+        969,
+        984,
+        988,
+        991,
+        993,
+        1005,
+        1011,
+        1013,
+        1023
+      ],
+      "sample_rows": [
+        0,
+        106,
+        114,
+        129,
+        131,
+        153,
+        159,
+        177,
+        187,
+        201,
+        254,
+        291,
+        303,
+        315,
+        321,
+        365,
+        483,
+        570,
+        582,
+        591,
+        638,
+        677,
+        700,
+        716,
+        766,
+        802,
+        821,
+        884,
+        929,
+        999,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "qwen06_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "cubic_quadrant",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "mean_ms": 0.30080099999999993,
+    "median_ms": 0.29978000000000005,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "cubic_quadrant",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "preparation_raw_ms": [
+      0.42623,
+      0.32457,
+      0.30907,
+      0.31054,
+      0.29774
+    ],
+    "raw_ms": [
+      0.29369,
+      0.27578,
+      0.33759,
+      0.30705,
+      0.29981,
+      0.31857,
+      0.29469,
+      0.30297,
+      0.29389,
+      0.293629,
+      0.28215,
+      0.27554,
+      0.29073,
+      0.29587,
+      0.29338,
+      0.29988,
+      0.310771,
+      0.29484,
+      0.29975,
+      0.28676,
+      0.285871,
+      0.29168,
+      0.32422,
+      0.330109,
+      0.30723,
+      0.30278,
+      0.31908,
+      0.29985,
+      0.31411,
+      0.30176
+    ],
+    "scope": "prepared_kernel",
+    "shape_mkn": [
+      1024,
+      3072,
+      1024
+    ],
+    "status": "ok",
+    "std_ms": 0.014738784016188784,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.33759,
+      "mean_ms": 0.30080099999999993,
+      "median_ms": 0.29978000000000005,
+      "min_ms": 0.27554,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.29369,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.27578,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.33759,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.30705,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.29981,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.31857,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.29469,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.30297,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.29389,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.293629,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.28215,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.27554,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.29073,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.29587,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.29338,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.29988,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.310771,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.29484,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.29975,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.28676,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.285871,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.29168,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.32422,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.330109,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.30723,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.30278,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.31908,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.29985,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.31411,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.30176,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.014738784016188784
+    },
+    "variant": "interleaved"
+  },
+  {
+    "algorithm": "strassen",
+    "arm_id": "strassen_unpacked_unfused",
+    "comparisons": [
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "native_joint_graph",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9799281857343232,
+          1.023760750485126
+        ],
+        "speedup_ratio_of_means": 1.0055769357409683,
+        "time_reduction_fraction": 0.005546006021765915,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_full_unpacked_unfused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9792962834028748,
+          1.0698996556654772
+        ],
+        "speedup_ratio_of_means": 1.021475356151428,
+        "time_reduction_fraction": 0.021023861243544717,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_quadrant_unpacked_unfused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9931235979279683,
+          1.041120080319581
+        ],
+        "speedup_ratio_of_means": 1.0200667273468644,
+        "time_reduction_fraction": 0.01967197518446362,
+        "valid_numerical_comparison": true
+      }
+    ],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 5.90625,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.004142879894875407,
+      "sample_columns": [
+        0,
+        2,
+        8,
+        9,
+        10,
+        15,
+        18,
+        27,
+        29,
+        30,
+        47,
+        63,
+        76,
+        87,
+        102,
+        114,
+        127,
+        144,
+        174,
+        182,
+        184,
+        215,
+        219,
+        220,
+        221,
+        226,
+        229,
+        243,
+        246,
+        261,
+        263,
+        270,
+        275,
+        279,
+        315,
+        333,
+        341,
+        349,
+        350,
+        353,
+        355,
+        358,
+        373,
+        384,
+        389,
+        390,
+        393,
+        396,
+        400,
+        402,
+        411,
+        415,
+        417,
+        421,
+        430,
+        436,
+        437,
+        442,
+        464,
+        467,
+        479,
+        489,
+        495,
+        511,
+        526,
+        529,
+        533,
+        549,
+        552,
+        555,
+        563,
+        579,
+        580,
+        589,
+        597,
+        602,
+        623,
+        629,
+        637,
+        646,
+        653,
+        676,
+        689,
+        696,
+        707,
+        727,
+        729,
+        732,
+        741,
+        742,
+        746,
+        748,
+        752,
+        764,
+        772,
+        791,
+        792,
+        800,
+        802,
+        805,
+        810,
+        816,
+        829,
+        834,
+        836,
+        837,
+        848,
+        851,
+        852,
+        856,
+        864,
+        892,
+        901,
+        902,
+        919,
+        931,
+        944,
+        962,
+        964,
+        969,
+        984,
+        988,
+        991,
+        993,
+        1005,
+        1011,
+        1013,
+        1023
+      ],
+      "sample_rows": [
+        0,
+        106,
+        114,
+        129,
+        131,
+        153,
+        159,
+        177,
+        187,
+        201,
+        254,
+        291,
+        303,
+        315,
+        321,
+        365,
+        483,
+        570,
+        582,
+        591,
+        638,
+        677,
+        700,
+        716,
+        766,
+        802,
+        821,
+        884,
+        929,
+        999,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "qwen06_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "quadrant_scratch",
+      "algorithm": "strassen",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": [
+        4,
+        6,
+        5,
+        2,
+        7,
+        3,
+        1
+      ],
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "strassen_combination_dtype": "bfloat16",
+      "strassen_levels_per_tile": 1,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved",
+      "vmem_limit_bytes": 50331648
+    },
+    "mean_ms": 0.2981386333333333,
+    "median_ms": 0.29222000000000004,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "quadrant_scratch",
+      "algorithm": "strassen",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": [
+        4,
+        6,
+        5,
+        2,
+        7,
+        3,
+        1
+      ],
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "strassen_combination_dtype": "bfloat16",
+      "strassen_levels_per_tile": 1,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved",
+      "vmem_limit_bytes": 50331648
+    },
+    "preparation_raw_ms": [
+      0.39517,
+      0.31865,
+      0.30125,
+      0.29172,
+      0.29463
+    ],
+    "raw_ms": [
+      0.38036,
+      0.2825,
+      0.279629,
+      0.29649,
+      0.28734,
+      0.29488,
+      0.28626,
+      0.28142,
+      0.27579,
+      0.28635,
+      0.28596,
+      0.28319,
+      0.27893,
+      0.30092,
+      0.28618,
+      0.32084,
+      0.29812,
+      0.298691,
+      0.29208,
+      0.337051,
+      0.31157,
+      0.30649,
+      0.29236,
+      0.309459,
+      0.29633,
+      0.30951,
+      0.32078,
+      0.28624,
+      0.28746,
+      0.290979
+    ],
+    "scope": "call",
+    "shape_mkn": [
+      1024,
+      3072,
+      1024
+    ],
+    "status": "ok",
+    "std_ms": 0.021056842256768623,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.38036,
+      "mean_ms": 0.2981386333333333,
+      "median_ms": 0.29222000000000004,
+      "min_ms": 0.27579,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.38036,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.2825,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.279629,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.29649,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.28734,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.29488,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.28626,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.28142,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.27579,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.28635,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.28596,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.28319,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.27893,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.30092,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.28618,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.32084,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.29812,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.298691,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.29208,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.337051,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.31157,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.30649,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.29236,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.309459,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.29633,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.30951,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.32078,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.28624,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.28746,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.290979,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.021056842256768623
+    },
+    "variant": "interleaved"
+  },
+  {
+    "algorithm": "strassen",
+    "arm_id": "strassen_unpacked_unfused",
+    "comparisons": [
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "native_joint_graph",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9818286640990108,
+          1.043854591818645
+        ],
+        "speedup_ratio_of_means": 1.0118389576310884,
+        "time_reduction_fraction": 0.011700436657238189,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_full_unpacked_unfused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9676824754323675,
+          1.014072832401603
+        ],
+        "speedup_ratio_of_means": 0.991053535181307,
+        "time_reduction_fraction": -0.009027226583734782,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_quadrant_unpacked_unfused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9701813810013499,
+          1.058404503787365
+        ],
+        "speedup_ratio_of_means": 1.0129370222851883,
+        "time_reduction_fraction": 0.012771793310508484,
+        "valid_numerical_comparison": true
+      }
+    ],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 5.90625,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.004142879894875407,
+      "sample_columns": [
+        0,
+        2,
+        8,
+        9,
+        10,
+        15,
+        18,
+        27,
+        29,
+        30,
+        47,
+        63,
+        76,
+        87,
+        102,
+        114,
+        127,
+        144,
+        174,
+        182,
+        184,
+        215,
+        219,
+        220,
+        221,
+        226,
+        229,
+        243,
+        246,
+        261,
+        263,
+        270,
+        275,
+        279,
+        315,
+        333,
+        341,
+        349,
+        350,
+        353,
+        355,
+        358,
+        373,
+        384,
+        389,
+        390,
+        393,
+        396,
+        400,
+        402,
+        411,
+        415,
+        417,
+        421,
+        430,
+        436,
+        437,
+        442,
+        464,
+        467,
+        479,
+        489,
+        495,
+        511,
+        526,
+        529,
+        533,
+        549,
+        552,
+        555,
+        563,
+        579,
+        580,
+        589,
+        597,
+        602,
+        623,
+        629,
+        637,
+        646,
+        653,
+        676,
+        689,
+        696,
+        707,
+        727,
+        729,
+        732,
+        741,
+        742,
+        746,
+        748,
+        752,
+        764,
+        772,
+        791,
+        792,
+        800,
+        802,
+        805,
+        810,
+        816,
+        829,
+        834,
+        836,
+        837,
+        848,
+        851,
+        852,
+        856,
+        864,
+        892,
+        901,
+        902,
+        919,
+        931,
+        944,
+        962,
+        964,
+        969,
+        984,
+        988,
+        991,
+        993,
+        1005,
+        1011,
+        1013,
+        1023
+      ],
+      "sample_rows": [
+        0,
+        106,
+        114,
+        129,
+        131,
+        153,
+        159,
+        177,
+        187,
+        201,
+        254,
+        291,
+        303,
+        315,
+        321,
+        365,
+        483,
+        570,
+        582,
+        591,
+        638,
+        677,
+        700,
+        716,
+        766,
+        802,
+        821,
+        884,
+        929,
+        999,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "qwen06_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "quadrant_scratch",
+      "algorithm": "strassen",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": [
+        4,
+        6,
+        5,
+        2,
+        7,
+        3,
+        1
+      ],
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "strassen_combination_dtype": "bfloat16",
+      "strassen_levels_per_tile": 1,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved",
+      "vmem_limit_bytes": 50331648
+    },
+    "mean_ms": 0.2998912666666666,
+    "median_ms": 0.295825,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "quadrant_scratch",
+      "algorithm": "strassen",
+      "complete_call_scope": "device_padding+matmul+crop; excludes host_transfer/compile",
+      "dot_precision": "DEFAULT",
+      "epilogue": "residual",
+      "fusion": "outside_custom_mm",
+      "implementation_module": "kernels_v001",
+      "input_dtype": "bfloat16",
+      "interpret": false,
+      "kernel_scope": "prepared_device_inputs_to_padded_output",
+      "kernel_version": "kernels_v002",
+      "output_dtype": "bfloat16",
+      "padded_shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "padded_volume_ratio": 1.0,
+      "padding_required": false,
+      "product_order": [
+        4,
+        6,
+        5,
+        2,
+        7,
+        3,
+        1
+      ],
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "strassen_combination_dtype": "bfloat16",
+      "strassen_levels_per_tile": 1,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved",
+      "vmem_limit_bytes": 50331648
+    },
+    "preparation_raw_ms": [
+      0.39517,
+      0.31865,
+      0.30125,
+      0.29172,
+      0.29463
+    ],
+    "raw_ms": [
+      0.2848,
+      0.27449,
+      0.32653,
+      0.29712,
+      0.29114,
+      0.30431,
+      0.29382,
+      0.29651,
+      0.29298,
+      0.29899,
+      0.29517,
+      0.31942,
+      0.29288,
+      0.30051,
+      0.30239,
+      0.355369,
+      0.29257,
+      0.28221,
+      0.32635,
+      0.300519,
+      0.28278,
+      0.29537,
+      0.28088,
+      0.29818,
+      0.27722,
+      0.2899,
+      0.34183,
+      0.2915,
+      0.31472,
+      0.29628
+    ],
+    "scope": "prepared_kernel",
+    "shape_mkn": [
+      1024,
+      3072,
+      1024
+    ],
+    "status": "ok",
+    "std_ms": 0.018327268673479006,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.355369,
+      "mean_ms": 0.2998912666666666,
+      "median_ms": 0.295825,
+      "min_ms": 0.27449,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.2848,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.27449,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.32653,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.29712,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.29114,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.30431,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.29382,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.29651,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.29298,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.29899,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.29517,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.31942,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.29288,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.30051,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.30239,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.355369,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.29257,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.28221,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.32635,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.300519,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.28278,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.29537,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.28088,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.29818,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.27722,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.2899,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.34183,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.2915,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.31472,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.29628,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.018327268673479006
+    },
+    "variant": "interleaved"
+  },
+  {
+    "algorithm": "strassen",
+    "arm_id": "strassen_fused",
+    "comparisons": [
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "strassen_unpacked_unfused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9991267615699677,
+          1.0778940141928905
+        ],
+        "speedup_ratio_of_means": 1.0281813710044443,
+        "time_reduction_fraction": 0.027408949237150315,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "native_joint_graph",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.0126483999913642,
+          1.0614653234013507
+        ],
+        "speedup_ratio_of_means": 1.033915472440597,
+        "time_reduction_fraction": 0.03280294506139669,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_full_fused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.0015625475109355,
+          1.0623515298444202
+        ],
+        "speedup_ratio_of_means": 1.0286986713084219,
+        "time_reduction_fraction": 0.02789803477817221,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_quadrant_fused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9976149526253959,
+          1.0584742413820787
+        ],
+        "speedup_ratio_of_means": 1.0258582328170947,
+        "time_reduction_fraction": 0.025206438852750312,
+        "valid_numerical_comparison": true
+      }
+    ],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 5.90625,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.0040178212034342195,
+      "sample_columns": [
+        0,
+        2,
+        8,
+        9,
+        10,
+        15,
+        18,
+        27,
+        29,
+        30,
+        47,
+        63,
+        76,
+        87,
+        102,
+        114,
+        127,
+        144,
+        174,
+        182,
+        184,
+        215,
+        219,
+        220,
+        221,
+        226,
+        229,
+        243,
+        246,
+        261,
+        263,
+        270,
+        275,
+        279,
+        315,
+        333,
+        341,
+        349,
+        350,
+        353,
+        355,
+        358,
+        373,
+        384,
+        389,
+        390,
+        393,
+        396,
+        400,
+        402,
+        411,
+        415,
+        417,
+        421,
+        430,
+        436,
+        437,
+        442,
+        464,
+        467,
+        479,
+        489,
+        495,
+        511,
+        526,
+        529,
+        533,
+        549,
+        552,
+        555,
+        563,
+        579,
+        580,
+        589,
+        597,
+        602,
+        623,
+        629,
+        637,
+        646,
+        653,
+        676,
+        689,
+        696,
+        707,
+        727,
+        729,
+        732,
+        741,
+        742,
+        746,
+        748,
+        752,
+        764,
+        772,
+        791,
+        792,
+        800,
+        802,
+        805,
+        810,
+        816,
+        829,
+        834,
+        836,
+        837,
+        848,
+        851,
+        852,
+        856,
+        864,
+        892,
+        901,
+        902,
+        919,
+        931,
+        944,
+        962,
+        964,
+        969,
+        984,
+        988,
+        991,
+        993,
+        1005,
+        1011,
+        1013,
+        1023
+      ],
+      "sample_rows": [
+        0,
+        106,
+        114,
+        129,
+        131,
+        153,
+        159,
+        177,
+        187,
+        201,
+        254,
+        291,
+        303,
+        315,
+        321,
+        365,
+        483,
+        570,
+        582,
+        591,
+        638,
+        677,
+        700,
+        716,
+        766,
+        802,
+        821,
+        884,
+        929,
+        999,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "qwen06_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "strassen",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "mean_ms": 0.2899669666666666,
+    "median_ms": 0.288455,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "strassen",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "preparation_raw_ms": [
+      0.380431,
+      0.310291,
+      0.337091,
+      0.294789,
+      0.274449
+    ],
+    "raw_ms": [
+      0.20639,
+      0.29157,
+      0.276871,
+      0.282449,
+      0.2871,
+      0.28795,
+      0.29501,
+      0.28438,
+      0.27986,
+      0.27529,
+      0.280289,
+      0.27718,
+      0.28023,
+      0.2914,
+      0.28119,
+      0.29828,
+      0.29706,
+      0.2806,
+      0.29434,
+      0.32286,
+      0.331991,
+      0.31253,
+      0.28896,
+      0.29858,
+      0.29162,
+      0.28913,
+      0.329369,
+      0.28521,
+      0.28632,
+      0.315
+    ],
+    "scope": "call",
+    "shape_mkn": [
+      1024,
+      3072,
+      1024
+    ],
+    "status": "ok",
+    "std_ms": 0.02190130233016912,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.331991,
+      "mean_ms": 0.2899669666666666,
+      "median_ms": 0.288455,
+      "min_ms": 0.20639,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.20639,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.29157,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.276871,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.282449,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.2871,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.28795,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.29501,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.28438,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.27986,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.27529,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.280289,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.27718,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.28023,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.2914,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.28119,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.29828,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.29706,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.2806,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.29434,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.32286,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.331991,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.31253,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.28896,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.29858,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.29162,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.28913,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.329369,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.28521,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.28632,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.315,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.02190130233016912
+    },
+    "variant": "interleaved"
+  },
+  {
+    "algorithm": "strassen",
+    "arm_id": "strassen_fused",
+    "comparisons": [
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "strassen_unpacked_unfused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.0023531436636688,
+          1.0551575089733585
+        ],
+        "speedup_ratio_of_means": 1.0271963197510814,
+        "time_reduction_fraction": 0.026476262841042653,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "native_joint_graph",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.019407863724288,
+          1.063269706086337
+        ],
+        "speedup_ratio_of_means": 1.0393572534594244,
+        "time_reduction_fraction": 0.037866915661988854,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_full_fused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9993654136112863,
+          1.0404444094559633
+        ],
+        "speedup_ratio_of_means": 1.0206797070469982,
+        "time_reduction_fraction": 0.020260721266643134,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_quadrant_fused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.0165632953988857,
+          1.0450072674532318
+        ],
+        "speedup_ratio_of_means": 1.0303123649175234,
+        "time_reduction_fraction": 0.029420558220661586,
+        "valid_numerical_comparison": true
+      }
+    ],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 5.90625,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.0040178212034342195,
+      "sample_columns": [
+        0,
+        2,
+        8,
+        9,
+        10,
+        15,
+        18,
+        27,
+        29,
+        30,
+        47,
+        63,
+        76,
+        87,
+        102,
+        114,
+        127,
+        144,
+        174,
+        182,
+        184,
+        215,
+        219,
+        220,
+        221,
+        226,
+        229,
+        243,
+        246,
+        261,
+        263,
+        270,
+        275,
+        279,
+        315,
+        333,
+        341,
+        349,
+        350,
+        353,
+        355,
+        358,
+        373,
+        384,
+        389,
+        390,
+        393,
+        396,
+        400,
+        402,
+        411,
+        415,
+        417,
+        421,
+        430,
+        436,
+        437,
+        442,
+        464,
+        467,
+        479,
+        489,
+        495,
+        511,
+        526,
+        529,
+        533,
+        549,
+        552,
+        555,
+        563,
+        579,
+        580,
+        589,
+        597,
+        602,
+        623,
+        629,
+        637,
+        646,
+        653,
+        676,
+        689,
+        696,
+        707,
+        727,
+        729,
+        732,
+        741,
+        742,
+        746,
+        748,
+        752,
+        764,
+        772,
+        791,
+        792,
+        800,
+        802,
+        805,
+        810,
+        816,
+        829,
+        834,
+        836,
+        837,
+        848,
+        851,
+        852,
+        856,
+        864,
+        892,
+        901,
+        902,
+        919,
+        931,
+        944,
+        962,
+        964,
+        969,
+        984,
+        988,
+        991,
+        993,
+        1005,
+        1011,
+        1013,
+        1023
+      ],
+      "sample_rows": [
+        0,
+        106,
+        114,
+        129,
+        131,
+        153,
+        159,
+        177,
+        187,
+        201,
+        254,
+        291,
+        303,
+        315,
+        321,
+        365,
+        483,
+        570,
+        582,
+        591,
+        638,
+        677,
+        700,
+        716,
+        766,
+        802,
+        821,
+        884,
+        929,
+        999,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "qwen06_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "strassen",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "mean_ms": 0.2919512666666667,
+    "median_ms": 0.28912000000000004,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "strassen",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "standard_fused",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "preparation_raw_ms": [
+      0.380431,
+      0.310291,
+      0.337091,
+      0.294789,
+      0.274449
+    ],
+    "raw_ms": [
+      0.27108,
+      0.287109,
+      0.33628,
+      0.30096,
+      0.28926,
+      0.29903,
+      0.27715,
+      0.30844,
+      0.28129,
+      0.29065,
+      0.28022,
+      0.27928,
+      0.28898,
+      0.292949,
+      0.29604,
+      0.28485,
+      0.28876,
+      0.29125,
+      0.30026,
+      0.28587,
+      0.28562,
+      0.28183,
+      0.32365,
+      0.313,
+      0.27582,
+      0.28187,
+      0.27903,
+      0.29297,
+      0.29903,
+      0.29601
+    ],
+    "scope": "prepared_kernel",
+    "shape_mkn": [
+      1024,
+      3072,
+      1024
+    ],
+    "status": "ok",
+    "std_ms": 0.014200015339800682,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.33628,
+      "mean_ms": 0.2919512666666667,
+      "median_ms": 0.28912000000000004,
+      "min_ms": 0.27108,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.27108,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.287109,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.33628,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.30096,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.28926,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.29903,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.27715,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.30844,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.28129,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.29065,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.28022,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.27928,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.28898,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.292949,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.29604,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.28485,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.28876,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.29125,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.30026,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.28587,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.28562,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.28183,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.32365,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.313,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.27582,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.28187,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.27903,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.29297,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.29903,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.29601,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.014200015339800682
+    },
+    "variant": "interleaved"
+  },
+  {
+    "algorithm": "strassen",
+    "arm_id": "strassen_early",
+    "comparisons": [
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "strassen_fused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9106636062744844,
+          0.9786094193860241
+        ],
+        "speedup_ratio_of_means": 0.9452014100534597,
+        "time_reduction_fraction": -0.05797556940106663,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "native_joint_graph",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9474094158108117,
+          1.0070426203792775
+        ],
+        "speedup_ratio_of_means": 0.9772583624269412,
+        "time_reduction_fraction": -0.023270854921703554,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_full_fused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.938641828481049,
+          1.006247376844362
+        ],
+        "speedup_ratio_of_means": 0.9723274346408408,
+        "time_reduction_fraction": -0.028460130171459097,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_quadrant_fused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9405160005553643,
+          0.9978612714047019
+        ],
+        "speedup_ratio_of_means": 0.9696426481736682,
+        "time_reduction_fraction": -0.03130777290325493,
+        "valid_numerical_comparison": true
+      }
+    ],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 5.90625,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.0040178212034342195,
+      "sample_columns": [
+        0,
+        2,
+        8,
+        9,
+        10,
+        15,
+        18,
+        27,
+        29,
+        30,
+        47,
+        63,
+        76,
+        87,
+        102,
+        114,
+        127,
+        144,
+        174,
+        182,
+        184,
+        215,
+        219,
+        220,
+        221,
+        226,
+        229,
+        243,
+        246,
+        261,
+        263,
+        270,
+        275,
+        279,
+        315,
+        333,
+        341,
+        349,
+        350,
+        353,
+        355,
+        358,
+        373,
+        384,
+        389,
+        390,
+        393,
+        396,
+        400,
+        402,
+        411,
+        415,
+        417,
+        421,
+        430,
+        436,
+        437,
+        442,
+        464,
+        467,
+        479,
+        489,
+        495,
+        511,
+        526,
+        529,
+        533,
+        549,
+        552,
+        555,
+        563,
+        579,
+        580,
+        589,
+        597,
+        602,
+        623,
+        629,
+        637,
+        646,
+        653,
+        676,
+        689,
+        696,
+        707,
+        727,
+        729,
+        732,
+        741,
+        742,
+        746,
+        748,
+        752,
+        764,
+        772,
+        791,
+        792,
+        800,
+        802,
+        805,
+        810,
+        816,
+        829,
+        834,
+        836,
+        837,
+        848,
+        851,
+        852,
+        856,
+        864,
+        892,
+        901,
+        902,
+        919,
+        931,
+        944,
+        962,
+        964,
+        969,
+        984,
+        988,
+        991,
+        993,
+        1005,
+        1011,
+        1013,
+        1023
+      ],
+      "sample_rows": [
+        0,
+        106,
+        114,
+        129,
+        131,
+        153,
+        159,
+        177,
+        187,
+        201,
+        254,
+        291,
+        303,
+        315,
+        321,
+        365,
+        483,
+        570,
+        582,
+        591,
+        638,
+        677,
+        700,
+        716,
+        766,
+        802,
+        821,
+        884,
+        929,
+        999,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "qwen06_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "strassen",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "early_finalization",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "mean_ms": 0.3067779666666667,
+    "median_ms": 0.3029045,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "strassen",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "early_finalization",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "preparation_raw_ms": [
+      0.38969,
+      0.33135,
+      0.30139,
+      0.27586,
+      0.27068
+    ],
+    "raw_ms": [
+      0.31165,
+      0.30748,
+      0.28501,
+      0.27727,
+      0.31307,
+      0.27936,
+      0.29424,
+      0.28085,
+      0.29952,
+      0.28846,
+      0.26531,
+      0.28347,
+      0.36326,
+      0.32246,
+      0.33045,
+      0.304369,
+      0.306289,
+      0.31588,
+      0.37884,
+      0.30582,
+      0.30589,
+      0.33546,
+      0.299191,
+      0.30707,
+      0.29855,
+      0.30144,
+      0.36802,
+      0.29846,
+      0.28428,
+      0.29192
+    ],
+    "scope": "call",
+    "shape_mkn": [
+      1024,
+      3072,
+      1024
+    ],
+    "status": "ok",
+    "std_ms": 0.02655112459399314,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.37884,
+      "mean_ms": 0.3067779666666667,
+      "median_ms": 0.3029045,
+      "min_ms": 0.26531,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.31165,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.30748,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.28501,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.27727,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.31307,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.27936,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.29424,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.28085,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.29952,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.28846,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.26531,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.28347,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.36326,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.32246,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.33045,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.304369,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.306289,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.31588,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.37884,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.30582,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.30589,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.33546,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.299191,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.30707,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.29855,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.30144,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.36802,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.29846,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.28428,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.29192,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.02655112459399314
+    },
+    "variant": "interleaved"
+  },
+  {
+    "algorithm": "strassen",
+    "arm_id": "strassen_early",
+    "comparisons": [
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "strassen_fused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9470484232462187,
+          0.9892590239318939
+        ],
+        "speedup_ratio_of_means": 0.9683743157088905,
+        "time_reduction_fraction": -0.03265853273685604,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "native_joint_graph",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9768659288904968,
+          1.039308052700741
+        ],
+        "speedup_ratio_of_means": 1.006486869095842,
+        "time_reduction_fraction": 0.006445060829923577,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_full_fused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9676762752090564,
+          1.009529092775101
+        ],
+        "speedup_ratio_of_means": 0.9884000128695877,
+        "time_reduction_fraction": -0.011736126041454131,
+        "valid_numerical_comparison": true
+      },
+      {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_quadrant_fused",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          0.9754484049322922,
+          1.018367333813573
+        ],
+        "speedup_ratio_of_means": 0.9977280313434156,
+        "time_reduction_fraction": -0.002277142252408604,
+        "valid_numerical_comparison": true
+      }
+    ],
+    "correctness": {
+      "finite": true,
+      "gate": {
+        "max_abs_atol": 0.001,
+        "max_abs_reference_rtol": 0.05,
+        "relative_l2_max": 0.02,
+        "require_finite": true
+      },
+      "max_abs_error": 0.03125,
+      "max_abs_reference": 5.90625,
+      "pass": true,
+      "passed": true,
+      "reference_scope": "sampled NumPy FP64 dot across allK using exact BF16 operands; matched BF16 epilogue boundaries",
+      "relative_l2": 0.0040178212034342195,
+      "sample_columns": [
+        0,
+        2,
+        8,
+        9,
+        10,
+        15,
+        18,
+        27,
+        29,
+        30,
+        47,
+        63,
+        76,
+        87,
+        102,
+        114,
+        127,
+        144,
+        174,
+        182,
+        184,
+        215,
+        219,
+        220,
+        221,
+        226,
+        229,
+        243,
+        246,
+        261,
+        263,
+        270,
+        275,
+        279,
+        315,
+        333,
+        341,
+        349,
+        350,
+        353,
+        355,
+        358,
+        373,
+        384,
+        389,
+        390,
+        393,
+        396,
+        400,
+        402,
+        411,
+        415,
+        417,
+        421,
+        430,
+        436,
+        437,
+        442,
+        464,
+        467,
+        479,
+        489,
+        495,
+        511,
+        526,
+        529,
+        533,
+        549,
+        552,
+        555,
+        563,
+        579,
+        580,
+        589,
+        597,
+        602,
+        623,
+        629,
+        637,
+        646,
+        653,
+        676,
+        689,
+        696,
+        707,
+        727,
+        729,
+        732,
+        741,
+        742,
+        746,
+        748,
+        752,
+        764,
+        772,
+        791,
+        792,
+        800,
+        802,
+        805,
+        810,
+        816,
+        829,
+        834,
+        836,
+        837,
+        848,
+        851,
+        852,
+        856,
+        864,
+        892,
+        901,
+        902,
+        919,
+        931,
+        944,
+        962,
+        964,
+        969,
+        984,
+        988,
+        991,
+        993,
+        1005,
+        1011,
+        1013,
+        1023
+      ],
+      "sample_rows": [
+        0,
+        106,
+        114,
+        129,
+        131,
+        153,
+        159,
+        177,
+        187,
+        201,
+        254,
+        291,
+        303,
+        315,
+        321,
+        365,
+        483,
+        570,
+        582,
+        591,
+        638,
+        677,
+        700,
+        716,
+        766,
+        802,
+        821,
+        884,
+        929,
+        999,
+        1016,
+        1023
+      ]
+    },
+    "eligible_for_speedup_claim": true,
+    "error": null,
+    "group_id": "qwen06_m1024_residual",
+    "input_scope": "synthetic Gaussian, no model-quality qualification",
+    "kernel_metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "strassen",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "early_finalization",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "mean_ms": 0.30148596666666666,
+    "median_ms": 0.29656499999999997,
+    "metadata": {
+      "accumulation_dtype": "float32",
+      "accumulator_storage": "scratch",
+      "algorithm": "strassen",
+      "dot_precision": "DEFAULT",
+      "early_swiglu_changes_final_panel_accumulation_order": false,
+      "epilogue": "residual",
+      "fusion": "early_finalization",
+      "input_dtype": "bfloat16",
+      "kernel_version": "kernels_n8_v001",
+      "output_dtype": "bfloat16",
+      "preparation": "device padding and paired gate/up weight relayout; separately report reuse",
+      "projection_rounding": "BF16 before epilogue",
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "variant": "interleaved"
+    },
+    "preparation_raw_ms": [
+      0.38969,
+      0.33135,
+      0.30139,
+      0.27586,
+      0.27068
+    ],
+    "raw_ms": [
+      0.29162,
+      0.26569,
+      0.31281,
+      0.32362,
+      0.30501,
+      0.29465,
+      0.28686,
+      0.284871,
+      0.34508,
+      0.30092,
+      0.29874,
+      0.28979,
+      0.29343,
+      0.32294,
+      0.28046,
+      0.29776,
+      0.29369,
+      0.29723,
+      0.32158,
+      0.29485,
+      0.31002,
+      0.289589,
+      0.32965,
+      0.33394,
+      0.29978,
+      0.2956,
+      0.288029,
+      0.31916,
+      0.2959,
+      0.28131
+    ],
+    "scope": "prepared_kernel",
+    "shape_mkn": [
+      1024,
+      3072,
+      1024
+    ],
+    "status": "ok",
+    "std_ms": 0.017742446080794082,
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": {
+      "max_ms": 0.34508,
+      "mean_ms": 0.30148596666666666,
+      "median_ms": 0.29656499999999997,
+      "min_ms": 0.26569,
+      "raw_samples": [
+        {
+          "elapsed_ms": 0.29162,
+          "round": 0
+        },
+        {
+          "elapsed_ms": 0.26569,
+          "round": 1
+        },
+        {
+          "elapsed_ms": 0.31281,
+          "round": 2
+        },
+        {
+          "elapsed_ms": 0.32362,
+          "round": 3
+        },
+        {
+          "elapsed_ms": 0.30501,
+          "round": 4
+        },
+        {
+          "elapsed_ms": 0.29465,
+          "round": 5
+        },
+        {
+          "elapsed_ms": 0.28686,
+          "round": 6
+        },
+        {
+          "elapsed_ms": 0.284871,
+          "round": 7
+        },
+        {
+          "elapsed_ms": 0.34508,
+          "round": 8
+        },
+        {
+          "elapsed_ms": 0.30092,
+          "round": 9
+        },
+        {
+          "elapsed_ms": 0.29874,
+          "round": 10
+        },
+        {
+          "elapsed_ms": 0.28979,
+          "round": 11
+        },
+        {
+          "elapsed_ms": 0.29343,
+          "round": 12
+        },
+        {
+          "elapsed_ms": 0.32294,
+          "round": 13
+        },
+        {
+          "elapsed_ms": 0.28046,
+          "round": 14
+        },
+        {
+          "elapsed_ms": 0.29776,
+          "round": 15
+        },
+        {
+          "elapsed_ms": 0.29369,
+          "round": 16
+        },
+        {
+          "elapsed_ms": 0.29723,
+          "round": 17
+        },
+        {
+          "elapsed_ms": 0.32158,
+          "round": 18
+        },
+        {
+          "elapsed_ms": 0.29485,
+          "round": 19
+        },
+        {
+          "elapsed_ms": 0.31002,
+          "round": 20
+        },
+        {
+          "elapsed_ms": 0.289589,
+          "round": 21
+        },
+        {
+          "elapsed_ms": 0.32965,
+          "round": 22
+        },
+        {
+          "elapsed_ms": 0.33394,
+          "round": 23
+        },
+        {
+          "elapsed_ms": 0.29978,
+          "round": 24
+        },
+        {
+          "elapsed_ms": 0.2956,
+          "round": 25
+        },
+        {
+          "elapsed_ms": 0.288029,
+          "round": 26
+        },
+        {
+          "elapsed_ms": 0.31916,
+          "round": 27
+        },
+        {
+          "elapsed_ms": 0.2959,
+          "round": 28
+        },
+        {
+          "elapsed_ms": 0.28131,
+          "round": 29
+        }
+      ],
+      "sample_count": 30,
+      "std_ms": 0.017742446080794082
+    },
+    "variant": "interleaved"
+  }
+]
