@@ -1,0 +1,1303 @@
+{
+  "schema_version": 1,
+  "campaign_id": "v5e_n5_n9_v1",
+  "status": "preregistered_before_N5_tuning",
+  "shape_manifest": "shapes_v1.json",
+  "shape_order": [
+    "m",
+    "k",
+    "n"
+  ],
+  "tile_order": [
+    "bm",
+    "bn",
+    "bk"
+  ],
+  "device": {
+    "target": "v5e",
+    "single_device": true,
+    "reuse_same_allocation": true,
+    "allow_v6e": false,
+    "allow_concurrent_timing": false,
+    "require_identity_match": true,
+    "identity_fields": [
+      "allocation_id",
+      "device_kind",
+      "device_id",
+      "process_index",
+      "jax_version",
+      "jaxlib_version",
+      "libtpu_version",
+      "runtime_image",
+      "runtime_flags",
+      "host_id"
+    ],
+    "identity_missing_policy": "Record unknown explicitly; do not describe unverified physical identity as the same chip.",
+    "cohort_note": "The N1-N4 allocation was lost. N5-N9 use one new v5e allocation; compare arms only within this new cohort. Do not pool old timings."
+  },
+  "precision": {
+    "input_dtype": "bfloat16",
+    "pre_add_dtype": "bfloat16",
+    "accumulator_dtype": "float32",
+    "output_dtype": "float32",
+    "native_precision": "DEFAULT",
+    "reference_dtype": "float32",
+    "note": "The Strassen pre-add rounding is part of the algorithm under test; its numerical cost must remain visible. FP32 output differs from some historical BF16-output experiments."
+  },
+  "arms": {
+    "native_xla": {
+      "algorithm": "native",
+      "variant": "plain"
+    },
+    "cubic_basic": {
+      "algorithm": "cubic_full",
+      "variant": "plain"
+    },
+    "cubic_quadrant": {
+      "algorithm": "cubic_quadrant",
+      "variant": "plain"
+    },
+    "strassen_basic": {
+      "algorithm": "strassen",
+      "variant": "plain"
+    }
+  },
+  "seed": 20260919,
+  "timing": {
+    "smoke": {
+      "warmups": 2,
+      "repeats": 5
+    },
+    "screen": {
+      "warmups": 2,
+      "repeats": 7
+    },
+    "confirm": {
+      "warmups": 5,
+      "repeats": 30
+    },
+    "clock": "perf_counter_ns",
+    "synchronize": "block_until_ready every measured result",
+    "order": "seeded balanced interleaving of arms, raw chronological records retained",
+    "measure_scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "headline_scope": "call",
+    "exclude": [
+      "compilation",
+      "host_to_device_transfer",
+      "reference_calculation",
+      "one_time_input_generation"
+    ],
+    "include_in_call": [
+      "device_padding_if_needed",
+      "device_layout_preparation_if_needed",
+      "matmul",
+      "device_output_crop_if_needed"
+    ],
+    "prepared_kernel_note": "Amortized/reused-input scope; always report alongside complete call and original vs padded dimensions.",
+    "report": [
+      "raw_ms",
+      "median_ms",
+      "mean_ms",
+      "std_ms",
+      "min_ms",
+      "max_ms",
+      "paired_speedup_ci95"
+    ],
+    "repeat_bad_policy": "Keep all completed samples. New complete runs may investigate drift; never replace failed/noisy rows."
+  },
+  "preparation": {
+    "padding": "zero pad each needed extent to tile divisibility for custom kernels; native accepts original shape",
+    "output": "crop to original M,N",
+    "materialization": "prepared kernel uses explicitly prepared inputs, synchronizes them before timing, and records their shapes",
+    "reuse_claim": "No reuse claim unless inputs and prepared buffers actually reused; full-call source remains the main comparison."
+  },
+  "memory": {
+    "kernel_vmem_limit_mib": 48,
+    "estimated_live_device_budget_gib": 8,
+    "max_reference_output_elements": 1048576,
+    "max_full_reference_flops": 2000000000,
+    "execution_order": "smoke first; remaining shapes in ascending estimated live bytes, largest anchor last",
+    "preflight": "Estimate and record bytes for original inputs, padded inputs, FP32 output, one result, and reference samples. Conservative estimate is not measured peak memory.",
+    "on_preflight_over_budget": "Record skipped_memory_preflight with estimate and limit; do not silently remove shape.",
+    "on_device_oom": "Record oom, clear executable/input buffers before the next case; retry only in a new immutable run."
+  },
+  "correctness": {
+    "input_reference": "Use the exact BF16-quantized operands cast to NumPy float32, not the pre-quantization random source.",
+    "reference": "host_numpy_fp32",
+    "mode": "full_if_both_limits_allow_else_sampled_cross_product",
+    "sample_rows": 128,
+    "sample_columns": 128,
+    "sampling": "seeded without replacement, always including first and last row/column; record indices; reference uses all K",
+    "gate": {
+      "require_finite": true,
+      "relative_l2_max": 0.02,
+      "max_abs_atol": 0.001,
+      "max_abs_reference_rtol": 0.05
+    },
+    "gate_expression": "finite && relative_l2 <= 0.02 && max_abs_error <= 0.001 + 0.05 * max_abs_reference",
+    "metrics": [
+      "reference_scope",
+      "sample_count",
+      "relative_l2",
+      "max_abs_error",
+      "max_abs_reference",
+      "rmse",
+      "mean_abs_error",
+      "p50_abs_error",
+      "p99_abs_error",
+      "normwise_error",
+      "finite",
+      "pass"
+    ],
+    "near_zero_denominator": 1e-30,
+    "failure_policy": "Record failures and measurements; failing rows cannot count as valid speedup wins. Fixed thresholds never change to rescue an arm.",
+    "scope": "Finite synthetic numerical eligibility only; no bound on model quality or worst-case error."
+  },
+  "experiments": {
+    "N5-screen": {
+      "shape_ids": [
+        "square_512",
+        "square_2048",
+        "square_4096",
+        "square_8192",
+        "vary_m_8192",
+        "vary_k_8192",
+        "vary_n_8192",
+        "mkn_512_8192_2048",
+        "small_m_8",
+        "small_m_64",
+        "tail_513",
+        "tail_wide",
+        "qwen32_gate_up_m512",
+        "qwen32_gate_up_m8192",
+        "mistral7_gate_up_m512",
+        "gemma9_gate_up_m512"
+      ],
+      "shape_manifest": "shapes_v1.json",
+      "candidate_families": {
+        "cubic": [
+          {
+            "candidate_id": "c_plain_512_1024_512",
+            "algorithm": "cubic_full",
+            "variant": "plain",
+            "tile": [
+              512,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_plain_1024_1024_512",
+            "algorithm": "cubic_full",
+            "variant": "plain",
+            "tile": [
+              1024,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_plain_2048_1024_512",
+            "algorithm": "cubic_full",
+            "variant": "plain",
+            "tile": [
+              2048,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_plain_1024_1024_1024",
+            "algorithm": "cubic_full",
+            "variant": "plain",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ]
+          },
+          {
+            "candidate_id": "c_plain_2048_2048_512",
+            "algorithm": "cubic_full",
+            "variant": "plain",
+            "tile": [
+              2048,
+              2048,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_plain_128_512_512",
+            "algorithm": "cubic_full",
+            "variant": "plain",
+            "tile": [
+              128,
+              512,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_plain_512_512_256",
+            "algorithm": "cubic_full",
+            "variant": "plain",
+            "tile": [
+              512,
+              512,
+              256
+            ]
+          },
+          {
+            "candidate_id": "c_plain_1024_512_512",
+            "algorithm": "cubic_full",
+            "variant": "plain",
+            "tile": [
+              1024,
+              512,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_plain_1024_2048_512",
+            "algorithm": "cubic_full",
+            "variant": "plain",
+            "tile": [
+              1024,
+              2048,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_plain_512_1024_1024",
+            "algorithm": "cubic_full",
+            "variant": "plain",
+            "tile": [
+              512,
+              1024,
+              1024
+            ]
+          },
+          {
+            "candidate_id": "c_output_accumulator_512_1024_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              512,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_output_accumulator_1024_1024_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              1024,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_output_accumulator_2048_1024_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              2048,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_output_accumulator_1024_1024_1024",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ]
+          },
+          {
+            "candidate_id": "c_output_accumulator_2048_2048_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              2048,
+              2048,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_output_accumulator_128_512_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              128,
+              512,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_output_accumulator_512_512_256",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              512,
+              512,
+              256
+            ]
+          },
+          {
+            "candidate_id": "c_output_accumulator_1024_512_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              1024,
+              512,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_output_accumulator_1024_2048_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              1024,
+              2048,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_output_accumulator_512_1024_1024",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              512,
+              1024,
+              1024
+            ]
+          }
+        ],
+        "strassen": [
+          {
+            "candidate_id": "s_plain_512_1024_512",
+            "algorithm": "strassen",
+            "variant": "plain",
+            "tile": [
+              512,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_plain_1024_1024_512",
+            "algorithm": "strassen",
+            "variant": "plain",
+            "tile": [
+              1024,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_plain_2048_1024_512",
+            "algorithm": "strassen",
+            "variant": "plain",
+            "tile": [
+              2048,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_plain_1024_1024_1024",
+            "algorithm": "strassen",
+            "variant": "plain",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ]
+          },
+          {
+            "candidate_id": "s_plain_2048_2048_512",
+            "algorithm": "strassen",
+            "variant": "plain",
+            "tile": [
+              2048,
+              2048,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_interleaved_512_1024_512",
+            "algorithm": "strassen",
+            "variant": "interleaved",
+            "tile": [
+              512,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_interleaved_1024_1024_512",
+            "algorithm": "strassen",
+            "variant": "interleaved",
+            "tile": [
+              1024,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_interleaved_2048_1024_512",
+            "algorithm": "strassen",
+            "variant": "interleaved",
+            "tile": [
+              2048,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_interleaved_1024_1024_1024",
+            "algorithm": "strassen",
+            "variant": "interleaved",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ]
+          },
+          {
+            "candidate_id": "s_interleaved_2048_2048_512",
+            "algorithm": "strassen",
+            "variant": "interleaved",
+            "tile": [
+              2048,
+              2048,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_output_accumulator_512_1024_512",
+            "algorithm": "strassen",
+            "variant": "output_accumulator",
+            "tile": [
+              512,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_output_accumulator_1024_1024_512",
+            "algorithm": "strassen",
+            "variant": "output_accumulator",
+            "tile": [
+              1024,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_output_accumulator_2048_1024_512",
+            "algorithm": "strassen",
+            "variant": "output_accumulator",
+            "tile": [
+              2048,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_output_accumulator_1024_1024_1024",
+            "algorithm": "strassen",
+            "variant": "output_accumulator",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ]
+          },
+          {
+            "candidate_id": "s_output_accumulator_2048_2048_512",
+            "algorithm": "strassen",
+            "variant": "output_accumulator",
+            "tile": [
+              2048,
+              2048,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_interleaved_output_accumulator_512_1024_512",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              512,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_interleaved_output_accumulator_1024_1024_512",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              1024,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_interleaved_output_accumulator_2048_1024_512",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              2048,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_interleaved_output_accumulator_1024_1024_1024",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ]
+          },
+          {
+            "candidate_id": "s_interleaved_output_accumulator_2048_2048_512",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              2048,
+              2048,
+              512
+            ]
+          }
+        ]
+      },
+      "native": {
+        "candidate_id": "native",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile": null
+      },
+      "distribution": "gaussian",
+      "seed": 20260919,
+      "timing": "screen",
+      "attempts_per_shape_per_family": 20,
+      "selector_frozen_file": null
+    },
+    "N5-confirm": {
+      "shape_ids": [
+        "square_512",
+        "square_2048",
+        "square_4096",
+        "square_8192",
+        "vary_m_8192",
+        "vary_k_8192",
+        "vary_n_8192",
+        "mkn_512_8192_2048",
+        "small_m_8",
+        "small_m_64",
+        "tail_513",
+        "tail_wide",
+        "qwen32_gate_up_m512",
+        "qwen32_gate_up_m8192",
+        "mistral7_gate_up_m512",
+        "gemma9_gate_up_m512"
+      ],
+      "shape_manifest": "shapes_v1.json",
+      "distribution": "gaussian",
+      "seed": 20260920,
+      "timing": "confirm",
+      "selection_file": null,
+      "selector_frozen_file": null
+    },
+    "N7-screen": {
+      "shape_ids": [
+        "held_square_768",
+        "held_square_1536",
+        "held_square_3072",
+        "held_square_6144",
+        "held_rect_wide",
+        "held_rect_tall",
+        "held_rect_short_k",
+        "held_rect_deep_k",
+        "held_small_m16",
+        "held_small_m128",
+        "held_tail_a",
+        "held_tail_b",
+        "held_qwen_gateup",
+        "held_qwen_down",
+        "held_mistral_gateup",
+        "held_gemma_gateup"
+      ],
+      "shape_manifest": "shapes_heldout_v1.json",
+      "candidate_families": {
+        "cubic": [
+          {
+            "candidate_id": "c_plain_512_1024_512",
+            "algorithm": "cubic_full",
+            "variant": "plain",
+            "tile": [
+              512,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_plain_1024_1024_512",
+            "algorithm": "cubic_full",
+            "variant": "plain",
+            "tile": [
+              1024,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_plain_2048_1024_512",
+            "algorithm": "cubic_full",
+            "variant": "plain",
+            "tile": [
+              2048,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_plain_1024_1024_1024",
+            "algorithm": "cubic_full",
+            "variant": "plain",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ]
+          },
+          {
+            "candidate_id": "c_plain_2048_2048_512",
+            "algorithm": "cubic_full",
+            "variant": "plain",
+            "tile": [
+              2048,
+              2048,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_plain_128_512_512",
+            "algorithm": "cubic_full",
+            "variant": "plain",
+            "tile": [
+              128,
+              512,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_plain_512_512_256",
+            "algorithm": "cubic_full",
+            "variant": "plain",
+            "tile": [
+              512,
+              512,
+              256
+            ]
+          },
+          {
+            "candidate_id": "c_plain_1024_512_512",
+            "algorithm": "cubic_full",
+            "variant": "plain",
+            "tile": [
+              1024,
+              512,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_plain_1024_2048_512",
+            "algorithm": "cubic_full",
+            "variant": "plain",
+            "tile": [
+              1024,
+              2048,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_plain_512_1024_1024",
+            "algorithm": "cubic_full",
+            "variant": "plain",
+            "tile": [
+              512,
+              1024,
+              1024
+            ]
+          },
+          {
+            "candidate_id": "c_output_accumulator_512_1024_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              512,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_output_accumulator_1024_1024_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              1024,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_output_accumulator_2048_1024_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              2048,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_output_accumulator_1024_1024_1024",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ]
+          },
+          {
+            "candidate_id": "c_output_accumulator_2048_2048_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              2048,
+              2048,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_output_accumulator_128_512_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              128,
+              512,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_output_accumulator_512_512_256",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              512,
+              512,
+              256
+            ]
+          },
+          {
+            "candidate_id": "c_output_accumulator_1024_512_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              1024,
+              512,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_output_accumulator_1024_2048_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              1024,
+              2048,
+              512
+            ]
+          },
+          {
+            "candidate_id": "c_output_accumulator_512_1024_1024",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              512,
+              1024,
+              1024
+            ]
+          }
+        ],
+        "strassen": [
+          {
+            "candidate_id": "s_plain_512_1024_512",
+            "algorithm": "strassen",
+            "variant": "plain",
+            "tile": [
+              512,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_plain_1024_1024_512",
+            "algorithm": "strassen",
+            "variant": "plain",
+            "tile": [
+              1024,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_plain_2048_1024_512",
+            "algorithm": "strassen",
+            "variant": "plain",
+            "tile": [
+              2048,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_plain_1024_1024_1024",
+            "algorithm": "strassen",
+            "variant": "plain",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ]
+          },
+          {
+            "candidate_id": "s_plain_2048_2048_512",
+            "algorithm": "strassen",
+            "variant": "plain",
+            "tile": [
+              2048,
+              2048,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_interleaved_512_1024_512",
+            "algorithm": "strassen",
+            "variant": "interleaved",
+            "tile": [
+              512,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_interleaved_1024_1024_512",
+            "algorithm": "strassen",
+            "variant": "interleaved",
+            "tile": [
+              1024,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_interleaved_2048_1024_512",
+            "algorithm": "strassen",
+            "variant": "interleaved",
+            "tile": [
+              2048,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_interleaved_1024_1024_1024",
+            "algorithm": "strassen",
+            "variant": "interleaved",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ]
+          },
+          {
+            "candidate_id": "s_interleaved_2048_2048_512",
+            "algorithm": "strassen",
+            "variant": "interleaved",
+            "tile": [
+              2048,
+              2048,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_output_accumulator_512_1024_512",
+            "algorithm": "strassen",
+            "variant": "output_accumulator",
+            "tile": [
+              512,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_output_accumulator_1024_1024_512",
+            "algorithm": "strassen",
+            "variant": "output_accumulator",
+            "tile": [
+              1024,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_output_accumulator_2048_1024_512",
+            "algorithm": "strassen",
+            "variant": "output_accumulator",
+            "tile": [
+              2048,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_output_accumulator_1024_1024_1024",
+            "algorithm": "strassen",
+            "variant": "output_accumulator",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ]
+          },
+          {
+            "candidate_id": "s_output_accumulator_2048_2048_512",
+            "algorithm": "strassen",
+            "variant": "output_accumulator",
+            "tile": [
+              2048,
+              2048,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_interleaved_output_accumulator_512_1024_512",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              512,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_interleaved_output_accumulator_1024_1024_512",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              1024,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_interleaved_output_accumulator_2048_1024_512",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              2048,
+              1024,
+              512
+            ]
+          },
+          {
+            "candidate_id": "s_interleaved_output_accumulator_1024_1024_1024",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ]
+          },
+          {
+            "candidate_id": "s_interleaved_output_accumulator_2048_2048_512",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              2048,
+              2048,
+              512
+            ]
+          }
+        ]
+      },
+      "native": {
+        "candidate_id": "native",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile": null
+      },
+      "distribution": "gaussian",
+      "seed": 20260923,
+      "timing": "screen",
+      "attempts_per_shape_per_family": 20,
+      "selector_frozen_file": "REQUIRED_AT_EXECUTION"
+    },
+    "N7-confirm": {
+      "shape_ids": [
+        "held_square_768",
+        "held_square_1536",
+        "held_square_3072",
+        "held_square_6144",
+        "held_rect_wide",
+        "held_rect_tall",
+        "held_rect_short_k",
+        "held_rect_deep_k",
+        "held_small_m16",
+        "held_small_m128",
+        "held_tail_a",
+        "held_tail_b",
+        "held_qwen_gateup",
+        "held_qwen_down",
+        "held_mistral_gateup",
+        "held_gemma_gateup"
+      ],
+      "shape_manifest": "shapes_heldout_v1.json",
+      "distribution": "gaussian",
+      "seed": 20260924,
+      "timing": "confirm",
+      "selection_file": null,
+      "selector_frozen_file": "REQUIRED_AT_EXECUTION"
+    },
+    "N6": {
+      "selection_basis": "N5-confirm complete-call Strassen versus independently selected cubic paired CI95, both eligible",
+      "representative_classes": [
+        "win",
+        "tie",
+        "loss"
+      ],
+      "selection_rule": "Within each available class sort by M*K*N then shape_id and choose index floor((count-1)/2). If a class is empty, record it empty; do not manufacture a win/tie/loss.",
+      "max_shapes": 3,
+      "arms": [
+        "native_xla",
+        "cubic_selected",
+        "strassen_selected"
+      ],
+      "capture_blocks": 2,
+      "capture_steps": 8,
+      "reverse_second_block": true,
+      "ordinary_timing": {
+        "warmups": 5,
+        "repeats": 30
+      },
+      "profiler": {
+        "host_tracer_level": 2,
+        "python_tracer_level": 0,
+        "enable_hlo_proto": true,
+        "tpu_trace_mode": "TRACE_ONLY"
+      },
+      "compiler_diagnostics": [
+        "compiled_memory_analysis",
+        "cost_analysis",
+        "compiled_hlo_text"
+      ],
+      "hardware_counters": "Not available from validated interface; do not label static estimates or trace durations as MXU utilization counters.",
+      "roofline": {
+        "bf16_peak_flops_per_second": 197000000000000,
+        "hbm_peak_bytes_per_second": 858993459200,
+        "source": "https://docs.cloud.google.com/tpu/docs/v5e",
+        "accessed": "2026-09-19",
+        "scope": "Optimistic lower-bound estimates using vendor peaks, compulsory bytes and MXU dot work; excludes Strassen vector overhead, extra traffic, dispatch and achieved utilization."
+      }
+    },
+    "N6a": {
+      "training_source": "N5-confirm only from the new v5e cohort; N1-N4 inform preregistered design but their timings are not pooled.",
+      "model": "nearest_confirmed_prototype_log2_mkn",
+      "candidate_labels": [
+        "native",
+        "cubic",
+        "strassen"
+      ],
+      "confidence_lower_bound_min": 1.01,
+      "strassen_requires_confidence_vs": [
+        "native_xla",
+        "cubic_selected"
+      ],
+      "cubic_requires_confidence_vs": [
+        "native_xla"
+      ],
+      "max_log2_distance": 1.75,
+      "min_m": 256,
+      "min_k": 512,
+      "min_n": 512,
+      "max_padding_volume_ratio": 1.5,
+      "allowed_input_scopes": [
+        "gaussian_synthetic"
+      ],
+      "fallback": "native",
+      "unknown_or_cancellation_input_scope": "native",
+      "cross_validation": "leave-one-shape-out family agreement, descriptive only; thresholds and model class never change from CV or heldout results.",
+      "numerical_claim": "Declared input scope is supplied by caller, not inferred/certified from shape. Every N7 arm still receives unchanged numerical gates.",
+      "freeze": "Write new exclusive selector.json with training artifact hashes, source identity and reserved heldout shapes before any N7 measurement."
+    },
+    "N7-evaluate": {
+      "shape_manifest": "shapes_heldout_v1.json",
+      "shape_ids": [
+        "held_square_768",
+        "held_square_1536",
+        "held_square_3072",
+        "held_square_6144",
+        "held_rect_wide",
+        "held_rect_tall",
+        "held_rect_short_k",
+        "held_rect_deep_k",
+        "held_small_m16",
+        "held_small_m128",
+        "held_tail_a",
+        "held_tail_b",
+        "held_qwen_gateup",
+        "held_qwen_down",
+        "held_mistral_gateup",
+        "held_gemma_gateup"
+      ],
+      "distribution": "gaussian",
+      "seed": 20260924,
+      "timing": "confirm",
+      "input_scope": "gaussian_synthetic",
+      "arms": [
+        "native_xla",
+        "cubic_selected",
+        "strassen_selected",
+        "selector"
+      ],
+      "selection_file": null,
+      "selector_file": null,
+      "report": [
+        "raw paired complete-call and prepared-kernel latency",
+        "numerical gates and all errors",
+        "chosen algorithm and tile with reason",
+        "family choice agreement",
+        "latency regret versus independently tuned eligible alternatives measured in same rounds"
+      ],
+      "oracle_scope": "N7 candidate screens only after selector freeze; these alternatives may assess regret, never change the rule.",
+      "fresh_v5e_replication": "After N9 finishes on original N5-N9 allocation, repeat frozen selections/rule with new cohort labels. No retuning or pooling required by this core heldout test."
+    },
+    "N8": {
+      "owner": "runtime_agent_application_runner",
+      "scope": "LLM projection MM plus SwiGLU or residual; separate matched-tile fusion ablations and selected-policy comparisons.",
+      "geometry_families": [
+        "Qwen3-0.6B",
+        "Qwen3-8B/Mistral7B-width",
+        "Qwen3-32B"
+      ],
+      "m_values": [
+        512,
+        2048
+      ],
+      "required_scopes": [
+        "complete_call_including_preparation",
+        "prepared_device_kernel"
+      ],
+      "quality": "Independent numerical qualification; not end-to-end model quality.",
+      "source": "Application runner and separate frozen application config record exact arms and tiles before execution."
+    },
+    "N9": {
+      "owner": "runtime_agent_application_runner",
+      "models": [
+        "Qwen3-0.6B",
+        "Mistral-7B-v0.3",
+        "Gemma-official-if-existing-authorized-access"
+      ],
+      "scope": "Natural-text NLL/PPL/KL/top1 and actual-layer activation performance using real checkpoints; no synthetic proxy for quality.",
+      "text": "WikiText2 test, 32768 contiguous tokenizer-specific tokens in 1024-token windows; record exact tokens/data hashes and scored-token count.",
+      "baseline": "native model computation; cubic/Strassen site policies frozen before quality run",
+      "required_reporting": [
+        "checkpoint revisions and tensor hashes",
+        "natural text/token provenance",
+        "resident layer/device compute versus streamed end-to-end wall time",
+        "all numerical/quality failures",
+        "gated model unavailable status without substitute mirrors"
+      ],
+      "source": "Application runner and separate frozen model configs specify exact implementation and quality thresholds before execution."
+    }
+  },
+  "execution_contract": {
+    "immutable_run_id": "UTC timestamp plus unique suffix",
+    "archive_before_run": [
+      "source tree snapshot",
+      "configuration JSON",
+      "source/configuration SHA256 manifests",
+      "git commit",
+      "environment fingerprint",
+      "planned cases"
+    ],
+    "archive_during_run": [
+      "append-only events.jsonl",
+      "stdout/stderr",
+      "raw timing samples",
+      "errors"
+    ],
+    "archive_after_run": [
+      "summary.json",
+      "status snapshot",
+      "artifact SHA256 manifest",
+      "completion/failure marker"
+    ],
+    "commit_policy": "Root orchestrator commits source snapshot before execution and records a commit after every completed or failed execution. Existing source snapshots and result directories are never overwritten.",
+    "resume": "A retry/new version receives a new run id and references previous run ids; never appends measurements to a sealed run.",
+    "record_statuses": [
+      "ok",
+      "input_error",
+      "numerical_failure",
+      "compile_error",
+      "oom",
+      "unsupported",
+      "skipped_memory_preflight",
+      "interrupted",
+      "not_run"
+    ],
+    "external_changes": "Any device or environment change creates a new cohort; do not pool it silently with the original allocation."
+  },
+  "deferred": [
+    "Two-level Strassen remains optional future work, excluded.",
+    "v6e replication only after all v5e N5-N9 stages and separately labeled fresh-v5e replication.",
+    "Do not infer model quality from N4 or from the shape selector."
+  ],
+  "distribution_manifest": "distributions_v1.json",
+  "base_campaign": "campaign_v1.json",
+  "heldout_shape_manifest": "shapes_heldout_v1.json",
+  "training_shape_ids": [
+    "square_512",
+    "square_2048",
+    "square_4096",
+    "square_8192",
+    "vary_m_8192",
+    "vary_k_8192",
+    "vary_n_8192",
+    "mkn_512_8192_2048",
+    "small_m_8",
+    "small_m_64",
+    "tail_513",
+    "tail_wide",
+    "qwen32_gate_up_m512",
+    "qwen32_gate_up_m8192",
+    "mistral7_gate_up_m512",
+    "gemma9_gate_up_m512"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/opt/homebrew/bin/python3",
+    "-c",
+    "import urllib.request,json,pathlib; s=json.load(urllib.request.urlopen(\"http://127.0.0.1:8765/api/status\")); assert len(s[\"n9_model_results\"])==7; assert s[\"n9_verification_issues\"]==[]; h=urllib.request.urlopen(\"http://127.0.0.1:8765/\").read(); assert b\"N9\" in h; p=pathlib.Path(\"../artifacts\"); p.mkdir(exist_ok=True); (p/\"api_snapshot.json\").write_text(json.dumps(s,indent=2)); (p/\"validation.json\").write_text(json.dumps({\"pass\":True,\"model_rows\":7,\"verification_issues\":[],\"html_bytes\":len(h)})); print(\"N9 API verified: seven sealed rows, no verification issues\")"
+  ],
+  "created_utc": "2026-09-19T08:41:54.826216+00:00",
+  "label": "status-v007-api-validation-v001",
+  "run_id": "20260919T084154Z-status-v007-api-validation-v001-e66414",
+  "scope": "local_validation",
+  "source_commit": "874e35e38fc50633070c19ef3de51d195f143b06"
+}

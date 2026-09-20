@@ -1,0 +1,2611 @@
+{
+  "id": "n7-replica-prepared_kernel-p2",
+  "experiment": "N7",
+  "kind": "bar",
+  "title": "N7 | Fresh-v5e replication - shapes 11-16",
+  "subtitle": "30 paired rounds; independent family selections. Matrix dimensions are M x K x N.",
+  "scope": "prepared_kernel",
+  "detail": false,
+  "takeaway": "The rule is unchanged. Some rule bars duplicate an alternative; timing differences there are not algorithmic improvements.",
+  "categories": [
+    {
+      "id": "held_rect_short_k",
+      "label": "rect short k\n3072 x 1024 x 6144"
+    },
+    {
+      "id": "held_qwen_down",
+      "label": "qwen down\n1024 x 25600 x 5120"
+    },
+    {
+      "id": "held_gemma_gateup",
+      "label": "Gemma gateup\n1024 x 3584 x 28672"
+    },
+    {
+      "id": "held_square_6144",
+      "label": "square 6144\n6144 x 6144 x 6144"
+    },
+    {
+      "id": "held_mistral_gateup",
+      "label": "mistral gateup\n1024 x 4096 x 28672"
+    },
+    {
+      "id": "held_qwen_gateup",
+      "label": "qwen gateup\n256 x 5120 x 51200"
+    }
+  ],
+  "series": [
+    {
+      "id": "native_xla",
+      "label": "Native XLA",
+      "color": "#3772C8"
+    },
+    {
+      "id": "cubic_selected",
+      "label": "Cubic (selected)",
+      "color": "#DD8734"
+    },
+    {
+      "id": "strassen_selected",
+      "label": "Strassen (selected)",
+      "color": "#24936D"
+    },
+    {
+      "id": "selector",
+      "label": "Frozen rule",
+      "color": "#8553B3"
+    }
+  ],
+  "points": [
+    {
+      "category": "held_rect_short_k",
+      "series": "native_xla",
+      "value": 0.47217433333333325,
+      "lo": 0.4463857612313833,
+      "hi": 0.4979629054352832,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:2962"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "cubic_selected",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.9486880136278544,
+            0.9859002199644994
+          ],
+          "speedup_ratio_of_means": 0.9697421785597553,
+          "time_reduction_fraction": -0.031201923675407306,
+          "valid_numerical_comparison": true
+        },
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "selector",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.9779872580984127,
+            1.0218390716491499
+          ],
+          "speedup_ratio_of_means": 1.0008167181189436,
+          "time_reduction_fraction": 0.0008160516347874847,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "native_xla",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile_bm_bn_bk": null,
+        "shape_mkn": [
+          3072,
+          1024,
+          6144
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_rect_short_k",
+      "series": "cubic_selected",
+      "value": 0.4578873666666667,
+      "lo": 0.4453503765739428,
+      "hi": 0.4704243567593906,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:2964"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "native_xla",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            1.0143014270113944,
+            1.0540873138860893
+          ],
+          "speedup_ratio_of_means": 1.0312019236754073,
+          "time_reduction_fraction": 0.030257821440244692,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "cubic_selected",
+        "algorithm": "cubic_full",
+        "variant": "output_accumulator",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "shape_mkn": [
+          3072,
+          1024,
+          6144
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_rect_short_k",
+      "series": "strassen_selected",
+      "value": 0.44449503333333323,
+      "lo": 0.42633240265367267,
+      "hi": 0.4626576640129938,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:2966"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "native_xla",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            1.0410338764310691,
+            1.0874198121937575
+          ],
+          "speedup_ratio_of_means": 1.06227133696507,
+          "time_reduction_fraction": 0.05862093308756733,
+          "valid_numerical_comparison": true
+        },
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "cubic_selected",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            1.009914184543498,
+            1.0487936690001185
+          ],
+          "speedup_ratio_of_means": 1.030129320530091,
+          "time_reduction_fraction": 0.029248095292139453,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "strassen_selected",
+        "algorithm": "strassen",
+        "variant": "interleaved",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "shape_mkn": [
+          3072,
+          1024,
+          6144
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_rect_short_k",
+      "series": "selector",
+      "value": 0.4725599666666667,
+      "lo": 0.45623872974708685,
+      "hi": 0.4888812035862466,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:2968"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "native_xla",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.9786276800486466,
+            1.022508209303753
+          ],
+          "speedup_ratio_of_means": 0.9991839483652125,
+          "time_reduction_fraction": -0.0008167181189435713,
+          "valid_numerical_comparison": true
+        },
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "cubic_selected",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.9570832316433864,
+            0.9805788013713236
+          ],
+          "speedup_ratio_of_means": 0.9689508188696192,
+          "time_reduction_fraction": -0.03204412497076259,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "selector",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile_bm_bn_bk": null,
+        "shape_mkn": [
+          3072,
+          1024,
+          6144
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_qwen_down",
+      "series": "native_xla",
+      "value": 1.7356002666666668,
+      "lo": 1.7030652087880058,
+      "hi": 1.7681353245453277,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:3231"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "cubic_selected",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.9745020435729909,
+            0.9882437258949528
+          ],
+          "speedup_ratio_of_means": 0.9818180676318555,
+          "time_reduction_fraction": -0.018518636973140268,
+          "valid_numerical_comparison": true
+        },
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "selector",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.9917902918944567,
+            1.006523780023666
+          ],
+          "speedup_ratio_of_means": 0.9994090037014666,
+          "time_reduction_fraction": -0.0005913457817015022,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "native_xla",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile_bm_bn_bk": null,
+        "shape_mkn": [
+          1024,
+          25600,
+          5120
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_qwen_down",
+      "series": "cubic_selected",
+      "value": 1.7040437,
+      "lo": 1.6829591319119737,
+      "hi": 1.7251282680880262,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:3233"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "native_xla",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            1.0118961282496826,
+            1.0261651133782872
+          ],
+          "speedup_ratio_of_means": 1.0185186369731403,
+          "time_reduction_fraction": 0.01818193236814447,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "cubic_selected",
+        "algorithm": "cubic_full",
+        "variant": "output_accumulator",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "shape_mkn": [
+          1024,
+          25600,
+          5120
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_qwen_down",
+      "series": "strassen_selected",
+      "value": 1.5804356,
+      "lo": 1.566409924798108,
+      "hi": 1.5944612752018918,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:3235"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "native_xla",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            1.0919736655975194,
+            1.105821345518595
+          ],
+          "speedup_ratio_of_means": 1.0981784178151055,
+          "time_reduction_fraction": 0.08940115396771098,
+          "valid_numerical_comparison": true
+        },
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "cubic_selected",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            1.0736061329903006,
+            1.0827243328271186
+          ],
+          "speedup_ratio_of_means": 1.0782114120942352,
+          "time_reduction_fraction": 0.07253810450987852,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "strassen_selected",
+        "algorithm": "strassen",
+        "variant": "interleaved_output_accumulator",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "shape_mkn": [
+          1024,
+          25600,
+          5120
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_qwen_down",
+      "series": "selector",
+      "value": 1.7345745333333331,
+      "lo": 1.707762500606456,
+      "hi": 1.7613865660602102,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:3237"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "native_xla",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.9935185039064849,
+            1.0082776653240189
+          ],
+          "speedup_ratio_of_means": 1.0005913457817015,
+          "time_reduction_fraction": 0.0005909962985334305,
+          "valid_numerical_comparison": true
+        },
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "cubic_selected",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.976834701353405,
+            0.9876228263839815
+          ],
+          "speedup_ratio_of_means": 0.982398661604548,
+          "time_reduction_fraction": -0.017916696228701845,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "selector",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile_bm_bn_bk": null,
+        "shape_mkn": [
+          1024,
+          25600,
+          5120
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_gemma_gateup",
+      "series": "native_xla",
+      "value": 1.354257033333333,
+      "lo": 1.3281860997912163,
+      "hi": 1.3803279668754498,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:3500"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "cubic_selected",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            1.0664730890957865,
+            1.0818425337927071
+          ],
+          "speedup_ratio_of_means": 1.0744281901581907,
+          "time_reduction_fraction": 0.06927237282114906,
+          "valid_numerical_comparison": true
+        },
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "selector",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.9940271724707673,
+            1.007465768851597
+          ],
+          "speedup_ratio_of_means": 1.0006804222861585,
+          "time_reduction_fraction": 0.0006799596264750463,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "native_xla",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile_bm_bn_bk": null,
+        "shape_mkn": [
+          1024,
+          3584,
+          28672
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_gemma_gateup",
+      "series": "cubic_selected",
+      "value": 1.4550519333333334,
+      "lo": 1.4280554348043948,
+      "hi": 1.482048431862272,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:3502"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "native_xla",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.9243489407566288,
+            0.9376701674191966
+          ],
+          "speedup_ratio_of_means": 0.9307276271788509,
+          "time_reduction_fraction": -0.07442819015819069,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "cubic_selected",
+        "algorithm": "cubic_full",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          1024,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          1024,
+          3584,
+          28672
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_gemma_gateup",
+      "series": "strassen_selected",
+      "value": 1.4071243,
+      "lo": 1.381090461456276,
+      "hi": 1.433158138543724,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:3504"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "native_xla",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.9565914480188351,
+            0.9687599964002045
+          ],
+          "speedup_ratio_of_means": 0.9624288581565488,
+          "time_reduction_fraction": -0.03903783799190674,
+          "valid_numerical_comparison": true
+        },
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "cubic_selected",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            1.0260148690213713,
+            1.0414685746688253
+          ],
+          "speedup_ratio_of_means": 1.0340606962251546,
+          "time_reduction_fraction": 0.0329387784967492,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "strassen_selected",
+        "algorithm": "strassen",
+        "variant": "interleaved_output_accumulator",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "shape_mkn": [
+          1024,
+          3584,
+          28672
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_gemma_gateup",
+      "series": "selector",
+      "value": 1.3551785,
+      "lo": 1.3295144996818973,
+      "hi": 1.3808425003181029,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:3506"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "native_xla",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.9925895558127166,
+            1.006008716969562
+          ],
+          "speedup_ratio_of_means": 0.999320040373525,
+          "time_reduction_fraction": -0.0006804222861584996,
+          "valid_numerical_comparison": true
+        },
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "cubic_selected",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            1.0670581955125347,
+            1.079887680576316
+          ],
+          "speedup_ratio_of_means": 1.0736976223673362,
+          "time_reduction_fraction": 0.06863908500127303,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "selector",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile_bm_bn_bk": null,
+        "shape_mkn": [
+          1024,
+          3584,
+          28672
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_square_6144",
+      "series": "native_xla",
+      "value": 2.7644499666666666,
+      "lo": 2.736608977682445,
+      "hi": 2.792290955650888,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:3769"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "cubic_selected",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.9901509545329212,
+            0.9987640886343254
+          ],
+          "speedup_ratio_of_means": 0.9941410044691349,
+          "time_reduction_fraction": -0.005893525671434974,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "native_xla",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile_bm_bn_bk": null,
+        "shape_mkn": [
+          6144,
+          6144,
+          6144
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_square_6144",
+      "series": "cubic_selected",
+      "value": 2.7482530666666665,
+      "lo": 2.7124431637010176,
+      "hi": 2.7840629696323154,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:3771"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "native_xla",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            1.0012374408610747,
+            1.0099470140845865
+          ],
+          "speedup_ratio_of_means": 1.005893525671435,
+          "time_reduction_fraction": 0.005858995530865108,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "cubic_selected",
+        "algorithm": "cubic_full",
+        "variant": "output_accumulator",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "shape_mkn": [
+          6144,
+          6144,
+          6144
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_square_6144",
+      "series": "strassen_selected",
+      "value": 2.5499107,
+      "lo": 2.5192713308990067,
+      "hi": 2.580550069100993,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:3773"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "native_xla",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            1.080854819528366,
+            1.0871188847558853
+          ],
+          "speedup_ratio_of_means": 1.084135992161085,
+          "time_reduction_fraction": 0.07760649288413601,
+          "valid_numerical_comparison": true
+        },
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "cubic_selected",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            1.073415293404648,
+            1.0826761710838535
+          ],
+          "speedup_ratio_of_means": 1.0777840442281632,
+          "time_reduction_fraction": 0.07217034307078363,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "strassen_selected",
+        "algorithm": "strassen",
+        "variant": "interleaved_output_accumulator",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          6144,
+          6144,
+          6144
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_square_6144",
+      "series": "selector",
+      "value": 2.5447227,
+      "lo": 2.5120310325146016,
+      "hi": 2.577414367485398,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:3775"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "native_xla",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            1.080978395201883,
+            1.090693526321601
+          ],
+          "speedup_ratio_of_means": 1.0863462516629678,
+          "time_reduction_fraction": 0.07948317723818699,
+          "valid_numerical_comparison": true
+        },
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "cubic_selected",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            1.0747291012980327,
+            1.0855126423248818
+          ],
+          "speedup_ratio_of_means": 1.0799813538295024,
+          "time_reduction_fraction": 0.07405808771225242,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "selector",
+        "algorithm": "strassen",
+        "variant": "interleaved_output_accumulator",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          6144,
+          6144,
+          6144
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_mistral_gateup",
+      "series": "native_xla",
+      "value": 1.5113063333333336,
+      "lo": 1.4942288428665327,
+      "hi": 1.5283838238001346,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:4038"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "cubic_selected",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            1.0232252609998294,
+            1.0326611014158977
+          ],
+          "speedup_ratio_of_means": 1.0280134691422584,
+          "time_reduction_fraction": 0.027250099325675237,
+          "valid_numerical_comparison": true
+        },
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "selector",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.9961098745629993,
+            1.0060735387488031
+          ],
+          "speedup_ratio_of_means": 1.0010488056800306,
+          "time_reduction_fraction": 0.0010477068391466782,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "native_xla",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile_bm_bn_bk": null,
+        "shape_mkn": [
+          1024,
+          4096,
+          28672
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_mistral_gateup",
+      "series": "cubic_selected",
+      "value": 1.5536432666666669,
+      "lo": 1.5352541041650019,
+      "hi": 1.5720324291683319,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:4040"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "native_xla",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.968371907196965,
+            0.9773019081096072
+          ],
+          "speedup_ratio_of_means": 0.9727499006743248,
+          "time_reduction_fraction": -0.02801346914225844,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "cubic_selected",
+        "algorithm": "cubic_full",
+        "variant": "output_accumulator",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "shape_mkn": [
+          1024,
+          4096,
+          28672
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_mistral_gateup",
+      "series": "strassen_selected",
+      "value": 1.5128310333333332,
+      "lo": 1.4794951094626918,
+      "hi": 1.5461669572039747,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:4042"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "native_xla",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.9906703856896907,
+            1.0050553625520087
+          ],
+          "speedup_ratio_of_means": 0.9989921544664244,
+          "time_reduction_fraction": -0.0010088623109496542,
+          "valid_numerical_comparison": true
+        },
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "cubic_selected",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            1.0178206439507638,
+            1.033411710778146
+          ],
+          "speedup_ratio_of_means": 1.0269773903589279,
+          "time_reduction_fraction": 0.026268728612904857,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "strassen_selected",
+        "algorithm": "strassen",
+        "variant": "output_accumulator",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          1024
+        ],
+        "shape_mkn": [
+          1024,
+          4096,
+          28672
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_mistral_gateup",
+      "series": "selector",
+      "value": 1.5128913999999998,
+      "lo": 1.4910745721519434,
+      "hi": 1.5347082278480562,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:4044"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "native_xla",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.9939631264369314,
+            1.0039053176124386
+          ],
+          "speedup_ratio_of_means": 0.9989522931608533,
+          "time_reduction_fraction": -0.001048805680030629,
+          "valid_numerical_comparison": true
+        },
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "cubic_selected",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            1.0238026088214744,
+            1.0300022813287348
+          ],
+          "speedup_ratio_of_means": 1.0269364123999034,
+          "time_reduction_fraction": 0.02622987370459884,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "selector",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile_bm_bn_bk": null,
+        "shape_mkn": [
+          1024,
+          4096,
+          28672
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_qwen_gateup",
+      "series": "native_xla",
+      "value": 1.0840460333333333,
+      "lo": 1.0618207956200343,
+      "hi": 1.1062712710466323,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:4308"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "cubic_selected",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            1.6519628606778303,
+            1.6726685880653676
+          ],
+          "speedup_ratio_of_means": 1.6627381229597846,
+          "time_reduction_fraction": 0.3985823827627568,
+          "valid_numerical_comparison": true
+        },
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "selector",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.9922831659732559,
+            1.007011074022423
+          ],
+          "speedup_ratio_of_means": 0.999748411668004,
+          "time_reduction_fraction": -0.0002516516446136041,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "native_xla",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile_bm_bn_bk": null,
+        "shape_mkn": [
+          256,
+          5120,
+          51200
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_qwen_gateup",
+      "series": "cubic_selected",
+      "value": 1.8024846666666667,
+      "lo": 1.784890332011613,
+      "hi": 1.8200790013217205,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:4310"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "native_xla",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.5978470613606314,
+            0.6053404854335181
+          ],
+          "speedup_ratio_of_means": 0.6014176172372432,
+          "time_reduction_fraction": -0.6627381229597846,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "cubic_selected",
+        "algorithm": "cubic_full",
+        "variant": "output_accumulator",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          1024
+        ],
+        "shape_mkn": [
+          256,
+          5120,
+          51200
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_qwen_gateup",
+      "series": "strassen_selected",
+      "value": 1.8265053666666666,
+      "lo": 1.8067979807774865,
+      "hi": 1.8462127525558467,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:4312"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "native_xla",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.5901233554664398,
+            0.5971845980967243
+          ],
+          "speedup_ratio_of_means": 0.5935082661770078,
+          "time_reduction_fraction": -0.6848964993214772,
+          "valid_numerical_comparison": true
+        },
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "cubic_selected",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.9837544354280781,
+            0.9902025943039569
+          ],
+          "speedup_ratio_of_means": 0.9868488204642742,
+          "time_reduction_fraction": -0.01332643791329513,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "strassen_selected",
+        "algorithm": "strassen",
+        "variant": "interleaved_output_accumulator",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "shape_mkn": [
+          256,
+          5120,
+          51200
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "held_qwen_gateup",
+      "series": "selector",
+      "value": 1.0837733,
+      "lo": 1.0653189437081032,
+      "hi": 1.102227656291897,
+      "status": "ok",
+      "row_refs": [
+        "20260919T084449Z-N7-replicate-v5e-v004-955768:4314"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "native_xla",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            0.9930377389276313,
+            1.0077768467175303
+          ],
+          "speedup_ratio_of_means": 1.0002516516446136,
+          "time_reduction_fraction": 0.00025158833199601105,
+          "valid_numerical_comparison": true
+        },
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "reference_arm": "cubic_selected",
+          "screen_results_are_not_confirmation": false,
+          "speedup_ci95": [
+            1.654781271848643,
+            1.6714885180331862
+          ],
+          "speedup_ratio_of_means": 1.663156553742989,
+          "time_reduction_fraction": 0.39873369241791057,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "selector",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile_bm_bn_bk": null,
+        "shape_mkn": [
+          256,
+          5120,
+          51200
+        ],
+        "sample_count": 30,
+        "seed": 20260924,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    }
+  ],
+  "ylabel": "Mean time (ms) - lower is better",
+  "baseline": "native_xla",
+  "error_note": "Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).",
+  "relative_note": "Relative whiskers: archived paired 95% intervals where available; unadjusted for multiple comparisons.",
+  "source_run_ids": [
+    "20260919T084449Z-N7-replicate-v5e-v004-955768"
+  ],
+  "cohort": "Fresh v5e replication",
+  "data_file": "data/n7-replica-prepared_kernel-p2.json",
+  "files": {
+    "absolute": {
+      "png": "figures/n7-replica-prepared_kernel-p2-absolute.png",
+      "svg": "figures/n7-replica-prepared_kernel-p2-absolute.svg"
+    },
+    "relative": {
+      "png": "figures/n7-replica-prepared_kernel-p2-relative.png",
+      "svg": "figures/n7-replica-prepared_kernel-p2-relative.svg"
+    }
+  },
+  "explanation": {
+    "observation": "The black segments mark the lowest observed mean within each group. Lowest-mean counts on this page: Strassen (selected) 2, Native XLA 2, Frozen rule 2. Archived paired intervals for the independently tuned Strassen alternative versus Native: 3 faster, 2 slower, 1 inconclusive.",
+    "interpretation": "No retuning or rule update occurred on this fresh v5e allocation. The same three custom complete-call gains repeat: deep-K Cubic 1.080x, tall Strassen 1.115x and square Strassen 1.087x versus Native. A nominal extra Native-versus-Native win is timing variability, not a new algorithmic gain. This is fresh-v5e replication; v6e remains future work."
+  }
+}

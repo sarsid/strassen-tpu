@@ -1,0 +1,56 @@
+{
+  "allocation_id": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+  "archive_grace_seconds": 600,
+  "archive_sha256": "936261a898350a595ab433d66c15a5370bf08aedcd7239a375cc622eab525bd7",
+  "finished_utc": "2026-09-19T06:51:42.550867+00:00",
+  "launch_acknowledged": true,
+  "launch_attempted": true,
+  "orchestration_budget_seconds": 8100,
+  "orchestration_wall_seconds": 147.7288950420916,
+  "remote_completion": {
+    "allocation_id": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+    "elapsed_seconds": 127.06218381600047,
+    "finished_utc": "2026-09-19T06:51:25+00:00",
+    "phase": "N9-download-mistral",
+    "process_exit_code": 0,
+    "run_id": "20260919T064914Z-N9-download-mistral-v5e-v004-266165",
+    "started_utc": "2026-09-19T06:49:18+00:00",
+    "status": "completed"
+  },
+  "remote_may_still_be_running": false,
+  "status": "completed",
+  "summary": {
+    "action": "download",
+    "blocked_access_is_not_successful_model": true,
+    "elapsed_seconds": 126.95348778300013,
+    "phase": "N9-download-mistral",
+    "records": [
+      {
+        "action": "download",
+        "command": [
+          "/usr/bin/python3",
+          "/content/Strassen_MM_Focus/runs/20260919T064914Z-N9-download-mistral-v5e-v004-266165/source/tools/prepare_model_application_v001.py",
+          "download",
+          "--output-dir",
+          "/content/Strassen_MM_Focus/runs/20260919T064914Z-N9-download-mistral-v5e-v004-266165/artifacts/preparation-00",
+          "--model-id",
+          "mistralai/Mistral-7B-v0.3",
+          "--use-existing-token",
+          "--revision",
+          "caa1feb0e54d415e2df31207e5f4e273e33509b1",
+          "--cache-root",
+          "/content/Strassen_MM_Focus/models"
+        ],
+        "exit_code": 0,
+        "model_id": "mistralai/Mistral-7B-v0.3",
+        "status": {
+          "action": "download",
+          "finished_utc": "2026-09-19T06:51:25+00:00",
+          "started_utc": "2026-09-19T06:49:18+00:00",
+          "status": "completed"
+        }
+      }
+    ],
+    "status": "completed"
+  }
+}

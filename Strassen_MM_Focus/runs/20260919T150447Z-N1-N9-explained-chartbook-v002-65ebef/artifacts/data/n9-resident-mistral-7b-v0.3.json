@@ -1,0 +1,105 @@
+{
+  "id": "n9-resident-mistral-7b-v0.3",
+  "experiment": "N9",
+  "kind": "bar",
+  "scope": "resident",
+  "title": "N9 | Mistral-7B-v0.3 - resident layer",
+  "subtitle": "Complete transformer layer; weights resident. Mean across 28 or 32 different layers; layers are not independent replicates.",
+  "categories": [
+    {
+      "id": "mistralai/Mistral-7B-v0.3",
+      "label": "Mistral-7B-v0.3"
+    }
+  ],
+  "series": [
+    {
+      "id": "native",
+      "label": "Native",
+      "color": "#3772C8"
+    },
+    {
+      "id": "cubic_n8_selected",
+      "label": "Cubic MLP policy",
+      "color": "#DD8734"
+    },
+    {
+      "id": "strassen_n8_selected",
+      "label": "Strassen MLP policy",
+      "color": "#24936D"
+    }
+  ],
+  "points": [
+    {
+      "category": "mistralai/Mistral-7B-v0.3",
+      "series": "native",
+      "value": 3.4566350625000006,
+      "lo": null,
+      "hi": null,
+      "raw_points": [],
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:1419"
+      ],
+      "extra": {
+        "arm_id": "native",
+        "model_id": "mistralai/Mistral-7B-v0.3"
+      }
+    },
+    {
+      "category": "mistralai/Mistral-7B-v0.3",
+      "series": "cubic_n8_selected",
+      "value": 3.2632945625,
+      "lo": null,
+      "hi": null,
+      "raw_points": [],
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:1420"
+      ],
+      "extra": {
+        "arm_id": "cubic_n8_selected",
+        "model_id": "mistralai/Mistral-7B-v0.3"
+      }
+    },
+    {
+      "category": "mistralai/Mistral-7B-v0.3",
+      "series": "strassen_n8_selected",
+      "value": 3.1260944285714283,
+      "lo": null,
+      "hi": null,
+      "raw_points": [],
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:1421"
+      ],
+      "extra": {
+        "arm_id": "strassen_n8_selected",
+        "model_id": "mistralai/Mistral-7B-v0.3"
+      }
+    }
+  ],
+  "baseline": "native",
+  "ylabel": "Layer time (ms) - lower is better",
+  "error_note": "No pooled layer confidence interval is inferred.",
+  "takeaway": "Custom policies replace the MLP only. Attention and vocabulary projection remain native.",
+  "detail": false,
+  "source_run_ids": [
+    "20260919T081646Z-N9-v5e-v004-0fadc6"
+  ],
+  "cohort": "N5-N9 allocation",
+  "data_file": "data/n9-resident-mistral-7b-v0.3.json",
+  "files": {
+    "absolute": {
+      "png": "figures/n9-resident-mistral-7b-v0.3-absolute.png",
+      "svg": "figures/n9-resident-mistral-7b-v0.3-absolute.svg"
+    },
+    "relative": {
+      "png": "figures/n9-resident-mistral-7b-v0.3-relative.png",
+      "svg": "figures/n9-resident-mistral-7b-v0.3-relative.svg"
+    }
+  },
+  "explanation": {
+    "observation": "The black segments mark the lowest observed mean within each group. Lowest-mean counts on this page: Strassen MLP policy 1. Native time / Strassen time = 1.1057x; above 1 favors Strassen. This ratio is descriptive.",
+    "interpretation": "Strassen gives a descriptive 1.106x speedup over Native and 1.044x over the tested Cubic policy on resident Mistral layers. This is a useful application result, but the layers are different workloads rather than independent replicates. It does not automatically translate into transfer-inclusive model speedup."
+  }
+}

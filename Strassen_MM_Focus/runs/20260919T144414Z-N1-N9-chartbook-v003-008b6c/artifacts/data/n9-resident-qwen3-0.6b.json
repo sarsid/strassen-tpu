@@ -1,0 +1,101 @@
+{
+  "id": "n9-resident-qwen3-0.6b",
+  "experiment": "N9",
+  "kind": "bar",
+  "scope": "resident",
+  "title": "N9 | Qwen3-0.6B - resident layer",
+  "subtitle": "Complete transformer layer; weights resident. Mean across 28 or 32 different layers; layers are not independent replicates.",
+  "categories": [
+    {
+      "id": "Qwen/Qwen3-0.6B",
+      "label": "Qwen3-0.6B"
+    }
+  ],
+  "series": [
+    {
+      "id": "native",
+      "label": "Native",
+      "color": "#3772C8"
+    },
+    {
+      "id": "cubic_n8_selected",
+      "label": "Cubic MLP policy",
+      "color": "#DD8734"
+    },
+    {
+      "id": "strassen_n8_selected",
+      "label": "Strassen MLP policy",
+      "color": "#24936D"
+    }
+  ],
+  "points": [
+    {
+      "category": "Qwen/Qwen3-0.6B",
+      "series": "native",
+      "value": 0.5788866683673469,
+      "lo": null,
+      "hi": null,
+      "raw_points": [],
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:665"
+      ],
+      "extra": {
+        "arm_id": "native",
+        "model_id": "Qwen/Qwen3-0.6B"
+      }
+    },
+    {
+      "category": "Qwen/Qwen3-0.6B",
+      "series": "cubic_n8_selected",
+      "value": 0.6029004897959184,
+      "lo": null,
+      "hi": null,
+      "raw_points": [],
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:666"
+      ],
+      "extra": {
+        "arm_id": "cubic_n8_selected",
+        "model_id": "Qwen/Qwen3-0.6B"
+      }
+    },
+    {
+      "category": "Qwen/Qwen3-0.6B",
+      "series": "strassen_n8_selected",
+      "value": 0.5951632346938776,
+      "lo": null,
+      "hi": null,
+      "raw_points": [],
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:667"
+      ],
+      "extra": {
+        "arm_id": "strassen_n8_selected",
+        "model_id": "Qwen/Qwen3-0.6B"
+      }
+    }
+  ],
+  "baseline": "native",
+  "ylabel": "Layer time (ms) - lower is better",
+  "error_note": "No pooled layer confidence interval is inferred.",
+  "takeaway": "Custom policies replace the MLP only. Attention and vocabulary projection remain native.",
+  "detail": false,
+  "source_run_ids": [
+    "20260919T081646Z-N9-v5e-v004-0fadc6"
+  ],
+  "cohort": "N5-N9 allocation",
+  "data_file": "data/n9-resident-qwen3-0.6b.json",
+  "files": {
+    "absolute": {
+      "png": "figures/n9-resident-qwen3-0.6b-absolute.png",
+      "svg": "figures/n9-resident-qwen3-0.6b-absolute.svg"
+    },
+    "relative": {
+      "png": "figures/n9-resident-qwen3-0.6b-relative.png",
+      "svg": "figures/n9-resident-qwen3-0.6b-relative.svg"
+    }
+  }
+}

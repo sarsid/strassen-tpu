@@ -1,0 +1,1103 @@
+{
+  "id": "n2-prepared_kernel-2048-2048-512-p1",
+  "experiment": "N2",
+  "kind": "bar",
+  "title": "N2 | Tile 2048/2048/512 - shapes 1-10",
+  "subtitle": "Screening only; no native measurements in N2. Failed configurations remain visible.",
+  "scope": "prepared_kernel",
+  "detail": true,
+  "takeaway": "",
+  "categories": [
+    {
+      "id": "square_512",
+      "label": "square 512\n512 x 512 x 512"
+    },
+    {
+      "id": "tail_513",
+      "label": "tail 513\n513 x 513 x 513"
+    },
+    {
+      "id": "small_m_8",
+      "label": "small m 8\n8 x 2048 x 2048"
+    },
+    {
+      "id": "square_2048",
+      "label": "square 2048\n2048 x 2048 x 2048"
+    },
+    {
+      "id": "vary_k_8192",
+      "label": "vary k 8192\n2048 x 8192 x 2048"
+    },
+    {
+      "id": "vary_m_8192",
+      "label": "vary m 8192\n8192 x 2048 x 2048"
+    },
+    {
+      "id": "vary_n_8192",
+      "label": "vary n 8192\n2048 x 2048 x 8192"
+    },
+    {
+      "id": "square_4096",
+      "label": "square 4096\n4096 x 4096 x 4096"
+    },
+    {
+      "id": "gemma9_gate_up_m512",
+      "label": "Gemma9 gate/up m512\n512 x 3584 x 28672"
+    },
+    {
+      "id": "mistral7_gate_up_m512",
+      "label": "Mistral7 gate/up m512\n512 x 4096 x 28672"
+    }
+  ],
+  "series": [
+    {
+      "id": "cubic_basic",
+      "label": "Cubic (full tile)",
+      "color": "#DD8734"
+    },
+    {
+      "id": "cubic_quadrant",
+      "label": "Cubic (quadrant control)",
+      "color": "#AD641E"
+    },
+    {
+      "id": "strassen_basic",
+      "label": "Strassen",
+      "color": "#24936D"
+    }
+  ],
+  "points": [
+    {
+      "category": "square_512",
+      "series": "cubic_basic",
+      "value": 0.27248885714285714,
+      "lo": 0.242129112927704,
+      "hi": 0.3028486013580103,
+      "status": "ok",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:257"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "reference_arm": "cubic_quadrant",
+          "screen_results_are_not_confirmation": true,
+          "speedup_ci95": [
+            0.8997273635570744,
+            1.180119540342318
+          ],
+          "speedup_ratio_of_means": 1.0430250883129166,
+          "time_reduction_fraction": 0.041250290903845244,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "algorithm": "cubic_full",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          512,
+          512,
+          512
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "cubic_quadrant",
+      "value": 0.2842127142857143,
+      "lo": 0.2295184436085697,
+      "hi": 0.3389069849628589,
+      "status": "ok",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:259"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "reference_arm": "cubic_basic",
+          "screen_results_are_not_confirmation": true,
+          "speedup_ci95": [
+            0.8473717838024523,
+            1.1114478293805596
+          ],
+          "speedup_ratio_of_means": 0.9587497090961548,
+          "time_reduction_fraction": -0.043025088312916626,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "algorithm": "cubic_quadrant",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          512,
+          512,
+          512
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "strassen_basic",
+      "value": 0.2722898571428572,
+      "lo": 0.2459873681577911,
+      "hi": 0.2985923461279233,
+      "status": "ok",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:261"
+      ],
+      "comparisons": [
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "reference_arm": "cubic_basic",
+          "screen_results_are_not_confirmation": true,
+          "speedup_ci95": [
+            0.8879298561118493,
+            1.1354799377804472
+          ],
+          "speedup_ratio_of_means": 1.0007308388277407,
+          "time_reduction_fraction": 0.0007303050924230003,
+          "valid_numerical_comparison": true
+        },
+        {
+          "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+          "paired_rounds": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "reference_arm": "cubic_quadrant",
+          "screen_results_are_not_confirmation": true,
+          "speedup_ci95": [
+            0.9155427727272955,
+            1.2381048845731706
+          ],
+          "speedup_ratio_of_means": 1.0437873715457633,
+          "time_reduction_fraction": 0.041950470698757236,
+          "valid_numerical_comparison": true
+        }
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "algorithm": "strassen",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          512,
+          512,
+          512
+        ],
+        "sample_count": 7,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": true
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "cubic_basic",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:557"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "algorithm": "cubic_full",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          513,
+          513,
+          513
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "cubic_quadrant",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:559"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "algorithm": "cubic_quadrant",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          513,
+          513,
+          513
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "strassen_basic",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:561"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "algorithm": "strassen",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          513,
+          513,
+          513
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "cubic_basic",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:987"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "algorithm": "cubic_full",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          8,
+          2048,
+          2048
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "cubic_quadrant",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:989"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "algorithm": "cubic_quadrant",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          8,
+          2048,
+          2048
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "strassen_basic",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:991"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "algorithm": "strassen",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          8,
+          2048,
+          2048
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "cubic_basic",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1458"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "algorithm": "cubic_full",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          2048,
+          2048,
+          2048
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "cubic_quadrant",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1460"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "algorithm": "cubic_quadrant",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          2048,
+          2048,
+          2048
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "strassen_basic",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1462"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "algorithm": "strassen",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          2048,
+          2048,
+          2048
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "cubic_basic",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1539"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "algorithm": "cubic_full",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          2048,
+          8192,
+          2048
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "cubic_quadrant",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1541"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "algorithm": "cubic_quadrant",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          2048,
+          8192,
+          2048
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "strassen_basic",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1543"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "algorithm": "strassen",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          2048,
+          8192,
+          2048
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "cubic_basic",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1880"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "algorithm": "cubic_full",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          8192,
+          2048,
+          2048
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "cubic_quadrant",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1882"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "algorithm": "cubic_quadrant",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          8192,
+          2048,
+          2048
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "strassen_basic",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1884"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "algorithm": "strassen",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          8192,
+          2048,
+          2048
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "cubic_basic",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2286"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "algorithm": "cubic_full",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          2048,
+          2048,
+          8192
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "cubic_quadrant",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2288"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "algorithm": "cubic_quadrant",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          2048,
+          2048,
+          8192
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "strassen_basic",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2290"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "algorithm": "strassen",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          2048,
+          2048,
+          8192
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "cubic_basic",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2562"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "algorithm": "cubic_full",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          4096,
+          4096,
+          4096
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "cubic_quadrant",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2564"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "algorithm": "cubic_quadrant",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          4096,
+          4096,
+          4096
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "strassen_basic",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2566"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "algorithm": "strassen",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          4096,
+          4096,
+          4096
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "cubic_basic",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2903"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "algorithm": "cubic_full",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          512,
+          3584,
+          28672
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "cubic_quadrant",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2905"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "algorithm": "cubic_quadrant",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          512,
+          3584,
+          28672
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "strassen_basic",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2907"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "algorithm": "strassen",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          512,
+          3584,
+          28672
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "cubic_basic",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3244"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "algorithm": "cubic_full",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          512,
+          4096,
+          28672
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "cubic_quadrant",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3246"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "algorithm": "cubic_quadrant",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          512,
+          4096,
+          28672
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "strassen_basic",
+      "value": null,
+      "lo": null,
+      "hi": null,
+      "status": "oom",
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3248"
+      ],
+      "comparisons": [],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "algorithm": "strassen",
+        "variant": "plain",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "shape_mkn": [
+          512,
+          4096,
+          28672
+        ],
+        "sample_count": 0,
+        "seed": 20260919,
+        "distribution": "gaussian",
+        "numerical_pass": null
+      }
+    }
+  ],
+  "ylabel": "Mean time (ms) - lower is better",
+  "baseline": null,
+  "error_note": "Absolute whiskers: +/- 1 sample SD (spread, not a confidence interval).",
+  "relative_note": "Relative whiskers: archived paired 95% intervals where available; unadjusted for multiple comparisons.",
+  "source_run_ids": [
+    "20260919T050718Z-N2-v5e-v002-226e83"
+  ],
+  "cohort": "Original N1-N4 allocation",
+  "data_file": "data/n2-prepared_kernel-2048-2048-512-p1.json",
+  "files": {
+    "absolute": {
+      "png": "figures/n2-prepared_kernel-2048-2048-512-p1-absolute.png",
+      "svg": "figures/n2-prepared_kernel-2048-2048-512-p1-absolute.svg"
+    }
+  }
+}

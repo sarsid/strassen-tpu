@@ -1,0 +1,32 @@
+test_changed_checkpoint_bytes_or_original_completion_are_rejected (test_model_tools_v002.RecoveryGuards.test_changed_checkpoint_bytes_or_original_completion_are_rejected) ... ok
+test_every_pip_operation_targets_new_interpreter (test_model_tools_v002.RecoveryGuards.test_every_pip_operation_targets_new_interpreter) ... ok
+test_existing_partial_and_escaped_venvs_are_rejected (test_model_tools_v002.RecoveryGuards.test_existing_partial_and_escaped_venvs_are_rejected) ... ERROR
+test_valid_reuse_preserves_blocked_model_and_exact_hashes (test_model_tools_v002.RecoveryGuards.test_valid_reuse_preserves_blocked_model_and_exact_hashes) ... ERROR
+test_wrong_corpus_split_and_endpoint_are_rejected (test_model_tools_v002.RecoveryGuards.test_wrong_corpus_split_and_endpoint_are_rejected) ... ok
+
+======================================================================
+ERROR: test_existing_partial_and_escaped_venvs_are_rejected (test_model_tools_v002.RecoveryGuards.test_existing_partial_and_escaped_venvs_are_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260919T071044Z-model-tools-recovery-tests-v002-876d2a/source/tests/test_model_tools_v002.py", line 43, in test_existing_partial_and_escaped_venvs_are_rejected
+    self.assertEqual(installer.validate_new_target(root / 'model-tools-v002'), root / 'model-tools-v002')
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260919T071044Z-model-tools-recovery-tests-v002-876d2a/source/tools/install_model_tools_v002.py", line 58, in validate_new_target
+    raise ValueError('New environment must be inside the authorized project and preserve model-tools-v001')
+ValueError: New environment must be inside the authorized project and preserve model-tools-v001
+
+======================================================================
+ERROR: test_valid_reuse_preserves_blocked_model_and_exact_hashes (test_model_tools_v002.RecoveryGuards.test_valid_reuse_preserves_blocked_model_and_exact_hashes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260919T071044Z-model-tools-recovery-tests-v002-876d2a/source/tests/test_model_tools_v002.py", line 100, in test_valid_reuse_preserves_blocked_model_and_exact_hashes
+    _, models, corpus_info, sources = resume.validate_reuse(bundle, corpus, endpoint)
+                                      ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260919T071044Z-model-tools-recovery-tests-v002-876d2a/source/tools/resume_n9_inputs_v002.py", line 98, in validate_reuse
+    raise ValueError('Original checkpoint step path/status mismatch')
+ValueError: Original checkpoint step path/status mismatch
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.012s
+
+FAILED (errors=2)

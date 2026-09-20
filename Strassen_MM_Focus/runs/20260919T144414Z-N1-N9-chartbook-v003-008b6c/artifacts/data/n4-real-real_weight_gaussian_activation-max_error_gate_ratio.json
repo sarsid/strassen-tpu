@@ -1,0 +1,547 @@
+{
+  "id": "n4-real-real_weight_gaussian_activation-max_error_gate_ratio",
+  "experiment": "N4",
+  "kind": "bar",
+  "title": "N4 | Actual Qwen weights - maximum-error gate",
+  "subtitle": "Accuracy only: median of 3 seeds; whiskers and dots show all seed values. No latency was measured.",
+  "scope": "accuracy",
+  "detail": true,
+  "categories": [
+    {
+      "id": "qwen06_down_m512",
+      "label": "Qwen0.6 down m512\n512 x 3072 x 1024"
+    },
+    {
+      "id": "qwen06_q_m512",
+      "label": "Qwen0.6 q m512\n512 x 1024 x 2048"
+    },
+    {
+      "id": "qwen06_down_m2048",
+      "label": "Qwen0.6 down m2048\n2048 x 3072 x 1024"
+    },
+    {
+      "id": "qwen06_q_m2048",
+      "label": "Qwen0.6 q m2048\n2048 x 1024 x 2048"
+    }
+  ],
+  "series": [
+    {
+      "id": "native_xla",
+      "label": "Native XLA",
+      "color": "#3772C8"
+    },
+    {
+      "id": "cubic_basic",
+      "label": "Cubic (full tile)",
+      "color": "#DD8734"
+    },
+    {
+      "id": "cubic_quadrant",
+      "label": "Cubic (quadrant control)",
+      "color": "#AD641E"
+    },
+    {
+      "id": "strassen_basic",
+      "label": "Strassen",
+      "color": "#24936D"
+    }
+  ],
+  "points": [
+    {
+      "category": "qwen06_down_m512",
+      "series": "native_xla",
+      "value": 4.240467315587723e-06,
+      "lo": 4.081442207970116e-06,
+      "hi": 4.989349746504486e-06,
+      "raw_points": [
+        4.989349746504486e-06,
+        4.081442207970116e-06,
+        4.240467315587723e-06
+      ],
+      "status": "ok",
+      "row_refs": [
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:14",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:23",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:32"
+      ],
+      "extra": {
+        "seeds": [
+          20260919,
+          20260920,
+          20260921
+        ],
+        "values": [
+          4.989349746504486e-06,
+          4.081442207970116e-06,
+          4.240467315587723e-06
+        ]
+      }
+    },
+    {
+      "category": "qwen06_down_m512",
+      "series": "cubic_basic",
+      "value": 3.7420123098783643e-06,
+      "lo": 3.0610816559775873e-06,
+      "hi": 4.240467315587723e-06,
+      "raw_points": [
+        3.7420123098783643e-06,
+        3.0610816559775873e-06,
+        4.240467315587723e-06
+      ],
+      "status": "ok",
+      "row_refs": [
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:15",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:24",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:33"
+      ],
+      "extra": {
+        "seeds": [
+          20260919,
+          20260920,
+          20260921
+        ],
+        "values": [
+          3.7420123098783643e-06,
+          3.0610816559775873e-06,
+          4.240467315587723e-06
+        ]
+      }
+    },
+    {
+      "category": "qwen06_down_m512",
+      "series": "cubic_quadrant",
+      "value": 3.634686270503762e-06,
+      "lo": 3.0610816559775873e-06,
+      "hi": 3.7420123098783643e-06,
+      "raw_points": [
+        3.7420123098783643e-06,
+        3.0610816559775873e-06,
+        3.634686270503762e-06
+      ],
+      "status": "ok",
+      "row_refs": [
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:16",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:25",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:34"
+      ],
+      "extra": {
+        "seeds": [
+          20260919,
+          20260920,
+          20260921
+        ],
+        "values": [
+          3.7420123098783643e-06,
+          3.0610816559775873e-06,
+          3.634686270503762e-06
+        ]
+      }
+    },
+    {
+      "category": "qwen06_down_m512",
+      "series": "strassen_basic",
+      "value": 0.05013641643082779,
+      "lo": 0.0471054550630111,
+      "hi": 0.0503822037385879,
+      "raw_points": [
+        0.05013641643082779,
+        0.0471054550630111,
+        0.0503822037385879
+      ],
+      "status": "ok",
+      "row_refs": [
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:17",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:26",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:35"
+      ],
+      "extra": {
+        "seeds": [
+          20260919,
+          20260920,
+          20260921
+        ],
+        "values": [
+          0.05013641643082779,
+          0.0471054550630111,
+          0.0503822037385879
+        ]
+      }
+    },
+    {
+      "category": "qwen06_q_m512",
+      "series": "native_xla",
+      "value": 3.804830228931765e-06,
+      "lo": 2.6598308682351843e-06,
+      "hi": 5.094871837760164e-06,
+      "raw_points": [
+        2.6598308682351843e-06,
+        3.804830228931765e-06,
+        5.094871837760164e-06
+      ],
+      "status": "ok",
+      "row_refs": [
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:48",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:57",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:66"
+      ],
+      "extra": {
+        "seeds": [
+          20260919,
+          20260920,
+          20260921
+        ],
+        "values": [
+          2.6598308682351843e-06,
+          3.804830228931765e-06,
+          5.094871837760164e-06
+        ]
+      }
+    },
+    {
+      "category": "qwen06_q_m512",
+      "series": "cubic_basic",
+      "value": 3.5464411576469123e-06,
+      "lo": 2.378018893082353e-06,
+      "hi": 5.094871837760164e-06,
+      "raw_points": [
+        3.5464411576469123e-06,
+        2.378018893082353e-06,
+        5.094871837760164e-06
+      ],
+      "status": "ok",
+      "row_refs": [
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:49",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:58",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:67"
+      ],
+      "extra": {
+        "seeds": [
+          20260919,
+          20260920,
+          20260921
+        ],
+        "values": [
+          3.5464411576469123e-06,
+          2.378018893082353e-06,
+          5.094871837760164e-06
+        ]
+      }
+    },
+    {
+      "category": "qwen06_q_m512",
+      "series": "cubic_quadrant",
+      "value": 3.5464411576469123e-06,
+      "lo": 1.9024151144658825e-06,
+      "hi": 5.094871837760164e-06,
+      "raw_points": [
+        3.5464411576469123e-06,
+        1.9024151144658825e-06,
+        5.094871837760164e-06
+      ],
+      "status": "ok",
+      "row_refs": [
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:50",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:59",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:68"
+      ],
+      "extra": {
+        "seeds": [
+          20260919,
+          20260920,
+          20260921
+        ],
+        "values": [
+          3.5464411576469123e-06,
+          1.9024151144658825e-06,
+          5.094871837760164e-06
+        ]
+      }
+    },
+    {
+      "category": "qwen06_q_m512",
+      "series": "strassen_basic",
+      "value": 0.04732053277013668,
+      "lo": 0.036127596072949096,
+      "hi": 0.06039502143139114,
+      "raw_points": [
+        0.036127596072949096,
+        0.06039502143139114,
+        0.04732053277013668
+      ],
+      "status": "ok",
+      "row_refs": [
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:51",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:60",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:69"
+      ],
+      "extra": {
+        "seeds": [
+          20260919,
+          20260920,
+          20260921
+        ],
+        "values": [
+          0.036127596072949096,
+          0.06039502143139114,
+          0.04732053277013668
+        ]
+      }
+    },
+    {
+      "category": "qwen06_down_m2048",
+      "series": "native_xla",
+      "value": 4.081442207970116e-06,
+      "lo": 3.034480719449646e-06,
+      "hi": 4.470745952165937e-06,
+      "raw_points": [
+        4.470745952165937e-06,
+        4.081442207970116e-06,
+        3.034480719449646e-06
+      ],
+      "status": "ok",
+      "row_refs": [
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:82",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:91",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:100"
+      ],
+      "extra": {
+        "seeds": [
+          20260919,
+          20260920,
+          20260921
+        ],
+        "values": [
+          4.470745952165937e-06,
+          4.081442207970116e-06,
+          3.034480719449646e-06
+        ]
+      }
+    },
+    {
+      "category": "qwen06_down_m2048",
+      "series": "cubic_basic",
+      "value": 3.0610816559775873e-06,
+      "lo": 3.034480719449646e-06,
+      "hi": 3.911902708145196e-06,
+      "raw_points": [
+        3.911902708145196e-06,
+        3.0610816559775873e-06,
+        3.034480719449646e-06
+      ],
+      "status": "ok",
+      "row_refs": [
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:83",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:92",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:101"
+      ],
+      "extra": {
+        "seeds": [
+          20260919,
+          20260920,
+          20260921
+        ],
+        "values": [
+          3.911902708145196e-06,
+          3.0610816559775873e-06,
+          3.034480719449646e-06
+        ]
+      }
+    },
+    {
+      "category": "qwen06_down_m2048",
+      "series": "cubic_quadrant",
+      "value": 3.540227506024587e-06,
+      "lo": 3.0610816559775873e-06,
+      "hi": 3.911902708145196e-06,
+      "raw_points": [
+        3.911902708145196e-06,
+        3.0610816559775873e-06,
+        3.540227506024587e-06
+      ],
+      "status": "ok",
+      "row_refs": [
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:84",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:93",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:102"
+      ],
+      "extra": {
+        "seeds": [
+          20260919,
+          20260920,
+          20260921
+        ],
+        "values": [
+          3.911902708145196e-06,
+          3.0610816559775873e-06,
+          3.540227506024587e-06
+        ]
+      }
+    },
+    {
+      "category": "qwen06_down_m2048",
+      "series": "strassen_basic",
+      "value": 0.08248059013017808,
+      "lo": 0.08019121047932265,
+      "hi": 0.08629713258492702,
+      "raw_points": [
+        0.08629713258492702,
+        0.08248059013017808,
+        0.08019121047932265
+      ],
+      "status": "ok",
+      "row_refs": [
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:85",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:94",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:103"
+      ],
+      "extra": {
+        "seeds": [
+          20260919,
+          20260920,
+          20260921
+        ],
+        "values": [
+          0.08629713258492702,
+          0.08248059013017808,
+          0.08019121047932265
+        ]
+      }
+    },
+    {
+      "category": "qwen06_q_m2048",
+      "series": "native_xla",
+      "value": 3.6545634821084317e-06,
+      "lo": 2.755178517824605e-06,
+      "hi": 4.592338860087627e-06,
+      "raw_points": [
+        3.6545634821084317e-06,
+        4.592338860087627e-06,
+        2.755178517824605e-06
+      ],
+      "status": "ok",
+      "row_refs": [
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:116",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:125",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:134"
+      ],
+      "extra": {
+        "seeds": [
+          20260919,
+          20260920,
+          20260921
+        ],
+        "values": [
+          3.6545634821084317e-06,
+          4.592338860087627e-06,
+          2.755178517824605e-06
+        ]
+      }
+    },
+    {
+      "category": "qwen06_q_m2048",
+      "series": "cubic_basic",
+      "value": 3.6545634821084317e-06,
+      "lo": 2.755178517824605e-06,
+      "hi": 4.592338860087627e-06,
+      "raw_points": [
+        3.6545634821084317e-06,
+        4.592338860087627e-06,
+        2.755178517824605e-06
+      ],
+      "status": "ok",
+      "row_refs": [
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:117",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:126",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:135"
+      ],
+      "extra": {
+        "seeds": [
+          20260919,
+          20260920,
+          20260921
+        ],
+        "values": [
+          3.6545634821084317e-06,
+          4.592338860087627e-06,
+          2.755178517824605e-06
+        ]
+      }
+    },
+    {
+      "category": "qwen06_q_m2048",
+      "series": "cubic_quadrant",
+      "value": 3.6735713570994735e-06,
+      "lo": 3.6545634821084317e-06,
+      "hi": 4.592338860087627e-06,
+      "raw_points": [
+        3.6545634821084317e-06,
+        4.592338860087627e-06,
+        3.6735713570994735e-06
+      ],
+      "status": "ok",
+      "row_refs": [
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:118",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:127",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:136"
+      ],
+      "extra": {
+        "seeds": [
+          20260919,
+          20260920,
+          20260921
+        ],
+        "values": [
+          3.6545634821084317e-06,
+          4.592338860087627e-06,
+          3.6735713570994735e-06
+        ]
+      }
+    },
+    {
+      "category": "qwen06_q_m2048",
+      "series": "strassen_basic",
+      "value": 0.09110732483458477,
+      "lo": 0.07041567235283,
+      "hi": 0.1006020712385096,
+      "raw_points": [
+        0.07041567235283,
+        0.1006020712385096,
+        0.09110732483458477
+      ],
+      "status": "ok",
+      "row_refs": [
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:119",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:128",
+        "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9:137"
+      ],
+      "extra": {
+        "seeds": [
+          20260919,
+          20260920,
+          20260921
+        ],
+        "values": [
+          0.07041567235283,
+          0.1006020712385096,
+          0.09110732483458477
+        ]
+      }
+    }
+  ],
+  "ylabel": "Maximum error / allowed maximum (log scale)",
+  "log": true,
+  "hline": 1,
+  "error_note": "Seed range is descriptive, not a confidence interval. Hatched bars failed the unchanged numerical gate.",
+  "takeaway": "Actual weights use synthetic Gaussian activations; this is not a model-quality test.",
+  "source_run_ids": [
+    "20260919T052151Z-N4-real-weights-v5e-v003-cb86b9"
+  ],
+  "cohort": "Original N1-N4 allocation",
+  "data_file": "data/n4-real-real_weight_gaussian_activation-max_error_gate_ratio.json",
+  "files": {
+    "absolute": {
+      "png": "figures/n4-real-real_weight_gaussian_activation-max_error_gate_ratio-absolute.png",
+      "svg": "figures/n4-real-real_weight_gaussian_activation-max_error_gate_ratio-absolute.svg"
+    }
+  }
+}

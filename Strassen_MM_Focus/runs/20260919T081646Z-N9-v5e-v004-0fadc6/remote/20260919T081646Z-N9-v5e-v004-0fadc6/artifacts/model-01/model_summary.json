@@ -1,0 +1,186 @@
+{
+  "eligible_for_speedup_claim": {
+    "cubic_n8_selected": true,
+    "native": true,
+    "strassen_n8_selected": true
+  },
+  "failures": {},
+  "model_id": "mistralai/Mistral-7B-v0.3",
+  "qualification": {
+    "all_finite": true,
+    "candidate_nll": 2.8807319762214783,
+    "candidate_nll_sum": 181.48611450195312,
+    "candidate_perplexity": 17.827317577494707,
+    "final_hidden_relative_l2": 0.01692565530538559,
+    "kl_sum": 0.04277307167649269,
+    "max_abs_error": 0.96875,
+    "mean_kl": 0.0006789376456586141,
+    "nll_delta": -0.004560682508680358,
+    "passed": true,
+    "positions": 63,
+    "reference_nll": 2.8852926587301586,
+    "reference_nll_sum": 181.7734375,
+    "reference_perplexity": 17.908807997665203,
+    "reference_scope": "official Transformers CPU BF16 first64tokens;63scored",
+    "reference_squared_sum": 38429080.0,
+    "relative_l2": 0.008229232745848565,
+    "squared_error_sum": 2602.427734375,
+    "thresholds": {
+      "max_abs_nll_delta": 0.05,
+      "max_mean_kl": 0.01,
+      "max_relative_l2": 0.03,
+      "min_top1_agreement": 0.9
+    },
+    "top1_agreement": 0.9682539682539683,
+    "top1_equal": 61
+  },
+  "quality": {
+    "cubic_n8_selected": {
+      "all_finite": true,
+      "candidate_nll": 1.8150976466293558,
+      "candidate_nll_sum": 59419.036560058594,
+      "candidate_perplexity": 6.141675862112401,
+      "kl_sum": 8.709228796884418,
+      "max_abs_error": 4.3984375,
+      "mean_kl": 0.0002660443791814644,
+      "nll_delta": 2.584848935294204e-05,
+      "passed": true,
+      "positions": 32736,
+      "reference_nll": 1.8150717981400029,
+      "reference_nll_sum": 59418.19038391113,
+      "reference_perplexity": 6.141517111121015,
+      "reference_squared_sum": 19335801088.0,
+      "relative_l2": 0.0057251116728374235,
+      "squared_error_sum": 633767.6895751953,
+      "thresholds": {
+        "max_abs_nll_delta": 0.01,
+        "max_mean_kl": 0.02,
+        "min_top1_agreement": 0.97
+      },
+      "top1_agreement": 0.9917521994134897,
+      "top1_equal": 32466
+    },
+    "native": {
+      "all_finite": true,
+      "candidate_nll": 1.8150717981400029,
+      "candidate_nll_sum": 59418.19038391113,
+      "candidate_perplexity": 6.141517111121015,
+      "kl_sum": 0.0,
+      "max_abs_error": 0.0,
+      "mean_kl": 0.0,
+      "nll_delta": 0.0,
+      "passed": true,
+      "positions": 32736,
+      "reference_nll": 1.8150717981400029,
+      "reference_nll_sum": 59418.19038391113,
+      "reference_perplexity": 6.141517111121015,
+      "reference_squared_sum": 19335801088.0,
+      "relative_l2": 0.0,
+      "squared_error_sum": 0.0,
+      "thresholds": {
+        "max_abs_nll_delta": 0.01,
+        "max_mean_kl": 0.02,
+        "min_top1_agreement": 0.97
+      },
+      "top1_agreement": 1.0,
+      "top1_equal": 32736
+    },
+    "strassen_n8_selected": {
+      "all_finite": true,
+      "candidate_nll": 1.8153689884137314,
+      "candidate_nll_sum": 59427.919204711914,
+      "candidate_perplexity": 6.143342581514965,
+      "kl_sum": 33.91888505779207,
+      "max_abs_error": 8.03125,
+      "mean_kl": 0.0010361340743460432,
+      "nll_delta": 0.00029719027372854256,
+      "passed": true,
+      "positions": 32736,
+      "reference_nll": 1.8150717981400029,
+      "reference_nll_sum": 59418.19038391113,
+      "reference_perplexity": 6.141517111121015,
+      "reference_squared_sum": 19335801088.0,
+      "relative_l2": 0.013670320953470986,
+      "squared_error_sum": 3613429.5510253906,
+      "thresholds": {
+        "max_abs_nll_delta": 0.01,
+        "max_mean_kl": 0.02,
+        "min_top1_agreement": 0.97
+      },
+      "top1_agreement": 0.989430596285435,
+      "top1_equal": 32390
+    }
+  },
+  "quality_measured": true,
+  "resident_layer_mean_ms": {
+    "cubic_n8_selected": 3.2632945625,
+    "native": 3.4566350625000006,
+    "strassen_n8_selected": 3.1260944285714283
+  },
+  "resident_sample_coverage": {
+    "cubic_n8_selected": {
+      "complete": true,
+      "expected": 224,
+      "observed": 224
+    },
+    "native": {
+      "complete": true,
+      "expected": 224,
+      "observed": 224
+    },
+    "strassen_n8_selected": {
+      "complete": true,
+      "expected": 224,
+      "observed": 224
+    }
+  },
+  "revision": "caa1feb0e54d415e2df31207e5f4e273e33509b1",
+  "scope": "Teacher-forced full-model prefill quality; resident-layer and transfer-inclusive streamed full-forward performance; no generation/task capability claim",
+  "status": "completed",
+  "streamed_descriptive_statistics": {
+    "cubic_n8_selected": {
+      "count": 3,
+      "max_ms": 55072.58859,
+      "mean_ms": 55039.89172566667,
+      "min_ms": 55006.847944,
+      "std_ms": 32.87169599901106
+    },
+    "native": {
+      "count": 3,
+      "max_ms": 55158.384335,
+      "mean_ms": 55108.26168133334,
+      "min_ms": 55066.43134,
+      "std_ms": 46.533967757356436
+    },
+    "strassen_n8_selected": {
+      "count": 3,
+      "max_ms": 55095.426398,
+      "mean_ms": 55092.79108866667,
+      "min_ms": 55088.433619,
+      "std_ms": 3.8011993759853024
+    }
+  },
+  "streamed_forward_mean_ms": {
+    "cubic_n8_selected": 55039.89172566667,
+    "native": 55108.26168133334,
+    "strassen_n8_selected": 55092.79108866667
+  },
+  "streamed_forward_samples_ms": {
+    "cubic_n8_selected": [
+      55072.58859,
+      55006.847944,
+      55040.238643
+    ],
+    "native": [
+      55066.43134,
+      55158.384335,
+      55099.969369
+    ],
+    "strassen_n8_selected": [
+      55094.513249,
+      55095.426398,
+      55088.433619
+    ]
+  },
+  "uncertainty_scope": "Three paired streamed repeats are descriptive; resident samples are paired by layer and repeat in results.jsonl. Layers are not independent statistical replicates."
+}

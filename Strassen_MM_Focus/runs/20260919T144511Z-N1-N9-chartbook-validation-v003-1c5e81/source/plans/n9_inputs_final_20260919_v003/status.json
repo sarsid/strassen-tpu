@@ -1,0 +1,9 @@
+{
+  "error": {
+    "message": "Execution seal omits required evidence",
+    "traceback": "Traceback (most recent call last):\n  File \"/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260919T081201Z-N9-input-finalization-v003-73bb4e/source/tools/finalize_n9_inputs_v003.py\", line 386, in main\n    finalize(args); status = 'completed'\n    ~~~~~~~~^^^^^^\n  File \"/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260919T081201Z-N9-input-finalization-v003-73bb4e/source/tools/finalize_n9_inputs_v003.py\", line 310, in finalize\n    configs = {item['model_id']: validate_model(evidence, item) for item in (qwen, mistral)}\n                                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260919T081201Z-N9-input-finalization-v003-73bb4e/source/tools/finalize_n9_inputs_v003.py\", line 148, in validate_model\n    evidence.run(run)\n    ~~~~~~~~~~~~^^^^^\n  File \"/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260919T081201Z-N9-input-finalization-v003-73bb4e/source/tools/finalize_n9_inputs_v003.py\", line 79, in run\n    require(required <= set(members), 'Execution seal omits required evidence')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260919T081201Z-N9-input-finalization-v003-73bb4e/source/tools/finalize_n9_inputs_v003.py\", line 40, in require\n    if not condition: raise ValueError(message)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Execution seal omits required evidence\n",
+    "type": "ValueError"
+  },
+  "finished_utc": "2026-09-19T08:12:01.558942+00:00",
+  "status": "failed"
+}

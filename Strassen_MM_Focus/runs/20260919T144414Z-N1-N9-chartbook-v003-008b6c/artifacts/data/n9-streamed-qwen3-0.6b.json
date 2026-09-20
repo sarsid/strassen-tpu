@@ -1,0 +1,113 @@
+{
+  "id": "n9-streamed-qwen3-0.6b",
+  "experiment": "N9",
+  "kind": "bar",
+  "scope": "streamed",
+  "title": "N9 | Qwen3-0.6B - streamed full forward",
+  "subtitle": "1,024-token full forward including reads, host layout and transfers. All three measured repeats are shown.",
+  "categories": [
+    {
+      "id": "Qwen/Qwen3-0.6B",
+      "label": "Qwen3-0.6B"
+    }
+  ],
+  "series": [
+    {
+      "id": "native",
+      "label": "Native",
+      "color": "#3772C8"
+    },
+    {
+      "id": "cubic_n8_selected",
+      "label": "Cubic MLP policy",
+      "color": "#DD8734"
+    },
+    {
+      "id": "strassen_n8_selected",
+      "label": "Strassen MLP policy",
+      "color": "#24936D"
+    }
+  ],
+  "points": [
+    {
+      "category": "Qwen/Qwen3-0.6B",
+      "series": "native",
+      "value": 3.5297989896666673,
+      "lo": 3.505022771,
+      "hi": 3.551367769,
+      "raw_points": [
+        3.505022771,
+        3.551367769,
+        3.5330064290000003
+      ],
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:665"
+      ],
+      "extra": {
+        "arm_id": "native",
+        "model_id": "Qwen/Qwen3-0.6B"
+      }
+    },
+    {
+      "category": "Qwen/Qwen3-0.6B",
+      "series": "cubic_n8_selected",
+      "value": 3.5497017016666663,
+      "lo": 3.5418058890000004,
+      "hi": 3.555335548,
+      "raw_points": [
+        3.551963668,
+        3.5418058890000004,
+        3.555335548
+      ],
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:666"
+      ],
+      "extra": {
+        "arm_id": "cubic_n8_selected",
+        "model_id": "Qwen/Qwen3-0.6B"
+      }
+    },
+    {
+      "category": "Qwen/Qwen3-0.6B",
+      "series": "strassen_n8_selected",
+      "value": 3.5506734453333335,
+      "lo": 3.549576368,
+      "hi": 3.551894939,
+      "raw_points": [
+        3.550549029,
+        3.551894939,
+        3.549576368
+      ],
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:667"
+      ],
+      "extra": {
+        "arm_id": "strassen_n8_selected",
+        "model_id": "Qwen/Qwen3-0.6B"
+      }
+    }
+  ],
+  "baseline": "native",
+  "ylabel": "Full-forward time (seconds) - lower is better",
+  "error_note": "Whiskers: minimum to maximum of 3 repeats; descriptive, not a confidence interval.",
+  "takeaway": "Custom policies replace the MLP only. Attention and vocabulary projection remain native.",
+  "detail": false,
+  "source_run_ids": [
+    "20260919T081646Z-N9-v5e-v004-0fadc6"
+  ],
+  "cohort": "N5-N9 allocation",
+  "data_file": "data/n9-streamed-qwen3-0.6b.json",
+  "files": {
+    "absolute": {
+      "png": "figures/n9-streamed-qwen3-0.6b-absolute.png",
+      "svg": "figures/n9-streamed-qwen3-0.6b-absolute.svg"
+    },
+    "relative": {
+      "png": "figures/n9-streamed-qwen3-0.6b-relative.png",
+      "svg": "figures/n9-streamed-qwen3-0.6b-relative.svg"
+    }
+  }
+}

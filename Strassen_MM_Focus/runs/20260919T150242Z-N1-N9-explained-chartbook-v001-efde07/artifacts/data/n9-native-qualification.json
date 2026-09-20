@@ -1,0 +1,183 @@
+{
+  "id": "n9-native-qualification",
+  "experiment": "N9",
+  "kind": "bar",
+  "scope": "quality",
+  "title": "N9 | Independent native implementation qualification",
+  "subtitle": "Native JAX vs official Transformers CPU BF16 on 64 input tokens / 63 scored positions.",
+  "categories": [
+    {
+      "id": "Qwen/Qwen3-0.6B|Logit relative L2",
+      "label": "Qwen3-0.6B\nLogit relative L2"
+    },
+    {
+      "id": "Qwen/Qwen3-0.6B|Absolute NLL difference",
+      "label": "Qwen3-0.6B\nAbsolute NLL difference"
+    },
+    {
+      "id": "Qwen/Qwen3-0.6B|Mean KL",
+      "label": "Qwen3-0.6B\nMean KL"
+    },
+    {
+      "id": "Qwen/Qwen3-0.6B|Top-1 disagreement",
+      "label": "Qwen3-0.6B\nTop-1 disagreement"
+    },
+    {
+      "id": "mistralai/Mistral-7B-v0.3|Logit relative L2",
+      "label": "Mistral-7B-v0.3\nLogit relative L2"
+    },
+    {
+      "id": "mistralai/Mistral-7B-v0.3|Absolute NLL difference",
+      "label": "Mistral-7B-v0.3\nAbsolute NLL difference"
+    },
+    {
+      "id": "mistralai/Mistral-7B-v0.3|Mean KL",
+      "label": "Mistral-7B-v0.3\nMean KL"
+    },
+    {
+      "id": "mistralai/Mistral-7B-v0.3|Top-1 disagreement",
+      "label": "Mistral-7B-v0.3\nTop-1 disagreement"
+    }
+  ],
+  "series": [
+    {
+      "id": "native",
+      "label": "Native JAX / allowed error",
+      "color": "#3772C8"
+    }
+  ],
+  "points": [
+    {
+      "category": "Qwen/Qwen3-0.6B|Logit relative L2",
+      "series": "native",
+      "value": 0.7996873268594815,
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:4"
+      ],
+      "extra": {
+        "observed": 0.023990619805784444,
+        "gate": 0.03,
+        "scored_positions": 63
+      }
+    },
+    {
+      "category": "Qwen/Qwen3-0.6B|Absolute NLL difference",
+      "series": "native",
+      "value": 0.051850818452381375,
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:4"
+      ],
+      "extra": {
+        "observed": 0.0025925409226190688,
+        "gate": 0.05,
+        "scored_positions": 63
+      }
+    },
+    {
+      "category": "Qwen/Qwen3-0.6B|Mean KL",
+      "series": "native",
+      "value": 0.2169022247904823,
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:4"
+      ],
+      "extra": {
+        "observed": 0.002169022247904823,
+        "gate": 0.01,
+        "scored_positions": 63
+      }
+    },
+    {
+      "category": "Qwen/Qwen3-0.6B|Top-1 disagreement",
+      "series": "native",
+      "value": 0.31746031746031744,
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:4"
+      ],
+      "extra": {
+        "observed": 0.031746031746031744,
+        "gate": 0.1,
+        "scored_positions": 63
+      }
+    },
+    {
+      "category": "mistralai/Mistral-7B-v0.3|Logit relative L2",
+      "series": "native",
+      "value": 0.2743077581949522,
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:670"
+      ],
+      "extra": {
+        "observed": 0.008229232745848565,
+        "gate": 0.03,
+        "scored_positions": 63
+      }
+    },
+    {
+      "category": "mistralai/Mistral-7B-v0.3|Absolute NLL difference",
+      "series": "native",
+      "value": 0.09121365017360716,
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:670"
+      ],
+      "extra": {
+        "observed": 0.004560682508680358,
+        "gate": 0.05,
+        "scored_positions": 63
+      }
+    },
+    {
+      "category": "mistralai/Mistral-7B-v0.3|Mean KL",
+      "series": "native",
+      "value": 0.06789376456586141,
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:670"
+      ],
+      "extra": {
+        "observed": 0.0006789376456586141,
+        "gate": 0.01,
+        "scored_positions": 63
+      }
+    },
+    {
+      "category": "mistralai/Mistral-7B-v0.3|Top-1 disagreement",
+      "series": "native",
+      "value": 0.31746031746031744,
+      "status": "ok",
+      "row_refs": [
+        "20260919T081646Z-N9-v5e-v004-0fadc6:670"
+      ],
+      "extra": {
+        "observed": 0.031746031746031744,
+        "gate": 0.1,
+        "scored_positions": 63
+      }
+    }
+  ],
+  "ylabel": "Fraction of permitted error (lower is better)",
+  "hline": 1,
+  "error_note": "The limits differ from the full-corpus custom-policy gates. Finite-output checks also passed.",
+  "takeaway": "Both native implementations pass this short independent check; it is not full-corpus exact equivalence.",
+  "detail": false,
+  "source_run_ids": [
+    "20260919T081646Z-N9-v5e-v004-0fadc6"
+  ],
+  "cohort": "N5-N9 allocation",
+  "data_file": "data/n9-native-qualification.json",
+  "files": {
+    "absolute": {
+      "png": "figures/n9-native-qualification-absolute.png",
+      "svg": "figures/n9-native-qualification-absolute.svg"
+    }
+  },
+  "explanation": {
+    "observation": "Each bar is one Native JAX error divided by its allowed limit, checked against official Transformers CPU BF16. Every bar is below 1, so both native implementations pass this short 63-position qualification. These are different checks and tolerances from the full-corpus policy comparison.",
+    "interpretation": "This independent check gives a basis for using the Native implementation as a comparison reference. It covers only the first 64 input tokens (63 scored positions), not the complete corpus. The full-corpus custom-policy checks and N4 cancellation tests answer separate questions."
+  }
+}

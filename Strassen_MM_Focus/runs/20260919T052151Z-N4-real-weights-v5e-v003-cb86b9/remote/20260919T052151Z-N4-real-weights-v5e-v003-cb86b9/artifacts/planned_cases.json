@@ -1,0 +1,254 @@
+[
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "qwen06_down_m512__1024x1024x512",
+    "inputs": [
+      {
+        "distribution": "real_weight_gaussian_activation",
+        "seed": 20260919
+      },
+      {
+        "distribution": "real_weight_gaussian_activation",
+        "seed": 20260920
+      },
+      {
+        "distribution": "real_weight_gaussian_activation",
+        "seed": 20260921
+      }
+    ],
+    "scopes": [
+      "call"
+    ],
+    "shape": {
+      "family": "real_weight_projection",
+      "id": "qwen06_down_m512",
+      "k": 3072,
+      "m": 512,
+      "n": 1024,
+      "projection": "down",
+      "source_id": "qwen3_06b_actual_layer0_weights",
+      "stage": "supplement",
+      "stored_weight_shape": [
+        1024,
+        3072
+      ],
+      "tensor_name": "model.layers.0.mlp.down_proj.weight"
+    },
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": null
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "qwen06_q_m512__1024x1024x512",
+    "inputs": [
+      {
+        "distribution": "real_weight_gaussian_activation",
+        "seed": 20260919
+      },
+      {
+        "distribution": "real_weight_gaussian_activation",
+        "seed": 20260920
+      },
+      {
+        "distribution": "real_weight_gaussian_activation",
+        "seed": 20260921
+      }
+    ],
+    "scopes": [
+      "call"
+    ],
+    "shape": {
+      "family": "real_weight_projection",
+      "id": "qwen06_q_m512",
+      "k": 1024,
+      "m": 512,
+      "n": 2048,
+      "projection": "q",
+      "source_id": "qwen3_06b_actual_layer0_weights",
+      "stage": "supplement",
+      "stored_weight_shape": [
+        2048,
+        1024
+      ],
+      "tensor_name": "model.layers.0.self_attn.q_proj.weight"
+    },
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": null
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "qwen06_down_m2048__1024x1024x512",
+    "inputs": [
+      {
+        "distribution": "real_weight_gaussian_activation",
+        "seed": 20260919
+      },
+      {
+        "distribution": "real_weight_gaussian_activation",
+        "seed": 20260920
+      },
+      {
+        "distribution": "real_weight_gaussian_activation",
+        "seed": 20260921
+      }
+    ],
+    "scopes": [
+      "call"
+    ],
+    "shape": {
+      "family": "real_weight_projection",
+      "id": "qwen06_down_m2048",
+      "k": 3072,
+      "m": 2048,
+      "n": 1024,
+      "projection": "down",
+      "source_id": "qwen3_06b_actual_layer0_weights",
+      "stage": "supplement",
+      "stored_weight_shape": [
+        1024,
+        3072
+      ],
+      "tensor_name": "model.layers.0.mlp.down_proj.weight"
+    },
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": null
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "qwen06_q_m2048__1024x1024x512",
+    "inputs": [
+      {
+        "distribution": "real_weight_gaussian_activation",
+        "seed": 20260919
+      },
+      {
+        "distribution": "real_weight_gaussian_activation",
+        "seed": 20260920
+      },
+      {
+        "distribution": "real_weight_gaussian_activation",
+        "seed": 20260921
+      }
+    ],
+    "scopes": [
+      "call"
+    ],
+    "shape": {
+      "family": "real_weight_projection",
+      "id": "qwen06_q_m2048",
+      "k": 1024,
+      "m": 2048,
+      "n": 2048,
+      "projection": "q",
+      "source_id": "qwen3_06b_actual_layer0_weights",
+      "stage": "supplement",
+      "stored_weight_shape": [
+        2048,
+        1024
+      ],
+      "tensor_name": "model.layers.0.self_attn.q_proj.weight"
+    },
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": null
+  }
+]

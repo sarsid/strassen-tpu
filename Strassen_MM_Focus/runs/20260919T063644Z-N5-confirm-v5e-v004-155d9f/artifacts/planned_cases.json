@@ -1,0 +1,1398 @@
+[
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_2048_1024_512",
+        "family": "cubic",
+        "mean_ms": 0.23005857142857142,
+        "prepared_mean_ms": 0.24567285714285717,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "full",
+        "relative_l2": 1.2272735017645746e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_2048_1024_512",
+          "case_id": "square_512__candidate_pair_016__gaussian__20260919",
+          "group_id": "square_512__candidate_pair_016",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_output_accumulator_512_1024_512",
+        "family": "strassen",
+        "mean_ms": 0.21411300000000003,
+        "prepared_mean_ms": 0.21657714285714286,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "full",
+        "relative_l2": 0.0028589266263871357,
+        "screen_record_id": {
+          "arm_id": "s_output_accumulator_512_1024_512",
+          "case_id": "square_512__candidate_pair_017__gaussian__20260919",
+          "group_id": "square_512__candidate_pair_017",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    ],
+    "group_id": "square_512__fresh_confirmation",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "square",
+      "id": "square_512",
+      "k": 512,
+      "m": 512,
+      "n": 512,
+      "source_id": "synthetic_design",
+      "stage": "smoke"
+    },
+    "tile": [
+      2048,
+      1024,
+      512
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_plain_1024_1024_512",
+        "family": "cubic",
+        "mean_ms": 0.24185985714285715,
+        "prepared_mean_ms": 0.25173999999999996,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "full",
+        "relative_l2": 1.231812739682688e-07,
+        "screen_record_id": {
+          "arm_id": "c_plain_1024_1024_512",
+          "case_id": "tail_513__candidate_pair_009__gaussian__20260919",
+          "group_id": "tail_513__candidate_pair_009",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_plain_512_1024_512",
+        "family": "strassen",
+        "mean_ms": 0.24901271428571434,
+        "prepared_mean_ms": 0.2392857142857143,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "full",
+        "relative_l2": 0.0028607318651755493,
+        "screen_record_id": {
+          "arm_id": "s_plain_512_1024_512",
+          "case_id": "tail_513__candidate_pair_009__gaussian__20260919",
+          "group_id": "tail_513__candidate_pair_009",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    ],
+    "group_id": "tail_513__fresh_confirmation",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "nonaligned",
+      "id": "tail_513",
+      "k": 513,
+      "m": 513,
+      "n": 513,
+      "source_id": "synthetic_design",
+      "stage": "smoke"
+    },
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_plain_128_512_512",
+        "family": "cubic",
+        "mean_ms": 0.25320142857142863,
+        "prepared_mean_ms": 0.26917714285714284,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "full",
+        "relative_l2": 1.4693060665776275e-07,
+        "screen_record_id": {
+          "arm_id": "c_plain_128_512_512",
+          "case_id": "small_m_8__candidate_pair_005__gaussian__20260919",
+          "group_id": "small_m_8__candidate_pair_005",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          128,
+          512,
+          512
+        ],
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_output_accumulator_512_1024_512",
+        "family": "strassen",
+        "mean_ms": 0.2812914285714285,
+        "prepared_mean_ms": 0.2886242857142857,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "full",
+        "relative_l2": 0.0027957967125168707,
+        "screen_record_id": {
+          "arm_id": "s_output_accumulator_512_1024_512",
+          "case_id": "small_m_8__candidate_pair_006__gaussian__20260919",
+          "group_id": "small_m_8__candidate_pair_006",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    ],
+    "group_id": "small_m_8__fresh_confirmation",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "small_m",
+      "id": "small_m_8",
+      "k": 2048,
+      "m": 8,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "smoke"
+    },
+    "tile": [
+      128,
+      512,
+      512
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_plain_512_1024_512",
+        "family": "cubic",
+        "mean_ms": 0.266617,
+        "prepared_mean_ms": 0.26926428571428573,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "full",
+        "relative_l2": 1.4844404568770235e-07,
+        "screen_record_id": {
+          "arm_id": "c_plain_512_1024_512",
+          "case_id": "small_m_64__candidate_pair_014__gaussian__20260919",
+          "group_id": "small_m_64__candidate_pair_014",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_plain_512_1024_512",
+        "family": "strassen",
+        "mean_ms": 0.2664668571428571,
+        "prepared_mean_ms": 0.2634185714285714,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "full",
+        "relative_l2": 0.0028577829559861515,
+        "screen_record_id": {
+          "arm_id": "s_plain_512_1024_512",
+          "case_id": "small_m_64__candidate_pair_011__gaussian__20260919",
+          "group_id": "small_m_64__candidate_pair_011",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    ],
+    "group_id": "small_m_64__fresh_confirmation",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "small_m",
+      "id": "small_m_64",
+      "k": 2048,
+      "m": 64,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      512,
+      1024,
+      512
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_512_1024_1024",
+        "family": "cubic",
+        "mean_ms": 0.35156871428571435,
+        "prepared_mean_ms": 0.3544972857142858,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.8257386356894243e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_512_1024_1024",
+          "case_id": "mkn_512_8192_2048__candidate_pair_002__gaussian__20260919",
+          "group_id": "mkn_512_8192_2048__candidate_pair_002",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_plain_512_1024_512",
+        "family": "strassen",
+        "mean_ms": 0.34978414285714277,
+        "prepared_mean_ms": 0.3597171428571429,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.0044776527451336895,
+        "screen_record_id": {
+          "arm_id": "s_plain_512_1024_512",
+          "case_id": "mkn_512_8192_2048__candidate_pair_013__gaussian__20260919",
+          "group_id": "mkn_512_8192_2048__candidate_pair_013",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    ],
+    "group_id": "mkn_512_8192_2048__fresh_confirmation",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "aspect_ratio",
+      "id": "mkn_512_8192_2048",
+      "k": 8192,
+      "m": 512,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      512,
+      1024,
+      1024
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_1024_1024_1024",
+        "family": "cubic",
+        "mean_ms": 0.3343957142857143,
+        "prepared_mean_ms": 0.332937,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.4887161980558014e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_1024_1024_1024",
+          "case_id": "square_2048__candidate_pair_010__gaussian__20260919",
+          "group_id": "square_2048__candidate_pair_010",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_512_1024_512",
+        "family": "strassen",
+        "mean_ms": 0.3406227142857143,
+        "prepared_mean_ms": 0.3394627142857143,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004390374960360282,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_512_1024_512",
+          "case_id": "square_2048__candidate_pair_009__gaussian__20260919",
+          "group_id": "square_2048__candidate_pair_009",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    ],
+    "group_id": "square_2048__fresh_confirmation",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "square",
+      "id": "square_2048",
+      "k": 2048,
+      "m": 2048,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      1024,
+      1024,
+      1024
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_512_1024_512",
+        "family": "cubic",
+        "mean_ms": 0.3616628571428571,
+        "prepared_mean_ms": 0.34384571428571425,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.4693815798869593e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_512_1024_512",
+          "case_id": "tail_wide__candidate_pair_001__gaussian__20260919",
+          "group_id": "tail_wide__candidate_pair_001",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_output_accumulator_1024_1024_1024",
+        "family": "strassen",
+        "mean_ms": 0.3560497142857143,
+        "prepared_mean_ms": 0.3203385714285715,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004431942056309834,
+        "screen_record_id": {
+          "arm_id": "s_output_accumulator_1024_1024_1024",
+          "case_id": "tail_wide__candidate_pair_018__gaussian__20260919",
+          "group_id": "tail_wide__candidate_pair_018",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      }
+    ],
+    "group_id": "tail_wide__fresh_confirmation",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "nonaligned",
+      "id": "tail_wide",
+      "k": 2047,
+      "m": 1023,
+      "n": 4095,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      512,
+      1024,
+      512
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_plain_1024_1024_1024",
+        "family": "cubic",
+        "mean_ms": 0.592243,
+        "prepared_mean_ms": 0.5963901428571429,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.789334925565344e-07,
+        "screen_record_id": {
+          "arm_id": "c_plain_1024_1024_1024",
+          "case_id": "vary_k_8192__candidate_pair_003__gaussian__20260919",
+          "group_id": "vary_k_8192__candidate_pair_003",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_2048_1024_512",
+        "family": "strassen",
+        "mean_ms": 0.5713801428571429,
+        "prepared_mean_ms": 0.5660171428571428,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004387913308005073,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_2048_1024_512",
+          "case_id": "vary_k_8192__candidate_pair_009__gaussian__20260919",
+          "group_id": "vary_k_8192__candidate_pair_009",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    ],
+    "group_id": "vary_k_8192__fresh_confirmation",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "axis_sweep",
+      "id": "vary_k_8192",
+      "k": 8192,
+      "m": 2048,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      1024,
+      1024,
+      1024
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_1024_2048_512",
+        "family": "cubic",
+        "mean_ms": 0.6405685714285714,
+        "prepared_mean_ms": 0.6435324285714286,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.4638430521471768e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_1024_2048_512",
+          "case_id": "vary_m_8192__candidate_pair_009__gaussian__20260919",
+          "group_id": "vary_m_8192__candidate_pair_009",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_output_accumulator_1024_1024_1024",
+        "family": "strassen",
+        "mean_ms": 0.6305441428571428,
+        "prepared_mean_ms": 0.6234501428571428,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.0044112835252518665,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_output_accumulator_1024_1024_1024",
+          "case_id": "vary_m_8192__candidate_pair_008__gaussian__20260919",
+          "group_id": "vary_m_8192__candidate_pair_008",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "interleaved_output_accumulator"
+      }
+    ],
+    "group_id": "vary_m_8192__fresh_confirmation",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "axis_sweep",
+      "id": "vary_m_8192",
+      "k": 2048,
+      "m": 8192,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      1024,
+      2048,
+      512
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_1024_1024_1024",
+        "family": "cubic",
+        "mean_ms": 0.6324712857142857,
+        "prepared_mean_ms": 0.635833,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.495463075333035e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_1024_1024_1024",
+          "case_id": "vary_n_8192__candidate_pair_005__gaussian__20260919",
+          "group_id": "vary_n_8192__candidate_pair_005",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_output_accumulator_1024_1024_1024",
+        "family": "strassen",
+        "mean_ms": 0.6139285714285715,
+        "prepared_mean_ms": 0.6106842857142857,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004412462577843525,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_output_accumulator_1024_1024_1024",
+          "case_id": "vary_n_8192__candidate_pair_010__gaussian__20260919",
+          "group_id": "vary_n_8192__candidate_pair_010",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "interleaved_output_accumulator"
+      }
+    ],
+    "group_id": "vary_n_8192__fresh_confirmation",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "axis_sweep",
+      "id": "vary_n_8192",
+      "k": 2048,
+      "m": 2048,
+      "n": 8192,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      1024,
+      1024,
+      1024
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_plain_1024_1024_1024",
+        "family": "cubic",
+        "mean_ms": 1.0202769999999999,
+        "prepared_mean_ms": 1.0447455714285714,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.61210523888565e-07,
+        "screen_record_id": {
+          "arm_id": "c_plain_1024_1024_1024",
+          "case_id": "square_4096__candidate_pair_004__gaussian__20260919",
+          "group_id": "square_4096__candidate_pair_004",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_output_accumulator_2048_2048_512",
+        "family": "strassen",
+        "mean_ms": 0.9752514285714285,
+        "prepared_mean_ms": 0.9808771428571428,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004396333918438439,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_output_accumulator_2048_2048_512",
+          "case_id": "square_4096__candidate_pair_002__gaussian__20260919",
+          "group_id": "square_4096__candidate_pair_002",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      }
+    ],
+    "group_id": "square_4096__fresh_confirmation",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "square",
+      "id": "square_4096",
+      "k": 4096,
+      "m": 4096,
+      "n": 4096,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      1024,
+      1024,
+      1024
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_512_1024_512",
+        "family": "cubic",
+        "mean_ms": 0.9074485714285715,
+        "prepared_mean_ms": 0.9235855714285713,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.605025965861331e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_512_1024_512",
+          "case_id": "gemma9_gate_up_m512__candidate_pair_003__gaussian__20260919",
+          "group_id": "gemma9_gate_up_m512__candidate_pair_003",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_output_accumulator_512_1024_512",
+        "family": "strassen",
+        "mean_ms": 0.8981898571428572,
+        "prepared_mean_ms": 0.9029884285714286,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.0044457279802640835,
+        "screen_record_id": {
+          "arm_id": "s_output_accumulator_512_1024_512",
+          "case_id": "gemma9_gate_up_m512__candidate_pair_008__gaussian__20260919",
+          "group_id": "gemma9_gate_up_m512__candidate_pair_008",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      }
+    ],
+    "group_id": "gemma9_gate_up_m512__fresh_confirmation",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "gemma9_gate_up_m512",
+      "k": 3584,
+      "m": 512,
+      "n": 28672,
+      "projection": "gate_up",
+      "source_id": "gemma2_9b",
+      "stage": "core"
+    },
+    "tile": [
+      512,
+      1024,
+      512
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_512_1024_1024",
+        "family": "cubic",
+        "mean_ms": 0.9800842857142857,
+        "prepared_mean_ms": 0.9854984285714286,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.6296491177739675e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_512_1024_1024",
+          "case_id": "mistral7_gate_up_m512__candidate_pair_000__gaussian__20260919",
+          "group_id": "mistral7_gate_up_m512__candidate_pair_000",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_output_accumulator_512_1024_512",
+        "family": "strassen",
+        "mean_ms": 0.9732830000000001,
+        "prepared_mean_ms": 0.9760629999999999,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004365843459311853,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_output_accumulator_512_1024_512",
+          "case_id": "mistral7_gate_up_m512__candidate_pair_011__gaussian__20260919",
+          "group_id": "mistral7_gate_up_m512__candidate_pair_011",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      }
+    ],
+    "group_id": "mistral7_gate_up_m512__fresh_confirmation",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "mistral7_gate_up_m512",
+      "k": 4096,
+      "m": 512,
+      "n": 28672,
+      "projection": "gate_up",
+      "source_id": "mistral7_v01",
+      "stage": "core"
+    },
+    "tile": [
+      512,
+      1024,
+      1024
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_512_1024_1024",
+        "family": "cubic",
+        "mean_ms": 1.794226857142857,
+        "prepared_mean_ms": 1.811258,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.6808392434875007e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_512_1024_1024",
+          "case_id": "qwen32_gate_up_m512__candidate_pair_006__gaussian__20260919",
+          "group_id": "qwen32_gate_up_m512__candidate_pair_006",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_512_1024_512",
+        "family": "strassen",
+        "mean_ms": 1.8481314285714283,
+        "prepared_mean_ms": 1.8577927142857145,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004447300785885831,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_512_1024_512",
+          "case_id": "qwen32_gate_up_m512__candidate_pair_011__gaussian__20260919",
+          "group_id": "qwen32_gate_up_m512__candidate_pair_011",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    ],
+    "group_id": "qwen32_gate_up_m512__fresh_confirmation",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "qwen32_gate_up_m512",
+      "k": 5120,
+      "m": 512,
+      "n": 51200,
+      "projection": "gate_up",
+      "source_id": "qwen3_32b",
+      "stage": "core"
+    },
+    "tile": [
+      512,
+      1024,
+      1024
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_1024_1024_1024",
+        "family": "cubic",
+        "mean_ms": 6.116295285714286,
+        "prepared_mean_ms": 6.110182285714286,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.784663481693425e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_1024_1024_1024",
+          "case_id": "square_8192__candidate_pair_012__gaussian__20260919",
+          "group_id": "square_8192__candidate_pair_012",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_output_accumulator_2048_2048_512",
+        "family": "strassen",
+        "mean_ms": 5.594163857142857,
+        "prepared_mean_ms": 5.6113668571428565,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004402459576259738,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_output_accumulator_2048_2048_512",
+          "case_id": "square_8192__candidate_pair_019__gaussian__20260919",
+          "group_id": "square_8192__candidate_pair_019",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      }
+    ],
+    "group_id": "square_8192__fresh_confirmation",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "square",
+      "id": "square_8192",
+      "k": 8192,
+      "m": 8192,
+      "n": 8192,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      1024,
+      1024,
+      1024
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "candidate_id": "native",
+        "family": "native",
+        "public_arm_id": "native_xla",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "candidate_id": "c_output_accumulator_2048_2048_512",
+        "family": "cubic",
+        "mean_ms": 23.175244,
+        "prepared_mean_ms": 23.136532571428575,
+        "public_arm_id": "cubic_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 1.687200897672838e-07,
+        "screen_record_id": {
+          "arm_id": "c_output_accumulator_2048_2048_512",
+          "case_id": "qwen32_gate_up_m8192__candidate_pair_002__gaussian__20260919",
+          "group_id": "qwen32_gate_up_m8192__candidate_pair_002",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "candidate_id": "s_interleaved_output_accumulator_2048_2048_512",
+        "family": "strassen",
+        "mean_ms": 21.377825714285713,
+        "prepared_mean_ms": 21.391827428571425,
+        "public_arm_id": "strassen_selected",
+        "reference_scope": "sampled_cross_product",
+        "relative_l2": 0.004390609761678284,
+        "screen_record_id": {
+          "arm_id": "s_interleaved_output_accumulator_2048_2048_512",
+          "case_id": "qwen32_gate_up_m8192__candidate_pair_001__gaussian__20260919",
+          "group_id": "qwen32_gate_up_m8192__candidate_pair_001",
+          "scope": "call"
+        },
+        "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      }
+    ],
+    "group_id": "qwen32_gate_up_m8192__fresh_confirmation",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260920
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "qwen32_gate_up_m8192",
+      "k": 5120,
+      "m": 8192,
+      "n": 51200,
+      "projection": "gate_up",
+      "source_id": "qwen3_32b",
+      "stage": "anchor"
+    },
+    "tile": [
+      2048,
+      2048,
+      512
+    ],
+    "timing": "confirm"
+  }
+]

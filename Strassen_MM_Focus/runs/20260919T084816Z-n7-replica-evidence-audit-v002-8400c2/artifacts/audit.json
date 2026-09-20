@@ -1,0 +1,369 @@
+{
+  "audit_pass": true,
+  "created_utc": "2026-09-19T08:48:17.412472+00:00",
+  "frozen_working_source_issues": [],
+  "interpretation": "Hash/protocol audit is separate from scientific success. Screens are not confirmation; cohorts are never pooled; CIs are per-comparison without multiplicity correction.",
+  "runs": [
+    {
+      "archive_commit": "74d0108eea9ce48d093c93427288fc11742652e6 Archive 20260919T084449Z-N7-replicate-v5e-v004-955768 (completed)",
+      "artifact_manifest_sha256": "c0f8d28cab7324fe972727fb7ea1899e6d69c90451a1cd5f09eedde19ea7ba9d",
+      "audit_pass": true,
+      "case_status_counts": {
+        "ok": 128
+      },
+      "complete_call_comparisons": {
+        "cubic_selected vs native_xla": {
+          "counts": {
+            "inconclusive": 1,
+            "loss": 9,
+            "win": 6
+          },
+          "max_ratio": 1.0792631404906077,
+          "median_ratio": 0.9724107671151391,
+          "min_ratio": 0.5620401082142015
+        },
+        "cubic_selected vs selector": {
+          "counts": {
+            "inconclusive": 1
+          },
+          "max_ratio": 0.9886557472931295,
+          "median_ratio": 0.9886557472931295,
+          "min_ratio": 0.9886557472931295
+        },
+        "native_xla vs cubic_selected": {
+          "counts": {
+            "inconclusive": 1,
+            "loss": 6,
+            "win": 9
+          },
+          "max_ratio": 1.7792324522485605,
+          "median_ratio": 1.0283919803388155,
+          "min_ratio": 0.9265580955034037
+        },
+        "native_xla vs selector": {
+          "counts": {
+            "inconclusive": 12,
+            "loss": 1
+          },
+          "max_ratio": 1.0395620245073762,
+          "median_ratio": 1.0000409781380275,
+          "min_ratio": 0.9844594306323975
+        },
+        "selector vs cubic_selected": {
+          "counts": {
+            "inconclusive": 5,
+            "loss": 2,
+            "win": 9
+          },
+          "max_ratio": 1.7887490993511124,
+          "median_ratio": 1.035515701842901,
+          "min_ratio": 0.9493676896971956
+        },
+        "selector vs native_xla": {
+          "counts": {
+            "inconclusive": 12,
+            "win": 4
+          },
+          "max_ratio": 1.1152331161898028,
+          "median_ratio": 1.0027645739864566,
+          "min_ratio": 0.9619435651026944
+        },
+        "strassen_selected vs cubic_selected": {
+          "counts": {
+            "inconclusive": 4,
+            "loss": 4,
+            "win": 8
+          },
+          "max_ratio": 1.0756423323258506,
+          "median_ratio": 1.0144056837479378,
+          "min_ratio": 0.8142194006934562
+        },
+        "strassen_selected vs native_xla": {
+          "counts": {
+            "inconclusive": 1,
+            "loss": 9,
+            "win": 6
+          },
+          "max_ratio": 1.1014596980974045,
+          "median_ratio": 0.9685352394062756,
+          "min_ratio": 0.5461833532439646
+        }
+      },
+      "execution_status": "completed",
+      "identity": {
+        "allocation_id": "tpu-v5e1-s-kkb-usw1c1-s89akviwl7d7",
+        "boot_id": "823b0acd-effe-4415-b35c-89465d02ed5f",
+        "colab_endpoint": "tpu-v5e1-s-kkb-usw1c1-s89akviwl7d7",
+        "device_id": 0,
+        "device_kind": "TPU v5 lite",
+        "devices": [
+          {
+            "coords": [
+              0,
+              0,
+              0
+            ],
+            "core_on_chip": 0,
+            "id": 0,
+            "kind": "TPU v5 lite",
+            "local_hardware_id": 0,
+            "platform": "tpu",
+            "process_index": 0
+          }
+        ],
+        "host_id": "ec3069c714ba",
+        "hostname": "ec3069c714ba",
+        "jax_version": "0.7.2",
+        "jaxlib_version": "0.7.2",
+        "libtpu_version": "0.0.21.1",
+        "mosaic_compatibility": {
+          "jax": "0.7.2",
+          "libtpu": "0.0.21.1",
+          "override_enabled": true,
+          "target_ir_version": 7
+        },
+        "numpy_version": "2.1.3",
+        "process_index": 0,
+        "runtime_flags": {
+          "JAX_ENABLE_X64": "false",
+          "JAX_PLATFORMS": "tpu",
+          "LIBTPU_INIT_ARGS": " --xla_tpu_use_enhanced_launch_barrier=true",
+          "MKL_NUM_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1",
+          "PJRT_DEVICE": "TPU",
+          "TPU_CHIPS_PER_HOST_BOUNDS": "2,2,1",
+          "TPU_HOST_BOUNDS": "1,1,1",
+          "TPU_NUM_CHIPS": null,
+          "TPU_VISIBLE_CHIPS": null,
+          "XLA_FLAGS": null,
+          "XLA_PYTHON_CLIENT_PREALLOCATE": "false"
+        },
+        "runtime_image": "release-colab-external-images_20260917-060051_RC00",
+        "versions": {
+          "jax": "0.7.2",
+          "jaxlib": "0.7.2",
+          "libtpu": "0.0.21.1",
+          "ml_dtypes": "0.6.0",
+          "numpy": "2.1.3",
+          "requests": "2.32.4",
+          "scipy": "1.16.3"
+        }
+      },
+      "issues": [],
+      "phase": "N7-replicate",
+      "record_count": 4316,
+      "run_id": "20260919T084449Z-N7-replicate-v5e-v004-955768",
+      "source_commit": "cb4fcc17bd39829efd3efcf223f563f8083fca38",
+      "summary": {
+        "case_status_counts": {
+          "ok": 128
+        },
+        "completed": true,
+        "completed_groups": [
+          "held_square_768__frozen_rule",
+          "held_square_1536__frozen_rule",
+          "held_small_m128__frozen_rule",
+          "held_tail_b__frozen_rule",
+          "held_small_m16__frozen_rule",
+          "held_rect_deep_k__frozen_rule",
+          "held_tail_a__frozen_rule",
+          "held_rect_tall__frozen_rule",
+          "held_rect_wide__frozen_rule",
+          "held_square_3072__frozen_rule",
+          "held_rect_short_k__frozen_rule",
+          "held_qwen_down__frozen_rule",
+          "held_gemma_gateup__frozen_rule",
+          "held_square_6144__frozen_rule",
+          "held_mistral_gateup__frozen_rule",
+          "held_qwen_gateup__frozen_rule"
+        ],
+        "error": null,
+        "finished_utc": "2026-09-19T08:47:21.162666+00:00",
+        "not_completed_group_ids": [],
+        "phase": "N7-replicate",
+        "planned_group_count": 16,
+        "scientific_scope": "Fresh v5e cohort with preserved choices/rule, 16 held-out shapes, same arithmetic and software contract; no retuning or raw-timing pooling.",
+        "status": "completed",
+        "wall_seconds": 144.160409346
+      },
+      "terminal_model_policy_outcomes": []
+    },
+    {
+      "archive_commit": "8c30af950c7545c76a97646b8a6040d8a747342f Archive 20260919T084349Z-smoke-v5e-v004-bf46a0 (completed)",
+      "artifact_manifest_sha256": "3d4c7ca7120b7e4b998689f549e037300bb5090ed672f80ab5a3ad7d8106208c",
+      "audit_pass": true,
+      "case_status_counts": {
+        "ok": 24
+      },
+      "complete_call_comparisons": {
+        "cubic_basic vs cubic_quadrant": {
+          "counts": {
+            "inconclusive": 3
+          },
+          "max_ratio": 1.0322314235026648,
+          "median_ratio": 0.9724613137326793,
+          "min_ratio": 0.9708147180717284
+        },
+        "cubic_basic vs native_xla": {
+          "counts": {
+            "loss": 2,
+            "win": 1
+          },
+          "max_ratio": 1.0422403191728837,
+          "median_ratio": 0.9534548416921514,
+          "min_ratio": 0.889763779527559
+        },
+        "cubic_quadrant vs cubic_basic": {
+          "counts": {
+            "inconclusive": 3
+          },
+          "max_ratio": 1.0300626694105346,
+          "median_ratio": 1.0283185417028229,
+          "min_ratio": 0.9687750026120169
+        },
+        "cubic_quadrant vs native_xla": {
+          "counts": {
+            "inconclusive": 2,
+            "loss": 1
+          },
+          "max_ratio": 1.0096963679290596,
+          "median_ratio": 0.9821182393958161,
+          "min_ratio": 0.9149605922237714
+        },
+        "native_xla vs cubic_basic": {
+          "counts": {
+            "loss": 1,
+            "win": 2
+          },
+          "max_ratio": 1.1238938053097347,
+          "median_ratio": 1.048817370548187,
+          "min_ratio": 0.9594716128364662
+        },
+        "native_xla vs cubic_quadrant": {
+          "counts": {
+            "inconclusive": 2,
+            "win": 1
+          },
+          "max_ratio": 1.0929432464075246,
+          "median_ratio": 1.0182073398974694,
+          "min_ratio": 0.9903967487285832
+        },
+        "strassen_basic vs cubic_basic": {
+          "counts": {
+            "inconclusive": 1,
+            "loss": 1,
+            "win": 1
+          },
+          "max_ratio": 1.0538998914396818,
+          "median_ratio": 1.003392931285032,
+          "min_ratio": 0.9532677844476644
+        },
+        "strassen_basic vs cubic_quadrant": {
+          "counts": {
+            "inconclusive": 3
+          },
+          "max_ratio": 1.024876872972161,
+          "median_ratio": 0.983992962119644,
+          "min_ratio": 0.9741086257006436
+        },
+        "strassen_basic vs native_xla": {
+          "counts": {
+            "inconclusive": 2,
+            "loss": 1
+          },
+          "max_ratio": 0.9935341199199614,
+          "median_ratio": 0.9566898484533941,
+          "min_ratio": 0.9377219506510552
+        }
+      },
+      "execution_status": "completed",
+      "identity": {
+        "allocation_id": "tpu-v5e1-s-kkb-usw1c1-s89akviwl7d7",
+        "boot_id": "823b0acd-effe-4415-b35c-89465d02ed5f",
+        "colab_endpoint": "tpu-v5e1-s-kkb-usw1c1-s89akviwl7d7",
+        "device_id": 0,
+        "device_kind": "TPU v5 lite",
+        "devices": [
+          {
+            "coords": [
+              0,
+              0,
+              0
+            ],
+            "core_on_chip": 0,
+            "id": 0,
+            "kind": "TPU v5 lite",
+            "local_hardware_id": 0,
+            "platform": "tpu",
+            "process_index": 0
+          }
+        ],
+        "host_id": "ec3069c714ba",
+        "hostname": "ec3069c714ba",
+        "jax_version": "0.7.2",
+        "jaxlib_version": "0.7.2",
+        "libtpu_version": "0.0.21.1",
+        "mosaic_compatibility": {
+          "jax": "0.7.2",
+          "libtpu": "0.0.21.1",
+          "override_enabled": true,
+          "target_ir_version": 7
+        },
+        "numpy_version": "2.1.3",
+        "process_index": 0,
+        "runtime_flags": {
+          "JAX_ENABLE_X64": "false",
+          "JAX_PLATFORMS": "tpu",
+          "LIBTPU_INIT_ARGS": " --xla_tpu_use_enhanced_launch_barrier=true",
+          "MKL_NUM_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1",
+          "PJRT_DEVICE": "TPU",
+          "TPU_CHIPS_PER_HOST_BOUNDS": "2,2,1",
+          "TPU_HOST_BOUNDS": "1,1,1",
+          "TPU_NUM_CHIPS": null,
+          "TPU_VISIBLE_CHIPS": null,
+          "XLA_FLAGS": null,
+          "XLA_PYTHON_CLIENT_PREALLOCATE": "false"
+        },
+        "runtime_image": "release-colab-external-images_20260917-060051_RC00",
+        "versions": {
+          "jax": "0.7.2",
+          "jaxlib": "0.7.2",
+          "libtpu": "0.0.21.1",
+          "ml_dtypes": "0.6.0",
+          "numpy": "2.1.3",
+          "requests": "2.32.4",
+          "scipy": "1.16.3"
+        }
+      },
+      "issues": [],
+      "phase": "smoke",
+      "record_count": 212,
+      "run_id": "20260919T084349Z-smoke-v5e-v004-bf46a0",
+      "source_commit": "722df2d4dfcc8a72b2f5c550a3b375dfdcf8209a",
+      "summary": {
+        "case_status_counts": {
+          "ok": 24
+        },
+        "completed": true,
+        "completed_groups": [
+          "square_512__256x256x256",
+          "tail_513__256x256x256",
+          "small_m_8__256x256x256"
+        ],
+        "error": null,
+        "finished_utc": "2026-09-19T08:44:03.942276+00:00",
+        "n4_scope": null,
+        "not_completed_group_ids": [],
+        "phase": "smoke",
+        "planned_group_count": 3,
+        "scientific_success": "Not inferred from phase completion; inspect numerical eligibility and timings.",
+        "status": "completed",
+        "wall_seconds": 7.608800995999957
+      },
+      "terminal_model_policy_outcomes": []
+    }
+  ]
+}

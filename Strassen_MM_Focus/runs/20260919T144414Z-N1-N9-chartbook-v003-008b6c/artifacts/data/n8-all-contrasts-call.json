@@ -1,0 +1,5390 @@
+{
+  "id": "n8-all-contrasts-call",
+  "experiment": "N8",
+  "kind": "heat",
+  "title": "N8 | All registered paired comparisons",
+  "subtitle": "Each row reads target vs reference. + or - marks a paired 95% interval wholly above or below 1. Blank = not registered.",
+  "scope": "call",
+  "detail": true,
+  "categories": [
+    {
+      "id": "qwen06_m1024_swiglu",
+      "label": "Qwen0.6 m1024\n1024 x 1024 x 6144"
+    },
+    {
+      "id": "qwen06_m1024_residual",
+      "label": "Qwen0.6 m1024\n1024 x 3072 x 1024"
+    },
+    {
+      "id": "qwen06_m2048_swiglu",
+      "label": "Qwen0.6 m2048\n2048 x 1024 x 6144"
+    },
+    {
+      "id": "qwen06_m2048_residual",
+      "label": "Qwen0.6 m2048\n2048 x 3072 x 1024"
+    },
+    {
+      "id": "mistral7b_m512_swiglu",
+      "label": "Mistral7 m512\n512 x 4096 x 28672"
+    },
+    {
+      "id": "mistral7b_m512_residual",
+      "label": "Mistral7 m512\n512 x 14336 x 4096"
+    },
+    {
+      "id": "mistral7b_m1024_swiglu",
+      "label": "Mistral7 m1024\n1024 x 4096 x 28672"
+    },
+    {
+      "id": "mistral7b_m1024_residual",
+      "label": "Mistral7 m1024\n1024 x 14336 x 4096"
+    },
+    {
+      "id": "mistral7b_m2048_swiglu",
+      "label": "Mistral7 m2048\n2048 x 4096 x 28672"
+    },
+    {
+      "id": "mistral7b_m2048_residual",
+      "label": "Mistral7 m2048\n2048 x 14336 x 4096"
+    },
+    {
+      "id": "qwen32b_m512_swiglu",
+      "label": "Qwen32b m512\n512 x 5120 x 51200"
+    },
+    {
+      "id": "qwen32b_m512_residual",
+      "label": "Qwen32b m512\n512 x 25600 x 5120"
+    },
+    {
+      "id": "qwen32b_m1024_swiglu",
+      "label": "Qwen32b m1024\n1024 x 5120 x 51200"
+    },
+    {
+      "id": "qwen32b_m1024_residual",
+      "label": "Qwen32b m1024\n1024 x 25600 x 5120"
+    },
+    {
+      "id": "qwen32b_m2048_swiglu",
+      "label": "Qwen32b m2048\n2048 x 5120 x 51200"
+    },
+    {
+      "id": "qwen32b_m2048_residual",
+      "label": "Qwen32b m2048\n2048 x 25600 x 5120"
+    }
+  ],
+  "series": [
+    {
+      "id": "C-full packed vs C-full unpacked",
+      "label": "C-full packed vs C-full unpacked"
+    },
+    {
+      "id": "C-full fused vs C-full packed",
+      "label": "C-full fused vs C-full packed"
+    },
+    {
+      "id": "C-quad packed vs C-quad unpacked",
+      "label": "C-quad packed vs C-quad unpacked"
+    },
+    {
+      "id": "C-quad fused vs C-quad packed",
+      "label": "C-quad fused vs C-quad packed"
+    },
+    {
+      "id": "Strassen unpacked vs Native XLA",
+      "label": "Strassen unpacked vs Native XLA"
+    },
+    {
+      "id": "Strassen unpacked vs C-full unpacked",
+      "label": "Strassen unpacked vs C-full unpacked"
+    },
+    {
+      "id": "Strassen unpacked vs C-quad unpacked",
+      "label": "Strassen unpacked vs C-quad unpacked"
+    },
+    {
+      "id": "Strassen packed vs Strassen unpacked",
+      "label": "Strassen packed vs Strassen unpacked"
+    },
+    {
+      "id": "Strassen packed vs Native XLA",
+      "label": "Strassen packed vs Native XLA"
+    },
+    {
+      "id": "Strassen packed vs C-full packed",
+      "label": "Strassen packed vs C-full packed"
+    },
+    {
+      "id": "Strassen packed vs C-quad packed",
+      "label": "Strassen packed vs C-quad packed"
+    },
+    {
+      "id": "Strassen fused vs Strassen packed",
+      "label": "Strassen fused vs Strassen packed"
+    },
+    {
+      "id": "Strassen fused vs Native XLA",
+      "label": "Strassen fused vs Native XLA"
+    },
+    {
+      "id": "Strassen fused vs C-full fused",
+      "label": "Strassen fused vs C-full fused"
+    },
+    {
+      "id": "Strassen fused vs C-quad fused",
+      "label": "Strassen fused vs C-quad fused"
+    },
+    {
+      "id": "Strassen early vs Strassen fused",
+      "label": "Strassen early vs Strassen fused"
+    },
+    {
+      "id": "Strassen early vs Native XLA",
+      "label": "Strassen early vs Native XLA"
+    },
+    {
+      "id": "Strassen early vs C-full fused",
+      "label": "Strassen early vs C-full fused"
+    },
+    {
+      "id": "Strassen early vs C-quad fused",
+      "label": "Strassen early vs C-quad fused"
+    },
+    {
+      "id": "C-full fused vs C-full unpacked",
+      "label": "C-full fused vs C-full unpacked"
+    },
+    {
+      "id": "C-quad fused vs C-quad unpacked",
+      "label": "C-quad fused vs C-quad unpacked"
+    },
+    {
+      "id": "Strassen fused vs Strassen unpacked",
+      "label": "Strassen fused vs Strassen unpacked"
+    },
+    {
+      "id": "Strassen n5 selected unfused vs Native XLA",
+      "label": "Strassen n5 selected unfused vs Native XLA"
+    },
+    {
+      "id": "Strassen n5 selected unfused vs cubic n5 selected unfused",
+      "label": "Strassen n5 selected unfused vs cubic n5 selected unfused"
+    }
+  ],
+  "points": [
+    {
+      "category": "qwen06_m1024_swiglu",
+      "series": "C-full packed vs C-full unpacked",
+      "value": 0.5814544383629111,
+      "status": "ok",
+      "lo": 0.5685608974513803,
+      "hi": 0.5947319493565442,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:677"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen06_m1024_swiglu",
+      "series": "C-full fused vs C-full packed",
+      "value": 1.3471203797111353,
+      "status": "ok",
+      "lo": 1.3227403036434522,
+      "hi": 1.3770960608212988,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:679"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen06_m1024_swiglu",
+      "series": "C-quad packed vs C-quad unpacked",
+      "value": 0.5831862738653497,
+      "status": "ok",
+      "lo": 0.5693447570616363,
+      "hi": 0.5974871536831482,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:683"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_swiglu",
+      "series": "C-quad fused vs C-quad packed",
+      "value": 1.3624334596569356,
+      "status": "ok",
+      "lo": 1.3445485069280625,
+      "hi": 1.381842339904265,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:685"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_swiglu",
+      "series": "Strassen unpacked vs Native XLA",
+      "value": 1.001088328722947,
+      "status": "ok",
+      "lo": 0.9792850209989882,
+      "hi": 1.0256023542348132,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:687"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_swiglu",
+      "series": "Strassen unpacked vs C-full unpacked",
+      "value": 1.025430845816779,
+      "status": "ok",
+      "lo": 0.9996021264073573,
+      "hi": 1.053150634909535,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:687"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_swiglu",
+      "series": "Strassen unpacked vs C-quad unpacked",
+      "value": 1.043983627094588,
+      "status": "ok",
+      "lo": 1.0198727480373657,
+      "hi": 1.068451920443523,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:687"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_swiglu",
+      "series": "Strassen packed vs Strassen unpacked",
+      "value": 0.5712764594994721,
+      "status": "ok",
+      "lo": 0.5549580586393555,
+      "hi": 0.5837838395421306,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:689"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_swiglu",
+      "series": "Strassen packed vs Native XLA",
+      "value": 0.571898196079089,
+      "status": "ok",
+      "lo": 0.5619902107643571,
+      "hi": 0.5815322748003694,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:689"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_swiglu",
+      "series": "Strassen packed vs C-full packed",
+      "value": 1.0074813509190763,
+      "status": "ok",
+      "lo": 0.9924556915482757,
+      "hi": 1.0212359574783807,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:689"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_swiglu",
+      "series": "Strassen packed vs C-quad packed",
+      "value": 1.022663421601235,
+      "status": "ok",
+      "lo": 0.9959148491623987,
+      "hi": 1.0427003529960999,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:689"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_swiglu",
+      "series": "Strassen fused vs Strassen packed",
+      "value": 1.3210818820604673,
+      "status": "ok",
+      "lo": 1.2840654072239834,
+      "hi": 1.357438138390519,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:691"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_swiglu",
+      "series": "Strassen fused vs Native XLA",
+      "value": 0.755524345223149,
+      "status": "ok",
+      "lo": 0.733187579779452,
+      "hi": 0.7773235908997197,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:691"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_swiglu",
+      "series": "Strassen fused vs C-full fused",
+      "value": 0.9880077380303577,
+      "status": "ok",
+      "lo": 0.966078700330077,
+      "hi": 1.0085029833422097,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:691"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_swiglu",
+      "series": "Strassen fused vs C-quad fused",
+      "value": 0.9916242941240944,
+      "status": "ok",
+      "lo": 0.9725073050426035,
+      "hi": 1.0095080560332519,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:691"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_swiglu",
+      "series": "Strassen early vs Strassen fused",
+      "value": 1.0424039580677757,
+      "status": "ok",
+      "lo": 1.0245610667416671,
+      "hi": 1.0630163989121546,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:693"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_swiglu",
+      "series": "Strassen early vs Native XLA",
+      "value": 0.7875615678771752,
+      "status": "ok",
+      "lo": 0.7710066361595731,
+      "hi": 0.8056765566063226,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:693"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_swiglu",
+      "series": "Strassen early vs C-full fused",
+      "value": 1.029903176724435,
+      "status": "ok",
+      "lo": 1.0121515252361493,
+      "hi": 1.0458911448355808,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:693"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_swiglu",
+      "series": "Strassen early vs C-quad fused",
+      "value": 1.0336730891111203,
+      "status": "ok",
+      "lo": 1.0186316700980913,
+      "hi": 1.0488666333992873,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:693"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_residual",
+      "series": "C-full fused vs C-full unpacked",
+      "value": 1.020961688226135,
+      "status": "ok",
+      "lo": 0.9823447513976905,
+      "hi": 1.0754040011801373,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1187"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen06_m1024_residual",
+      "series": "C-quad fused vs C-quad unpacked",
+      "value": 1.022376750205907,
+      "status": "ok",
+      "lo": 0.9982442279860143,
+      "hi": 1.0508715936833184,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1191"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_residual",
+      "series": "Strassen unpacked vs Native XLA",
+      "value": 1.0055769357409683,
+      "status": "ok",
+      "lo": 0.9799281857343232,
+      "hi": 1.023760750485126,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1193"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_residual",
+      "series": "Strassen unpacked vs C-full unpacked",
+      "value": 1.021475356151428,
+      "status": "ok",
+      "lo": 0.9792962834028748,
+      "hi": 1.0698996556654772,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1193"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_residual",
+      "series": "Strassen unpacked vs C-quad unpacked",
+      "value": 1.0200667273468644,
+      "status": "ok",
+      "lo": 0.9931235979279683,
+      "hi": 1.041120080319581,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1193"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_residual",
+      "series": "Strassen fused vs Strassen unpacked",
+      "value": 1.0281813710044443,
+      "status": "ok",
+      "lo": 0.9991267615699677,
+      "hi": 1.0778940141928905,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1195"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_residual",
+      "series": "Strassen fused vs Native XLA",
+      "value": 1.033915472440597,
+      "status": "ok",
+      "lo": 1.0126483999913642,
+      "hi": 1.0614653234013507,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1195"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_residual",
+      "series": "Strassen fused vs C-full fused",
+      "value": 1.0286986713084219,
+      "status": "ok",
+      "lo": 1.0015625475109355,
+      "hi": 1.0623515298444202,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1195"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_residual",
+      "series": "Strassen fused vs C-quad fused",
+      "value": 1.0258582328170947,
+      "status": "ok",
+      "lo": 0.9976149526253959,
+      "hi": 1.0584742413820787,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1195"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_residual",
+      "series": "Strassen early vs Strassen fused",
+      "value": 0.9452014100534597,
+      "status": "ok",
+      "lo": 0.9106636062744844,
+      "hi": 0.9786094193860241,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1197"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_residual",
+      "series": "Strassen early vs Native XLA",
+      "value": 0.9772583624269412,
+      "status": "ok",
+      "lo": 0.9474094158108117,
+      "hi": 1.0070426203792775,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1197"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_residual",
+      "series": "Strassen early vs C-full fused",
+      "value": 0.9723274346408408,
+      "status": "ok",
+      "lo": 0.938641828481049,
+      "hi": 1.006247376844362,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1197"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m1024_residual",
+      "series": "Strassen early vs C-quad fused",
+      "value": 0.9696426481736682,
+      "status": "ok",
+      "lo": 0.9405160005553643,
+      "hi": 0.9978612714047019,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1197"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_swiglu",
+      "series": "C-full packed vs C-full unpacked",
+      "value": 0.523032022399444,
+      "status": "ok",
+      "lo": 0.5099200208387202,
+      "hi": 0.5369967769116196,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1874"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen06_m2048_swiglu",
+      "series": "C-full fused vs C-full packed",
+      "value": 1.5709401378314736,
+      "status": "ok",
+      "lo": 1.5491176991197186,
+      "hi": 1.5961069845074918,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1876"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen06_m2048_swiglu",
+      "series": "C-quad packed vs C-quad unpacked",
+      "value": 0.5255901228845496,
+      "status": "ok",
+      "lo": 0.5135993858191457,
+      "hi": 0.5382826179631218,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1880"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_swiglu",
+      "series": "C-quad fused vs C-quad packed",
+      "value": 1.591187541700521,
+      "status": "ok",
+      "lo": 1.562641304786371,
+      "hi": 1.6208635434888612,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1882"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_swiglu",
+      "series": "Strassen unpacked vs Native XLA",
+      "value": 0.969141374851118,
+      "status": "ok",
+      "lo": 0.9464384244444485,
+      "hi": 0.9939929365210762,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1884"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_swiglu",
+      "series": "Strassen unpacked vs C-full unpacked",
+      "value": 1.025495882923753,
+      "status": "ok",
+      "lo": 0.9924100758540885,
+      "hi": 1.064352240151843,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1884"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_swiglu",
+      "series": "Strassen unpacked vs C-quad unpacked",
+      "value": 1.040720237231415,
+      "status": "ok",
+      "lo": 1.0204814521782128,
+      "hi": 1.0629674252210837,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1884"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_swiglu",
+      "series": "Strassen packed vs Strassen unpacked",
+      "value": 0.519198020908079,
+      "status": "ok",
+      "lo": 0.5102133902571042,
+      "hi": 0.5287529913185577,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1886"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_swiglu",
+      "series": "Strassen packed vs Native XLA",
+      "value": 0.5031762838028352,
+      "status": "ok",
+      "lo": 0.49409923099086445,
+      "hi": 0.5137634764871428,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1886"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_swiglu",
+      "series": "Strassen packed vs C-full packed",
+      "value": 1.0179786515189126,
+      "status": "ok",
+      "lo": 1.00372230748859,
+      "hi": 1.0343627600800989,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1886"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_swiglu",
+      "series": "Strassen packed vs C-quad packed",
+      "value": 1.0280632454126757,
+      "status": "ok",
+      "lo": 1.0155062037620064,
+      "hi": 1.04157087195341,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1886"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_swiglu",
+      "series": "Strassen fused vs Strassen packed",
+      "value": 1.6004681627083193,
+      "status": "ok",
+      "lo": 1.5867867188837597,
+      "hi": 1.6143996014476953,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1888"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_swiglu",
+      "series": "Strassen fused vs Native XLA",
+      "value": 0.8053176224563234,
+      "status": "ok",
+      "lo": 0.7894995478625825,
+      "hi": 0.8238333610315037,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1888"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_swiglu",
+      "series": "Strassen fused vs C-full fused",
+      "value": 1.0371129891185882,
+      "status": "ok",
+      "lo": 1.0254062584613732,
+      "hi": 1.0506043049592784,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1888"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_swiglu",
+      "series": "Strassen fused vs C-quad fused",
+      "value": 1.034059437000831,
+      "status": "ok",
+      "lo": 1.0195328049363757,
+      "hi": 1.050984289945976,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1888"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_swiglu",
+      "series": "Strassen early vs Strassen fused",
+      "value": 1.0227722365448526,
+      "status": "ok",
+      "lo": 0.9971820490129899,
+      "hi": 1.04412412114201,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1890"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_swiglu",
+      "series": "Strassen early vs Native XLA",
+      "value": 0.8236565058486371,
+      "status": "ok",
+      "lo": 0.7983625155893767,
+      "hi": 0.8473462079575886,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1890"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_swiglu",
+      "series": "Strassen early vs C-full fused",
+      "value": 1.0607303714305358,
+      "status": "ok",
+      "lo": 1.0328092668515796,
+      "hi": 1.0833412662846964,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1890"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_swiglu",
+      "series": "Strassen early vs C-quad fused",
+      "value": 1.0576072831016512,
+      "status": "ok",
+      "lo": 1.0270040959827638,
+      "hi": 1.0844895648889261,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:1890"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_residual",
+      "series": "C-full fused vs C-full unpacked",
+      "value": 0.9908826750426056,
+      "status": "ok",
+      "lo": 0.9626888234310096,
+      "hi": 1.0171040923712982,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:2384"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen06_m2048_residual",
+      "series": "C-quad fused vs C-quad unpacked",
+      "value": 1.0175926998329454,
+      "status": "ok",
+      "lo": 0.9922118278372717,
+      "hi": 1.0399477880907602,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:2388"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_residual",
+      "series": "Strassen unpacked vs Native XLA",
+      "value": 1.04264366356237,
+      "status": "ok",
+      "lo": 1.0149408674665132,
+      "hi": 1.0737743382528322,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:2390"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_residual",
+      "series": "Strassen unpacked vs C-full unpacked",
+      "value": 0.9994999453572898,
+      "status": "ok",
+      "lo": 0.9818324952674164,
+      "hi": 1.0170279301787806,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:2390"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_residual",
+      "series": "Strassen unpacked vs C-quad unpacked",
+      "value": 1.0207355794933295,
+      "status": "ok",
+      "lo": 0.991682668906838,
+      "hi": 1.0475536330674633,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:2390"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_residual",
+      "series": "Strassen fused vs Strassen unpacked",
+      "value": 1.0264831892734427,
+      "status": "ok",
+      "lo": 1.0094235247751833,
+      "hi": 1.0443952203680469,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:2392"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_residual",
+      "series": "Strassen fused vs Native XLA",
+      "value": 1.0702561930492478,
+      "status": "ok",
+      "lo": 1.0436257280588297,
+      "hi": 1.1024727389724627,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:2392"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_residual",
+      "series": "Strassen fused vs C-full fused",
+      "value": 1.0354100615846051,
+      "status": "ok",
+      "lo": 1.0077326072782578,
+      "hi": 1.06370915512444,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:2392"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_residual",
+      "series": "Strassen fused vs C-quad fused",
+      "value": 1.0296535276001852,
+      "status": "ok",
+      "lo": 1.012223858593286,
+      "hi": 1.0465886470891053,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:2392"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_residual",
+      "series": "Strassen early vs Strassen fused",
+      "value": 0.993976876687251,
+      "status": "ok",
+      "lo": 0.9774231824169887,
+      "hi": 1.0112306412422374,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:2394"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_residual",
+      "series": "Strassen early vs Native XLA",
+      "value": 1.063809908022279,
+      "status": "ok",
+      "lo": 1.0422902848547742,
+      "hi": 1.0914799744579797,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:2394"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_residual",
+      "series": "Strassen early vs C-full fused",
+      "value": 1.02917365910442,
+      "status": "ok",
+      "lo": 0.999057925103156,
+      "hi": 1.0593307854503198,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:2394"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen06_m2048_residual",
+      "series": "Strassen early vs C-quad fused",
+      "value": 1.0234517974340425,
+      "status": "ok",
+      "lo": 1.006085944677238,
+      "hi": 1.0400783627207613,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:2394"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "C-full packed vs C-full unpacked",
+      "value": 0.2868342762302907,
+      "status": "ok",
+      "lo": 0.28342314384897976,
+      "hi": 0.2922802074948986,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3193"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "C-full fused vs C-full packed",
+      "value": 1.2002703586173307,
+      "status": "ok",
+      "lo": 1.1969276110674438,
+      "hi": 1.2039791188348177,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3195"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "C-quad packed vs C-quad unpacked",
+      "value": 0.29851851202166707,
+      "status": "ok",
+      "lo": 0.29694898677000464,
+      "hi": 0.30036341578798365,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3199"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "C-quad fused vs C-quad packed",
+      "value": 1.223868665940779,
+      "status": "ok",
+      "lo": 1.2163855988577263,
+      "hi": 1.2291924013931392,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3201"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "Strassen unpacked vs Native XLA",
+      "value": 0.5384295383292117,
+      "status": "ok",
+      "lo": 0.5201857927767395,
+      "hi": 0.5678720895693635,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3203"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "Strassen unpacked vs C-full unpacked",
+      "value": 1.0458371567343943,
+      "status": "ok",
+      "lo": 1.0328954167474527,
+      "hi": 1.0667084245231866,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3203"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "Strassen unpacked vs C-quad unpacked",
+      "value": 1.1109011589883737,
+      "status": "ok",
+      "lo": 1.098821557005049,
+      "hi": 1.1230846577463363,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3203"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "Strassen packed vs Strassen unpacked",
+      "value": 0.2766157446065575,
+      "status": "ok",
+      "lo": 0.27468447631075,
+      "hi": 0.2785973021036939,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3205"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "Strassen packed vs Native XLA",
+      "value": 0.14893808766309988,
+      "status": "ok",
+      "lo": 0.144184927823111,
+      "hi": 0.15688698754179245,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3205"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "Strassen packed vs C-full packed",
+      "value": 1.0085789873139956,
+      "status": "ok",
+      "lo": 1.0061322433316149,
+      "hi": 1.0111198416405618,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3205"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "Strassen packed vs C-quad packed",
+      "value": 1.0293926135326334,
+      "status": "ok",
+      "lo": 1.027093840650196,
+      "hi": 1.0317409816359184,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3205"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "Strassen fused vs Strassen packed",
+      "value": 1.2232209529214626,
+      "status": "ok",
+      "lo": 1.219790467978622,
+      "hi": 1.2266771507817533,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3207"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "Strassen fused vs Native XLA",
+      "value": 0.18218418951755738,
+      "status": "ok",
+      "lo": 0.17631336964452296,
+      "hi": 0.19194280864878238,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3207"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "Strassen fused vs C-full fused",
+      "value": 1.0278642150090134,
+      "status": "ok",
+      "lo": 1.0250573840623116,
+      "hi": 1.030657359211418,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3207"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "Strassen fused vs C-quad fused",
+      "value": 1.0288478238698795,
+      "status": "ok",
+      "lo": 1.0240680186475062,
+      "hi": 1.0351358823265195,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3207"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "Strassen early vs Strassen fused",
+      "value": 0.994301035515806,
+      "status": "ok",
+      "lo": 0.9918136465413437,
+      "hi": 0.9969149806157732,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3209"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "Strassen early vs Native XLA",
+      "value": 0.18114592829191514,
+      "status": "ok",
+      "lo": 0.1752567388932412,
+      "hi": 0.19094230584007163,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3209"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "Strassen early vs C-full fused",
+      "value": 1.022006453353103,
+      "status": "ok",
+      "lo": 1.0185313135785847,
+      "hi": 1.0253948640177093,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3209"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "Strassen early vs C-quad fused",
+      "value": 1.0229844566620048,
+      "status": "ok",
+      "lo": 1.0177566608761632,
+      "hi": 1.029841424755873,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3209"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "Strassen n5 selected unfused vs Native XLA",
+      "value": 1.0027005385081451,
+      "status": "ok",
+      "lo": 0.9605636809552786,
+      "hi": 1.0626809726990885,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3213"
+      ],
+      "extra": {
+        "arm_id": "strassen_n5_selected_unfused",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      }
+    },
+    {
+      "category": "mistral7b_m512_swiglu",
+      "series": "Strassen n5 selected unfused vs cubic n5 selected unfused",
+      "value": 1.0067758612152293,
+      "status": "ok",
+      "lo": 0.9857005633633361,
+      "hi": 1.028449602839506,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3213"
+      ],
+      "extra": {
+        "arm_id": "strassen_n5_selected_unfused",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      }
+    },
+    {
+      "category": "mistral7b_m512_residual",
+      "series": "C-full fused vs C-full unpacked",
+      "value": 0.9895355315512073,
+      "status": "ok",
+      "lo": 0.9819581090449764,
+      "hi": 0.9975294198484733,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3707"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7b_m512_residual",
+      "series": "C-quad fused vs C-quad unpacked",
+      "value": 1.0746341540254871,
+      "status": "ok",
+      "lo": 1.0634577372345668,
+      "hi": 1.087055033732752,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3711"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_residual",
+      "series": "Strassen unpacked vs Native XLA",
+      "value": 0.8227372028679749,
+      "status": "ok",
+      "lo": 0.8149886478488764,
+      "hi": 0.8315044040783809,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3713"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_residual",
+      "series": "Strassen unpacked vs C-full unpacked",
+      "value": 1.0504137451184112,
+      "status": "ok",
+      "lo": 1.043175099695069,
+      "hi": 1.0574913255530674,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3713"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_residual",
+      "series": "Strassen unpacked vs C-quad unpacked",
+      "value": 1.131306842610139,
+      "status": "ok",
+      "lo": 1.1208718779871296,
+      "hi": 1.1426548305619824,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3713"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_residual",
+      "series": "Strassen fused vs Strassen unpacked",
+      "value": 1.0238243627219208,
+      "status": "ok",
+      "lo": 1.0176045999450885,
+      "hi": 1.0304676580125547,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3715"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_residual",
+      "series": "Strassen fused vs Native XLA",
+      "value": 0.8423383924139202,
+      "status": "ok",
+      "lo": 0.8329766242558899,
+      "hi": 0.8520856418948046,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3715"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_residual",
+      "series": "Strassen fused vs C-full fused",
+      "value": 1.0868120940582424,
+      "status": "ok",
+      "lo": 1.0766094005278133,
+      "hi": 1.0969814280854382,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3715"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_residual",
+      "series": "Strassen fused vs C-quad fused",
+      "value": 1.0778175091862967,
+      "status": "ok",
+      "lo": 1.0696375781601868,
+      "hi": 1.086177900467378,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3715"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_residual",
+      "series": "Strassen early vs Strassen fused",
+      "value": 0.9640765635218697,
+      "status": "ok",
+      "lo": 0.9577544572385857,
+      "hi": 0.9709804176774406,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3717"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_residual",
+      "series": "Strassen early vs Native XLA",
+      "value": 0.8120787026809483,
+      "status": "ok",
+      "lo": 0.8046497954868197,
+      "hi": 0.8200041596214034,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3717"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_residual",
+      "series": "Strassen early vs C-full fused",
+      "value": 1.0477700688336773,
+      "status": "ok",
+      "lo": 1.0397297356158486,
+      "hi": 1.0554838637978097,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3717"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m512_residual",
+      "series": "Strassen early vs C-quad fused",
+      "value": 1.0390986003600262,
+      "status": "ok",
+      "lo": 1.0317724267898463,
+      "hi": 1.046723967972206,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:3717"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_swiglu",
+      "series": "C-full packed vs C-full unpacked",
+      "value": 0.292725950856056,
+      "status": "ok",
+      "lo": 0.2905802434874451,
+      "hi": 0.29459401126894574,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4394"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_swiglu",
+      "series": "C-full fused vs C-full packed",
+      "value": 1.1952540379297698,
+      "status": "ok",
+      "lo": 1.1907820165048353,
+      "hi": 1.2019923945591555,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4396"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_swiglu",
+      "series": "C-quad packed vs C-quad unpacked",
+      "value": 0.30815783021901333,
+      "status": "ok",
+      "lo": 0.30530962452072263,
+      "hi": 0.3128329561820679,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4400"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_swiglu",
+      "series": "C-quad fused vs C-quad packed",
+      "value": 1.2192746185793935,
+      "status": "ok",
+      "lo": 1.216687828392846,
+      "hi": 1.2221022958162144,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4402"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_swiglu",
+      "series": "Strassen unpacked vs Native XLA",
+      "value": 0.8802323022728863,
+      "status": "ok",
+      "lo": 0.8713907021852255,
+      "hi": 0.8895189192518981,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4404"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_swiglu",
+      "series": "Strassen unpacked vs C-full unpacked",
+      "value": 1.0384919183555186,
+      "status": "ok",
+      "lo": 1.03188080753945,
+      "hi": 1.0447298584503044,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4404"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_swiglu",
+      "series": "Strassen unpacked vs C-quad unpacked",
+      "value": 1.1118079253414646,
+      "status": "ok",
+      "lo": 1.100386556099725,
+      "hi": 1.127905635200725,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4404"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_swiglu",
+      "series": "Strassen packed vs Strassen unpacked",
+      "value": 0.28596392569837104,
+      "status": "ok",
+      "lo": 0.2841377534606364,
+      "hi": 0.28796894086850067,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4406"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_swiglu",
+      "series": "Strassen packed vs Native XLA",
+      "value": 0.2517146846844697,
+      "status": "ok",
+      "lo": 0.2498790158222187,
+      "hi": 0.25380679806231415,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4406"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_swiglu",
+      "series": "Strassen packed vs C-full packed",
+      "value": 1.0145025574620403,
+      "status": "ok",
+      "lo": 1.0106172679759509,
+      "hi": 1.0197713476492891,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4406"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_swiglu",
+      "series": "Strassen packed vs C-quad packed",
+      "value": 1.0317341562511753,
+      "status": "ok",
+      "lo": 1.0294523237431077,
+      "hi": 1.0340535208925417,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4406"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_swiglu",
+      "series": "Strassen fused vs Strassen packed",
+      "value": 1.2117836209347779,
+      "status": "ok",
+      "lo": 1.2094059460534636,
+      "hi": 1.214160421998118,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4408"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_swiglu",
+      "series": "Strassen fused vs Native XLA",
+      "value": 0.3050237320494026,
+      "status": "ok",
+      "lo": 0.30265458282307145,
+      "hi": 0.30758085610095137,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4408"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_swiglu",
+      "series": "Strassen fused vs C-full fused",
+      "value": 1.0285324654985,
+      "status": "ok",
+      "lo": 1.0255376937450025,
+      "hi": 1.0314880578819878,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4408"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_swiglu",
+      "series": "Strassen fused vs C-quad fused",
+      "value": 1.0253953725050229,
+      "status": "ok",
+      "lo": 1.0236800898699383,
+      "hi": 1.0271423943164364,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4408"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_swiglu",
+      "series": "Strassen early vs Strassen fused",
+      "value": 0.9982455216807166,
+      "status": "ok",
+      "lo": 0.9954277314507588,
+      "hi": 1.0009258881910814,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4410"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_swiglu",
+      "series": "Strassen early vs Native XLA",
+      "value": 0.304488574524655,
+      "status": "ok",
+      "lo": 0.3022065989652075,
+      "hi": 0.3069466971727885,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4410"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_swiglu",
+      "series": "Strassen early vs C-full fused",
+      "value": 1.0267279275871037,
+      "status": "ok",
+      "lo": 1.0238951957523594,
+      "hi": 1.0296284647408187,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4410"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_swiglu",
+      "series": "Strassen early vs C-quad fused",
+      "value": 1.0235963385552693,
+      "status": "ok",
+      "lo": 1.02119066510165,
+      "hi": 1.0260586411052308,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4410"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_residual",
+      "series": "C-full fused vs C-full unpacked",
+      "value": 1.0306934071201928,
+      "status": "ok",
+      "lo": 1.021271094610491,
+      "hi": 1.0399641505019084,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4904"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_residual",
+      "series": "C-quad fused vs C-quad unpacked",
+      "value": 1.0972385718369664,
+      "status": "ok",
+      "lo": 1.0867538244688564,
+      "hi": 1.1093114281106202,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4908"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_residual",
+      "series": "Strassen unpacked vs Native XLA",
+      "value": 1.192944115683644,
+      "status": "ok",
+      "lo": 1.181513813558533,
+      "hi": 1.2049116444129395,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4910"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_residual",
+      "series": "Strassen unpacked vs C-full unpacked",
+      "value": 1.0620742313421647,
+      "status": "ok",
+      "lo": 1.051502102926859,
+      "hi": 1.0735094774415883,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4910"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_residual",
+      "series": "Strassen unpacked vs C-quad unpacked",
+      "value": 1.127375597935686,
+      "status": "ok",
+      "lo": 1.1188169994270374,
+      "hi": 1.1358447234617195,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4910"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_residual",
+      "series": "Strassen fused vs Strassen unpacked",
+      "value": 1.0413506209188066,
+      "status": "ok",
+      "lo": 1.025544834838925,
+      "hi": 1.0564306950760254,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4912"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_residual",
+      "series": "Strassen fused vs Native XLA",
+      "value": 1.2422730955885992,
+      "status": "ok",
+      "lo": 1.2262209978058263,
+      "hi": 1.2584587409343533,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4912"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_residual",
+      "series": "Strassen fused vs C-full fused",
+      "value": 1.073055918112663,
+      "status": "ok",
+      "lo": 1.0587925642245055,
+      "hi": 1.08646453860891,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4912"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_residual",
+      "series": "Strassen fused vs C-quad fused",
+      "value": 1.0699526147295118,
+      "status": "ok",
+      "lo": 1.0536531078471008,
+      "hi": 1.085578431566212,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4912"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_residual",
+      "series": "Strassen early vs Strassen fused",
+      "value": 0.962734949073627,
+      "status": "ok",
+      "lo": 0.9497454921816475,
+      "hi": 0.9758840886203273,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4914"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_residual",
+      "series": "Strassen early vs Native XLA",
+      "value": 1.195979725417027,
+      "status": "ok",
+      "lo": 1.183248513647462,
+      "hi": 1.2088144649147818,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4914"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_residual",
+      "series": "Strassen early vs C-full fused",
+      "value": 1.0330684346773489,
+      "status": "ok",
+      "lo": 1.023099833424896,
+      "hi": 1.0428885601973048,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4914"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m1024_residual",
+      "series": "Strassen early vs C-quad fused",
+      "value": 1.0300807760528106,
+      "status": "ok",
+      "lo": 1.0199486830578124,
+      "hi": 1.0403987949459874,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:4914"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_swiglu",
+      "series": "C-full packed vs C-full unpacked",
+      "value": 0.36824220198434987,
+      "status": "ok",
+      "lo": 0.36531664931190844,
+      "hi": 0.3721715744030277,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:5591"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_swiglu",
+      "series": "C-full fused vs C-full packed",
+      "value": 1.4056401592723813,
+      "status": "ok",
+      "lo": 1.401566695962381,
+      "hi": 1.4095578003005618,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:5593"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_swiglu",
+      "series": "C-quad packed vs C-quad unpacked",
+      "value": 0.381996687219201,
+      "status": "ok",
+      "lo": 0.380994567234983,
+      "hi": 0.38311102065922553,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:5597"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_swiglu",
+      "series": "C-quad fused vs C-quad packed",
+      "value": 1.4455796405346124,
+      "status": "ok",
+      "lo": 1.4421668338967417,
+      "hi": 1.4492966744098257,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:5599"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_swiglu",
+      "series": "Strassen unpacked vs Native XLA",
+      "value": 0.9242396293989044,
+      "status": "ok",
+      "lo": 0.9186209467010835,
+      "hi": 0.9316529853082918,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:5601"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_swiglu",
+      "series": "Strassen unpacked vs C-full unpacked",
+      "value": 1.0508145241710272,
+      "status": "ok",
+      "lo": 1.043372273426851,
+      "hi": 1.0618330361054937,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:5601"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_swiglu",
+      "series": "Strassen unpacked vs C-quad unpacked",
+      "value": 1.1177161918680627,
+      "status": "ok",
+      "lo": 1.114772260735962,
+      "hi": 1.1208884378720225,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:5601"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_swiglu",
+      "series": "Strassen packed vs Strassen unpacked",
+      "value": 0.3558661811134128,
+      "status": "ok",
+      "lo": 0.3549566036520909,
+      "hi": 0.3567975220435014,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:5603"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_swiglu",
+      "series": "Strassen packed vs Native XLA",
+      "value": 0.328905627347864,
+      "status": "ok",
+      "lo": 0.32710107513793707,
+      "hi": 0.3315335325878238,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:5603"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_swiglu",
+      "series": "Strassen packed vs C-full packed",
+      "value": 1.0154983588522646,
+      "status": "ok",
+      "lo": 1.0138992824855484,
+      "hi": 1.017091087838589,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:5603"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_swiglu",
+      "series": "Strassen packed vs C-quad packed",
+      "value": 1.0412587492950405,
+      "status": "ok",
+      "lo": 1.0393473532785957,
+      "hi": 1.043056307862524,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:5603"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_swiglu",
+      "series": "Strassen fused vs Strassen packed",
+      "value": 1.44531119390512,
+      "status": "ok",
+      "lo": 1.4424242297097916,
+      "hi": 1.4477915678544666,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:5605"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_swiglu",
+      "series": "Strassen fused vs Native XLA",
+      "value": 0.4753709849442538,
+      "status": "ok",
+      "lo": 0.4727902120549829,
+      "hi": 0.47894981202516773,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:5605"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_swiglu",
+      "series": "Strassen fused vs C-full fused",
+      "value": 1.0441585179248192,
+      "status": "ok",
+      "lo": 1.0415255746624854,
+      "hi": 1.0468483787412897,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:5605"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_swiglu",
+      "series": "Strassen fused vs C-quad fused",
+      "value": 1.0410653857515593,
+      "status": "ok",
+      "lo": 1.0381076414640558,
+      "hi": 1.0437005149784468,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:5605"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_swiglu",
+      "series": "Strassen early vs Strassen fused",
+      "value": 0.9939810777909809,
+      "status": "ok",
+      "lo": 0.9914555075967425,
+      "hi": 0.9966140597379605,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:5607"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_swiglu",
+      "series": "Strassen early vs Native XLA",
+      "value": 0.4725097639654495,
+      "status": "ok",
+      "lo": 0.4696270557780522,
+      "hi": 0.4765728602585322,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:5607"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_swiglu",
+      "series": "Strassen early vs C-full fused",
+      "value": 1.037873809031545,
+      "status": "ok",
+      "lo": 1.035154280728331,
+      "hi": 1.040955968858723,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:5607"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_swiglu",
+      "series": "Strassen early vs C-quad fused",
+      "value": 1.0347992941802182,
+      "status": "ok",
+      "lo": 1.031642123821058,
+      "hi": 1.0376815180724817,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:5607"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_residual",
+      "series": "C-full fused vs C-full unpacked",
+      "value": 1.0243802385829497,
+      "status": "ok",
+      "lo": 1.01915489264279,
+      "hi": 1.0289810129832002,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6101"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_residual",
+      "series": "C-quad fused vs C-quad unpacked",
+      "value": 1.124861164317318,
+      "status": "ok",
+      "lo": 1.1166547938592077,
+      "hi": 1.1343588533967777,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6105"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_residual",
+      "series": "Strassen unpacked vs Native XLA",
+      "value": 1.1065128793597676,
+      "status": "ok",
+      "lo": 1.0975675994369025,
+      "hi": 1.1156702371011562,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6107"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_residual",
+      "series": "Strassen unpacked vs C-full unpacked",
+      "value": 1.0508939324070885,
+      "status": "ok",
+      "lo": 1.0449081153088806,
+      "hi": 1.0564869899924452,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6107"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_residual",
+      "series": "Strassen unpacked vs C-quad unpacked",
+      "value": 1.1515071899797364,
+      "status": "ok",
+      "lo": 1.140826171408045,
+      "hi": 1.1627247342055753,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6107"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_residual",
+      "series": "Strassen fused vs Strassen unpacked",
+      "value": 1.0708033156367935,
+      "status": "ok",
+      "lo": 1.0645317859067498,
+      "hi": 1.0774539425739083,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6109"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_residual",
+      "series": "Strassen fused vs Native XLA",
+      "value": 1.1848576600132548,
+      "status": "ok",
+      "lo": 1.1770569339887573,
+      "hi": 1.1943475784336888,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6109"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_residual",
+      "series": "Strassen fused vs C-full fused",
+      "value": 1.0985185625610612,
+      "status": "ok",
+      "lo": 1.0937678096775927,
+      "hi": 1.1031260004275103,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6109"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_residual",
+      "series": "Strassen fused vs C-quad fused",
+      "value": 1.096168803870337,
+      "status": "ok",
+      "lo": 1.089791567610978,
+      "hi": 1.102564446474071,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6109"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_residual",
+      "series": "Strassen early vs Strassen fused",
+      "value": 0.9563318290137499,
+      "status": "ok",
+      "lo": 0.9494869301451565,
+      "hi": 0.9628174811398416,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6111"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_residual",
+      "series": "Strassen early vs Native XLA",
+      "value": 1.1331170931214276,
+      "status": "ok",
+      "lo": 1.125258721887477,
+      "hi": 1.1411032264164924,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6111"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_residual",
+      "series": "Strassen early vs C-full fused",
+      "value": 1.050548266139575,
+      "status": "ok",
+      "lo": 1.0437311536948068,
+      "hi": 1.0570076949692138,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6111"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "mistral7b_m2048_residual",
+      "series": "Strassen early vs C-quad fused",
+      "value": 1.0483011171131338,
+      "status": "ok",
+      "lo": 1.0416048333809056,
+      "hi": 1.0542971086228459,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6111"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "C-full packed vs C-full unpacked",
+      "value": 0.21884917806043877,
+      "status": "ok",
+      "lo": 0.21806787520476476,
+      "hi": 0.21966870989495055,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6910"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "C-full fused vs C-full packed",
+      "value": 1.1749513667338283,
+      "status": "ok",
+      "lo": 1.1729188800658652,
+      "hi": 1.1767352841058765,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6912"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "C-quad packed vs C-quad unpacked",
+      "value": 0.23177810274002927,
+      "status": "ok",
+      "lo": 0.23100561899866826,
+      "hi": 0.23253038340263385,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6916"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "C-quad fused vs C-quad packed",
+      "value": 1.1973296172278731,
+      "status": "ok",
+      "lo": 1.194712434740793,
+      "hi": 1.199540236918292,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6918"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "Strassen unpacked vs Native XLA",
+      "value": 0.49065694446132885,
+      "status": "ok",
+      "lo": 0.4876835891554384,
+      "hi": 0.4938320333880484,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6920"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "Strassen unpacked vs C-full unpacked",
+      "value": 1.0447746619449165,
+      "status": "ok",
+      "lo": 1.0390610457558702,
+      "hi": 1.050993499114923,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6920"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "Strassen unpacked vs C-quad unpacked",
+      "value": 1.1241424000672413,
+      "status": "ok",
+      "lo": 1.1204075687807213,
+      "hi": 1.1284867515928978,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6920"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "Strassen packed vs Strassen unpacked",
+      "value": 0.21171869666489398,
+      "status": "ok",
+      "lo": 0.21075626303848038,
+      "hi": 0.21257203189572996,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6922"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "Strassen packed vs Native XLA",
+      "value": 0.10388124879093182,
+      "status": "ok",
+      "lo": 0.10329898534955971,
+      "hi": 0.10446739217941071,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6922"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "Strassen packed vs C-full packed",
+      "value": 1.0107341123958684,
+      "status": "ok",
+      "lo": 1.0093458829554365,
+      "hi": 1.0121272694866794,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6922"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "Strassen packed vs C-quad packed",
+      "value": 1.0268526706982921,
+      "status": "ok",
+      "lo": 1.0254954492514725,
+      "hi": 1.0284045393408434,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6922"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "Strassen fused vs Strassen packed",
+      "value": 1.1905999717226743,
+      "status": "ok",
+      "lo": 1.1868927622304761,
+      "hi": 1.1933386904303136,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6924"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "Strassen fused vs Native XLA",
+      "value": 0.1236810118729995,
+      "status": "ok",
+      "lo": 0.12287644662230753,
+      "hi": 0.1244397365102526,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6924"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "Strassen fused vs C-full fused",
+      "value": 1.0241955877568463,
+      "status": "ok",
+      "lo": 1.0212832527918034,
+      "hi": 1.0267674322522475,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6924"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "Strassen fused vs C-quad fused",
+      "value": 1.021081198615387,
+      "status": "ok",
+      "lo": 1.0174087629460655,
+      "hi": 1.0242835060792441,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6924"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "Strassen early vs Strassen fused",
+      "value": 0.9967140264864156,
+      "status": "ok",
+      "lo": 0.9944356118029936,
+      "hi": 0.9999748249400698,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6926"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "Strassen early vs Native XLA",
+      "value": 0.1232745993438515,
+      "status": "ok",
+      "lo": 0.12260868227517119,
+      "hi": 0.12395898358187314,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6926"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "Strassen early vs C-full fused",
+      "value": 1.020830108182747,
+      "status": "ok",
+      "lo": 1.0187250191604322,
+      "hi": 1.0229856080355135,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6926"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "Strassen early vs C-quad fused",
+      "value": 1.0177259528415177,
+      "status": "ok",
+      "lo": 1.0155527205991177,
+      "hi": 1.0201429000901698,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6926"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "Strassen n5 selected unfused vs Native XLA",
+      "value": 0.8311232237845521,
+      "status": "ok",
+      "lo": 0.8251407791101055,
+      "hi": 0.8368190125690624,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6930"
+      ],
+      "extra": {
+        "arm_id": "strassen_n5_selected_unfused",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_swiglu",
+      "series": "Strassen n5 selected unfused vs cubic n5 selected unfused",
+      "value": 0.9741553776560478,
+      "status": "ok",
+      "lo": 0.9685454140199865,
+      "hi": 0.9801109816779264,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:6930"
+      ],
+      "extra": {
+        "arm_id": "strassen_n5_selected_unfused",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_residual",
+      "series": "C-full fused vs C-full unpacked",
+      "value": 0.9950113631339094,
+      "status": "ok",
+      "lo": 0.9899180819140068,
+      "hi": 0.9996901500818168,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:7424"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32b_m512_residual",
+      "series": "C-quad fused vs C-quad unpacked",
+      "value": 1.0835085039392567,
+      "status": "ok",
+      "lo": 1.0788782128908578,
+      "hi": 1.0877900903554645,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:7428"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_residual",
+      "series": "Strassen unpacked vs Native XLA",
+      "value": 0.5951789106145524,
+      "status": "ok",
+      "lo": 0.5914824468313394,
+      "hi": 0.5989370590813554,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:7430"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_residual",
+      "series": "Strassen unpacked vs C-full unpacked",
+      "value": 1.0517316898288263,
+      "status": "ok",
+      "lo": 1.0466824222077586,
+      "hi": 1.0570212322779788,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:7430"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_residual",
+      "series": "Strassen unpacked vs C-quad unpacked",
+      "value": 1.1434455551246607,
+      "status": "ok",
+      "lo": 1.1379608602945954,
+      "hi": 1.1489850214036845,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:7430"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_residual",
+      "series": "Strassen fused vs Strassen unpacked",
+      "value": 1.0358974629633824,
+      "status": "ok",
+      "lo": 1.0313681039390357,
+      "hi": 1.0399648337878968,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:7432"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_residual",
+      "series": "Strassen fused vs Native XLA",
+      "value": 0.6165443235149246,
+      "status": "ok",
+      "lo": 0.611998725702413,
+      "hi": 0.6207287691966066,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:7432"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_residual",
+      "series": "Strassen fused vs C-full fused",
+      "value": 1.094948489613629,
+      "status": "ok",
+      "lo": 1.0893212854877128,
+      "hi": 1.1009654394808661,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:7432"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_residual",
+      "series": "Strassen fused vs C-quad fused",
+      "value": 1.0932007873348424,
+      "status": "ok",
+      "lo": 1.0860968683186267,
+      "hi": 1.1005921502998957,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:7432"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_residual",
+      "series": "Strassen early vs Strassen fused",
+      "value": 0.9588149817619912,
+      "status": "ok",
+      "lo": 0.9533325749474141,
+      "hi": 0.9646746420046481,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:7434"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_residual",
+      "series": "Strassen early vs Native XLA",
+      "value": 0.5911519343064215,
+      "status": "ok",
+      "lo": 0.5872608624235287,
+      "hi": 0.5946673239646645,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:7434"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_residual",
+      "series": "Strassen early vs C-full fused",
+      "value": 1.0498530160992114,
+      "status": "ok",
+      "lo": 1.0440519870698666,
+      "hi": 1.0563594985061615,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:7434"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m512_residual",
+      "series": "Strassen early vs C-quad fused",
+      "value": 1.0481772929706512,
+      "status": "ok",
+      "lo": 1.0432617735012977,
+      "hi": 1.0533198539813537,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:7434"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_swiglu",
+      "series": "C-full packed vs C-full unpacked",
+      "value": 0.2216434304245419,
+      "status": "ok",
+      "lo": 0.22086921600759515,
+      "hi": 0.22236067159403186,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8111"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_swiglu",
+      "series": "C-full fused vs C-full packed",
+      "value": 1.1867284497345503,
+      "status": "ok",
+      "lo": 1.1850756350261833,
+      "hi": 1.1883947863665996,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8113"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_swiglu",
+      "series": "C-quad packed vs C-quad unpacked",
+      "value": 0.2354616511083653,
+      "status": "ok",
+      "lo": 0.23450091500962714,
+      "hi": 0.23649027195582792,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8117"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_swiglu",
+      "series": "C-quad fused vs C-quad packed",
+      "value": 1.2057392655443073,
+      "status": "ok",
+      "lo": 1.2036178148727508,
+      "hi": 1.2077821821124421,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8119"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_swiglu",
+      "series": "Strassen unpacked vs Native XLA",
+      "value": 0.8979705385018459,
+      "status": "ok",
+      "lo": 0.8927093370836835,
+      "hi": 0.9033274200568833,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8121"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_swiglu",
+      "series": "Strassen unpacked vs C-full unpacked",
+      "value": 1.0451227171782085,
+      "status": "ok",
+      "lo": 1.0406425677378717,
+      "hi": 1.0497444067050368,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8121"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_swiglu",
+      "series": "Strassen unpacked vs C-quad unpacked",
+      "value": 1.1286260877717726,
+      "status": "ok",
+      "lo": 1.1225834157605552,
+      "hi": 1.1350780616345195,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8121"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_swiglu",
+      "series": "Strassen packed vs Strassen unpacked",
+      "value": 0.21390064605483208,
+      "status": "ok",
+      "lo": 0.21281757300435122,
+      "hi": 0.21489427149113682,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8123"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_swiglu",
+      "series": "Strassen packed vs Native XLA",
+      "value": 0.19207647832375033,
+      "status": "ok",
+      "lo": 0.19091614508935376,
+      "hi": 0.19340597738035215,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8123"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_swiglu",
+      "series": "Strassen packed vs C-full packed",
+      "value": 1.0086129057955922,
+      "status": "ok",
+      "lo": 1.0053042030914277,
+      "hi": 1.0109802483707613,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8123"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_swiglu",
+      "series": "Strassen packed vs C-quad packed",
+      "value": 1.0252788434648967,
+      "status": "ok",
+      "lo": 1.0218223116726037,
+      "hi": 1.0278099575863717,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8123"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_swiglu",
+      "series": "Strassen fused vs Strassen packed",
+      "value": 1.2027211634717179,
+      "status": "ok",
+      "lo": 1.1965561985363127,
+      "hi": 1.2082069259771946,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8125"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_swiglu",
+      "series": "Strassen fused vs Native XLA",
+      "value": 0.23101444548509117,
+      "status": "ok",
+      "lo": 0.22959049705544562,
+      "hi": 0.23261870755907996,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8125"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_swiglu",
+      "series": "Strassen fused vs C-full fused",
+      "value": 1.0222052802580144,
+      "status": "ok",
+      "lo": 1.0179892695455626,
+      "hi": 1.0251758287989452,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8125"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_swiglu",
+      "series": "Strassen fused vs C-quad fused",
+      "value": 1.0227124542870119,
+      "status": "ok",
+      "lo": 1.0182683361863611,
+      "hi": 1.0257852882265404,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8125"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_swiglu",
+      "series": "Strassen early vs Strassen fused",
+      "value": 0.9956906515433691,
+      "status": "ok",
+      "lo": 0.9929182350280757,
+      "hi": 0.9998352357007793,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8127"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_swiglu",
+      "series": "Strassen early vs Native XLA",
+      "value": 0.23001892374098057,
+      "status": "ok",
+      "lo": 0.2287878432954616,
+      "hi": 0.2315249289780081,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8127"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_swiglu",
+      "series": "Strassen early vs C-full fused",
+      "value": 1.0178002415111747,
+      "status": "ok",
+      "lo": 1.0160701054828205,
+      "hi": 1.019593185824422,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8127"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_swiglu",
+      "series": "Strassen early vs C-quad fused",
+      "value": 1.018305229950553,
+      "status": "ok",
+      "lo": 1.0165016836805316,
+      "hi": 1.020193003665719,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8127"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_residual",
+      "series": "C-full fused vs C-full unpacked",
+      "value": 1.0087421722002707,
+      "status": "ok",
+      "lo": 1.0035571517326425,
+      "hi": 1.0142864913405996,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8621"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_residual",
+      "series": "C-quad fused vs C-quad unpacked",
+      "value": 1.1057746737980383,
+      "status": "ok",
+      "lo": 1.097546328097821,
+      "hi": 1.1137268001544058,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8625"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_residual",
+      "series": "Strassen unpacked vs Native XLA",
+      "value": 1.0659492532999642,
+      "status": "ok",
+      "lo": 1.055768809609051,
+      "hi": 1.0758956095650523,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8627"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_residual",
+      "series": "Strassen unpacked vs C-full unpacked",
+      "value": 1.0494533193211706,
+      "status": "ok",
+      "lo": 1.0386515364174522,
+      "hi": 1.060056839666064,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8627"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_residual",
+      "series": "Strassen unpacked vs C-quad unpacked",
+      "value": 1.1432421564264672,
+      "status": "ok",
+      "lo": 1.13374725321849,
+      "hi": 1.1523449459574442,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8627"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_residual",
+      "series": "Strassen fused vs Strassen unpacked",
+      "value": 1.0662423442182865,
+      "status": "ok",
+      "lo": 1.058158748081087,
+      "hi": 1.075502121116039,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8629"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_residual",
+      "series": "Strassen fused vs Native XLA",
+      "value": 1.1365602306562859,
+      "status": "ok",
+      "lo": 1.1315138409929115,
+      "hi": 1.1418333087985058,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8629"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_residual",
+      "series": "Strassen fused vs C-full fused",
+      "value": 1.1092741021226102,
+      "status": "ok",
+      "lo": 1.1020097423917756,
+      "hi": 1.1161439653861214,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8629"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_residual",
+      "series": "Strassen fused vs C-quad fused",
+      "value": 1.1023703343561675,
+      "status": "ok",
+      "lo": 1.0951097214529262,
+      "hi": 1.110098498434326,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8629"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_residual",
+      "series": "Strassen early vs Strassen fused",
+      "value": 0.9494252947796197,
+      "status": "ok",
+      "lo": 0.9433342975629737,
+      "hi": 0.9556563543477103,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8631"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_residual",
+      "series": "Strassen early vs Native XLA",
+      "value": 1.0790790320256367,
+      "status": "ok",
+      "lo": 1.072281251231966,
+      "hi": 1.0860714337833586,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8631"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_residual",
+      "series": "Strassen early vs C-full fused",
+      "value": 1.0531728913991572,
+      "status": "ok",
+      "lo": 1.0465088092068626,
+      "hi": 1.060277399709971,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8631"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m1024_residual",
+      "series": "Strassen early vs C-quad fused",
+      "value": 1.0466182796524122,
+      "status": "ok",
+      "lo": 1.039302722823728,
+      "hi": 1.0538465000754882,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:8631"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_swiglu",
+      "series": "C-full packed vs C-full unpacked",
+      "value": 0.3326060762500488,
+      "status": "ok",
+      "lo": 0.3317047686152014,
+      "hi": 0.3335858817990456,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9308"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_swiglu",
+      "series": "C-full fused vs C-full packed",
+      "value": 1.3524913563972754,
+      "status": "ok",
+      "lo": 1.3506945647760107,
+      "hi": 1.3543453682783235,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9310"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_swiglu",
+      "series": "C-quad packed vs C-quad unpacked",
+      "value": 0.34827276662191525,
+      "status": "ok",
+      "lo": 0.3470701422591688,
+      "hi": 0.34993223602452894,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9314"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_swiglu",
+      "series": "C-quad fused vs C-quad packed",
+      "value": 1.3877604385252864,
+      "status": "ok",
+      "lo": 1.385803131662701,
+      "hi": 1.3900297968476196,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9316"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_swiglu",
+      "series": "Strassen unpacked vs Native XLA",
+      "value": 0.8473676974319325,
+      "status": "ok",
+      "lo": 0.8451271522199064,
+      "hi": 0.8495251642301791,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9318"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_swiglu",
+      "series": "Strassen unpacked vs C-full unpacked",
+      "value": 1.0427870617862063,
+      "status": "ok",
+      "lo": 1.0396732597198788,
+      "hi": 1.0459696235241345,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9318"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_swiglu",
+      "series": "Strassen unpacked vs C-quad unpacked",
+      "value": 1.1182331378034973,
+      "status": "ok",
+      "lo": 1.1135891625638334,
+      "hi": 1.123680498789921,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9318"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_swiglu",
+      "series": "Strassen packed vs Strassen unpacked",
+      "value": 0.32269128304816297,
+      "status": "ok",
+      "lo": 0.32211742478641925,
+      "hi": 0.3233162252475754,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9320"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_swiglu",
+      "series": "Strassen packed vs Native XLA",
+      "value": 0.27343816949787786,
+      "status": "ok",
+      "lo": 0.27264027542628366,
+      "hi": 0.27422046974914754,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9320"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_swiglu",
+      "series": "Strassen packed vs C-full packed",
+      "value": 1.011702187487519,
+      "status": "ok",
+      "lo": 1.0099587347829166,
+      "hi": 1.0134118933050422,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9320"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_swiglu",
+      "series": "Strassen packed vs C-quad packed",
+      "value": 1.036096188297479,
+      "status": "ok",
+      "lo": 1.033654935201226,
+      "hi": 1.038340178971398,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9320"
+      ],
+      "extra": {
+        "arm_id": "strassen_packed_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_swiglu",
+      "series": "Strassen fused vs Strassen packed",
+      "value": 1.3890936741146933,
+      "status": "ok",
+      "lo": 1.3856511988198716,
+      "hi": 1.3928658188473302,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9322"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_swiglu",
+      "series": "Strassen fused vs Native XLA",
+      "value": 0.37983123151100345,
+      "status": "ok",
+      "lo": 0.37852361171249466,
+      "hi": 0.38101138859155337,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9322"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_swiglu",
+      "series": "Strassen fused vs C-full fused",
+      "value": 1.0390817671991897,
+      "status": "ok",
+      "lo": 1.0368339183096074,
+      "hi": 1.0415022188176888,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9322"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_swiglu",
+      "series": "Strassen fused vs C-quad fused",
+      "value": 1.0370915764595416,
+      "status": "ok",
+      "lo": 1.0350113602289142,
+      "hi": 1.0391470324221055,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9322"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_swiglu",
+      "series": "Strassen early vs Strassen fused",
+      "value": 0.9928029012035741,
+      "status": "ok",
+      "lo": 0.991346002135413,
+      "hi": 0.9940993511542149,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9324"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_swiglu",
+      "series": "Strassen early vs Native XLA",
+      "value": 0.37709754861185063,
+      "status": "ok",
+      "lo": 0.37596845264143125,
+      "hi": 0.3781780733550466,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9324"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_swiglu",
+      "series": "Strassen early vs C-full fused",
+      "value": 1.0316033930630921,
+      "status": "ok",
+      "lo": 1.0296707202311064,
+      "hi": 1.0335214879567178,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9324"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_swiglu",
+      "series": "Strassen early vs C-quad fused",
+      "value": 1.0296275259228211,
+      "status": "ok",
+      "lo": 1.0279358545920567,
+      "hi": 1.0312264320272604,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9324"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_residual",
+      "series": "C-full fused vs C-full unpacked",
+      "value": 1.0092266748539283,
+      "status": "ok",
+      "lo": 1.005785316760965,
+      "hi": 1.0127934774719214,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9818"
+      ],
+      "extra": {
+        "arm_id": "cubic_full_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_residual",
+      "series": "C-quad fused vs C-quad unpacked",
+      "value": 1.1106474205027368,
+      "status": "ok",
+      "lo": 1.1011647701207263,
+      "hi": 1.116993712354672,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9822"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_residual",
+      "series": "Strassen unpacked vs Native XLA",
+      "value": 1.075066106359037,
+      "status": "ok",
+      "lo": 1.0696648189242564,
+      "hi": 1.0803075014206178,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9824"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_residual",
+      "series": "Strassen unpacked vs C-full unpacked",
+      "value": 1.0560806347799305,
+      "status": "ok",
+      "lo": 1.0508326887919996,
+      "hi": 1.0605279672766035,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9824"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_residual",
+      "series": "Strassen unpacked vs C-quad unpacked",
+      "value": 1.1634231616291995,
+      "status": "ok",
+      "lo": 1.1583814369172167,
+      "hi": 1.168250974768066,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9824"
+      ],
+      "extra": {
+        "arm_id": "strassen_unpacked_unfused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_residual",
+      "series": "Strassen fused vs Strassen unpacked",
+      "value": 1.0641315445163342,
+      "status": "ok",
+      "lo": 1.058732458617235,
+      "hi": 1.0693742248391656,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9826"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_residual",
+      "series": "Strassen fused vs Native XLA",
+      "value": 1.1440117562170034,
+      "status": "ok",
+      "lo": 1.1400739803557454,
+      "hi": 1.1483999314605378,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9826"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_residual",
+      "series": "Strassen fused vs C-full fused",
+      "value": 1.1135344962862914,
+      "status": "ok",
+      "lo": 1.1092398952965696,
+      "hi": 1.117431761880576,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9826"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_residual",
+      "series": "Strassen fused vs C-quad fused",
+      "value": 1.1146969443733614,
+      "status": "ok",
+      "lo": 1.1076031582979884,
+      "hi": 1.1226994179354521,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9826"
+      ],
+      "extra": {
+        "arm_id": "strassen_fused",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_residual",
+      "series": "Strassen early vs Strassen fused",
+      "value": 0.948227163419387,
+      "status": "ok",
+      "lo": 0.9425623075401868,
+      "hi": 0.953765354926444,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9828"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_residual",
+      "series": "Strassen early vs Native XLA",
+      "value": 1.0847830225160804,
+      "status": "ok",
+      "lo": 1.0790806510784334,
+      "hi": 1.0909297124263815,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9828"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_residual",
+      "series": "Strassen early vs C-full fused",
+      "value": 1.055883656783186,
+      "status": "ok",
+      "lo": 1.0510409905201499,
+      "hi": 1.0610437084901858,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9828"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    {
+      "category": "qwen32b_m2048_residual",
+      "series": "Strassen early vs C-quad fused",
+      "value": 1.0569859216354107,
+      "status": "ok",
+      "lo": 1.0504564694008758,
+      "hi": 1.0658424026501425,
+      "row_refs": [
+        "20260919T073511Z-N8-v5e-v004-0a55e8:9828"
+      ],
+      "extra": {
+        "arm_id": "strassen_early",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    }
+  ],
+  "ylabel": "Reference time / target time (>1 favors target)",
+  "center_one": true,
+  "higher_better": true,
+  "takeaway": "",
+  "source_run_ids": [
+    "20260919T073511Z-N8-v5e-v004-0a55e8"
+  ],
+  "cohort": "N5-N9 allocation",
+  "data_file": "data/n8-all-contrasts-call.json",
+  "files": {
+    "absolute": {
+      "png": "figures/n8-all-contrasts-call-absolute.png",
+      "svg": "figures/n8-all-contrasts-call-absolute.svg"
+    }
+  }
+}

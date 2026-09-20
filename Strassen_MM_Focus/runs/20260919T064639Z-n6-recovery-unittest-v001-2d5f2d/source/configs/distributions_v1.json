@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "generator_id": "host_numpy_pcg64_v1",
+  "generator": "numpy.random.Generator(numpy.random.PCG64(seed))",
+  "base_order": "Generate A then B; use float32 host source; quantize both once to BF16 before any arm or reference.",
+  "baseline": "A has shape (M,K), B (K,N); Gaussian A divided by sqrt(K), B standard normal.",
+  "profiles": {
+    "gaussian": {"a": "standard_normal((M,K), dtype=float32) / sqrt(K)", "b": "standard_normal((K,N), dtype=float32)"},
+    "uniform": {"a": "uniform(-sqrt(3),sqrt(3),(M,K)).astype(float32) / sqrt(K)", "b": "uniform(-sqrt(3),sqrt(3),(K,N)).astype(float32)"},
+    "log_scale": {"base": "gaussian", "a_scale": "Independent per-K-column integer powers 2**e, e uniform from -8 through 8 inclusive", "b_scale": "Independent per-K-row integer powers 2**e, e uniform from -8 through 8 inclusive", "generation_order": "Generate base A, base B, then A exponents, then B exponents; broadcast scales along M and N respectively."},
+    "outliers": {"base": "gaussian", "probability": 0.001, "multiplier": 128, "generation_order": "Generate base A, base B, then independent Bernoulli masks for A then B; multiply masked elements by 128."},
+    "cancellation": {"half": "h=floor(K/2)", "a_left": "standard_normal((M,h), dtype=float32) / sqrt(K)", "b_top": "standard_normal((h,N), dtype=float32)", "a_delta": "standard_normal((M,h), dtype=float32) / (128*sqrt(K))", "construction": "A[:,:h]=a_left; A[:,h:2*h]=a_left+a_delta; B[:h,:]=b_top; B[h:2*h,:]=-b_top. For odd K, set final A column and B row to zero.", "generation_order": "Generate a_left, b_top, then a_delta.", "note": "Near cancellation of halves, with a small perturbation representable after BF16 rounding; exact loss of some deltas during quantization is part of the specified input."}
+  },
+  "failure_policy": "Nonfinite generated inputs produce explicit input_error records; do not replace the seed or rescale silently.",
+  "stream_contract": "Hash generator source in each run. Any implementation change produces a new source snapshot; comparisons use identical generated arrays within a case. Never compare different profile implementations as if inputs were identical."
+}

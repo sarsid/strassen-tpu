@@ -1,0 +1,2221 @@
+[
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "square_512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "square",
+      "id": "square_512",
+      "k": 512,
+      "m": 512,
+      "n": 512,
+      "source_id": "synthetic_design",
+      "stage": "smoke"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "tail_513__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "nonaligned",
+      "id": "tail_513",
+      "k": 513,
+      "m": 513,
+      "n": 513,
+      "source_id": "synthetic_design",
+      "stage": "smoke"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "small_m_1__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "small_m",
+      "id": "small_m_1",
+      "k": 2048,
+      "m": 1,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "small_m_8__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "small_m",
+      "id": "small_m_8",
+      "k": 2048,
+      "m": 8,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "smoke"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "small_m_64__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "small_m",
+      "id": "small_m_64",
+      "k": 2048,
+      "m": 64,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "square_1024__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "square",
+      "id": "square_1024",
+      "k": 1024,
+      "m": 1024,
+      "n": 1024,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "tail_deep__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "nonaligned",
+      "id": "tail_deep",
+      "k": 4097,
+      "m": 257,
+      "n": 1023,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "small_m_256__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "small_m",
+      "id": "small_m_256",
+      "k": 2048,
+      "m": 256,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "tail_tall__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "nonaligned",
+      "id": "tail_tall",
+      "k": 1025,
+      "m": 2049,
+      "n": 513,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "mistral7_kv_m512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "mistral7_kv_m512",
+      "k": 4096,
+      "m": 512,
+      "n": 1024,
+      "projection": "kv",
+      "source_id": "mistral7_v01",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "vary_m_512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "axis_sweep",
+      "id": "vary_m_512",
+      "k": 2048,
+      "m": 512,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "vary_n_512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "axis_sweep",
+      "id": "vary_n_512",
+      "k": 2048,
+      "m": 2048,
+      "n": 512,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "qwen32_kv_m512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "qwen32_kv_m512",
+      "k": 5120,
+      "m": 512,
+      "n": 1024,
+      "projection": "kv",
+      "source_id": "qwen3_32b",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "vary_k_512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "axis_sweep",
+      "id": "vary_k_512",
+      "k": 512,
+      "m": 2048,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "gemma9_q_m512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "gemma9_q_m512",
+      "k": 3584,
+      "m": 512,
+      "n": 4096,
+      "projection": "q",
+      "source_id": "gemma2_9b",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "mkn_2048_8192_512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "aspect_ratio",
+      "id": "mkn_2048_8192_512",
+      "k": 8192,
+      "m": 2048,
+      "n": 512,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "mkn_512_8192_2048__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "aspect_ratio",
+      "id": "mkn_512_8192_2048",
+      "k": 8192,
+      "m": 512,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "square_2048__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "square",
+      "id": "square_2048",
+      "k": 2048,
+      "m": 2048,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "tail_wide__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "nonaligned",
+      "id": "tail_wide",
+      "k": 2047,
+      "m": 1023,
+      "n": 4095,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "mkn_512_2048_8192__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "aspect_ratio",
+      "id": "mkn_512_2048_8192",
+      "k": 2048,
+      "m": 512,
+      "n": 8192,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "mkn_8192_2048_512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "aspect_ratio",
+      "id": "mkn_8192_2048_512",
+      "k": 2048,
+      "m": 8192,
+      "n": 512,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "vary_k_8192__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "axis_sweep",
+      "id": "vary_k_8192",
+      "k": 8192,
+      "m": 2048,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "qwen32_o_m512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "qwen32_o_m512",
+      "k": 8192,
+      "m": 512,
+      "n": 5120,
+      "projection": "o",
+      "source_id": "qwen3_32b",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "qwen32_q_m512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "qwen32_q_m512",
+      "k": 5120,
+      "m": 512,
+      "n": 8192,
+      "projection": "q",
+      "source_id": "qwen3_32b",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "gemma9_down_m512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "gemma9_down_m512",
+      "k": 14336,
+      "m": 512,
+      "n": 3584,
+      "projection": "down",
+      "source_id": "gemma2_9b",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "mkn_2048_512_8192__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "aspect_ratio",
+      "id": "mkn_2048_512_8192",
+      "k": 512,
+      "m": 2048,
+      "n": 8192,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "mkn_8192_512_2048__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "aspect_ratio",
+      "id": "mkn_8192_512_2048",
+      "k": 512,
+      "m": 8192,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "mistral7_down_m512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "mistral7_down_m512",
+      "k": 14336,
+      "m": 512,
+      "n": 4096,
+      "projection": "down",
+      "source_id": "mistral7_v01",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "vary_m_8192__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "axis_sweep",
+      "id": "vary_m_8192",
+      "k": 2048,
+      "m": 8192,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "vary_n_8192__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "axis_sweep",
+      "id": "vary_n_8192",
+      "k": 2048,
+      "m": 2048,
+      "n": 8192,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "square_4096__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "square",
+      "id": "square_4096",
+      "k": 4096,
+      "m": 4096,
+      "n": 4096,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "gemma9_gate_up_m64__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "gemma9_gate_up_m64",
+      "k": 3584,
+      "m": 64,
+      "n": 28672,
+      "projection": "gate_up",
+      "source_id": "gemma2_9b",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "mistral7_gate_up_m64__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "mistral7_gate_up_m64",
+      "k": 4096,
+      "m": 64,
+      "n": 28672,
+      "projection": "gate_up",
+      "source_id": "mistral7_v01",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "qwen32_down_m512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "qwen32_down_m512",
+      "k": 25600,
+      "m": 512,
+      "n": 5120,
+      "projection": "down",
+      "source_id": "qwen3_32b",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "gemma9_gate_up_m512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "gemma9_gate_up_m512",
+      "k": 3584,
+      "m": 512,
+      "n": 28672,
+      "projection": "gate_up",
+      "source_id": "gemma2_9b",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "mistral7_gate_up_m512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "mistral7_gate_up_m512",
+      "k": 4096,
+      "m": 512,
+      "n": 28672,
+      "projection": "gate_up",
+      "source_id": "mistral7_v01",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "qwen32_gate_up_m1__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "qwen32_gate_up_m1",
+      "k": 5120,
+      "m": 1,
+      "n": 51200,
+      "projection": "gate_up",
+      "source_id": "qwen3_32b",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "qwen32_gate_up_m64__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "qwen32_gate_up_m64",
+      "k": 5120,
+      "m": 64,
+      "n": 51200,
+      "projection": "gate_up",
+      "source_id": "qwen3_32b",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "gemma9_gate_up_m2048__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "gemma9_gate_up_m2048",
+      "k": 3584,
+      "m": 2048,
+      "n": 28672,
+      "projection": "gate_up",
+      "source_id": "gemma2_9b",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "mistral7_gate_up_m2048__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "mistral7_gate_up_m2048",
+      "k": 4096,
+      "m": 2048,
+      "n": 28672,
+      "projection": "gate_up",
+      "source_id": "mistral7_v01",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "qwen32_gate_up_m512__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "qwen32_gate_up_m512",
+      "k": 5120,
+      "m": 512,
+      "n": 51200,
+      "projection": "gate_up",
+      "source_id": "qwen3_32b",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "square_8192__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "square",
+      "id": "square_8192",
+      "k": 8192,
+      "m": 8192,
+      "n": 8192,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "qwen32_gate_up_m2048__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "qwen32_gate_up_m2048",
+      "k": 5120,
+      "m": 2048,
+      "n": 51200,
+      "projection": "gate_up",
+      "source_id": "qwen3_32b",
+      "stage": "core"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "native",
+        "arm_id": "native_xla",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_basic",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen_basic",
+        "variant": "plain"
+      }
+    ],
+    "group_id": "qwen32_gate_up_m8192__256x256x256",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "qwen32_gate_up_m8192",
+      "k": 5120,
+      "m": 8192,
+      "n": 51200,
+      "projection": "gate_up",
+      "source_id": "qwen3_32b",
+      "stage": "anchor"
+    },
+    "tile": [
+      256,
+      256,
+      256
+    ],
+    "timing": "confirm"
+  }
+]

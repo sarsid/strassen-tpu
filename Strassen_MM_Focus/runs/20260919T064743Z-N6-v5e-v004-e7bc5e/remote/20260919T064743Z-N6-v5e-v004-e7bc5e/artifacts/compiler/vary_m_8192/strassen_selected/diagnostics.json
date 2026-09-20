@@ -1,0 +1,43 @@
+{
+  "compiled_cost_analysis": {
+    "bytes accessed0{}": 33554432.0,
+    "bytes accessed1{}": 8388608.0,
+    "bytes accessedout{}": 67108864.0,
+    "utilization0{}": 1.0,
+    "utilization1{}": 1.0
+  },
+  "compiled_hlo_sha256": "61ddb27a24008cca24b3a1689a6649a7cf0c6423b08c478bd68b7a560706b83b",
+  "compiled_memory_analysis": {
+    "alias_size_in_bytes": 0,
+    "argument_size_in_bytes": 41943040,
+    "generated_code_size_in_bytes": 967168,
+    "host_alias_size_in_bytes": 0,
+    "host_argument_size_in_bytes": 0,
+    "host_output_size_in_bytes": 0,
+    "host_temp_size_in_bytes": 0,
+    "output_size_in_bytes": 67108864,
+    "temp_size_in_bytes": 0
+  },
+  "compiled_memory_repr": "CompiledMemoryStats(generated_code_size_in_bytes=967168, argument_size_in_bytes=41943040, output_size_in_bytes=67108864, alias_size_in_bytes=0, temp_size_in_bytes=0, host_generated_code_size_in_bytes=0, host_argument_size_in_bytes=0, host_output_size_in_bytes=0, host_alias_size_in_bytes=0, host_temp_size_in_bytes=0)",
+  "roofline": {
+    "compulsory_arithmetic_intensity": 551.3846153846154,
+    "compulsory_original_input_output_bytes": 109051904,
+    "estimated_mxu_dot_flops": 60129542144.0,
+    "ideal_compulsory_hbm_ms": 0.126953125,
+    "ideal_dot_compute_ms": 0.30522610225380714,
+    "limitations": "Analytic optimistic estimates, not measured traffic/utilization. Excludes vector timing, extra traffic, padding/layout copies, launch costs and nonideal array occupancy. Tile traffic assumes no sharing across output tiles; actual reuse is unknown.",
+    "optimistic_roofline_lower_bound_ms": 0.30522610225380714,
+    "source_level_vector_elementwise_ops_estimate": 184549376.0,
+    "unshared_output_tile_traffic_estimate_bytes": 201326592,
+    "useful_classical_flops": 68719476736,
+    "vendor_source": "https://docs.cloud.google.com/tpu/docs/v5e",
+    "vendor_values": {
+      "accessed": "2026-09-19",
+      "bf16_peak_flops_per_second": 197000000000000,
+      "hbm_peak_bytes_per_second": 858993459200,
+      "scope": "Optimistic lower-bound estimates using vendor peaks, compulsory bytes and MXU dot work; excludes Strassen vector overhead, extra traffic, dispatch and achieved utilization.",
+      "source": "https://docs.cloud.google.com/tpu/docs/v5e"
+    }
+  },
+  "scope": "Compiler estimates and static code; not runtime memory peaks or counters."
+}

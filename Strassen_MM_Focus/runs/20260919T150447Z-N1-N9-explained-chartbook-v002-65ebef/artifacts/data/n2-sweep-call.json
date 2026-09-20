@@ -1,0 +1,4474 @@
+{
+  "id": "n2-sweep-call",
+  "experiment": "N2",
+  "kind": "heat",
+  "title": "N2 | Every tile and algorithm",
+  "subtitle": "Exploratory screen: 7 timings per passing cell. Tile order is BM/BN/BK. Native was not measured.",
+  "scope": "call",
+  "detail": false,
+  "categories": [
+    {
+      "id": "square_512",
+      "label": "square 512\n512 x 512 x 512"
+    },
+    {
+      "id": "tail_513",
+      "label": "tail 513\n513 x 513 x 513"
+    },
+    {
+      "id": "small_m_8",
+      "label": "small m 8\n8 x 2048 x 2048"
+    },
+    {
+      "id": "square_2048",
+      "label": "square 2048\n2048 x 2048 x 2048"
+    },
+    {
+      "id": "vary_k_8192",
+      "label": "vary k 8192\n2048 x 8192 x 2048"
+    },
+    {
+      "id": "vary_m_8192",
+      "label": "vary m 8192\n8192 x 2048 x 2048"
+    },
+    {
+      "id": "vary_n_8192",
+      "label": "vary n 8192\n2048 x 2048 x 8192"
+    },
+    {
+      "id": "square_4096",
+      "label": "square 4096\n4096 x 4096 x 4096"
+    },
+    {
+      "id": "gemma9_gate_up_m512",
+      "label": "Gemma9 gate/up m512\n512 x 3584 x 28672"
+    },
+    {
+      "id": "mistral7_gate_up_m512",
+      "label": "Mistral7 gate/up m512\n512 x 4096 x 28672"
+    },
+    {
+      "id": "qwen32_gate_up_m512",
+      "label": "Qwen32 gate/up m512\n512 x 5120 x 51200"
+    },
+    {
+      "id": "qwen32_gate_up_m8192",
+      "label": "Qwen32 gate/up m8192\n8192 x 5120 x 51200"
+    }
+  ],
+  "series": [
+    {
+      "id": "Cubic (full tile) | 1024/1024/512",
+      "label": "Cubic (full tile) | 1024/1024/512"
+    },
+    {
+      "id": "Cubic (quadrant control) | 1024/1024/512",
+      "label": "Cubic (quadrant control) | 1024/1024/512"
+    },
+    {
+      "id": "Strassen | 1024/1024/512",
+      "label": "Strassen | 1024/1024/512"
+    },
+    {
+      "id": "Cubic (full tile) | 512/512/256",
+      "label": "Cubic (full tile) | 512/512/256"
+    },
+    {
+      "id": "Cubic (quadrant control) | 512/512/256",
+      "label": "Cubic (quadrant control) | 512/512/256"
+    },
+    {
+      "id": "Strassen | 512/512/256",
+      "label": "Strassen | 512/512/256"
+    },
+    {
+      "id": "Cubic (full tile) | 256/256/256",
+      "label": "Cubic (full tile) | 256/256/256"
+    },
+    {
+      "id": "Cubic (quadrant control) | 256/256/256",
+      "label": "Cubic (quadrant control) | 256/256/256"
+    },
+    {
+      "id": "Strassen | 256/256/256",
+      "label": "Strassen | 256/256/256"
+    },
+    {
+      "id": "Cubic (full tile) | 2048/2048/512",
+      "label": "Cubic (full tile) | 2048/2048/512"
+    },
+    {
+      "id": "Cubic (quadrant control) | 2048/2048/512",
+      "label": "Cubic (quadrant control) | 2048/2048/512"
+    },
+    {
+      "id": "Strassen | 2048/2048/512",
+      "label": "Strassen | 2048/2048/512"
+    },
+    {
+      "id": "Cubic (full tile) | 512/1024/512",
+      "label": "Cubic (full tile) | 512/1024/512"
+    },
+    {
+      "id": "Cubic (quadrant control) | 512/1024/512",
+      "label": "Cubic (quadrant control) | 512/1024/512"
+    },
+    {
+      "id": "Strassen | 512/1024/512",
+      "label": "Strassen | 512/1024/512"
+    },
+    {
+      "id": "Cubic (full tile) | 1024/512/512",
+      "label": "Cubic (full tile) | 1024/512/512"
+    },
+    {
+      "id": "Cubic (quadrant control) | 1024/512/512",
+      "label": "Cubic (quadrant control) | 1024/512/512"
+    },
+    {
+      "id": "Strassen | 1024/512/512",
+      "label": "Strassen | 1024/512/512"
+    }
+  ],
+  "points": [
+    {
+      "category": "square_512",
+      "series": "Cubic (full tile) | 1024/1024/512",
+      "value": 0.2520487142857143,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:61"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "Cubic (quadrant control) | 1024/1024/512",
+      "value": 0.22784728571428572,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:63"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "Strassen | 1024/1024/512",
+      "value": 0.242567,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:65"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "Cubic (full tile) | 512/512/256",
+      "value": 0.20272285714285718,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:126"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "Cubic (quadrant control) | 512/512/256",
+      "value": 0.19149,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:128"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "Strassen | 512/512/256",
+      "value": 0.2058244285714286,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:130"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "Cubic (full tile) | 256/256/256",
+      "value": 0.22571128571428575,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:191"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "Cubic (quadrant control) | 256/256/256",
+      "value": 0.21028,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:193"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "Strassen | 256/256/256",
+      "value": 0.222483,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:195"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "Cubic (full tile) | 2048/2048/512",
+      "value": 0.238374,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:256"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "Cubic (quadrant control) | 2048/2048/512",
+      "value": 0.22086714285714285,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:258"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "Strassen | 2048/2048/512",
+      "value": 0.23545271428571432,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:260"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "Cubic (full tile) | 512/1024/512",
+      "value": 0.2433972857142857,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:321"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "Cubic (quadrant control) | 512/1024/512",
+      "value": 0.23157828571428565,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:323"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "Strassen | 512/1024/512",
+      "value": 0.23979714285714285,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:325"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "Cubic (full tile) | 1024/512/512",
+      "value": 0.26295857142857143,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:386"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "Cubic (quadrant control) | 1024/512/512",
+      "value": 0.25232571428571426,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:388"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_512",
+      "series": "Strassen | 1024/512/512",
+      "value": 0.27598142857142854,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:390"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "Cubic (full tile) | 512/512/256",
+      "value": 0.255477,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:451"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "Cubic (quadrant control) | 512/512/256",
+      "value": 0.24670842857142855,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:453"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "Strassen | 512/512/256",
+      "value": 0.26837985714285717,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:455"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "Cubic (full tile) | 256/256/256",
+      "value": 0.2853457142857143,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:516"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "Cubic (quadrant control) | 256/256/256",
+      "value": 0.26062285714285716,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:518"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "Strassen | 256/256/256",
+      "value": 0.28524842857142857,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:520"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "Cubic (full tile) | 2048/2048/512",
+      "value": 0.31762428571428575,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:556"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "Cubic (quadrant control) | 2048/2048/512",
+      "value": 0.324083,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:558"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "Strassen | 2048/2048/512",
+      "value": 0.295213,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:560"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "Cubic (full tile) | 1024/512/512",
+      "value": 0.26607728571428574,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:621"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "Cubic (quadrant control) | 1024/512/512",
+      "value": 0.2671,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:623"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "Strassen | 1024/512/512",
+      "value": 0.27812871428571434,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:625"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "Cubic (full tile) | 1024/1024/512",
+      "value": 0.26434285714285716,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:686"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "Cubic (quadrant control) | 1024/1024/512",
+      "value": 0.25598000000000004,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:688"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "Strassen | 1024/1024/512",
+      "value": 0.25882,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:690"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "Cubic (full tile) | 512/1024/512",
+      "value": 0.241053,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:751"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "Cubic (quadrant control) | 512/1024/512",
+      "value": 0.2373572857142857,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:753"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "tail_513",
+      "series": "Strassen | 512/1024/512",
+      "value": 0.26024428571428576,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:755"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "Cubic (full tile) | 1024/512/512",
+      "value": 0.29722857142857145,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:816"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "Cubic (quadrant control) | 1024/512/512",
+      "value": 0.29440700000000003,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:818"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "Strassen | 1024/512/512",
+      "value": 0.30893442857142855,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:820"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "Cubic (full tile) | 1024/1024/512",
+      "value": 0.300614,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:881"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "Cubic (quadrant control) | 1024/1024/512",
+      "value": 0.3150784285714286,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:883"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "Strassen | 1024/1024/512",
+      "value": 0.30310857142857145,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:885"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "Cubic (full tile) | 256/256/256",
+      "value": 0.27785028571428566,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:946"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "Cubic (quadrant control) | 256/256/256",
+      "value": 0.2657872857142857,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:948"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "Strassen | 256/256/256",
+      "value": 0.2898071428571429,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:950"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "Cubic (full tile) | 2048/2048/512",
+      "value": 0.3640697142857143,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:986"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "Cubic (quadrant control) | 2048/2048/512",
+      "value": 0.3581914285714286,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:988"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "Strassen | 2048/2048/512",
+      "value": 0.3379412857142858,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:990"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "Cubic (full tile) | 512/1024/512",
+      "value": 0.26503,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1051"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "Cubic (quadrant control) | 512/1024/512",
+      "value": 0.26405414285714285,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1053"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "Strassen | 512/1024/512",
+      "value": 0.25742857142857145,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1055"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "Cubic (full tile) | 512/512/256",
+      "value": 0.26631857142857146,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1116"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "Cubic (quadrant control) | 512/512/256",
+      "value": 0.2642014285714286,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1118"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "small_m_8",
+      "series": "Strassen | 512/512/256",
+      "value": 0.28739114285714285,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1120"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "Cubic (full tile) | 256/256/256",
+      "value": 0.5812568571428571,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1181"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "Cubic (quadrant control) | 256/256/256",
+      "value": 0.5896312857142857,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1183"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "Strassen | 256/256/256",
+      "value": 0.5703714285714286,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1185"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "Cubic (full tile) | 512/1024/512",
+      "value": 0.40359999999999996,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1246"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "Cubic (quadrant control) | 512/1024/512",
+      "value": 0.40193399999999996,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1248"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "Strassen | 512/1024/512",
+      "value": 0.40192271428571436,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1250"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "Cubic (full tile) | 1024/1024/512",
+      "value": 0.39140985714285714,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1311"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "Cubic (quadrant control) | 1024/1024/512",
+      "value": 0.38891257142857144,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1313"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "Strassen | 1024/1024/512",
+      "value": 0.3873254285714286,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1315"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "Cubic (full tile) | 512/512/256",
+      "value": 0.4485797142857143,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1376"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "Cubic (quadrant control) | 512/512/256",
+      "value": 0.44781000000000004,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1378"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "Strassen | 512/512/256",
+      "value": 0.4535571428571429,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1380"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "Cubic (full tile) | 1024/512/512",
+      "value": 0.37905714285714287,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1441"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "Cubic (quadrant control) | 1024/512/512",
+      "value": 0.38280000000000003,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1443"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "Strassen | 1024/512/512",
+      "value": 0.3795557142857143,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1445"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "Cubic (full tile) | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1457"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "Cubic (quadrant control) | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1459"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_2048",
+      "series": "Strassen | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1461"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "Cubic (full tile) | 512/1024/512",
+      "value": 0.6696487142857143,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1522"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "Cubic (quadrant control) | 512/1024/512",
+      "value": 0.713281142857143,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1524"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "Strassen | 512/1024/512",
+      "value": 0.6700227142857142,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1526"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "Cubic (full tile) | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1538"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "Cubic (quadrant control) | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1540"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "Strassen | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1542"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "Cubic (full tile) | 1024/512/512",
+      "value": 0.6646214285714286,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1603"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "Cubic (quadrant control) | 1024/512/512",
+      "value": 0.7096528571428571,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1605"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "Strassen | 1024/512/512",
+      "value": 0.6570758571428571,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1607"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "Cubic (full tile) | 1024/1024/512",
+      "value": 0.6816425714285714,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1668"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "Cubic (quadrant control) | 1024/1024/512",
+      "value": 0.702397,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1670"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "Strassen | 1024/1024/512",
+      "value": 0.6536784285714285,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1672"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "Cubic (full tile) | 256/256/256",
+      "value": 1.4574012857142857,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1733"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "Cubic (quadrant control) | 256/256/256",
+      "value": 1.4954871428571426,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1735"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "Strassen | 256/256/256",
+      "value": 1.4639682857142857,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1737"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "Cubic (full tile) | 512/512/256",
+      "value": 0.7994114285714288,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1798"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "Cubic (quadrant control) | 512/512/256",
+      "value": 0.8325044285714286,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1800"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_k_8192",
+      "series": "Strassen | 512/512/256",
+      "value": 0.8073914285714286,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1802"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "Cubic (full tile) | 256/256/256",
+      "value": 1.5499285714285715,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1863"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "Cubic (quadrant control) | 256/256/256",
+      "value": 1.5893270000000002,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1865"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "Strassen | 256/256/256",
+      "value": 1.58246,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1867"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "Cubic (full tile) | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1879"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "Cubic (quadrant control) | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1881"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "Strassen | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1883"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "Cubic (full tile) | 512/512/256",
+      "value": 0.9188497142857145,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1944"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "Cubic (quadrant control) | 512/512/256",
+      "value": 0.9615570000000001,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1946"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "Strassen | 512/512/256",
+      "value": 0.9297742857142856,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:1948"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "Cubic (full tile) | 1024/1024/512",
+      "value": 0.6979055714285713,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2009"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "Cubic (quadrant control) | 1024/1024/512",
+      "value": 0.7338000000000001,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2011"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "Strassen | 1024/1024/512",
+      "value": 0.6795655714285714,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2013"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "Cubic (full tile) | 512/1024/512",
+      "value": 0.7478714285714286,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2074"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "Cubic (quadrant control) | 512/1024/512",
+      "value": 0.7835001428571429,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2076"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "Strassen | 512/1024/512",
+      "value": 0.7528698571428573,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2078"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "Cubic (full tile) | 1024/512/512",
+      "value": 0.7412955714285714,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2139"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "Cubic (quadrant control) | 1024/512/512",
+      "value": 0.7680255714285715,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2141"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_m_8192",
+      "series": "Strassen | 1024/512/512",
+      "value": 0.7288384285714286,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2143"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "Cubic (full tile) | 512/1024/512",
+      "value": 0.7440242857142857,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2204"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "Cubic (quadrant control) | 512/1024/512",
+      "value": 0.7754971428571429,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2206"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "Strassen | 512/1024/512",
+      "value": 0.7335815714285713,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2208"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "Cubic (full tile) | 512/512/256",
+      "value": 0.8920871428571429,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2269"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "Cubic (quadrant control) | 512/512/256",
+      "value": 0.9280681428571428,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2271"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "Strassen | 512/512/256",
+      "value": 0.896532857142857,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2273"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "Cubic (full tile) | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2285"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "Cubic (quadrant control) | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2287"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "Strassen | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2289"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "Cubic (full tile) | 1024/1024/512",
+      "value": 0.6838752857142857,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2350"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "Cubic (quadrant control) | 1024/1024/512",
+      "value": 0.713057,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2352"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "Strassen | 1024/1024/512",
+      "value": 0.6703914285714285,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2354"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "Cubic (full tile) | 256/256/256",
+      "value": 1.6137885714285714,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2415"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "Cubic (quadrant control) | 256/256/256",
+      "value": 1.6654914285714286,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2417"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "Strassen | 256/256/256",
+      "value": 1.6271228571428569,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2419"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "Cubic (full tile) | 1024/512/512",
+      "value": 0.7610084285714285,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2480"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "Cubic (quadrant control) | 1024/512/512",
+      "value": 0.8079798571428572,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2482"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "vary_n_8192",
+      "series": "Strassen | 1024/512/512",
+      "value": 0.7527671428571427,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2484"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "Cubic (full tile) | 1024/512/512",
+      "value": 1.1305841428571428,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2545"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "Cubic (quadrant control) | 1024/512/512",
+      "value": 1.2508384285714287,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2547"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "Strassen | 1024/512/512",
+      "value": 1.1082298571428573,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2549"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "Cubic (full tile) | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2561"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "Cubic (quadrant control) | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2563"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "Strassen | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2565"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "Cubic (full tile) | 1024/1024/512",
+      "value": 1.109282857142857,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2626"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "Cubic (quadrant control) | 1024/1024/512",
+      "value": 1.1633182857142859,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2628"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "Strassen | 1024/1024/512",
+      "value": 1.0784514285714286,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2630"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "Cubic (full tile) | 512/1024/512",
+      "value": 1.1633785714285716,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2691"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "Cubic (quadrant control) | 512/1024/512",
+      "value": 1.2760925714285716,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2693"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "Strassen | 512/1024/512",
+      "value": 1.1643385714285714,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2695"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "Cubic (full tile) | 256/256/256",
+      "value": 2.829298571428572,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2756"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "Cubic (quadrant control) | 256/256/256",
+      "value": 2.906293857142857,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2758"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "Strassen | 256/256/256",
+      "value": 2.853064142857143,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2760"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "Cubic (full tile) | 512/512/256",
+      "value": 1.4673971428571428,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2821"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "Cubic (quadrant control) | 512/512/256",
+      "value": 1.5433068571428572,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2823"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "square_4096",
+      "series": "Strassen | 512/512/256",
+      "value": 1.4730385714285712,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2825"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "Cubic (full tile) | 1024/512/512",
+      "value": 1.7572212857142857,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2886"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "Cubic (quadrant control) | 1024/512/512",
+      "value": 1.9178811428571427,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2888"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "Strassen | 1024/512/512",
+      "value": 1.8665254285714288,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2890"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "Cubic (full tile) | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2902"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "Cubic (quadrant control) | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2904"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "Strassen | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2906"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "Cubic (full tile) | 256/256/256",
+      "value": 2.290162857142857,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2967"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "Cubic (quadrant control) | 256/256/256",
+      "value": 2.34799,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2969"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "Strassen | 256/256/256",
+      "value": 2.342913,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:2971"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "Cubic (full tile) | 512/1024/512",
+      "value": 0.923687,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3032"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "Cubic (quadrant control) | 512/1024/512",
+      "value": 0.9938355714285716,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3034"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "Strassen | 512/1024/512",
+      "value": 0.9162084285714285,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3036"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "Cubic (full tile) | 512/512/256",
+      "value": 1.1741700000000002,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3097"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "Cubic (quadrant control) | 512/512/256",
+      "value": 1.219362857142857,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3099"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "Strassen | 512/512/256",
+      "value": 1.1709528571428574,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3101"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "Cubic (full tile) | 1024/1024/512",
+      "value": 1.7053128571428573,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3162"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "Cubic (quadrant control) | 1024/1024/512",
+      "value": 1.8113628571428573,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3164"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "gemma9_gate_up_m512",
+      "series": "Strassen | 1024/1024/512",
+      "value": 1.6640412857142854,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3166"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "Cubic (full tile) | 512/1024/512",
+      "value": 1.0361641428571429,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3227"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "Cubic (quadrant control) | 512/1024/512",
+      "value": 1.115147142857143,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3229"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "Strassen | 512/1024/512",
+      "value": 1.0348655714285715,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3231"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "Cubic (full tile) | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3243"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "Cubic (quadrant control) | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3245"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "Strassen | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3247"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "Cubic (full tile) | 512/512/256",
+      "value": 1.2853739999999998,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3308"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "Cubic (quadrant control) | 512/512/256",
+      "value": 1.3334611428571428,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3310"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "Strassen | 512/512/256",
+      "value": 1.2917942857142857,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3312"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "Cubic (full tile) | 1024/512/512",
+      "value": 1.9273455714285714,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3373"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "Cubic (quadrant control) | 1024/512/512",
+      "value": 2.1221225714285716,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3375"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "Strassen | 1024/512/512",
+      "value": 1.8960070000000002,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3377"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "Cubic (full tile) | 256/256/256",
+      "value": 2.580134,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3438"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "Cubic (quadrant control) | 256/256/256",
+      "value": 2.644012857142857,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3440"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "Strassen | 256/256/256",
+      "value": 2.6187639999999996,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3442"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "Cubic (full tile) | 1024/1024/512",
+      "value": 1.8399341428571427,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3503"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "Cubic (quadrant control) | 1024/1024/512",
+      "value": 1.9715155714285717,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3505"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "mistral7_gate_up_m512",
+      "series": "Strassen | 1024/1024/512",
+      "value": 1.7981817142857144,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3507"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "Cubic (full tile) | 1024/512/512",
+      "value": 3.8969025714285714,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3568"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "Cubic (quadrant control) | 1024/512/512",
+      "value": 4.340065285714286,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3570"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "Strassen | 1024/512/512",
+      "value": 3.837752428571428,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3572"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "Cubic (full tile) | 512/1024/512",
+      "value": 1.9077357142857143,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3633"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "Cubic (quadrant control) | 512/1024/512",
+      "value": 2.124958285714286,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3635"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "Strassen | 512/1024/512",
+      "value": 1.9124681428571428,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3637"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "Cubic (full tile) | 1024/1024/512",
+      "value": 3.6572985714285715,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3698"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "Cubic (quadrant control) | 1024/1024/512",
+      "value": 3.945488,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3700"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "Strassen | 1024/1024/512",
+      "value": 3.562786714285714,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3702"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "Cubic (full tile) | 256/256/256",
+      "value": 5.422845,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3763"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "Cubic (quadrant control) | 256/256/256",
+      "value": 5.584776714285715,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3765"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "Strassen | 256/256/256",
+      "value": 5.489973999999999,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3767"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "Cubic (full tile) | 512/512/256",
+      "value": 2.609162428571428,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3828"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "Cubic (quadrant control) | 512/512/256",
+      "value": 2.7586484285714286,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3830"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "Strassen | 512/512/256",
+      "value": 2.6258168571428575,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3832"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "Cubic (full tile) | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3844"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "Cubic (quadrant control) | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3846"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m512",
+      "series": "Strassen | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3848"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "Cubic (full tile) | 512/512/256",
+      "value": 37.64843928571428,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3909"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "Cubic (quadrant control) | 512/512/256",
+      "value": 39.49795457142857,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3911"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "Strassen | 512/512/256",
+      "value": 37.50116742857143,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3913"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          512,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "Cubic (full tile) | 1024/1024/512",
+      "value": 24.948246142857148,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3974"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "Cubic (quadrant control) | 1024/1024/512",
+      "value": 27.19174285714286,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3976"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "Strassen | 1024/1024/512",
+      "value": 24.057556142857145,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3978"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "Cubic (full tile) | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3990"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "Cubic (quadrant control) | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3992"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "Strassen | 2048/2048/512",
+      "value": null,
+      "status": "oom",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:3994"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "Cubic (full tile) | 1024/512/512",
+      "value": 26.705414142857144,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:4055"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "Cubic (quadrant control) | 1024/512/512",
+      "value": 30.13120314285714,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:4057"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "Strassen | 1024/512/512",
+      "value": 26.25747014285714,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:4059"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          1024,
+          512,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "Cubic (full tile) | 256/256/256",
+      "value": 82.40344028571428,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:4120"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "Cubic (quadrant control) | 256/256/256",
+      "value": 85.17370857142858,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:4122"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "Strassen | 256/256/256",
+      "value": 83.50975771428571,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:4124"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          256,
+          256,
+          256
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "Cubic (full tile) | 512/1024/512",
+      "value": 26.806274285714284,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:4185"
+      ],
+      "extra": {
+        "arm_id": "cubic_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "Cubic (quadrant control) | 512/1024/512",
+      "value": 30.037208285714286,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:4187"
+      ],
+      "extra": {
+        "arm_id": "cubic_quadrant",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    },
+    {
+      "category": "qwen32_gate_up_m8192",
+      "series": "Strassen | 512/1024/512",
+      "value": 26.671592142857143,
+      "status": "ok",
+      "lo": null,
+      "hi": null,
+      "row_refs": [
+        "20260919T050718Z-N2-v5e-v002-226e83:4189"
+      ],
+      "extra": {
+        "arm_id": "strassen_basic",
+        "tile_bm_bn_bk": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      }
+    }
+  ],
+  "ylabel": "Mean time (ms; log color scale)",
+  "center_one": false,
+  "higher_better": false,
+  "takeaway": "Tile choice changes performance. OOM cells are VMEM-limit failures, not zero-time results.",
+  "source_run_ids": [
+    "20260919T050718Z-N2-v5e-v002-226e83"
+  ],
+  "cohort": "Original N1-N4 allocation",
+  "data_file": "data/n2-sweep-call.json",
+  "files": {
+    "absolute": {
+      "png": "figures/n2-sweep-call-absolute.png",
+      "svg": "figures/n2-sweep-call-absolute.svg"
+    }
+  },
+  "explanation": {
+    "observation": "Each column is a matrix shape; each row is an algorithm/tile combination. This scope has 189 measured cells and 27 memory failures. Smaller numbers mean less time; the color scale is logarithmic. Compare algorithms within the same column, then compare tile choices. OOM means no valid timing, never zero.",
+    "interpretation": "Tile size is an important performance choice, and the useful choice depends on the matrix shape and algorithm. The largest tile can exceed fast on-chip memory. These seven-repeat screening results identify candidates; they do not prove a globally optimal tile or an independently confirmed advantage. Native XLA was not measured in N2."
+  }
+}

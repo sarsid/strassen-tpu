@@ -1,0 +1,213 @@
+{
+  "absent_classes": [],
+  "available_class_counts": {
+    "joint_win": 5
+  },
+  "eligible_shapes_in_volume_order": [
+    "qwen32_gate_up_m8192",
+    "square_8192",
+    "square_4096",
+    "vary_k_8192",
+    "vary_m_8192"
+  ],
+  "independent_confirmation": false,
+  "post_hoc": true,
+  "representatives": [
+    {
+      "category": "post_hoc_joint_win",
+      "native_paired_comparison": {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "native_xla",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.0693871727625635,
+          1.0728308593799907
+        ],
+        "speedup_ratio_of_means": 1.071029096339915,
+        "time_reduction_fraction": 0.06631854968520134,
+        "valid_numerical_comparison": true
+      },
+      "paired_comparison": {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_selected",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.08629032160637,
+          1.0905969917490501
+        ],
+        "speedup_ratio_of_means": 1.0882810440173314,
+        "time_reduction_fraction": 0.08111971122040917,
+        "valid_numerical_comparison": true
+      },
+      "shape_id": "qwen32_gate_up_m8192",
+      "shape_mkn": [
+        8192,
+        5120,
+        51200
+      ]
+    },
+    {
+      "category": "post_hoc_joint_win",
+      "native_paired_comparison": {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "native_xla",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.1196007241009014,
+          1.1290182437697778
+        ],
+        "speedup_ratio_of_means": 1.124206252870119,
+        "time_reduction_fraction": 0.11048351007923884,
+        "valid_numerical_comparison": true
+      },
+      "paired_comparison": {
+        "method": "paired bootstrap of rounds, ratio of arithmetic means, 2000 resamples",
+        "paired_rounds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "reference_arm": "cubic_selected",
+        "screen_results_are_not_confirmation": false,
+        "speedup_ci95": [
+          1.0860130242155615,
+          1.0948546405513226
+        ],
+        "speedup_ratio_of_means": 1.0904757575276238,
+        "time_reduction_fraction": 0.08296906822830674,
+        "valid_numerical_comparison": true
+      },
+      "shape_id": "square_8192",
+      "shape_mkn": [
+        8192,
+        8192,
+        8192
+      ]
+    }
+  ],
+  "rule": "Two largest M*K*N among N5-confirm eligible complete-call Strassen CI95 lower>1 versus both native_xla and cubic_selected; descending volume, ascending shape_id tie-break.",
+  "supplement_id": "n6_large_joint_wins_v001"
+}

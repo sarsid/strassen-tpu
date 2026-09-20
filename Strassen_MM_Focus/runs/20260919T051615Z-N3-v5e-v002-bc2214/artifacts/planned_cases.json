@@ -1,0 +1,425 @@
+[
+  {
+    "arms": [
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__plain",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__interleaved",
+        "variant": "interleaved"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__output_accumulator",
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__interleaved_output_accumulator",
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__plain",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__interleaved",
+        "variant": "interleaved"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__output_accumulator",
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__interleaved_output_accumulator",
+        "variant": "interleaved_output_accumulator"
+      }
+    ],
+    "group_id": "square_2048__1024x1024x512",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "square",
+      "id": "square_2048",
+      "k": 2048,
+      "m": 2048,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__plain",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__interleaved",
+        "variant": "interleaved"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__output_accumulator",
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__interleaved_output_accumulator",
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__plain",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__interleaved",
+        "variant": "interleaved"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__output_accumulator",
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__interleaved_output_accumulator",
+        "variant": "interleaved_output_accumulator"
+      }
+    ],
+    "group_id": "vary_k_8192__1024x1024x512",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "axis_sweep",
+      "id": "vary_k_8192",
+      "k": 8192,
+      "m": 2048,
+      "n": 2048,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__plain",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__interleaved",
+        "variant": "interleaved"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__output_accumulator",
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__interleaved_output_accumulator",
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__plain",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__interleaved",
+        "variant": "interleaved"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__output_accumulator",
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__interleaved_output_accumulator",
+        "variant": "interleaved_output_accumulator"
+      }
+    ],
+    "group_id": "vary_n_8192__1024x1024x512",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "axis_sweep",
+      "id": "vary_n_8192",
+      "k": 2048,
+      "m": 2048,
+      "n": 8192,
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__plain",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__interleaved",
+        "variant": "interleaved"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__output_accumulator",
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__interleaved_output_accumulator",
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__plain",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__interleaved",
+        "variant": "interleaved"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__output_accumulator",
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__interleaved_output_accumulator",
+        "variant": "interleaved_output_accumulator"
+      }
+    ],
+    "group_id": "gemma9_gate_up_m512__1024x1024x512",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "gemma9_gate_up_m512",
+      "k": 3584,
+      "m": 512,
+      "n": 28672,
+      "projection": "gate_up",
+      "source_id": "gemma2_9b",
+      "stage": "core"
+    },
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__plain",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__interleaved",
+        "variant": "interleaved"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__output_accumulator",
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__interleaved_output_accumulator",
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__plain",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__interleaved",
+        "variant": "interleaved"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__output_accumulator",
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__interleaved_output_accumulator",
+        "variant": "interleaved_output_accumulator"
+      }
+    ],
+    "group_id": "mistral7_gate_up_m512__1024x1024x512",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "mistral7_gate_up_m512",
+      "k": 4096,
+      "m": 512,
+      "n": 28672,
+      "projection": "gate_up",
+      "source_id": "mistral7_v01",
+      "stage": "core"
+    },
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": "confirm"
+  },
+  {
+    "arms": [
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__plain",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__interleaved",
+        "variant": "interleaved"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__output_accumulator",
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant__interleaved_output_accumulator",
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__plain",
+        "variant": "plain"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__interleaved",
+        "variant": "interleaved"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__output_accumulator",
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "arm_id": "strassen__interleaved_output_accumulator",
+        "variant": "interleaved_output_accumulator"
+      }
+    ],
+    "group_id": "qwen32_gate_up_m8192__1024x1024x512",
+    "inputs": [
+      {
+        "distribution": "gaussian",
+        "seed": 20260919
+      }
+    ],
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "family": "llm_projection",
+      "id": "qwen32_gate_up_m8192",
+      "k": 5120,
+      "m": 8192,
+      "n": 51200,
+      "projection": "gate_up",
+      "source_id": "qwen3_32b",
+      "stage": "anchor"
+    },
+    "tile": [
+      1024,
+      1024,
+      512
+    ],
+    "timing": "confirm"
+  }
+]

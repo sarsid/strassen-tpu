@@ -1,0 +1,527 @@
+{
+  "audit_pass": true,
+  "created_utc": "2026-09-19T08:34:50.995933+00:00",
+  "frozen_working_source_issues": [],
+  "interpretation": "Hash/protocol audit is separate from scientific success. Screens are not confirmation; cohorts are never pooled; CIs are per-comparison without multiplicity correction.",
+  "runs": [
+    {
+      "archive_commit": "0184622a2c510f06834a246d7103e5092276e37e Archive 20260919T081646Z-N9-v5e-v004-0fadc6 (completed)",
+      "artifact_manifest_sha256": "dd438e51222a32665b7897d9eed0ef81701151cd15ce9b7dfda320fed54c8271",
+      "audit_pass": true,
+      "case_status_counts": {
+        "blocked_access": 1,
+        "ok": 6
+      },
+      "complete_call_comparisons": {},
+      "execution_status": "completed",
+      "identity": {
+        "allocation_id": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+        "boot_id": "64fe01c7-4c57-43e9-9f49-6805fb8a887d",
+        "colab_endpoint": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+        "device_id": 0,
+        "device_kind": "TPU v5 lite",
+        "devices": [
+          {
+            "coords": [
+              0,
+              0,
+              0
+            ],
+            "core_on_chip": 0,
+            "id": 0,
+            "kind": "TPU v5 lite",
+            "local_hardware_id": 0,
+            "platform": "tpu",
+            "process_index": 0
+          }
+        ],
+        "host_id": "6f3b9b8cc92c",
+        "hostname": "6f3b9b8cc92c",
+        "jax_version": "0.7.2",
+        "jaxlib_version": "0.7.2",
+        "libtpu_version": "0.0.21.1",
+        "mosaic_compatibility": {
+          "jax": "0.7.2",
+          "libtpu": "0.0.21.1",
+          "override_enabled": true,
+          "target_ir_version": 7
+        },
+        "numpy_version": "2.1.3",
+        "process_index": 0,
+        "runtime_flags": {
+          "JAX_ENABLE_X64": "false",
+          "JAX_PLATFORMS": "tpu",
+          "LIBTPU_INIT_ARGS": " --xla_tpu_use_enhanced_launch_barrier=true",
+          "MKL_NUM_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1",
+          "PJRT_DEVICE": "TPU",
+          "TPU_CHIPS_PER_HOST_BOUNDS": "2,2,1",
+          "TPU_HOST_BOUNDS": "1,1,1",
+          "TPU_NUM_CHIPS": null,
+          "TPU_VISIBLE_CHIPS": null,
+          "XLA_FLAGS": null,
+          "XLA_PYTHON_CLIENT_PREALLOCATE": "false"
+        },
+        "runtime_image": "release-colab-external-images_20260917-060051_RC00",
+        "versions": {
+          "jax": "0.7.2",
+          "jaxlib": "0.7.2",
+          "libtpu": "0.0.21.1",
+          "ml_dtypes": "0.6.0",
+          "numpy": "2.1.3",
+          "requests": "2.32.4",
+          "scipy": "1.16.3"
+        }
+      },
+      "issues": [],
+      "phase": "N9",
+      "record_count": 1423,
+      "run_id": "20260919T081646Z-N9-v5e-v004-0fadc6",
+      "source_commit": "8d683bb64def70d1ff29d6cf95c39032737f5ddd",
+      "summary": {
+        "case_status_counts": {
+          "blocked_access": 1,
+          "ok": 6
+        },
+        "completed": true,
+        "error": null,
+        "finished_utc": "2026-09-19T08:31:32.756272+00:00",
+        "phase": "N9",
+        "results": [
+          {
+            "eligible_for_speedup_claim": {
+              "cubic_n8_selected": true,
+              "native": true,
+              "strassen_n8_selected": true
+            },
+            "failures": {},
+            "model_id": "Qwen/Qwen3-0.6B",
+            "qualification": {
+              "all_finite": true,
+              "candidate_nll": 3.8707091316344244,
+              "candidate_nll_sum": 243.85467529296875,
+              "candidate_perplexity": 47.976395600606935,
+              "final_hidden_relative_l2": 0.022643007338047028,
+              "kl_sum": 0.13664840161800385,
+              "max_abs_error": 0.82421875,
+              "mean_kl": 0.002169022247904823,
+              "nll_delta": 0.0025925409226190688,
+              "passed": true,
+              "positions": 63,
+              "reference_nll": 3.8681165907118054,
+              "reference_nll_sum": 243.69134521484375,
+              "reference_perplexity": 47.852175923566804,
+              "reference_scope": "official Transformers CPU BF16 first64tokens;63scored",
+              "reference_squared_sum": 121490592.0,
+              "relative_l2": 0.023990619805784444,
+              "squared_error_sum": 69923.890625,
+              "thresholds": {
+                "max_abs_nll_delta": 0.05,
+                "max_mean_kl": 0.01,
+                "max_relative_l2": 0.03,
+                "min_top1_agreement": 0.9
+              },
+              "top1_agreement": 0.9682539682539683,
+              "top1_equal": 61
+            },
+            "quality": {
+              "cubic_n8_selected": {
+                "all_finite": true,
+                "candidate_nll": 3.144907877941635,
+                "candidate_nll_sum": 102951.70429229736,
+                "candidate_perplexity": 23.217536527508738,
+                "kl_sum": 44.021731086075306,
+                "max_abs_error": 6.3125,
+                "mean_kl": 0.0013447498498923298,
+                "nll_delta": 0.0002394174667164073,
+                "passed": true,
+                "positions": 32736,
+                "reference_nll": 3.1446684604749184,
+                "reference_nll_sum": 102943.86672210693,
+                "reference_perplexity": 23.21197850909982,
+                "reference_squared_sum": 61675438472.0,
+                "relative_l2": 0.018183866933881247,
+                "squared_error_sum": 20393169.78515625,
+                "thresholds": {
+                  "max_abs_nll_delta": 0.01,
+                  "max_mean_kl": 0.02,
+                  "min_top1_agreement": 0.97
+                },
+                "top1_agreement": 0.9798998044965787,
+                "top1_equal": 32078
+              },
+              "native": {
+                "all_finite": true,
+                "candidate_nll": 3.1446684604749184,
+                "candidate_nll_sum": 102943.86672210693,
+                "candidate_perplexity": 23.21197850909982,
+                "kl_sum": 0.0,
+                "max_abs_error": 0.0,
+                "mean_kl": 0.0,
+                "nll_delta": 0.0,
+                "passed": true,
+                "positions": 32736,
+                "reference_nll": 3.1446684604749184,
+                "reference_nll_sum": 102943.86672210693,
+                "reference_perplexity": 23.21197850909982,
+                "reference_squared_sum": 61675438472.0,
+                "relative_l2": 0.0,
+                "squared_error_sum": 0.0,
+                "thresholds": {
+                  "max_abs_nll_delta": 0.01,
+                  "max_mean_kl": 0.02,
+                  "min_top1_agreement": 0.97
+                },
+                "top1_agreement": 1.0,
+                "top1_equal": 32736
+              },
+              "strassen_n8_selected": {
+                "all_finite": true,
+                "candidate_nll": 3.1448940464012316,
+                "candidate_nll_sum": 102951.25150299072,
+                "candidate_perplexity": 23.217215395435076,
+                "kl_sum": 55.051068902015686,
+                "max_abs_error": 6.1875,
+                "mean_kl": 0.0016816675495483775,
+                "nll_delta": 0.00022558592631316543,
+                "passed": true,
+                "positions": 32736,
+                "reference_nll": 3.1446684604749184,
+                "reference_nll_sum": 102943.86672210693,
+                "reference_perplexity": 23.21197850909982,
+                "reference_squared_sum": 61675438472.0,
+                "relative_l2": 0.021080834837026916,
+                "squared_error_sum": 27408663.37890625,
+                "thresholds": {
+                  "max_abs_nll_delta": 0.01,
+                  "max_mean_kl": 0.02,
+                  "min_top1_agreement": 0.97
+                },
+                "top1_agreement": 0.9772727272727273,
+                "top1_equal": 31992
+              }
+            },
+            "quality_measured": true,
+            "resident_layer_mean_ms": {
+              "cubic_n8_selected": 0.6029004897959184,
+              "native": 0.5788866683673469,
+              "strassen_n8_selected": 0.5951632346938776
+            },
+            "resident_sample_coverage": {
+              "cubic_n8_selected": {
+                "complete": true,
+                "expected": 196,
+                "observed": 196
+              },
+              "native": {
+                "complete": true,
+                "expected": 196,
+                "observed": 196
+              },
+              "strassen_n8_selected": {
+                "complete": true,
+                "expected": 196,
+                "observed": 196
+              }
+            },
+            "revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+            "scope": "Teacher-forced full-model prefill quality; resident-layer and transfer-inclusive streamed full-forward performance; no generation/task capability claim",
+            "status": "completed",
+            "streamed_descriptive_statistics": {
+              "cubic_n8_selected": {
+                "count": 3,
+                "max_ms": 3555.335548,
+                "mean_ms": 3549.7017016666664,
+                "min_ms": 3541.805889,
+                "std_ms": 7.0427471155734755
+              },
+              "native": {
+                "count": 3,
+                "max_ms": 3551.367769,
+                "mean_ms": 3529.7989896666672,
+                "min_ms": 3505.022771,
+                "std_ms": 23.33839026609938
+              },
+              "strassen_n8_selected": {
+                "count": 3,
+                "max_ms": 3551.894939,
+                "mean_ms": 3550.6734453333333,
+                "min_ms": 3549.576368,
+                "std_ms": 1.1642819411594885
+              }
+            },
+            "streamed_forward_mean_ms": {
+              "cubic_n8_selected": 3549.7017016666664,
+              "native": 3529.7989896666672,
+              "strassen_n8_selected": 3550.6734453333333
+            },
+            "streamed_forward_samples_ms": {
+              "cubic_n8_selected": [
+                3551.963668,
+                3541.805889,
+                3555.335548
+              ],
+              "native": [
+                3505.022771,
+                3551.367769,
+                3533.006429
+              ],
+              "strassen_n8_selected": [
+                3550.549029,
+                3551.894939,
+                3549.576368
+              ]
+            },
+            "uncertainty_scope": "Three paired streamed repeats are descriptive; resident samples are paired by layer and repeat in results.jsonl. Layers are not independent statistical replicates."
+          },
+          {
+            "eligible_for_speedup_claim": {
+              "cubic_n8_selected": true,
+              "native": true,
+              "strassen_n8_selected": true
+            },
+            "failures": {},
+            "model_id": "mistralai/Mistral-7B-v0.3",
+            "qualification": {
+              "all_finite": true,
+              "candidate_nll": 2.8807319762214783,
+              "candidate_nll_sum": 181.48611450195312,
+              "candidate_perplexity": 17.827317577494707,
+              "final_hidden_relative_l2": 0.01692565530538559,
+              "kl_sum": 0.04277307167649269,
+              "max_abs_error": 0.96875,
+              "mean_kl": 0.0006789376456586141,
+              "nll_delta": -0.004560682508680358,
+              "passed": true,
+              "positions": 63,
+              "reference_nll": 2.8852926587301586,
+              "reference_nll_sum": 181.7734375,
+              "reference_perplexity": 17.908807997665203,
+              "reference_scope": "official Transformers CPU BF16 first64tokens;63scored",
+              "reference_squared_sum": 38429080.0,
+              "relative_l2": 0.008229232745848565,
+              "squared_error_sum": 2602.427734375,
+              "thresholds": {
+                "max_abs_nll_delta": 0.05,
+                "max_mean_kl": 0.01,
+                "max_relative_l2": 0.03,
+                "min_top1_agreement": 0.9
+              },
+              "top1_agreement": 0.9682539682539683,
+              "top1_equal": 61
+            },
+            "quality": {
+              "cubic_n8_selected": {
+                "all_finite": true,
+                "candidate_nll": 1.8150976466293558,
+                "candidate_nll_sum": 59419.036560058594,
+                "candidate_perplexity": 6.141675862112401,
+                "kl_sum": 8.709228796884418,
+                "max_abs_error": 4.3984375,
+                "mean_kl": 0.0002660443791814644,
+                "nll_delta": 2.584848935294204e-05,
+                "passed": true,
+                "positions": 32736,
+                "reference_nll": 1.8150717981400029,
+                "reference_nll_sum": 59418.19038391113,
+                "reference_perplexity": 6.141517111121015,
+                "reference_squared_sum": 19335801088.0,
+                "relative_l2": 0.0057251116728374235,
+                "squared_error_sum": 633767.6895751953,
+                "thresholds": {
+                  "max_abs_nll_delta": 0.01,
+                  "max_mean_kl": 0.02,
+                  "min_top1_agreement": 0.97
+                },
+                "top1_agreement": 0.9917521994134897,
+                "top1_equal": 32466
+              },
+              "native": {
+                "all_finite": true,
+                "candidate_nll": 1.8150717981400029,
+                "candidate_nll_sum": 59418.19038391113,
+                "candidate_perplexity": 6.141517111121015,
+                "kl_sum": 0.0,
+                "max_abs_error": 0.0,
+                "mean_kl": 0.0,
+                "nll_delta": 0.0,
+                "passed": true,
+                "positions": 32736,
+                "reference_nll": 1.8150717981400029,
+                "reference_nll_sum": 59418.19038391113,
+                "reference_perplexity": 6.141517111121015,
+                "reference_squared_sum": 19335801088.0,
+                "relative_l2": 0.0,
+                "squared_error_sum": 0.0,
+                "thresholds": {
+                  "max_abs_nll_delta": 0.01,
+                  "max_mean_kl": 0.02,
+                  "min_top1_agreement": 0.97
+                },
+                "top1_agreement": 1.0,
+                "top1_equal": 32736
+              },
+              "strassen_n8_selected": {
+                "all_finite": true,
+                "candidate_nll": 1.8153689884137314,
+                "candidate_nll_sum": 59427.919204711914,
+                "candidate_perplexity": 6.143342581514965,
+                "kl_sum": 33.91888505779207,
+                "max_abs_error": 8.03125,
+                "mean_kl": 0.0010361340743460432,
+                "nll_delta": 0.00029719027372854256,
+                "passed": true,
+                "positions": 32736,
+                "reference_nll": 1.8150717981400029,
+                "reference_nll_sum": 59418.19038391113,
+                "reference_perplexity": 6.141517111121015,
+                "reference_squared_sum": 19335801088.0,
+                "relative_l2": 0.013670320953470986,
+                "squared_error_sum": 3613429.5510253906,
+                "thresholds": {
+                  "max_abs_nll_delta": 0.01,
+                  "max_mean_kl": 0.02,
+                  "min_top1_agreement": 0.97
+                },
+                "top1_agreement": 0.989430596285435,
+                "top1_equal": 32390
+              }
+            },
+            "quality_measured": true,
+            "resident_layer_mean_ms": {
+              "cubic_n8_selected": 3.2632945625,
+              "native": 3.4566350625000006,
+              "strassen_n8_selected": 3.1260944285714283
+            },
+            "resident_sample_coverage": {
+              "cubic_n8_selected": {
+                "complete": true,
+                "expected": 224,
+                "observed": 224
+              },
+              "native": {
+                "complete": true,
+                "expected": 224,
+                "observed": 224
+              },
+              "strassen_n8_selected": {
+                "complete": true,
+                "expected": 224,
+                "observed": 224
+              }
+            },
+            "revision": "caa1feb0e54d415e2df31207e5f4e273e33509b1",
+            "scope": "Teacher-forced full-model prefill quality; resident-layer and transfer-inclusive streamed full-forward performance; no generation/task capability claim",
+            "status": "completed",
+            "streamed_descriptive_statistics": {
+              "cubic_n8_selected": {
+                "count": 3,
+                "max_ms": 55072.58859,
+                "mean_ms": 55039.89172566667,
+                "min_ms": 55006.847944,
+                "std_ms": 32.87169599901106
+              },
+              "native": {
+                "count": 3,
+                "max_ms": 55158.384335,
+                "mean_ms": 55108.26168133334,
+                "min_ms": 55066.43134,
+                "std_ms": 46.533967757356436
+              },
+              "strassen_n8_selected": {
+                "count": 3,
+                "max_ms": 55095.426398,
+                "mean_ms": 55092.79108866667,
+                "min_ms": 55088.433619,
+                "std_ms": 3.8011993759853024
+              }
+            },
+            "streamed_forward_mean_ms": {
+              "cubic_n8_selected": 55039.89172566667,
+              "native": 55108.26168133334,
+              "strassen_n8_selected": 55092.79108866667
+            },
+            "streamed_forward_samples_ms": {
+              "cubic_n8_selected": [
+                55072.58859,
+                55006.847944,
+                55040.238643
+              ],
+              "native": [
+                55066.43134,
+                55158.384335,
+                55099.969369
+              ],
+              "strassen_n8_selected": [
+                55094.513249,
+                55095.426398,
+                55088.433619
+              ]
+            },
+            "uncertainty_scope": "Three paired streamed repeats are descriptive; resident samples are paired by layer and repeat in results.jsonl. Layers are not independent statistical replicates."
+          },
+          {
+            "eligible_for_speedup_claim": false,
+            "model_id": "google/gemma-3-1b-pt",
+            "quality_measured": false,
+            "reason": "Official access probe denied available credentials; no terms accepted or mirrors used",
+            "status": "blocked_access"
+          }
+        ],
+        "scientific_success": "Execution completion does not imply numerical eligibility or a speedup.",
+        "status": "completed",
+        "wall_seconds": 880.8921213970007
+      },
+      "terminal_model_policy_outcomes": [
+        {
+          "arm_id": "cubic_n8_selected",
+          "failure": null,
+          "model_id": "Qwen/Qwen3-0.6B",
+          "quality_passed": true,
+          "status": "ok"
+        },
+        {
+          "arm_id": "strassen_n8_selected",
+          "failure": null,
+          "model_id": "Qwen/Qwen3-0.6B",
+          "quality_passed": true,
+          "status": "ok"
+        },
+        {
+          "arm_id": "native",
+          "failure": null,
+          "model_id": "Qwen/Qwen3-0.6B",
+          "quality_passed": true,
+          "status": "ok"
+        },
+        {
+          "arm_id": "cubic_n8_selected",
+          "failure": null,
+          "model_id": "mistralai/Mistral-7B-v0.3",
+          "quality_passed": true,
+          "status": "ok"
+        },
+        {
+          "arm_id": "strassen_n8_selected",
+          "failure": null,
+          "model_id": "mistralai/Mistral-7B-v0.3",
+          "quality_passed": true,
+          "status": "ok"
+        },
+        {
+          "arm_id": "native",
+          "failure": null,
+          "model_id": "mistralai/Mistral-7B-v0.3",
+          "quality_passed": true,
+          "status": "ok"
+        },
+        {
+          "model_id": "google/gemma-3-1b-pt",
+          "scope": "model-level terminal outcome",
+          "status": "blocked_access"
+        }
+      ]
+    }
+  ]
+}
