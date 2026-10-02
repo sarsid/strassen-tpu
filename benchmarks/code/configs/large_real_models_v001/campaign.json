@@ -1,0 +1,756 @@
+{
+  "actual_model_tuning": "Sixteen attempted candidates per custom family and four Native settings at each exact real-operand geometry.",
+  "arms": [
+    "native",
+    "cubic",
+    "one_level",
+    "two_level"
+  ],
+  "campaign_id": "large_real_models_v001",
+  "candidate_design": "Sixteen independently searched tiles per custom family. Eight prior depth-probe tiles plus eight prior-informed small, skinny, or historically useful tiles. Native has four registered compiler settings; compiler controls Native tiling. This is a bounded prior-informed search, not an exhaustive optimum.",
+  "candidate_families": {
+    "cubic": [
+      {
+        "algorithm": "cubic_full",
+        "candidate_id": "cubic_1024_1024_512",
+        "compiler_options": {},
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_full",
+        "candidate_id": "cubic_1024_2048_512",
+        "compiler_options": {},
+        "tile": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_full",
+        "candidate_id": "cubic_2048_1024_512",
+        "compiler_options": {},
+        "tile": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_full",
+        "candidate_id": "cubic_1024_2048_1024",
+        "compiler_options": {},
+        "tile": [
+          1024,
+          2048,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_full",
+        "candidate_id": "cubic_2048_1024_1024",
+        "compiler_options": {},
+        "tile": [
+          2048,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_full",
+        "candidate_id": "cubic_2048_2048_512",
+        "compiler_options": {},
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_full",
+        "candidate_id": "cubic_2048_2048_1024",
+        "compiler_options": {},
+        "tile": [
+          2048,
+          2048,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_full",
+        "candidate_id": "cubic_2048_2048_2048",
+        "compiler_options": {},
+        "tile": [
+          2048,
+          2048,
+          2048
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_full",
+        "candidate_id": "cubic_16_128_128",
+        "compiler_options": {},
+        "tile": [
+          16,
+          128,
+          128
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_full",
+        "candidate_id": "cubic_128_512_512",
+        "compiler_options": {},
+        "tile": [
+          128,
+          512,
+          512
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_full",
+        "candidate_id": "cubic_256_1024_512",
+        "compiler_options": {},
+        "tile": [
+          256,
+          1024,
+          512
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_full",
+        "candidate_id": "cubic_512_1024_1024",
+        "compiler_options": {},
+        "tile": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_full",
+        "candidate_id": "cubic_1024_512_1024",
+        "compiler_options": {},
+        "tile": [
+          1024,
+          512,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_full",
+        "candidate_id": "cubic_1536_1536_512",
+        "compiler_options": {},
+        "tile": [
+          1536,
+          1536,
+          512
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_full",
+        "candidate_id": "cubic_1024_1024_1024",
+        "compiler_options": {},
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      {
+        "algorithm": "cubic_full",
+        "candidate_id": "cubic_1024_1024_1536",
+        "compiler_options": {},
+        "tile": [
+          1024,
+          1024,
+          1536
+        ],
+        "variant": "output_accumulator"
+      }
+    ],
+    "native": [
+      {
+        "algorithm": "native",
+        "candidate_id": "native_default",
+        "compiler_options": {},
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "native",
+        "candidate_id": "native_vmem_32m",
+        "compiler_options": {
+          "xla_tpu_scoped_vmem_limit_kib": 32768
+        },
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "native",
+        "candidate_id": "native_vmem_48m",
+        "compiler_options": {
+          "xla_tpu_scoped_vmem_limit_kib": 49152
+        },
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "algorithm": "native",
+        "candidate_id": "native_vmem_64m",
+        "compiler_options": {
+          "xla_tpu_scoped_vmem_limit_kib": 65536
+        },
+        "tile": null,
+        "variant": "plain"
+      }
+    ],
+    "one_level": [
+      {
+        "algorithm": "strassen",
+        "candidate_id": "one_level_1024_1024_512",
+        "compiler_options": {},
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "one_level_1024_2048_512",
+        "compiler_options": {},
+        "tile": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "one_level_2048_1024_512",
+        "compiler_options": {},
+        "tile": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "one_level_1024_2048_1024",
+        "compiler_options": {},
+        "tile": [
+          1024,
+          2048,
+          1024
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "one_level_2048_1024_1024",
+        "compiler_options": {},
+        "tile": [
+          2048,
+          1024,
+          1024
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "one_level_2048_2048_512",
+        "compiler_options": {},
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "one_level_2048_2048_1024",
+        "compiler_options": {},
+        "tile": [
+          2048,
+          2048,
+          1024
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "one_level_2048_2048_2048",
+        "compiler_options": {},
+        "tile": [
+          2048,
+          2048,
+          2048
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "one_level_16_256_256",
+        "compiler_options": {},
+        "tile": [
+          16,
+          256,
+          256
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "one_level_128_512_512",
+        "compiler_options": {},
+        "tile": [
+          128,
+          512,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "one_level_256_1024_512",
+        "compiler_options": {},
+        "tile": [
+          256,
+          1024,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "one_level_512_1024_1024",
+        "compiler_options": {},
+        "tile": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "one_level_1536_1536_512",
+        "compiler_options": {},
+        "tile": [
+          1536,
+          1536,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "one_level_768_768_512",
+        "compiler_options": {},
+        "tile": [
+          768,
+          768,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "one_level_1024_1024_1024",
+        "compiler_options": {},
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "one_level_512_1536_512",
+        "compiler_options": {},
+        "tile": [
+          512,
+          1536,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      }
+    ],
+    "two_level": [
+      {
+        "algorithm": "strassen",
+        "candidate_id": "two_level_1024_1024_512",
+        "compiler_options": {},
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "two_level_scratch"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "two_level_1024_2048_512",
+        "compiler_options": {},
+        "tile": [
+          1024,
+          2048,
+          512
+        ],
+        "variant": "two_level_scratch"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "two_level_2048_1024_512",
+        "compiler_options": {},
+        "tile": [
+          2048,
+          1024,
+          512
+        ],
+        "variant": "two_level_scratch"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "two_level_1024_2048_1024",
+        "compiler_options": {},
+        "tile": [
+          1024,
+          2048,
+          1024
+        ],
+        "variant": "two_level_scratch"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "two_level_2048_1024_1024",
+        "compiler_options": {},
+        "tile": [
+          2048,
+          1024,
+          1024
+        ],
+        "variant": "two_level_scratch"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "two_level_2048_2048_512",
+        "compiler_options": {},
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "two_level_scratch"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "two_level_2048_2048_1024",
+        "compiler_options": {},
+        "tile": [
+          2048,
+          2048,
+          1024
+        ],
+        "variant": "two_level_scratch"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "two_level_2048_2048_2048",
+        "compiler_options": {},
+        "tile": [
+          2048,
+          2048,
+          2048
+        ],
+        "variant": "two_level_scratch"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "two_level_32_512_512",
+        "compiler_options": {},
+        "tile": [
+          32,
+          512,
+          512
+        ],
+        "variant": "two_level_scratch"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "two_level_128_512_512",
+        "compiler_options": {},
+        "tile": [
+          128,
+          512,
+          512
+        ],
+        "variant": "two_level_scratch"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "two_level_256_1024_512",
+        "compiler_options": {},
+        "tile": [
+          256,
+          1024,
+          512
+        ],
+        "variant": "two_level_scratch"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "two_level_512_1024_1024",
+        "compiler_options": {},
+        "tile": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "two_level_scratch"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "two_level_1536_1536_512",
+        "compiler_options": {},
+        "tile": [
+          1536,
+          1536,
+          512
+        ],
+        "variant": "two_level_scratch"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "two_level_768_1024_512",
+        "compiler_options": {},
+        "tile": [
+          768,
+          1024,
+          512
+        ],
+        "variant": "two_level_scratch"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "two_level_1024_1024_1024",
+        "compiler_options": {},
+        "tile": [
+          1024,
+          1024,
+          1024
+        ],
+        "variant": "two_level_scratch"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "two_level_512_1536_512",
+        "compiler_options": {},
+        "tile": [
+          512,
+          1536,
+          512
+        ],
+        "variant": "two_level_scratch"
+      }
+    ]
+  },
+  "confirm_seeds": [
+    2026092271,
+    2026092371,
+    2026092471
+  ],
+  "correctness": {
+    "failure_policy": "Record failures and measurements; failing rows cannot count as valid speedup wins. Fixed thresholds never change to rescue an arm.",
+    "gate": {
+      "max_abs_atol": 0.001,
+      "max_abs_reference_rtol": 0.05,
+      "relative_l2_max": 0.02,
+      "require_finite": true
+    },
+    "gate_expression": "finite && relative_l2 <= 0.02 && max_abs_error <= 0.001 + 0.05 * max_abs_reference",
+    "input_reference": "Use the exact BF16-quantized operands cast to NumPy float32, not the pre-quantization random source.",
+    "metrics": [
+      "reference_scope",
+      "sample_count",
+      "relative_l2",
+      "max_abs_error",
+      "max_abs_reference",
+      "rmse",
+      "mean_abs_error",
+      "p50_abs_error",
+      "p99_abs_error",
+      "normwise_error",
+      "finite",
+      "pass"
+    ],
+    "mode": "full_if_both_limits_allow_else_sampled_cross_product",
+    "near_zero_denominator": 1e-30,
+    "reference": "host_numpy_fp64",
+    "sample_columns": 128,
+    "sample_rows": 128,
+    "sampling": "seeded without replacement, always including first and last row/column; record indices; reference uses all K",
+    "scope": "Full-output finiteness plus full or sampled all-K FP64 numerical metrics; eligibility threshold is not a model-quality guarantee."
+  },
+  "development_set": true,
+  "device": {
+    "allow_concurrent_timing": false,
+    "allow_v6e": false,
+    "identity_fields": [
+      "allocation_id",
+      "device_kind",
+      "device_id",
+      "process_index",
+      "jax_version",
+      "jaxlib_version",
+      "libtpu_version",
+      "runtime_image",
+      "runtime_flags",
+      "host_id"
+    ],
+    "identity_missing_policy": "Record unknown explicitly; do not describe unverified physical identity as the same chip.",
+    "require_identity_match": true,
+    "reuse_same_allocation": true,
+    "single_device": true,
+    "target": "v5e"
+  },
+  "distribution_manifest": "distributions.json",
+  "execution_contract": {
+    "archive_after_run": [
+      "summary.json",
+      "status snapshot",
+      "artifact SHA256 manifest",
+      "completion/failure marker"
+    ],
+    "archive_before_run": [
+      "source tree snapshot",
+      "configuration JSON",
+      "source/configuration SHA256 manifests",
+      "git commit",
+      "environment fingerprint",
+      "planned cases"
+    ],
+    "archive_during_run": [
+      "append-only events.jsonl",
+      "stdout/stderr",
+      "raw timing samples",
+      "errors"
+    ],
+    "commit_policy": "Root orchestrator commits source snapshot before execution and records a commit after every completed or failed execution. Existing source snapshots and result directories are never overwritten.",
+    "external_changes": "Any device or environment change creates a new cohort; do not pool it silently with the original allocation.",
+    "immutable_run_id": "UTC timestamp plus unique suffix",
+    "record_statuses": [
+      "ok",
+      "input_error",
+      "numerical_failure",
+      "compile_error",
+      "oom",
+      "unsupported",
+      "skipped_memory_preflight",
+      "interrupted",
+      "not_run"
+    ],
+    "resume": "A retry/new version receives a new run id and references previous run ids; never appends measurements to a sealed run."
+  },
+  "headline_rule": "Freeze fastest eligible screening mean separately per family. Confirmation never changes the headline choice. Retain top three plus candidates within five percent, capped at four; record candidates omitted by cap.",
+  "input_split": "For each M: concatenate disjoint 2048-token Native layer0 activation windows into four groups: screen group0, confirm groups1/2/3. Quality first16 windows is descriptive, not held out.",
+  "interpretation": "Official Qwen3-8B/Mistral7B-v0.3/Gemma3-12B text checkpoints. Actual layer0 weights and corpus activations at M2048/8192/16384; full-model quality and timings at sequence length2048.",
+  "memory": {
+    "estimated_live_device_budget_gib": 8,
+    "execution_order": "Ascending useful volume, deterministic candidate interleaving; one confirmation group per shape reuses compiled finalists across three fresh input seeds.",
+    "kernel_vmem_limit_mib": 48,
+    "max_full_reference_flops": 2000000000,
+    "max_reference_output_elements": 1048576,
+    "on_device_oom": "Record oom, clear executable/input buffers before the next case; retry only in a new immutable run.",
+    "on_preflight_over_budget": "Record skipped_memory_preflight with estimate and limit; do not silently remove shape.",
+    "preflight": "Estimate and record bytes for original inputs, padded inputs, FP32 output, one result, and reference samples. Conservative estimate is not measured peak memory."
+  },
+  "operand_windows": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "order_seed": 92771,
+  "precision": {
+    "accumulator_dtype": "float32",
+    "input_dtype": "bfloat16",
+    "native_precision": "DEFAULT",
+    "note": "All five methods use exact same BF16 operands, DEFAULT dots, FP32 accumulation/output. Strassen pre-additions round in BF16 at each level; reference uses host float64.",
+    "output_dtype": "float32",
+    "pre_add_dtype": "bfloat16",
+    "reference_dtype": "float64"
+  },
+  "qualification_failure_policy": "Keep real first-layer operand observations; block full-model quality/performance if independent Native oracle gates fail. No relaxed threshold, no substitute checkpoint.",
+  "quality_windows": 16,
+  "resident_timing": {
+    "repeats": 7,
+    "warmups": 2
+  },
+  "schema_version": 1,
+  "screen_seed": 2026092171,
+  "selection_policy": {
+    "bootstrap_replicates": 4000,
+    "confidence_level": 0.95,
+    "max_confirm_per_family": 4,
+    "near_fraction": 0.05,
+    "top_k": 3
+  },
+  "shape_manifest": "shapes.json",
+  "smoke_seed": 2026092601,
+  "smoke_shape_ids": [
+    "qwen_3_8b_gate_up_concat_m2048"
+  ],
+  "streamed_repeats": 3,
+  "timing": {
+    "confirm": {
+      "repeats": 30,
+      "warmups": 5
+    },
+    "screen": {
+      "repeats": 10,
+      "warmups": 3
+    },
+    "smoke": {
+      "repeats": 3,
+      "warmups": 1
+    }
+  },
+  "timing_scope": "call_only: device padding, multiplication, crop; host transfer and compilation excluded",
+  "unseen_shape_validation": false,
+  "token_shape": [
+    32,
+    2048
+  ],
+  "capture_windows": 32,
+  "projection_m_values": [
+    2048,
+    8192,
+    16384
+  ]
+}

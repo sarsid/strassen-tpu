@@ -1,0 +1,4858 @@
+{
+  "allocation_id": "tpu-v6e1-s-kkb-euw4a0-24j0e0gqv2iqi",
+  "analysis_python": "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/.venv-reconcile/bin/python",
+  "automatic_recovery": true,
+  "cohort_id": "auto-v6e-20260929T044310Z-5996",
+  "controller_python": "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/.venv-colab/bin/python",
+  "decisions": [
+    "Preserve the seven v6e pilot output geometries, full K or minimum leaf-aligned padded K, selected K divisors, 512 panel, two accumulator strategies and one/two buffers. Include known pilot configurations. Standard tile-multiple pad/crop is timed. For M or N below 512 retain three geometries ranked by padded output area, plus known controls. Cubic independently searches these geometries, panels and buffers. All exclusions recorded. Full-tile output-accumulator cubic is an additional independently tuned candidate on the same tile/panel menu, using its unchanged compiler-managed pipeline.",
+    "Same-batch Native normalization; freeze Native, cubic, S1, S2, overall and accumulator/contraction strata; fresh three-seed paired confirmation; no confirmation reselection.",
+    "Only v6e joint kernels and v6e compiler/memory settings. Historical v5e code is a separate later study.",
+    "Smoke must pass exact arithmetic for aligned, tiny and boundary cases in both output contracts.",
+    "Native, independent cubic, S1 and S2; default Native retained. Three fresh confirmation seeds, no reselection.",
+    "Archive and commit each phase into the dedicated results directory. Live progress counts are actual terminal measurements.",
+    "Single allocation, serial timing. An uncertain launch stops advancement; no silent retries or cross-allocation timing pooling.",
+    "Only whole screen/confirmation comparisons are reused; incomplete units restart after runtime loss.",
+    "The supervisor owns allocation lifetime; successful controller completion does not release this TPU.",
+    "All completed phases, failed attempts and allocation identities remain archived."
+  ],
+  "hardware": "v6e",
+  "history": "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260927-arch-supervised-v001/history.json",
+  "release": "runtime/release_allocation_v002.py",
+  "remote_identity": "/content/Strassen_MM_Focus/20260928T223445Z-auto-v6e-setup-v001-f9d28d/identity.json",
+  "results_relative": "results/v6e/168_shapes_joint_fp32_bf16_20260927_v001",
+  "schema_version": 1,
+  "session": "strassen-auto-v6e-0928-223442",
+  "stages": [
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 72,
+      "id": "arch-smoke",
+      "kind": "measurement",
+      "label": "v6e arch-smoke",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [],
+      "runner_args": [],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-smoke"
+      ],
+      "id": "export-arch-smoke",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-smoke",
+      "operation": "command",
+      "requires": [
+        "arch-smoke"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 501,
+      "id": "arch-104-screen",
+      "kind": "measurement",
+      "label": "v6e arch-104-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [],
+      "runner_args": [
+        "--shape-start",
+        "103",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-104-screen"
+      ],
+      "id": "export-arch-104-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-104-screen",
+      "operation": "command",
+      "requires": [
+        "arch-104-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-104-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-104-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-104-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "103",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-104-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-104-confirm"
+      ],
+      "id": "export-arch-104-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-104-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-104-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 829,
+      "id": "arch-105-screen",
+      "kind": "measurement",
+      "label": "v6e arch-105-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-104-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "104",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-105-screen"
+      ],
+      "id": "export-arch-105-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-105-screen",
+      "operation": "command",
+      "requires": [
+        "arch-105-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-105-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-105-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-105-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "104",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-105-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-105-confirm"
+      ],
+      "id": "export-arch-105-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-105-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-105-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 760,
+      "id": "arch-106-screen",
+      "kind": "measurement",
+      "label": "v6e arch-106-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-105-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "105",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-106-screen"
+      ],
+      "id": "export-arch-106-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-106-screen",
+      "operation": "command",
+      "requires": [
+        "arch-106-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-106-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-106-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-106-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "105",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-106-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-106-confirm"
+      ],
+      "id": "export-arch-106-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-106-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-106-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 680,
+      "id": "arch-107-screen",
+      "kind": "measurement",
+      "label": "v6e arch-107-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-106-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "106",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-107-screen"
+      ],
+      "id": "export-arch-107-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-107-screen",
+      "operation": "command",
+      "requires": [
+        "arch-107-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-107-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-107-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-107-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "106",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-107-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-107-confirm"
+      ],
+      "id": "export-arch-107-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-107-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-107-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 829,
+      "id": "arch-108-screen",
+      "kind": "measurement",
+      "label": "v6e arch-108-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-107-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "107",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-108-screen"
+      ],
+      "id": "export-arch-108-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-108-screen",
+      "operation": "command",
+      "requires": [
+        "arch-108-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-108-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-108-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-108-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "107",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-108-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-108-confirm"
+      ],
+      "id": "export-arch-108-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-108-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-108-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 514,
+      "id": "arch-109-screen",
+      "kind": "measurement",
+      "label": "v6e arch-109-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-108-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "108",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-109-screen"
+      ],
+      "id": "export-arch-109-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-109-screen",
+      "operation": "command",
+      "requires": [
+        "arch-109-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-109-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-109-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-109-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "108",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-109-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-109-confirm"
+      ],
+      "id": "export-arch-109-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-109-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-109-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 370,
+      "id": "arch-110-screen",
+      "kind": "measurement",
+      "label": "v6e arch-110-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-109-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "109",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-110-screen"
+      ],
+      "id": "export-arch-110-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-110-screen",
+      "operation": "command",
+      "requires": [
+        "arch-110-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-110-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-110-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-110-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "109",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-110-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-110-confirm"
+      ],
+      "id": "export-arch-110-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-110-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-110-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 344,
+      "id": "arch-111-screen",
+      "kind": "measurement",
+      "label": "v6e arch-111-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-110-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "110",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-111-screen"
+      ],
+      "id": "export-arch-111-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-111-screen",
+      "operation": "command",
+      "requires": [
+        "arch-111-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-111-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-111-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-111-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "110",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-111-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-111-confirm"
+      ],
+      "id": "export-arch-111-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-111-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-111-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 402,
+      "id": "arch-112-screen",
+      "kind": "measurement",
+      "label": "v6e arch-112-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-111-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "111",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-112-screen"
+      ],
+      "id": "export-arch-112-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-112-screen",
+      "operation": "command",
+      "requires": [
+        "arch-112-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-112-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-112-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-112-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "111",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-112-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-112-confirm"
+      ],
+      "id": "export-arch-112-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-112-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-112-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 639,
+      "id": "arch-113-screen",
+      "kind": "measurement",
+      "label": "v6e arch-113-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-112-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "112",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-113-screen"
+      ],
+      "id": "export-arch-113-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-113-screen",
+      "operation": "command",
+      "requires": [
+        "arch-113-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-113-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-113-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-113-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "112",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-113-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-113-confirm"
+      ],
+      "id": "export-arch-113-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-113-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-113-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 236,
+      "id": "arch-114-screen",
+      "kind": "measurement",
+      "label": "v6e arch-114-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-113-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "113",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-114-screen"
+      ],
+      "id": "export-arch-114-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-114-screen",
+      "operation": "command",
+      "requires": [
+        "arch-114-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-114-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-114-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-114-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "113",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-114-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-114-confirm"
+      ],
+      "id": "export-arch-114-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-114-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-114-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 668,
+      "id": "arch-115-screen",
+      "kind": "measurement",
+      "label": "v6e arch-115-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-114-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "114",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-115-screen"
+      ],
+      "id": "export-arch-115-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-115-screen",
+      "operation": "command",
+      "requires": [
+        "arch-115-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-115-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-115-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-115-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "114",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-115-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-115-confirm"
+      ],
+      "id": "export-arch-115-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-115-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-115-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 639,
+      "id": "arch-116-screen",
+      "kind": "measurement",
+      "label": "v6e arch-116-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-115-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "115",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-116-screen"
+      ],
+      "id": "export-arch-116-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-116-screen",
+      "operation": "command",
+      "requires": [
+        "arch-116-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-116-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-116-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-116-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "115",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-116-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-116-confirm"
+      ],
+      "id": "export-arch-116-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-116-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-116-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 829,
+      "id": "arch-117-screen",
+      "kind": "measurement",
+      "label": "v6e arch-117-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-116-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "116",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-117-screen"
+      ],
+      "id": "export-arch-117-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-117-screen",
+      "operation": "command",
+      "requires": [
+        "arch-117-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-117-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-117-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-117-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "116",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-117-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-117-confirm"
+      ],
+      "id": "export-arch-117-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-117-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-117-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 639,
+      "id": "arch-118-screen",
+      "kind": "measurement",
+      "label": "v6e arch-118-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-117-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "117",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-118-screen"
+      ],
+      "id": "export-arch-118-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-118-screen",
+      "operation": "command",
+      "requires": [
+        "arch-118-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-118-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-118-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-118-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "117",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-118-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-118-confirm"
+      ],
+      "id": "export-arch-118-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-118-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-118-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 841,
+      "id": "arch-119-screen",
+      "kind": "measurement",
+      "label": "v6e arch-119-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-118-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "118",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-119-screen"
+      ],
+      "id": "export-arch-119-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-119-screen",
+      "operation": "command",
+      "requires": [
+        "arch-119-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-119-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-119-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-119-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "118",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-119-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-119-confirm"
+      ],
+      "id": "export-arch-119-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-119-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-119-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 829,
+      "id": "arch-120-screen",
+      "kind": "measurement",
+      "label": "v6e arch-120-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-119-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "119",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-120-screen"
+      ],
+      "id": "export-arch-120-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-120-screen",
+      "operation": "command",
+      "requires": [
+        "arch-120-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-120-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-120-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-120-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "119",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-120-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-120-confirm"
+      ],
+      "id": "export-arch-120-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-120-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-120-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 639,
+      "id": "arch-121-screen",
+      "kind": "measurement",
+      "label": "v6e arch-121-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-120-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "120",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-121-screen"
+      ],
+      "id": "export-arch-121-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-121-screen",
+      "operation": "command",
+      "requires": [
+        "arch-121-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-121-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-121-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-121-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "120",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-121-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-121-confirm"
+      ],
+      "id": "export-arch-121-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-121-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-121-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 514,
+      "id": "arch-122-screen",
+      "kind": "measurement",
+      "label": "v6e arch-122-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-121-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "121",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-122-screen"
+      ],
+      "id": "export-arch-122-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-122-screen",
+      "operation": "command",
+      "requires": [
+        "arch-122-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-122-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-122-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-122-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "121",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-122-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-122-confirm"
+      ],
+      "id": "export-arch-122-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-122-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-122-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 346,
+      "id": "arch-123-screen",
+      "kind": "measurement",
+      "label": "v6e arch-123-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-122-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "122",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-123-screen"
+      ],
+      "id": "export-arch-123-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-123-screen",
+      "operation": "command",
+      "requires": [
+        "arch-123-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-123-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-123-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-123-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "122",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-123-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-123-confirm"
+      ],
+      "id": "export-arch-123-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-123-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-123-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 346,
+      "id": "arch-124-screen",
+      "kind": "measurement",
+      "label": "v6e arch-124-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-123-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "123",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-124-screen"
+      ],
+      "id": "export-arch-124-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-124-screen",
+      "operation": "command",
+      "requires": [
+        "arch-124-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-124-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-124-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-124-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "123",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-124-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-124-confirm"
+      ],
+      "id": "export-arch-124-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-124-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-124-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 329,
+      "id": "arch-125-screen",
+      "kind": "measurement",
+      "label": "v6e arch-125-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-124-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "124",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-125-screen"
+      ],
+      "id": "export-arch-125-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-125-screen",
+      "operation": "command",
+      "requires": [
+        "arch-125-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-125-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-125-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-125-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "124",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-125-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-125-confirm"
+      ],
+      "id": "export-arch-125-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-125-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-125-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 829,
+      "id": "arch-126-screen",
+      "kind": "measurement",
+      "label": "v6e arch-126-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-125-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "125",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-126-screen"
+      ],
+      "id": "export-arch-126-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-126-screen",
+      "operation": "command",
+      "requires": [
+        "arch-126-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-126-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-126-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-126-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "125",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-126-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-126-confirm"
+      ],
+      "id": "export-arch-126-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-126-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-126-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 329,
+      "id": "arch-127-screen",
+      "kind": "measurement",
+      "label": "v6e arch-127-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-126-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "126",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-127-screen"
+      ],
+      "id": "export-arch-127-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-127-screen",
+      "operation": "command",
+      "requires": [
+        "arch-127-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-127-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-127-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-127-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "126",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-127-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-127-confirm"
+      ],
+      "id": "export-arch-127-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-127-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-127-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 829,
+      "id": "arch-128-screen",
+      "kind": "measurement",
+      "label": "v6e arch-128-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-127-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "127",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-128-screen"
+      ],
+      "id": "export-arch-128-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-128-screen",
+      "operation": "command",
+      "requires": [
+        "arch-128-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-128-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-128-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-128-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "127",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-128-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-128-confirm"
+      ],
+      "id": "export-arch-128-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-128-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-128-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 514,
+      "id": "arch-129-screen",
+      "kind": "measurement",
+      "label": "v6e arch-129-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-128-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "128",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-129-screen"
+      ],
+      "id": "export-arch-129-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-129-screen",
+      "operation": "command",
+      "requires": [
+        "arch-129-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-129-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-129-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-129-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "128",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-129-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-129-confirm"
+      ],
+      "id": "export-arch-129-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-129-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-129-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 402,
+      "id": "arch-130-screen",
+      "kind": "measurement",
+      "label": "v6e arch-130-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-129-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "129",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-130-screen"
+      ],
+      "id": "export-arch-130-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-130-screen",
+      "operation": "command",
+      "requires": [
+        "arch-130-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-130-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-130-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-130-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "129",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-130-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-130-confirm"
+      ],
+      "id": "export-arch-130-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-130-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-130-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 514,
+      "id": "arch-132-screen",
+      "kind": "measurement",
+      "label": "v6e arch-132-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-130-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "131",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-132-screen"
+      ],
+      "id": "export-arch-132-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-132-screen",
+      "operation": "command",
+      "requires": [
+        "arch-132-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-132-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-132-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-132-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "131",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-132-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-132-confirm"
+      ],
+      "id": "export-arch-132-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-132-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-132-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 829,
+      "id": "arch-133-screen",
+      "kind": "measurement",
+      "label": "v6e arch-133-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-132-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "132",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-133-screen"
+      ],
+      "id": "export-arch-133-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-133-screen",
+      "operation": "command",
+      "requires": [
+        "arch-133-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-133-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-133-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-133-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "132",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-133-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-133-confirm"
+      ],
+      "id": "export-arch-133-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-133-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-133-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 322,
+      "id": "arch-134-screen",
+      "kind": "measurement",
+      "label": "v6e arch-134-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-133-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "133",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-134-screen"
+      ],
+      "id": "export-arch-134-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-134-screen",
+      "operation": "command",
+      "requires": [
+        "arch-134-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-134-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-134-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-134-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "133",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-134-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-134-confirm"
+      ],
+      "id": "export-arch-134-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-134-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-134-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 829,
+      "id": "arch-135-screen",
+      "kind": "measurement",
+      "label": "v6e arch-135-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-134-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "134",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-135-screen"
+      ],
+      "id": "export-arch-135-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-135-screen",
+      "operation": "command",
+      "requires": [
+        "arch-135-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-135-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-135-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-135-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "134",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-135-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-135-confirm"
+      ],
+      "id": "export-arch-135-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-135-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-135-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 322,
+      "id": "arch-136-screen",
+      "kind": "measurement",
+      "label": "v6e arch-136-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-135-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "135",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-136-screen"
+      ],
+      "id": "export-arch-136-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-136-screen",
+      "operation": "command",
+      "requires": [
+        "arch-136-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-136-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-136-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-136-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "135",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-136-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-136-confirm"
+      ],
+      "id": "export-arch-136-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-136-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-136-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 800,
+      "id": "arch-137-screen",
+      "kind": "measurement",
+      "label": "v6e arch-137-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-136-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "136",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-137-screen"
+      ],
+      "id": "export-arch-137-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-137-screen",
+      "operation": "command",
+      "requires": [
+        "arch-137-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-137-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-137-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-137-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "136",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-137-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-137-confirm"
+      ],
+      "id": "export-arch-137-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-137-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-137-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 702,
+      "id": "arch-138-screen",
+      "kind": "measurement",
+      "label": "v6e arch-138-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-137-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "137",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-138-screen"
+      ],
+      "id": "export-arch-138-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-138-screen",
+      "operation": "command",
+      "requires": [
+        "arch-138-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-138-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-138-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-138-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "137",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-138-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-138-confirm"
+      ],
+      "id": "export-arch-138-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-138-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-138-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 501,
+      "id": "arch-139-screen",
+      "kind": "measurement",
+      "label": "v6e arch-139-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-138-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "138",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-139-screen"
+      ],
+      "id": "export-arch-139-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-139-screen",
+      "operation": "command",
+      "requires": [
+        "arch-139-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-139-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-139-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-139-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "138",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-139-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-139-confirm"
+      ],
+      "id": "export-arch-139-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-139-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-139-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 829,
+      "id": "arch-140-screen",
+      "kind": "measurement",
+      "label": "v6e arch-140-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-139-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "139",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-140-screen"
+      ],
+      "id": "export-arch-140-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-140-screen",
+      "operation": "command",
+      "requires": [
+        "arch-140-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-140-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-140-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-140-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "139",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-140-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-140-confirm"
+      ],
+      "id": "export-arch-140-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-140-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-140-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 824,
+      "id": "arch-141-screen",
+      "kind": "measurement",
+      "label": "v6e arch-141-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-140-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "140",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-141-screen"
+      ],
+      "id": "export-arch-141-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-141-screen",
+      "operation": "command",
+      "requires": [
+        "arch-141-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-141-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-141-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-141-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "140",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-141-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-141-confirm"
+      ],
+      "id": "export-arch-141-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-141-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-141-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 841,
+      "id": "arch-142-screen",
+      "kind": "measurement",
+      "label": "v6e arch-142-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-141-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "141",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-142-screen"
+      ],
+      "id": "export-arch-142-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-142-screen",
+      "operation": "command",
+      "requires": [
+        "arch-142-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-142-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-142-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-142-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "141",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-142-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-142-confirm"
+      ],
+      "id": "export-arch-142-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-142-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-142-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 680,
+      "id": "arch-143-screen",
+      "kind": "measurement",
+      "label": "v6e arch-143-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-142-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "142",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-143-screen"
+      ],
+      "id": "export-arch-143-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-143-screen",
+      "operation": "command",
+      "requires": [
+        "arch-143-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-143-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-143-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-143-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "142",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-143-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-143-confirm"
+      ],
+      "id": "export-arch-143-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-143-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-143-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 680,
+      "id": "arch-144-screen",
+      "kind": "measurement",
+      "label": "v6e arch-144-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-143-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "143",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-144-screen"
+      ],
+      "id": "export-arch-144-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-144-screen",
+      "operation": "command",
+      "requires": [
+        "arch-144-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-144-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-144-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-144-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "143",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-144-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-144-confirm"
+      ],
+      "id": "export-arch-144-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-144-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-144-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 562,
+      "id": "arch-145-screen",
+      "kind": "measurement",
+      "label": "v6e arch-145-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-144-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "144",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-145-screen"
+      ],
+      "id": "export-arch-145-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-145-screen",
+      "operation": "command",
+      "requires": [
+        "arch-145-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-145-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-145-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-145-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "144",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-145-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-145-confirm"
+      ],
+      "id": "export-arch-145-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-145-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-145-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 935,
+      "id": "arch-146-screen",
+      "kind": "measurement",
+      "label": "v6e arch-146-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-145-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "145",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-146-screen"
+      ],
+      "id": "export-arch-146-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-146-screen",
+      "operation": "command",
+      "requires": [
+        "arch-146-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-146-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-146-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-146-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "145",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-146-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-146-confirm"
+      ],
+      "id": "export-arch-146-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-146-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-146-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 829,
+      "id": "arch-147-screen",
+      "kind": "measurement",
+      "label": "v6e arch-147-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-146-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "146",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-147-screen"
+      ],
+      "id": "export-arch-147-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-147-screen",
+      "operation": "command",
+      "requires": [
+        "arch-147-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-147-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-147-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-147-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "146",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-147-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-147-confirm"
+      ],
+      "id": "export-arch-147-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-147-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-147-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 279,
+      "id": "arch-148-screen",
+      "kind": "measurement",
+      "label": "v6e arch-148-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-147-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "147",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-148-screen"
+      ],
+      "id": "export-arch-148-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-148-screen",
+      "operation": "command",
+      "requires": [
+        "arch-148-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-148-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-148-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-148-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "147",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-148-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-148-confirm"
+      ],
+      "id": "export-arch-148-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-148-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-148-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 829,
+      "id": "arch-149-screen",
+      "kind": "measurement",
+      "label": "v6e arch-149-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-148-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "148",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-149-screen"
+      ],
+      "id": "export-arch-149-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-149-screen",
+      "operation": "command",
+      "requires": [
+        "arch-149-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-149-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-149-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-149-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "148",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-149-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-149-confirm"
+      ],
+      "id": "export-arch-149-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-149-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-149-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 829,
+      "id": "arch-150-screen",
+      "kind": "measurement",
+      "label": "v6e arch-150-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-149-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "149",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-150-screen"
+      ],
+      "id": "export-arch-150-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-150-screen",
+      "operation": "command",
+      "requires": [
+        "arch-150-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-150-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-150-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-150-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "149",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-150-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-150-confirm"
+      ],
+      "id": "export-arch-150-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-150-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-150-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 272,
+      "id": "arch-151-screen",
+      "kind": "measurement",
+      "label": "v6e arch-151-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-150-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "150",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-151-screen"
+      ],
+      "id": "export-arch-151-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-151-screen",
+      "operation": "command",
+      "requires": [
+        "arch-151-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-151-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-151-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-151-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "150",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-151-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-151-confirm"
+      ],
+      "id": "export-arch-151-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-151-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-151-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 829,
+      "id": "arch-152-screen",
+      "kind": "measurement",
+      "label": "v6e arch-152-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-151-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "151",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-152-screen"
+      ],
+      "id": "export-arch-152-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-152-screen",
+      "operation": "command",
+      "requires": [
+        "arch-152-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-152-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-152-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-152-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "151",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-152-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-152-confirm"
+      ],
+      "id": "export-arch-152-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-152-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-152-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 402,
+      "id": "arch-153-screen",
+      "kind": "measurement",
+      "label": "v6e arch-153-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-152-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "152",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-153-screen"
+      ],
+      "id": "export-arch-153-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-153-screen",
+      "operation": "command",
+      "requires": [
+        "arch-153-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-153-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-153-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-153-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "152",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-153-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-153-confirm"
+      ],
+      "id": "export-arch-153-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-153-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-153-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 800,
+      "id": "arch-154-screen",
+      "kind": "measurement",
+      "label": "v6e arch-154-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-153-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "153",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-154-screen"
+      ],
+      "id": "export-arch-154-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-154-screen",
+      "operation": "command",
+      "requires": [
+        "arch-154-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-154-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-154-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-154-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "153",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-154-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-154-confirm"
+      ],
+      "id": "export-arch-154-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-154-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-154-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 829,
+      "id": "arch-155-screen",
+      "kind": "measurement",
+      "label": "v6e arch-155-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-154-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "154",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-155-screen"
+      ],
+      "id": "export-arch-155-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-155-screen",
+      "operation": "command",
+      "requires": [
+        "arch-155-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-155-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-155-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-155-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "154",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-155-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-155-confirm"
+      ],
+      "id": "export-arch-155-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-155-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-155-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 800,
+      "id": "arch-156-screen",
+      "kind": "measurement",
+      "label": "v6e arch-156-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-155-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "155",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-156-screen"
+      ],
+      "id": "export-arch-156-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-156-screen",
+      "operation": "command",
+      "requires": [
+        "arch-156-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-156-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-156-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-156-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "155",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-156-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-156-confirm"
+      ],
+      "id": "export-arch-156-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-156-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-156-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 702,
+      "id": "arch-157-screen",
+      "kind": "measurement",
+      "label": "v6e arch-157-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-156-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "156",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-157-screen"
+      ],
+      "id": "export-arch-157-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-157-screen",
+      "operation": "command",
+      "requires": [
+        "arch-157-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-157-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-157-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-157-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "156",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-157-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-157-confirm"
+      ],
+      "id": "export-arch-157-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-157-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-157-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 645,
+      "id": "arch-158-screen",
+      "kind": "measurement",
+      "label": "v6e arch-158-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-157-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "157",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-158-screen"
+      ],
+      "id": "export-arch-158-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-158-screen",
+      "operation": "command",
+      "requires": [
+        "arch-158-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-158-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-158-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-158-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "157",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-158-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-158-confirm"
+      ],
+      "id": "export-arch-158-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-158-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-158-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 402,
+      "id": "arch-159-screen",
+      "kind": "measurement",
+      "label": "v6e arch-159-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-158-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "158",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-159-screen"
+      ],
+      "id": "export-arch-159-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-159-screen",
+      "operation": "command",
+      "requires": [
+        "arch-159-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-159-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-159-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-159-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "158",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-159-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-159-confirm"
+      ],
+      "id": "export-arch-159-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-159-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-159-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 501,
+      "id": "arch-160-screen",
+      "kind": "measurement",
+      "label": "v6e arch-160-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-159-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "159",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-160-screen"
+      ],
+      "id": "export-arch-160-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-160-screen",
+      "operation": "command",
+      "requires": [
+        "arch-160-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-160-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-160-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-160-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "159",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-160-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-160-confirm"
+      ],
+      "id": "export-arch-160-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-160-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-160-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 760,
+      "id": "arch-161-screen",
+      "kind": "measurement",
+      "label": "v6e arch-161-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-160-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "160",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-161-screen"
+      ],
+      "id": "export-arch-161-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-161-screen",
+      "operation": "command",
+      "requires": [
+        "arch-161-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-161-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-161-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-161-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "160",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-161-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-161-confirm"
+      ],
+      "id": "export-arch-161-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-161-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-161-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 829,
+      "id": "arch-162-screen",
+      "kind": "measurement",
+      "label": "v6e arch-162-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-161-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "161",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-162-screen"
+      ],
+      "id": "export-arch-162-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-162-screen",
+      "operation": "command",
+      "requires": [
+        "arch-162-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-162-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-162-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-162-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "161",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-162-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-162-confirm"
+      ],
+      "id": "export-arch-162-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-162-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-162-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 760,
+      "id": "arch-163-screen",
+      "kind": "measurement",
+      "label": "v6e arch-163-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-162-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "162",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-163-screen"
+      ],
+      "id": "export-arch-163-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-163-screen",
+      "operation": "command",
+      "requires": [
+        "arch-163-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-163-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-163-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-163-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "162",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-163-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-163-confirm"
+      ],
+      "id": "export-arch-163-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-163-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-163-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 769,
+      "id": "arch-164-screen",
+      "kind": "measurement",
+      "label": "v6e arch-164-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-163-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "163",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-164-screen"
+      ],
+      "id": "export-arch-164-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-164-screen",
+      "operation": "command",
+      "requires": [
+        "arch-164-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-164-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-164-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-164-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "163",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-164-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-164-confirm"
+      ],
+      "id": "export-arch-164-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-164-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-164-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 866,
+      "id": "arch-165-screen",
+      "kind": "measurement",
+      "label": "v6e arch-165-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-164-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "164",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-165-screen"
+      ],
+      "id": "export-arch-165-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-165-screen",
+      "operation": "command",
+      "requires": [
+        "arch-165-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-165-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-165-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-165-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "164",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-165-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-165-confirm"
+      ],
+      "id": "export-arch-165-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-165-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-165-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 279,
+      "id": "arch-166-screen",
+      "kind": "measurement",
+      "label": "v6e arch-166-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-165-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "165",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-166-screen"
+      ],
+      "id": "export-arch-166-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-166-screen",
+      "operation": "command",
+      "requires": [
+        "arch-166-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-166-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-166-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-166-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "165",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-166-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-166-confirm"
+      ],
+      "id": "export-arch-166-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-166-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-166-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 928,
+      "id": "arch-167-screen",
+      "kind": "measurement",
+      "label": "v6e arch-167-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-166-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "166",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-167-screen"
+      ],
+      "id": "export-arch-167-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-167-screen",
+      "operation": "command",
+      "requires": [
+        "arch-167-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-167-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-167-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-167-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "166",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-167-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-167-confirm"
+      ],
+      "id": "export-arch-167-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-167-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-167-confirm"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "expected": 272,
+      "id": "arch-168-screen",
+      "kind": "measurement",
+      "label": "v6e arch-168-screen",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "export-arch-167-confirm"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "167",
+        "--shape-count",
+        "1"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-168-screen"
+      ],
+      "id": "export-arch-168-screen",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-168-screen",
+      "operation": "command",
+      "requires": [
+        "arch-168-screen"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "campaign": "configs/arch_v6e_168_v001/campaign.json",
+      "id": "arch-168-confirm",
+      "kind": "measurement",
+      "label": "v6e arch-168-confirm",
+      "module": "strassen_mm.benchmark_arch_study_v001",
+      "operation": "phase",
+      "requires": [
+        "arch-168-screen"
+      ],
+      "runner_args": [
+        "--shape-start",
+        "167",
+        "--shape-count",
+        "1"
+      ],
+      "selection_file": "selections.json",
+      "selection_stage": "arch-168-screen",
+      "timeout_seconds": 14400
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/export_arch_study_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--phase",
+        "arch-168-confirm"
+      ],
+      "id": "export-arch-168-confirm",
+      "kind": "analysis",
+      "label": "Verify and commit dedicated results: arch-168-confirm",
+      "operation": "command",
+      "requires": [
+        "arch-168-confirm"
+      ],
+      "timeout_seconds": 1800
+    }
+  ],
+  "title": "v6e: automatically supervised continuation (64 remaining comparison units)",
+  "transport": "tools/run_phase_v007.py"
+}

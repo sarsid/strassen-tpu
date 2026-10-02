@@ -1,0 +1,301 @@
+{
+  "shapes": [
+    {
+      "id": "parent_fp32",
+      "m": 8192,
+      "k": 5120,
+      "n": 51200,
+      "output_dtype": "float32",
+      "output_tiles": [
+        [
+          2048,
+          1024
+        ],
+        [
+          1024,
+          1024
+        ]
+      ],
+      "panels": [
+        1024,
+        2560,
+        5120
+      ],
+      "seed_offset": 0,
+      "incumbents": {
+        "1": {
+          "tile": [
+            2048,
+            1024,
+            1024
+          ],
+          "note": "No prior row: fixed current-kernel 1024-panel control, not historically tuned"
+        },
+        "2": {
+          "tile": [
+            2048,
+            1024,
+            1024
+          ],
+          "note": "No prior row: fixed current-kernel 1024-panel control, not historically tuned"
+        }
+      }
+    },
+    {
+      "id": "square8192_fp32",
+      "m": 8192,
+      "k": 8192,
+      "n": 8192,
+      "output_dtype": "float32",
+      "output_tiles": [
+        [
+          2048,
+          1024
+        ],
+        [
+          1024,
+          512
+        ]
+      ],
+      "panels": [
+        2048,
+        4096,
+        8192
+      ],
+      "seed_offset": 1,
+      "incumbents": {
+        "1": {
+          "algorithm": "strassen",
+          "arm_id": "one_level_pipeline_deferred_2048_2048_2048",
+          "buffers": 2,
+          "candidate_id": "one_level_pipeline_deferred_2048_2048_2048",
+          "compiler_options": {},
+          "depth": 1,
+          "family": "one_level",
+          "headline_roles": [
+            "one_level"
+          ],
+          "implementation": "pipeline",
+          "mode": "deferred",
+          "order": "interleaved",
+          "tile": [
+            2048,
+            2048,
+            2048
+          ],
+          "traversal": "mn",
+          "variant": "plain",
+          "vmem_limit_bytes": 117440512
+        },
+        "2": {
+          "algorithm": "strassen",
+          "arm_id": "two_level_pipeline_hybrid_4096_1024_2048",
+          "buffers": 2,
+          "candidate_id": "two_level_pipeline_hybrid_4096_1024_2048",
+          "compiler_options": {},
+          "depth": 2,
+          "family": "two_level",
+          "headline_roles": [
+            "two_level"
+          ],
+          "implementation": "pipeline",
+          "mode": "hybrid",
+          "order": "interleaved",
+          "tile": [
+            4096,
+            1024,
+            2048
+          ],
+          "traversal": "mn",
+          "variant": "plain",
+          "vmem_limit_bytes": 117440512
+        }
+      }
+    },
+    {
+      "id": "square16384_fp32",
+      "m": 16384,
+      "k": 16384,
+      "n": 16384,
+      "output_dtype": "float32",
+      "output_tiles": [
+        [
+          512,
+          1024
+        ],
+        [
+          512,
+          512
+        ]
+      ],
+      "panels": [
+        4096,
+        8192,
+        16384
+      ],
+      "seed_offset": 2,
+      "incumbents": {
+        "1": {
+          "algorithm": "strassen",
+          "arm_id": "one_level_pipeline_deferred_2048_2048_2048",
+          "buffers": 2,
+          "candidate_id": "one_level_pipeline_deferred_2048_2048_2048",
+          "compiler_options": {},
+          "depth": 1,
+          "family": "one_level",
+          "headline_roles": [
+            "one_level"
+          ],
+          "implementation": "pipeline",
+          "mode": "deferred",
+          "order": "interleaved",
+          "tile": [
+            2048,
+            2048,
+            2048
+          ],
+          "traversal": "mn",
+          "variant": "plain",
+          "vmem_limit_bytes": 117440512
+        },
+        "2": {
+          "algorithm": "strassen",
+          "arm_id": "two_level_pipeline_hybrid_4096_1024_2048",
+          "buffers": 2,
+          "candidate_id": "two_level_pipeline_hybrid_4096_1024_2048",
+          "compiler_options": {},
+          "depth": 2,
+          "family": "two_level",
+          "headline_roles": [
+            "two_level"
+          ],
+          "implementation": "pipeline",
+          "mode": "hybrid",
+          "order": "interleaved",
+          "tile": [
+            4096,
+            1024,
+            2048
+          ],
+          "traversal": "mn",
+          "variant": "plain",
+          "vmem_limit_bytes": 117440512
+        }
+      }
+    },
+    {
+      "id": "wide16384_fp32",
+      "m": 16384,
+      "k": 8192,
+      "n": 16384,
+      "output_dtype": "float32",
+      "output_tiles": [
+        [
+          2048,
+          1024
+        ],
+        [
+          1024,
+          1024
+        ]
+      ],
+      "panels": [
+        2048,
+        4096,
+        8192
+      ],
+      "seed_offset": 3,
+      "incumbents": {
+        "1": {
+          "algorithm": "strassen",
+          "arm_id": "one_level_pipeline_deferred_2048_2048_2048",
+          "buffers": 2,
+          "candidate_id": "one_level_pipeline_deferred_2048_2048_2048",
+          "compiler_options": {},
+          "depth": 1,
+          "family": "one_level",
+          "headline_roles": [
+            "one_level"
+          ],
+          "implementation": "pipeline",
+          "mode": "deferred",
+          "order": "interleaved",
+          "tile": [
+            2048,
+            2048,
+            2048
+          ],
+          "traversal": "mn",
+          "variant": "plain",
+          "vmem_limit_bytes": 117440512
+        },
+        "2": {
+          "algorithm": "strassen",
+          "arm_id": "two_level_pipeline_hybrid_2048_2048_2048",
+          "buffers": 2,
+          "candidate_id": "two_level_pipeline_hybrid_2048_2048_2048",
+          "compiler_options": {},
+          "depth": 2,
+          "family": "two_level",
+          "headline_roles": [
+            "two_level"
+          ],
+          "implementation": "pipeline",
+          "mode": "hybrid",
+          "order": "interleaved",
+          "tile": [
+            2048,
+            2048,
+            2048
+          ],
+          "traversal": "mn",
+          "variant": "plain",
+          "vmem_limit_bytes": 117440512
+        }
+      }
+    },
+    {
+      "id": "parent_bf16",
+      "m": 8192,
+      "k": 5120,
+      "n": 51200,
+      "output_dtype": "bfloat16",
+      "output_tiles": [
+        [
+          2048,
+          1024
+        ],
+        [
+          1024,
+          1024
+        ]
+      ],
+      "panels": [
+        1024,
+        2560,
+        5120
+      ],
+      "seed_offset": 0,
+      "incumbents": {
+        "1": {
+          "tile": [
+            2048,
+            1024,
+            1024
+          ],
+          "note": "No prior row: fixed current-kernel 1024-panel control, not historically tuned"
+        },
+        "2": {
+          "tile": [
+            2048,
+            1024,
+            1024
+          ],
+          "note": "No prior row: fixed current-kernel 1024-panel control, not historically tuned"
+        }
+      }
+    }
+  ],
+  "control_source": "runs/20260924-v6e-suite-recovery-v001/operations/combined-report/artifacts/report/results.json",
+  "control_source_sha256": "612e163f99c68e4e79f53cea5d661837cdb480a31180fbff532a1fbb66a609db"
+}

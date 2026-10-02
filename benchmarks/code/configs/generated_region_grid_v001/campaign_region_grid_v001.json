@@ -1,0 +1,2254 @@
+{
+  "arms": {
+    "cubic_basic": {
+      "algorithm": "cubic_full",
+      "variant": "plain"
+    },
+    "cubic_quadrant": {
+      "algorithm": "cubic_quadrant",
+      "variant": "plain"
+    },
+    "native_xla": {
+      "algorithm": "native",
+      "variant": "plain"
+    },
+    "strassen_basic": {
+      "algorithm": "strassen",
+      "variant": "plain"
+    }
+  },
+  "campaign_id": "region_grid_v001",
+  "cohort_id": "region_grid_v001_20260920",
+  "correctness": {
+    "failure_policy": "Record failures and measurements; failing rows cannot count as valid speedup wins. Fixed thresholds never change to rescue an arm.",
+    "gate": {
+      "max_abs_atol": 0.001,
+      "max_abs_reference_rtol": 0.05,
+      "relative_l2_max": 0.02,
+      "require_finite": true
+    },
+    "gate_expression": "finite && relative_l2 <= 0.02 && max_abs_error <= 0.001 + 0.05 * max_abs_reference",
+    "input_reference": "Use the exact BF16-quantized operands cast to NumPy float32, not the pre-quantization random source.",
+    "metrics": [
+      "reference_scope",
+      "sample_count",
+      "relative_l2",
+      "max_abs_error",
+      "max_abs_reference",
+      "rmse",
+      "mean_abs_error",
+      "p50_abs_error",
+      "p99_abs_error",
+      "normwise_error",
+      "finite",
+      "pass"
+    ],
+    "mode": "full_if_both_limits_allow_else_sampled_cross_product",
+    "near_zero_denominator": 1e-30,
+    "reference": "host_numpy_fp32",
+    "sample_columns": 128,
+    "sample_rows": 128,
+    "sampling": "seeded without replacement, always including first and last row/column; record indices; reference uses all K",
+    "scope": "Finite synthetic numerical eligibility only; no bound on model quality or worst-case error."
+  },
+  "deferred": [
+    "Two-level Strassen: optional future experiment only, excluded from N1-N4.",
+    "N5 independent final tuning and fresh confirmation.",
+    "N6 profiling and N6a frozen selection-rule development.",
+    "N7 held-out-shape/device generalization.",
+    "v6e replication only after explicit later campaign activation.",
+    "Fused activations, residuals and end-to-end LLM quality are later N8-N9 work."
+  ],
+  "device": {
+    "allow_concurrent_timing": false,
+    "allow_v6e": false,
+    "identity_fields": [
+      "allocation_id",
+      "device_kind",
+      "device_id",
+      "process_index",
+      "jax_version",
+      "jaxlib_version",
+      "libtpu_version",
+      "runtime_image",
+      "runtime_flags",
+      "host_id"
+    ],
+    "identity_missing_policy": "Record unknown explicitly; do not describe unverified physical identity as the same chip.",
+    "require_identity_match": true,
+    "reuse_same_allocation": true,
+    "single_device": true,
+    "target": "v5e"
+  },
+  "distribution_manifest": "distributions_v1.json",
+  "execution_contract": {
+    "archive_after_run": [
+      "summary.json",
+      "status snapshot",
+      "artifact SHA256 manifest",
+      "completion/failure marker"
+    ],
+    "archive_before_run": [
+      "source tree snapshot",
+      "configuration JSON",
+      "source/configuration SHA256 manifests",
+      "git commit",
+      "environment fingerprint",
+      "planned cases"
+    ],
+    "archive_during_run": [
+      "append-only events.jsonl",
+      "stdout/stderr",
+      "raw timing samples",
+      "errors"
+    ],
+    "commit_policy": "Root orchestrator commits source snapshot before execution and records a commit after every completed or failed execution. Existing source snapshots and result directories are never overwritten.",
+    "external_changes": "Any device or environment change creates a new cohort; do not pool it silently with the original allocation.",
+    "immutable_run_id": "UTC timestamp plus unique suffix",
+    "record_statuses": [
+      "ok",
+      "input_error",
+      "numerical_failure",
+      "compile_error",
+      "oom",
+      "unsupported",
+      "skipped_memory_preflight",
+      "interrupted",
+      "not_run"
+    ],
+    "resume": "A retry/new version receives a new run id and references previous run ids; never appends measurements to a sealed run."
+  },
+  "experiments": {
+    "GRID-confirm": {
+      "candidate_families": {
+        "cubic": [
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_16_128_128",
+            "tile": [
+              16,
+              128,
+              128
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_64_256_256",
+            "tile": [
+              64,
+              256,
+              256
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_128_512_512",
+            "tile": [
+              128,
+              512,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_256_256_256",
+            "tile": [
+              256,
+              256,
+              256
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_384_384_384",
+            "tile": [
+              384,
+              384,
+              384
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_512_512_256",
+            "tile": [
+              512,
+              512,
+              256
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_512_512_512",
+            "tile": [
+              512,
+              512,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_768_768_512",
+            "tile": [
+              768,
+              768,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_768_768_768",
+            "tile": [
+              768,
+              768,
+              768
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_1024_512",
+            "tile": [
+              1024,
+              1024,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_1024_1024",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1536_1536_512",
+            "tile": [
+              1536,
+              1536,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_2048_2048_512",
+            "tile": [
+              2048,
+              2048,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_256_1024_512",
+            "tile": [
+              256,
+              1024,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_256_512",
+            "tile": [
+              1024,
+              256,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_512_1024_512",
+            "tile": [
+              512,
+              1024,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_512_512",
+            "tile": [
+              1024,
+              512,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_512_1536_512",
+            "tile": [
+              512,
+              1536,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1536_512_512",
+            "tile": [
+              1536,
+              512,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_512_1024_1024",
+            "tile": [
+              512,
+              1024,
+              1024
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_512_1024",
+            "tile": [
+              1024,
+              512,
+              1024
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_2048_512",
+            "tile": [
+              1024,
+              2048,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_2048_1024_512",
+            "tile": [
+              2048,
+              1024,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_1024_1536",
+            "tile": [
+              1024,
+              1024,
+              1536
+            ],
+            "variant": "output_accumulator"
+          }
+        ],
+        "native": [
+          {
+            "algorithm": "native",
+            "candidate_id": "native_default",
+            "compiler_options": {},
+            "tile": null,
+            "variant": "plain"
+          },
+          {
+            "algorithm": "native",
+            "candidate_id": "native_vmem_32m",
+            "compiler_options": {
+              "xla_tpu_scoped_vmem_limit_kib": 32768
+            },
+            "tile": null,
+            "variant": "plain"
+          },
+          {
+            "algorithm": "native",
+            "candidate_id": "native_vmem_48m",
+            "compiler_options": {
+              "xla_tpu_scoped_vmem_limit_kib": 49152
+            },
+            "tile": null,
+            "variant": "plain"
+          },
+          {
+            "algorithm": "native",
+            "candidate_id": "native_vmem_64m",
+            "compiler_options": {
+              "xla_tpu_scoped_vmem_limit_kib": 65536
+            },
+            "tile": null,
+            "variant": "plain"
+          }
+        ],
+        "strassen": [
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_16_256_256",
+            "tile": [
+              16,
+              256,
+              256
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_64_256_256",
+            "tile": [
+              64,
+              256,
+              256
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_128_512_512",
+            "tile": [
+              128,
+              512,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_256_256_256",
+            "tile": [
+              256,
+              256,
+              256
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_384_512_512",
+            "tile": [
+              384,
+              512,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_512_512_256",
+            "tile": [
+              512,
+              512,
+              256
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_512_512_512",
+            "tile": [
+              512,
+              512,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_768_768_512",
+            "tile": [
+              768,
+              768,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_768_768_768",
+            "tile": [
+              768,
+              768,
+              768
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_1024_512",
+            "tile": [
+              1024,
+              1024,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_1024_1024",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1536_1536_512",
+            "tile": [
+              1536,
+              1536,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_2048_2048_512",
+            "tile": [
+              2048,
+              2048,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_256_1024_512",
+            "tile": [
+              256,
+              1024,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_256_512",
+            "tile": [
+              1024,
+              256,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_512_1024_512",
+            "tile": [
+              512,
+              1024,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_512_512",
+            "tile": [
+              1024,
+              512,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_512_1536_512",
+            "tile": [
+              512,
+              1536,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1536_512_512",
+            "tile": [
+              1536,
+              512,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_512_1024_1024",
+            "tile": [
+              512,
+              1024,
+              1024
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_512_1024",
+            "tile": [
+              1024,
+              512,
+              1024
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_2048_512",
+            "tile": [
+              1024,
+              2048,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_2048_1024_512",
+            "tile": [
+              2048,
+              1024,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_1024_1536",
+            "tile": [
+              1024,
+              1024,
+              1536
+            ],
+            "variant": "interleaved_output_accumulator"
+          }
+        ]
+      },
+      "distribution": "gaussian",
+      "seed": 2026092103,
+      "shape_ids": [
+        "region_m3_n3_k3",
+        "region_m512_n512_k512",
+        "region_m768_n768_k768",
+        "region_m2048_n2048_k2048",
+        "region_m4096_n4096_k4096",
+        "region_m8192_n8192_k8192",
+        "region_m16384_n16384_k16384",
+        "region_m2048_n2048_k16384",
+        "region_m2048_n2048_k32768",
+        "region_m2048_n2048_k131072",
+        "region_m16384_n2048_k2048",
+        "region_m2048_n16384_k2048",
+        "region_m98304_n512_k1024",
+        "region_m2048_n65536_k6144",
+        "region_m65536_n6144_k256",
+        "region_m1536_n256_k2048",
+        "region_m4096_n24576_k2048",
+        "region_m6144_n384_k131072",
+        "region_m384_n256_k1024",
+        "region_m12288_n16384_k2048",
+        "region_m256_n768_k1024",
+        "region_m384_n65536_k12288",
+        "region_m12288_n1536_k49152",
+        "region_m12288_n2048_k1536",
+        "region_m16384_n16384_k1536",
+        "region_m24576_n3072_k8192",
+        "region_m256_n4096_k98304",
+        "region_m1536_n4096_k24576",
+        "region_m4096_n8192_k65536",
+        "region_m384_n131072_k384",
+        "region_m131072_n1024_k1024",
+        "region_m49152_n4096_k4096",
+        "region_m256_n1536_k49152",
+        "region_m512_n12288_k16384",
+        "region_m384_n512_k1536",
+        "region_m49152_n2048_k512",
+        "region_m256_n768_k6144",
+        "region_m256_n3072_k24576",
+        "region_m24576_n12288_k1536",
+        "region_m768_n6144_k8192",
+        "region_m1536_n65536_k384",
+        "region_m16384_n12288_k4096",
+        "region_m49152_n256_k4096",
+        "region_m4096_n3072_k131072",
+        "region_m4096_n4096_k16384",
+        "region_m384_n384_k16384",
+        "region_m32768_n1536_k1024",
+        "region_m256_n4096_k16384",
+        "region_m256_n6144_k2048",
+        "region_m384_n12288_k65536",
+        "region_m384_n2048_k3072",
+        "region_m16384_n6144_k1024",
+        "region_m1024_n49152_k12288",
+        "region_m1536_n768_k1024",
+        "region_m4096_n384_k131072",
+        "region_m32768_n1536_k24576",
+        "region_m4096_n512_k1536",
+        "region_m256_n16384_k32768",
+        "region_m384_n4096_k6144",
+        "region_m256_n24576_k1536",
+        "region_m1024_n24576_k24576",
+        "region_m384_n12288_k1536",
+        "region_m6144_n1536_k2048",
+        "region_m512_n384_k2048",
+        "region_m512_n256_k3072",
+        "region_m6144_n2048_k32768",
+        "region_m512_n256_k6144",
+        "region_m768_n6144_k49152",
+        "region_m32768_n384_k256",
+        "region_m768_n6144_k24576",
+        "region_m512_n768_k512",
+        "region_m2048_n16384_k1024",
+        "region_m5120_n5120_k5120",
+        "region_m7168_n7168_k7168",
+        "region_m9216_n9216_k9216",
+        "region_m10240_n10240_k10240",
+        "region_m11264_n11264_k11264",
+        "region_m14336_n14336_k14336",
+        "region_m15360_n15360_k15360",
+        "region_m4608_n4608_k4608",
+        "region_m4096_n8192_k8192",
+        "region_m8192_n4096_k8192",
+        "region_m8192_n8192_k4096",
+        "region_m6144_n8192_k8192",
+        "region_m8192_n6144_k8192",
+        "region_m8192_n8192_k6144",
+        "region_m8192_n12288_k12288",
+        "region_m12288_n8192_k12288",
+        "region_m12288_n12288_k8192",
+        "region_m8192_n16384_k16384",
+        "region_m16384_n8192_k16384",
+        "region_m16384_n16384_k8192",
+        "region_m1536_n1536_k8192",
+        "region_m3072_n3072_k8192",
+        "region_m1536_n1536_k16384",
+        "region_m3072_n3072_k16384",
+        "region_m1536_n1536_k32768",
+        "region_m3072_n3072_k32768",
+        "region_m1536_n1536_k65536",
+        "region_m3072_n3072_k65536",
+        "region_m1536_n1536_k131072",
+        "region_m3072_n3072_k131072",
+        "region_m2048_n3072_k32768",
+        "region_m3072_n2048_k32768",
+        "region_m8191_n8191_k8191",
+        "region_m8193_n8193_k8193",
+        "region_m16383_n16383_k16383",
+        "region_m16385_n16385_k16385",
+        "region_m8191_n8192_k8192",
+        "region_m8193_n8192_k8192",
+        "region_m8192_n8191_k8192",
+        "region_m8192_n8193_k8192",
+        "region_m8192_n8192_k8191",
+        "region_m8192_n8192_k8193",
+        "region_m16383_n8192_k8192",
+        "region_m16385_n8192_k8192",
+        "region_m8192_n16383_k8192",
+        "region_m8192_n16385_k8192",
+        "region_m8192_n8192_k16383",
+        "region_m8192_n8192_k16385"
+      ],
+      "timing": "confirm"
+    },
+    "GRID-screen": {
+      "candidate_families": {
+        "cubic": [
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_16_128_128",
+            "tile": [
+              16,
+              128,
+              128
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_64_256_256",
+            "tile": [
+              64,
+              256,
+              256
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_128_512_512",
+            "tile": [
+              128,
+              512,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_256_256_256",
+            "tile": [
+              256,
+              256,
+              256
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_384_384_384",
+            "tile": [
+              384,
+              384,
+              384
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_512_512_256",
+            "tile": [
+              512,
+              512,
+              256
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_512_512_512",
+            "tile": [
+              512,
+              512,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_768_768_512",
+            "tile": [
+              768,
+              768,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_768_768_768",
+            "tile": [
+              768,
+              768,
+              768
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_1024_512",
+            "tile": [
+              1024,
+              1024,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_1024_1024",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1536_1536_512",
+            "tile": [
+              1536,
+              1536,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_2048_2048_512",
+            "tile": [
+              2048,
+              2048,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_256_1024_512",
+            "tile": [
+              256,
+              1024,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_256_512",
+            "tile": [
+              1024,
+              256,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_512_1024_512",
+            "tile": [
+              512,
+              1024,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_512_512",
+            "tile": [
+              1024,
+              512,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_512_1536_512",
+            "tile": [
+              512,
+              1536,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1536_512_512",
+            "tile": [
+              1536,
+              512,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_512_1024_1024",
+            "tile": [
+              512,
+              1024,
+              1024
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_512_1024",
+            "tile": [
+              1024,
+              512,
+              1024
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_2048_512",
+            "tile": [
+              1024,
+              2048,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_2048_1024_512",
+            "tile": [
+              2048,
+              1024,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_1024_1536",
+            "tile": [
+              1024,
+              1024,
+              1536
+            ],
+            "variant": "output_accumulator"
+          }
+        ],
+        "native": [
+          {
+            "algorithm": "native",
+            "candidate_id": "native_default",
+            "compiler_options": {},
+            "tile": null,
+            "variant": "plain"
+          },
+          {
+            "algorithm": "native",
+            "candidate_id": "native_vmem_32m",
+            "compiler_options": {
+              "xla_tpu_scoped_vmem_limit_kib": 32768
+            },
+            "tile": null,
+            "variant": "plain"
+          },
+          {
+            "algorithm": "native",
+            "candidate_id": "native_vmem_48m",
+            "compiler_options": {
+              "xla_tpu_scoped_vmem_limit_kib": 49152
+            },
+            "tile": null,
+            "variant": "plain"
+          },
+          {
+            "algorithm": "native",
+            "candidate_id": "native_vmem_64m",
+            "compiler_options": {
+              "xla_tpu_scoped_vmem_limit_kib": 65536
+            },
+            "tile": null,
+            "variant": "plain"
+          }
+        ],
+        "strassen": [
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_16_256_256",
+            "tile": [
+              16,
+              256,
+              256
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_64_256_256",
+            "tile": [
+              64,
+              256,
+              256
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_128_512_512",
+            "tile": [
+              128,
+              512,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_256_256_256",
+            "tile": [
+              256,
+              256,
+              256
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_384_512_512",
+            "tile": [
+              384,
+              512,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_512_512_256",
+            "tile": [
+              512,
+              512,
+              256
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_512_512_512",
+            "tile": [
+              512,
+              512,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_768_768_512",
+            "tile": [
+              768,
+              768,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_768_768_768",
+            "tile": [
+              768,
+              768,
+              768
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_1024_512",
+            "tile": [
+              1024,
+              1024,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_1024_1024",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1536_1536_512",
+            "tile": [
+              1536,
+              1536,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_2048_2048_512",
+            "tile": [
+              2048,
+              2048,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_256_1024_512",
+            "tile": [
+              256,
+              1024,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_256_512",
+            "tile": [
+              1024,
+              256,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_512_1024_512",
+            "tile": [
+              512,
+              1024,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_512_512",
+            "tile": [
+              1024,
+              512,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_512_1536_512",
+            "tile": [
+              512,
+              1536,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1536_512_512",
+            "tile": [
+              1536,
+              512,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_512_1024_1024",
+            "tile": [
+              512,
+              1024,
+              1024
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_512_1024",
+            "tile": [
+              1024,
+              512,
+              1024
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_2048_512",
+            "tile": [
+              1024,
+              2048,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_2048_1024_512",
+            "tile": [
+              2048,
+              1024,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_1024_1536",
+            "tile": [
+              1024,
+              1024,
+              1536
+            ],
+            "variant": "interleaved_output_accumulator"
+          }
+        ]
+      },
+      "distribution": "gaussian",
+      "near_optimal_fraction": 0.05,
+      "seed": 2026092102,
+      "shape_ids": [
+        "region_m3_n3_k3",
+        "region_m512_n512_k512",
+        "region_m768_n768_k768",
+        "region_m2048_n2048_k2048",
+        "region_m4096_n4096_k4096",
+        "region_m8192_n8192_k8192",
+        "region_m16384_n16384_k16384",
+        "region_m2048_n2048_k16384",
+        "region_m2048_n2048_k32768",
+        "region_m2048_n2048_k131072",
+        "region_m16384_n2048_k2048",
+        "region_m2048_n16384_k2048",
+        "region_m98304_n512_k1024",
+        "region_m2048_n65536_k6144",
+        "region_m65536_n6144_k256",
+        "region_m1536_n256_k2048",
+        "region_m4096_n24576_k2048",
+        "region_m6144_n384_k131072",
+        "region_m384_n256_k1024",
+        "region_m12288_n16384_k2048",
+        "region_m256_n768_k1024",
+        "region_m384_n65536_k12288",
+        "region_m12288_n1536_k49152",
+        "region_m12288_n2048_k1536",
+        "region_m16384_n16384_k1536",
+        "region_m24576_n3072_k8192",
+        "region_m256_n4096_k98304",
+        "region_m1536_n4096_k24576",
+        "region_m4096_n8192_k65536",
+        "region_m384_n131072_k384",
+        "region_m131072_n1024_k1024",
+        "region_m49152_n4096_k4096",
+        "region_m256_n1536_k49152",
+        "region_m512_n12288_k16384",
+        "region_m384_n512_k1536",
+        "region_m49152_n2048_k512",
+        "region_m256_n768_k6144",
+        "region_m256_n3072_k24576",
+        "region_m24576_n12288_k1536",
+        "region_m768_n6144_k8192",
+        "region_m1536_n65536_k384",
+        "region_m16384_n12288_k4096",
+        "region_m49152_n256_k4096",
+        "region_m4096_n3072_k131072",
+        "region_m4096_n4096_k16384",
+        "region_m384_n384_k16384",
+        "region_m32768_n1536_k1024",
+        "region_m256_n4096_k16384",
+        "region_m256_n6144_k2048",
+        "region_m384_n12288_k65536",
+        "region_m384_n2048_k3072",
+        "region_m16384_n6144_k1024",
+        "region_m1024_n49152_k12288",
+        "region_m1536_n768_k1024",
+        "region_m4096_n384_k131072",
+        "region_m32768_n1536_k24576",
+        "region_m4096_n512_k1536",
+        "region_m256_n16384_k32768",
+        "region_m384_n4096_k6144",
+        "region_m256_n24576_k1536",
+        "region_m1024_n24576_k24576",
+        "region_m384_n12288_k1536",
+        "region_m6144_n1536_k2048",
+        "region_m512_n384_k2048",
+        "region_m512_n256_k3072",
+        "region_m6144_n2048_k32768",
+        "region_m512_n256_k6144",
+        "region_m768_n6144_k49152",
+        "region_m32768_n384_k256",
+        "region_m768_n6144_k24576",
+        "region_m512_n768_k512",
+        "region_m2048_n16384_k1024",
+        "region_m5120_n5120_k5120",
+        "region_m7168_n7168_k7168",
+        "region_m9216_n9216_k9216",
+        "region_m10240_n10240_k10240",
+        "region_m11264_n11264_k11264",
+        "region_m14336_n14336_k14336",
+        "region_m15360_n15360_k15360",
+        "region_m4608_n4608_k4608",
+        "region_m4096_n8192_k8192",
+        "region_m8192_n4096_k8192",
+        "region_m8192_n8192_k4096",
+        "region_m6144_n8192_k8192",
+        "region_m8192_n6144_k8192",
+        "region_m8192_n8192_k6144",
+        "region_m8192_n12288_k12288",
+        "region_m12288_n8192_k12288",
+        "region_m12288_n12288_k8192",
+        "region_m8192_n16384_k16384",
+        "region_m16384_n8192_k16384",
+        "region_m16384_n16384_k8192",
+        "region_m1536_n1536_k8192",
+        "region_m3072_n3072_k8192",
+        "region_m1536_n1536_k16384",
+        "region_m3072_n3072_k16384",
+        "region_m1536_n1536_k32768",
+        "region_m3072_n3072_k32768",
+        "region_m1536_n1536_k65536",
+        "region_m3072_n3072_k65536",
+        "region_m1536_n1536_k131072",
+        "region_m3072_n3072_k131072",
+        "region_m2048_n3072_k32768",
+        "region_m3072_n2048_k32768",
+        "region_m8191_n8191_k8191",
+        "region_m8193_n8193_k8193",
+        "region_m16383_n16383_k16383",
+        "region_m16385_n16385_k16385",
+        "region_m8191_n8192_k8192",
+        "region_m8193_n8192_k8192",
+        "region_m8192_n8191_k8192",
+        "region_m8192_n8193_k8192",
+        "region_m8192_n8192_k8191",
+        "region_m8192_n8192_k8193",
+        "region_m16383_n8192_k8192",
+        "region_m16385_n8192_k8192",
+        "region_m8192_n16383_k8192",
+        "region_m8192_n16385_k8192",
+        "region_m8192_n8192_k16383",
+        "region_m8192_n8192_k16385"
+      ],
+      "shortlist_max_per_family": 6,
+      "shortlist_top_k": 3,
+      "timing": "screen"
+    },
+    "GRID-smoke": {
+      "candidate_families": {
+        "cubic": [
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_16_128_128",
+            "tile": [
+              16,
+              128,
+              128
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_64_256_256",
+            "tile": [
+              64,
+              256,
+              256
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_128_512_512",
+            "tile": [
+              128,
+              512,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_256_256_256",
+            "tile": [
+              256,
+              256,
+              256
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_384_384_384",
+            "tile": [
+              384,
+              384,
+              384
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_512_512_256",
+            "tile": [
+              512,
+              512,
+              256
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_512_512_512",
+            "tile": [
+              512,
+              512,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_768_768_512",
+            "tile": [
+              768,
+              768,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_768_768_768",
+            "tile": [
+              768,
+              768,
+              768
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_1024_512",
+            "tile": [
+              1024,
+              1024,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_1024_1024",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1536_1536_512",
+            "tile": [
+              1536,
+              1536,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_2048_2048_512",
+            "tile": [
+              2048,
+              2048,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_256_1024_512",
+            "tile": [
+              256,
+              1024,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_256_512",
+            "tile": [
+              1024,
+              256,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_512_1024_512",
+            "tile": [
+              512,
+              1024,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_512_512",
+            "tile": [
+              1024,
+              512,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_512_1536_512",
+            "tile": [
+              512,
+              1536,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1536_512_512",
+            "tile": [
+              1536,
+              512,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_512_1024_1024",
+            "tile": [
+              512,
+              1024,
+              1024
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_512_1024",
+            "tile": [
+              1024,
+              512,
+              1024
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_2048_512",
+            "tile": [
+              1024,
+              2048,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_2048_1024_512",
+            "tile": [
+              2048,
+              1024,
+              512
+            ],
+            "variant": "output_accumulator"
+          },
+          {
+            "algorithm": "cubic_full",
+            "candidate_id": "cubic_1024_1024_1536",
+            "tile": [
+              1024,
+              1024,
+              1536
+            ],
+            "variant": "output_accumulator"
+          }
+        ],
+        "native": [
+          {
+            "algorithm": "native",
+            "candidate_id": "native_default",
+            "compiler_options": {},
+            "tile": null,
+            "variant": "plain"
+          },
+          {
+            "algorithm": "native",
+            "candidate_id": "native_vmem_32m",
+            "compiler_options": {
+              "xla_tpu_scoped_vmem_limit_kib": 32768
+            },
+            "tile": null,
+            "variant": "plain"
+          },
+          {
+            "algorithm": "native",
+            "candidate_id": "native_vmem_48m",
+            "compiler_options": {
+              "xla_tpu_scoped_vmem_limit_kib": 49152
+            },
+            "tile": null,
+            "variant": "plain"
+          },
+          {
+            "algorithm": "native",
+            "candidate_id": "native_vmem_64m",
+            "compiler_options": {
+              "xla_tpu_scoped_vmem_limit_kib": 65536
+            },
+            "tile": null,
+            "variant": "plain"
+          }
+        ],
+        "strassen": [
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_16_256_256",
+            "tile": [
+              16,
+              256,
+              256
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_64_256_256",
+            "tile": [
+              64,
+              256,
+              256
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_128_512_512",
+            "tile": [
+              128,
+              512,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_256_256_256",
+            "tile": [
+              256,
+              256,
+              256
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_384_512_512",
+            "tile": [
+              384,
+              512,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_512_512_256",
+            "tile": [
+              512,
+              512,
+              256
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_512_512_512",
+            "tile": [
+              512,
+              512,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_768_768_512",
+            "tile": [
+              768,
+              768,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_768_768_768",
+            "tile": [
+              768,
+              768,
+              768
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_1024_512",
+            "tile": [
+              1024,
+              1024,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_1024_1024",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1536_1536_512",
+            "tile": [
+              1536,
+              1536,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_2048_2048_512",
+            "tile": [
+              2048,
+              2048,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_256_1024_512",
+            "tile": [
+              256,
+              1024,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_256_512",
+            "tile": [
+              1024,
+              256,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_512_1024_512",
+            "tile": [
+              512,
+              1024,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_512_512",
+            "tile": [
+              1024,
+              512,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_512_1536_512",
+            "tile": [
+              512,
+              1536,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1536_512_512",
+            "tile": [
+              1536,
+              512,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_512_1024_1024",
+            "tile": [
+              512,
+              1024,
+              1024
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_512_1024",
+            "tile": [
+              1024,
+              512,
+              1024
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_2048_512",
+            "tile": [
+              1024,
+              2048,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_2048_1024_512",
+            "tile": [
+              2048,
+              1024,
+              512
+            ],
+            "variant": "interleaved_output_accumulator"
+          },
+          {
+            "algorithm": "strassen",
+            "candidate_id": "strassen_1024_1024_1536",
+            "tile": [
+              1024,
+              1024,
+              1536
+            ],
+            "variant": "interleaved_output_accumulator"
+          }
+        ]
+      },
+      "distribution": "gaussian",
+      "seed": 2026092101,
+      "shape_ids": [
+        "region_m3_n3_k3",
+        "region_m512_n512_k512",
+        "region_m768_n768_k768"
+      ],
+      "timing": "smoke"
+    }
+  },
+  "grid_study": {
+    "cohort_manifest_id": "region_grid_v001",
+    "cohort_policy": "Every new allocation is a distinct cohort. Never pool raw timings, fit rows, or calibration coefficients across allocations; anchors support labeled side-by-side comparisons only.",
+    "comparison": "Frozen Strassen screen winner versus frozen native screen winner, paired on this allocation; report native default separately.",
+    "confirm_reference": "Frozen screen winner per family; no confirmation reselection for headline claims.",
+    "custom_tuning": "24 tile attempts per family, fixed documented implementation variant; failures count.",
+    "full_lattice_execution": false,
+    "holdout_policy": "Do not compile, time, accuracy-test, tune or fit new holdouts until the model, feature definitions, coefficients and dispatch threshold are frozen in a hashed artifact. Existing twelve holdouts stay excluded entirely.",
+    "kernel_coordinate_order": [
+      "m",
+      "k",
+      "n"
+    ],
+    "matrix_operation": "A[M,K] @ B[K,N] -> C[M,N]",
+    "native_tuning": "Compiler-managed tiles; bounded per-executable VMEM compiler-option screen with explicit library default.",
+    "near_set_policy": "Actual measured tile triples, not all combinations of marginal min/max ranges.",
+    "new_cohort": true,
+    "primary_scope": "complete_call",
+    "protected_legacy_holdout_shape_ids": [
+      "grid_m192_n192_k192",
+      "grid_m12288_n12288_k12288",
+      "grid_m3072_n3072_k1536",
+      "grid_m6144_n6144_k3072",
+      "grid_m49152_n2048_k2048",
+      "grid_m98304_n2048_k2048",
+      "grid_m2048_n49152_k2048",
+      "grid_m2048_n98304_k2048",
+      "grid_m2048_n2048_k49152",
+      "grid_m2048_n2048_k98304",
+      "grid_m1536_n6144_k24576",
+      "grid_m24576_n6144_k1536"
+    ],
+    "public_coordinate_order": [
+      "m",
+      "n",
+      "k"
+    ],
+    "reserved_holdout_shape_ids": [
+      "region_m3072_n1024_k49152",
+      "region_m24576_n768_k512",
+      "region_m2048_n1024_k1024",
+      "region_m2048_n6144_k16384",
+      "region_m384_n6144_k24576",
+      "region_m384_n6144_k256",
+      "region_m384_n24576_k2048",
+      "region_m1536_n768_k3072",
+      "region_m24576_n1024_k6144",
+      "region_m32768_n768_k2048",
+      "region_m256_n3072_k3072",
+      "region_m4096_n131072_k1024",
+      "region_m256_n1536_k2048",
+      "region_m1024_n3072_k1024",
+      "region_m49152_n1024_k1536",
+      "region_m6144_n49152_k12288",
+      "region_m49152_n512_k12288",
+      "region_m768_n1024_k1024",
+      "region_m4096_n256_k16384",
+      "region_m12288_n6144_k6144"
+    ],
+    "sampling_roles": {
+      "region_m10240_n10240_k10240": "focused",
+      "region_m1024_n24576_k24576": "broad",
+      "region_m1024_n3072_k1024": "holdout",
+      "region_m1024_n49152_k12288": "broad",
+      "region_m11264_n11264_k11264": "focused",
+      "region_m12288_n12288_k8192": "focused",
+      "region_m12288_n1536_k49152": "broad",
+      "region_m12288_n16384_k2048": "broad",
+      "region_m12288_n2048_k1536": "broad",
+      "region_m12288_n6144_k6144": "holdout",
+      "region_m12288_n8192_k12288": "focused",
+      "region_m131072_n1024_k1024": "broad",
+      "region_m14336_n14336_k14336": "focused",
+      "region_m15360_n15360_k15360": "focused",
+      "region_m1536_n1536_k131072": "focused",
+      "region_m1536_n1536_k16384": "focused",
+      "region_m1536_n1536_k32768": "focused",
+      "region_m1536_n1536_k65536": "focused",
+      "region_m1536_n1536_k8192": "focused",
+      "region_m1536_n256_k2048": "broad",
+      "region_m1536_n4096_k24576": "broad",
+      "region_m1536_n65536_k384": "broad",
+      "region_m1536_n768_k1024": "broad",
+      "region_m1536_n768_k3072": "holdout",
+      "region_m16383_n16383_k16383": "focused",
+      "region_m16383_n8192_k8192": "focused",
+      "region_m16384_n12288_k4096": "broad",
+      "region_m16384_n16384_k1536": "broad",
+      "region_m16384_n16384_k16384": "anchor",
+      "region_m16384_n16384_k8192": "focused",
+      "region_m16384_n2048_k2048": "anchor",
+      "region_m16384_n6144_k1024": "broad",
+      "region_m16384_n8192_k16384": "focused",
+      "region_m16385_n16385_k16385": "focused",
+      "region_m16385_n8192_k8192": "focused",
+      "region_m2048_n1024_k1024": "holdout",
+      "region_m2048_n16384_k1024": "broad",
+      "region_m2048_n16384_k2048": "anchor",
+      "region_m2048_n2048_k131072": "anchor",
+      "region_m2048_n2048_k16384": "anchor",
+      "region_m2048_n2048_k2048": "anchor",
+      "region_m2048_n2048_k32768": "anchor",
+      "region_m2048_n3072_k32768": "focused",
+      "region_m2048_n6144_k16384": "holdout",
+      "region_m2048_n65536_k6144": "broad",
+      "region_m24576_n1024_k6144": "holdout",
+      "region_m24576_n12288_k1536": "broad",
+      "region_m24576_n3072_k8192": "broad",
+      "region_m24576_n768_k512": "holdout",
+      "region_m256_n1536_k2048": "holdout",
+      "region_m256_n1536_k49152": "broad",
+      "region_m256_n16384_k32768": "broad",
+      "region_m256_n24576_k1536": "broad",
+      "region_m256_n3072_k24576": "broad",
+      "region_m256_n3072_k3072": "holdout",
+      "region_m256_n4096_k16384": "broad",
+      "region_m256_n4096_k98304": "broad",
+      "region_m256_n6144_k2048": "broad",
+      "region_m256_n768_k1024": "broad",
+      "region_m256_n768_k6144": "broad",
+      "region_m3072_n1024_k49152": "holdout",
+      "region_m3072_n2048_k32768": "focused",
+      "region_m3072_n3072_k131072": "focused",
+      "region_m3072_n3072_k16384": "focused",
+      "region_m3072_n3072_k32768": "focused",
+      "region_m3072_n3072_k65536": "focused",
+      "region_m3072_n3072_k8192": "focused",
+      "region_m32768_n1536_k1024": "broad",
+      "region_m32768_n1536_k24576": "broad",
+      "region_m32768_n384_k256": "broad",
+      "region_m32768_n768_k2048": "holdout",
+      "region_m384_n12288_k1536": "broad",
+      "region_m384_n12288_k65536": "broad",
+      "region_m384_n131072_k384": "broad",
+      "region_m384_n2048_k3072": "broad",
+      "region_m384_n24576_k2048": "holdout",
+      "region_m384_n256_k1024": "broad",
+      "region_m384_n384_k16384": "broad",
+      "region_m384_n4096_k6144": "broad",
+      "region_m384_n512_k1536": "broad",
+      "region_m384_n6144_k24576": "holdout",
+      "region_m384_n6144_k256": "holdout",
+      "region_m384_n65536_k12288": "broad",
+      "region_m3_n3_k3": "anchor",
+      "region_m4096_n131072_k1024": "holdout",
+      "region_m4096_n24576_k2048": "broad",
+      "region_m4096_n256_k16384": "holdout",
+      "region_m4096_n3072_k131072": "broad",
+      "region_m4096_n384_k131072": "broad",
+      "region_m4096_n4096_k16384": "broad",
+      "region_m4096_n4096_k4096": "anchor",
+      "region_m4096_n512_k1536": "broad",
+      "region_m4096_n8192_k65536": "broad",
+      "region_m4096_n8192_k8192": "focused",
+      "region_m4608_n4608_k4608": "focused",
+      "region_m49152_n1024_k1536": "holdout",
+      "region_m49152_n2048_k512": "broad",
+      "region_m49152_n256_k4096": "broad",
+      "region_m49152_n4096_k4096": "broad",
+      "region_m49152_n512_k12288": "holdout",
+      "region_m5120_n5120_k5120": "focused",
+      "region_m512_n12288_k16384": "broad",
+      "region_m512_n256_k3072": "broad",
+      "region_m512_n256_k6144": "broad",
+      "region_m512_n384_k2048": "broad",
+      "region_m512_n512_k512": "anchor",
+      "region_m512_n768_k512": "broad",
+      "region_m6144_n1536_k2048": "broad",
+      "region_m6144_n2048_k32768": "broad",
+      "region_m6144_n384_k131072": "broad",
+      "region_m6144_n49152_k12288": "holdout",
+      "region_m6144_n8192_k8192": "focused",
+      "region_m65536_n6144_k256": "broad",
+      "region_m7168_n7168_k7168": "focused",
+      "region_m768_n1024_k1024": "holdout",
+      "region_m768_n6144_k24576": "broad",
+      "region_m768_n6144_k49152": "broad",
+      "region_m768_n6144_k8192": "broad",
+      "region_m768_n768_k768": "anchor",
+      "region_m8191_n8191_k8191": "focused",
+      "region_m8191_n8192_k8192": "focused",
+      "region_m8192_n12288_k12288": "focused",
+      "region_m8192_n16383_k8192": "focused",
+      "region_m8192_n16384_k16384": "focused",
+      "region_m8192_n16385_k8192": "focused",
+      "region_m8192_n4096_k8192": "focused",
+      "region_m8192_n6144_k8192": "focused",
+      "region_m8192_n8191_k8192": "focused",
+      "region_m8192_n8192_k16383": "focused",
+      "region_m8192_n8192_k16385": "focused",
+      "region_m8192_n8192_k4096": "focused",
+      "region_m8192_n8192_k6144": "focused",
+      "region_m8192_n8192_k8191": "focused",
+      "region_m8192_n8192_k8192": "anchor",
+      "region_m8192_n8192_k8193": "focused",
+      "region_m8192_n8193_k8192": "focused",
+      "region_m8193_n8192_k8192": "focused",
+      "region_m8193_n8193_k8193": "focused",
+      "region_m9216_n9216_k9216": "focused",
+      "region_m98304_n512_k1024": "broad"
+    },
+    "scope": "One-level tile-local Strassen; one independently identified allocation; resident Gaussian BF16 operands and FP32 output.",
+    "screen_sets_relative_tolerance": [
+      0.01,
+      0.03,
+      0.05
+    ],
+    "unsupported_native_options": "Retain compile failures; never claim an unaccepted option was tuned."
+  },
+  "memory": {
+    "estimated_live_device_budget_gib": 8,
+    "execution_order": "smoke first; remaining shapes in ascending estimated live bytes, largest anchor last",
+    "kernel_vmem_limit_mib": 48,
+    "max_full_reference_flops": 2000000000,
+    "max_reference_output_elements": 1048576,
+    "on_device_oom": "Record oom, clear executable/input buffers before the next case; retry only in a new immutable run.",
+    "on_preflight_over_budget": "Record skipped_memory_preflight with estimate and limit; do not silently remove shape.",
+    "preflight": "Estimate and record bytes for original inputs, padded inputs, FP32 output, one result, and reference samples. Conservative estimate is not measured peak memory."
+  },
+  "precision": {
+    "accumulator_dtype": "float32",
+    "input_dtype": "bfloat16",
+    "native_precision": "DEFAULT",
+    "note": "The Strassen pre-add rounding is part of the algorithm under test; its numerical cost must remain visible. FP32 output differs from some historical BF16-output experiments.",
+    "output_dtype": "float32",
+    "pre_add_dtype": "bfloat16",
+    "reference_dtype": "float32"
+  },
+  "preparation": {
+    "materialization": "prepared kernel uses explicitly prepared inputs, synchronizes them before timing, and records their shapes",
+    "output": "crop to original M,N",
+    "padding": "zero pad each needed extent to tile divisibility for custom kernels; native accepts original shape",
+    "reuse_claim": "No reuse claim unless inputs and prepared buffers actually reused; full-call source remains the main comparison."
+  },
+  "region_study": {
+    "allocation_binding": "Bind this cohort ID to exactly one captured machine/allocation identity before execution; reuse only for the same allocation.",
+    "new_cohort": true,
+    "pooled_with_prior": false
+  },
+  "schema_version": 1,
+  "seed": 2026092001,
+  "shape_manifest": "sampled_shapes.json",
+  "shape_order": [
+    "m",
+    "k",
+    "n"
+  ],
+  "status": "preregistered_separate_cohort_pending_hardware_smoke",
+  "tile_order": [
+    "bm",
+    "bn",
+    "bk"
+  ],
+  "timing": {
+    "clock": "perf_counter_ns",
+    "confirm": {
+      "repeats": 30,
+      "warmups": 5
+    },
+    "exclude": [
+      "compilation",
+      "host_to_device_transfer",
+      "reference_calculation",
+      "one_time_input_generation"
+    ],
+    "headline_scope": "call",
+    "include_in_call": [
+      "device_padding_if_needed",
+      "device_layout_preparation_if_needed",
+      "matmul",
+      "device_output_crop_if_needed"
+    ],
+    "measure_scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "order": "seeded balanced interleaving of arms, raw chronological records retained",
+    "prepared_kernel_note": "Amortized/reused-input scope; always report alongside complete call and original vs padded dimensions.",
+    "repeat_bad_policy": "Keep all completed samples. New complete runs may investigate drift; never replace failed/noisy rows.",
+    "report": [
+      "raw_ms",
+      "median_ms",
+      "mean_ms",
+      "std_ms",
+      "min_ms",
+      "max_ms",
+      "paired_speedup_ci95"
+    ],
+    "screen": {
+      "repeats": 7,
+      "warmups": 2
+    },
+    "smoke": {
+      "repeats": 5,
+      "warmups": 2
+    },
+    "synchronize": "block_until_ready every measured result"
+  }
+}

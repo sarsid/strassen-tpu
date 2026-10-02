@@ -1,0 +1,61 @@
+{
+  "experiment": "strassen_optimized_hardware_smoke_v002",
+  "purpose": "Adaptive smaller-tile retry after archived 59.83 MiB VMEM demand exceeded the 48 MiB limit",
+  "shape_order": "M,N,K",
+  "shapes": [
+    {
+      "m": 8192,
+      "n": 8192,
+      "k": 8192,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "rationale": "Large aligned square with a previously observed Strassen advantage; smaller tile for device-memory feasibility"
+    },
+    {
+      "m": 16384,
+      "n": 16384,
+      "k": 16384,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "rationale": "Larger aligned square to test scaling; smaller tile for device-memory feasibility"
+    },
+    {
+      "m": 4097,
+      "n": 4097,
+      "k": 4097,
+      "tile_bm_bn_bk": [
+        1024,
+        1024,
+        512
+      ],
+      "rationale": "Padding-heavy boundary example motivating the native-tail hybrid; smaller tile for device-memory feasibility"
+    },
+    {
+      "m": 512,
+      "n": 4096,
+      "k": 16384,
+      "tile_bm_bn_bk": [
+        512,
+        1024,
+        1024
+      ],
+      "rationale": "Aligned rectangular case with many K panels and a nonempty hybrid core; smaller tile for device-memory feasibility"
+    }
+  ],
+  "arms": "All nine default frozen arms from benchmark_strassen_optimized_v001.py",
+  "scopes": [
+    "call",
+    "prepared_kernel"
+  ],
+  "screen_rounds": 30,
+  "confirmation_rounds": null,
+  "maximum_additional_allocation_minutes": 30,
+  "claim_limit": "Exploratory shape-specific comparison at fixed matched tiles; not exhaustive tuning or full-grid prevalence",
+  "adaptation": "Tiles changed before any retry timings; one 30-round exploratory phase within the original approved aggregate allocation budget"
+}

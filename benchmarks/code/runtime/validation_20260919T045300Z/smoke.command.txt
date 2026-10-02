@@ -1,0 +1,25 @@
+.venv-colab/bin/python -B - <<'PY'
+import ast, contextlib, importlib.util, io, json
+from pathlib import Path
+path=Path('Strassen_MM_Focus/runtime/colab_control_v001.py')
+spec=importlib.util.spec_from_file_location('control',path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+assert m.remote_path('/content/Strassen_MM_Focus/run-001/a.json') == '/content/Strassen_MM_Focus/run-001/a.json'
+for path in ('/content/elsewhere/a','/content/Strassen_MM_Focus/../a','relative/file'):
+    try:m.remote_path(path)
+    except ValueError:pass
+    else:raise AssertionError(path)
+m.remember_secret('test_secret_value')
+buf=io.StringIO()
+with contextlib.redirect_stdout(buf):
+    m.emit({'text':'Authorization: Bearer hide_me access_token=hide_too test_secret_value',
+            'nested':{'authorization':'hidden_auth'}})
+value=buf.getvalue()
+for secret in ('hide_me','hide_too','test_secret_value','hidden_auth'):
+    assert secret not in value, value
+assert json.loads(value)['nested']['authorization']=='[REDACTED]'
+assert 'hide' not in m.safe_text('{"Authorization": "Bearer hide"}')
+for name in ('colab_control_v001.py','setup_v001.py'):
+    ast.parse((Path('Strassen_MM_Focus/runtime')/name).read_text())
+print('Offline checks passed: syntax, path confinement, known-secret/header redaction.')
+PY
+.venv-colab/bin/python -B Strassen_MM_Focus/runtime/colab_control_v001.py --help

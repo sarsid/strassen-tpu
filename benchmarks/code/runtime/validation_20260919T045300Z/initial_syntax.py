@@ -1,0 +1,6 @@
+import ast
+from pathlib import Path
+for name in ('colab_control_v001.py','setup_v001.py'):
+    path = Path('Strassen_MM_Focus/runtime') / name
+    ast.parse(path.read_text(), filename=str(path))
+    print(name, 'syntax OK')

@@ -1,0 +1,17 @@
+Offline checks passed: syntax, path confinement, known-secret/header redaction.
+usage: colab_control_v001.py [-h] [--config CONFIG] [--token-file TOKEN_FILE]
+                             {list,create,exec-file,upload,download,read,heartbeat}
+                             ...
+
+Small Colab controller with refreshed proxy tokens and sanitized output. Use
+the existing .venv-colab interpreter. Credentials stay in the existing SDK
+store. This module never initializes CLI logging or launches interactive auth.
+All allocation/execution actions require an explicit subcommand.
+
+positional arguments:
+  {list,create,exec-file,upload,download,read,heartbeat}
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG
+  --token-file TOKEN_FILE

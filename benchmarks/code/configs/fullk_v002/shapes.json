@@ -1,0 +1,530 @@
+{
+  "shapes": [
+    {
+      "id": "k2048",
+      "m": 8192,
+      "k": 2048,
+      "n": 8192,
+      "seed_offset": 0,
+      "output_tiles": [
+        [
+          2048,
+          2048
+        ],
+        [
+          4096,
+          1024
+        ],
+        [
+          1024,
+          1024
+        ]
+      ],
+      "panels": [
+        512,
+        1024,
+        2048
+      ],
+      "incumbents": {
+        "1": {
+          "tile": [
+            2048,
+            2048,
+            2048
+          ],
+          "origin": "Dimension-only fixed control; no historical tuned row"
+        },
+        "2": {
+          "tile": [
+            2048,
+            2048,
+            2048
+          ],
+          "origin": "Dimension-only fixed control; no historical tuned row"
+        }
+      }
+    },
+    {
+      "id": "k4096",
+      "m": 8192,
+      "k": 4096,
+      "n": 8192,
+      "seed_offset": 1,
+      "output_tiles": [
+        [
+          2048,
+          2048
+        ],
+        [
+          4096,
+          1024
+        ],
+        [
+          1024,
+          1024
+        ]
+      ],
+      "panels": [
+        1024,
+        2048,
+        4096
+      ],
+      "incumbents": {
+        "1": {
+          "tile": [
+            2048,
+            1024,
+            4096
+          ],
+          "origin": "Historical tuned FP32 grid choice; identical tile adapted to final BF16 store"
+        },
+        "2": {
+          "tile": [
+            2048,
+            1024,
+            4096
+          ],
+          "origin": "Historical tuned FP32 grid choice; identical tile adapted to final BF16 store"
+        }
+      }
+    },
+    {
+      "id": "k8192",
+      "m": 8192,
+      "k": 8192,
+      "n": 8192,
+      "seed_offset": 2,
+      "output_tiles": [
+        [
+          2048,
+          2048
+        ],
+        [
+          4096,
+          1024
+        ],
+        [
+          1024,
+          1024
+        ]
+      ],
+      "panels": [
+        2048,
+        4096,
+        8192
+      ],
+      "incumbents": {
+        "1": {
+          "tile": [
+            2048,
+            2048,
+            2048
+          ],
+          "origin": "Historical tuned FP32 grid choice; identical tile adapted to final BF16 store"
+        },
+        "2": {
+          "tile": [
+            4096,
+            1024,
+            2048
+          ],
+          "origin": "Historical tuned FP32 grid choice; identical tile adapted to final BF16 store"
+        }
+      }
+    },
+    {
+      "id": "k16384",
+      "m": 8192,
+      "k": 16384,
+      "n": 8192,
+      "seed_offset": 3,
+      "output_tiles": [
+        [
+          2048,
+          1024
+        ],
+        [
+          1024,
+          1024
+        ],
+        [
+          512,
+          512
+        ]
+      ],
+      "panels": [
+        4096,
+        8192,
+        16384
+      ],
+      "incumbents": {
+        "1": {
+          "tile": [
+            2048,
+            2048,
+            2048
+          ],
+          "origin": "Dimension-only fixed control; no historical tuned row"
+        },
+        "2": {
+          "tile": [
+            2048,
+            2048,
+            2048
+          ],
+          "origin": "Dimension-only fixed control; no historical tuned row"
+        }
+      }
+    },
+    {
+      "id": "wide",
+      "m": 2048,
+      "k": 8192,
+      "n": 32768,
+      "seed_offset": 4,
+      "output_tiles": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          1024
+        ],
+        [
+          1024,
+          1024
+        ]
+      ],
+      "panels": [
+        2048,
+        4096,
+        8192
+      ],
+      "incumbents": {
+        "1": {
+          "tile": [
+            2048,
+            2048,
+            2048
+          ],
+          "origin": "Dimension-only fixed control; no historical tuned row"
+        },
+        "2": {
+          "tile": [
+            2048,
+            2048,
+            2048
+          ],
+          "origin": "Dimension-only fixed control; no historical tuned row"
+        }
+      }
+    },
+    {
+      "id": "tall",
+      "m": 32768,
+      "k": 8192,
+      "n": 2048,
+      "seed_offset": 5,
+      "output_tiles": [
+        [
+          2048,
+          2048
+        ],
+        [
+          4096,
+          1024
+        ],
+        [
+          1024,
+          1024
+        ]
+      ],
+      "panels": [
+        2048,
+        4096,
+        8192
+      ],
+      "incumbents": {
+        "1": {
+          "tile": [
+            2048,
+            2048,
+            2048
+          ],
+          "origin": "Dimension-only fixed control; no historical tuned row"
+        },
+        "2": {
+          "tile": [
+            2048,
+            2048,
+            2048
+          ],
+          "origin": "Dimension-only fixed control; no historical tuned row"
+        }
+      }
+    },
+    {
+      "id": "small_m",
+      "m": 1024,
+      "k": 8192,
+      "n": 16384,
+      "seed_offset": 6,
+      "output_tiles": [
+        [
+          1024,
+          2048
+        ],
+        [
+          1024,
+          1024
+        ]
+      ],
+      "panels": [
+        2048,
+        4096,
+        8192
+      ],
+      "incumbents": {
+        "1": {
+          "tile": [
+            1024,
+            2048,
+            2048
+          ],
+          "origin": "Dimension-only fixed control; no historical tuned row"
+        },
+        "2": {
+          "tile": [
+            1024,
+            2048,
+            2048
+          ],
+          "origin": "Dimension-only fixed control; no historical tuned row"
+        }
+      }
+    },
+    {
+      "id": "small_n",
+      "m": 16384,
+      "k": 8192,
+      "n": 1024,
+      "seed_offset": 7,
+      "output_tiles": [
+        [
+          2048,
+          1024
+        ],
+        [
+          4096,
+          1024
+        ],
+        [
+          1024,
+          1024
+        ]
+      ],
+      "panels": [
+        2048,
+        4096,
+        8192
+      ],
+      "incumbents": {
+        "1": {
+          "tile": [
+            2048,
+            1024,
+            2048
+          ],
+          "origin": "Dimension-only fixed control; no historical tuned row"
+        },
+        "2": {
+          "tile": [
+            2048,
+            1024,
+            2048
+          ],
+          "origin": "Dimension-only fixed control; no historical tuned row"
+        }
+      }
+    },
+    {
+      "id": "k6144",
+      "m": 8192,
+      "k": 6144,
+      "n": 8192,
+      "seed_offset": 8,
+      "output_tiles": [
+        [
+          2048,
+          2048
+        ],
+        [
+          4096,
+          1024
+        ],
+        [
+          1024,
+          1024
+        ]
+      ],
+      "panels": [
+        1536,
+        3072,
+        6144
+      ],
+      "incumbents": {
+        "1": {
+          "tile": [
+            2048,
+            2048,
+            2048
+          ],
+          "origin": "Historical tuned FP32 grid choice; identical tile adapted to final BF16 store"
+        },
+        "2": {
+          "tile": [
+            2048,
+            2048,
+            2048
+          ],
+          "origin": "Historical tuned FP32 grid choice; identical tile adapted to final BF16 store"
+        }
+      }
+    },
+    {
+      "id": "k12288",
+      "m": 8192,
+      "k": 12288,
+      "n": 8192,
+      "seed_offset": 9,
+      "output_tiles": [
+        [
+          2048,
+          1024
+        ],
+        [
+          1024,
+          1024
+        ],
+        [
+          512,
+          512
+        ]
+      ],
+      "panels": [
+        3072,
+        6144,
+        12288
+      ],
+      "incumbents": {
+        "1": {
+          "tile": [
+            2048,
+            2048,
+            2048
+          ],
+          "origin": "Dimension-only fixed control; no historical tuned row"
+        },
+        "2": {
+          "tile": [
+            2048,
+            2048,
+            2048
+          ],
+          "origin": "Dimension-only fixed control; no historical tuned row"
+        }
+      }
+    },
+    {
+      "id": "parent",
+      "m": 8192,
+      "k": 5120,
+      "n": 51200,
+      "seed_offset": 10,
+      "output_tiles": [
+        [
+          2048,
+          2048
+        ],
+        [
+          4096,
+          1024
+        ],
+        [
+          1024,
+          1024
+        ]
+      ],
+      "panels": [
+        1024,
+        2560,
+        5120
+      ],
+      "incumbents": {
+        "1": {
+          "tile": [
+            2048,
+            2048,
+            1024
+          ],
+          "origin": "Dimension-only fixed control; no historical tuned row"
+        },
+        "2": {
+          "tile": [
+            2048,
+            2048,
+            1024
+          ],
+          "origin": "Dimension-only fixed control; no historical tuned row"
+        }
+      }
+    },
+    {
+      "id": "large_cube",
+      "m": 16384,
+      "k": 16384,
+      "n": 16384,
+      "seed_offset": 11,
+      "output_tiles": [
+        [
+          2048,
+          1024
+        ],
+        [
+          1024,
+          1024
+        ],
+        [
+          512,
+          512
+        ]
+      ],
+      "panels": [
+        4096,
+        8192,
+        16384
+      ],
+      "incumbents": {
+        "1": {
+          "tile": [
+            2048,
+            2048,
+            2048
+          ],
+          "origin": "Historical tuned FP32 grid choice; identical tile adapted to final BF16 store"
+        },
+        "2": {
+          "tile": [
+            4096,
+            1024,
+            2048
+          ],
+          "origin": "Historical tuned FP32 grid choice; identical tile adapted to final BF16 store"
+        }
+      }
+    }
+  ],
+  "control_source": "runs/20260924-v6e-suite-recovery-v001/operations/combined-report/artifacts/report/results.json",
+  "control_sha256": "612e163f99c68e4e79f53cea5d661837cdb480a31180fbff532a1fbb66a609db"
+}

@@ -1,0 +1,493 @@
+{
+  "schema_version": 1,
+  "manifest_id": "shapes_v1",
+  "shape_order": [
+    "m",
+    "k",
+    "n"
+  ],
+  "operand_shapes": {
+    "a": [
+      "m",
+      "k"
+    ],
+    "b": [
+      "k",
+      "n"
+    ],
+    "c": [
+      "m",
+      "n"
+    ]
+  },
+  "input_semantics": "All active entries use synthetic inputs with fixed seeds. LLM-shaped means geometry only, never checkpoint weights or model-quality validation.",
+  "projection_derivations": {
+    "gate_up": "K=hidden_size; N=2*intermediate_size (concatenated weights; no activation)",
+    "q": "K=hidden_size; N=num_attention_heads*head_dim",
+    "kv": "K=hidden_size; N=num_key_value_heads*head_dim (one key OR value projection, not concatenated K+V)",
+    "o": "K=num_attention_heads*head_dim; N=hidden_size",
+    "down": "K=intermediate_size; N=hidden_size",
+    "m": "Chosen token-row count, not model context-length claim; no attention/activation computation."
+  },
+  "sources": {
+    "synthetic_design": {
+      "kind": "preregistered_shape_design",
+      "description": "Independent variation of M/K/N around 2048; all six permutations of 512/2048/8192; small-M and nonaligned controls. No checkpoint association."
+    },
+    "qwen3_32b": {
+      "kind": "official_model_config",
+      "model": "Qwen/Qwen3-32B",
+      "url": "https://huggingface.co/Qwen/Qwen3-32B/raw/main/config.json",
+      "retrieved_date": "2026-09-19",
+      "revision": "main (mutable; selected dimensions frozen in this manifest)",
+      "hidden_size": 5120,
+      "intermediate_size": 25600,
+      "num_attention_heads": 64,
+      "num_key_value_heads": 8,
+      "head_dim": 128
+    },
+    "mistral7_v01": {
+      "kind": "official_model_config",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "url": "https://huggingface.co/mistralai/Mistral-7B-v0.1/raw/main/config.json",
+      "retrieved_date": "2026-09-19",
+      "revision": "main (mutable; selected dimensions frozen in this manifest)",
+      "hidden_size": 4096,
+      "intermediate_size": 14336,
+      "num_attention_heads": 32,
+      "num_key_value_heads": 8,
+      "head_dim": 128,
+      "head_dim_derivation": "hidden_size / num_attention_heads"
+    },
+    "gemma2_9b": {
+      "kind": "official_implementation_config",
+      "model": "google/gemma-2-9b",
+      "url": "https://github.com/google/gemma_pytorch/blob/main/gemma/config.py",
+      "config_function": "get_config_for_9b",
+      "retrieved_date": "2026-09-19",
+      "revision": "main (mutable; selected dimensions frozen in this manifest)",
+      "hidden_size": 3584,
+      "intermediate_size": 14336,
+      "num_attention_heads": 16,
+      "num_key_value_heads": 8,
+      "head_dim": 256
+    }
+  },
+  "shapes": [
+    {
+      "id": "square_512",
+      "m": 512,
+      "k": 512,
+      "n": 512,
+      "family": "square",
+      "source_id": "synthetic_design",
+      "stage": "smoke"
+    },
+    {
+      "id": "square_1024",
+      "m": 1024,
+      "k": 1024,
+      "n": 1024,
+      "family": "square",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "square_2048",
+      "m": 2048,
+      "k": 2048,
+      "n": 2048,
+      "family": "square",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "square_4096",
+      "m": 4096,
+      "k": 4096,
+      "n": 4096,
+      "family": "square",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "square_8192",
+      "m": 8192,
+      "k": 8192,
+      "n": 8192,
+      "family": "square",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "vary_m_512",
+      "m": 512,
+      "k": 2048,
+      "n": 2048,
+      "family": "axis_sweep",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "vary_m_8192",
+      "m": 8192,
+      "k": 2048,
+      "n": 2048,
+      "family": "axis_sweep",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "vary_k_512",
+      "m": 2048,
+      "k": 512,
+      "n": 2048,
+      "family": "axis_sweep",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "vary_k_8192",
+      "m": 2048,
+      "k": 8192,
+      "n": 2048,
+      "family": "axis_sweep",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "vary_n_512",
+      "m": 2048,
+      "k": 2048,
+      "n": 512,
+      "family": "axis_sweep",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "vary_n_8192",
+      "m": 2048,
+      "k": 2048,
+      "n": 8192,
+      "family": "axis_sweep",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "mkn_512_2048_8192",
+      "m": 512,
+      "k": 2048,
+      "n": 8192,
+      "family": "aspect_ratio",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "mkn_512_8192_2048",
+      "m": 512,
+      "k": 8192,
+      "n": 2048,
+      "family": "aspect_ratio",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "mkn_2048_512_8192",
+      "m": 2048,
+      "k": 512,
+      "n": 8192,
+      "family": "aspect_ratio",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "mkn_2048_8192_512",
+      "m": 2048,
+      "k": 8192,
+      "n": 512,
+      "family": "aspect_ratio",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "mkn_8192_512_2048",
+      "m": 8192,
+      "k": 512,
+      "n": 2048,
+      "family": "aspect_ratio",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "mkn_8192_2048_512",
+      "m": 8192,
+      "k": 2048,
+      "n": 512,
+      "family": "aspect_ratio",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "small_m_1",
+      "m": 1,
+      "k": 2048,
+      "n": 2048,
+      "family": "small_m",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "small_m_8",
+      "m": 8,
+      "k": 2048,
+      "n": 2048,
+      "family": "small_m",
+      "source_id": "synthetic_design",
+      "stage": "smoke"
+    },
+    {
+      "id": "small_m_64",
+      "m": 64,
+      "k": 2048,
+      "n": 2048,
+      "family": "small_m",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "small_m_256",
+      "m": 256,
+      "k": 2048,
+      "n": 2048,
+      "family": "small_m",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "tail_513",
+      "m": 513,
+      "k": 513,
+      "n": 513,
+      "family": "nonaligned",
+      "source_id": "synthetic_design",
+      "stage": "smoke"
+    },
+    {
+      "id": "tail_wide",
+      "m": 1023,
+      "k": 2047,
+      "n": 4095,
+      "family": "nonaligned",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "tail_tall",
+      "m": 2049,
+      "k": 1025,
+      "n": 513,
+      "family": "nonaligned",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "tail_deep",
+      "m": 257,
+      "k": 4097,
+      "n": 1023,
+      "family": "nonaligned",
+      "source_id": "synthetic_design",
+      "stage": "core"
+    },
+    {
+      "id": "qwen32_gate_up_m1",
+      "m": 1,
+      "k": 5120,
+      "n": 51200,
+      "family": "llm_projection",
+      "source_id": "qwen3_32b",
+      "stage": "core",
+      "projection": "gate_up"
+    },
+    {
+      "id": "qwen32_gate_up_m64",
+      "m": 64,
+      "k": 5120,
+      "n": 51200,
+      "family": "llm_projection",
+      "source_id": "qwen3_32b",
+      "stage": "core",
+      "projection": "gate_up"
+    },
+    {
+      "id": "qwen32_gate_up_m512",
+      "m": 512,
+      "k": 5120,
+      "n": 51200,
+      "family": "llm_projection",
+      "source_id": "qwen3_32b",
+      "stage": "core",
+      "projection": "gate_up"
+    },
+    {
+      "id": "qwen32_gate_up_m2048",
+      "m": 2048,
+      "k": 5120,
+      "n": 51200,
+      "family": "llm_projection",
+      "source_id": "qwen3_32b",
+      "stage": "core",
+      "projection": "gate_up"
+    },
+    {
+      "id": "qwen32_gate_up_m8192",
+      "m": 8192,
+      "k": 5120,
+      "n": 51200,
+      "family": "llm_projection",
+      "source_id": "qwen3_32b",
+      "stage": "anchor",
+      "projection": "gate_up"
+    },
+    {
+      "id": "qwen32_q_m512",
+      "m": 512,
+      "k": 5120,
+      "n": 8192,
+      "family": "llm_projection",
+      "source_id": "qwen3_32b",
+      "stage": "core",
+      "projection": "q"
+    },
+    {
+      "id": "qwen32_kv_m512",
+      "m": 512,
+      "k": 5120,
+      "n": 1024,
+      "family": "llm_projection",
+      "source_id": "qwen3_32b",
+      "stage": "core",
+      "projection": "kv"
+    },
+    {
+      "id": "qwen32_o_m512",
+      "m": 512,
+      "k": 8192,
+      "n": 5120,
+      "family": "llm_projection",
+      "source_id": "qwen3_32b",
+      "stage": "core",
+      "projection": "o"
+    },
+    {
+      "id": "qwen32_down_m512",
+      "m": 512,
+      "k": 25600,
+      "n": 5120,
+      "family": "llm_projection",
+      "source_id": "qwen3_32b",
+      "stage": "core",
+      "projection": "down"
+    },
+    {
+      "id": "mistral7_gate_up_m64",
+      "m": 64,
+      "k": 4096,
+      "n": 28672,
+      "family": "llm_projection",
+      "source_id": "mistral7_v01",
+      "stage": "core",
+      "projection": "gate_up"
+    },
+    {
+      "id": "mistral7_gate_up_m512",
+      "m": 512,
+      "k": 4096,
+      "n": 28672,
+      "family": "llm_projection",
+      "source_id": "mistral7_v01",
+      "stage": "core",
+      "projection": "gate_up"
+    },
+    {
+      "id": "mistral7_gate_up_m2048",
+      "m": 2048,
+      "k": 4096,
+      "n": 28672,
+      "family": "llm_projection",
+      "source_id": "mistral7_v01",
+      "stage": "core",
+      "projection": "gate_up"
+    },
+    {
+      "id": "mistral7_kv_m512",
+      "m": 512,
+      "k": 4096,
+      "n": 1024,
+      "family": "llm_projection",
+      "source_id": "mistral7_v01",
+      "stage": "core",
+      "projection": "kv"
+    },
+    {
+      "id": "mistral7_down_m512",
+      "m": 512,
+      "k": 14336,
+      "n": 4096,
+      "family": "llm_projection",
+      "source_id": "mistral7_v01",
+      "stage": "core",
+      "projection": "down"
+    },
+    {
+      "id": "gemma9_gate_up_m64",
+      "m": 64,
+      "k": 3584,
+      "n": 28672,
+      "family": "llm_projection",
+      "source_id": "gemma2_9b",
+      "stage": "core",
+      "projection": "gate_up"
+    },
+    {
+      "id": "gemma9_gate_up_m512",
+      "m": 512,
+      "k": 3584,
+      "n": 28672,
+      "family": "llm_projection",
+      "source_id": "gemma2_9b",
+      "stage": "core",
+      "projection": "gate_up"
+    },
+    {
+      "id": "gemma9_gate_up_m2048",
+      "m": 2048,
+      "k": 3584,
+      "n": 28672,
+      "family": "llm_projection",
+      "source_id": "gemma2_9b",
+      "stage": "core",
+      "projection": "gate_up"
+    },
+    {
+      "id": "gemma9_q_m512",
+      "m": 512,
+      "k": 3584,
+      "n": 4096,
+      "family": "llm_projection",
+      "source_id": "gemma2_9b",
+      "stage": "core",
+      "projection": "q"
+    },
+    {
+      "id": "gemma9_down_m512",
+      "m": 512,
+      "k": 14336,
+      "n": 3584,
+      "family": "llm_projection",
+      "source_id": "gemma2_9b",
+      "stage": "core",
+      "projection": "down"
+    }
+  ]
+}

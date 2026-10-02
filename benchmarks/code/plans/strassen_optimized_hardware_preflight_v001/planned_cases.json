@@ -1,0 +1,922 @@
+[
+  {
+    "candidates": [
+      {
+        "candidate_id": "native_default",
+        "compiler_options": {},
+        "implementation": "native",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "candidate_id": "native_vmem_64m",
+        "compiler_options": {
+          "xla_tpu_scoped_vmem_limit_kib": 65536
+        },
+        "implementation": "native",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "candidate_id": "old_strassen",
+        "compiler_options": {},
+        "implementation": "kernels_v002",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm_scope": "one_level_tile_strassen",
+        "candidate_id": "new_baseline",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "traversal": "mnk",
+        "variant": "baseline"
+      },
+      {
+        "algorithm_scope": "one_level_tile_strassen",
+        "candidate_id": "new_masked_edges",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE",
+          "SOPT-001"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "traversal": "mnk",
+        "variant": "masked_edges"
+      },
+      {
+        "algorithm_scope": "one_level_tile_strassen",
+        "candidate_id": "new_local_accumulators",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE",
+          "SOPT-002"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "traversal": "mnk",
+        "variant": "local_accumulators"
+      },
+      {
+        "algorithm_scope": "one_level_tile_strassen",
+        "candidate_id": "new_optimized",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE",
+          "SOPT-001",
+          "SOPT-002"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "traversal": "mnk",
+        "variant": "optimized"
+      },
+      {
+        "algorithm_scope": "one_level_tile_strassen",
+        "candidate_id": "new_optimized_nmk",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE",
+          "SOPT-001",
+          "SOPT-002",
+          "SOPT-004"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "traversal": "nmk",
+        "variant": "optimized"
+      },
+      {
+        "algorithm_scope": "hybrid_strassen_core_and_native_tails",
+        "candidate_id": "new_peeled_edges",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE",
+          "SOPT-002",
+          "SOPT-005"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "traversal": "mnk",
+        "variant": "peeled_edges"
+      }
+    ],
+    "group_id": "ablation_m8192_n8192_k8192__fixed_ablation",
+    "input": {
+      "distribution": "gaussian",
+      "seed": 20260923
+    },
+    "memory_preflight": {
+      "estimate_is_not_measured_peak": true,
+      "estimated_live_device_bytes": 1073872896,
+      "largest_padded_input_bytes": 268435456,
+      "original_input_bytes": 268435456,
+      "per_arm_prepared_padding_bytes": 0,
+      "reserved_output_and_temporary_bytes": 536870912,
+      "unmeasured": "compiler executable residency and runtime/device peak allocations"
+    },
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "id": "ablation_m8192_n8192_k8192",
+      "k": 8192,
+      "m": 8192,
+      "n": 8192,
+      "tile_bm_bn_bk": [
+        2048,
+        2048,
+        512
+      ]
+    },
+    "timing": {
+      "order": "Fresh deterministic PCG64 permutation of candidate/scope entries each round",
+      "repeats": 7,
+      "warmups": 5
+    }
+  },
+  {
+    "candidates": [
+      {
+        "candidate_id": "native_default",
+        "compiler_options": {},
+        "implementation": "native",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "candidate_id": "native_vmem_64m",
+        "compiler_options": {
+          "xla_tpu_scoped_vmem_limit_kib": 65536
+        },
+        "implementation": "native",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "candidate_id": "old_strassen",
+        "compiler_options": {},
+        "implementation": "kernels_v002",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm_scope": "one_level_tile_strassen",
+        "candidate_id": "new_baseline",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "traversal": "mnk",
+        "variant": "baseline"
+      },
+      {
+        "algorithm_scope": "one_level_tile_strassen",
+        "candidate_id": "new_masked_edges",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE",
+          "SOPT-001"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "traversal": "mnk",
+        "variant": "masked_edges"
+      },
+      {
+        "algorithm_scope": "one_level_tile_strassen",
+        "candidate_id": "new_local_accumulators",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE",
+          "SOPT-002"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "traversal": "mnk",
+        "variant": "local_accumulators"
+      },
+      {
+        "algorithm_scope": "one_level_tile_strassen",
+        "candidate_id": "new_optimized",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE",
+          "SOPT-001",
+          "SOPT-002"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "traversal": "mnk",
+        "variant": "optimized"
+      },
+      {
+        "algorithm_scope": "one_level_tile_strassen",
+        "candidate_id": "new_optimized_nmk",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE",
+          "SOPT-001",
+          "SOPT-002",
+          "SOPT-004"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "traversal": "nmk",
+        "variant": "optimized"
+      },
+      {
+        "algorithm_scope": "hybrid_strassen_core_and_native_tails",
+        "candidate_id": "new_peeled_edges",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE",
+          "SOPT-002",
+          "SOPT-005"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "traversal": "mnk",
+        "variant": "peeled_edges"
+      }
+    ],
+    "group_id": "ablation_m16384_n16384_k16384__fixed_ablation",
+    "input": {
+      "distribution": "gaussian",
+      "seed": 20260923
+    },
+    "memory_preflight": {
+      "estimate_is_not_measured_peak": true,
+      "estimated_live_device_bytes": 4295098368,
+      "largest_padded_input_bytes": 1073741824,
+      "original_input_bytes": 1073741824,
+      "per_arm_prepared_padding_bytes": 0,
+      "reserved_output_and_temporary_bytes": 2147483648,
+      "unmeasured": "compiler executable residency and runtime/device peak allocations"
+    },
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "id": "ablation_m16384_n16384_k16384",
+      "k": 16384,
+      "m": 16384,
+      "n": 16384,
+      "tile_bm_bn_bk": [
+        2048,
+        2048,
+        512
+      ]
+    },
+    "timing": {
+      "order": "Fresh deterministic PCG64 permutation of candidate/scope entries each round",
+      "repeats": 7,
+      "warmups": 5
+    }
+  },
+  {
+    "candidates": [
+      {
+        "candidate_id": "native_default",
+        "compiler_options": {},
+        "implementation": "native",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "candidate_id": "native_vmem_64m",
+        "compiler_options": {
+          "xla_tpu_scoped_vmem_limit_kib": 65536
+        },
+        "implementation": "native",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "candidate_id": "old_strassen",
+        "compiler_options": {},
+        "implementation": "kernels_v002",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm_scope": "one_level_tile_strassen",
+        "candidate_id": "new_baseline",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "traversal": "mnk",
+        "variant": "baseline"
+      },
+      {
+        "algorithm_scope": "one_level_tile_strassen",
+        "candidate_id": "new_masked_edges",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE",
+          "SOPT-001"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "traversal": "mnk",
+        "variant": "masked_edges"
+      },
+      {
+        "algorithm_scope": "one_level_tile_strassen",
+        "candidate_id": "new_local_accumulators",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE",
+          "SOPT-002"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "traversal": "mnk",
+        "variant": "local_accumulators"
+      },
+      {
+        "algorithm_scope": "one_level_tile_strassen",
+        "candidate_id": "new_optimized",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE",
+          "SOPT-001",
+          "SOPT-002"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "traversal": "mnk",
+        "variant": "optimized"
+      },
+      {
+        "algorithm_scope": "one_level_tile_strassen",
+        "candidate_id": "new_optimized_nmk",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE",
+          "SOPT-001",
+          "SOPT-002",
+          "SOPT-004"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "traversal": "nmk",
+        "variant": "optimized"
+      },
+      {
+        "algorithm_scope": "hybrid_strassen_core_and_native_tails",
+        "candidate_id": "new_peeled_edges",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE",
+          "SOPT-002",
+          "SOPT-005"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          2048,
+          2048,
+          512
+        ],
+        "traversal": "mnk",
+        "variant": "peeled_edges"
+      }
+    ],
+    "group_id": "ablation_m4097_n4097_k4097__fixed_ablation",
+    "input": {
+      "distribution": "gaussian",
+      "seed": 20260923
+    },
+    "memory_preflight": {
+      "estimate_is_not_measured_peak": true,
+      "estimated_live_device_bytes": 822247428,
+      "largest_padded_input_bytes": 113246208,
+      "original_input_bytes": 67141636,
+      "per_arm_prepared_padding_bytes": 339738624,
+      "reserved_output_and_temporary_bytes": 301989888,
+      "unmeasured": "compiler executable residency and runtime/device peak allocations"
+    },
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "id": "ablation_m4097_n4097_k4097",
+      "k": 4097,
+      "m": 4097,
+      "n": 4097,
+      "tile_bm_bn_bk": [
+        2048,
+        2048,
+        512
+      ]
+    },
+    "timing": {
+      "order": "Fresh deterministic PCG64 permutation of candidate/scope entries each round",
+      "repeats": 7,
+      "warmups": 5
+    }
+  },
+  {
+    "candidates": [
+      {
+        "candidate_id": "native_default",
+        "compiler_options": {},
+        "implementation": "native",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "candidate_id": "native_vmem_64m",
+        "compiler_options": {
+          "xla_tpu_scoped_vmem_limit_kib": 65536
+        },
+        "implementation": "native",
+        "tile": null,
+        "variant": "plain"
+      },
+      {
+        "candidate_id": "old_strassen",
+        "compiler_options": {},
+        "implementation": "kernels_v002",
+        "tile": [
+          512,
+          2048,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      },
+      {
+        "algorithm_scope": "one_level_tile_strassen",
+        "candidate_id": "new_baseline",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          512,
+          2048,
+          512
+        ],
+        "traversal": "mnk",
+        "variant": "baseline"
+      },
+      {
+        "algorithm_scope": "one_level_tile_strassen",
+        "candidate_id": "new_masked_edges",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE",
+          "SOPT-001"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          512,
+          2048,
+          512
+        ],
+        "traversal": "mnk",
+        "variant": "masked_edges"
+      },
+      {
+        "algorithm_scope": "one_level_tile_strassen",
+        "candidate_id": "new_local_accumulators",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE",
+          "SOPT-002"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          512,
+          2048,
+          512
+        ],
+        "traversal": "mnk",
+        "variant": "local_accumulators"
+      },
+      {
+        "algorithm_scope": "one_level_tile_strassen",
+        "candidate_id": "new_optimized",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE",
+          "SOPT-001",
+          "SOPT-002"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          512,
+          2048,
+          512
+        ],
+        "traversal": "mnk",
+        "variant": "optimized"
+      },
+      {
+        "algorithm_scope": "one_level_tile_strassen",
+        "candidate_id": "new_optimized_nmk",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE",
+          "SOPT-001",
+          "SOPT-002",
+          "SOPT-004"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          512,
+          2048,
+          512
+        ],
+        "traversal": "nmk",
+        "variant": "optimized"
+      },
+      {
+        "algorithm_scope": "hybrid_strassen_core_and_native_tails",
+        "candidate_id": "new_peeled_edges",
+        "compiler_options": {},
+        "implementation": "strassen_optimized",
+        "optimization_ids": [
+          "SOPT-BASE",
+          "SOPT-002",
+          "SOPT-005"
+        ],
+        "product_order": [
+          4,
+          6,
+          5,
+          2,
+          7,
+          3,
+          1
+        ],
+        "schedule_id": "strassen_schedule_v001_p4652731",
+        "tile": [
+          512,
+          2048,
+          512
+        ],
+        "traversal": "mnk",
+        "variant": "peeled_edges"
+      }
+    ],
+    "group_id": "ablation_m512_n4096_k16384__fixed_ablation",
+    "input": {
+      "distribution": "gaussian",
+      "seed": 20260923
+    },
+    "memory_preflight": {
+      "estimate_is_not_measured_peak": true,
+      "estimated_live_device_bytes": 318898176,
+      "largest_padded_input_bytes": 150994944,
+      "original_input_bytes": 150994944,
+      "per_arm_prepared_padding_bytes": 0,
+      "reserved_output_and_temporary_bytes": 16777216,
+      "unmeasured": "compiler executable residency and runtime/device peak allocations"
+    },
+    "scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "shape": {
+      "id": "ablation_m512_n4096_k16384",
+      "k": 16384,
+      "m": 512,
+      "n": 4096,
+      "tile_bm_bn_bk": [
+        512,
+        2048,
+        512
+      ]
+    },
+    "timing": {
+      "order": "Fresh deterministic PCG64 permutation of candidate/scope entries each round",
+      "repeats": 7,
+      "warmups": 5
+    }
+  }
+]
