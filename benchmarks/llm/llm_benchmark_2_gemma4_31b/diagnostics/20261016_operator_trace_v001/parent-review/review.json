@@ -1,0 +1,40 @@
+{
+  "reviewed_utc": "2026-10-16T12:52:53.994766+00:00",
+  "repository": "https://github.com/sarsid/strassen-tpu",
+  "public_preview_revision": "95be1fb088656a89813b04492e1d77c66b36ccf9",
+  "public_v2_revision": "ab4323242f56ef0c482458bce47ec3b076034a69",
+  "parent_model": "Gemma3-27B (not Gemma4-31B)",
+  "findings": [
+    {
+      "topic": "reference fidelity",
+      "source": "tools/reference_fidelity.py",
+      "finding": "Both the official decoder and parent formulation run in Torch CPU FP32 for one real layer; this checks semantics and is not a full-depth BF16 JAX-versus-Torch comparison."
+    },
+    {
+      "topic": "algorithm quality",
+      "source": "experiments/gemma3/benchmark_gemma3_streamed.py",
+      "finding": "Strassen and Cubic are compared against regular_xla on the same device and inputs. Relative hidden drift is reported; task gates use NLL/KL/top1. Parent reference_fidelity is separate."
+    },
+    {
+      "topic": "causal mask",
+      "source": "tools/reference_fidelity.py",
+      "finding": "Parent repaired a false divergence caused by attention_mask=None in official eager attention. Our v001/v002 oracle already provides an explicit causal mask."
+    },
+    {
+      "topic": "BOS token",
+      "source": "evidence/gemma3/README.md",
+      "finding": "Parent documented missing BOS degrading absolute task accuracy while same-model agreement cancelled the shared bug. Current repetitive Gemma4 qualification uses tokenizer template BOS id 2. Future natural loader uses add_special_tokens=False and needs correction before quality measurements."
+    },
+    {
+      "topic": "rounding",
+      "source": "experiments/gemma3/benchmark_gemma3_block.py",
+      "finding": "Parent uses JAX dot_product_attention and FP32 intermediates for RoPE and GeGLU before final BF16 casts. It does not implement our explicit Torch eager BF16 score boundary or provide a Gemma4 cross-backend drift fix."
+    },
+    {
+      "topic": "model-specific norms",
+      "source": "experiments/gemma3/benchmark_gemma3_block.py",
+      "finding": "Gemma3 uses (1+w) RMSNorm. Gemma4 official source uses w directly, plus value normalization and layer scalar; direct Gemma3 copying would be wrong."
+    }
+  ],
+  "current_status": "Matched operation diagnostic harness passed 43 local CPU checks; real CPU/v6e diagnostic being prepared; no accuracy limits changed."
+}

@@ -50,3 +50,5 @@ plus a six-batch progress table. It does not imply the laptop's local server is
 reachable from another machine.
 
 [LLM Benchmark 1 (Qwen3-32B)](../llm_benchmark_1_qwen3_32b/) is preserved separately.
+
+A [controlled numerical diagnostic](diagnostics/20261016_operator_trace_v001/) is prepared to compare identical real inputs operation by operation in official Torch, JAX CPU and JAX v6e. Its local validation and review of the parent public-v2 fidelity method are preserved; no real diagnostic result is claimed by this preparation checkpoint.
