@@ -1,0 +1,55 @@
+{
+  "status.json": {
+    "started_utc": "2026-10-16T14:46:53.939462+00:00",
+    "status": "running",
+    "stages": [
+      {
+        "name": "oracle-a0",
+        "batch": null,
+        "stage": "oracle",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 11.843308613000005
+      },
+      {
+        "name": "b8-tune-a0",
+        "batch": 8,
+        "stage": "tune",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 2279.383854238
+      },
+      {
+        "name": "b8-qualify-a0",
+        "batch": 8,
+        "stage": "qualify",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 196.6271367280001
+      }
+    ],
+    "batches": [],
+    "batch_archives": [],
+    "qualification": "passed",
+    "active": "b8-confirm-a0",
+    "active_batch": 8
+  },
+  "progress.json": {
+    "batch": 8,
+    "stage": "confirm",
+    "utc": "2026-10-16T15:33:52Z",
+    "test": "Compiler optimization",
+    "status": "running",
+    "stage_label": "Resident timing confirmation",
+    "event": "lowered",
+    "elapsed_stage_seconds": 278.52943195199987,
+    "transport": "tensor",
+    "layer": 0,
+    "arm": "strassen_tuned",
+    "site": "down",
+    "round": 19,
+    "rounds": 20,
+    "attention_type": "sliding_attention"
+  },
+  "observed_utc": "2026-10-16T15:34:00.519768+00:00"
+}

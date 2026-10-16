@@ -59,3 +59,5 @@ The [completed numerical diagnosis](diagnostics/20261016_operator_trace_v001/com
 The [approved validation split and v003 restart](operations/approved_validation_v002/) use hash-verified completed CPU FP32 fidelity evidence, unchanged same-TPU BF16 algorithm gates, and BOS per natural-text sequence. Local checks passed. A replacement-allocation supervisor started at 14:43 UTC October 16; no new performance result is claimed by this checkpoint. This protocol supersedes the earlier cross-backend BF16 stopping rule for new attempts only.
 
 [The v003 qualification checkpoint](checkpoints/20261016_v003_qualification/) records successful source-checked reuse of the approved FP32 control on a new owned v6e. B8 tuning was running at 15:00 UTC October 16; batch accuracy and performance outcomes are still pending.
+
+[B8 tuning and block qualification](checkpoints/20261016_v003_b8_tune_qualify/) completed successfully. Both representative attention blocks passed the unchanged numerical limits; resident confirmation was active at 15:33 UTC. Full-model quality and speedup conclusions remain pending.
