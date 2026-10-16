@@ -71,3 +71,5 @@ The [approved validation split and v003 restart](operations/approved_validation_
 **[B16 is fully complete](results/20261016_v003/b16/)** with all quality gates passed and raw artifacts preserved. Strassen resident time is 24.0% lower than Native; serialized offloaded means are 241.168 s versus 242.562 s (0.575% difference, with overlapping sample ranges). B32 tuning has started on the same owned TPU; two of six batches are complete.
 
 [B32 resident confirmation and quality](checkpoints/20261016_v003_b32_confirm_quality/) passed all unchanged gates: Strassen 3769.584 ms, Native 4796.475 ms, Tuned Native 4151.352 ms summed resident-layer time (21.4% and 9.2% less time). Transfer-inclusive prefill was running at 20:26 UTC.
+
+**[B32 is fully complete](results/20261016_v003/b32/)** with all quality gates passed and raw artifacts preserved. Strassen resident time is 21.4% lower than Native and 9.2% lower than Tuned Native. Serialized offloaded means are 246.267 s versus 247.072 s Native (0.326% difference, with overlapping sample ranges). B64 tuning has started automatically on the same owned TPU; three of six batches are complete.

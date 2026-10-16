@@ -1,0 +1,81 @@
+{
+  "native_options": {
+    "xla_tpu_scoped_vmem_limit_kib": 98304
+  },
+  "strassen": {
+    "q": {
+      "tile": [
+        2048,
+        1024,
+        5376
+      ],
+      "fused": true,
+      "estimate_bytes": 82837504
+    },
+    "k": {
+      "tile": [
+        2048,
+        1024,
+        5376
+      ],
+      "fused": true,
+      "estimate_bytes": 82837504
+    },
+    "gateup": {
+      "tile": [
+        2048,
+        1536,
+        5376
+      ],
+      "fused": true,
+      "estimate_bytes": 102236160
+    },
+    "o": {
+      "tile": [
+        2048,
+        768,
+        8192
+      ],
+      "fused": false,
+      "estimate_bytes": 104857600
+    },
+    "down": {
+      "tile": [
+        2048,
+        1792,
+        1024
+      ],
+      "fused": false,
+      "estimate_bytes": 45088768
+    }
+  },
+  "cubic": {
+    "gateup": {
+      "tile": [
+        2048,
+        1024,
+        5376
+      ],
+      "fused": false,
+      "estimate_bytes": 82837504
+    },
+    "o": {
+      "tile": [
+        2048,
+        1792,
+        1024
+      ],
+      "fused": false,
+      "estimate_bytes": 45088768
+    },
+    "down": {
+      "tile": [
+        2048,
+        1792,
+        1024
+      ],
+      "fused": false,
+      "estimate_bytes": 45088768
+    }
+  }
+}
