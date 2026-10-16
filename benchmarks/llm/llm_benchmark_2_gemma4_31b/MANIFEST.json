@@ -1,13 +1,13 @@
 {
-  "status": "v002_failed_matched_operation_diagnosis_prepared",
+  "status": "diagnosis_waiting_for_allocation_retain_on_error_active",
   "files": {
     "PROTOCOL.md": {
       "sha256": "ae0a4629744923c024fd379245213a1ee30545aed7bbfc70e5ec19edf48c2126",
       "bytes": 4066
     },
     "README.md": {
-      "sha256": "1338bc2ef12aa5b1618d63948815f035b3db6ed4437166a2107d47852ad5901b",
-      "bytes": 3642
+      "sha256": "bda39b26997b23a88ee3a30bee17e4d8c19c0d4b733f97e4d641233e2cc0041d",
+      "bytes": 4170
     },
     "dashboard/README.md": {
       "sha256": "6b566d621f7f9d0dcc69ce347987515349bbbc6a38402fe0f6f3de514f9908f7",
@@ -160,6 +160,202 @@
     "operations/launch_recovery_v002/start_gemma4_batch_v002.py": {
       "sha256": "b35bedae7d80a20bca8f0d291349d14999ff7597539039489d478d731b786ce5",
       "bytes": 5960
+    },
+    "operations/retain_on_error_v001/controller-override-v002.json": {
+      "sha256": "952465eaba7f7b880e2032af0d38cb8f1e7da1b4cb322b7d9be1b026c944df41",
+      "bytes": 573
+    },
+    "operations/retain_on_error_v001/policy-change-20261016.json": {
+      "sha256": "bf2d793f37d043e8bcaa3c7f663da280b1be55025c051f15f4bc71abb9abb01d",
+      "bytes": 330
+    },
+    "operations/retain_on_error_v001/source/protocols/GEMMA4_RETAIN_ON_ERROR_v001.md": {
+      "sha256": "14739646d9ffee135735e671e6061c5baade67d8ed37d5b108836423b83d1d21",
+      "bytes": 1684
+    },
+    "operations/retain_on_error_v001/source/tests/test_gemma4_retained_supervisor_v001.py": {
+      "sha256": "2caf48ee8370e59675d27589917185c4a6dc59359109f706219d69016bff999f",
+      "bytes": 2944
+    },
+    "operations/retain_on_error_v001/source/tests/test_gemma4_retained_supervisor_v002.py": {
+      "sha256": "813a07b94f90bdc435049741a30a8dd82ca54192f33f4cacc2375a594fc0e73f",
+      "bytes": 2954
+    },
+    "operations/retain_on_error_v001/source/tools/check_gemma4_diagnostic_controller_v002.py": {
+      "sha256": "f61a16505d7c43bd95d5b6db7d9537b796ead534849c95a874e939aa9b3c7eae",
+      "bytes": 7434
+    },
+    "operations/retain_on_error_v001/source/tools/check_gemma4_diagnostic_controller_v003.py": {
+      "sha256": "2c076902c3cc357ccef71c7eb8097f1f2df53a35f69472b5d3c71a6b7f9b603a",
+      "bytes": 7513
+    },
+    "operations/retain_on_error_v001/source/tools/run_gemma4_diagnostic_v002.py": {
+      "sha256": "2818c3f8d76e5ad3c3598228f0e8eb8ee20a2d63373aa786e421f95278bfe2f9",
+      "bytes": 15302
+    },
+    "operations/retain_on_error_v001/source/tools/start_gemma4_diagnostic_v002.py": {
+      "sha256": "6310f9e871882c6cf12794268c80f83542867565de0df4308eaa5f9da4a7180e",
+      "bytes": 7252
+    },
+    "operations/retain_on_error_v001/starter-process-v002.json": {
+      "sha256": "394f2c9c1b9f55764a70328f247d37ff691ce07f3a1afc856f1f814a8aebd272",
+      "bytes": 760
+    },
+    "operations/retain_on_error_v001/validation/20261016T130743Z-gemma4-retained-controller-validation-v001-abda81/artifact-manifest.json": {
+      "sha256": "a4ba3df89cf96833899e79c2ca07c31398235eba0e1b7945034a3b85f65c408a",
+      "bytes": 1833
+    },
+    "operations/retain_on_error_v001/validation/20261016T130743Z-gemma4-retained-controller-validation-v001-abda81/completion.json": {
+      "sha256": "03edb06ef81e2c3e44888f77cc1cbedf05dceb1e167058d35d2e589a2b3c25dd",
+      "bytes": 160
+    },
+    "operations/retain_on_error_v001/validation/20261016T130743Z-gemma4-retained-controller-validation-v001-abda81/execution.json": {
+      "sha256": "07ef0d4ac0781524261c02922a25e806e3524df32010f8bacba4f8f69f819f9d",
+      "bytes": 664
+    },
+    "operations/retain_on_error_v001/validation/20261016T130743Z-gemma4-retained-controller-validation-v001-abda81/execution.log": {
+      "sha256": "60f57a78c938361a003b80bc544a6323f2979272f6317416769ad021b764e05d",
+      "bytes": 2029
+    },
+    "operations/retain_on_error_v001/validation/20261016T130743Z-gemma4-retained-controller-validation-v001-abda81/process.json": {
+      "sha256": "135c576911eb144405005f8eaa8d0320213c348ab3876687896cadbfcfdd28dd",
+      "bytes": 18
+    },
+    "operations/retain_on_error_v001/validation/20261016T130743Z-gemma4-retained-controller-validation-v001-abda81/source/protocols/GEMMA4_RETAIN_ON_ERROR_v001.md": {
+      "sha256": "14739646d9ffee135735e671e6061c5baade67d8ed37d5b108836423b83d1d21",
+      "bytes": 1684
+    },
+    "operations/retain_on_error_v001/validation/20261016T130743Z-gemma4-retained-controller-validation-v001-abda81/source/runtime/poll_gemma4_batch_v001.py": {
+      "sha256": "d250dd13bce9aa0dc84c8ac83751f9fac433b43395fc26ac9a2862dfe1accdf6",
+      "bytes": 2054
+    },
+    "operations/retain_on_error_v001/validation/20261016T130743Z-gemma4-retained-controller-validation-v001-abda81/source/tests/test_gemma4_retained_supervisor_v001.py": {
+      "sha256": "2caf48ee8370e59675d27589917185c4a6dc59359109f706219d69016bff999f",
+      "bytes": 2944
+    },
+    "operations/retain_on_error_v001/validation/20261016T130743Z-gemma4-retained-controller-validation-v001-abda81/source/tools/check_gemma4_diagnostic_controller_v002.py": {
+      "sha256": "f61a16505d7c43bd95d5b6db7d9537b796ead534849c95a874e939aa9b3c7eae",
+      "bytes": 7434
+    },
+    "operations/retain_on_error_v001/validation/20261016T130743Z-gemma4-retained-controller-validation-v001-abda81/source/tools/run_gemma4_diagnostic_v002.py": {
+      "sha256": "2818c3f8d76e5ad3c3598228f0e8eb8ee20a2d63373aa786e421f95278bfe2f9",
+      "bytes": 15302
+    },
+    "operations/retain_on_error_v001/validation/20261016T130743Z-gemma4-retained-controller-validation-v001-abda81/source/tools/start_gemma4_diagnostic_v002.py": {
+      "sha256": "6310f9e871882c6cf12794268c80f83542867565de0df4308eaa5f9da4a7180e",
+      "bytes": 7252
+    },
+    "operations/retain_on_error_v001/validation/20261016T130743Z-gemma4-retained-controller-validation-v001-abda81/source-manifest.json": {
+      "sha256": "ef79a3361d7fb8ac7cd8318bdd5e0c797c60e75a02f1e12830994b8032436f44",
+      "bytes": 865
+    },
+    "operations/retain_on_error_v001/validation/20261016T130743Z-gemma4-retained-controller-validation-v001-abda81/source.tar": {
+      "sha256": "cd64261e2b1c37004cf91a461e3b90a94807a7befe5d96f530aed18a4b01adb9",
+      "bytes": 51200
+    },
+    "operations/retain_on_error_v001/validation/20261016T130836Z-gemma4-retained-controller-validation-v002-45c4f6/artifact-manifest.json": {
+      "sha256": "39dbc7c2a36cc55c33cd91a3e4aebd3ebf3983489ef67faa129e91451284f3f5",
+      "bytes": 1833
+    },
+    "operations/retain_on_error_v001/validation/20261016T130836Z-gemma4-retained-controller-validation-v002-45c4f6/completion.json": {
+      "sha256": "0a3655be33df6c04df0d5977192817310fe4cfe8bff521b06694b5d529e2349e",
+      "bytes": 160
+    },
+    "operations/retain_on_error_v001/validation/20261016T130836Z-gemma4-retained-controller-validation-v002-45c4f6/execution.json": {
+      "sha256": "7761e755b9775ced2c429a40ba7dcc2bc84836655408998263244994201c4e65",
+      "bytes": 664
+    },
+    "operations/retain_on_error_v001/validation/20261016T130836Z-gemma4-retained-controller-validation-v002-45c4f6/execution.log": {
+      "sha256": "821f9cf4ea0aa21b4c3d53346859bf209f7e8c71b1f2f1c3999aa89a2a68625e",
+      "bytes": 4303
+    },
+    "operations/retain_on_error_v001/validation/20261016T130836Z-gemma4-retained-controller-validation-v002-45c4f6/process.json": {
+      "sha256": "67adddfe534f68bef5144f87529124edf5cb453353d44032cf3894f8cc2a7ace",
+      "bytes": 18
+    },
+    "operations/retain_on_error_v001/validation/20261016T130836Z-gemma4-retained-controller-validation-v002-45c4f6/source/protocols/GEMMA4_RETAIN_ON_ERROR_v001.md": {
+      "sha256": "14739646d9ffee135735e671e6061c5baade67d8ed37d5b108836423b83d1d21",
+      "bytes": 1684
+    },
+    "operations/retain_on_error_v001/validation/20261016T130836Z-gemma4-retained-controller-validation-v002-45c4f6/source/runtime/poll_gemma4_batch_v001.py": {
+      "sha256": "d250dd13bce9aa0dc84c8ac83751f9fac433b43395fc26ac9a2862dfe1accdf6",
+      "bytes": 2054
+    },
+    "operations/retain_on_error_v001/validation/20261016T130836Z-gemma4-retained-controller-validation-v002-45c4f6/source/tests/test_gemma4_retained_supervisor_v001.py": {
+      "sha256": "2caf48ee8370e59675d27589917185c4a6dc59359109f706219d69016bff999f",
+      "bytes": 2944
+    },
+    "operations/retain_on_error_v001/validation/20261016T130836Z-gemma4-retained-controller-validation-v002-45c4f6/source/tools/check_gemma4_diagnostic_controller_v003.py": {
+      "sha256": "2c076902c3cc357ccef71c7eb8097f1f2df53a35f69472b5d3c71a6b7f9b603a",
+      "bytes": 7513
+    },
+    "operations/retain_on_error_v001/validation/20261016T130836Z-gemma4-retained-controller-validation-v002-45c4f6/source/tools/run_gemma4_diagnostic_v002.py": {
+      "sha256": "2818c3f8d76e5ad3c3598228f0e8eb8ee20a2d63373aa786e421f95278bfe2f9",
+      "bytes": 15302
+    },
+    "operations/retain_on_error_v001/validation/20261016T130836Z-gemma4-retained-controller-validation-v002-45c4f6/source/tools/start_gemma4_diagnostic_v002.py": {
+      "sha256": "6310f9e871882c6cf12794268c80f83542867565de0df4308eaa5f9da4a7180e",
+      "bytes": 7252
+    },
+    "operations/retain_on_error_v001/validation/20261016T130836Z-gemma4-retained-controller-validation-v002-45c4f6/source-manifest.json": {
+      "sha256": "c8c205fc31003dee9073e4111ea3be7b6cb7303b23b3fb285eecf30143b2d3a3",
+      "bytes": 865
+    },
+    "operations/retain_on_error_v001/validation/20261016T130836Z-gemma4-retained-controller-validation-v002-45c4f6/source.tar": {
+      "sha256": "c7c1d5ea5fcd69a8546f10384274e073c6891457e516e2babbf38c07fcc0bbd1",
+      "bytes": 51200
+    },
+    "operations/retain_on_error_v001/validation/20261016T130941Z-gemma4-retained-controller-validation-v003-6d18de/artifact-manifest.json": {
+      "sha256": "856902bdd2c7d2943cbc25ecefa206db6bfd35df381ccf1ee3a4763325b67cbf",
+      "bytes": 1833
+    },
+    "operations/retain_on_error_v001/validation/20261016T130941Z-gemma4-retained-controller-validation-v003-6d18de/completion.json": {
+      "sha256": "6be739e2c22eb5448d4e501c3d9c2919d92435ce43cfedcbeb0996692545c65b",
+      "bytes": 163
+    },
+    "operations/retain_on_error_v001/validation/20261016T130941Z-gemma4-retained-controller-validation-v003-6d18de/execution.json": {
+      "sha256": "0ff5167da836369b1f571234366e7a29cc773b44678b4a75a65a95a6512ae2db",
+      "bytes": 664
+    },
+    "operations/retain_on_error_v001/validation/20261016T130941Z-gemma4-retained-controller-validation-v003-6d18de/execution.log": {
+      "sha256": "548c5a4cad1c33d05aaf27dc27d72408a29c711a0425ebcd59dc7d6d00ce5789",
+      "bytes": 3601
+    },
+    "operations/retain_on_error_v001/validation/20261016T130941Z-gemma4-retained-controller-validation-v003-6d18de/process.json": {
+      "sha256": "91ade853e68cb201705b0740b4096f0377a388d85610ab95ff7c5aa9ef6cd253",
+      "bytes": 18
+    },
+    "operations/retain_on_error_v001/validation/20261016T130941Z-gemma4-retained-controller-validation-v003-6d18de/source/protocols/GEMMA4_RETAIN_ON_ERROR_v001.md": {
+      "sha256": "14739646d9ffee135735e671e6061c5baade67d8ed37d5b108836423b83d1d21",
+      "bytes": 1684
+    },
+    "operations/retain_on_error_v001/validation/20261016T130941Z-gemma4-retained-controller-validation-v003-6d18de/source/runtime/poll_gemma4_batch_v001.py": {
+      "sha256": "d250dd13bce9aa0dc84c8ac83751f9fac433b43395fc26ac9a2862dfe1accdf6",
+      "bytes": 2054
+    },
+    "operations/retain_on_error_v001/validation/20261016T130941Z-gemma4-retained-controller-validation-v003-6d18de/source/tests/test_gemma4_retained_supervisor_v002.py": {
+      "sha256": "813a07b94f90bdc435049741a30a8dd82ca54192f33f4cacc2375a594fc0e73f",
+      "bytes": 2954
+    },
+    "operations/retain_on_error_v001/validation/20261016T130941Z-gemma4-retained-controller-validation-v003-6d18de/source/tools/check_gemma4_diagnostic_controller_v003.py": {
+      "sha256": "2c076902c3cc357ccef71c7eb8097f1f2df53a35f69472b5d3c71a6b7f9b603a",
+      "bytes": 7513
+    },
+    "operations/retain_on_error_v001/validation/20261016T130941Z-gemma4-retained-controller-validation-v003-6d18de/source/tools/run_gemma4_diagnostic_v002.py": {
+      "sha256": "2818c3f8d76e5ad3c3598228f0e8eb8ee20a2d63373aa786e421f95278bfe2f9",
+      "bytes": 15302
+    },
+    "operations/retain_on_error_v001/validation/20261016T130941Z-gemma4-retained-controller-validation-v003-6d18de/source/tools/start_gemma4_diagnostic_v002.py": {
+      "sha256": "6310f9e871882c6cf12794268c80f83542867565de0df4308eaa5f9da4a7180e",
+      "bytes": 7252
+    },
+    "operations/retain_on_error_v001/validation/20261016T130941Z-gemma4-retained-controller-validation-v003-6d18de/source-manifest.json": {
+      "sha256": "779efb6936c453f7b837d33c3e1aadee3e34d3e20963c59a9fa1a93cab53ee1f",
+      "bytes": 865
+    },
+    "operations/retain_on_error_v001/validation/20261016T130941Z-gemma4-retained-controller-validation-v003-6d18de/source.tar": {
+      "sha256": "72bc19a3a245b2acbc9a7386e5906282fdf432df1aa01d35d3ece48ed4fd538a",
+      "bytes": 51200
     },
     "plan.json": {
       "sha256": "5a92e700232fbf50dcfc6ce4d5ab0d0c6d6053d3588f8396714eb20ed33957c1",

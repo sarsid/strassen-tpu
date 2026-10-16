@@ -1,0 +1,24 @@
+{"started_utc": "2026-10-16T13:08:38.353155+00:00", "session": "simulated-b64-recovered", "status": "completed", "endpoint": "owned-test-endpoint", "remote_summary": {"status": "completed", "batches": [{"batch": 64, "status": "completed"}], "batch_archives": []}, "result_sha256": "ffc3e13d8350bec4f813ff5d84be0c4767f5f26baa51e6eeddcea3dffff9c447", "allocation_retained": true, "release_attempted": false, "release_exit_code": null, "retention_reason": "User requested retaining the TPU for diagnosis and repair, including after errors.", "finished_utc": "2026-10-16T13:08:38.356286+00:00"}
+{"started_utc": "2026-10-16T13:08:38.358344+00:00", "session": "simulated-b64-lost", "status": "runtime_lost", "endpoint": "owned-test-endpoint", "allocation_verified_absent": true, "release_not_needed": true, "error": "Colab confirms the owned endpoint is absent; no result completeness is inferred.", "allocation_retained": false, "release_attempted": false, "release_exit_code": 0, "retention_reason": null, "finished_utc": "2026-10-16T13:08:38.359959+00:00"}
+{"started_utc": "2026-10-16T13:08:38.361535+00:00", "session": "simulated-b64-empty", "status": "controller_failed", "endpoint": "owned-test-endpoint", "error_type": "RuntimeError", "error": "Three successful polls found no worker status; refusing to label the experiment running", "allocation_retained": true, "release_attempted": false, "release_exit_code": null, "retention_reason": "User requested retaining the TPU for diagnosis and repair, including after errors.", "finished_utc": "2026-10-16T13:08:38.362653+00:00"}
+{"started_utc": "2026-10-16T13:08:38.364640+00:00", "session": "simulated-b64-worker_failed", "status": "failed", "endpoint": "owned-test-endpoint", "remote_summary": {"status": "failed", "batches": [{"batch": 64, "status": "completed"}], "batch_archives": []}, "result_sha256": "34b8d6c2ffed5090acb9acefa27f0f9a27c4d039f2997143b76b5227e9ca35cc", "allocation_retained": true, "release_attempted": false, "release_exit_code": null, "retention_reason": "User requested retaining the TPU for diagnosis and repair, including after errors.", "finished_utc": "2026-10-16T13:08:38.367034+00:00"}
+{"started_utc": "2026-10-16T13:08:38.369160+00:00", "session": "simulated-b64-bad_export", "status": "controller_failed", "endpoint": "owned-test-endpoint", "error_type": "RuntimeError", "error": "Result download not verified", "allocation_retained": true, "release_attempted": false, "release_exit_code": null, "retention_reason": "User requested retaining the TPU for diagnosis and repair, including after errors.", "finished_utc": "2026-10-16T13:08:38.371460+00:00"}
+{"status": "passed", "actual_subprocess_timeout": "recovered", "controller_poll_timeout": "retried_without_release_or_relaunch", "archive_download": "verified_or_failure_preserved", "retained_after_success_or_failure": true, "checkpoint_integrity": "passed", "verified_absent_runtime": "stopped_without_unassigning", "scope": "local orchestration regression; no TPU/network"}
+test_owned_allocation_reused_and_watch_recovers_from_timeout (__main__.RetainedSupervisorTest.test_owned_allocation_reused_and_watch_recovers_from_timeout) ... ERROR
+
+======================================================================
+ERROR: test_owned_allocation_reused_and_watch_recovers_from_timeout (__main__.RetainedSupervisorTest.test_owned_allocation_reused_and_watch_recovers_from_timeout)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_gemma4_retained_supervisor_v001.py", line 49, in test_owned_allocation_reused_and_watch_recovers_from_timeout
+    self.assertEqual(supervisor.main(),1)
+                     ~~~~~~~~~~~~~~~^^
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261016T130836Z-gemma4-retained-controller-validation-v002-45c4f6/source/tools/start_gemma4_diagnostic_v002.py", line 29, in main
+    if not run.is_relative_to(ROOT/'runs'): raise ValueError('Run must belong to this repository')
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Run must belong to this repository
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+FAILED (errors=1)
