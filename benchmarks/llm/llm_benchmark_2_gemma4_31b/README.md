@@ -63,3 +63,5 @@ The [approved validation split and v003 restart](operations/approved_validation_
 [B8 tuning and block qualification](checkpoints/20261016_v003_b8_tune_qualify/) completed successfully. Both representative attention blocks passed the unchanged numerical limits; resident confirmation was active at 15:33 UTC. Full-model quality and speedup conclusions remain pending.
 
 [B8 resident confirmation and full-depth quality](checkpoints/20261016_v003_b8_confirm_quality/) are complete: Strassen 935.69 ms summed resident-layer time versus 1207.60 ms Native and 1066.00 ms Tuned Native, with all repetitive/natural quality gates passed. Transfer-inclusive prefill was still running at 16:06 UTC; these resident sums are not total offloaded inference latency.
+
+**[B8 is fully complete](results/20261016_v003/b8/)** with all quality gates passed and raw artifacts preserved. Strassen retains the 22.52% resident-layer time saving versus Native, while serialized offloaded prefill is effectively unchanged (239.586 s versus 240.251 s; only 0.276% difference with overlapping sample ranges). B16 tuning started automatically on the same owned TPU.
