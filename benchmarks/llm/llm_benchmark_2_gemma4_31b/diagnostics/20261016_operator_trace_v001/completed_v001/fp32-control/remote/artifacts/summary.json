@@ -1,0 +1,39 @@
+{
+  "scope": "Independent CPU FP32 formulation control on real weights and official activations; not BF16 qualification or performance",
+  "layers": [
+    {
+      "layer": 0,
+      "attention_type": "sliding_attention",
+      "finite": true,
+      "relative_l2": 4.939035273893441e-07,
+      "max_abs": 1.52587890625e-05,
+      "different_fraction": 0.9132893880208334,
+      "kind": "fp32_semantics",
+      "capture_sha256": "c10cf503d878a1b85e6f88aa9bfb1f28d7414a9506c37c84ff11c9af27846d8e"
+    },
+    {
+      "layer": 5,
+      "attention_type": "full_attention",
+      "finite": true,
+      "relative_l2": 1.0343918550227655e-07,
+      "max_abs": 2.288818359375e-05,
+      "different_fraction": 0.8554164341517857,
+      "kind": "fp32_semantics",
+      "capture_sha256": "a20cf4dd1675cbd312ae0df98bb3472105605dafffc42af028f6196230da2c8c"
+    },
+    {
+      "layer": 53,
+      "attention_type": "full_attention",
+      "finite": true,
+      "relative_l2": 4.188440823601097e-07,
+      "max_abs": 1.1444091796875e-05,
+      "different_fraction": 0.9350179036458334,
+      "kind": "fp32_semantics",
+      "capture_sha256": "14cc73e0892a2a8341e499c39c33ff228005939ebc8faddd1a0c91969ba21b8e"
+    }
+  ],
+  "all_pass": null,
+  "source_sha256": "db831c0a847ad83c9d24464b6dfb9c7fd858fa6b7373c38b3aa2bb33b255d990",
+  "numerical_gates_unchanged": true,
+  "diagnosis_complete": true
+}

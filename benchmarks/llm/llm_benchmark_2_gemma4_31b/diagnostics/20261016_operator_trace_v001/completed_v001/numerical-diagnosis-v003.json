@@ -1,0 +1,137 @@
+{
+  "scope": "Completed numerical diagnosis; BF16 qualification gates unchanged and still failed",
+  "full_model_layers": 60,
+  "matched_operation_records": 189,
+  "summary_sha256": "29e16fbd2e1f711ca1a0864d3b1c5081991ebdb5b64bb046eca6edaac0b98c77",
+  "backends": {
+    "cpu": {
+      "isolated": {
+        "max_relative_l2": 0.00274119202692277,
+        "peak_layer": 58,
+        "layers_above_two_percent": []
+      },
+      "propagated": {
+        "max_relative_l2": 0.022913408290863385,
+        "peak_layer": 57,
+        "layers_above_two_percent": [
+          52,
+          53,
+          54,
+          56,
+          57
+        ]
+      },
+      "max_matched_operation": {
+        "layer": 52,
+        "operation": "self_attn.k_norm",
+        "finite": true,
+        "relative_l2": 3.247176055337373e-05,
+        "max_abs": 0.0009765625,
+        "different_fraction": 3.0517578125e-05
+      },
+      "predictive": {
+        "logits": {
+          "finite": true,
+          "relative_l2": 0.01269079836011675,
+          "max_abs": 0.5625,
+          "different_fraction": 0.8209342956542969
+        },
+        "absolute_loss_delta": 0.007035944278134671,
+        "mean_kl_nats": 0.0009242702022087417,
+        "top1_agreement": 1.0,
+        "disagreements": []
+      }
+    },
+    "tpu": {
+      "isolated": {
+        "max_relative_l2": 0.002818844315748668,
+        "peak_layer": 58,
+        "layers_above_two_percent": []
+      },
+      "propagated": {
+        "max_relative_l2": 0.023720583417117545,
+        "peak_layer": 53,
+        "layers_above_two_percent": [
+          52,
+          53,
+          54,
+          55,
+          56,
+          57
+        ]
+      },
+      "max_matched_operation": {
+        "layer": 59,
+        "operation": "self_attn.o_proj",
+        "finite": true,
+        "relative_l2": 0.00011316963729713831,
+        "max_abs": 0.0625,
+        "different_fraction": 0.0002208891369047619
+      },
+      "predictive": {
+        "logits": {
+          "finite": true,
+          "relative_l2": 0.012800596670364418,
+          "max_abs": 0.625,
+          "different_fraction": 0.8261343240737915
+        },
+        "absolute_loss_delta": 0.00952243458715232,
+        "mean_kl_nats": 0.0012559473206035698,
+        "top1_agreement": 0.967741935483871,
+        "disagreements": [
+          {
+            "position": 16,
+            "reference_tokens": [
+              236743,
+              818,
+              902
+            ],
+            "reference_logits": [
+              23.875,
+              23.875,
+              23.375
+            ],
+            "candidate_tokens": [
+              236743,
+              818,
+              902
+            ],
+            "candidate_logits_at_reference_tokens": [
+              24.0,
+              23.875,
+              23.5
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "precision_note": "Individual comparisons use identical official inputs. Propagated comparisons independently execute the full model. All comparisons are Native; no Strassen performance or quality claim.",
+  "fp64_spot_checks": {
+    "selection": "First eight differing entries per projection, deliberately selected; not representative random sampling",
+    "count": 424,
+    "torch_matches_nearest_bf16": 87,
+    "tpu_matches_nearest_bf16": 321
+  },
+  "top1_failure": {
+    "position_zero_based": 16,
+    "official_tied_token_ids": [
+      818,
+      236743
+    ],
+    "official_tied_logits": [
+      23.875,
+      23.875
+    ],
+    "tpu_logits_same_order": [
+      23.875,
+      24.0
+    ],
+    "official_argmax_token_id": 818,
+    "tpu_argmax_token_id": 236743,
+    "agreement": 0.967741935483871,
+    "gate": 0.97,
+    "observation": "One exact top-score tie in the CPU reference is broken by a one-BF16-step perturbation on TPU; argmax uses the lowest index in the reference tie."
+  },
+  "conclusion_pending_fp32_control": "The remaining BF16 failure is consistent with accumulated backend arithmetic differences and a tie-sensitive 31-position agreement gate. FP32 formula control is being run before the final conclusion; existing failed gates remain failed."
+}
