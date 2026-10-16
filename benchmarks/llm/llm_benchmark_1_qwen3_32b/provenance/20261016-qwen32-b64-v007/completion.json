@@ -1,0 +1,104 @@
+{
+  "started_utc": "2026-10-16T01:26:12.749041+00:00",
+  "session": "20261016-qwen32-b64-v007",
+  "status": "completed",
+  "endpoint": "tpu-v6e1-s-kkb-euw4a2-1uhaiv3449ovc",
+  "remote_summary": {
+    "started_utc": "2026-10-16T01:26:19.144441+00:00",
+    "status": "completed",
+    "stages": [
+      {
+        "name": "b64-qualify-a0",
+        "batch": 64,
+        "stage": "qualify",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 131.693602767
+      },
+      {
+        "name": "b64-confirm-a0",
+        "batch": 64,
+        "stage": "confirm",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 1334.8955224860001
+      },
+      {
+        "name": "b64-quality-a0",
+        "batch": 64,
+        "stage": "quality",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 380.072026329
+      },
+      {
+        "name": "b64-prefill-a0",
+        "batch": 64,
+        "stage": "prefill",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 2311.8925539210004
+      }
+    ],
+    "batches": [
+      {
+        "batch": 64,
+        "status": "completed",
+        "attempts": [
+          {
+            "name": "b64-qualify-a0",
+            "batch": 64,
+            "stage": "qualify",
+            "attempt": 0,
+            "returncode": 0,
+            "seconds": 131.693602767
+          },
+          {
+            "name": "b64-confirm-a0",
+            "batch": 64,
+            "stage": "confirm",
+            "attempt": 0,
+            "returncode": 0,
+            "seconds": 1334.8955224860001
+          },
+          {
+            "name": "b64-quality-a0",
+            "batch": 64,
+            "stage": "quality",
+            "attempt": 0,
+            "returncode": 0,
+            "seconds": 380.072026329
+          },
+          {
+            "name": "b64-prefill-a0",
+            "batch": 64,
+            "stage": "prefill",
+            "attempt": 0,
+            "returncode": 0,
+            "seconds": 2311.8925539210004
+          }
+        ]
+      }
+    ],
+    "batch_archives": [
+      {
+        "batch": 64,
+        "path": "/content/Strassen_MM_Focus/runs/20261016-qwen32-b64-v007/b64-results.tar.gz",
+        "sha256": "e3f7c7b868a30e85b96062cf3e9da93d12012cb959627c3c3e47bf7ace465964",
+        "bytes": 1466866
+      }
+    ],
+    "profile_reuse": {
+      "path": "configs/qwen32_b64_recovered_profile_v007.json",
+      "sha256": "0459c624337428adfbef2e9bd8adaaa3a232c4df3e20c10cd4f25b9867fdc9f9",
+      "source_run": "runs/20261015-qwen32-b64-v005",
+      "source_events": "results/v6e/qwen32_b64_current_stack_20261015_v004/20261015-qwen32-b64-v005/partial_recovery_v001/recovered-events.jsonl",
+      "recovery": "Exact original file SHA-256 matched using two complete frozen_profile log records"
+    },
+    "active_batch": 64,
+    "finished_utc": "2026-10-16T02:36:10.741701+00:00"
+  },
+  "result_sha256": "66ad3b8e34f1b33564ab26c9fc6cb98f2f2998e0a1b86022ec7e4f6ea1c8defa",
+  "release_exit_code": 0,
+  "finished_utc": "2026-10-16T02:37:13.509677+00:00"
+}

@@ -1,4 +1,23 @@
-# Faster Strassen TPU research handoff
+# Current publication: LLM Benchmark 1 (Qwen3-32B)
+
+Start with `benchmarks/llm/llm_benchmark_1_qwen3_32b/README.md` for the completed
+October 16, 2026 study. Six batches at sequence 1,024, four algorithms (Native,
+Tuned Native, Tuned Cubic, Tuned Strassen S1), BF16 output on v6e. All selected
+measurements and quality gates completed, results were preserved, and the TPU
+was released. This is an offline publication; do not launch any older queue or
+new model automatically. The user will discuss the next model separately.
+
+Keep B64's JAX 0.11.2/libtpu 0.0.48 extension distinct from B1-B32 on JAX
+0.7.2/libtpu 0.0.21.1. Keep resident layer totals distinct from serialized
+offloaded prefill. The B64 winning profile is exactly recovered, while its
+historical candidate ledger is partial. Final measurements are complete.
+Run `python3 analyze.py --check` inside the benchmark directory to verify and
+reconstruct the report offline. Preserve existing source/evidence snapshots.
+
+The October 5 handoff below is historical and its five-arm campaign remains
+paused. It does not override the current four-arm benchmark methodology.
+
+# Faster Strassen TPU research handoff (historical October 5)
 
 For the user's benchmark/LLM research project, start with
 `benchmarks/llm/20261005_v001/README.md`. The parent repository's root kernels and

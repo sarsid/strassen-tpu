@@ -1,0 +1,65 @@
+{
+  "started_utc": "2026-10-15T15:11:51.724953+00:00",
+  "session": "20261015-qwen32-b64-v003",
+  "status": "completed_with_failures",
+  "endpoint": "tpu-v6e1-s-kkb-euw4a0-bzeofxgzicjt",
+  "remote_summary": {
+    "started_utc": "2026-10-15T15:11:58.311567+00:00",
+    "status": "completed_with_failures",
+    "stages": [
+      {
+        "name": "b64-qualify-a0",
+        "batch": 64,
+        "stage": "qualify",
+        "attempt": 0,
+        "returncode": -11,
+        "seconds": 67.94542631600001
+      },
+      {
+        "name": "b64-qualify-a1",
+        "batch": 64,
+        "stage": "qualify",
+        "attempt": 1,
+        "returncode": -11,
+        "seconds": 49.420101879000015
+      }
+    ],
+    "batches": [
+      {
+        "batch": 64,
+        "status": "partial_or_failed",
+        "attempts": [
+          {
+            "name": "b64-qualify-a0",
+            "batch": 64,
+            "stage": "qualify",
+            "attempt": 0,
+            "returncode": -11,
+            "seconds": 67.94542631600001
+          },
+          {
+            "name": "b64-qualify-a1",
+            "batch": 64,
+            "stage": "qualify",
+            "attempt": 1,
+            "returncode": -11,
+            "seconds": 49.420101879000015
+          }
+        ]
+      }
+    ],
+    "batch_archives": [
+      {
+        "batch": 64,
+        "path": "/content/Strassen_MM_Focus/runs/20261015-qwen32-b64-v003/b64-results.tar.gz",
+        "sha256": "06b4e7408b526a144b6b189337da9c5f2bb780367096e17554096a95ef5a4f25",
+        "bytes": 8135
+      }
+    ],
+    "active_batch": 64,
+    "finished_utc": "2026-10-15T15:14:27.486403+00:00"
+  },
+  "result_sha256": "1a2535bf2cd83eb7488e8e55b8f9e18b6f69f8218e0c7748405719682f7d2299",
+  "release_exit_code": 0,
+  "finished_utc": "2026-10-15T15:15:11.770821+00:00"
+}

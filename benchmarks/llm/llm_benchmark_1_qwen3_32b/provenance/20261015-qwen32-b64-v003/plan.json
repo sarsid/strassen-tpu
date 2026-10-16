@@ -1,0 +1,73 @@
+{
+  "study_id": "qwen32_b64_retry_v003",
+  "model": "Qwen/Qwen3-32B",
+  "revision": "9216db5781bf21249d130ec9da846c4624c16137",
+  "parent_commit": "95be1fb088656a89813b04492e1d77c66b36ccf9",
+  "architecture": "v6e",
+  "sequence": 1024,
+  "batches": [
+    64
+  ],
+  "arms": [
+    "native",
+    "native_tuned",
+    "cubic_tuned",
+    "strassen_tuned"
+  ],
+  "output_dtype": "bfloat16",
+  "strassen_depth": 1,
+  "native_vmem_mib": [
+    null,
+    32,
+    48,
+    64,
+    96,
+    112,
+    128
+  ],
+  "tune_warmups": 2,
+  "tune_runs": 5,
+  "block_warmups": 3,
+  "block_runs": 20,
+  "layer_warmups": 2,
+  "layer_runs": 5,
+  "quality_segments": 4,
+  "offloaded_prefill_warmups": 1,
+  "offloaded_prefill_runs": 3,
+  "natural_quality_gates": {
+    "absolute_loss_delta": 0.01,
+    "mean_kl_nats": 0.02,
+    "top1_agreement": 0.97
+  },
+  "repetitive_quality_gates": {
+    "absolute_loss_delta": 0.01,
+    "mean_kl_nats": 0.005,
+    "top1_agreement": 0.99
+  },
+  "per_stage_retry_limit": 1,
+  "stage_timeouts_seconds": {
+    "tune": 10800,
+    "confirm": 5400,
+    "quality": 5400,
+    "prefill": 10800,
+    "qualify": 1800
+  },
+  "other_models_queued": false,
+  "stages": [
+    "qualify",
+    "confirm",
+    "quality",
+    "prefill"
+  ],
+  "launch_state": "authorized_20261015",
+  "result_root": "results/v6e/qwen32_b64_retry_20261015_v003",
+  "frozen_profiles": {
+    "64": {
+      "path": "configs/qwen32_parent_batch_retry_v002/b64-profile.json",
+      "sha256": "81d0e1befa72ffe8540b2b87256997418c0ce544e65e91074a5e91dee6bab86d",
+      "source": "results/v6e/qwen32_parent_batch_20261014_v001/20261014-qwen32-batch-v001/b64/artifacts/b64-tune-a1/profile.json"
+    }
+  },
+  "capture_mode": "segmented_full_batch",
+  "capture_native_reconstruction_relative_l2_max": 0.01
+}

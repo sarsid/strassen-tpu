@@ -1,6 +1,8 @@
 # v6e LLM experiments
 
-[October 5 Codex Cloud handoff](20261005_v001/README.md): **80/200 active BF16 comparisons; campaign paused.** Includes the latest compute-scope report, all completed groups, reproducible offline analysis and continuation instructions. Start here for current status.
+[LLM Benchmark 1 (Qwen3-32B)](llm_benchmark_1_qwen3_32b/README.md): **completed October 16, 2026**. Six batches (1, 4, 8, 16, 32, 64), sequence 1,024, four algorithms: Native, Tuned Native, Tuned Cubic, and Tuned Strassen S1. Includes resident and transfer-inclusive timings, all numerical/predictive errors, frozen tuning profiles, raw evidence, exact sources, failure history and offline verification. B64 uses a separately labeled newer compiler stack. TPU released; no next model queued.
+
+[October 5 Codex Cloud handoff](20261005_v001/README.md): **historical 80/200 BF16 checkpoint; that campaign remains paused.** Includes its compute-scope report, completed groups, reproducible offline analysis and historical continuation instructions. This older five-arm campaign is separate from LLM Benchmark 1.
 
 [October 5 validation](validation_20261005_v001/validation.json) passed: snapshot/evidence integrity, targeted credential scan, and exact reconstruction of the saved numerical report from its raw inputs. This validates the portable package locally; a cloud environment and Colab connectivity still need account-side setup.
 
