@@ -1,9 +1,18 @@
 # LLM Benchmark 2 (Gemma4-31B)
 
-Preparation checkpoint, October 16, 2026. The authorized run is queued and
-waiting for a Colab v6e allocation. **No TPU timing or real-checkpoint
-qualification result is claimed by this folder yet.** Future results will be
-added as separate immutable run artifacts.
+The initial v001 run completed all 60 official-checkpoint comparison layers but
+failed the propagated hidden-state relative-L2 gate: seven layers exceeded 2%,
+with a maximum of 2.67%. Final logits and prediction checks passed on the short
+32-token qualification input. No tuning or batch timing ran. The owned TPU was
+released. [Full failure evidence](runs/20261016-gemma4-31b-v001/) is preserved.
+
+The user authorized a repair and restart. Version 002 restores BF16 attention
+scores before FP32 softmax, matching official eager Torch. Independent attention
+checks at actual local/global head widths reduced error by 52x/88x; all four local
+numerical tests and restart-control checks passed. The corrected remote worker
+was launched on a new v6e on October 16. Its original full-checkpoint accuracy
+gates must pass before timing starts. **No Gemma performance result is claimed
+by this checkpoint.** See the [new source bundle, protocol and validation](runs/20261016-gemma4-31b-v002/).
 
 The four arms are Native, Tuned Native, Tuned Cubic and Tuned Strassen S1,
 using the unchanged pinned parent kernels with a Gemma4 dense-text adapter.
