@@ -61,3 +61,5 @@ The [approved validation split and v003 restart](operations/approved_validation_
 [The v003 qualification checkpoint](checkpoints/20261016_v003_qualification/) records successful source-checked reuse of the approved FP32 control on a new owned v6e. B8 tuning was running at 15:00 UTC October 16; batch accuracy and performance outcomes are still pending.
 
 [B8 tuning and block qualification](checkpoints/20261016_v003_b8_tune_qualify/) completed successfully. Both representative attention blocks passed the unchanged numerical limits; resident confirmation was active at 15:33 UTC. Full-model quality and speedup conclusions remain pending.
+
+[B8 resident confirmation and full-depth quality](checkpoints/20261016_v003_b8_confirm_quality/) are complete: Strassen 935.69 ms summed resident-layer time versus 1207.60 ms Native and 1066.00 ms Tuned Native, with all repetitive/natural quality gates passed. Transfer-inclusive prefill was still running at 16:06 UTC; these resident sums are not total offloaded inference latency.
