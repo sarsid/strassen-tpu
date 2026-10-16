@@ -1,0 +1,122 @@
+{
+  "status.json": {
+    "started_utc": "2026-10-16T14:46:53.939462+00:00",
+    "status": "running",
+    "stages": [
+      {
+        "name": "oracle-a0",
+        "batch": null,
+        "stage": "oracle",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 11.843308613000005
+      },
+      {
+        "name": "b8-tune-a0",
+        "batch": 8,
+        "stage": "tune",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 2279.383854238
+      },
+      {
+        "name": "b8-qualify-a0",
+        "batch": 8,
+        "stage": "qualify",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 196.6271367280001
+      },
+      {
+        "name": "b8-confirm-a0",
+        "batch": 8,
+        "stage": "confirm",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 1620.1214196219998
+      },
+      {
+        "name": "b8-quality-a0",
+        "batch": 8,
+        "stage": "quality",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 429.6517547250005
+      },
+      {
+        "name": "b8-prefill-a0",
+        "batch": 8,
+        "stage": "prefill",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 3985.639518602001
+      },
+      {
+        "name": "b16-tune-a0",
+        "batch": 16,
+        "stage": "tune",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 2134.9136578079997
+      },
+      {
+        "name": "b16-qualify-a0",
+        "batch": 16,
+        "stage": "qualify",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 216.94537184299952
+      },
+      {
+        "name": "b16-confirm-a0",
+        "batch": 16,
+        "stage": "confirm",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 722.5456230479995
+      },
+      {
+        "name": "b16-quality-a0",
+        "batch": 16,
+        "stage": "quality",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 468.61150622399873
+      }
+    ],
+    "batches": [
+      {
+        "batch": 8,
+        "status": "completed",
+        "quality_pass": true
+      }
+    ],
+    "batch_archives": [
+      {
+        "batch": 8,
+        "path": "/content/Strassen_MM_Focus/runs/20261016-gemma4-31b-v003/b8-results.tar.gz",
+        "sha256": "0bfc3700ea1d6fe7e28009a08ec838c3da8c1613da3bb5ed16051c24031f277b",
+        "bytes": 813780
+      }
+    ],
+    "qualification": "passed",
+    "active": "b16-prefill-a0",
+    "active_batch": 16
+  },
+  "progress.json": {
+    "batch": 16,
+    "stage": "prefill",
+    "utc": "2026-10-16T18:15:38Z",
+    "test": "Full offloaded prefill",
+    "status": "running",
+    "stage_label": "Offloaded prefill",
+    "event": "prefill_pass_start",
+    "elapsed_stage_seconds": 406.01865855899996,
+    "transport": "tensor",
+    "arm": "native_tuned",
+    "layer": 5,
+    "attention_type": "full_attention",
+    "round": -1
+  },
+  "observed_utc": "2026-10-16T18:16:56.799502+00:00"
+}
