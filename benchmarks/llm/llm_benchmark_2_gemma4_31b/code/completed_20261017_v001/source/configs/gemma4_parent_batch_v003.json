@@ -1,0 +1,84 @@
+{
+  "version": "gemma4_parent_batch_v003",
+  "model": "google/gemma-4-31B",
+  "revision": "5bbc2fb1c1b2c611d06e3d9f23c170ba21659d89",
+  "batches": [
+    8,
+    16,
+    32,
+    64,
+    4,
+    1
+  ],
+  "sequence": 1024,
+  "arms": [
+    "native",
+    "native_tuned",
+    "cubic_tuned",
+    "strassen_tuned"
+  ],
+  "stages": [
+    "tune",
+    "qualify",
+    "confirm",
+    "quality",
+    "prefill"
+  ],
+  "native_vmem_mib": [
+    null,
+    32,
+    48,
+    64,
+    96,
+    112,
+    128
+  ],
+  "block_warmups": 3,
+  "block_runs": 20,
+  "layer_warmups": 2,
+  "layer_runs": 5,
+  "projection_warmups": 3,
+  "projection_runs": 20,
+  "quality_segments": 4,
+  "offloaded_prefill_warmups": 1,
+  "offloaded_prefill_runs": 3,
+  "per_stage_retry_limit": 1,
+  "stage_timeouts_seconds": {
+    "oracle": 10800,
+    "tune": 14400,
+    "qualify": 3600,
+    "confirm": 14400,
+    "quality": 21600,
+    "prefill": 7200
+  },
+  "repetitive_quality_gates": {
+    "absolute_loss_delta": 0.01,
+    "mean_kl_nats": 0.005,
+    "top1_agreement": 0.99
+  },
+  "natural_quality_gates": {
+    "absolute_loss_delta": 0.01,
+    "mean_kl_nats": 0.02,
+    "top1_agreement": 0.97
+  },
+  "result_root": "results/v6e/gemma4_parent_batch_20261016_v003",
+  "software": {
+    "jax": "0.11.2",
+    "jaxlib": "0.11.2",
+    "libtpu": "0.0.48",
+    "transformers": "5.5.0"
+  },
+  "attention_contract": "BF16 QK scores before FP32 softmax, BF16 probabilities and BF16 output; DEFAULT dot precision with FP32 accumulation",
+  "formula_qualification": {
+    "mode": "reuse_source_identical_completed_real_weight_fp32_control",
+    "evidence_file": "configs/gemma4_fp32_qualification_evidence_v001.json",
+    "evidence_sha256": "98f6ab039a9576f43adaec7a9b3a1d9a0604e9d4b2f8a750d5b820cb0408022e",
+    "layers": [
+      0,
+      5,
+      53
+    ],
+    "relative_l2_limit": 1e-05
+  },
+  "natural_tokenization": "gemma4_natural_bos_v001: BOS + 1023 contiguous corpus tokens per independent sequence"
+}

@@ -1,0 +1,94 @@
+{
+  "model": "google/gemma-4-31B",
+  "model_revision": "5bbc2fb1c1b2c611d06e3d9f23c170ba21659d89",
+  "architecture": "TPU v6e",
+  "output_dtype": "BF16",
+  "dot_precision": "DEFAULT",
+  "arms": [
+    "native",
+    "native_tuned",
+    "cubic_tuned",
+    "strassen_tuned"
+  ],
+  "source_bundles": {
+    "original_v003": {
+      "source_commit": "1e64ce96892d8c435428b4e6b2ac6b364daaf6cc",
+      "archive_sha256": "c54120dbe4adc7f5e0d6a563cf498d95dc588deab13e05e7056d0f4eabc5bb4a",
+      "archive": "snapshots/original_v003/source.tar",
+      "manifest": "snapshots/original_v003/source-manifest.json",
+      "origin": "operations/approved_validation_v002"
+    },
+    "b64_recovery_v001": {
+      "source_commit": "284d0b179369cf10ed0f78ad2d912007a16d650b",
+      "archive_sha256": "5b2418c0c0e662806eafb1096f039cf88f83619374edb1565909d77ae2ef7474",
+      "archive": "snapshots/b64_recovery_v001/source.tar",
+      "manifest": "snapshots/b64_recovery_v001/source-manifest.json",
+      "origin": "operations/b64_residency_repair_v001"
+    }
+  },
+  "batch_bindings": [
+    {
+      "batch": 1,
+      "sequence": 1024,
+      "successful_source": "original_v003",
+      "measurement_stage": "tools/gemma4_batch_stage_v003.py",
+      "tuning_source": "original_v003",
+      "tuning_stage": "tools/gemma4_batch_stage_v003.py",
+      "results": "results/20261016_v003/b1",
+      "tuning_profile": "results/20261016_v003/b1/artifacts/b1-tune-a0/profile.json"
+    },
+    {
+      "batch": 4,
+      "sequence": 1024,
+      "successful_source": "original_v003",
+      "measurement_stage": "tools/gemma4_batch_stage_v003.py",
+      "tuning_source": "original_v003",
+      "tuning_stage": "tools/gemma4_batch_stage_v003.py",
+      "results": "results/20261016_v003/b4",
+      "tuning_profile": "results/20261016_v003/b4/artifacts/b4-tune-a0/profile.json"
+    },
+    {
+      "batch": 8,
+      "sequence": 1024,
+      "successful_source": "original_v003",
+      "measurement_stage": "tools/gemma4_batch_stage_v003.py",
+      "tuning_source": "original_v003",
+      "tuning_stage": "tools/gemma4_batch_stage_v003.py",
+      "results": "results/20261016_v003/b8",
+      "tuning_profile": "results/20261016_v003/b8/artifacts/b8-tune-a0/profile.json"
+    },
+    {
+      "batch": 16,
+      "sequence": 1024,
+      "successful_source": "original_v003",
+      "measurement_stage": "tools/gemma4_batch_stage_v003.py",
+      "tuning_source": "original_v003",
+      "tuning_stage": "tools/gemma4_batch_stage_v003.py",
+      "results": "results/20261016_v003/b16",
+      "tuning_profile": "results/20261016_v003/b16/artifacts/b16-tune-a0/profile.json"
+    },
+    {
+      "batch": 32,
+      "sequence": 1024,
+      "successful_source": "original_v003",
+      "measurement_stage": "tools/gemma4_batch_stage_v003.py",
+      "tuning_source": "original_v003",
+      "tuning_stage": "tools/gemma4_batch_stage_v003.py",
+      "results": "results/20261016_v003/b32",
+      "tuning_profile": "results/20261016_v003/b32/artifacts/b32-tune-a0/profile.json"
+    },
+    {
+      "batch": 64,
+      "sequence": 1024,
+      "successful_source": "b64_recovery_v001",
+      "measurement_stage": "tools/gemma4_batch_stage_v006.py",
+      "tuning_source": "original_v003",
+      "tuning_stage": "tools/gemma4_batch_stage_v003.py",
+      "results": "results/20261017_b64_residency_retry_v001/b64",
+      "tuning_profile": "results/20261017_b64_residency_retry_v001/b64/artifacts/reused-profile.json"
+    }
+  ],
+  "b64_profile_sha256": "e72c892479c8389be57c28c8d48d70fef61f0711300f8772aac9cc66395cc413",
+  "result_paths_relative_to_benchmark_root": true,
+  "no_new_execution": true
+}
