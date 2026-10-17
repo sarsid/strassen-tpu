@@ -1,0 +1,88 @@
+{
+  "study_id": "qwen14_parent_batch_20261017_v001",
+  "model": "Qwen/Qwen3-14B",
+  "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+  "parent_commit": "95be1fb088656a89813b04492e1d77c66b36ccf9",
+  "architecture": "v6e",
+  "sequence": 1024,
+  "batches": [
+    8,
+    16,
+    32,
+    64,
+    4,
+    1
+  ],
+  "arms": [
+    "native",
+    "native_tuned",
+    "cubic_tuned",
+    "strassen_tuned"
+  ],
+  "output_dtype": "bfloat16",
+  "strassen_depth": 1,
+  "native_vmem_mib": [
+    null,
+    32,
+    48,
+    64,
+    96,
+    112,
+    128
+  ],
+  "tune_warmups": 2,
+  "tune_runs": 5,
+  "block_warmups": 3,
+  "block_runs": 20,
+  "layer_warmups": 2,
+  "layer_runs": 5,
+  "quality_segments": 4,
+  "offloaded_prefill_warmups": 1,
+  "offloaded_prefill_runs": 3,
+  "natural_quality_gates": {
+    "absolute_loss_delta": 0.01,
+    "mean_kl_nats": 0.02,
+    "top1_agreement": 0.97
+  },
+  "repetitive_quality_gates": {
+    "absolute_loss_delta": 0.01,
+    "mean_kl_nats": 0.005,
+    "top1_agreement": 0.99
+  },
+  "per_stage_retry_limit": 1,
+  "stage_timeouts_seconds": {
+    "tune": 14400,
+    "confirm": 14400,
+    "quality": 21600,
+    "prefill": 10800,
+    "qualify": 1800
+  },
+  "other_models_queued": false,
+  "stages": [
+    "tune",
+    "qualify",
+    "confirm",
+    "quality",
+    "prefill"
+  ],
+  "launch_state": "authorized_20261017",
+  "result_root": "results/v6e/qwen14_parent_batch_20261017_v001",
+  "capture_mode": "segmented_full_batch",
+  "capture_native_reconstruction_relative_l2_max": 0.01,
+  "software": {
+    "jax": "0.11.2",
+    "jaxlib": "0.11.2",
+    "libtpu": "0.0.48"
+  },
+  "retune": true,
+  "comparison_scope": "Matched four-arm Qwen3-14B batch sweep; one compiler stack for all batches",
+  "model_geometry": {
+    "hidden_size": 5120,
+    "intermediate_size": 17408,
+    "num_hidden_layers": 40,
+    "num_attention_heads": 40,
+    "num_key_value_heads": 8,
+    "head_dim": 128
+  },
+  "retain_on_error": true
+}
