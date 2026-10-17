@@ -1,0 +1,71 @@
+{
+  "started_utc": "2026-10-17T02:07:11.355832+00:00",
+  "session": "20261016-gemma4-31b-v003",
+  "endpoint": "tpu-v6e1-s-kkb-euw4a1-20j79pm1pdbln",
+  "ownership_origin": "20261016-gemma4-31b-v003",
+  "allocation_retained": true,
+  "release_attempted": false,
+  "status": "failed",
+  "remote_summary": {
+    "status": "failed",
+    "started_utc": "2026-10-17T02:04:44.713089+00:00",
+    "predecessor": "20261016-gemma4-31b-v003",
+    "qualification": "passed",
+    "stages": [
+      {
+        "name": "oracle-a0",
+        "batch": null,
+        "stage": "oracle",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 7.270504396001343
+      },
+      {
+        "name": "b64-qualify-a0",
+        "batch": 64,
+        "stage": "qualify",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 239.75673252799606
+      },
+      {
+        "name": "b64-confirm-a0",
+        "batch": 64,
+        "stage": "confirm",
+        "attempt": 0,
+        "returncode": 1,
+        "seconds": 428.5947176749978
+      },
+      {
+        "name": "b64-confirm-a1",
+        "batch": 64,
+        "stage": "confirm",
+        "attempt": 1,
+        "returncode": 1,
+        "seconds": 429.4612496320042
+      }
+    ],
+    "batches": [
+      {
+        "batch": 64,
+        "status": "partial_or_failed",
+        "quality_pass": null
+      }
+    ],
+    "batch_archives": [
+      {
+        "batch": 64,
+        "path": "/content/Strassen_MM_Focus/runs/20261016-gemma4-b64-metric-retry-v001/b64-results.tar.gz",
+        "sha256": "352f30358ba9fa4cea4c2b81f06d254d6cb1c443e76ce8aef6f2c6a9bf61f018",
+        "bytes": 155383
+      }
+    ],
+    "profile_sha256": "e72c892479c8389be57c28c8d48d70fef61f0711300f8772aac9cc66395cc413",
+    "active_batch": 64,
+    "error_type": "RuntimeError",
+    "error": "B64 recovery stage failed: confirm",
+    "finished_utc": "2026-10-17T02:23:09.799223+00:00"
+  },
+  "result_sha256": "3b78b817b08a7f88fc65f47cc504d7761de623a23854b3c0448f9dfb93a898ec",
+  "finished_utc": "2026-10-17T02:23:52.998157+00:00"
+}
