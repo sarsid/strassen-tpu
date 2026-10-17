@@ -1,0 +1,32 @@
+{
+  "batch": 16,
+  "sequence": 1024,
+  "resident_layer_sum_ms": {
+    "native": 1209.4408314,
+    "native_tuned": 1085.5814796,
+    "cubic_tuned": 1055.5518378,
+    "strassen_tuned": 761.7285556
+  },
+  "strassen_saved_percent": {
+    "native": 37.01812144722667,
+    "native_tuned": 29.832207907538066
+  },
+  "natural_quality": {
+    "nll": 2.2798075480195434,
+    "perplexity": 9.77479904906338,
+    "absolute_loss_delta": 0.0011902125816307674,
+    "relative_perplexity_delta": 0.0011909211657195175,
+    "mean_kl_nats": 0.0008716221337997785,
+    "top1_agreement": 0.987506109481916,
+    "logit_l2_relative": 0.020690788651712654,
+    "logit_maxnorm_relative": 0.2178171641791045,
+    "logit_max_abs": 14.59375,
+    "positions": 65472,
+    "finite": true,
+    "passes": true
+  },
+  "all_natural_gates_pass": true,
+  "all_repetitive_gates_pass": true,
+  "scope": "40 individually warmed resident layers; excludes preparation/transfers, embedding and head; not uninterrupted model latency",
+  "offloaded_prefill_status": "running_at_snapshot"
+}
