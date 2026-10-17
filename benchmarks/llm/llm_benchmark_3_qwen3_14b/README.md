@@ -1,28 +1,26 @@
 # LLM Benchmark 3 (Qwen3-14B)
 
-This new experiment was authorized on October 17, 2026. Local checks passed,
-the frozen six-batch supervisor has started, and Colab allocation has been
-requested. No Qwen14 performance results are claimed in this initial snapshot.
-Previous Qwen32 and Gemma benchmark folders are unchanged.
+**Completed: all six batches and all four algorithms, with every registered quality gate passed.**
+The TPU has been released and no further experiment is queued.
 
-- Qwen/Qwen3-14B, parent-pinned revision 40c069824f4251a91eefaf281ebe4c544efd3e18.
-- One v6e, JAX/jaxlib 0.11.2, libtpu 0.0.48 throughout.
-- BF16 output; Native, Tuned Native, Tuned Cubic, Tuned Strassen S1.
-- Sequence1024; batches1/4/8/16/32/64, executed8/16/32/64/4/1.
-- Fresh model-specific per-batch tuning, frozen before confirmation/quality.
-- Separate resident projections, block0, warmed layer-sum and cached-disk-offloaded prefill.
-- Same repetitions, predictive-quality gates and parent Qwen computation as Benchmark1.
+[Read the complete report](summaries/completed_20261017_v001/README.md) for timings,
+all offloaded samples, quality/error metrics, tuning tiles and measurement limits.
 
-See [the registered protocol](PROTOCOL.md) and [the exact frozen code](code/initial_20261017_v001/source).
-The initial local validation failed because the selected Python environment
-lacked requests. The unchanged checks passed using the existing Qwen CPU
-validation environment; both records are preserved under validation.
-These checks cover geometry, legal candidate sets, unchanged computation/timing
-functions, reduced CPU capture correctness, true B64 abstract tracing, launcher
-integrity, lost responses, checkpoint hashes, and retain-on-error behavior.
-They are not TPU compilation or performance results.
+- Batches 1, 4, 8, 16, 32, 64; sequence length 1024; one v6e.
+- Native, Tuned Native, Tuned Cubic, Tuned Strassen S1; BF16 output.
+- Fresh per-batch tuning; JAX/jaxlib 0.11.2 and libtpu 0.0.48 throughout.
+- Strassen used **5.86% less resident-layer time at B1 and 23.08–29.83% less at B4–B64** versus Tuned Native.
+- The resident metric sums 40 independently warmed decoder layers; it excludes weight transfers and is not uninterrupted whole-model latency.
+- Transfer-inclusive cached-disk-offloaded prefill mean savings versus Tuned Native were **0.27–1.52%**, with only three measured passes per arm and visible variation.
+- Maximum natural-text perplexity increase for Strassen versus Native: **0.1191%**; top-1 agreement was **98.64–98.75%**. Full numerical errors are retained.
 
-Run identity:20261017-qwen3-14b-v001. The local live dashboard is on port8790.
-Results and summaries will be added separately with immutable run/attempt IDs.
-Only code and numerical records are published; model weights, activation tensors
-and credentials remain private. Old measurements will never be overwritten.
+See the [registered protocol](PROTOCOL.md), [frozen code](code/initial_20261017_v001/source),
+[raw results](results/20261017_v001), [machine-readable report](summaries/completed_20261017_v001/summary.json),
+and [completion/release evidence and full environment](operations/completed_20261017_v001).
+Run identity: `20261017-qwen3-14b-v001`. Remote execution: October 17, 2026,
+17:53:18–22:03:15 UTC. All 30 stages succeeded on attempt 0.
+
+The [initial launch index](operations/initial_index_20261017_v001), all incremental
+snapshots and both local validation attempts remain preserved. Prior Qwen32 and
+Gemma benchmark folders are unchanged. Only code and numerical evidence are
+published; no credentials, checkpoint weights or activation tensors are included.
