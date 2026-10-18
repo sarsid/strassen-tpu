@@ -1,0 +1,1364 @@
+{
+  "schema": "three_llm_figures_v001",
+  "sequence": 1024,
+  "architecture": "single TPU v6e",
+  "output_dtype": "BF16",
+  "arms": [
+    "native",
+    "native_tuned",
+    "cubic_tuned",
+    "strassen_tuned"
+  ],
+  "sources": {
+    "source_repository_commit": "bf2142798ac21b5ea6032b697be294582efafa6b",
+    "sources": [
+      {
+        "id": "qwen3_32b",
+        "original_path": "benchmarks/llm/llm_benchmark_1_qwen3_32b/summary.json",
+        "snapshot_path": "inputs/qwen3_32b.json",
+        "sha256": "97c2af41de085da595eb80cc93575819c387cf5706e1796198f1170f7045e9fa",
+        "bytes": 2441262
+      },
+      {
+        "id": "gemma4_31b",
+        "original_path": "benchmarks/llm/llm_benchmark_2_gemma4_31b/summaries/completed_20261017_v001/summary.json",
+        "snapshot_path": "inputs/gemma4_31b.json",
+        "sha256": "0d0cdbe4a7b748c96d50a8460e09e111cb63b62f09d5244386de844be68b8380",
+        "bytes": 40010
+      },
+      {
+        "id": "qwen3_14b",
+        "original_path": "benchmarks/llm/llm_benchmark_3_qwen3_14b/summaries/completed_20261017_v001/summary.json",
+        "snapshot_path": "inputs/qwen3_14b.json",
+        "sha256": "a0cde468c52bcb61fead1735958c0102d7fb607b8ab474aeee3624aa694da431",
+        "bytes": 74327
+      }
+    ]
+  },
+  "models": [
+    {
+      "id": "qwen3_32b",
+      "model": "Qwen3-32B",
+      "decoder_layers": 64,
+      "source": {
+        "id": "qwen3_32b",
+        "original_path": "benchmarks/llm/llm_benchmark_1_qwen3_32b/summary.json",
+        "snapshot_path": "inputs/qwen3_32b.json",
+        "sha256": "97c2af41de085da595eb80cc93575819c387cf5706e1796198f1170f7045e9fa",
+        "bytes": 2441262
+      },
+      "rows": [
+        {
+          "batch": 1,
+          "sequence": 1024,
+          "input_tokens": 1024,
+          "resident_ms": {
+            "native": 160.2120016,
+            "native_tuned": 146.7539226,
+            "cubic_tuned": 157.0630108,
+            "strassen_tuned": 135.4520292
+          },
+          "resident_speedup_vs_tuned_native": {
+            "native": 0.9159983093301545,
+            "native_tuned": 1.0,
+            "cubic_tuned": 0.9343633606188326,
+            "strassen_tuned": 1.083438346894843
+          },
+          "resident_time_saved_percent_vs_tuned_native": {
+            "native": -9.170507173891384,
+            "native_tuned": 0.0,
+            "cubic_tuned": -7.024744563795382,
+            "strassen_tuned": 7.701254726120698
+          },
+          "offloaded_mean_seconds": {
+            "native": 131.06618350033335,
+            "native_tuned": 130.27393568666668,
+            "cubic_tuned": 130.72022056966665,
+            "strassen_tuned": 130.557067518
+          },
+          "offloaded_samples_seconds": {
+            "native": [
+              132.314849517,
+              130.547033117,
+              130.336667867
+            ],
+            "native_tuned": [
+              129.320666289,
+              130.954508573,
+              130.546632198
+            ],
+            "cubic_tuned": [
+              130.805997028,
+              130.718092333,
+              130.63657234800002
+            ],
+            "strassen_tuned": [
+              129.710155788,
+              131.158310048,
+              130.802736718
+            ]
+          },
+          "offloaded_time_saved_percent_vs_tuned_native": {
+            "native": -0.6081399241458119,
+            "native_tuned": 0.0,
+            "cubic_tuned": -0.3425741923337444,
+            "strassen_tuned": -0.2173357470479198
+          },
+          "natural_perplexity": {
+            "native": 8.641057437922615,
+            "native_tuned": 8.643964278954806,
+            "cubic_tuned": 8.624265728341733,
+            "strassen_tuned": 8.63454513765
+          },
+          "natural_perplexity_change_percent_vs_native": {
+            "native": 0.0,
+            "native_tuned": 0.033639876289148773,
+            "cubic_tuned": -0.19432470738117713,
+            "strassen_tuned": -0.07536462197362814
+          },
+          "natural_positions": 4092,
+          "stack": "JAX 0.7.2 / libtpu 0.0.21.1"
+        },
+        {
+          "batch": 4,
+          "sequence": 1024,
+          "input_tokens": 4096,
+          "resident_ms": {
+            "native": 632.1399228,
+            "native_tuned": 542.9533666,
+            "cubic_tuned": 530.530015,
+            "strassen_tuned": 419.1341966
+          },
+          "resident_speedup_vs_tuned_native": {
+            "native": 0.8589132674852157,
+            "native_tuned": 1.0,
+            "cubic_tuned": 1.0234168685064877,
+            "strassen_tuned": 1.2954165300861065
+          },
+          "resident_time_saved_percent_vs_tuned_native": {
+            "native": -16.426190845539935,
+            "native_tuned": 0.0,
+            "cubic_tuned": 2.288106560199743,
+            "strassen_tuned": 22.804752234130454
+          },
+          "offloaded_mean_seconds": {
+            "native": 129.87982317133333,
+            "native_tuned": 129.70588888733334,
+            "cubic_tuned": 129.99185322166667,
+            "strassen_tuned": 129.00207655966665
+          },
+          "offloaded_samples_seconds": {
+            "native": [
+              129.370005867,
+              129.674062272,
+              130.595401375
+            ],
+            "native_tuned": [
+              129.57868958,
+              129.667618692,
+              129.87135838999998
+            ],
+            "cubic_tuned": [
+              129.14445274,
+              130.151625115,
+              130.67948181
+            ],
+            "strassen_tuned": [
+              129.018999247,
+              128.71431004500002,
+              129.272920387
+            ]
+          },
+          "offloaded_time_saved_percent_vs_tuned_native": {
+            "native": -0.13409898771141737,
+            "native_tuned": 0.0,
+            "cubic_tuned": -0.22047135776674942,
+            "strassen_tuned": 0.5426217218849838
+          },
+          "natural_perplexity": {
+            "native": 7.548506103977671,
+            "native_tuned": 7.546123003495405,
+            "cubic_tuned": 7.543883276297844,
+            "strassen_tuned": 7.5542019033631975
+          },
+          "natural_perplexity_change_percent_vs_native": {
+            "native": 0.0,
+            "native_tuned": -0.03157049155738667,
+            "cubic_tuned": -0.061241623390762,
+            "strassen_tuned": 0.07545598171438961
+          },
+          "natural_positions": 16368,
+          "stack": "JAX 0.7.2 / libtpu 0.0.21.1"
+        },
+        {
+          "batch": 8,
+          "sequence": 1024,
+          "input_tokens": 8192,
+          "resident_ms": {
+            "native": 1394.543055,
+            "native_tuned": 1128.6943654,
+            "cubic_tuned": 1078.0359538,
+            "strassen_tuned": 869.2071994
+          },
+          "resident_speedup_vs_tuned_native": {
+            "native": 0.8093650184217509,
+            "native_tuned": 1.0,
+            "cubic_tuned": 1.0469913933959556,
+            "strassen_tuned": 1.2985331531758133
+          },
+          "resident_time_saved_percent_vs_tuned_native": {
+            "native": -23.553647271534462,
+            "native_tuned": 0.0,
+            "cubic_tuned": 4.488231106039676,
+            "strassen_tuned": 22.990029360874832
+          },
+          "offloaded_mean_seconds": {
+            "native": 130.86996752633334,
+            "native_tuned": 129.80423166433334,
+            "cubic_tuned": 130.111266154,
+            "strassen_tuned": 129.86426890933333
+          },
+          "offloaded_samples_seconds": {
+            "native": [
+              130.178558555,
+              131.049752294,
+              131.38159173
+            ],
+            "native_tuned": [
+              128.595705104,
+              130.318305895,
+              130.498683994
+            ],
+            "cubic_tuned": [
+              129.446238495,
+              130.163605647,
+              130.72395432000002
+            ],
+            "strassen_tuned": [
+              130.561429809,
+              128.633413514,
+              130.397963405
+            ]
+          },
+          "offloaded_time_saved_percent_vs_tuned_native": {
+            "native": -0.8210332192835956,
+            "native_tuned": 0.0,
+            "cubic_tuned": -0.23653657953204288,
+            "strassen_tuned": -0.04625214773834596
+          },
+          "natural_perplexity": {
+            "native": 8.45745018213625,
+            "native_tuned": 8.45745018213625,
+            "cubic_tuned": 8.45941607645172,
+            "strassen_tuned": 8.464308328758035
+          },
+          "natural_perplexity_change_percent_vs_native": {
+            "native": 0.0,
+            "native_tuned": 0.0,
+            "cubic_tuned": 0.023244527288168726,
+            "strassen_tuned": 0.08109000318168302
+          },
+          "natural_positions": 32736,
+          "stack": "JAX 0.7.2 / libtpu 0.0.21.1"
+        },
+        {
+          "batch": 16,
+          "sequence": 1024,
+          "input_tokens": 16384,
+          "resident_ms": {
+            "native": 2908.8550576,
+            "native_tuned": 2293.6415614,
+            "cubic_tuned": 2157.6584308,
+            "strassen_tuned": 1744.330424
+          },
+          "resident_speedup_vs_tuned_native": {
+            "native": 0.7885032138013806,
+            "native_tuned": 1.0,
+            "cubic_tuned": 1.063023474271403,
+            "strassen_tuned": 1.3149123181262588
+          },
+          "resident_time_saved_percent_vs_tuned_native": {
+            "native": -26.822564892157086,
+            "native_tuned": 0.0,
+            "cubic_tuned": 5.928700146024468,
+            "strassen_tuned": 23.9493016975464
+          },
+          "offloaded_mean_seconds": {
+            "native": 131.43009217300002,
+            "native_tuned": 131.146077182,
+            "cubic_tuned": 130.61950772966665,
+            "strassen_tuned": 130.189271891
+          },
+          "offloaded_samples_seconds": {
+            "native": [
+              130.348827405,
+              132.08068970399998,
+              131.86075941
+            ],
+            "native_tuned": [
+              130.703330892,
+              131.24817094800002,
+              131.486729706
+            ],
+            "cubic_tuned": [
+              131.064251775,
+              130.375594889,
+              130.418676525
+            ],
+            "strassen_tuned": [
+              130.279079096,
+              130.216935872,
+              130.07180070500002
+            ]
+          },
+          "offloaded_time_saved_percent_vs_tuned_native": {
+            "native": -0.21656384781212346,
+            "native_tuned": 0.0,
+            "cubic_tuned": 0.4015136888940951,
+            "strassen_tuned": 0.7295721774980612
+          },
+          "natural_perplexity": {
+            "native": 8.668520268733717,
+            "native_tuned": 8.667797846219344,
+            "cubic_tuned": 8.666828182958422,
+            "strassen_tuned": 8.66449285677796
+          },
+          "natural_perplexity_change_percent_vs_native": {
+            "native": 0.0,
+            "native_tuned": -0.008333861973874868,
+            "cubic_tuned": -0.01951989177896296,
+            "strassen_tuned": -0.04646020117509142
+          },
+          "natural_positions": 65472,
+          "stack": "JAX 0.7.2 / libtpu 0.0.21.1"
+        },
+        {
+          "batch": 32,
+          "sequence": 1024,
+          "input_tokens": 32768,
+          "resident_ms": {
+            "native": 5968.5573072,
+            "native_tuned": 4788.3060256,
+            "cubic_tuned": 4594.6280398,
+            "strassen_tuned": 3952.0796016
+          },
+          "resident_speedup_vs_tuned_native": {
+            "native": 0.8022551814696933,
+            "native_tuned": 1.0,
+            "cubic_tuned": 1.042153137124987,
+            "strassen_tuned": 1.2115914931626006
+          },
+          "resident_time_saved_percent_vs_tuned_native": {
+            "native": -24.64861843186199,
+            "native_tuned": 0.0,
+            "cubic_tuned": 4.044812189624636,
+            "strassen_tuned": 17.463930240240156
+          },
+          "offloaded_mean_seconds": {
+            "native": 137.246320622,
+            "native_tuned": 135.76632907533335,
+            "cubic_tuned": 135.789013504,
+            "strassen_tuned": 135.70260403133335
+          },
+          "offloaded_samples_seconds": {
+            "native": [
+              136.769291199,
+              137.519019429,
+              137.45065123799998
+            ],
+            "native_tuned": [
+              135.43394732599998,
+              136.849044318,
+              135.01599558200002
+            ],
+            "cubic_tuned": [
+              135.64448016499998,
+              135.773035959,
+              135.949524388
+            ],
+            "strassen_tuned": [
+              135.519371205,
+              135.867675756,
+              135.72076513300001
+            ]
+          },
+          "offloaded_time_saved_percent_vs_tuned_native": {
+            "native": -1.09010205751785,
+            "native_tuned": 0.0,
+            "cubic_tuned": -0.016708434868317745,
+            "strassen_tuned": 0.04693729618676645
+          },
+          "natural_perplexity": {
+            "native": 8.256326762244708,
+            "native_tuned": 8.255605283287068,
+            "cubic_tuned": 8.254960373255122,
+            "strassen_tuned": 8.252153648994755
+          },
+          "natural_perplexity_change_percent_vs_native": {
+            "native": 0.0,
+            "native_tuned": -0.008738498104743364,
+            "cubic_tuned": -0.016549599221704625,
+            "strassen_tuned": -0.050544429382770595
+          },
+          "natural_positions": 130944,
+          "stack": "JAX 0.7.2 / libtpu 0.0.21.1"
+        },
+        {
+          "batch": 64,
+          "sequence": 1024,
+          "input_tokens": 65536,
+          "resident_ms": {
+            "native": 9509.365293,
+            "native_tuned": 7812.3587796,
+            "cubic_tuned": 8056.4305608,
+            "strassen_tuned": 5984.389769
+          },
+          "resident_speedup_vs_tuned_native": {
+            "native": 0.8215436613157353,
+            "native_tuned": 1.0,
+            "cubic_tuned": 0.969704724771343,
+            "strassen_tuned": 1.3054562087631962
+          },
+          "resident_time_saved_percent_vs_tuned_native": {
+            "native": -21.72207602435392,
+            "native_tuned": 0.0,
+            "cubic_tuned": -3.124175272612062,
+            "strassen_tuned": 23.39842629057537
+          },
+          "offloaded_mean_seconds": {
+            "native": 140.468541347,
+            "native_tuned": 139.86935875700001,
+            "cubic_tuned": 139.3180058593333,
+            "strassen_tuned": 137.92392619833336
+          },
+          "offloaded_samples_seconds": {
+            "native": [
+              139.230434069,
+              141.78205383600002,
+              140.39313613599998
+            ],
+            "native_tuned": [
+              138.611565108,
+              140.641358727,
+              140.355152436
+            ],
+            "cubic_tuned": [
+              139.045539052,
+              138.978648086,
+              139.92983044
+            ],
+            "strassen_tuned": [
+              137.969915267,
+              137.970436251,
+              137.831427077
+            ]
+          },
+          "offloaded_time_saved_percent_vs_tuned_native": {
+            "native": -0.4283873146519568,
+            "native_tuned": 0.0,
+            "cubic_tuned": 0.3941913386652285,
+            "strassen_tuned": 1.3908925986044762
+          },
+          "natural_perplexity": {
+            "native": 8.530697147307581,
+            "native_tuned": 8.530697147307581,
+            "cubic_tuned": 8.531011275206655,
+            "strassen_tuned": 8.527592912988595
+          },
+          "natural_perplexity_change_percent_vs_native": {
+            "native": 0.0,
+            "native_tuned": 0.0,
+            "cubic_tuned": 0.0036823238904082345,
+            "strassen_tuned": -0.03638898750456532
+          },
+          "natural_positions": 261888,
+          "stack": "JAX 0.11.2 / libtpu 0.0.48"
+        }
+      ]
+    },
+    {
+      "id": "gemma4_31b",
+      "model": "Gemma4-31B",
+      "decoder_layers": 60,
+      "source": {
+        "id": "gemma4_31b",
+        "original_path": "benchmarks/llm/llm_benchmark_2_gemma4_31b/summaries/completed_20261017_v001/summary.json",
+        "snapshot_path": "inputs/gemma4_31b.json",
+        "sha256": "0d0cdbe4a7b748c96d50a8460e09e111cb63b62f09d5244386de844be68b8380",
+        "bytes": 40010
+      },
+      "rows": [
+        {
+          "batch": 1,
+          "sequence": 1024,
+          "input_tokens": 1024,
+          "resident_ms": {
+            "native": 137.5836474,
+            "native_tuned": 131.292871,
+            "cubic_tuned": 135.8208,
+            "strassen_tuned": 121.9235378
+          },
+          "resident_speedup_vs_tuned_native": {
+            "native": 0.9542767144287817,
+            "native_tuned": 1.0,
+            "cubic_tuned": 0.966662477323061,
+            "strassen_tuned": 1.0768459755110549
+          },
+          "resident_time_saved_percent_vs_tuned_native": {
+            "native": -4.791407448162199,
+            "native_tuned": 0.0,
+            "cubic_tuned": -3.4487241885357234,
+            "strassen_tuned": 7.136208636948749
+          },
+          "offloaded_mean_seconds": {
+            "native": 241.45606209400003,
+            "native_tuned": 242.00544402699998,
+            "cubic_tuned": 242.47701879833332,
+            "strassen_tuned": 242.32972961433333
+          },
+          "offloaded_samples_seconds": {
+            "native": [
+              240.791637204,
+              240.99819935000002,
+              242.578349728
+            ],
+            "native_tuned": [
+              240.766999848,
+              243.045049519,
+              242.204282714
+            ],
+            "cubic_tuned": [
+              241.521382361,
+              242.322999139,
+              243.58667489500002
+            ],
+            "strassen_tuned": [
+              241.144317659,
+              242.527326087,
+              243.317545097
+            ]
+          },
+          "offloaded_time_saved_percent_vs_tuned_native": {
+            "native": 0.22701222082370798,
+            "native_tuned": 0.0,
+            "cubic_tuned": -0.1948612243949155,
+            "strassen_tuned": -0.13399929437007962
+          },
+          "natural_perplexity": {
+            "native": 6.007357113937847,
+            "native_tuned": 6.012051469100107,
+            "cubic_tuned": 6.009800128735422,
+            "strassen_tuned": 6.009908863694159
+          },
+          "natural_perplexity_change_percent_vs_native": {
+            "native": 0.0,
+            "native_tuned": 0.0781434343460008,
+            "cubic_tuned": 0.04066704794203346,
+            "strassen_tuned": 0.04247707782165655
+          },
+          "natural_positions": 4092,
+          "stack": "JAX 0.11.2 / libtpu 0.0.48"
+        },
+        {
+          "batch": 4,
+          "sequence": 1024,
+          "input_tokens": 4096,
+          "resident_ms": {
+            "native": 562.6075484,
+            "native_tuned": 515.9373174,
+            "cubic_tuned": 533.9596896,
+            "strassen_tuned": 466.8941818
+          },
+          "resident_speedup_vs_tuned_native": {
+            "native": 0.9170465609060426,
+            "native_tuned": 1.0,
+            "cubic_tuned": 0.9662476914437099,
+            "strassen_tuned": 1.1050412224263018
+          },
+          "resident_time_saved_percent_vs_tuned_native": {
+            "native": -9.045717265653263,
+            "native_tuned": 0.0,
+            "cubic_tuned": -3.493132129077514,
+            "strassen_tuned": 9.50563836846433
+          },
+          "offloaded_mean_seconds": {
+            "native": 242.69002838433332,
+            "native_tuned": 242.86916479866665,
+            "cubic_tuned": 242.91434545966666,
+            "strassen_tuned": 242.18375537499998
+          },
+          "offloaded_samples_seconds": {
+            "native": [
+              242.319340773,
+              242.42598540199998,
+              243.324758978
+            ],
+            "native_tuned": [
+              242.611499202,
+              242.650583438,
+              243.34541175599998
+            ],
+            "cubic_tuned": [
+              241.854843784,
+              242.434947433,
+              244.453245162
+            ],
+            "strassen_tuned": [
+              241.66545051600002,
+              242.843014512,
+              242.042801097
+            ]
+          },
+          "offloaded_time_saved_percent_vs_tuned_native": {
+            "native": 0.07375840176410131,
+            "native_tuned": 0.0,
+            "cubic_tuned": -0.01860288070636429,
+            "strassen_tuned": 0.2822134395837561
+          },
+          "natural_perplexity": {
+            "native": 4.980536229486608,
+            "native_tuned": 4.980426270057243,
+            "cubic_tuned": 4.979879225132001,
+            "strassen_tuned": 4.980553905495204
+          },
+          "natural_perplexity_change_percent_vs_native": {
+            "native": 0.0,
+            "native_tuned": -0.0022077829434197227,
+            "cubic_tuned": -0.013191438116988419,
+            "strassen_tuned": 0.0003549017170145774
+          },
+          "natural_positions": 16368,
+          "stack": "JAX 0.11.2 / libtpu 0.0.48"
+        },
+        {
+          "batch": 8,
+          "sequence": 1024,
+          "input_tokens": 8192,
+          "resident_ms": {
+            "native": 1207.596701,
+            "native_tuned": 1065.9983624,
+            "cubic_tuned": 1097.0255718,
+            "strassen_tuned": 935.6879244
+          },
+          "resident_speedup_vs_tuned_native": {
+            "native": 0.8827436854682166,
+            "native_tuned": 1.0,
+            "cubic_tuned": 0.9717169679562795,
+            "strassen_tuned": 1.1392669869962895
+          },
+          "resident_time_saved_percent_vs_tuned_native": {
+            "native": -13.28316661586646,
+            "native_tuned": 0.0,
+            "cubic_tuned": -2.9106244900925837,
+            "strassen_tuned": 12.22426249385764
+          },
+          "offloaded_mean_seconds": {
+            "native": 240.250536846,
+            "native_tuned": 240.109748903,
+            "cubic_tuned": 239.402148815,
+            "strassen_tuned": 239.58646946199997
+          },
+          "offloaded_samples_seconds": {
+            "native": [
+              240.040256027,
+              240.508903716,
+              240.202450795
+            ],
+            "native_tuned": [
+              240.449920144,
+              239.785373418,
+              240.09395314699998
+            ],
+            "cubic_tuned": [
+              239.889963072,
+              239.544288185,
+              238.772195188
+            ],
+            "strassen_tuned": [
+              239.293486413,
+              239.38821515900003,
+              240.077706814
+            ]
+          },
+          "offloaded_time_saved_percent_vs_tuned_native": {
+            "native": -0.05863482996555369,
+            "native_tuned": 0.0,
+            "cubic_tuned": 0.2946986081293401,
+            "strassen_tuned": 0.21793344226577194
+          },
+          "natural_perplexity": {
+            "native": 5.714063175926614,
+            "native_tuned": 5.716320227302676,
+            "cubic_tuned": 5.715983053763575,
+            "strassen_tuned": 5.713757426268114
+          },
+          "natural_perplexity_change_percent_vs_native": {
+            "native": 0.0,
+            "native_tuned": 0.03949993737504265,
+            "cubic_tuned": 0.033599170640075116,
+            "strassen_tuned": -0.0053508274075020346
+          },
+          "natural_positions": 32736,
+          "stack": "JAX 0.11.2 / libtpu 0.0.48"
+        },
+        {
+          "batch": 16,
+          "sequence": 1024,
+          "input_tokens": 16384,
+          "resident_ms": {
+            "native": 2445.8930428,
+            "native_tuned": 2091.7119238,
+            "cubic_tuned": 2235.4206828,
+            "strassen_tuned": 1858.853954
+          },
+          "resident_speedup_vs_tuned_native": {
+            "native": 0.8551935375740953,
+            "native_tuned": 1.0,
+            "cubic_tuned": 0.9357128794120325,
+            "strassen_tuned": 1.1252696422432336
+          },
+          "resident_time_saved_percent_vs_tuned_native": {
+            "native": -16.932595496064362,
+            "native_tuned": 0.0,
+            "cubic_tuned": -6.870389625112683,
+            "strassen_tuned": 11.132411072026038
+          },
+          "offloaded_mean_seconds": {
+            "native": 242.56180129633336,
+            "native_tuned": 242.06178449866664,
+            "cubic_tuned": 242.41404070533332,
+            "strassen_tuned": 241.1679004543333
+          },
+          "offloaded_samples_seconds": {
+            "native": [
+              242.673056929,
+              241.97104964000002,
+              243.04129732
+            ],
+            "native_tuned": [
+              241.074598948,
+              242.299056955,
+              242.811697593
+            ],
+            "cubic_tuned": [
+              242.064371715,
+              242.213715528,
+              242.964034873
+            ],
+            "strassen_tuned": [
+              242.123772496,
+              240.066018526,
+              241.313910341
+            ]
+          },
+          "offloaded_time_saved_percent_vs_tuned_native": {
+            "native": -0.20656577356987782,
+            "native_tuned": 0.0,
+            "cubic_tuned": -0.14552326274723804,
+            "strassen_tuned": 0.3692792921380139
+          },
+          "natural_perplexity": {
+            "native": 6.057985583187505,
+            "native_tuned": 6.054616609789181,
+            "cubic_tuned": 6.0533485726684635,
+            "strassen_tuned": 6.05494887422179
+          },
+          "natural_perplexity_change_percent_vs_native": {
+            "native": 0.0,
+            "native_tuned": -0.05561210656680471,
+            "cubic_tuned": -0.07654376946538699,
+            "strassen_tuned": -0.05012737194592942
+          },
+          "natural_positions": 65472,
+          "stack": "JAX 0.11.2 / libtpu 0.0.48"
+        },
+        {
+          "batch": 32,
+          "sequence": 1024,
+          "input_tokens": 32768,
+          "resident_ms": {
+            "native": 4796.4754978,
+            "native_tuned": 4151.3523452,
+            "cubic_tuned": 4462.5214372,
+            "strassen_tuned": 3769.584207
+          },
+          "resident_speedup_vs_tuned_native": {
+            "native": 0.8655005841485276,
+            "native_tuned": 1.0,
+            "cubic_tuned": 0.9302705664546359,
+            "strassen_tuned": 1.1012759278572604
+          },
+          "resident_time_saved_percent_vs_tuned_native": {
+            "native": -15.540072221186518,
+            "native_tuned": 0.0,
+            "cubic_tuned": -7.4956078435449935,
+            "strassen_tuned": 9.196235502424155
+          },
+          "offloaded_mean_seconds": {
+            "native": 247.07181812666667,
+            "native_tuned": 246.42431252266667,
+            "cubic_tuned": 246.38618735000003,
+            "strassen_tuned": 246.26661505566665
+          },
+          "offloaded_samples_seconds": {
+            "native": [
+              246.551864639,
+              247.308050108,
+              247.355539633
+            ],
+            "native_tuned": [
+              245.540443669,
+              246.889074269,
+              246.84341963
+            ],
+            "cubic_tuned": [
+              245.251766114,
+              246.743090789,
+              247.163705147
+            ],
+            "strassen_tuned": [
+              246.378282866,
+              245.53033205900002,
+              246.89123024199998
+            ]
+          },
+          "offloaded_time_saved_percent_vs_tuned_native": {
+            "native": -0.26276043843702634,
+            "native_tuned": 0.0,
+            "cubic_tuned": 0.015471351944273959,
+            "strassen_tuned": 0.06399428099672644
+          },
+          "natural_perplexity": {
+            "native": 5.793671729971856,
+            "native_tuned": 5.793316552169066,
+            "cubic_tuned": 5.791868266707891,
+            "strassen_tuned": 5.794086547620055
+          },
+          "natural_perplexity_change_percent_vs_native": {
+            "native": 0.0,
+            "native_tuned": -0.006130444031771098,
+            "cubic_tuned": -0.031128157548776514,
+            "strassen_tuned": 0.0071598403833084134
+          },
+          "natural_positions": 130944,
+          "stack": "JAX 0.11.2 / libtpu 0.0.48"
+        },
+        {
+          "batch": 64,
+          "sequence": 1024,
+          "input_tokens": 65536,
+          "resident_ms": {
+            "native": 9923.8632044,
+            "native_tuned": 8349.9880242,
+            "cubic_tuned": 8979.6126926,
+            "strassen_tuned": 7540.1758584
+          },
+          "resident_speedup_vs_tuned_native": {
+            "native": 0.8414049903970681,
+            "native_tuned": 1.0,
+            "cubic_tuned": 0.9298828702357211,
+            "strassen_tuned": 1.1073996390810756
+          },
+          "resident_time_saved_percent_vs_tuned_native": {
+            "native": -18.84883158680688,
+            "native_tuned": 0.0,
+            "cubic_tuned": -7.540426005105827,
+            "strassen_tuned": 9.698363200677607
+          },
+          "offloaded_mean_seconds": {
+            "native": 253.45256015299998,
+            "native_tuned": 252.26159216333332,
+            "cubic_tuned": 252.8049849093333,
+            "strassen_tuned": 251.592956911
+          },
+          "offloaded_samples_seconds": {
+            "native": [
+              253.630590208,
+              253.66500455899998,
+              253.06208569199998
+            ],
+            "native_tuned": [
+              251.785509921,
+              252.238951073,
+              252.760315496
+            ],
+            "cubic_tuned": [
+              252.24100298300002,
+              253.17424322500003,
+              252.99970851999998
+            ],
+            "strassen_tuned": [
+              251.20759704399998,
+              251.997960716,
+              251.573312973
+            ]
+          },
+          "offloaded_time_saved_percent_vs_tuned_native": {
+            "native": -0.4721162581482252,
+            "native_tuned": 0.0,
+            "cubic_tuned": -0.21540843429235235,
+            "strassen_tuned": 0.2650563038944176
+          },
+          "natural_perplexity": {
+            "native": 5.799098522588269,
+            "native_tuned": 5.799461270112773,
+            "cubic_tuned": 5.7989364893522,
+            "strassen_tuned": 5.799367257796311
+          },
+          "natural_perplexity_change_percent_vs_native": {
+            "native": 0.0,
+            "native_tuned": 0.006255239897900999,
+            "cubic_tuned": -0.0027941107646034524,
+            "strassen_tuned": 0.004634085918597819
+          },
+          "natural_positions": 261888,
+          "stack": "JAX 0.11.2 / libtpu 0.0.48"
+        }
+      ]
+    },
+    {
+      "id": "qwen3_14b",
+      "model": "Qwen3-14B",
+      "decoder_layers": 40,
+      "source": {
+        "id": "qwen3_14b",
+        "original_path": "benchmarks/llm/llm_benchmark_3_qwen3_14b/summaries/completed_20261017_v001/summary.json",
+        "snapshot_path": "inputs/qwen3_14b.json",
+        "sha256": "a0cde468c52bcb61fead1735958c0102d7fb607b8ab474aeee3624aa694da431",
+        "bytes": 74327
+      },
+      "rows": [
+        {
+          "batch": 1,
+          "sequence": 1024,
+          "input_tokens": 1024,
+          "resident_ms": {
+            "native": 67.568567,
+            "native_tuned": 65.3873342,
+            "cubic_tuned": 67.1850348,
+            "strassen_tuned": 61.55427
+          },
+          "resident_speedup_vs_tuned_native": {
+            "native": 0.9677182320589987,
+            "native_tuned": 1.0,
+            "cubic_tuned": 0.9732425441863432,
+            "strassen_tuned": 1.062271296532312
+          },
+          "resident_time_saved_percent_vs_tuned_native": {
+            "native": -3.3358643943615762,
+            "native_tuned": 0.0,
+            "cubic_tuned": -2.749310125568627,
+            "strassen_tuned": 5.862089725627618
+          },
+          "offloaded_mean_seconds": {
+            "native": 59.090181044999994,
+            "native_tuned": 59.30249733466667,
+            "cubic_tuned": 59.02309986533333,
+            "strassen_tuned": 59.01133266966667
+          },
+          "offloaded_samples_seconds": {
+            "native": [
+              59.260892704,
+              58.98324953,
+              59.026400901
+            ],
+            "native_tuned": [
+              59.293157537,
+              58.951417051,
+              59.662917416
+            ],
+            "cubic_tuned": [
+              59.108829138000004,
+              59.067854624,
+              58.892615834
+            ],
+            "strassen_tuned": [
+              58.964652962,
+              58.94117061,
+              59.128174437
+            ]
+          },
+          "offloaded_time_saved_percent_vs_tuned_native": {
+            "native": 0.3580225103649304,
+            "native_tuned": 0.0,
+            "cubic_tuned": 0.47113946611150315,
+            "strassen_tuned": 0.4909821307471085
+          },
+          "natural_perplexity": {
+            "native": 9.955858241242115,
+            "native_tuned": 9.952949202276589,
+            "cubic_tuned": 9.963662760895883,
+            "strassen_tuned": 9.955106939574302
+          },
+          "natural_perplexity_change_percent_vs_native": {
+            "native": 0.0,
+            "native_tuned": -0.029219369089406033,
+            "cubic_tuned": 0.07839122921051711,
+            "strassen_tuned": -0.0075463274949116865
+          },
+          "natural_positions": 4092,
+          "stack": "JAX 0.11.2 / libtpu 0.0.48"
+        },
+        {
+          "batch": 4,
+          "sequence": 1024,
+          "input_tokens": 4096,
+          "resident_ms": {
+            "native": 255.4418838,
+            "native_tuned": 245.8370088,
+            "cubic_tuned": 251.4982626,
+            "strassen_tuned": 189.0953508
+          },
+          "resident_speedup_vs_tuned_native": {
+            "native": 0.9623989814938877,
+            "native_tuned": 1.0,
+            "cubic_tuned": 0.9774898890295555,
+            "strassen_tuned": 1.3000690273977904
+          },
+          "resident_time_saved_percent_vs_tuned_native": {
+            "native": -3.9070093827142216,
+            "native_tuned": 0.0,
+            "cubic_tuned": -2.302848471690311,
+            "strassen_tuned": 23.081007321465584
+          },
+          "offloaded_mean_seconds": {
+            "native": 59.16653626633333,
+            "native_tuned": 59.41264180966667,
+            "cubic_tuned": 59.17187643933333,
+            "strassen_tuned": 59.10152029733334
+          },
+          "offloaded_samples_seconds": {
+            "native": [
+              59.315069971999996,
+              58.893058773,
+              59.291480054
+            ],
+            "native_tuned": [
+              59.480184052999995,
+              59.422304110999995,
+              59.335437265
+            ],
+            "cubic_tuned": [
+              59.583929465000004,
+              58.879164352,
+              59.052535501
+            ],
+            "strassen_tuned": [
+              59.728620081,
+              58.323450476,
+              59.252490335000005
+            ]
+          },
+          "offloaded_time_saved_percent_vs_tuned_native": {
+            "native": 0.4142309377888953,
+            "native_tuned": 0.0,
+            "cubic_tuned": 0.4052426604840176,
+            "strassen_tuned": 0.5236621413503784
+          },
+          "natural_perplexity": {
+            "native": 8.651647467399037,
+            "native_tuned": 8.651647467399037,
+            "cubic_tuned": 8.655022079420347,
+            "strassen_tuned": 8.654687073846759
+          },
+          "natural_perplexity_change_percent_vs_native": {
+            "native": 0.0,
+            "native_tuned": 0.0,
+            "cubic_tuned": 0.03900542681640751,
+            "strassen_tuned": 0.03513326749819967
+          },
+          "natural_positions": 16368,
+          "stack": "JAX 0.11.2 / libtpu 0.0.48"
+        },
+        {
+          "batch": 8,
+          "sequence": 1024,
+          "input_tokens": 8192,
+          "resident_ms": {
+            "native": 541.0380738,
+            "native_tuned": 544.9657394,
+            "cubic_tuned": 497.003954,
+            "strassen_tuned": 382.6396024
+          },
+          "resident_speedup_vs_tuned_native": {
+            "native": 1.0072594994515152,
+            "native_tuned": 1.0,
+            "cubic_tuned": 1.096501818575069,
+            "strassen_tuned": 1.4242272257807467
+          },
+          "resident_time_saved_percent_vs_tuned_native": {
+            "native": 0.7207178939953707,
+            "native_tuned": 0.0,
+            "cubic_tuned": 8.800880850382487,
+            "strassen_tuned": 29.786484775853772
+          },
+          "offloaded_mean_seconds": {
+            "native": 59.898200515000006,
+            "native_tuned": 59.58644482566667,
+            "cubic_tuned": 59.51087082166667,
+            "strassen_tuned": 59.42838877433334
+          },
+          "offloaded_samples_seconds": {
+            "native": [
+              59.827912363,
+              60.123972428,
+              59.742716754
+            ],
+            "native_tuned": [
+              58.714466963999996,
+              59.634530998,
+              60.410336515000004
+            ],
+            "cubic_tuned": [
+              58.811051222,
+              58.974127335,
+              60.747433908
+            ],
+            "strassen_tuned": [
+              58.847435353,
+              58.663823594,
+              60.773907376000004
+            ]
+          },
+          "offloaded_time_saved_percent_vs_tuned_native": {
+            "native": -0.5231990098510719,
+            "native_tuned": 0.0,
+            "cubic_tuned": 0.12683086601508187,
+            "strassen_tuned": 0.26525504549861356
+          },
+          "natural_perplexity": {
+            "native": 9.54793447196819,
+            "native_tuned": 9.549938817683985,
+            "cubic_tuned": 9.550796197151273,
+            "strassen_tuned": 9.55305966746792
+          },
+          "natural_perplexity_change_percent_vs_native": {
+            "native": 0.0,
+            "native_tuned": 0.020992453621038187,
+            "cubic_tuned": 0.029972191278493376,
+            "strassen_tuned": 0.053678578490212736
+          },
+          "natural_positions": 32736,
+          "stack": "JAX 0.11.2 / libtpu 0.0.48"
+        },
+        {
+          "batch": 16,
+          "sequence": 1024,
+          "input_tokens": 16384,
+          "resident_ms": {
+            "native": 1209.4408314,
+            "native_tuned": 1085.5814796,
+            "cubic_tuned": 1055.5518378,
+            "strassen_tuned": 761.7285556
+          },
+          "resident_speedup_vs_tuned_native": {
+            "native": 0.8975895731446197,
+            "native_tuned": 1.0,
+            "cubic_tuned": 1.0284492345374419,
+            "strassen_tuned": 1.425155288743123
+          },
+          "resident_time_saved_percent_vs_tuned_native": {
+            "native": -11.409493817602524,
+            "native_tuned": 0.0,
+            "cubic_tuned": 2.766226429274099,
+            "strassen_tuned": 29.832207907538066
+          },
+          "offloaded_mean_seconds": {
+            "native": 60.23869459033333,
+            "native_tuned": 60.25222488,
+            "cubic_tuned": 59.040688065,
+            "strassen_tuned": 59.68407657866667
+          },
+          "offloaded_samples_seconds": {
+            "native": [
+              60.676470630000004,
+              59.870426239,
+              60.169186902
+            ],
+            "native_tuned": [
+              59.326313874,
+              60.604048816,
+              60.826311950000004
+            ],
+            "cubic_tuned": [
+              59.379817953999996,
+              58.676234173,
+              59.066012068000006
+            ],
+            "strassen_tuned": [
+              59.302417585,
+              59.897282689,
+              59.852529462
+            ]
+          },
+          "offloaded_time_saved_percent_vs_tuned_native": {
+            "native": 0.022456083063515653,
+            "native_tuned": 0.0,
+            "cubic_tuned": 2.010775232637363,
+            "strassen_tuned": 0.9429499117499351
+          },
+          "natural_perplexity": {
+            "native": 9.763171881025709,
+            "native_tuned": 9.763681694939292,
+            "cubic_tuned": 9.765538534576397,
+            "strassen_tuned": 9.77479904906338
+          },
+          "natural_perplexity_change_percent_vs_native": {
+            "native": 0.0,
+            "native_tuned": 0.005221806189581457,
+            "cubic_tuned": 0.024240621588234035,
+            "strassen_tuned": 0.11909211657195051
+          },
+          "natural_positions": 65472,
+          "stack": "JAX 0.11.2 / libtpu 0.0.48"
+        },
+        {
+          "batch": 32,
+          "sequence": 1024,
+          "input_tokens": 32768,
+          "resident_ms": {
+            "native": 2443.264056,
+            "native_tuned": 2162.5370451999997,
+            "cubic_tuned": 2107.4443014,
+            "strassen_tuned": 1560.9796423999999
+          },
+          "resident_speedup_vs_tuned_native": {
+            "native": 0.8851016491195005,
+            "native_tuned": 1.0,
+            "cubic_tuned": 1.0261419690965978,
+            "strassen_tuned": 1.3853717155946428
+          },
+          "resident_time_saved_percent_vs_tuned_native": {
+            "native": -12.981373494761916,
+            "native_tuned": 0.0,
+            "cubic_tuned": 2.5475976895879993,
+            "strassen_tuned": 27.81720683746093
+          },
+          "offloaded_mean_seconds": {
+            "native": 61.031520394666664,
+            "native_tuned": 61.03223581933333,
+            "cubic_tuned": 60.38188833433334,
+            "strassen_tuned": 60.10187479133334
+          },
+          "offloaded_samples_seconds": {
+            "native": [
+              60.703901882,
+              61.072450248,
+              61.318209054
+            ],
+            "native_tuned": [
+              61.390144073,
+              60.861928452,
+              60.844634933
+            ],
+            "cubic_tuned": [
+              60.506805940999996,
+              60.86397567,
+              59.77488339200001
+            ],
+            "strassen_tuned": [
+              59.487256794000004,
+              60.044837286,
+              60.773530294
+            ]
+          },
+          "offloaded_time_saved_percent_vs_tuned_native": {
+            "native": 0.0011722078620546306,
+            "native_tuned": 0.0,
+            "cubic_tuned": 1.0655803056685342,
+            "strassen_tuned": 1.5243764471516874
+          },
+          "natural_perplexity": {
+            "native": 9.363615722049932,
+            "native_tuned": 9.36406859503206,
+            "cubic_tuned": 9.365684105295914,
+            "strassen_tuned": 9.36750329400209
+          },
+          "natural_perplexity_change_percent_vs_native": {
+            "native": 0.0,
+            "native_tuned": 0.004836518237949505,
+            "cubic_tuned": 0.022089578506645502,
+            "strassen_tuned": 0.04151785023602805
+          },
+          "natural_positions": 130944,
+          "stack": "JAX 0.11.2 / libtpu 0.0.48"
+        },
+        {
+          "batch": 64,
+          "sequence": 1024,
+          "input_tokens": 65536,
+          "resident_ms": {
+            "native": 5048.9879734,
+            "native_tuned": 4328.8105796,
+            "cubic_tuned": 4539.5323478,
+            "strassen_tuned": 3159.6868122
+          },
+          "resident_speedup_vs_tuned_native": {
+            "native": 0.8573620302535538,
+            "native_tuned": 1.0,
+            "cubic_tuned": 0.9535807320985118,
+            "strassen_tuned": 1.3700125477265173
+          },
+          "resident_time_saved_percent_vs_tuned_native": {
+            "native": -16.636842397168294,
+            "native_tuned": 0.0,
+            "cubic_tuned": -4.867890713283907,
+            "strassen_tuned": 27.007967798582488
+          },
+          "offloaded_mean_seconds": {
+            "native": 64.338656781,
+            "native_tuned": 62.985756277,
+            "cubic_tuned": 63.35314591166666,
+            "strassen_tuned": 62.09196884266666
+          },
+          "offloaded_samples_seconds": {
+            "native": [
+              64.00478652,
+              63.868449405,
+              65.142734418
+            ],
+            "native_tuned": [
+              62.663488699,
+              62.631656706,
+              63.662123426
+            ],
+            "cubic_tuned": [
+              62.899332846,
+              63.613948939000004,
+              63.54615595
+            ],
+            "strassen_tuned": [
+              61.970107051999996,
+              62.281179762,
+              62.024619714
+            ]
+          },
+          "offloaded_time_saved_percent_vs_tuned_native": {
+            "native": -2.147946748547702,
+            "native_tuned": 0.0,
+            "cubic_tuned": -0.5832900267974006,
+            "strassen_tuned": 1.4190310431498543
+          },
+          "natural_perplexity": {
+            "native": 9.66484044997851,
+            "native_tuned": 9.665591301959719,
+            "cubic_tuned": 9.66626495097036,
+            "strassen_tuned": 9.669219438363235
+          },
+          "natural_perplexity_change_percent_vs_native": {
+            "native": 0.0,
+            "native_tuned": 0.007768901981308751,
+            "cubic_tuned": 0.014739001634045401,
+            "strassen_tuned": 0.045308439465596706
+          },
+          "natural_positions": 261888,
+          "stack": "JAX 0.11.2 / libtpu 0.0.48"
+        }
+      ]
+    }
+  ],
+  "scope": {
+    "resident": "Sum of separately warmed decoder-layer means; not whole-model wall time.",
+    "full_runtime": "Serialized cached-disk-offloaded prefill, not resident serving or decode."
+  }
+}
