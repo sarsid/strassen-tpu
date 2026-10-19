@@ -1,0 +1,58 @@
+{
+  "tasks": {
+    "mmlu": {
+      "n": 114,
+      "baseline_score": 84.21052631578947,
+      "strassen_score": 84.21052631578947,
+      "difference": 0.0,
+      "difference_unit": "percentage points",
+      "confidence_interval": [
+        -25.43957220660514,
+        25.43957220660514
+      ],
+      "confidence_method": "distribution-free Hoeffding bound for equally stratified paired differences; conservative",
+      "confidence_level": 0.95,
+      "margin_pp": 0.5,
+      "criterion": "inconclusive",
+      "both_correct": 95,
+      "both_incorrect": 17,
+      "baseline_correct_strassen_incorrect": 1,
+      "baseline_incorrect_strassen_correct": 1,
+      "different_predictions": 2,
+      "prediction_disagreement_rate": 0.017543859649122806,
+      "pooled_binomial_interval_descriptive_only": [
+        -5.455976933352394,
+        5.455976933352394
+      ]
+    },
+    "ppl": {
+      "n_windows": 32,
+      "scored_tokens": 16384,
+      "baseline_score": 6.903900756632481,
+      "strassen_score": 6.905965098288409,
+      "difference": 0.002064341655927393,
+      "difference_unit": "perplexity",
+      "confidence_interval": [
+        -0.0058611700486344235,
+        0.010036381788932198
+      ],
+      "relative_change": 0.00029901091117861287,
+      "relative_confidence_interval": [
+        -0.0008514445339656525,
+        0.001447054746995827
+      ],
+      "delta_nll_nats": 0.0002989662163253026,
+      "confidence_level": 0.95,
+      "confidence_method": "paired circular moving-block bootstrap of token-weighted NLL",
+      "bootstrap_draws": 20000,
+      "block_windows": 1,
+      "seed": 20261018,
+      "relative_margin": 0.01,
+      "criterion": "preserved",
+      "insufficient_text_blocks": false
+    }
+  },
+  "missing_tasks": [
+    "gsm8k"
+  ]
+}
