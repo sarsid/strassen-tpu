@@ -1,0 +1,396 @@
+{
+  "scope": "train-only first-divergence operator trace; no test scores",
+  "model": "Qwen/Qwen3-32B",
+  "revision": "9216db5781bf21249d130ec9da846c4624c16137",
+  "prefix_length": 129,
+  "native_row_block": 128,
+  "train_example_ids": [
+    4826,
+    2644,
+    5927,
+    985,
+    1737,
+    3852,
+    4419,
+    2398
+  ],
+  "train_input_sha256": "fa6c68f0945b6e2580231932f748235b40f6d7ddb80002bbd4611e37e9a227ea",
+  "first_differing_layer": 6,
+  "layers": [
+    {
+      "kind": "layer_comparison",
+      "layer": 1,
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "prefix_causal_max_abs": 0.0
+    },
+    {
+      "kind": "layer_comparison",
+      "layer": 2,
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "prefix_causal_max_abs": 0.0
+    },
+    {
+      "kind": "layer_comparison",
+      "layer": 3,
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "prefix_causal_max_abs": 0.0
+    },
+    {
+      "kind": "layer_comparison",
+      "layer": 4,
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "prefix_causal_max_abs": 0.0
+    },
+    {
+      "kind": "layer_comparison",
+      "layer": 5,
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "prefix_causal_max_abs": 0.0
+    },
+    {
+      "kind": "layer_comparison",
+      "layer": 6,
+      "cached_vs_full": {
+        "relative_l2": 1.4583515047435495e-05,
+        "max_abs": 0.0009765625,
+        "equal": false
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "prefix_causal_max_abs": 0.0
+    }
+  ],
+  "operators": {
+    "attention": {
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "cos": {
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "down": {
+      "cached_vs_full": {
+        "relative_l2": 0.0001050786306560751,
+        "max_abs": 0.0009765625,
+        "equal": false
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "gate": {
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "input": {
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "k_norm": {
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "k_projection": {
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "k_rotary": {
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "mlp_product": {
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "norm1": {
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "norm2": {
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "o_projection": {
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "output": {
+      "cached_vs_full": {
+        "relative_l2": 1.4583515047435495e-05,
+        "max_abs": 0.0009765625,
+        "equal": false
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "q_norm": {
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "q_projection": {
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "q_rotary": {
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "residual": {
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "silu": {
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "sin": {
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "up": {
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "v_projection": {
+      "cached_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    },
+    "original_output": {
+      "cached_vs_full": {
+        "relative_l2": 1.4583515047435495e-05,
+        "max_abs": 0.0009765625,
+        "equal": false
+      },
+      "padded_vs_full": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "equal": true
+      }
+    }
+  },
+  "traced_output_vs_original": {
+    "full": {
+      "relative_l2": 0.0,
+      "max_abs": 0.0,
+      "equal": true
+    },
+    "cached": {
+      "relative_l2": 0.0,
+      "max_abs": 0.0,
+      "equal": true
+    },
+    "padded": {
+      "relative_l2": 0.0,
+      "max_abs": 0.0,
+      "equal": true
+    }
+  },
+  "note": "Returning intermediates may change compiler fusion; compare traced and original outputs explicitly.",
+  "original_experiment_unchanged": true
+}
