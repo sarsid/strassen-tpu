@@ -1,0 +1,23 @@
+{
+  "run": "runs/20261021-accuracy-study-v011",
+  "session": "20261021-accuracy-study-v011",
+  "dashboard": "http://127.0.0.1:8791/",
+  "source_sha256": "ff715440fe67ce95f16b118f8694cbcf2f8cd9e0df8f1ea37c812d5c425c1495",
+  "seed_sha256": "30ce1d1aa8be9ed642d47171a0f5375eae4278d3307a57907919276bf745b991",
+  "supersedes": "status/llm_accuracy_active_v010.json",
+  "scope": "Gemma-only recovery after provider runtime loss; both Qwen archives unchanged",
+  "completed_models": [
+    "qwen3_14b",
+    "qwen3_32b"
+  ],
+  "remaining_models": [
+    "gemma4_31b"
+  ],
+  "completed_evaluations": 6,
+  "saved_gemma_mmlu_pairs": 104,
+  "original_gemma_admission_receipt_available": false,
+  "launch_mode": "foreground_notebook",
+  "recovery_protocol": "protocols/LLM_ACCURACY_GEMMA_CHECKPOINT_RECOVERY_v014.md",
+  "supervisor": "runtime/start_accuracy_study_v007.py",
+  "observer": "runtime/observe_accuracy_study_v003.py"
+}
