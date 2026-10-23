@@ -1,0 +1,37 @@
+{
+  "batch": 8,
+  "sequence": 1024,
+  "scope": "Sum of 40 individually warmed resident decoder layer means; excludes preparation/transfers, embedding/head and compilation",
+  "aggregate_ms": {
+    "native": 541.0380738,
+    "native_tuned": 544.9657394,
+    "cubic_tuned": 497.003954,
+    "strassen_tuned": 382.6396024
+  },
+  "strassen_saved_percent": {
+    "native": 29.27676980059513,
+    "native_tuned": 29.78648477585378
+  },
+  "strassen_speedup": {
+    "native": 1.4139625653133912,
+    "native_tuned": 1.4242272257807467
+  },
+  "natural_quality": {
+    "nll": 2.25686148720869,
+    "perplexity": 9.55305966746792,
+    "absolute_loss_delta": 0.0005366417669483425,
+    "relative_perplexity_delta": 0.0005367857849022235,
+    "mean_kl_nats": 0.0008960660835609699,
+    "top1_agreement": 0.9867118768328446,
+    "logit_l2_relative": 0.021603084134898146,
+    "logit_maxnorm_relative": 0.17863805970149255,
+    "logit_max_abs": 11.96875,
+    "positions": 32736,
+    "finite": true,
+    "passes": true
+  },
+  "all_natural_gates_pass": true,
+  "all_repetitive_gates_pass": true,
+  "offloaded_prefill_status": "still_running_at_snapshot",
+  "formula": "saved_percent = 100 * (baseline_ms - candidate_ms) / baseline_ms"
+}

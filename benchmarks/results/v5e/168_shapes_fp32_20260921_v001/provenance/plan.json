@@ -1,0 +1,1046 @@
+{
+  "allocation_id": "tpu-v5e1-s-kkb-usw1c2-3scberk3ov2gg",
+  "analysis_python": "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/.venv-plots-v001/bin/python",
+  "cohort_id": "20260921-mlsys-main-v5e-v001",
+  "controller_python": "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/.venv-colab/bin/python",
+  "decisions": [
+    "One v5e allocation, serial phases; no v6e and no automatic machine replacement.",
+    "Large synthetic LLM projections precede actual-model study, then 168 unique generic shapes.",
+    "Actual models: original supported Qwen3-0.6B, Mistral7B-v0.3, Gemma3-1B; large synthetic Qwen8B/Gemma12B are not actual checkpoint claims.",
+    "All 168 are development shapes; later unseen shapes required for selector validation.",
+    "Equal sixteen-candidate search per custom family plus four Native compiler settings; default Native is a separate headline.",
+    "Shortlist top three plus within 5 percent, cap four per family; fresh confirmation never reselects headline winner.",
+    "Three fresh seeds, 30 paired rounds, pointwise95percent intervals conditional on frozen selection.",
+    "Exact BF16 inputs and FP32 output; FP64 host numerical reference on full or sampled outputs with all K.",
+    "Main screen+confirmation in12chunks of14 shapes, source and allocation fixed; each execution archived and committed.",
+    "Known-idle model preparation or qualification problems remain explicit and do not prevent generic shapes; uncertain remote work stops advancement.",
+    "Native independent model qualification failure blocks full-model claims; streamed model timings include weight movement and are labeled accordingly.",
+    "Controller prevents idle sleep, requires powered online open-lid laptop; current remote phase detached and checkpointed.",
+    "No learned selector, two-level retuning after confirmation, AlphaTensor, or later generalization experiment in this campaign."
+  ],
+  "private_root": "/content/Strassen_MM_Focus/.runtime_private/20260921-mlsys-main-v5e-v001",
+  "remote_identity": "/content/Strassen_MM_Focus/20260921T160838Z-mlsys-v5e-setup-v001-15709e/identity.json",
+  "schema_version": 1,
+  "session": "mlsys-main-v5e-20260921-v001",
+  "stages": [
+    {
+      "campaign": "configs/mlsys_llm_shapes_v001/campaign.json",
+      "id": "LLM-smoke",
+      "kind": "measurement",
+      "label": "Large LLM shapes: qualification",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "timeout_seconds": 1800
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "LLM-smoke"
+      ],
+      "id": "LLM-smoke-audit",
+      "kind": "analysis",
+      "label": "Verify LLM-smoke",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_llm_shapes_v001/campaign.json",
+      "expected": 936,
+      "id": "LLM-screen",
+      "kind": "measurement",
+      "label": "Large LLM shapes: 52 candidates on each of 18 shapes",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "timeout_seconds": 10800
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "LLM-screen"
+      ],
+      "id": "LLM-screen-audit",
+      "kind": "analysis",
+      "label": "Verify LLM-screen",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_llm_shapes_v001/campaign.json",
+      "id": "LLM-confirm",
+      "kind": "measurement",
+      "label": "Large LLM shapes: fresh confirmation of frozen selections",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "selection_stage": "LLM-screen",
+      "timeout_seconds": 7200
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "LLM-confirm"
+      ],
+      "id": "LLM-confirm-audit",
+      "kind": "analysis",
+      "label": "Verify LLM-confirm",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_real_models_v001/campaign.json",
+      "continue_on_failure": true,
+      "id": "MODEL-tools",
+      "kind": "preparation",
+      "label": "Prepare isolated CPU model tools",
+      "module": "strassen_mm.benchmark_mlsys_prepare_v001",
+      "operation": "phase",
+      "progress_schema": "application",
+      "runner_args": [
+        "--action",
+        "tools",
+        "--private-root",
+        "/content/Strassen_MM_Focus/.runtime_private/20260921-mlsys-main-v5e-v001"
+      ],
+      "timeout_seconds": 3600
+    },
+    {
+      "campaign": "configs/mlsys_real_models_v001/campaign.json",
+      "continue_on_failure": true,
+      "id": "qwen-inputs",
+      "kind": "preparation",
+      "label": "Qwen: acquire real weights and independent reference",
+      "module": "strassen_mm.benchmark_mlsys_prepare_v001",
+      "operation": "phase",
+      "progress_schema": "application",
+      "requires": [
+        "MODEL-tools"
+      ],
+      "runner_args": [
+        "--action",
+        "inputs",
+        "--model-key",
+        "qwen",
+        "--private-root",
+        "/content/Strassen_MM_Focus/.runtime_private/20260921-mlsys-main-v5e-v001"
+      ],
+      "timeout_seconds": 10800
+    },
+    {
+      "campaign": "configs/mlsys_real_models_v001/campaign.json",
+      "continue_on_failure": true,
+      "id": "qwen-actual",
+      "input_stages": [
+        {
+          "file": "prepared/input_bundle.json",
+          "flag": "--model-input",
+          "stage": "qwen-inputs"
+        }
+      ],
+      "kind": "measurement",
+      "label": "Qwen: actual projection tuning and full-model execution",
+      "module": "strassen_mm.benchmark_mlsys_models_v001",
+      "operation": "phase",
+      "progress_schema": "application",
+      "requires": [
+        "qwen-inputs"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "campaign": "configs/mlsys_real_models_v001/campaign.json",
+      "continue_on_failure": true,
+      "id": "mistral-inputs",
+      "kind": "preparation",
+      "label": "Mistral: acquire real weights and independent reference",
+      "module": "strassen_mm.benchmark_mlsys_prepare_v001",
+      "operation": "phase",
+      "progress_schema": "application",
+      "requires": [
+        "MODEL-tools"
+      ],
+      "runner_args": [
+        "--action",
+        "inputs",
+        "--model-key",
+        "mistral",
+        "--private-root",
+        "/content/Strassen_MM_Focus/.runtime_private/20260921-mlsys-main-v5e-v001"
+      ],
+      "timeout_seconds": 10800
+    },
+    {
+      "campaign": "configs/mlsys_real_models_v001/campaign.json",
+      "continue_on_failure": true,
+      "id": "mistral-actual",
+      "input_stages": [
+        {
+          "file": "prepared/input_bundle.json",
+          "flag": "--model-input",
+          "stage": "mistral-inputs"
+        }
+      ],
+      "kind": "measurement",
+      "label": "Mistral: actual projection tuning and full-model execution",
+      "module": "strassen_mm.benchmark_mlsys_models_v001",
+      "operation": "phase",
+      "progress_schema": "application",
+      "requires": [
+        "mistral-inputs"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "campaign": "configs/mlsys_real_models_v001/campaign.json",
+      "continue_on_failure": true,
+      "id": "gemma-inputs",
+      "kind": "preparation",
+      "label": "Gemma: acquire real weights and independent reference",
+      "module": "strassen_mm.benchmark_mlsys_prepare_v001",
+      "operation": "phase",
+      "progress_schema": "application",
+      "requires": [
+        "MODEL-tools"
+      ],
+      "runner_args": [
+        "--action",
+        "inputs",
+        "--model-key",
+        "gemma",
+        "--private-root",
+        "/content/Strassen_MM_Focus/.runtime_private/20260921-mlsys-main-v5e-v001"
+      ],
+      "timeout_seconds": 10800
+    },
+    {
+      "campaign": "configs/mlsys_real_models_v001/campaign.json",
+      "continue_on_failure": true,
+      "id": "gemma-actual",
+      "input_stages": [
+        {
+          "file": "prepared/input_bundle.json",
+          "flag": "--model-input",
+          "stage": "gemma-inputs"
+        }
+      ],
+      "kind": "measurement",
+      "label": "Gemma: actual projection tuning and full-model execution",
+      "module": "strassen_mm.benchmark_mlsys_models_v001",
+      "operation": "phase",
+      "progress_schema": "application",
+      "requires": [
+        "gemma-inputs"
+      ],
+      "timeout_seconds": 14400
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "id": "MAIN-smoke",
+      "kind": "measurement",
+      "label": "168-shape suite: qualification",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "timeout_seconds": 1800
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-smoke"
+      ],
+      "id": "MAIN-smoke-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-smoke",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "expected": 728,
+      "id": "MAIN-01-screen",
+      "kind": "measurement",
+      "label": "Shapes 1\u201314 of 168: tune",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "0",
+        "--shape-count",
+        "14"
+      ],
+      "timeout_seconds": 10800
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-01-screen"
+      ],
+      "id": "MAIN-01-screen-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-01-screen",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "id": "MAIN-01-confirm",
+      "kind": "measurement",
+      "label": "Shapes 1\u201314 of 168: confirm",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "0",
+        "--shape-count",
+        "14"
+      ],
+      "selection_stage": "MAIN-01-screen",
+      "timeout_seconds": 7200
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-01-confirm"
+      ],
+      "id": "MAIN-01-confirm-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-01-confirm",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "expected": 728,
+      "id": "MAIN-02-screen",
+      "kind": "measurement",
+      "label": "Shapes 15\u201328 of 168: tune",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "14",
+        "--shape-count",
+        "14"
+      ],
+      "timeout_seconds": 10800
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-02-screen"
+      ],
+      "id": "MAIN-02-screen-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-02-screen",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "id": "MAIN-02-confirm",
+      "kind": "measurement",
+      "label": "Shapes 15\u201328 of 168: confirm",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "14",
+        "--shape-count",
+        "14"
+      ],
+      "selection_stage": "MAIN-02-screen",
+      "timeout_seconds": 7200
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-02-confirm"
+      ],
+      "id": "MAIN-02-confirm-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-02-confirm",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "expected": 728,
+      "id": "MAIN-03-screen",
+      "kind": "measurement",
+      "label": "Shapes 29\u201342 of 168: tune",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "28",
+        "--shape-count",
+        "14"
+      ],
+      "timeout_seconds": 10800
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-03-screen"
+      ],
+      "id": "MAIN-03-screen-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-03-screen",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "id": "MAIN-03-confirm",
+      "kind": "measurement",
+      "label": "Shapes 29\u201342 of 168: confirm",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "28",
+        "--shape-count",
+        "14"
+      ],
+      "selection_stage": "MAIN-03-screen",
+      "timeout_seconds": 7200
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-03-confirm"
+      ],
+      "id": "MAIN-03-confirm-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-03-confirm",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "expected": 728,
+      "id": "MAIN-04-screen",
+      "kind": "measurement",
+      "label": "Shapes 43\u201356 of 168: tune",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "42",
+        "--shape-count",
+        "14"
+      ],
+      "timeout_seconds": 10800
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-04-screen"
+      ],
+      "id": "MAIN-04-screen-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-04-screen",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "id": "MAIN-04-confirm",
+      "kind": "measurement",
+      "label": "Shapes 43\u201356 of 168: confirm",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "42",
+        "--shape-count",
+        "14"
+      ],
+      "selection_stage": "MAIN-04-screen",
+      "timeout_seconds": 7200
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-04-confirm"
+      ],
+      "id": "MAIN-04-confirm-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-04-confirm",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "expected": 728,
+      "id": "MAIN-05-screen",
+      "kind": "measurement",
+      "label": "Shapes 57\u201370 of 168: tune",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "56",
+        "--shape-count",
+        "14"
+      ],
+      "timeout_seconds": 10800
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-05-screen"
+      ],
+      "id": "MAIN-05-screen-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-05-screen",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "id": "MAIN-05-confirm",
+      "kind": "measurement",
+      "label": "Shapes 57\u201370 of 168: confirm",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "56",
+        "--shape-count",
+        "14"
+      ],
+      "selection_stage": "MAIN-05-screen",
+      "timeout_seconds": 7200
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-05-confirm"
+      ],
+      "id": "MAIN-05-confirm-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-05-confirm",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "expected": 728,
+      "id": "MAIN-06-screen",
+      "kind": "measurement",
+      "label": "Shapes 71\u201384 of 168: tune",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "70",
+        "--shape-count",
+        "14"
+      ],
+      "timeout_seconds": 10800
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-06-screen"
+      ],
+      "id": "MAIN-06-screen-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-06-screen",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "id": "MAIN-06-confirm",
+      "kind": "measurement",
+      "label": "Shapes 71\u201384 of 168: confirm",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "70",
+        "--shape-count",
+        "14"
+      ],
+      "selection_stage": "MAIN-06-screen",
+      "timeout_seconds": 7200
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-06-confirm"
+      ],
+      "id": "MAIN-06-confirm-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-06-confirm",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "expected": 728,
+      "id": "MAIN-07-screen",
+      "kind": "measurement",
+      "label": "Shapes 85\u201398 of 168: tune",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "84",
+        "--shape-count",
+        "14"
+      ],
+      "timeout_seconds": 10800
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-07-screen"
+      ],
+      "id": "MAIN-07-screen-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-07-screen",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "id": "MAIN-07-confirm",
+      "kind": "measurement",
+      "label": "Shapes 85\u201398 of 168: confirm",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "84",
+        "--shape-count",
+        "14"
+      ],
+      "selection_stage": "MAIN-07-screen",
+      "timeout_seconds": 7200
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-07-confirm"
+      ],
+      "id": "MAIN-07-confirm-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-07-confirm",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "expected": 728,
+      "id": "MAIN-08-screen",
+      "kind": "measurement",
+      "label": "Shapes 99\u2013112 of 168: tune",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "98",
+        "--shape-count",
+        "14"
+      ],
+      "timeout_seconds": 10800
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-08-screen"
+      ],
+      "id": "MAIN-08-screen-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-08-screen",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "id": "MAIN-08-confirm",
+      "kind": "measurement",
+      "label": "Shapes 99\u2013112 of 168: confirm",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "98",
+        "--shape-count",
+        "14"
+      ],
+      "selection_stage": "MAIN-08-screen",
+      "timeout_seconds": 7200
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-08-confirm"
+      ],
+      "id": "MAIN-08-confirm-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-08-confirm",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "expected": 728,
+      "id": "MAIN-09-screen",
+      "kind": "measurement",
+      "label": "Shapes 113\u2013126 of 168: tune",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "112",
+        "--shape-count",
+        "14"
+      ],
+      "timeout_seconds": 10800
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-09-screen"
+      ],
+      "id": "MAIN-09-screen-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-09-screen",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "id": "MAIN-09-confirm",
+      "kind": "measurement",
+      "label": "Shapes 113\u2013126 of 168: confirm",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "112",
+        "--shape-count",
+        "14"
+      ],
+      "selection_stage": "MAIN-09-screen",
+      "timeout_seconds": 7200
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-09-confirm"
+      ],
+      "id": "MAIN-09-confirm-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-09-confirm",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "expected": 728,
+      "id": "MAIN-10-screen",
+      "kind": "measurement",
+      "label": "Shapes 127\u2013140 of 168: tune",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "126",
+        "--shape-count",
+        "14"
+      ],
+      "timeout_seconds": 10800
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-10-screen"
+      ],
+      "id": "MAIN-10-screen-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-10-screen",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "id": "MAIN-10-confirm",
+      "kind": "measurement",
+      "label": "Shapes 127\u2013140 of 168: confirm",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "126",
+        "--shape-count",
+        "14"
+      ],
+      "selection_stage": "MAIN-10-screen",
+      "timeout_seconds": 7200
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-10-confirm"
+      ],
+      "id": "MAIN-10-confirm-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-10-confirm",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "expected": 728,
+      "id": "MAIN-11-screen",
+      "kind": "measurement",
+      "label": "Shapes 141\u2013154 of 168: tune",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "140",
+        "--shape-count",
+        "14"
+      ],
+      "timeout_seconds": 10800
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-11-screen"
+      ],
+      "id": "MAIN-11-screen-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-11-screen",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "id": "MAIN-11-confirm",
+      "kind": "measurement",
+      "label": "Shapes 141\u2013154 of 168: confirm",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "140",
+        "--shape-count",
+        "14"
+      ],
+      "selection_stage": "MAIN-11-screen",
+      "timeout_seconds": 7200
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-11-confirm"
+      ],
+      "id": "MAIN-11-confirm-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-11-confirm",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "expected": 728,
+      "id": "MAIN-12-screen",
+      "kind": "measurement",
+      "label": "Shapes 155\u2013168 of 168: tune",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "154",
+        "--shape-count",
+        "14"
+      ],
+      "timeout_seconds": 10800
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-12-screen"
+      ],
+      "id": "MAIN-12-screen-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-12-screen",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "campaign": "configs/mlsys_shapes_v001/campaign.json",
+      "id": "MAIN-12-confirm",
+      "kind": "measurement",
+      "label": "Shapes 155\u2013168 of 168: confirm",
+      "module": "strassen_mm.benchmark_mlsys_shapes_v001",
+      "operation": "phase",
+      "runner_args": [
+        "--shape-start",
+        "154",
+        "--shape-count",
+        "14"
+      ],
+      "selection_stage": "MAIN-12-screen",
+      "timeout_seconds": 7200
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/audit_mlsys_stage_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--stage",
+        "MAIN-12-confirm"
+      ],
+      "id": "MAIN-12-confirm-audit",
+      "kind": "analysis",
+      "label": "Verify MAIN-12-confirm",
+      "operation": "command",
+      "timeout_seconds": 1200
+    },
+    {
+      "command": [
+        "{controller_python}",
+        "{source}/runtime/release_allocation_v001.py",
+        "--session",
+        "{session}",
+        "--expect-endpoint",
+        "{endpoint}"
+      ],
+      "id": "release",
+      "kind": "preparation",
+      "label": "Release the completed v5e allocation",
+      "operation": "command",
+      "releases_allocation": true,
+      "timeout_seconds": 180
+    },
+    {
+      "command": [
+        "{analysis_python}",
+        "{source}/tools/report_mlsys_campaign_v001.py",
+        "--cohort",
+        "{cohort}",
+        "--output-dir",
+        "{cohort}/operations/report/artifacts"
+      ],
+      "id": "report",
+      "kind": "analysis",
+      "label": "Compile all available results",
+      "operation": "command",
+      "timeout_seconds": 1200
+    }
+  ]
+}

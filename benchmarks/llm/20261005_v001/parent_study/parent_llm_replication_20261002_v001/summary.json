@@ -1,0 +1,770 @@
+{
+  "parent": {
+    "layer": {
+      "environment": {
+        "changes": "validated cached public HTTP transport only; parent computation unmodified",
+        "device": "TPU v6 lite",
+        "effective_down_tile": [
+          2048,
+          1024,
+          512
+        ],
+        "kind": "replication_environment",
+        "libtpu_init_args": "--xla_tpu_use_enhanced_launch_barrier=true --xla_tpu_scoped_vmem_limit_kib=49152",
+        "parent_commit": "95be1fb088656a89813b04492e1d77c66b36ccf9",
+        "python": "3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]",
+        "stage": "layer",
+        "versions": {
+          "datasets": "4.1.1",
+          "jax": "0.7.2",
+          "jaxlib": "0.7.2",
+          "libtpu": "0.0.21.1",
+          "tokenizers": "0.22.0",
+          "transformers": "4.56.2"
+        }
+      },
+      "verdict": {
+        "algorithmic_pass": true,
+        "deployment_pass": true,
+        "kind": "verdict",
+        "passes": true,
+        "schedule_pass": true,
+        "scope": "complete real-weight single-layer inference"
+      },
+      "performance": {
+        "algorithmic_pass": true,
+        "deployment_pass": true,
+        "kind": "performance",
+        "mean_ms": {
+          "cubic_pallas": 18.3460955,
+          "product_strassen_fused": 14.5937488,
+          "regular_xla": 17.648469499999997,
+          "strassen_fused": 14.63131955
+        },
+        "product_minus_cubic": {
+          "ci95_ms": [
+            -3.8010512106725103,
+            -3.7036421893274905
+          ],
+          "mean_ms": -3.7523467000000004
+        },
+        "product_minus_standard_strassen": {
+          "ci95_ms": [
+            -0.05709436834639161,
+            -0.01804713165360925
+          ],
+          "mean_ms": -0.03757075000000043
+        },
+        "product_minus_xla": {
+          "ci95_ms": [
+            -3.076394736697091,
+            -3.0330466633029034
+          ],
+          "mean_ms": -3.054720699999997
+        },
+        "samples_ms": {
+          "cubic_pallas": [
+            18.447159,
+            18.281649,
+            18.378489,
+            18.269529,
+            18.520389,
+            18.267119,
+            18.55082,
+            18.252602,
+            18.403539,
+            18.28674,
+            18.425599,
+            18.23755,
+            18.44951,
+            18.25783,
+            18.392199,
+            18.257879,
+            18.337439,
+            18.265929,
+            18.40739,
+            18.23255
+          ],
+          "product_strassen_fused": [
+            14.57719,
+            14.61297,
+            14.541279,
+            14.640779,
+            14.56959,
+            14.613299,
+            14.56197,
+            14.607769,
+            14.570531,
+            14.677339,
+            14.568139,
+            14.581589,
+            14.5857,
+            14.63874,
+            14.566651,
+            14.6228,
+            14.58285,
+            14.602941,
+            14.56717,
+            14.58568
+          ],
+          "regular_xla": [
+            17.663711,
+            17.606009,
+            17.62368,
+            17.669401,
+            17.64828,
+            17.60514,
+            17.612409,
+            17.704519,
+            17.639849,
+            17.703949,
+            17.63536,
+            17.685039,
+            17.64623,
+            17.654049,
+            17.615329,
+            17.67599,
+            17.614849,
+            17.633319,
+            17.634109,
+            17.698169
+          ],
+          "strassen_fused": [
+            14.662939,
+            14.64498,
+            14.62281,
+            14.69454,
+            14.624579,
+            14.596471,
+            14.597639,
+            14.637409,
+            14.68225,
+            14.640119,
+            14.64005,
+            14.63409,
+            14.624159,
+            14.625219,
+            14.632309,
+            14.60321,
+            14.6193,
+            14.618369,
+            14.61145,
+            14.614499
+          ]
+        },
+        "schedule_pass": true,
+        "speedup_vs_cubic": 1.2571201376304353,
+        "speedup_vs_xla": 1.2093170673185767
+      },
+      "accuracy": {
+        "errors_vs_xla": {
+          "cubic_pallas": {
+            "l2_relative": 0.0031227266881614923,
+            "max_abs": 0.0625,
+            "maxnorm_relative": 0.0049019609577953815,
+            "rmse": 0.0007554171606898308
+          },
+          "product_strassen_fused": {
+            "l2_relative": 0.003881460288539529,
+            "max_abs": 0.0625,
+            "maxnorm_relative": 0.0049019609577953815,
+            "rmse": 0.0009389622136950493
+          },
+          "strassen_fused": {
+            "l2_relative": 0.0038814449217170477,
+            "max_abs": 0.0625,
+            "maxnorm_relative": 0.0049019609577953815,
+            "rmse": 0.0009389584301970899
+          }
+        },
+        "kind": "accuracy"
+      }
+    },
+    "streamed": {
+      "environment": {
+        "changes": "validated cached public HTTP transport only; parent computation unmodified",
+        "device": "TPU v6 lite",
+        "effective_down_tile": [
+          2048,
+          2560,
+          1024
+        ],
+        "kind": "replication_environment",
+        "libtpu_init_args": "--xla_tpu_use_enhanced_launch_barrier=true --xla_tpu_scoped_vmem_limit_kib=49152",
+        "parent_commit": "95be1fb088656a89813b04492e1d77c66b36ccf9",
+        "python": "3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]",
+        "stage": "streamed",
+        "versions": {
+          "datasets": "4.1.1",
+          "jax": "0.7.2",
+          "jaxlib": "0.7.2",
+          "libtpu": "0.0.21.1",
+          "tokenizers": "0.22.0",
+          "transformers": "4.56.2"
+        }
+      },
+      "verdict": {
+        "all_finite": true,
+        "kind": "verdict",
+        "passes": true,
+        "performance_passes": true,
+        "task_passes": true
+      },
+      "tokens": {
+        "kind": "tokens",
+        "sha256": "70b86198317db1dee0c351568cf420d78242aa74e0b9a6cbb14925eaa55ca2a5",
+        "shape": [
+          8,
+          1024
+        ],
+        "unique_tokens": 97
+      },
+      "task": {
+        "kind": "task",
+        "results": {
+          "gated_cubic": {
+            "absolute_loss_delta": 0.0001873751648884675,
+            "candidate_loss": 0.0891296266471623,
+            "logit_l2_relative": 0.13792316806900254,
+            "logit_maxnorm_relative": 0.5035211267605634,
+            "mean_kl_nats": 0.00013980845637413065,
+            "native_loss": 0.08931700181205077,
+            "passes_task_gate": true,
+            "positions": 8184,
+            "top1_agreement": 0.9998778103616813
+          },
+          "gated_strassen": {
+            "absolute_loss_delta": 8.928004055050454e-05,
+            "candidate_loss": 0.08922772177150026,
+            "logit_l2_relative": 0.13016948653619187,
+            "logit_maxnorm_relative": 0.5508362676056338,
+            "mean_kl_nats": 0.0001374394103857613,
+            "native_loss": 0.08931700181205077,
+            "passes_task_gate": true,
+            "positions": 8184,
+            "top1_agreement": 0.999633431085044
+          }
+        }
+      },
+      "layers": 64,
+      "performance": {
+        "aggregate_ms": {
+          "gated_cubic": 1147.80485,
+          "gated_strassen": 872.0499834,
+          "regular_xla": 1130.3509676
+        },
+        "kind": "aggregate_performance",
+        "passes": true,
+        "speedup_strassen_vs_cubic": 1.3162145196366735,
+        "speedup_strassen_vs_xla": 1.2961997467082345,
+        "strassen_minus_cubic": {
+          "ci95_ms": [
+            -276.3340007350001,
+            -275.1562434350001
+          ],
+          "sum_ms": -275.7548666
+        },
+        "strassen_minus_xla": {
+          "ci95_ms": [
+            -259.17758938500003,
+            -257.42557193000005
+          ],
+          "sum_ms": -258.3009842
+        }
+      }
+    },
+    "quality": {
+      "environment": {
+        "changes": "validated cached public HTTP transport only; parent computation unmodified",
+        "device": "TPU v6 lite",
+        "effective_down_tile": [
+          2048,
+          2560,
+          1024
+        ],
+        "kind": "replication_environment",
+        "libtpu_init_args": "--xla_tpu_use_enhanced_launch_barrier=true --xla_tpu_scoped_vmem_limit_kib=49152",
+        "parent_commit": "95be1fb088656a89813b04492e1d77c66b36ccf9",
+        "python": "3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]",
+        "stage": "quality",
+        "versions": {
+          "datasets": "4.1.1",
+          "jax": "0.7.2",
+          "jaxlib": "0.7.2",
+          "libtpu": "0.0.21.1",
+          "tokenizers": "0.22.0",
+          "transformers": "4.56.2"
+        }
+      },
+      "verdict": {
+        "all_finite": true,
+        "cubic_task_passes": true,
+        "kind": "verdict",
+        "passes": true,
+        "scope": "natural-corpus streamed quality gate for the frozen product-aware policy",
+        "task_passes": true
+      },
+      "tokens": {
+        "corpus": "wikitext-2-raw-v1/test first contiguous tokens",
+        "dataset_revision": "b08601e04326c79dfdd32d625aee71d232d685c3",
+        "kind": "tokens",
+        "sha256": "4aa8e3628d16c9a26876aedb8c99525c6a15ee601c88d93deadae15855a84d74",
+        "shape": [
+          4,
+          8,
+          1024
+        ],
+        "unique_tokens": 4815
+      },
+      "task": {
+        "kind": "task",
+        "results": {
+          "gated_cubic": {
+            "absolute_loss_delta": 7.999444404038769e-05,
+            "candidate_loss": 2.1351277257223864,
+            "candidate_perplexity": 8.458126758222374,
+            "logit_l2_relative": 0.025966801453674363,
+            "logit_maxnorm_relative": 0.060369318181818184,
+            "mean_kl_nats": 0.0012124068243019393,
+            "native_loss": 2.135047731278346,
+            "native_perplexity": 8.45745018213625,
+            "passes_task_gate": true,
+            "positions": 32736,
+            "relative_perplexity_delta": 7.999764368116224e-05,
+            "top1_agreement": 0.9848790322580645
+          },
+          "gated_strassen": {
+            "absolute_loss_delta": 6.465501682706432e-05,
+            "candidate_loss": 2.135112386295173,
+            "candidate_perplexity": 8.45799701639769,
+            "logit_l2_relative": 0.03127425419468698,
+            "logit_maxnorm_relative": 0.1846590909090909,
+            "mean_kl_nats": 0.001488364384011643,
+            "native_loss": 2.135047731278346,
+            "native_perplexity": 8.45745018213625,
+            "passes_task_gate": true,
+            "positions": 32736,
+            "relative_perplexity_delta": 6.46571070077595e-05,
+            "top1_agreement": 0.9831072825024438
+          }
+        }
+      },
+      "layers": 64
+    }
+  },
+  "current": {
+    "layer": {
+      "environment": {
+        "changes": "validated cached public HTTP transport only; parent computation unmodified",
+        "device": "TPU v6 lite",
+        "effective_down_tile": [
+          2048,
+          1024,
+          512
+        ],
+        "kind": "replication_environment",
+        "libtpu_init_args": "--xla_tpu_use_enhanced_launch_barrier=true --xla_tpu_scoped_vmem_limit_kib=49152",
+        "parent_commit": "95be1fb088656a89813b04492e1d77c66b36ccf9",
+        "python": "3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]",
+        "stage": "layer",
+        "versions": {
+          "datasets": "4.1.1",
+          "jax": "0.11.2",
+          "jaxlib": "0.11.2",
+          "libtpu": "0.0.48",
+          "tokenizers": "0.22.0",
+          "transformers": "4.56.2"
+        }
+      },
+      "verdict": {
+        "algorithmic_pass": true,
+        "deployment_pass": true,
+        "kind": "verdict",
+        "passes": false,
+        "schedule_pass": false,
+        "scope": "complete real-weight single-layer inference"
+      },
+      "performance": {
+        "algorithmic_pass": true,
+        "deployment_pass": true,
+        "kind": "performance",
+        "mean_ms": {
+          "cubic_pallas": 18.3821571,
+          "product_strassen_fused": 14.0213906,
+          "regular_xla": 17.6456564,
+          "strassen_fused": 14.00397725
+        },
+        "product_minus_cubic": {
+          "ci95_ms": [
+            -4.492175804379929,
+            -4.2293571956200715
+          ],
+          "mean_ms": -4.3607665
+        },
+        "product_minus_standard_strassen": {
+          "ci95_ms": [
+            0.000823097332382533,
+            0.034003602667617455
+          ],
+          "mean_ms": 0.017413349999999994
+        },
+        "product_minus_xla": {
+          "ci95_ms": [
+            -3.6438769795463313,
+            -3.6046546204536685
+          ],
+          "mean_ms": -3.6242658
+        },
+        "samples_ms": {
+          "cubic_pallas": [
+            18.58508,
+            18.176951,
+            18.846959,
+            18.148069,
+            18.735921,
+            18.1635,
+            18.486649,
+            18.156219,
+            18.77501,
+            18.152449,
+            18.410809,
+            18.148479,
+            18.264049,
+            18.128231,
+            18.82083,
+            18.15798,
+            18.391529,
+            18.134079,
+            18.81578,
+            18.144569
+          ],
+          "product_strassen_fused": [
+            14.00591,
+            14.037219,
+            14.0174,
+            14.02275,
+            14.01414,
+            14.093239,
+            14.04937,
+            13.992189,
+            14.007349,
+            13.996689,
+            14.01234,
+            14.09071,
+            13.96448,
+            14.04548,
+            14.01853,
+            14.00914,
+            13.99728,
+            14.049279,
+            13.999059,
+            14.005259
+          ],
+          "regular_xla": [
+            17.686369,
+            17.641311,
+            17.643109,
+            17.64358,
+            17.669199,
+            17.62563,
+            17.6713,
+            17.661411,
+            17.628789,
+            17.629671,
+            17.654651,
+            17.66565,
+            17.59867,
+            17.63707,
+            17.616899,
+            17.71095,
+            17.6124,
+            17.61598,
+            17.639189,
+            17.6613
+          ],
+          "strassen_fused": [
+            14.022519,
+            14.011809,
+            14.002079,
+            13.979491,
+            14.003619,
+            14.01105,
+            14.011559,
+            13.998791,
+            14.02879,
+            13.99959,
+            13.98458,
+            14.026439,
+            14.00354,
+            13.990299,
+            13.977519,
+            14.016489,
+            14.02303,
+            13.97969,
+            13.998341,
+            14.010321
+          ]
+        },
+        "schedule_pass": false,
+        "speedup_vs_cubic": 1.3110081321035305,
+        "speedup_vs_xla": 1.2584811951533537
+      },
+      "accuracy": {
+        "errors_vs_xla": {
+          "cubic_pallas": {
+            "l2_relative": 0.0031227266881614923,
+            "max_abs": 0.0625,
+            "maxnorm_relative": 0.0049019609577953815,
+            "rmse": 0.0007554171606898308
+          },
+          "product_strassen_fused": {
+            "l2_relative": 0.003881456796079874,
+            "max_abs": 0.0625,
+            "maxnorm_relative": 0.0049019609577953815,
+            "rmse": 0.0009389612823724747
+          },
+          "strassen_fused": {
+            "l2_relative": 0.0038814577274024487,
+            "max_abs": 0.0625,
+            "maxnorm_relative": 0.0049019609577953815,
+            "rmse": 0.0009389614569954574
+          }
+        },
+        "kind": "accuracy"
+      }
+    },
+    "streamed": {
+      "environment": {
+        "changes": "validated cached public HTTP transport only; parent computation unmodified",
+        "device": "TPU v6 lite",
+        "effective_down_tile": [
+          2048,
+          2560,
+          1024
+        ],
+        "kind": "replication_environment",
+        "libtpu_init_args": "--xla_tpu_use_enhanced_launch_barrier=true --xla_tpu_scoped_vmem_limit_kib=49152",
+        "parent_commit": "95be1fb088656a89813b04492e1d77c66b36ccf9",
+        "python": "3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]",
+        "stage": "streamed",
+        "versions": {
+          "datasets": "4.1.1",
+          "jax": "0.11.2",
+          "jaxlib": "0.11.2",
+          "libtpu": "0.0.48",
+          "tokenizers": "0.22.0",
+          "transformers": "4.56.2"
+        }
+      },
+      "verdict": {
+        "all_finite": true,
+        "kind": "verdict",
+        "passes": true,
+        "performance_passes": true,
+        "task_passes": true
+      },
+      "tokens": {
+        "kind": "tokens",
+        "sha256": "70b86198317db1dee0c351568cf420d78242aa74e0b9a6cbb14925eaa55ca2a5",
+        "shape": [
+          8,
+          1024
+        ],
+        "unique_tokens": 97
+      },
+      "task": {
+        "kind": "task",
+        "results": {
+          "gated_cubic": {
+            "absolute_loss_delta": 0.00018737049097830583,
+            "candidate_loss": 0.08912964852004224,
+            "logit_l2_relative": 0.13792316791232967,
+            "logit_maxnorm_relative": 0.5035211267605634,
+            "mean_kl_nats": 0.00013981403349877134,
+            "native_loss": 0.08931701901102054,
+            "passes_task_gate": true,
+            "positions": 8184,
+            "top1_agreement": 0.9998778103616813
+          },
+          "gated_strassen": {
+            "absolute_loss_delta": 2.114012025347667e-05,
+            "candidate_loss": 0.08929587889076707,
+            "logit_l2_relative": 0.13501971299378798,
+            "logit_maxnorm_relative": 0.5237676056338029,
+            "mean_kl_nats": 0.00013930206880668035,
+            "native_loss": 0.08931701901102054,
+            "passes_task_gate": true,
+            "positions": 8184,
+            "top1_agreement": 1.0
+          }
+        }
+      },
+      "layers": 64,
+      "performance": {
+        "aggregate_ms": {
+          "gated_cubic": 1150.8123758,
+          "gated_strassen": 832.428762,
+          "regular_xla": 1129.0286866
+        },
+        "kind": "aggregate_performance",
+        "passes": true,
+        "speedup_strassen_vs_cubic": 1.3824755082165217,
+        "speedup_strassen_vs_xla": 1.3563066752852058,
+        "strassen_minus_cubic": {
+          "ci95_ms": [
+            -320.22827194,
+            -316.46943387999994
+          ],
+          "sum_ms": -318.3836138
+        },
+        "strassen_minus_xla": {
+          "ci95_ms": [
+            -297.7956677800001,
+            -295.34456724
+          ],
+          "sum_ms": -296.5999246
+        }
+      }
+    },
+    "quality": {
+      "environment": {
+        "changes": "validated cached public HTTP transport only; parent computation unmodified",
+        "device": "TPU v6 lite",
+        "effective_down_tile": [
+          2048,
+          2560,
+          1024
+        ],
+        "kind": "replication_environment",
+        "libtpu_init_args": "--xla_tpu_use_enhanced_launch_barrier=true --xla_tpu_scoped_vmem_limit_kib=49152",
+        "parent_commit": "95be1fb088656a89813b04492e1d77c66b36ccf9",
+        "python": "3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]",
+        "stage": "quality",
+        "versions": {
+          "datasets": "4.1.1",
+          "jax": "0.11.2",
+          "jaxlib": "0.11.2",
+          "libtpu": "0.0.48",
+          "tokenizers": "0.22.0",
+          "transformers": "4.56.2"
+        }
+      },
+      "verdict": {
+        "all_finite": true,
+        "cubic_task_passes": true,
+        "kind": "verdict",
+        "passes": true,
+        "scope": "natural-corpus streamed quality gate for the frozen product-aware policy",
+        "task_passes": true
+      },
+      "tokens": {
+        "corpus": "wikitext-2-raw-v1/test first contiguous tokens",
+        "dataset_revision": "b08601e04326c79dfdd32d625aee71d232d685c3",
+        "kind": "tokens",
+        "sha256": "4aa8e3628d16c9a26876aedb8c99525c6a15ee601c88d93deadae15855a84d74",
+        "shape": [
+          4,
+          8,
+          1024
+        ],
+        "unique_tokens": 4815
+      },
+      "task": {
+        "kind": "task",
+        "results": {
+          "gated_cubic": {
+            "absolute_loss_delta": 7.998232501194025e-05,
+            "candidate_loss": 2.135127719662872,
+            "candidate_perplexity": 8.458126706970233,
+            "logit_l2_relative": 0.02596680137563004,
+            "logit_maxnorm_relative": 0.060369318181818184,
+            "mean_kl_nats": 0.0012124070844440954,
+            "native_loss": 2.1350477373378602,
+            "native_perplexity": 8.457450233384291,
+            "passes_task_gate": true,
+            "positions": 32736,
+            "relative_perplexity_delta": 7.998552368326806e-05,
+            "top1_agreement": 0.9848790322580645
+          },
+          "gated_strassen": {
+            "absolute_loss_delta": 0.00014553881111067923,
+            "candidate_loss": 2.1349021985267496,
+            "candidate_perplexity": 8.456219435698884,
+            "logit_l2_relative": 0.0320461808350203,
+            "logit_maxnorm_relative": 0.1571969696969697,
+            "mean_kl_nats": 0.0015142936448867953,
+            "native_loss": 2.1350477373378602,
+            "native_perplexity": 8.457450233384291,
+            "passes_task_gate": true,
+            "positions": 32736,
+            "relative_perplexity_delta": -0.00014552822085167616,
+            "top1_agreement": 0.9825268817204301
+          }
+        }
+      },
+      "layers": 64
+    }
+  },
+  "published_agreement": {
+    "all_64_layer_error_records_equal": true,
+    "repetitive_task_metrics_equal": true,
+    "published_block_speedup": 1.2093,
+    "published_streamed_speedup": 1.2949971494360175
+  },
+  "scope": "Qwen3-32B B8 S1024; resident compute excludes downloads, packing, transfer, embedding lookup and final scoring",
+  "source_run": "runs/parent-replication-20261002T193411Z",
+  "completion": {
+    "started_utc": "2026-10-02T19:34:53.861733+00:00",
+    "session": "parent-replication-20261002T193411Z",
+    "status": "completed",
+    "endpoint": "tpu-v6e1-s-kkb-euw4a2-2fvr1afl6pp00",
+    "remote_summary": {
+      "started_utc": "2026-10-02T19:35:03.031296+00:00",
+      "stages": [
+        {
+          "name": "parent-setup",
+          "returncode": 0
+        },
+        {
+          "name": "parent-layer",
+          "returncode": 0,
+          "wall_seconds": 102.38693651799986
+        },
+        {
+          "name": "parent-streamed",
+          "returncode": 0,
+          "wall_seconds": 996.6200221079998
+        },
+        {
+          "name": "parent-quality",
+          "returncode": 0,
+          "wall_seconds": 201.7073417040001
+        },
+        {
+          "name": "current-setup",
+          "returncode": 0
+        },
+        {
+          "name": "current-layer",
+          "returncode": 0,
+          "wall_seconds": 98.24114876600015
+        },
+        {
+          "name": "current-streamed",
+          "returncode": 0,
+          "wall_seconds": 200.1056662310002
+        },
+        {
+          "name": "current-quality",
+          "returncode": 0,
+          "wall_seconds": 195.58675846999995
+        }
+      ],
+      "status": "completed",
+      "finished_utc": "2026-10-02T20:06:00.058436+00:00"
+    },
+    "result_sha256": "ca17c6a84c546233bb6ad4bb456d5058516c2bc25e351c45940bf3fd2a41984c",
+    "release_exit_code": 0,
+    "finished_utc": "2026-10-02T20:06:21.382052+00:00"
+  }
+}

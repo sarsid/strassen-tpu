@@ -1,0 +1,517 @@
+{
+  "scope": "Complete three-model registered small-subset study; nine paired model-task results",
+  "difference_direction": "Strassen minus Native",
+  "completed_evaluations": 9,
+  "rows": [
+    {
+      "model": "Qwen3-14B",
+      "benchmark": "mmlu",
+      "n": 114,
+      "baseline_score": 82.45614035087719,
+      "strassen_score": 82.45614035087719,
+      "difference": 0.0,
+      "difference_unit": "percentage points",
+      "confidence_interval": [
+        -25.43957220660514,
+        25.43957220660514
+      ],
+      "confidence_method": "distribution-free Hoeffding bound for equally stratified paired differences; conservative",
+      "confidence_level": 0.95,
+      "margin_pp": 0.5,
+      "criterion": "inconclusive",
+      "both_correct": 94,
+      "both_incorrect": 20,
+      "baseline_correct_strassen_incorrect": 0,
+      "baseline_incorrect_strassen_correct": 0,
+      "different_predictions": 0,
+      "prediction_disagreement_rate": 0.0,
+      "pooled_binomial_interval_descriptive_only": [
+        -3.770943387040689,
+        3.770943387040689
+      ]
+    },
+    {
+      "model": "Qwen3-14B",
+      "benchmark": "gsm8k",
+      "n": 32,
+      "baseline_score": 59.375,
+      "strassen_score": 59.375,
+      "difference": 0.0,
+      "difference_unit": "percentage points",
+      "confidence_interval": [
+        -22.541599162833904,
+        22.541599162833904
+      ],
+      "confidence_method": "paired discordant-cell simultaneous Clopper-Pearson, four tails alpha/4",
+      "confidence_level": 0.95,
+      "margin_pp": 1.0,
+      "criterion": "inconclusive",
+      "both_correct": 17,
+      "both_incorrect": 11,
+      "baseline_correct_strassen_incorrect": 2,
+      "baseline_incorrect_strassen_correct": 2,
+      "different_predictions": 5,
+      "prediction_disagreement_rate": 0.15625
+    },
+    {
+      "model": "Qwen3-14B",
+      "benchmark": "ppl",
+      "n_windows": 32,
+      "scored_tokens": 16384,
+      "baseline_score": 7.833952122216819,
+      "strassen_score": 7.83426697492114,
+      "difference": 0.000314852704320856,
+      "difference_unit": "perplexity",
+      "confidence_interval": [
+        -0.00651963266052138,
+        0.007074891030554519
+      ],
+      "relative_change": 4.01907874095815e-05,
+      "relative_confidence_interval": [
+        -0.0008513594828689814,
+        0.0008827431834812964
+      ],
+      "delta_nll_nats": 4.018997978150196e-05,
+      "confidence_level": 0.95,
+      "confidence_method": "paired circular moving-block bootstrap of token-weighted NLL",
+      "bootstrap_draws": 20000,
+      "block_windows": 1,
+      "seed": 20261018,
+      "relative_margin": 0.01,
+      "criterion": "preserved",
+      "insufficient_text_blocks": false
+    },
+    {
+      "model": "Qwen3-32B",
+      "benchmark": "mmlu",
+      "n": 114,
+      "baseline_score": 84.21052631578947,
+      "strassen_score": 84.21052631578947,
+      "difference": 0.0,
+      "difference_unit": "percentage points",
+      "confidence_interval": [
+        -25.43957220660514,
+        25.43957220660514
+      ],
+      "confidence_method": "distribution-free Hoeffding bound for equally stratified paired differences; conservative",
+      "confidence_level": 0.95,
+      "margin_pp": 0.5,
+      "criterion": "inconclusive",
+      "both_correct": 95,
+      "both_incorrect": 17,
+      "baseline_correct_strassen_incorrect": 1,
+      "baseline_incorrect_strassen_correct": 1,
+      "different_predictions": 2,
+      "prediction_disagreement_rate": 0.017543859649122806,
+      "pooled_binomial_interval_descriptive_only": [
+        -5.455976933352394,
+        5.455976933352394
+      ]
+    },
+    {
+      "model": "Qwen3-32B",
+      "benchmark": "gsm8k",
+      "n": 32,
+      "baseline_score": 90.625,
+      "strassen_score": 90.625,
+      "difference": 0.0,
+      "difference_unit": "percentage points",
+      "confidence_interval": [
+        -12.797599984079651,
+        12.797599984079651
+      ],
+      "confidence_method": "paired discordant-cell simultaneous Clopper-Pearson, four tails alpha/4",
+      "confidence_level": 0.95,
+      "margin_pp": 1.0,
+      "criterion": "inconclusive",
+      "both_correct": 29,
+      "both_incorrect": 3,
+      "baseline_correct_strassen_incorrect": 0,
+      "baseline_incorrect_strassen_correct": 0,
+      "different_predictions": 0,
+      "prediction_disagreement_rate": 0.0
+    },
+    {
+      "model": "Qwen3-32B",
+      "benchmark": "ppl",
+      "n_windows": 32,
+      "scored_tokens": 16384,
+      "baseline_score": 6.903900756632481,
+      "strassen_score": 6.905965098288409,
+      "difference": 0.002064341655927393,
+      "difference_unit": "perplexity",
+      "confidence_interval": [
+        -0.0058611700486344235,
+        0.010036381788932198
+      ],
+      "relative_change": 0.00029901091117861287,
+      "relative_confidence_interval": [
+        -0.0008514445339656525,
+        0.001447054746995827
+      ],
+      "delta_nll_nats": 0.0002989662163253026,
+      "confidence_level": 0.95,
+      "confidence_method": "paired circular moving-block bootstrap of token-weighted NLL",
+      "bootstrap_draws": 20000,
+      "block_windows": 1,
+      "seed": 20261018,
+      "relative_margin": 0.01,
+      "criterion": "preserved",
+      "insufficient_text_blocks": false
+    },
+    {
+      "model": "Gemma4-31B",
+      "benchmark": "mmlu",
+      "n": 114,
+      "baseline_score": 83.33333333333334,
+      "strassen_score": 82.45614035087719,
+      "difference": -0.8771929824561403,
+      "difference_unit": "percentage points",
+      "confidence_interval": [
+        -26.31676518906128,
+        24.562379224148998
+      ],
+      "confidence_method": "distribution-free Hoeffding bound for equally stratified paired differences; conservative",
+      "confidence_level": 0.95,
+      "margin_pp": 0.5,
+      "criterion": "inconclusive",
+      "both_correct": 94,
+      "both_incorrect": 19,
+      "baseline_correct_strassen_incorrect": 1,
+      "baseline_incorrect_strassen_correct": 0,
+      "different_predictions": 1,
+      "prediction_disagreement_rate": 0.008771929824561403,
+      "pooled_binomial_interval_descriptive_only": [
+        -5.467010344106556,
+        3.7599099762865276
+      ]
+    },
+    {
+      "model": "Gemma4-31B",
+      "benchmark": "gsm8k",
+      "n": 32,
+      "baseline_score": 90.625,
+      "strassen_score": 90.625,
+      "difference": 0.0,
+      "difference_unit": "percentage points",
+      "confidence_interval": [
+        -12.797599984079651,
+        12.797599984079651
+      ],
+      "confidence_method": "paired discordant-cell simultaneous Clopper-Pearson, four tails alpha/4",
+      "confidence_level": 0.95,
+      "margin_pp": 1.0,
+      "criterion": "inconclusive",
+      "both_correct": 29,
+      "both_incorrect": 3,
+      "baseline_correct_strassen_incorrect": 0,
+      "baseline_incorrect_strassen_correct": 0,
+      "different_predictions": 0,
+      "prediction_disagreement_rate": 0.0
+    },
+    {
+      "model": "Gemma4-31B",
+      "benchmark": "ppl",
+      "n_windows": 32,
+      "scored_tokens": 16384,
+      "baseline_score": 4.9433042336651924,
+      "strassen_score": 4.940089360297536,
+      "difference": -0.0032148733676562458,
+      "difference_unit": "perplexity",
+      "confidence_interval": [
+        -0.007335257323683164,
+        0.0005137239080578819
+      ],
+      "relative_change": -0.0006503490814427562,
+      "relative_confidence_interval": [
+        -0.001459400014357352,
+        0.0001041591555069278
+      ],
+      "delta_nll_nats": -0.0006505606501405747,
+      "confidence_level": 0.95,
+      "confidence_method": "paired circular moving-block bootstrap of token-weighted NLL",
+      "bootstrap_draws": 20000,
+      "block_windows": 1,
+      "seed": 20261018,
+      "relative_margin": 0.01,
+      "criterion": "preserved",
+      "insufficient_text_blocks": false
+    }
+  ],
+  "models": [
+    {
+      "model": "Qwen/Qwen3-14B",
+      "checkpoint_revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+      "result_folder": "../qwen3_14b_complete_20261019_v001",
+      "summary_sha256": "479249759db2f6a4722f79762ac20433b366c2cbb6998e00012bf189e22c3c5d",
+      "verification_sha256": "0623ebd2734c6b1f73240cda80581f2745359d39aed85e263e802a395617f36b",
+      "model_archive_sha256": "e62cb2ff94ba447e13bb44a6fd802285ac556fcb9a61e8104c0cdd54c516c940",
+      "tasks": {
+        "mmlu": {
+          "n": 114,
+          "baseline_score": 82.45614035087719,
+          "strassen_score": 82.45614035087719,
+          "difference": 0.0,
+          "difference_unit": "percentage points",
+          "confidence_interval": [
+            -25.43957220660514,
+            25.43957220660514
+          ],
+          "confidence_method": "distribution-free Hoeffding bound for equally stratified paired differences; conservative",
+          "confidence_level": 0.95,
+          "margin_pp": 0.5,
+          "criterion": "inconclusive",
+          "both_correct": 94,
+          "both_incorrect": 20,
+          "baseline_correct_strassen_incorrect": 0,
+          "baseline_incorrect_strassen_correct": 0,
+          "different_predictions": 0,
+          "prediction_disagreement_rate": 0.0,
+          "pooled_binomial_interval_descriptive_only": [
+            -3.770943387040689,
+            3.770943387040689
+          ]
+        },
+        "gsm8k": {
+          "n": 32,
+          "baseline_score": 59.375,
+          "strassen_score": 59.375,
+          "difference": 0.0,
+          "difference_unit": "percentage points",
+          "confidence_interval": [
+            -22.541599162833904,
+            22.541599162833904
+          ],
+          "confidence_method": "paired discordant-cell simultaneous Clopper-Pearson, four tails alpha/4",
+          "confidence_level": 0.95,
+          "margin_pp": 1.0,
+          "criterion": "inconclusive",
+          "both_correct": 17,
+          "both_incorrect": 11,
+          "baseline_correct_strassen_incorrect": 2,
+          "baseline_incorrect_strassen_correct": 2,
+          "different_predictions": 5,
+          "prediction_disagreement_rate": 0.15625
+        },
+        "ppl": {
+          "n_windows": 32,
+          "scored_tokens": 16384,
+          "baseline_score": 7.833952122216819,
+          "strassen_score": 7.83426697492114,
+          "difference": 0.000314852704320856,
+          "difference_unit": "perplexity",
+          "confidence_interval": [
+            -0.00651963266052138,
+            0.007074891030554519
+          ],
+          "relative_change": 4.01907874095815e-05,
+          "relative_confidence_interval": [
+            -0.0008513594828689814,
+            0.0008827431834812964
+          ],
+          "delta_nll_nats": 4.018997978150196e-05,
+          "confidence_level": 0.95,
+          "confidence_method": "paired circular moving-block bootstrap of token-weighted NLL",
+          "bootstrap_draws": 20000,
+          "block_windows": 1,
+          "seed": 20261018,
+          "relative_margin": 0.01,
+          "criterion": "preserved",
+          "insufficient_text_blocks": false
+        }
+      },
+      "gsm8k_stopping_audit": {
+        "scope": "Descriptive stopping/extraction audit; registered scores and criteria are unchanged",
+        "n": 32,
+        "different_extracted_answers": 1,
+        "max_new_tokens_failures": {
+          "native": 11,
+          "strassen": 10
+        }
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-32B",
+      "checkpoint_revision": "9216db5781bf21249d130ec9da846c4624c16137",
+      "result_folder": "../qwen3_32b_complete_20261021_v001",
+      "summary_sha256": "acfbd4e761322d8d6ec15589effbe857febc7cc63cce93c2f78a174371e47120",
+      "verification_sha256": "9925468c039b2cbff16f1f2a65865aa25f142e245c41438b5b14b3f333e4184e",
+      "model_archive_sha256": "e58dc6e6dbb2a068b67c8f06ce7d8dae3df2bceb7042fee917154c56eef39ce8",
+      "tasks": {
+        "mmlu": {
+          "n": 114,
+          "baseline_score": 84.21052631578947,
+          "strassen_score": 84.21052631578947,
+          "difference": 0.0,
+          "difference_unit": "percentage points",
+          "confidence_interval": [
+            -25.43957220660514,
+            25.43957220660514
+          ],
+          "confidence_method": "distribution-free Hoeffding bound for equally stratified paired differences; conservative",
+          "confidence_level": 0.95,
+          "margin_pp": 0.5,
+          "criterion": "inconclusive",
+          "both_correct": 95,
+          "both_incorrect": 17,
+          "baseline_correct_strassen_incorrect": 1,
+          "baseline_incorrect_strassen_correct": 1,
+          "different_predictions": 2,
+          "prediction_disagreement_rate": 0.017543859649122806,
+          "pooled_binomial_interval_descriptive_only": [
+            -5.455976933352394,
+            5.455976933352394
+          ]
+        },
+        "gsm8k": {
+          "n": 32,
+          "baseline_score": 90.625,
+          "strassen_score": 90.625,
+          "difference": 0.0,
+          "difference_unit": "percentage points",
+          "confidence_interval": [
+            -12.797599984079651,
+            12.797599984079651
+          ],
+          "confidence_method": "paired discordant-cell simultaneous Clopper-Pearson, four tails alpha/4",
+          "confidence_level": 0.95,
+          "margin_pp": 1.0,
+          "criterion": "inconclusive",
+          "both_correct": 29,
+          "both_incorrect": 3,
+          "baseline_correct_strassen_incorrect": 0,
+          "baseline_incorrect_strassen_correct": 0,
+          "different_predictions": 0,
+          "prediction_disagreement_rate": 0.0
+        },
+        "ppl": {
+          "n_windows": 32,
+          "scored_tokens": 16384,
+          "baseline_score": 6.903900756632481,
+          "strassen_score": 6.905965098288409,
+          "difference": 0.002064341655927393,
+          "difference_unit": "perplexity",
+          "confidence_interval": [
+            -0.0058611700486344235,
+            0.010036381788932198
+          ],
+          "relative_change": 0.00029901091117861287,
+          "relative_confidence_interval": [
+            -0.0008514445339656525,
+            0.001447054746995827
+          ],
+          "delta_nll_nats": 0.0002989662163253026,
+          "confidence_level": 0.95,
+          "confidence_method": "paired circular moving-block bootstrap of token-weighted NLL",
+          "bootstrap_draws": 20000,
+          "block_windows": 1,
+          "seed": 20261018,
+          "relative_margin": 0.01,
+          "criterion": "preserved",
+          "insufficient_text_blocks": false
+        }
+      },
+      "gsm8k_stopping_audit": {
+        "scope": "Descriptive stopping/extraction audit; registered scores and criteria are unchanged",
+        "n": 32,
+        "different_extracted_answers": 0,
+        "max_new_tokens_failures": {
+          "native": 0,
+          "strassen": 0
+        }
+      }
+    },
+    {
+      "model": "google/gemma-4-31B",
+      "checkpoint_revision": "5bbc2fb1c1b2c611d06e3d9f23c170ba21659d89",
+      "result_folder": "../gemma4_31b_complete_20261022_v001",
+      "summary_sha256": "5c336e29addab85b593cb8e1a6ea86b9413301331e09c5d60aaeb161e59f7e12",
+      "verification_sha256": "99380a17affd8b9663564add9d768408fe7c07002caad07c61fd41b68a999857",
+      "model_archive_sha256": "e0b2c5d34a24f1a89d86b479e0ec46eab84721aa988b3b197ccdb4629b8f4d6c",
+      "tasks": {
+        "mmlu": {
+          "n": 114,
+          "baseline_score": 83.33333333333334,
+          "strassen_score": 82.45614035087719,
+          "difference": -0.8771929824561403,
+          "difference_unit": "percentage points",
+          "confidence_interval": [
+            -26.31676518906128,
+            24.562379224148998
+          ],
+          "confidence_method": "distribution-free Hoeffding bound for equally stratified paired differences; conservative",
+          "confidence_level": 0.95,
+          "margin_pp": 0.5,
+          "criterion": "inconclusive",
+          "both_correct": 94,
+          "both_incorrect": 19,
+          "baseline_correct_strassen_incorrect": 1,
+          "baseline_incorrect_strassen_correct": 0,
+          "different_predictions": 1,
+          "prediction_disagreement_rate": 0.008771929824561403,
+          "pooled_binomial_interval_descriptive_only": [
+            -5.467010344106556,
+            3.7599099762865276
+          ]
+        },
+        "gsm8k": {
+          "n": 32,
+          "baseline_score": 90.625,
+          "strassen_score": 90.625,
+          "difference": 0.0,
+          "difference_unit": "percentage points",
+          "confidence_interval": [
+            -12.797599984079651,
+            12.797599984079651
+          ],
+          "confidence_method": "paired discordant-cell simultaneous Clopper-Pearson, four tails alpha/4",
+          "confidence_level": 0.95,
+          "margin_pp": 1.0,
+          "criterion": "inconclusive",
+          "both_correct": 29,
+          "both_incorrect": 3,
+          "baseline_correct_strassen_incorrect": 0,
+          "baseline_incorrect_strassen_correct": 0,
+          "different_predictions": 0,
+          "prediction_disagreement_rate": 0.0
+        },
+        "ppl": {
+          "n_windows": 32,
+          "scored_tokens": 16384,
+          "baseline_score": 4.9433042336651924,
+          "strassen_score": 4.940089360297536,
+          "difference": -0.0032148733676562458,
+          "difference_unit": "perplexity",
+          "confidence_interval": [
+            -0.007335257323683164,
+            0.0005137239080578819
+          ],
+          "relative_change": -0.0006503490814427562,
+          "relative_confidence_interval": [
+            -0.001459400014357352,
+            0.0001041591555069278
+          ],
+          "delta_nll_nats": -0.0006505606501405747,
+          "confidence_level": 0.95,
+          "confidence_method": "paired circular moving-block bootstrap of token-weighted NLL",
+          "bootstrap_draws": 20000,
+          "block_windows": 1,
+          "seed": 20261018,
+          "relative_margin": 0.01,
+          "criterion": "preserved",
+          "insufficient_text_blocks": false
+        }
+      },
+      "gsm8k_stopping_audit": {
+        "scope": "Descriptive stopping/extraction audit; registered scores and criteria are unchanged",
+        "n": 32,
+        "different_extracted_answers": 0,
+        "max_new_tokens_failures": {
+          "native": 0,
+          "strassen": 0
+        }
+      }
+    }
+  ],
+  "gemma_original_mmlu_receipt_gap": true
+}

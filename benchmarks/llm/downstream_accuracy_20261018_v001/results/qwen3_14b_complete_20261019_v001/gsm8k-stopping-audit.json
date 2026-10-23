@@ -1,0 +1,587 @@
+{
+  "scope": "Descriptive stopping/extraction audit; registered scores and criteria are unchanged",
+  "n": 32,
+  "different_extracted_answers": 1,
+  "max_new_tokens_failures": {
+    "native": 11,
+    "strassen": 10
+  },
+  "pairs": [
+    {
+      "example_id": "test:0",
+      "gold": "18",
+      "native": {
+        "prediction": "18",
+        "extracted_answer": "18",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 110,
+        "correct": true
+      },
+      "strassen": {
+        "prediction": "18",
+        "extracted_answer": "18",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 115,
+        "correct": true
+      }
+    },
+    {
+      "example_id": "test:100",
+      "gold": "175",
+      "native": {
+        "prediction": null,
+        "extracted_answer": "175",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      },
+      "strassen": {
+        "prediction": "175",
+        "extracted_answer": "175",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 561,
+        "correct": true
+      }
+    },
+    {
+      "example_id": "test:114",
+      "gold": "6",
+      "native": {
+        "prediction": "6",
+        "extracted_answer": "6",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 478,
+        "correct": true
+      },
+      "strassen": {
+        "prediction": "6",
+        "extracted_answer": "6",
+        "stop_reason": "eos",
+        "generated_tokens": 916,
+        "correct": true
+      }
+    },
+    {
+      "example_id": "test:128",
+      "gold": "880",
+      "native": {
+        "prediction": null,
+        "extracted_answer": "880",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      },
+      "strassen": {
+        "prediction": "880",
+        "extracted_answer": "880",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 800,
+        "correct": true
+      }
+    },
+    {
+      "example_id": "test:130",
+      "gold": "30",
+      "native": {
+        "prediction": "30",
+        "extracted_answer": "30",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 112,
+        "correct": true
+      },
+      "strassen": {
+        "prediction": "30",
+        "extracted_answer": "30",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 112,
+        "correct": true
+      }
+    },
+    {
+      "example_id": "test:155",
+      "gold": "280",
+      "native": {
+        "prediction": null,
+        "extracted_answer": "280",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      },
+      "strassen": {
+        "prediction": null,
+        "extracted_answer": "280",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      }
+    },
+    {
+      "example_id": "test:197",
+      "gold": "6277",
+      "native": {
+        "prediction": "6277",
+        "extracted_answer": "6277",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 109,
+        "correct": true
+      },
+      "strassen": {
+        "prediction": "6277",
+        "extracted_answer": "6277",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 109,
+        "correct": true
+      }
+    },
+    {
+      "example_id": "test:227",
+      "gold": "9",
+      "native": {
+        "prediction": "9.00",
+        "extracted_answer": "9.00",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 386,
+        "correct": false
+      },
+      "strassen": {
+        "prediction": "9.00",
+        "extracted_answer": "9.00",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 389,
+        "correct": false
+      }
+    },
+    {
+      "example_id": "test:236",
+      "gold": "31",
+      "native": {
+        "prediction": "31",
+        "extracted_answer": "31",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 180,
+        "correct": true
+      },
+      "strassen": {
+        "prediction": "31",
+        "extracted_answer": "31",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 170,
+        "correct": true
+      }
+    },
+    {
+      "example_id": "test:258",
+      "gold": "6",
+      "native": {
+        "prediction": "6.00",
+        "extracted_answer": "6.00",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 90,
+        "correct": false
+      },
+      "strassen": {
+        "prediction": "6.00",
+        "extracted_answer": "6.00",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 187,
+        "correct": false
+      }
+    },
+    {
+      "example_id": "test:380",
+      "gold": "803",
+      "native": {
+        "prediction": null,
+        "extracted_answer": "803",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      },
+      "strassen": {
+        "prediction": "760.42",
+        "extracted_answer": "760.42",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 334,
+        "correct": false
+      }
+    },
+    {
+      "example_id": "test:411",
+      "gold": "1110",
+      "native": {
+        "prediction": null,
+        "extracted_answer": "1110",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      },
+      "strassen": {
+        "prediction": null,
+        "extracted_answer": "1110",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      }
+    },
+    {
+      "example_id": "test:434",
+      "gold": "5",
+      "native": {
+        "prediction": "5",
+        "extracted_answer": "5",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 409,
+        "correct": true
+      },
+      "strassen": {
+        "prediction": "5",
+        "extracted_answer": "5",
+        "stop_reason": "eos",
+        "generated_tokens": 423,
+        "correct": true
+      }
+    },
+    {
+      "example_id": "test:452",
+      "gold": "50",
+      "native": {
+        "prediction": "50",
+        "extracted_answer": "50",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 350,
+        "correct": true
+      },
+      "strassen": {
+        "prediction": "50",
+        "extracted_answer": "50",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 340,
+        "correct": true
+      }
+    },
+    {
+      "example_id": "test:455",
+      "gold": "1920",
+      "native": {
+        "prediction": "1920",
+        "extracted_answer": "1920",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 615,
+        "correct": true
+      },
+      "strassen": {
+        "prediction": "1920",
+        "extracted_answer": "1920",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 608,
+        "correct": true
+      }
+    },
+    {
+      "example_id": "test:490",
+      "gold": "4",
+      "native": {
+        "prediction": "4",
+        "extracted_answer": "4",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 62,
+        "correct": true
+      },
+      "strassen": {
+        "prediction": "4",
+        "extracted_answer": "4",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 62,
+        "correct": true
+      }
+    },
+    {
+      "example_id": "test:524",
+      "gold": "9",
+      "native": {
+        "prediction": "9",
+        "extracted_answer": "9",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 169,
+        "correct": true
+      },
+      "strassen": {
+        "prediction": "9",
+        "extracted_answer": "9",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 169,
+        "correct": true
+      }
+    },
+    {
+      "example_id": "test:558",
+      "gold": "3",
+      "native": {
+        "prediction": "3",
+        "extracted_answer": "3",
+        "stop_reason": "eos",
+        "generated_tokens": 238,
+        "correct": true
+      },
+      "strassen": {
+        "prediction": "3",
+        "extracted_answer": "3",
+        "stop_reason": "eos",
+        "generated_tokens": 236,
+        "correct": true
+      }
+    },
+    {
+      "example_id": "test:674",
+      "gold": "12",
+      "native": {
+        "prediction": null,
+        "extracted_answer": "12",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      },
+      "strassen": {
+        "prediction": null,
+        "extracted_answer": "12",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      }
+    },
+    {
+      "example_id": "test:936",
+      "gold": "250",
+      "native": {
+        "prediction": "250",
+        "extracted_answer": "250",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 270,
+        "correct": true
+      },
+      "strassen": {
+        "prediction": "250",
+        "extracted_answer": "250",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 263,
+        "correct": true
+      }
+    },
+    {
+      "example_id": "test:993",
+      "gold": "11",
+      "native": {
+        "prediction": null,
+        "extracted_answer": "11",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      },
+      "strassen": {
+        "prediction": null,
+        "extracted_answer": "11",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      }
+    },
+    {
+      "example_id": "test:1026",
+      "gold": "43200",
+      "native": {
+        "prediction": "43200",
+        "extracted_answer": "43200",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 629,
+        "correct": true
+      },
+      "strassen": {
+        "prediction": null,
+        "extracted_answer": "43200",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      }
+    },
+    {
+      "example_id": "test:1028",
+      "gold": "200",
+      "native": {
+        "prediction": "200",
+        "extracted_answer": "200",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 101,
+        "correct": true
+      },
+      "strassen": {
+        "prediction": "200",
+        "extracted_answer": "200",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 100,
+        "correct": true
+      }
+    },
+    {
+      "example_id": "test:1040",
+      "gold": "736",
+      "native": {
+        "prediction": null,
+        "extracted_answer": "736",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      },
+      "strassen": {
+        "prediction": null,
+        "extracted_answer": "736",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      }
+    },
+    {
+      "example_id": "test:1105",
+      "gold": "40",
+      "native": {
+        "prediction": "40",
+        "extracted_answer": "40",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 288,
+        "correct": true
+      },
+      "strassen": {
+        "prediction": "40",
+        "extracted_answer": "40",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 288,
+        "correct": true
+      }
+    },
+    {
+      "example_id": "test:1116",
+      "gold": "60",
+      "native": {
+        "prediction": "60",
+        "extracted_answer": "60",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 102,
+        "correct": true
+      },
+      "strassen": {
+        "prediction": "60",
+        "extracted_answer": "60",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 91,
+        "correct": true
+      }
+    },
+    {
+      "example_id": "test:1121",
+      "gold": "35",
+      "native": {
+        "prediction": "35",
+        "extracted_answer": "35",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 75,
+        "correct": true
+      },
+      "strassen": {
+        "prediction": "35",
+        "extracted_answer": "35",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 74,
+        "correct": true
+      }
+    },
+    {
+      "example_id": "test:1179",
+      "gold": "50",
+      "native": {
+        "prediction": null,
+        "extracted_answer": "50",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      },
+      "strassen": {
+        "prediction": null,
+        "extracted_answer": "50",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      }
+    },
+    {
+      "example_id": "test:1205",
+      "gold": "4",
+      "native": {
+        "prediction": "4",
+        "extracted_answer": "4",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 501,
+        "correct": true
+      },
+      "strassen": {
+        "prediction": null,
+        "extracted_answer": "4",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      }
+    },
+    {
+      "example_id": "test:1242",
+      "gold": "20",
+      "native": {
+        "prediction": null,
+        "extracted_answer": "20",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      },
+      "strassen": {
+        "prediction": null,
+        "extracted_answer": "20",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      }
+    },
+    {
+      "example_id": "test:1264",
+      "gold": "210",
+      "native": {
+        "prediction": null,
+        "extracted_answer": "210",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      },
+      "strassen": {
+        "prediction": null,
+        "extracted_answer": "210",
+        "stop_reason": "max_new_tokens",
+        "generated_tokens": 1024,
+        "correct": false
+      }
+    },
+    {
+      "example_id": "test:1311",
+      "gold": "594",
+      "native": {
+        "prediction": "594",
+        "extracted_answer": "594",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 102,
+        "correct": true
+      },
+      "strassen": {
+        "prediction": "594",
+        "extracted_answer": "594",
+        "stop_reason": "stop_string:Question:",
+        "generated_tokens": 102,
+        "correct": true
+      }
+    }
+  ]
+}

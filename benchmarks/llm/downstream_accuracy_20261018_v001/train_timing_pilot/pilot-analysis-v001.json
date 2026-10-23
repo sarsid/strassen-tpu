@@ -1,0 +1,15 @@
+{
+  "scope": "train-only Qwen3-14B timing pilot, not downstream scores",
+  "median_paired_decode_seconds": 7.149563524499968,
+  "median_h2d_seconds": 2.90746554849909,
+  "median_decoder_compute_seconds": 0.2433333310004855,
+  "matching_generated_tokens": 128,
+  "generated_tokens_per_arm": 128,
+  "hypothetical_gsm_only_hours_by_longest_output_per_batch": {
+    "128": 1.0168268123733286,
+    "256": 2.0336536247466572,
+    "512": 4.0673072494933145,
+    "1024": 8.134614498986629
+  },
+  "projection_assumptions": "Four groups of eight examples, both arms included, each group runs until its slowest sequence ends; excludes setup/prefill; no measured answer lengths or larger-model throughput."
+}

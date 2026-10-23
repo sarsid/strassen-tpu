@@ -1,0 +1,41 @@
+{
+  "kind": "oracle_layer",
+  "layer": 32,
+  "attention_type": "sliding_attention",
+  "backends": {
+    "cpu": {
+      "isolated": {
+        "finite": true,
+        "relative_l2": 0.00019061379667647732,
+        "max_abs": 0.03125,
+        "different_fraction": 0.026529947916666668
+      },
+      "propagated": {
+        "finite": true,
+        "relative_l2": 0.007915234631053522,
+        "max_abs": 4.0,
+        "different_fraction": 0.8504580543154762
+      }
+    },
+    "tpu": {
+      "isolated": {
+        "finite": true,
+        "relative_l2": 0.0003696092641272502,
+        "max_abs": 0.0625,
+        "different_fraction": 0.11887904575892858
+      },
+      "propagated": {
+        "finite": true,
+        "relative_l2": 0.00676893766280692,
+        "max_abs": 3.0,
+        "different_fraction": 0.8430989583333334
+      }
+    }
+  },
+  "cpu_vs_tpu": {
+    "finite": true,
+    "relative_l2": 0.007670229853206579,
+    "max_abs": 4.0,
+    "different_fraction": 0.8453601655505952
+  }
+}

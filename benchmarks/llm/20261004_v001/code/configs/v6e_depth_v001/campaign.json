@@ -1,0 +1,358 @@
+{
+  "device": {
+    "allow_concurrent_timing": false,
+    "allow_v6e": true,
+    "identity_fields": [
+      "allocation_id",
+      "device_kind",
+      "device_id",
+      "process_index",
+      "jax_version",
+      "jaxlib_version",
+      "libtpu_version",
+      "runtime_image",
+      "runtime_flags",
+      "host_id"
+    ],
+    "identity_missing_policy": "Record unknown explicitly; do not describe unverified physical identity as the same chip.",
+    "require_identity_match": true,
+    "reuse_same_allocation": true,
+    "single_device": true,
+    "target": "v6e"
+  },
+  "precision": {
+    "accumulator_dtype": "float32",
+    "input_dtype": "bfloat16",
+    "native_precision": "DEFAULT",
+    "note": "BF16 inputs; preadditions round to BF16 at every recursive level, FP32 leaf dots and reconstruction.",
+    "output_dtype": "float32",
+    "pre_add_dtype": "bfloat16",
+    "reference_dtype": "float64"
+  },
+  "memory": {
+    "estimated_live_device_budget_gib": 12,
+    "execution_order": "Three shuffled tile-index groups and one Native group per shape, then frozen-selection paired confirmation.",
+    "kernel_vmem_limit_mib": 112,
+    "max_full_reference_flops": 3000000000,
+    "max_reference_output_elements": 1048576,
+    "on_device_oom": "Record oom, clear executable/input buffers before the next case; retry only in a new immutable run.",
+    "on_preflight_over_budget": "Record skipped_memory_preflight with estimate and limit; do not silently remove shape.",
+    "preflight": "Estimate and record bytes for original inputs, padded inputs, FP32 output, one result, and reference samples. Conservative estimate is not measured peak memory."
+  },
+  "correctness": {
+    "failure_policy": "Record failures and measurements; failing rows cannot count as valid speedup wins. Fixed thresholds never change to rescue an arm.",
+    "gate": {
+      "max_abs_atol": 0.001,
+      "max_abs_reference_rtol": 0.05,
+      "relative_l2_max": 0.02,
+      "require_finite": true
+    },
+    "gate_expression": "finite && relative_l2 <= 0.02 && max_abs_error <= 0.001 + 0.05 * max_abs_reference",
+    "input_reference": "Use the exact BF16-quantized operands cast to NumPy float32, not the pre-quantization random source.",
+    "metrics": [
+      "reference_scope",
+      "sample_count",
+      "relative_l2",
+      "max_abs_error",
+      "max_abs_reference",
+      "rmse",
+      "mean_abs_error",
+      "p50_abs_error",
+      "p99_abs_error",
+      "normwise_error",
+      "finite",
+      "pass"
+    ],
+    "mode": "full_if_both_limits_allow_else_sampled_cross_product",
+    "near_zero_denominator": 1e-30,
+    "reference": "host_numpy_fp64",
+    "sample_columns": 128,
+    "sample_rows": 128,
+    "sampling": "seeded without replacement, always including first and last row/column; record indices; reference uses all K",
+    "scope": "Full-output finiteness plus full or sampled all-K FP64 numerical metrics; eligibility threshold is not a model-quality guarantee."
+  },
+  "execution_contract": {
+    "archive_after_run": [
+      "summary.json",
+      "status snapshot",
+      "artifact SHA256 manifest",
+      "completion/failure marker"
+    ],
+    "archive_before_run": [
+      "source tree snapshot",
+      "configuration JSON",
+      "source/configuration SHA256 manifests",
+      "git commit",
+      "environment fingerprint",
+      "planned cases"
+    ],
+    "archive_during_run": [
+      "append-only events.jsonl",
+      "stdout/stderr",
+      "raw timing samples",
+      "errors"
+    ],
+    "commit_policy": "Root orchestrator commits source snapshot before execution and records a commit after every completed or failed execution. Existing source snapshots and result directories are never overwritten.",
+    "external_changes": "Any device or environment change creates a new cohort; do not pool it silently with the original allocation.",
+    "immutable_run_id": "UTC timestamp plus unique suffix",
+    "record_statuses": [
+      "ok",
+      "input_error",
+      "numerical_failure",
+      "compile_error",
+      "oom",
+      "unsupported",
+      "skipped_memory_preflight",
+      "interrupted",
+      "not_run"
+    ],
+    "resume": "A retry/new version receives a new run id and references previous run ids; never appends measurements to a sealed run."
+  },
+  "schema_version": 1,
+  "campaign_id": "v6e_depth_v001",
+  "shape_manifest": "shapes.json",
+  "distribution_manifest": "distributions.json",
+  "arms": [
+    "native",
+    "strassen1",
+    "strassen2",
+    "strassen3",
+    "strassen4"
+  ],
+  "order_seed": 92351,
+  "screen_seed": 2026092351,
+  "confirm_seeds": [
+    2026092352,
+    2026092353,
+    2026092354
+  ],
+  "timing": {
+    "smoke": {
+      "warmups": 0,
+      "repeats": 1
+    },
+    "screen": {
+      "warmups": 3,
+      "repeats": 8
+    },
+    "confirm": {
+      "warmups": 5,
+      "repeats": 30
+    }
+  },
+  "candidate_families": {
+    "native": [
+      {
+        "candidate_id": "native_default",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile": null,
+        "compiler_options": {}
+      },
+      {
+        "candidate_id": "native_vmem_64m",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile": null,
+        "compiler_options": {
+          "xla_tpu_scoped_vmem_limit_kib": 65536
+        }
+      },
+      {
+        "candidate_id": "native_vmem_96m",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile": null,
+        "compiler_options": {
+          "xla_tpu_scoped_vmem_limit_kib": 98304
+        }
+      },
+      {
+        "candidate_id": "native_vmem_112m",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile": null,
+        "compiler_options": {
+          "xla_tpu_scoped_vmem_limit_kib": 114688
+        }
+      }
+    ],
+    "strassen1": [
+      {
+        "candidate_id": "strassen1_1024_2048_1024",
+        "algorithm": "strassen",
+        "variant": "depth1",
+        "tile": [
+          1024,
+          2048,
+          1024
+        ],
+        "tile_index": 0,
+        "depth": 1,
+        "compiler_options": {},
+        "vmem_limit_bytes": 117440512
+      },
+      {
+        "candidate_id": "strassen1_2048_2048_2048",
+        "algorithm": "strassen",
+        "variant": "depth1",
+        "tile": [
+          2048,
+          2048,
+          2048
+        ],
+        "tile_index": 1,
+        "depth": 1,
+        "compiler_options": {},
+        "vmem_limit_bytes": 117440512
+      },
+      {
+        "candidate_id": "strassen1_2048_4096_2048",
+        "algorithm": "strassen",
+        "variant": "depth1",
+        "tile": [
+          2048,
+          4096,
+          2048
+        ],
+        "tile_index": 2,
+        "depth": 1,
+        "compiler_options": {},
+        "vmem_limit_bytes": 117440512
+      }
+    ],
+    "strassen2": [
+      {
+        "candidate_id": "strassen2_1024_2048_2048",
+        "algorithm": "strassen",
+        "variant": "depth2",
+        "tile": [
+          1024,
+          2048,
+          2048
+        ],
+        "tile_index": 0,
+        "depth": 2,
+        "compiler_options": {},
+        "vmem_limit_bytes": 117440512
+      },
+      {
+        "candidate_id": "strassen2_2048_2048_2048",
+        "algorithm": "strassen",
+        "variant": "depth2",
+        "tile": [
+          2048,
+          2048,
+          2048
+        ],
+        "tile_index": 1,
+        "depth": 2,
+        "compiler_options": {},
+        "vmem_limit_bytes": 117440512
+      },
+      {
+        "candidate_id": "strassen2_2048_4096_2048",
+        "algorithm": "strassen",
+        "variant": "depth2",
+        "tile": [
+          2048,
+          4096,
+          2048
+        ],
+        "tile_index": 2,
+        "depth": 2,
+        "compiler_options": {},
+        "vmem_limit_bytes": 117440512
+      }
+    ],
+    "strassen3": [
+      {
+        "candidate_id": "strassen3_1024_2048_2048",
+        "algorithm": "strassen",
+        "variant": "depth3",
+        "tile": [
+          1024,
+          2048,
+          2048
+        ],
+        "tile_index": 0,
+        "depth": 3,
+        "compiler_options": {},
+        "vmem_limit_bytes": 117440512
+      },
+      {
+        "candidate_id": "strassen3_2048_2048_2048",
+        "algorithm": "strassen",
+        "variant": "depth3",
+        "tile": [
+          2048,
+          2048,
+          2048
+        ],
+        "tile_index": 1,
+        "depth": 3,
+        "compiler_options": {},
+        "vmem_limit_bytes": 117440512
+      },
+      {
+        "candidate_id": "strassen3_1024_4096_4096",
+        "algorithm": "strassen",
+        "variant": "depth3",
+        "tile": [
+          1024,
+          4096,
+          4096
+        ],
+        "tile_index": 2,
+        "depth": 3,
+        "compiler_options": {},
+        "vmem_limit_bytes": 117440512
+      }
+    ],
+    "strassen4": [
+      {
+        "candidate_id": "strassen4_1024_2048_2048",
+        "algorithm": "strassen",
+        "variant": "depth4",
+        "tile": [
+          1024,
+          2048,
+          2048
+        ],
+        "tile_index": 0,
+        "depth": 4,
+        "compiler_options": {},
+        "vmem_limit_bytes": 117440512
+      },
+      {
+        "candidate_id": "strassen4_1024_4096_4096",
+        "algorithm": "strassen",
+        "variant": "depth4",
+        "tile": [
+          1024,
+          4096,
+          4096
+        ],
+        "tile_index": 1,
+        "depth": 4,
+        "compiler_options": {},
+        "vmem_limit_bytes": 117440512
+      },
+      {
+        "candidate_id": "strassen4_2048_4096_4096",
+        "algorithm": "strassen",
+        "variant": "depth4",
+        "tile": [
+          2048,
+          4096,
+          4096
+        ],
+        "tile_index": 2,
+        "depth": 4,
+        "compiler_options": {},
+        "vmem_limit_bytes": 117440512
+      }
+    ]
+  },
+  "selection_policy": "Fastest passing candidate per family; fastest finite failure retained as explicitly ineligible diagnostic if none passes. No reselection on confirmation."
+}

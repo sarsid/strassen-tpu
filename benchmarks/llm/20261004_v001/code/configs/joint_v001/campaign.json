@@ -1,0 +1,190 @@
+{
+  "device": {
+    "allow_concurrent_timing": false,
+    "allow_v6e": true,
+    "identity_fields": [
+      "allocation_id",
+      "device_kind",
+      "device_id",
+      "process_index",
+      "jax_version",
+      "jaxlib_version",
+      "libtpu_version",
+      "runtime_image",
+      "runtime_flags",
+      "host_id"
+    ],
+    "identity_missing_policy": "Record unknown explicitly; do not describe unverified physical identity as the same chip.",
+    "require_identity_match": true,
+    "reuse_same_allocation": true,
+    "single_device": true,
+    "target": "v6e"
+  },
+  "precision": {
+    "accumulator_dtype": "float32",
+    "input_dtype": "bfloat16",
+    "native_precision": "DEFAULT",
+    "note": "BF16 inputs/preadds, FP32 products/accumulation/reconstruction, one final FP32 or BF16 store.",
+    "output_dtype": "Per group: float32 or bfloat16; never pool contracts",
+    "pre_add_dtype": "bfloat16",
+    "reference_dtype": "float64"
+  },
+  "memory": {
+    "estimated_live_device_budget_gib": 12,
+    "execution_order": "Six serial shape batches; each includes separate FP32/BF16 screening and confirmation. Screen in randomized batches of at most 12 custom candidates plus repeated Native_default anchor.",
+    "kernel_vmem_limit_mib": 112,
+    "max_full_reference_flops": 3000000000,
+    "max_reference_output_elements": 1048576,
+    "on_device_oom": "Record oom, clear executable/input buffers before the next case; retry only in a new immutable run.",
+    "on_preflight_over_budget": "Record skipped_memory_preflight with estimate and limit; do not silently remove shape.",
+    "preflight": "Estimate and record bytes for original inputs, padded inputs, FP32 output, one result, and reference samples. Conservative estimate is not measured peak memory."
+  },
+  "correctness": {
+    "failure_policy": "Record failures and measurements; failing rows cannot count as valid speedup wins. Fixed thresholds never change to rescue an arm.",
+    "gate": {
+      "max_abs_atol": 0.001,
+      "max_abs_reference_rtol": 0.05,
+      "relative_l2_max": 0.02,
+      "require_finite": true
+    },
+    "gate_expression": "finite && relative_l2 <= 0.02 && max_abs_error <= 0.001 + 0.05 * max_abs_reference",
+    "input_reference": "Use the exact BF16-quantized operands cast to NumPy float32, not the pre-quantization random source.",
+    "metrics": [
+      "reference_scope",
+      "sample_count",
+      "relative_l2",
+      "max_abs_error",
+      "max_abs_reference",
+      "rmse",
+      "mean_abs_error",
+      "p50_abs_error",
+      "p99_abs_error",
+      "normwise_error",
+      "finite",
+      "pass"
+    ],
+    "mode": "full_if_both_limits_allow_else_sampled_cross_product",
+    "near_zero_denominator": 1e-30,
+    "reference": "host_numpy_fp64",
+    "sample_columns": 128,
+    "sample_rows": 128,
+    "sampling": "128 seeded rows and columns, always including first and last, against FP64 across all K",
+    "scope": "Full-output finiteness plus full or sampled all-K FP64 numerical metrics; eligibility threshold is not a model-quality guarantee."
+  },
+  "execution_contract": {
+    "archive_after_run": [
+      "summary.json",
+      "status snapshot",
+      "artifact SHA256 manifest",
+      "completion/failure marker"
+    ],
+    "archive_before_run": [
+      "source tree snapshot",
+      "configuration JSON",
+      "source/configuration SHA256 manifests",
+      "git commit",
+      "environment fingerprint",
+      "planned cases"
+    ],
+    "archive_during_run": [
+      "append-only events.jsonl",
+      "stdout/stderr",
+      "raw timing samples",
+      "errors"
+    ],
+    "commit_policy": "Root orchestrator commits source snapshot before execution and records a commit after every completed or failed execution. Existing source snapshots and result directories are never overwritten.",
+    "external_changes": "Any device or environment change creates a new cohort; do not pool it silently with the original allocation.",
+    "immutable_run_id": "UTC timestamp plus unique suffix",
+    "record_statuses": [
+      "ok",
+      "input_error",
+      "numerical_failure",
+      "compile_error",
+      "oom",
+      "unsupported",
+      "skipped_memory_preflight",
+      "interrupted",
+      "not_run"
+    ],
+    "resume": "A retry/new version receives a new run id and references previous run ids; never appends measurements to a sealed run."
+  },
+  "schema_version": 1,
+  "campaign_id": "joint_v001",
+  "shape_manifest": "shapes.json",
+  "distribution_manifest": "distributions.json",
+  "confirm_seeds": [
+    9262000,
+    9263000,
+    9264000
+  ],
+  "timing": {
+    "smoke": {
+      "warmups": 1,
+      "repeats": 2
+    },
+    "screen": {
+      "warmups": 3,
+      "repeats": 7
+    },
+    "confirm": {
+      "warmups": 5,
+      "repeats": 30
+    }
+  },
+  "llo_instrumentation": false,
+  "development_set": true,
+  "unseen_shape_validation": false,
+  "study": "Six development shapes; joint accumulator, tile, K-panel and buffer tuning with separate FP32/BF16 outputs",
+  "screen_seed": 9261000,
+  "candidate_policy": "Output geometry menu plus every prior control geometry; K panels include full K, largest aligned divisors at K/2 and K/4, at most 1024, and all prior control panels. Both depths, accumulator strategies and one/two buffers. Rough memory estimate above 160 MiB prunes search only; protected historical controls are always attempted. All omitted divisors and pruning reasons recorded.",
+  "selection_policy": "Rank numerical-gate-passing complete screening measurements by latency divided by Native_default in the same batch. Freeze fastest Native, each depth, each depth/accumulator/contraction stratum and overall; arm ID breaks exact ties. Confirm frozen candidates and matched counterfactuals on three new seeds. Never reselect from confirmation. Final recommendation falls back to frozen Native unless frozen overall candidate passes all confirmation error gates, mean speedup >= 1.01 and paired pointwise 95% lower bound > 1.",
+  "order_seed": 92610,
+  "search": {
+    "output_tiles": [
+      [
+        512,
+        512
+      ],
+      [
+        1024,
+        512
+      ],
+      [
+        1024,
+        1024
+      ],
+      [
+        2048,
+        1024
+      ],
+      [
+        1024,
+        2048
+      ],
+      [
+        2048,
+        2048
+      ],
+      [
+        4096,
+        1024
+      ]
+    ],
+    "native_mib": [
+      null,
+      32,
+      48,
+      64,
+      96,
+      112
+    ],
+    "estimate_prune_mib": 160,
+    "batch_size": 12
+  },
+  "deployment_rule": {
+    "minimum_mean_speedup": 1.01,
+    "minimum_ci95_lower": 1.0,
+    "input_scope": "registered_gaussian_bf16_only",
+    "unseen_shape_policy": "native"
+  }
+}

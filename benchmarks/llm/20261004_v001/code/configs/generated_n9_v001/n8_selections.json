@@ -1,0 +1,869 @@
+{
+  "by_group": {
+    "mistral7b_m1024_residual": {
+      "cubic": {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant_fused",
+        "fused": true,
+        "mean_ms": 0.9188119999999999,
+        "source_group": "mistral7b_m1024_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      },
+      "kind": "residual",
+      "native": {
+        "algorithm": "native",
+        "arm_id": "native_joint_graph",
+        "mean_ms": 1.0667906333333332,
+        "source_group": "mistral7b_m1024_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "shape_mkn": [
+        1024,
+        14336,
+        4096
+      ],
+      "strassen": {
+        "algorithm": "strassen",
+        "arm_id": "strassen_fused",
+        "fused": true,
+        "mean_ms": 0.8587408333333333,
+        "source_group": "mistral7b_m1024_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    "mistral7b_m1024_swiglu": {
+      "cubic": {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_full_unpacked_unfused",
+        "mean_ms": 1.8959586333333334,
+        "source_group": "mistral7b_m1024_swiglu",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "kind": "swiglu",
+      "native": {
+        "algorithm": "native",
+        "arm_id": "native_joint_graph",
+        "mean_ms": 1.6070265000000001,
+        "source_group": "mistral7b_m1024_swiglu",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "shape_mkn": [
+        1024,
+        4096,
+        28672
+      ],
+      "strassen": {
+        "algorithm": "strassen",
+        "arm_id": "strassen_unpacked_unfused",
+        "mean_ms": 1.8256845333333336,
+        "source_group": "mistral7b_m1024_swiglu",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    "mistral7b_m2048_residual": {
+      "cubic": {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant_fused",
+        "fused": true,
+        "mean_ms": 1.5504839666666663,
+        "source_group": "mistral7b_m2048_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      },
+      "kind": "residual",
+      "native": {
+        "algorithm": "native",
+        "arm_id": "native_joint_graph",
+        "mean_ms": 1.6759305666666662,
+        "source_group": "mistral7b_m2048_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "shape_mkn": [
+        2048,
+        14336,
+        4096
+      ],
+      "strassen": {
+        "algorithm": "strassen",
+        "arm_id": "strassen_fused",
+        "fused": true,
+        "mean_ms": 1.4144573,
+        "source_group": "mistral7b_m2048_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    "mistral7b_m2048_swiglu": {
+      "cubic": {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_full_unpacked_unfused",
+        "mean_ms": 3.5490546,
+        "source_group": "mistral7b_m2048_swiglu",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "kind": "swiglu",
+      "native": {
+        "algorithm": "native",
+        "arm_id": "native_joint_graph",
+        "mean_ms": 3.1215564999999996,
+        "source_group": "mistral7b_m2048_swiglu",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "shape_mkn": [
+        2048,
+        4096,
+        28672
+      ],
+      "strassen": {
+        "algorithm": "strassen",
+        "arm_id": "strassen_unpacked_unfused",
+        "mean_ms": 3.3774319999999993,
+        "source_group": "mistral7b_m2048_swiglu",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    "mistral7b_m512_residual": {
+      "cubic": {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_full_unpacked_unfused",
+        "mean_ms": 0.9480323333333335,
+        "source_group": "mistral7b_m512_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "kind": "residual",
+      "native": {
+        "algorithm": "native",
+        "arm_id": "native_joint_graph",
+        "mean_ms": 0.7425469,
+        "source_group": "mistral7b_m512_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "shape_mkn": [
+        512,
+        14336,
+        4096
+      ],
+      "strassen": {
+        "algorithm": "strassen",
+        "arm_id": "strassen_fused",
+        "fused": true,
+        "mean_ms": 0.8815304,
+        "source_group": "mistral7b_m512_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    "mistral7b_m512_swiglu": {
+      "cubic": {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_n5_selected_unfused",
+        "mean_ms": 0.9650942666666668,
+        "selection_provenance": {
+          "algorithm": "cubic_full",
+          "candidate_id": "c_output_accumulator_512_1024_1024",
+          "mean_ms": 0.9800842857142857,
+          "prepared_mean_ms": 0.9854984285714286,
+          "reference_scope": "sampled_cross_product",
+          "relative_l2": 1.6296491177739675e-07,
+          "screen_record_id": {
+            "arm_id": "c_output_accumulator_512_1024_1024",
+            "case_id": "mistral7_gate_up_m512__candidate_pair_000__gaussian__20260919",
+            "group_id": "mistral7_gate_up_m512__candidate_pair_000",
+            "scope": "call"
+          },
+          "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+          "tile": [
+            512,
+            1024,
+            1024
+          ],
+          "variant": "output_accumulator"
+        },
+        "source_group": "mistral7b_m512_swiglu",
+        "tile": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      "kind": "swiglu",
+      "native": {
+        "algorithm": "native",
+        "arm_id": "native_joint_graph",
+        "mean_ms": 0.9611876666666667,
+        "source_group": "mistral7b_m512_swiglu",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "shape_mkn": [
+        512,
+        4096,
+        28672
+      ],
+      "strassen": {
+        "algorithm": "strassen",
+        "arm_id": "strassen_n5_selected_unfused",
+        "mean_ms": 0.9585989333333331,
+        "selection_provenance": {
+          "algorithm": "strassen",
+          "candidate_id": "s_interleaved_output_accumulator_512_1024_512",
+          "mean_ms": 0.9732830000000001,
+          "prepared_mean_ms": 0.9760629999999999,
+          "reference_scope": "sampled_cross_product",
+          "relative_l2": 0.004365843459311853,
+          "screen_record_id": {
+            "arm_id": "s_interleaved_output_accumulator_512_1024_512",
+            "case_id": "mistral7_gate_up_m512__candidate_pair_011__gaussian__20260919",
+            "group_id": "mistral7_gate_up_m512__candidate_pair_011",
+            "scope": "call"
+          },
+          "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+          "tile": [
+            512,
+            1024,
+            512
+          ],
+          "variant": "interleaved_output_accumulator"
+        },
+        "source_group": "mistral7b_m512_swiglu",
+        "tile": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "interleaved_output_accumulator"
+      }
+    },
+    "qwen06_m1024_residual": {
+      "cubic": {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant_fused",
+        "fused": true,
+        "mean_ms": 0.297465,
+        "source_group": "qwen06_m1024_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      },
+      "kind": "residual",
+      "native": {
+        "algorithm": "native",
+        "arm_id": "native_joint_graph",
+        "mean_ms": 0.2998013333333334,
+        "source_group": "qwen06_m1024_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "shape_mkn": [
+        1024,
+        3072,
+        1024
+      ],
+      "strassen": {
+        "algorithm": "strassen",
+        "arm_id": "strassen_fused",
+        "fused": true,
+        "mean_ms": 0.2899669666666666,
+        "source_group": "qwen06_m1024_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    "qwen06_m1024_swiglu": {
+      "cubic": {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_full_unpacked_unfused",
+        "mean_ms": 0.33985403333333336,
+        "source_group": "qwen06_m1024_swiglu",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "kind": "swiglu",
+      "native": {
+        "algorithm": "native",
+        "arm_id": "native_joint_graph",
+        "mean_ms": 0.3317862999999999,
+        "source_group": "qwen06_m1024_swiglu",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "shape_mkn": [
+        1024,
+        1024,
+        6144
+      ],
+      "strassen": {
+        "algorithm": "strassen",
+        "arm_id": "strassen_unpacked_unfused",
+        "mean_ms": 0.33142559999999993,
+        "source_group": "qwen06_m1024_swiglu",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    "qwen06_m2048_residual": {
+      "cubic": {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_full_unpacked_unfused",
+        "mean_ms": 0.3383937000000001,
+        "source_group": "qwen06_m2048_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "kind": "residual",
+      "native": {
+        "algorithm": "native",
+        "arm_id": "native_joint_graph",
+        "mean_ms": 0.35300056666666657,
+        "source_group": "qwen06_m2048_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "shape_mkn": [
+        2048,
+        3072,
+        1024
+      ],
+      "strassen": {
+        "algorithm": "strassen",
+        "arm_id": "strassen_fused",
+        "fused": true,
+        "mean_ms": 0.32982809999999996,
+        "source_group": "qwen06_m2048_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    "qwen06_m2048_swiglu": {
+      "cubic": {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_full_unpacked_unfused",
+        "mean_ms": 0.4284610333333333,
+        "source_group": "qwen06_m2048_swiglu",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "kind": "swiglu",
+      "native": {
+        "algorithm": "native",
+        "arm_id": "native_joint_graph",
+        "mean_ms": 0.4049156333333333,
+        "source_group": "qwen06_m2048_swiglu",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "shape_mkn": [
+        2048,
+        1024,
+        6144
+      ],
+      "strassen": {
+        "algorithm": "strassen",
+        "arm_id": "strassen_unpacked_unfused",
+        "mean_ms": 0.41780863333333335,
+        "source_group": "qwen06_m2048_swiglu",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    "qwen32b_m1024_residual": {
+      "cubic": {
+        "algorithm": "cubic_quadrant",
+        "arm_id": "cubic_quadrant_fused",
+        "fused": true,
+        "mean_ms": 1.7070176333333336,
+        "source_group": "qwen32b_m1024_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      },
+      "kind": "residual",
+      "native": {
+        "algorithm": "native",
+        "arm_id": "native_joint_graph",
+        "mean_ms": 1.7599605999999999,
+        "source_group": "qwen32b_m1024_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "shape_mkn": [
+        1024,
+        25600,
+        5120
+      ],
+      "strassen": {
+        "algorithm": "strassen",
+        "arm_id": "strassen_fused",
+        "fused": true,
+        "mean_ms": 1.5484974333333332,
+        "source_group": "qwen32b_m1024_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    "qwen32b_m1024_swiglu": {
+      "cubic": {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_full_unpacked_unfused",
+        "mean_ms": 3.775293133333333,
+        "source_group": "qwen32b_m1024_swiglu",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "kind": "swiglu",
+      "native": {
+        "algorithm": "native",
+        "arm_id": "native_joint_graph",
+        "mean_ms": 3.2437358333333335,
+        "source_group": "qwen32b_m1024_swiglu",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "shape_mkn": [
+        1024,
+        5120,
+        51200
+      ],
+      "strassen": {
+        "algorithm": "strassen",
+        "arm_id": "strassen_unpacked_unfused",
+        "mean_ms": 3.6122965000000002,
+        "source_group": "qwen32b_m1024_swiglu",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    "qwen32b_m2048_residual": {
+      "cubic": {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_full_fused",
+        "fused": true,
+        "mean_ms": 3.1613339,
+        "source_group": "qwen32b_m2048_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "kind": "residual",
+      "native": {
+        "algorithm": "native",
+        "arm_id": "native_joint_graph",
+        "mean_ms": 3.2478591000000003,
+        "source_group": "qwen32b_m2048_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "shape_mkn": [
+        2048,
+        25600,
+        5120
+      ],
+      "strassen": {
+        "algorithm": "strassen",
+        "arm_id": "strassen_fused",
+        "fused": true,
+        "mean_ms": 2.8390085,
+        "source_group": "qwen32b_m2048_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    "qwen32b_m2048_swiglu": {
+      "cubic": {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_full_unpacked_unfused",
+        "mean_ms": 7.853065366666668,
+        "source_group": "qwen32b_m2048_swiglu",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "kind": "swiglu",
+      "native": {
+        "algorithm": "native",
+        "arm_id": "native_joint_graph",
+        "mean_ms": 6.381392866666667,
+        "source_group": "qwen32b_m2048_swiglu",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "shape_mkn": [
+        2048,
+        5120,
+        51200
+      ],
+      "strassen": {
+        "algorithm": "strassen",
+        "arm_id": "strassen_unpacked_unfused",
+        "mean_ms": 7.5308427333333325,
+        "source_group": "qwen32b_m2048_swiglu",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    "qwen32b_m512_residual": {
+      "cubic": {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_full_unpacked_unfused",
+        "mean_ms": 1.7890232999999995,
+        "source_group": "qwen32b_m512_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "kind": "residual",
+      "native": {
+        "algorithm": "native",
+        "arm_id": "native_joint_graph",
+        "mean_ms": 1.012415,
+        "source_group": "qwen32b_m512_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "shape_mkn": [
+        512,
+        25600,
+        5120
+      ],
+      "strassen": {
+        "algorithm": "strassen",
+        "arm_id": "strassen_fused",
+        "fused": true,
+        "mean_ms": 1.6420798333333333,
+        "source_group": "qwen32b_m512_residual",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    },
+    "qwen32b_m512_swiglu": {
+      "cubic": {
+        "algorithm": "cubic_full",
+        "arm_id": "cubic_n5_selected_unfused",
+        "mean_ms": 2.035763833333333,
+        "selection_provenance": {
+          "algorithm": "cubic_full",
+          "candidate_id": "c_output_accumulator_512_1024_1024",
+          "mean_ms": 1.794226857142857,
+          "prepared_mean_ms": 1.811258,
+          "reference_scope": "sampled_cross_product",
+          "relative_l2": 1.6808392434875007e-07,
+          "screen_record_id": {
+            "arm_id": "c_output_accumulator_512_1024_1024",
+            "case_id": "qwen32_gate_up_m512__candidate_pair_006__gaussian__20260919",
+            "group_id": "qwen32_gate_up_m512__candidate_pair_006",
+            "scope": "call"
+          },
+          "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+          "tile": [
+            512,
+            1024,
+            1024
+          ],
+          "variant": "output_accumulator"
+        },
+        "source_group": "qwen32b_m512_swiglu",
+        "tile": [
+          512,
+          1024,
+          1024
+        ],
+        "variant": "output_accumulator"
+      },
+      "kind": "swiglu",
+      "native": {
+        "algorithm": "native",
+        "arm_id": "native_joint_graph",
+        "mean_ms": 1.7368590666666668,
+        "source_group": "qwen32b_m512_swiglu",
+        "tile": [
+          1024,
+          1024,
+          512
+        ],
+        "variant": "plain"
+      },
+      "shape_mkn": [
+        512,
+        5120,
+        51200
+      ],
+      "strassen": {
+        "algorithm": "strassen",
+        "arm_id": "strassen_n5_selected_unfused",
+        "mean_ms": 2.089773233333333,
+        "selection_provenance": {
+          "algorithm": "strassen",
+          "candidate_id": "s_interleaved_512_1024_512",
+          "mean_ms": 1.8481314285714283,
+          "prepared_mean_ms": 1.8577927142857145,
+          "reference_scope": "sampled_cross_product",
+          "relative_l2": 0.004447300785885831,
+          "screen_record_id": {
+            "arm_id": "s_interleaved_512_1024_512",
+            "case_id": "qwen32_gate_up_m512__candidate_pair_011__gaussian__20260919",
+            "group_id": "qwen32_gate_up_m512__candidate_pair_011",
+            "scope": "call"
+          },
+          "selected_on": "minimum complete-call arithmetic mean among two-scope eligible candidates",
+          "tile": [
+            512,
+            1024,
+            512
+          ],
+          "variant": "interleaved"
+        },
+        "source_group": "qwen32b_m512_swiglu",
+        "tile": [
+          512,
+          1024,
+          512
+        ],
+        "variant": "interleaved"
+      }
+    }
+  },
+  "campaign_sha256": "af364369337857a5920a67eb162d75bc95da509bb585c9e388b3138e38c7592e",
+  "environment_identity": {
+    "allocation_id": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+    "boot_id": "64fe01c7-4c57-43e9-9f49-6805fb8a887d",
+    "colab_endpoint": "tpu-v5e1-s-kkb-usw1c1-3iv9vtqwssy8q",
+    "device_id": 0,
+    "device_kind": "TPU v5 lite",
+    "devices": [
+      {
+        "coords": [
+          0,
+          0,
+          0
+        ],
+        "core_on_chip": 0,
+        "id": 0,
+        "kind": "TPU v5 lite",
+        "local_hardware_id": 0,
+        "platform": "tpu",
+        "process_index": 0
+      }
+    ],
+    "host_id": "6f3b9b8cc92c",
+    "hostname": "6f3b9b8cc92c",
+    "jax_version": "0.7.2",
+    "jaxlib_version": "0.7.2",
+    "libtpu_version": "0.0.21.1",
+    "mosaic_compatibility": {
+      "jax": "0.7.2",
+      "libtpu": "0.0.21.1",
+      "override_enabled": true,
+      "target_ir_version": 7
+    },
+    "numpy_version": "2.1.3",
+    "process_index": 0,
+    "runtime_flags": {
+      "JAX_ENABLE_X64": "false",
+      "JAX_PLATFORMS": "tpu",
+      "LIBTPU_INIT_ARGS": " --xla_tpu_use_enhanced_launch_barrier=true",
+      "MKL_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "PJRT_DEVICE": "TPU",
+      "TPU_CHIPS_PER_HOST_BOUNDS": "2,2,1",
+      "TPU_HOST_BOUNDS": "1,1,1",
+      "TPU_NUM_CHIPS": null,
+      "TPU_VISIBLE_CHIPS": null,
+      "XLA_FLAGS": null,
+      "XLA_PYTHON_CLIENT_PREALLOCATE": "false"
+    },
+    "runtime_image": "release-colab-external-images_20260917-060051_RC00",
+    "versions": {
+      "jax": "0.7.2",
+      "jaxlib": "0.7.2",
+      "libtpu": "0.0.21.1",
+      "ml_dtypes": "0.6.0",
+      "numpy": "2.1.3",
+      "requests": "2.32.4",
+      "scipy": "1.16.3"
+    }
+  },
+  "phase": "N8",
+  "scope": "Performance choices on synthetic Gaussian; require independent N9 model-quality qualification",
+  "selection_rule": "Lowest complete-call mean among numerically eligible family members; fixed attempts; no N9 quality data used"
+}

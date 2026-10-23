@@ -1,0 +1,53 @@
+{
+  "status": "failed",
+  "started_utc": "2026-10-17T02:04:44.713089+00:00",
+  "predecessor": "20261016-gemma4-31b-v003",
+  "qualification": "passed",
+  "stages": [
+    {
+      "name": "oracle-a0",
+      "batch": null,
+      "stage": "oracle",
+      "attempt": 0,
+      "returncode": 0,
+      "seconds": 7.270504396001343
+    },
+    {
+      "name": "b64-qualify-a0",
+      "batch": 64,
+      "stage": "qualify",
+      "attempt": 0,
+      "returncode": 0,
+      "seconds": 239.75673252799606
+    },
+    {
+      "name": "b64-confirm-a0",
+      "batch": 64,
+      "stage": "confirm",
+      "attempt": 0,
+      "returncode": 1,
+      "seconds": 428.5947176749978
+    },
+    {
+      "name": "b64-confirm-a1",
+      "batch": 64,
+      "stage": "confirm",
+      "attempt": 1,
+      "returncode": 1,
+      "seconds": 429.4612496320042
+    }
+  ],
+  "batches": [
+    {
+      "batch": 64,
+      "status": "partial_or_failed",
+      "quality_pass": null
+    }
+  ],
+  "batch_archives": [],
+  "profile_sha256": "e72c892479c8389be57c28c8d48d70fef61f0711300f8772aac9cc66395cc413",
+  "active_batch": 64,
+  "error_type": "RuntimeError",
+  "error": "B64 recovery stage failed: confirm",
+  "finished_utc": "2026-10-17T02:23:09.799223+00:00"
+}

@@ -1,0 +1,57 @@
+{
+  "observed_utc": "2026-10-19T19:08:53.006237+00:00",
+  "remote_state": {
+    "status": "failed",
+    "scope": "three-model paired downstream subsets",
+    "started_utc": "2026-10-19T12:54:47.208787+00:00",
+    "completed_models": [
+      "qwen3_14b"
+    ],
+    "test_evaluations_completed": 3,
+    "test_evaluations_total": 9,
+    "release_attempted": false,
+    "stage": "retrying_from_completed_batches",
+    "updated_utc": "2026-10-19T19:08:40.800488+00:00",
+    "model": "qwen3_32b",
+    "attempt": 1,
+    "model_archive": {
+      "path": "/content/Strassen_MM_Focus/runs/20261019-accuracy-study-v006/qwen3_14b.tar.gz",
+      "bytes": 1428152,
+      "sha256": "e62cb2ff94ba447e13bb44a6fd802285ac556fcb9a61e8104c0cdd54c516c940"
+    },
+    "returncode": 1,
+    "error_type": "RuntimeError",
+    "error": "Model failed after bounded restart; TPU retained for diagnosis",
+    "finished_utc": "2026-10-19T19:08:40.800964+00:00"
+  },
+  "progress": {
+    "model": "qwen3_32b",
+    "completed_tasks": [],
+    "latest_event": {
+      "utc": "2026-10-19T19:08:37.485780+00:00",
+      "model": "qwen3_32b",
+      "kind": "runtime_admission",
+      "status": "failed",
+      "native_cached_full_relative_l2": 0.013896857653672283,
+      "native_cached_full_max_abs": 0.3125,
+      "relative_l2_limit": 0.005,
+      "native_greedy_agreement": 1.0,
+      "train_example_ids": [
+        4826,
+        2644,
+        5927,
+        985,
+        1737,
+        3852,
+        4419,
+        2398
+      ],
+      "train_input_sha256": "fa6c68f0945b6e2580231932f748235b40f6d7ddb80002bbd4611e37e9a227ea",
+      "all_logits_finite": true,
+      "strassen_quality_is_not_an_admission_gate": true
+    },
+    "observed_utc": "2026-10-19T19:08:39.176069+00:00"
+  },
+  "test_evaluations_completed": 3,
+  "test_evaluations_total": 9
+}

@@ -1,0 +1,792 @@
+{
+  "version": "parent-adopted-v001",
+  "model": "Qwen3-32B",
+  "device": "v6e",
+  "batch": 8,
+  "sequence": 1024,
+  "default_dtype": "bfloat16",
+  "default_family": "s1",
+  "native_compiler_options": {
+    "xla_tpu_scoped_vmem_limit_kib": 49152
+  },
+  "profiles": {
+    "bfloat16": {
+      "cubic": {
+        "backend": "parent_exact",
+        "family": "cubic",
+        "output_dtype": "bfloat16",
+        "parent_commit": "95be1fb088656a89813b04492e1d77c66b36ccf9",
+        "model": "Qwen3-32B",
+        "device": "v6e",
+        "batch": 8,
+        "sequence": 1024,
+        "tuning": {
+          "product_tile": [
+            2048,
+            1024,
+            5120
+          ],
+          "cubic_tile": [
+            2048,
+            2048,
+            512
+          ],
+          "qk_tile": [
+            2048,
+            1024,
+            5120
+          ],
+          "site_tiles": {
+            "o": [
+              2048,
+              512,
+              8192
+            ],
+            "down": [
+              2048,
+              2560,
+              1024
+            ]
+          },
+          "extended_sites": [
+            "o",
+            "down"
+          ],
+          "strassen_limit_mib": 120,
+          "cubic_limit_mib": 124
+        }
+      },
+      "s1": {
+        "backend": "parent_exact",
+        "family": "s1",
+        "output_dtype": "bfloat16",
+        "parent_commit": "95be1fb088656a89813b04492e1d77c66b36ccf9",
+        "model": "Qwen3-32B",
+        "device": "v6e",
+        "batch": 8,
+        "sequence": 1024,
+        "tuning": {
+          "product_tile": [
+            2048,
+            1024,
+            5120
+          ],
+          "cubic_tile": [
+            2048,
+            2048,
+            512
+          ],
+          "qk_tile": [
+            2048,
+            1024,
+            5120
+          ],
+          "site_tiles": {
+            "o": [
+              2048,
+              512,
+              8192
+            ],
+            "down": [
+              2048,
+              2560,
+              1024
+            ]
+          },
+          "extended_sites": [
+            "o",
+            "down"
+          ],
+          "strassen_limit_mib": 120,
+          "cubic_limit_mib": 124
+        }
+      },
+      "s2": {
+        "backend": "extension",
+        "family": "s2",
+        "output_dtype": "bfloat16",
+        "policy": {
+          "q": {
+            "arm_id": "s2_outputs_2048_1024_5120_b2_bfloat16__vmem120",
+            "candidate_id": "s2_outputs_2048_1024_5120_b2_bfloat16__vmem120",
+            "variant": "s2_outputs_2048_1024_5120_b2_bfloat16__vmem120",
+            "family": "s2",
+            "algorithm": "current",
+            "implementation": "current",
+            "depth": 2,
+            "accumulator": "outputs",
+            "tile": [
+              2048,
+              1024,
+              5120
+            ],
+            "buffers": 2,
+            "output_dtype": "bfloat16",
+            "vmem_limit_bytes": 125829120,
+            "compiler_options": {},
+            "architecture": "v6e",
+            "early": false
+          },
+          "k": {
+            "accumulator": "outputs",
+            "algorithm": "current",
+            "architecture": "v6e",
+            "arm_id": "s2_outputs_1024_1024_5120_b2_bfloat16__vmem120",
+            "buffers": 2,
+            "candidate_id": "s2_outputs_1024_1024_5120_b2_bfloat16__vmem120",
+            "compiler_options": {},
+            "depth": 2,
+            "early": false,
+            "family": "s2",
+            "implementation": "current",
+            "output_dtype": "bfloat16",
+            "tile": [
+              1024,
+              1024,
+              5120
+            ],
+            "variant": "s2_outputs_1024_1024_5120_b2_bfloat16__vmem120",
+            "vmem_limit_bytes": 125829120
+          },
+          "v": {
+            "arm_id": "Native_default",
+            "candidate_id": "Native_default",
+            "variant": "Native_default",
+            "family": "native",
+            "algorithm": "native",
+            "implementation": "native",
+            "depth": 0,
+            "accumulator": "products",
+            "tile": null,
+            "buffers": 2,
+            "output_dtype": "bfloat16",
+            "vmem_limit_bytes": 117440512,
+            "compiler_options": {},
+            "architecture": "v6e"
+          },
+          "o": {
+            "arm_id": "Native_default",
+            "candidate_id": "Native_default",
+            "variant": "Native_default",
+            "family": "native",
+            "algorithm": "native",
+            "implementation": "native",
+            "depth": 0,
+            "accumulator": "products",
+            "tile": null,
+            "buffers": 2,
+            "output_dtype": "bfloat16",
+            "vmem_limit_bytes": 117440512,
+            "compiler_options": {},
+            "architecture": "v6e"
+          },
+          "gateup": {
+            "arm_id": "s2_outputs_2048_1024_5120_b2_bfloat16__vmem120",
+            "candidate_id": "s2_outputs_2048_1024_5120_b2_bfloat16__vmem120",
+            "variant": "s2_outputs_2048_1024_5120_b2_bfloat16__vmem120",
+            "family": "s2",
+            "algorithm": "current",
+            "implementation": "current",
+            "depth": 2,
+            "accumulator": "outputs",
+            "tile": [
+              2048,
+              1024,
+              5120
+            ],
+            "buffers": 2,
+            "output_dtype": "bfloat16",
+            "vmem_limit_bytes": 125829120,
+            "compiler_options": {},
+            "architecture": "v6e",
+            "early": false
+          },
+          "down": {
+            "arm_id": "Native_default",
+            "candidate_id": "Native_default",
+            "variant": "Native_default",
+            "family": "native",
+            "algorithm": "native",
+            "implementation": "native",
+            "depth": 0,
+            "accumulator": "products",
+            "tile": null,
+            "buffers": 2,
+            "output_dtype": "bfloat16",
+            "vmem_limit_bytes": 117440512,
+            "compiler_options": {},
+            "architecture": "v6e"
+          }
+        }
+      }
+    },
+    "float32": {
+      "cubic": {
+        "backend": "extension",
+        "family": "cubic",
+        "output_dtype": "float32",
+        "policy": {
+          "q": {
+            "accumulator": "outputs",
+            "algorithm": "cubic",
+            "architecture": "v6e",
+            "arm_id": "cubic_blocked_2048_1024_5120_b2_float32__vmem124",
+            "buffers": 2,
+            "candidate_id": "cubic_blocked_2048_1024_5120_b2_float32__vmem124",
+            "compiler_options": {},
+            "depth": 0,
+            "early": false,
+            "family": "cubic",
+            "implementation": "cubic",
+            "output_dtype": "float32",
+            "tile": [
+              2048,
+              1024,
+              5120
+            ],
+            "variant": "cubic_blocked_2048_1024_5120_b2_float32__vmem124",
+            "vmem_limit_bytes": 130023424
+          },
+          "k": {
+            "arm_id": "cubic_blocked_1024_1024_5120_b2_float32__vmem124",
+            "candidate_id": "cubic_blocked_1024_1024_5120_b2_float32__vmem124",
+            "variant": "cubic_blocked_1024_1024_5120_b2_float32__vmem124",
+            "family": "cubic",
+            "algorithm": "cubic",
+            "implementation": "cubic",
+            "depth": 0,
+            "accumulator": "outputs",
+            "tile": [
+              1024,
+              1024,
+              5120
+            ],
+            "buffers": 2,
+            "output_dtype": "float32",
+            "vmem_limit_bytes": 130023424,
+            "compiler_options": {},
+            "architecture": "v6e",
+            "early": false
+          },
+          "v": {
+            "arm_id": "Native_default",
+            "candidate_id": "Native_default",
+            "variant": "Native_default",
+            "family": "native",
+            "algorithm": "native",
+            "implementation": "native",
+            "depth": 0,
+            "accumulator": "products",
+            "tile": null,
+            "buffers": 2,
+            "output_dtype": "bfloat16",
+            "vmem_limit_bytes": 117440512,
+            "compiler_options": {},
+            "architecture": "v6e"
+          },
+          "o": {
+            "arm_id": "Native_default",
+            "candidate_id": "Native_default",
+            "variant": "Native_default",
+            "family": "native",
+            "algorithm": "native",
+            "implementation": "native",
+            "depth": 0,
+            "accumulator": "products",
+            "tile": null,
+            "buffers": 2,
+            "output_dtype": "bfloat16",
+            "vmem_limit_bytes": 117440512,
+            "compiler_options": {},
+            "architecture": "v6e"
+          },
+          "gateup": {
+            "arm_id": "cubic_full_2048_1024_5120_b2_float32__vmem124",
+            "candidate_id": "cubic_full_2048_1024_5120_b2_float32__vmem124",
+            "variant": "cubic_full_2048_1024_5120_b2_float32__vmem124",
+            "family": "cubic",
+            "algorithm": "cubic",
+            "implementation": "cubic_full",
+            "depth": 0,
+            "accumulator": "outputs",
+            "tile": [
+              2048,
+              1024,
+              5120
+            ],
+            "buffers": 2,
+            "output_dtype": "float32",
+            "vmem_limit_bytes": 130023424,
+            "compiler_options": {},
+            "architecture": "v6e",
+            "early": false
+          },
+          "down": {
+            "arm_id": "Native_default",
+            "candidate_id": "Native_default",
+            "variant": "Native_default",
+            "family": "native",
+            "algorithm": "native",
+            "implementation": "native",
+            "depth": 0,
+            "accumulator": "products",
+            "tile": null,
+            "buffers": 2,
+            "output_dtype": "bfloat16",
+            "vmem_limit_bytes": 117440512,
+            "compiler_options": {},
+            "architecture": "v6e"
+          }
+        }
+      },
+      "s1": {
+        "backend": "extension",
+        "family": "s1",
+        "output_dtype": "float32",
+        "policy": {
+          "q": {
+            "arm_id": "s1_outputs_2048_1024_5120_b2_float32__vmem120",
+            "candidate_id": "s1_outputs_2048_1024_5120_b2_float32__vmem120",
+            "variant": "s1_outputs_2048_1024_5120_b2_float32__vmem120",
+            "family": "s1",
+            "algorithm": "current",
+            "implementation": "current",
+            "depth": 1,
+            "accumulator": "outputs",
+            "tile": [
+              2048,
+              1024,
+              5120
+            ],
+            "buffers": 2,
+            "output_dtype": "float32",
+            "vmem_limit_bytes": 125829120,
+            "compiler_options": {},
+            "architecture": "v6e",
+            "early": false
+          },
+          "k": {
+            "arm_id": "s1_outputs_1024_1024_5120_b2_float32__vmem120",
+            "candidate_id": "s1_outputs_1024_1024_5120_b2_float32__vmem120",
+            "variant": "s1_outputs_1024_1024_5120_b2_float32__vmem120",
+            "family": "s1",
+            "algorithm": "current",
+            "implementation": "current",
+            "depth": 1,
+            "accumulator": "outputs",
+            "tile": [
+              1024,
+              1024,
+              5120
+            ],
+            "buffers": 2,
+            "output_dtype": "float32",
+            "vmem_limit_bytes": 125829120,
+            "compiler_options": {},
+            "architecture": "v6e",
+            "early": false
+          },
+          "v": {
+            "arm_id": "Native_default",
+            "candidate_id": "Native_default",
+            "variant": "Native_default",
+            "family": "native",
+            "algorithm": "native",
+            "implementation": "native",
+            "depth": 0,
+            "accumulator": "products",
+            "tile": null,
+            "buffers": 2,
+            "output_dtype": "bfloat16",
+            "vmem_limit_bytes": 117440512,
+            "compiler_options": {},
+            "architecture": "v6e"
+          },
+          "o": {
+            "arm_id": "Native_default",
+            "candidate_id": "Native_default",
+            "variant": "Native_default",
+            "family": "native",
+            "algorithm": "native",
+            "implementation": "native",
+            "depth": 0,
+            "accumulator": "products",
+            "tile": null,
+            "buffers": 2,
+            "output_dtype": "bfloat16",
+            "vmem_limit_bytes": 117440512,
+            "compiler_options": {},
+            "architecture": "v6e"
+          },
+          "gateup": {
+            "arm_id": "s1_outputs_2048_1024_5120_b2_float32__early__vmem120",
+            "candidate_id": "s1_outputs_2048_1024_5120_b2_float32__early__vmem120",
+            "variant": "s1_outputs_2048_1024_5120_b2_float32__early__vmem120",
+            "family": "s1",
+            "algorithm": "current",
+            "implementation": "current",
+            "depth": 1,
+            "accumulator": "outputs",
+            "tile": [
+              2048,
+              1024,
+              5120
+            ],
+            "buffers": 2,
+            "output_dtype": "float32",
+            "vmem_limit_bytes": 125829120,
+            "compiler_options": {},
+            "architecture": "v6e",
+            "early": true
+          },
+          "down": {
+            "arm_id": "Native_default",
+            "candidate_id": "Native_default",
+            "variant": "Native_default",
+            "family": "native",
+            "algorithm": "native",
+            "implementation": "native",
+            "depth": 0,
+            "accumulator": "products",
+            "tile": null,
+            "buffers": 2,
+            "output_dtype": "bfloat16",
+            "vmem_limit_bytes": 117440512,
+            "compiler_options": {},
+            "architecture": "v6e"
+          }
+        }
+      },
+      "s2": {
+        "backend": "extension",
+        "family": "s2",
+        "output_dtype": "float32",
+        "policy": {
+          "q": {
+            "arm_id": "s2_outputs_2048_1024_5120_b2_float32__vmem120",
+            "candidate_id": "s2_outputs_2048_1024_5120_b2_float32__vmem120",
+            "variant": "s2_outputs_2048_1024_5120_b2_float32__vmem120",
+            "family": "s2",
+            "algorithm": "current",
+            "implementation": "current",
+            "depth": 2,
+            "accumulator": "outputs",
+            "tile": [
+              2048,
+              1024,
+              5120
+            ],
+            "buffers": 2,
+            "output_dtype": "float32",
+            "vmem_limit_bytes": 125829120,
+            "compiler_options": {},
+            "architecture": "v6e",
+            "early": false
+          },
+          "k": {
+            "accumulator": "outputs",
+            "algorithm": "current",
+            "architecture": "v6e",
+            "arm_id": "s2_outputs_1024_1024_5120_b2_float32__vmem120",
+            "buffers": 2,
+            "candidate_id": "s2_outputs_1024_1024_5120_b2_float32__vmem120",
+            "compiler_options": {},
+            "depth": 2,
+            "early": false,
+            "family": "s2",
+            "implementation": "current",
+            "output_dtype": "float32",
+            "tile": [
+              1024,
+              1024,
+              5120
+            ],
+            "variant": "s2_outputs_1024_1024_5120_b2_float32__vmem120",
+            "vmem_limit_bytes": 125829120
+          },
+          "v": {
+            "arm_id": "Native_default",
+            "candidate_id": "Native_default",
+            "variant": "Native_default",
+            "family": "native",
+            "algorithm": "native",
+            "implementation": "native",
+            "depth": 0,
+            "accumulator": "products",
+            "tile": null,
+            "buffers": 2,
+            "output_dtype": "bfloat16",
+            "vmem_limit_bytes": 117440512,
+            "compiler_options": {},
+            "architecture": "v6e"
+          },
+          "o": {
+            "arm_id": "Native_default",
+            "candidate_id": "Native_default",
+            "variant": "Native_default",
+            "family": "native",
+            "algorithm": "native",
+            "implementation": "native",
+            "depth": 0,
+            "accumulator": "products",
+            "tile": null,
+            "buffers": 2,
+            "output_dtype": "bfloat16",
+            "vmem_limit_bytes": 117440512,
+            "compiler_options": {},
+            "architecture": "v6e"
+          },
+          "gateup": {
+            "arm_id": "s2_outputs_2048_1024_5120_b2_float32__vmem120",
+            "candidate_id": "s2_outputs_2048_1024_5120_b2_float32__vmem120",
+            "variant": "s2_outputs_2048_1024_5120_b2_float32__vmem120",
+            "family": "s2",
+            "algorithm": "current",
+            "implementation": "current",
+            "depth": 2,
+            "accumulator": "outputs",
+            "tile": [
+              2048,
+              1024,
+              5120
+            ],
+            "buffers": 2,
+            "output_dtype": "float32",
+            "vmem_limit_bytes": 125829120,
+            "compiler_options": {},
+            "architecture": "v6e",
+            "early": false
+          },
+          "down": {
+            "arm_id": "Native_default",
+            "candidate_id": "Native_default",
+            "variant": "Native_default",
+            "family": "native",
+            "algorithm": "native",
+            "implementation": "native",
+            "depth": 0,
+            "accumulator": "products",
+            "tile": null,
+            "buffers": 2,
+            "output_dtype": "bfloat16",
+            "vmem_limit_bytes": 117440512,
+            "compiler_options": {},
+            "architecture": "v6e"
+          }
+        }
+      }
+    }
+  },
+  "native": {
+    "backend": "parent_exact",
+    "family": "native",
+    "output_dtype": "bfloat16",
+    "parent_commit": "95be1fb088656a89813b04492e1d77c66b36ccf9",
+    "model": "Qwen3-32B",
+    "device": "v6e",
+    "batch": 8,
+    "sequence": 1024,
+    "tuning": {
+      "product_tile": [
+        2048,
+        1024,
+        5120
+      ],
+      "cubic_tile": [
+        2048,
+        2048,
+        512
+      ],
+      "qk_tile": [
+        2048,
+        1024,
+        5120
+      ],
+      "site_tiles": {
+        "o": [
+          2048,
+          512,
+          8192
+        ],
+        "down": [
+          2048,
+          2560,
+          1024
+        ]
+      },
+      "extended_sites": [
+        "o",
+        "down"
+      ],
+      "strassen_limit_mib": 120,
+      "cubic_limit_mib": 124
+    }
+  },
+  "parent_cubic_control": {
+    "backend": "parent_exact",
+    "family": "cubic",
+    "output_dtype": "bfloat16",
+    "parent_commit": "95be1fb088656a89813b04492e1d77c66b36ccf9",
+    "model": "Qwen3-32B",
+    "device": "v6e",
+    "batch": 8,
+    "sequence": 1024,
+    "tuning": {
+      "product_tile": [
+        2048,
+        1024,
+        5120
+      ],
+      "cubic_tile": [
+        2048,
+        2048,
+        512
+      ],
+      "qk_tile": [
+        2048,
+        1024,
+        5120
+      ],
+      "site_tiles": {
+        "o": [
+          2048,
+          512,
+          8192
+        ],
+        "down": [
+          2048,
+          2560,
+          1024
+        ]
+      },
+      "extended_sites": [
+        "o",
+        "down"
+      ],
+      "strassen_limit_mib": 120,
+      "cubic_limit_mib": 124
+    }
+  },
+  "matched_cubic_control": {
+    "backend": "extension",
+    "family": "cubic",
+    "output_dtype": "bfloat16",
+    "policy": {
+      "q": {
+        "arm_id": "cubic_full_1024_1024_5120_b2_bfloat16__vmem124",
+        "candidate_id": "cubic_full_1024_1024_5120_b2_bfloat16__vmem124",
+        "variant": "cubic_full_1024_1024_5120_b2_bfloat16__vmem124",
+        "family": "cubic",
+        "algorithm": "cubic",
+        "implementation": "cubic_full",
+        "depth": 0,
+        "accumulator": "outputs",
+        "tile": [
+          1024,
+          1024,
+          5120
+        ],
+        "buffers": 2,
+        "output_dtype": "bfloat16",
+        "vmem_limit_bytes": 130023424,
+        "compiler_options": {},
+        "architecture": "v6e",
+        "early": false
+      },
+      "k": {
+        "accumulator": "outputs",
+        "algorithm": "cubic",
+        "architecture": "v6e",
+        "arm_id": "cubic_blocked_1024_1024_5120_b2_bfloat16__vmem124",
+        "buffers": 2,
+        "candidate_id": "cubic_blocked_1024_1024_5120_b2_bfloat16__vmem124",
+        "compiler_options": {},
+        "depth": 0,
+        "early": false,
+        "family": "cubic",
+        "implementation": "cubic",
+        "output_dtype": "bfloat16",
+        "tile": [
+          1024,
+          1024,
+          5120
+        ],
+        "variant": "cubic_blocked_1024_1024_5120_b2_bfloat16__vmem124",
+        "vmem_limit_bytes": 130023424
+      },
+      "v": {
+        "arm_id": "Native_default",
+        "candidate_id": "Native_default",
+        "variant": "Native_default",
+        "family": "native",
+        "algorithm": "native",
+        "implementation": "native",
+        "depth": 0,
+        "accumulator": "products",
+        "tile": null,
+        "buffers": 2,
+        "output_dtype": "bfloat16",
+        "vmem_limit_bytes": 117440512,
+        "compiler_options": {},
+        "architecture": "v6e"
+      },
+      "o": {
+        "arm_id": "Native_default",
+        "candidate_id": "Native_default",
+        "variant": "Native_default",
+        "family": "native",
+        "algorithm": "native",
+        "implementation": "native",
+        "depth": 0,
+        "accumulator": "products",
+        "tile": null,
+        "buffers": 2,
+        "output_dtype": "bfloat16",
+        "vmem_limit_bytes": 117440512,
+        "compiler_options": {},
+        "architecture": "v6e"
+      },
+      "gateup": {
+        "arm_id": "cubic_full_2048_1024_5120_b2_bfloat16__vmem124",
+        "candidate_id": "cubic_full_2048_1024_5120_b2_bfloat16__vmem124",
+        "variant": "cubic_full_2048_1024_5120_b2_bfloat16__vmem124",
+        "family": "cubic",
+        "algorithm": "cubic",
+        "implementation": "cubic_full",
+        "depth": 0,
+        "accumulator": "outputs",
+        "tile": [
+          2048,
+          1024,
+          5120
+        ],
+        "buffers": 2,
+        "output_dtype": "bfloat16",
+        "vmem_limit_bytes": 130023424,
+        "compiler_options": {},
+        "architecture": "v6e",
+        "early": false
+      },
+      "down": {
+        "arm_id": "Native_default",
+        "candidate_id": "Native_default",
+        "variant": "Native_default",
+        "family": "native",
+        "algorithm": "native",
+        "implementation": "native",
+        "depth": 0,
+        "accumulator": "products",
+        "tile": null,
+        "buffers": 2,
+        "output_dtype": "bfloat16",
+        "vmem_limit_bytes": 117440512,
+        "compiler_options": {},
+        "architecture": "v6e"
+      }
+    }
+  },
+  "extension_source_sha256": "ae23e4839afac6a19cf4e206087850dbb9feda268f27847ce00b8592dc1d8a33",
+  "selection": "User-selected adoption of reproduced parent S1; no new tuning or timing",
+  "cubic_control": "Exact parent cubic by default; use matched_cubic_control to isolate gain over our previously tuned equally fused cubic",
+  "precision": "Parent S1 uses DEFAULT fused normalization. Extensions retain HIGHEST; custom FP32 stores feed BF16 model consumers."
+}

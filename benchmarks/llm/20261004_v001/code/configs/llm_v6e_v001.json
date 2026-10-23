@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "campaign_id": "llm_v6e_20261003_v001",
+  "architecture": "v6e",
+  "models": [
+    {
+      "id": "qwen3_8b",
+      "repo_id": "Qwen/Qwen3-8B",
+      "revision": "b968826d9c46dd6066d109eabc6255188de91218"
+    },
+    {
+      "id": "qwen3_14b",
+      "repo_id": "Qwen/Qwen3-14B",
+      "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18"
+    },
+    {
+      "id": "qwen3_32b",
+      "repo_id": "Qwen/Qwen3-32B",
+      "revision": "9216db5781bf21249d130ec9da846c4624c16137"
+    },
+    {
+      "id": "mistral_7b",
+      "repo_id": "mistralai/Mistral-7B-v0.3",
+      "revision": "caa1feb0e54d415e2df31207e5f4e273e33509b1"
+    },
+    {
+      "id": "mistral_24b",
+      "repo_id": "mistralai/Mistral-Small-24B-Base-2501",
+      "revision": null
+    },
+    {
+      "id": "gemma3_12b",
+      "repo_id": "google/gemma-3-12b-pt",
+      "revision": "295efb63d01a7017928f273a94ebb86105c9526f"
+    },
+    {
+      "id": "gemma3_27b",
+      "repo_id": "google/gemma-3-27b-pt",
+      "revision": null
+    }
+  ],
+  "algorithms": [
+    "native_default",
+    "native_tuned",
+    "cubic_tuned",
+    "s1",
+    "s2"
+  ],
+  "output_dtypes": [
+    "bfloat16",
+    "float32"
+  ],
+  "prefill": [
+    {
+      "batch": 1,
+      "sequence": 512
+    },
+    {
+      "batch": 1,
+      "sequence": 1024
+    },
+    {
+      "batch": 1,
+      "sequence": 2048
+    },
+    {
+      "batch": 1,
+      "sequence": 4096
+    },
+    {
+      "batch": 4,
+      "sequence": 512
+    },
+    {
+      "batch": 4,
+      "sequence": 1024
+    },
+    {
+      "batch": 4,
+      "sequence": 2048
+    },
+    {
+      "batch": 8,
+      "sequence": 512
+    },
+    {
+      "batch": 8,
+      "sequence": 1024
+    },
+    {
+      "batch": 8,
+      "sequence": 2048
+    }
+  ],
+  "decode": [
+    {
+      "batch": 1,
+      "prompt": 512,
+      "new_tokens": 128
+    },
+    {
+      "batch": 1,
+      "prompt": 2048,
+      "new_tokens": 128
+    },
+    {
+      "batch": 8,
+      "prompt": 512,
+      "new_tokens": 128
+    },
+    {
+      "batch": 8,
+      "prompt": 2048,
+      "new_tokens": 128
+    }
+  ],
+  "stack": {
+    "jax": "0.11.2",
+    "jaxlib": "0.11.2",
+    "libtpu": "0.0.48",
+    "transformers": "4.56.2",
+    "torch": "2.8.0"
+  },
+  "precision": {
+    "input": "bfloat16",
+    "accumulation": "float32",
+    "dot": "DEFAULT",
+    "consumer": "bfloat16"
+  },
+  "timing": {
+    "warmups": 3,
+    "screen_repeats": 8,
+    "confirmation_rounds": 15,
+    "order_seed": 20261003,
+    "bootstrap_samples": 10000
+  },
+  "gates": {
+    "native_layer_relative_l2_max": 0.02,
+    "projection_relative_l2_max": 0.1,
+    "heldout_absolute_nll_delta_max": 0.01,
+    "heldout_mean_kl_max": 0.02,
+    "heldout_top1_agreement_min": 0.97,
+    "finite_required": true
+  },
+  "stages": [
+    "resolve_inputs",
+    "kernel_qualification",
+    "official_model_qualification",
+    "pilot",
+    "tune",
+    "freeze_profiles",
+    "confirm",
+    "heldout_quality",
+    "downstream_accuracy",
+    "kv_cache_qualification",
+    "decode"
+  ],
+  "max_retries": 2,
+  "automatic_v5e": false
+}

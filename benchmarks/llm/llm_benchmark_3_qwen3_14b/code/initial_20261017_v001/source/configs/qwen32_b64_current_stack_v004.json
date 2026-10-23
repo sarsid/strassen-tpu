@@ -1,0 +1,74 @@
+{
+  "study_id": "qwen32_b64_current_stack_v004",
+  "model": "Qwen/Qwen3-32B",
+  "revision": "9216db5781bf21249d130ec9da846c4624c16137",
+  "parent_commit": "95be1fb088656a89813b04492e1d77c66b36ccf9",
+  "architecture": "v6e",
+  "sequence": 1024,
+  "batches": [
+    64
+  ],
+  "arms": [
+    "native",
+    "native_tuned",
+    "cubic_tuned",
+    "strassen_tuned"
+  ],
+  "output_dtype": "bfloat16",
+  "strassen_depth": 1,
+  "native_vmem_mib": [
+    null,
+    32,
+    48,
+    64,
+    96,
+    112,
+    128
+  ],
+  "tune_warmups": 2,
+  "tune_runs": 5,
+  "block_warmups": 3,
+  "block_runs": 20,
+  "layer_warmups": 2,
+  "layer_runs": 5,
+  "quality_segments": 4,
+  "offloaded_prefill_warmups": 1,
+  "offloaded_prefill_runs": 3,
+  "natural_quality_gates": {
+    "absolute_loss_delta": 0.01,
+    "mean_kl_nats": 0.02,
+    "top1_agreement": 0.97
+  },
+  "repetitive_quality_gates": {
+    "absolute_loss_delta": 0.01,
+    "mean_kl_nats": 0.005,
+    "top1_agreement": 0.99
+  },
+  "per_stage_retry_limit": 1,
+  "stage_timeouts_seconds": {
+    "tune": 10800,
+    "confirm": 5400,
+    "quality": 5400,
+    "prefill": 10800,
+    "qualify": 1800
+  },
+  "other_models_queued": false,
+  "stages": [
+    "tune",
+    "qualify",
+    "confirm",
+    "quality",
+    "prefill"
+  ],
+  "launch_state": "authorized_20261015",
+  "result_root": "results/v6e/qwen32_b64_current_stack_20261015_v004",
+  "capture_mode": "segmented_full_batch",
+  "capture_native_reconstruction_relative_l2_max": 0.01,
+  "software": {
+    "jax": "0.11.2",
+    "jaxlib": "0.11.2",
+    "libtpu": "0.0.48"
+  },
+  "retune": true,
+  "comparison_scope": "Four matched B64 arms on current stack; separate from parent-stack B1-B32 results"
+}

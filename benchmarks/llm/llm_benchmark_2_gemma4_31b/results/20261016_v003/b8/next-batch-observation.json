@@ -1,0 +1,92 @@
+{
+  "status.json": {
+    "started_utc": "2026-10-16T14:46:53.939462+00:00",
+    "status": "running",
+    "stages": [
+      {
+        "name": "oracle-a0",
+        "batch": null,
+        "stage": "oracle",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 11.843308613000005
+      },
+      {
+        "name": "b8-tune-a0",
+        "batch": 8,
+        "stage": "tune",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 2279.383854238
+      },
+      {
+        "name": "b8-qualify-a0",
+        "batch": 8,
+        "stage": "qualify",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 196.6271367280001
+      },
+      {
+        "name": "b8-confirm-a0",
+        "batch": 8,
+        "stage": "confirm",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 1620.1214196219998
+      },
+      {
+        "name": "b8-quality-a0",
+        "batch": 8,
+        "stage": "quality",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 429.6517547250005
+      },
+      {
+        "name": "b8-prefill-a0",
+        "batch": 8,
+        "stage": "prefill",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 3985.639518602001
+      }
+    ],
+    "batches": [
+      {
+        "batch": 8,
+        "status": "completed",
+        "quality_pass": true
+      }
+    ],
+    "batch_archives": [
+      {
+        "batch": 8,
+        "path": "/content/Strassen_MM_Focus/runs/20261016-gemma4-31b-v003/b8-results.tar.gz",
+        "sha256": "0bfc3700ea1d6fe7e28009a08ec838c3da8c1613da3bb5ed16051c24031f277b",
+        "bytes": 813780
+      }
+    ],
+    "qualification": "passed",
+    "active": "b16-tune-a0",
+    "active_batch": 16
+  },
+  "progress.json": {
+    "batch": 16,
+    "stage": "tune",
+    "utc": "2026-10-16T17:11:48Z",
+    "test": "Compiler optimization",
+    "status": "running",
+    "stage_label": "Tuning",
+    "event": "lowered",
+    "elapsed_stage_seconds": 118.88441213999977,
+    "transport": "tensor",
+    "arm": "native_tuned",
+    "layer": 0,
+    "attention_type": "sliding_attention",
+    "candidate_index": 7,
+    "candidate_total": 7,
+    "candidate_mib": 128
+  },
+  "observed_utc": "2026-10-16T17:12:00.077814+00:00"
+}

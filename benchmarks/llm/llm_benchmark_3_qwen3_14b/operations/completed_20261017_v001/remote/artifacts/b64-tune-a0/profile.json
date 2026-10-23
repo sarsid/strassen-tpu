@@ -1,0 +1,52 @@
+{
+  "profile": {
+    "product_tile": [
+      2048,
+      1024,
+      5120
+    ],
+    "cubic_tile": [
+      2048,
+      1024,
+      5120
+    ],
+    "qk_tile": [
+      2048,
+      1024,
+      5120
+    ],
+    "native_options": {
+      "xla_tpu_scoped_vmem_limit_kib": 114688
+    },
+    "cubic_sites": {
+      "o": [
+        2048,
+        1024,
+        5120
+      ],
+      "down": [
+        2048,
+        5120,
+        1024
+      ]
+    },
+    "strassen_sites": {
+      "o": [
+        2048,
+        1024,
+        5120
+      ],
+      "down": [
+        2048,
+        2560,
+        1024
+      ]
+    }
+  },
+  "model": "Qwen/Qwen3-14B",
+  "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+  "batch": 64,
+  "sequence": 1024,
+  "selection": "parent five-sample mean; frozen before confirmation",
+  "qk": "fixed published tile; BM clipped for B1"
+}

@@ -1,0 +1,688 @@
+{
+  "schema_version": 1,
+  "campaign_id": "llm_large_shapes_v001",
+  "status": "preregistered_pending_smoke",
+  "shape_manifest": "shapes.json",
+  "shape_order": [
+    "m",
+    "k",
+    "n"
+  ],
+  "tile_order": [
+    "bm",
+    "bn",
+    "bk"
+  ],
+  "device": {
+    "target": "v5e",
+    "single_device": true,
+    "reuse_same_allocation": true,
+    "allow_v6e": false,
+    "allow_concurrent_timing": false,
+    "require_identity_match": true,
+    "identity_fields": [
+      "allocation_id",
+      "device_kind",
+      "device_id",
+      "process_index",
+      "jax_version",
+      "jaxlib_version",
+      "libtpu_version",
+      "runtime_image",
+      "runtime_flags",
+      "host_id"
+    ],
+    "identity_missing_policy": "Record unknown explicitly; do not describe unverified physical identity as the same chip."
+  },
+  "precision": {
+    "input_dtype": "bfloat16",
+    "pre_add_dtype": "bfloat16",
+    "accumulator_dtype": "float32",
+    "output_dtype": "float32",
+    "native_precision": "DEFAULT",
+    "reference_dtype": "float32",
+    "note": "The Strassen pre-add rounding is part of the algorithm under test; its numerical cost must remain visible. FP32 output differs from some historical BF16-output experiments."
+  },
+  "arms": {
+    "native_xla": {
+      "algorithm": "native",
+      "variant": "plain"
+    },
+    "cubic_selected": {
+      "algorithm": "cubic_full",
+      "variant": "output_accumulator"
+    },
+    "strassen_selected": {
+      "algorithm": "strassen",
+      "variant": "interleaved_output_accumulator"
+    }
+  },
+  "seed": 2026092100,
+  "timing": {
+    "smoke": {
+      "warmups": 2,
+      "repeats": 5
+    },
+    "screen": {
+      "warmups": 2,
+      "repeats": 7
+    },
+    "confirm": {
+      "warmups": 5,
+      "repeats": 30
+    },
+    "clock": "perf_counter_ns",
+    "synchronize": "block_until_ready every measured result",
+    "order": "seeded balanced interleaving of arms, raw chronological records retained",
+    "measure_scopes": [
+      "call",
+      "prepared_kernel"
+    ],
+    "headline_scope": "call",
+    "exclude": [
+      "compilation",
+      "host_to_device_transfer",
+      "reference_calculation",
+      "one_time_input_generation"
+    ],
+    "include_in_call": [
+      "device_padding_if_needed",
+      "device_layout_preparation_if_needed",
+      "matmul",
+      "device_output_crop_if_needed"
+    ],
+    "prepared_kernel_note": "Amortized/reused-input scope; always report alongside complete call and original vs padded dimensions.",
+    "report": [
+      "raw_ms",
+      "median_ms",
+      "mean_ms",
+      "std_ms",
+      "min_ms",
+      "max_ms",
+      "paired_speedup_ci95"
+    ],
+    "repeat_bad_policy": "Keep all completed samples. New complete runs may investigate drift; never replace failed/noisy rows."
+  },
+  "preparation": {
+    "padding": "zero pad each needed extent to tile divisibility for custom kernels; native accepts original shape",
+    "output": "crop to original M,N",
+    "materialization": "prepared kernel uses explicitly prepared inputs, synchronizes them before timing, and records their shapes",
+    "reuse_claim": "No reuse claim unless inputs and prepared buffers actually reused; full-call source remains the main comparison."
+  },
+  "memory": {
+    "kernel_vmem_limit_mib": 48,
+    "estimated_live_device_budget_gib": 8,
+    "max_reference_output_elements": 1048576,
+    "max_full_reference_flops": 2000000000,
+    "execution_order": "smoke first; remaining shapes in ascending estimated live bytes, largest anchor last",
+    "preflight": "Estimate and record bytes for original inputs, padded inputs, FP32 output, one result, and reference samples. Conservative estimate is not measured peak memory.",
+    "on_preflight_over_budget": "Record skipped_memory_preflight with estimate and limit; do not silently remove shape.",
+    "on_device_oom": "Record oom, clear executable/input buffers before the next case; retry only in a new immutable run."
+  },
+  "correctness": {
+    "input_reference": "Use the exact BF16-quantized operands cast to NumPy float32, not the pre-quantization random source.",
+    "reference": "host_numpy_fp32",
+    "mode": "full_if_both_limits_allow_else_sampled_cross_product",
+    "sample_rows": 128,
+    "sample_columns": 128,
+    "sampling": "seeded without replacement, always including first and last row/column; record indices; reference uses all K",
+    "gate": {
+      "require_finite": true,
+      "relative_l2_max": 0.02,
+      "max_abs_atol": 0.001,
+      "max_abs_reference_rtol": 0.05
+    },
+    "gate_expression": "finite && relative_l2 <= 0.02 && max_abs_error <= 0.001 + 0.05 * max_abs_reference",
+    "metrics": [
+      "reference_scope",
+      "sample_count",
+      "relative_l2",
+      "max_abs_error",
+      "max_abs_reference",
+      "rmse",
+      "mean_abs_error",
+      "p50_abs_error",
+      "p99_abs_error",
+      "normwise_error",
+      "finite",
+      "pass"
+    ],
+    "near_zero_denominator": 1e-30,
+    "failure_policy": "Record failures and measurements; failing rows cannot count as valid speedup wins. Fixed thresholds never change to rescue an arm.",
+    "scope": "Finite synthetic numerical eligibility only; no bound on model quality or worst-case error."
+  },
+  "experiments": {
+    "GRID-smoke": {
+      "shape_ids": [
+        "qwen_3_8b_gate_up_concat_m2048",
+        "gemma_3_12b_text_gate_up_concat_m16384"
+      ],
+      "candidate_families": {
+        "native": [
+          {
+            "candidate_id": "native_default",
+            "algorithm": "native",
+            "variant": "plain",
+            "tile": null,
+            "compiler_options": {}
+          }
+        ],
+        "cubic": [
+          {
+            "candidate_id": "cubic_512_1024_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              512,
+              1024,
+              512
+            ],
+            "compiler_options": {}
+          }
+        ],
+        "strassen": [
+          {
+            "candidate_id": "strassen_512_1024_512",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              512,
+              1024,
+              512
+            ],
+            "compiler_options": {}
+          }
+        ]
+      },
+      "distribution": "gaussian",
+      "seed": 2026092101,
+      "timing": "smoke",
+      "shortlist_top_k": 1,
+      "shortlist_max_per_family": 1,
+      "near_optimal_fraction": 0,
+      "selection_policy": {
+        "top_k": 1,
+        "near_fraction": 0,
+        "max_confirm_per_family": 1
+      },
+      "purpose": "Verify small Qwen and maximum-output Gemma concatenated projection shapes, all three algorithm families, both scopes, unchanged numerical gates and allocation identity before screening.",
+      "selection": false,
+      "expected_group_count": 2,
+      "expected_scoped_case_count": 12
+    },
+    "GRID-screen": {
+      "shape_ids": [
+        "qwen_3_8b_gate_up_concat_m2048",
+        "qwen_3_8b_down_m2048",
+        "qwen_3_8b_gate_up_concat_m8192",
+        "qwen_3_8b_down_m8192",
+        "qwen_3_8b_gate_up_concat_m16384",
+        "qwen_3_8b_down_m16384",
+        "mistral_7b_v03_gate_up_concat_m2048",
+        "mistral_7b_v03_down_m2048",
+        "mistral_7b_v03_gate_up_concat_m8192",
+        "mistral_7b_v03_down_m8192",
+        "mistral_7b_v03_gate_up_concat_m16384",
+        "mistral_7b_v03_down_m16384",
+        "gemma_3_12b_text_gate_up_concat_m2048",
+        "gemma_3_12b_text_down_m2048",
+        "gemma_3_12b_text_gate_up_concat_m8192",
+        "gemma_3_12b_text_down_m8192",
+        "gemma_3_12b_text_gate_up_concat_m16384",
+        "gemma_3_12b_text_down_m16384"
+      ],
+      "candidate_families": {
+        "native": [
+          {
+            "candidate_id": "native_default",
+            "algorithm": "native",
+            "variant": "plain",
+            "tile": null,
+            "compiler_options": {}
+          }
+        ],
+        "cubic": [
+          {
+            "candidate_id": "cubic_512_1024_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              512,
+              1024,
+              512
+            ],
+            "compiler_options": {}
+          },
+          {
+            "candidate_id": "cubic_1024_1024_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              1024,
+              1024,
+              512
+            ],
+            "compiler_options": {}
+          },
+          {
+            "candidate_id": "cubic_1024_1024_1024",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ],
+            "compiler_options": {}
+          },
+          {
+            "candidate_id": "cubic_2048_1024_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              2048,
+              1024,
+              512
+            ],
+            "compiler_options": {}
+          },
+          {
+            "candidate_id": "cubic_1024_2048_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              1024,
+              2048,
+              512
+            ],
+            "compiler_options": {}
+          },
+          {
+            "candidate_id": "cubic_2048_2048_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              2048,
+              2048,
+              512
+            ],
+            "compiler_options": {}
+          }
+        ],
+        "strassen": [
+          {
+            "candidate_id": "strassen_512_1024_512",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              512,
+              1024,
+              512
+            ],
+            "compiler_options": {}
+          },
+          {
+            "candidate_id": "strassen_1024_1024_512",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              1024,
+              1024,
+              512
+            ],
+            "compiler_options": {}
+          },
+          {
+            "candidate_id": "strassen_1024_1024_1024",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ],
+            "compiler_options": {}
+          },
+          {
+            "candidate_id": "strassen_2048_1024_512",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              2048,
+              1024,
+              512
+            ],
+            "compiler_options": {}
+          },
+          {
+            "candidate_id": "strassen_1024_2048_512",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              1024,
+              2048,
+              512
+            ],
+            "compiler_options": {}
+          },
+          {
+            "candidate_id": "strassen_2048_2048_512",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              2048,
+              2048,
+              512
+            ],
+            "compiler_options": {}
+          }
+        ]
+      },
+      "distribution": "gaussian",
+      "seed": 2026092102,
+      "timing": "screen",
+      "shortlist_top_k": 1,
+      "shortlist_max_per_family": 1,
+      "near_optimal_fraction": 0,
+      "selection_policy": {
+        "top_k": 1,
+        "near_fraction": 0,
+        "max_confirm_per_family": 1
+      },
+      "purpose": "Independently screen six registered tiles per custom family on all 18 exact model-derived shapes; native uses one default compiler-managed candidate. Select eligible complete-call mean minimum per shape/family with deterministic candidate_id tie-break.",
+      "candidate_attempt_budgets": {
+        "native": 1,
+        "cubic": 6,
+        "strassen": 6
+      },
+      "ineligible_attempts_count_toward_budget": true,
+      "expected_group_count": 108,
+      "expected_scoped_case_count": 468
+    },
+    "GRID-confirm": {
+      "shape_ids": [
+        "qwen_3_8b_gate_up_concat_m2048",
+        "qwen_3_8b_down_m2048",
+        "qwen_3_8b_gate_up_concat_m8192",
+        "qwen_3_8b_down_m8192",
+        "qwen_3_8b_gate_up_concat_m16384",
+        "qwen_3_8b_down_m16384",
+        "mistral_7b_v03_gate_up_concat_m2048",
+        "mistral_7b_v03_down_m2048",
+        "mistral_7b_v03_gate_up_concat_m8192",
+        "mistral_7b_v03_down_m8192",
+        "mistral_7b_v03_gate_up_concat_m16384",
+        "mistral_7b_v03_down_m16384",
+        "gemma_3_12b_text_gate_up_concat_m2048",
+        "gemma_3_12b_text_down_m2048",
+        "gemma_3_12b_text_gate_up_concat_m8192",
+        "gemma_3_12b_text_down_m8192",
+        "gemma_3_12b_text_gate_up_concat_m16384",
+        "gemma_3_12b_text_down_m16384"
+      ],
+      "candidate_families": {
+        "native": [
+          {
+            "candidate_id": "native_default",
+            "algorithm": "native",
+            "variant": "plain",
+            "tile": null,
+            "compiler_options": {}
+          }
+        ],
+        "cubic": [
+          {
+            "candidate_id": "cubic_512_1024_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              512,
+              1024,
+              512
+            ],
+            "compiler_options": {}
+          },
+          {
+            "candidate_id": "cubic_1024_1024_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              1024,
+              1024,
+              512
+            ],
+            "compiler_options": {}
+          },
+          {
+            "candidate_id": "cubic_1024_1024_1024",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ],
+            "compiler_options": {}
+          },
+          {
+            "candidate_id": "cubic_2048_1024_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              2048,
+              1024,
+              512
+            ],
+            "compiler_options": {}
+          },
+          {
+            "candidate_id": "cubic_1024_2048_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              1024,
+              2048,
+              512
+            ],
+            "compiler_options": {}
+          },
+          {
+            "candidate_id": "cubic_2048_2048_512",
+            "algorithm": "cubic_full",
+            "variant": "output_accumulator",
+            "tile": [
+              2048,
+              2048,
+              512
+            ],
+            "compiler_options": {}
+          }
+        ],
+        "strassen": [
+          {
+            "candidate_id": "strassen_512_1024_512",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              512,
+              1024,
+              512
+            ],
+            "compiler_options": {}
+          },
+          {
+            "candidate_id": "strassen_1024_1024_512",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              1024,
+              1024,
+              512
+            ],
+            "compiler_options": {}
+          },
+          {
+            "candidate_id": "strassen_1024_1024_1024",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              1024,
+              1024,
+              1024
+            ],
+            "compiler_options": {}
+          },
+          {
+            "candidate_id": "strassen_2048_1024_512",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              2048,
+              1024,
+              512
+            ],
+            "compiler_options": {}
+          },
+          {
+            "candidate_id": "strassen_1024_2048_512",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              1024,
+              2048,
+              512
+            ],
+            "compiler_options": {}
+          },
+          {
+            "candidate_id": "strassen_2048_2048_512",
+            "algorithm": "strassen",
+            "variant": "interleaved_output_accumulator",
+            "tile": [
+              2048,
+              2048,
+              512
+            ],
+            "compiler_options": {}
+          }
+        ]
+      },
+      "distribution": "gaussian",
+      "seed": 2026092103,
+      "timing": "confirm",
+      "shortlist_top_k": 1,
+      "shortlist_max_per_family": 1,
+      "near_optimal_fraction": 0,
+      "selection_policy": {
+        "top_k": 1,
+        "near_fraction": 0,
+        "max_confirm_per_family": 1
+      },
+      "selection_file": null,
+      "purpose": "Fresh synthetic inputs and 30 paired rounds for the single frozen screen winner per family, plus native default. Never reselect the confirmation minimum. Exact same shapes, allocation and source/configuration bytes as screening.",
+      "expected_group_count": 18,
+      "expected_scoped_case_count_if_all_families_eligible": 108,
+      "missing_winner_policy": "Do not replace an ineligible family winner. Preserve absent/failing family status; headline native remains measured and confirmation eligibility is reported."
+    }
+  },
+  "execution_contract": {
+    "immutable_run_id": "UTC timestamp plus unique suffix",
+    "archive_before_run": [
+      "source tree snapshot",
+      "configuration JSON",
+      "source/configuration SHA256 manifests",
+      "git commit",
+      "environment fingerprint",
+      "planned cases"
+    ],
+    "archive_during_run": [
+      "append-only events.jsonl",
+      "stdout/stderr",
+      "raw timing samples",
+      "errors"
+    ],
+    "archive_after_run": [
+      "summary.json",
+      "status snapshot",
+      "artifact SHA256 manifest",
+      "completion/failure marker"
+    ],
+    "commit_policy": "Root orchestrator commits source snapshot before execution and records a commit after every completed or failed execution. Existing source snapshots and result directories are never overwritten.",
+    "resume": "A retry/new version receives a new run id and references previous run ids; never appends measurements to a sealed run.",
+    "record_statuses": [
+      "ok",
+      "input_error",
+      "numerical_failure",
+      "compile_error",
+      "oom",
+      "unsupported",
+      "skipped_memory_preflight",
+      "interrupted",
+      "not_run"
+    ],
+    "external_changes": "Any device or environment change creates a new cohort; do not pool it silently with the original allocation."
+  },
+  "deferred": [
+    "v6e replication only in a later separate campaign.",
+    "Actual larger-model weights, activation distributions, epilogues, attention, end-to-end model timing and model-quality evaluation.",
+    "Two-level Strassen, additional shapes or tile candidates, and held-out-shape generalization require new versioned plans."
+  ],
+  "distribution_manifest": "distributions.json",
+  "plan_provenance": {
+    "source_plan_path": "plans/llm_large_shapes_v001/model_shapes.json",
+    "source_plan_sha256": "92e21321d52d415223efb9cca26b12134869724f01e07d17f6a8caa553dfc9b2",
+    "source_notes_path": "plans/llm_large_shapes_v001/SOURCE_NOTES.md",
+    "source_notes_sha256": "1173f74bc33cfe36f42b8dd9094b5c839c712d8b2ab67db6de22d23c5e0ae31b",
+    "base_campaign_path": "configs/campaign_v1.json",
+    "base_campaign_sha256": "fe296be2abba44d56bed79f8e47b51a593c6213b4025ce3d4d103a120871719d",
+    "distribution_source_path": "configs/distributions_v1.json",
+    "distribution_source_sha256": "3356583d32baddd334910207ee777fee3f3a0ec8b97d8fd045a3ee7cf25d17bf",
+    "unchanged_base_sections": [
+      "device",
+      "precision",
+      "timing",
+      "preparation",
+      "memory",
+      "correctness",
+      "execution_contract"
+    ],
+    "runner": "strassen_mm.benchmark_power_grid_v001",
+    "runner_reuse": "Unmodified runner; registered subset of its candidate-space and top-one selection policies."
+  },
+  "scientific_scope": {
+    "workload": "Synthetic pure matrix multiplication, not full LLM execution.",
+    "models": [
+      "Qwen/Qwen3-8B",
+      "mistralai/Mistral-7B-v0.3",
+      "google/gemma-3-12b-pt text_config"
+    ],
+    "shape_count": 18,
+    "shapes_per_model": 6,
+    "m_values": [
+      2048,
+      8192,
+      16384
+    ],
+    "projections": [
+      "gate_up_concat",
+      "down"
+    ],
+    "values": "One Gaussian synthetic BF16 distribution; no model weights or actual activations are loaded. Each down input is independently generated, not computed from gate/up.",
+    "cohort": "Same authenticated v5e allocation/environment within smoke, screen and confirmation. Any newer allocation is a distinct cohort from earlier studies; never silently pool old/new results.",
+    "confirmation": "Independent input seed and fresh timing execution, on the same shapes used in screening; no held-out-shape or cross-device claim.",
+    "candidate_scope": "Six discrete registered custom tiles; independently tuned family winners. Native uses only default XLA, so not a native compiler-option tuning comparison.",
+    "confidence": "Pointwise paired bootstrap 95% intervals, no multiplicity correction or broad generalization.",
+    "near_set_limitation": "Top-one confirmation only. Any inherited self-comparison near-set fields are trivial singleton sets; they do not certify a broad tile region.",
+    "gemma": "Only dense text projection dimensions from nested text_config. Linear RoPE, vision operations and Gemma12B full-model qualification are out of scope.",
+    "padding": "Logical Gemma H3840 retained exactly; all kernel padding/trimming costs belong in complete-call latency.",
+    "memory": "Sampled host reference 128 rows ×128 columns uses all K and exact BF16 operands. Full-output finite checks remain device-side; no giant full reference required.",
+    "budget_counts": {
+      "smoke_groups": 2,
+      "screen_groups": 108,
+      "confirm_groups": 18,
+      "smoke_scoped_cases": 12,
+      "screen_scoped_cases": 468,
+      "confirm_scoped_cases_if_all_families_eligible": 108
+    }
+  }
+}

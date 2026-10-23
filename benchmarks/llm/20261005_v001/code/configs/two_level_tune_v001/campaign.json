@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "device": {
+    "target": "v5e",
+    "single_device": true,
+    "reuse_same_allocation": true,
+    "allow_v6e": false,
+    "allow_concurrent_timing": false,
+    "require_identity_match": true,
+    "identity_fields": [
+      "allocation_id",
+      "device_kind",
+      "device_id",
+      "process_index",
+      "jax_version",
+      "jaxlib_version",
+      "libtpu_version",
+      "runtime_image",
+      "runtime_flags",
+      "host_id"
+    ],
+    "identity_missing_policy": "Record unknown explicitly; do not describe unverified physical identity as the same chip."
+  },
+  "precision": {
+    "input_dtype": "bfloat16",
+    "pre_add_dtype": "bfloat16",
+    "accumulator_dtype": "float32",
+    "output_dtype": "float32",
+    "native_precision": "DEFAULT",
+    "reference_dtype": "float32",
+    "note": "BF16 input combinations are rounded at every Strassen level; both arms return FP32. The second level can increase error."
+  },
+  "memory": {
+    "kernel_vmem_limit_mib": 48,
+    "estimated_live_device_budget_gib": 8,
+    "max_reference_output_elements": 1048576,
+    "max_full_reference_flops": 2000000000,
+    "execution_order": "Square then Qwen; deterministically shuffled tile order per shape. Equal eight-choice grid per depth; fresh-seed confirmation of independently selected winners.",
+    "preflight": "Estimate and record bytes for original inputs, padded inputs, FP32 output, one result, and reference samples. Conservative estimate is not measured peak memory.",
+    "on_preflight_over_budget": "Record skipped_memory_preflight with estimate and limit; do not silently remove shape.",
+    "on_device_oom": "Record oom, clear executable/input buffers before the next case; retry only in a new immutable run."
+  },
+  "correctness": {
+    "input_reference": "Use the exact BF16-quantized operands cast to NumPy float32, not the pre-quantization random source.",
+    "reference": "host_numpy_fp32",
+    "mode": "full_if_both_limits_allow_else_sampled_cross_product",
+    "sample_rows": 128,
+    "sample_columns": 128,
+    "sampling": "seeded without replacement, always including first and last row/column; record indices; reference uses all K",
+    "gate": {
+      "require_finite": true,
+      "relative_l2_max": 0.02,
+      "max_abs_atol": 0.001,
+      "max_abs_reference_rtol": 0.05
+    },
+    "gate_expression": "finite && relative_l2 <= 0.02 && max_abs_error <= 0.001 + 0.05 * max_abs_reference",
+    "metrics": [
+      "reference_scope",
+      "sample_count",
+      "relative_l2",
+      "max_abs_error",
+      "max_abs_reference",
+      "rmse",
+      "mean_abs_error",
+      "p50_abs_error",
+      "p99_abs_error",
+      "normwise_error",
+      "finite",
+      "pass"
+    ],
+    "near_zero_denominator": 1e-30,
+    "failure_policy": "Record failures and measurements; failing rows cannot count as valid speedup wins. Fixed thresholds never change to rescue an arm.",
+    "scope": "Finite synthetic numerical eligibility only; no bound on model quality or worst-case error."
+  },
+  "execution_contract": {
+    "immutable_run_id": "UTC timestamp plus unique suffix",
+    "archive_before_run": [
+      "source tree snapshot",
+      "configuration JSON",
+      "source/configuration SHA256 manifests",
+      "git commit",
+      "environment fingerprint",
+      "planned cases"
+    ],
+    "archive_during_run": [
+      "append-only events.jsonl",
+      "stdout/stderr",
+      "raw timing samples",
+      "errors"
+    ],
+    "archive_after_run": [
+      "summary.json",
+      "status snapshot",
+      "artifact SHA256 manifest",
+      "completion/failure marker"
+    ],
+    "commit_policy": "Root orchestrator commits source snapshot before execution and records a commit after every completed or failed execution. Existing source snapshots and result directories are never overwritten.",
+    "resume": "A retry/new version receives a new run id and references previous run ids; never appends measurements to a sealed run.",
+    "record_statuses": [
+      "ok",
+      "input_error",
+      "numerical_failure",
+      "compile_error",
+      "oom",
+      "unsupported",
+      "skipped_memory_preflight",
+      "interrupted",
+      "not_run"
+    ],
+    "external_changes": "Any device or environment change creates a new cohort; do not pool it silently with the original allocation."
+  },
+  "campaign_id": "two_level_tune_v001",
+  "shape_manifest": "shapes.json",
+  "distribution_manifest": "distributions.json",
+  "timing": {
+    "screen": {
+      "warmups": 3,
+      "repeats": 10
+    },
+    "confirm": {
+      "warmups": 5,
+      "repeats": 30
+    }
+  },
+  "arms": [
+    "one_level",
+    "two_level"
+  ],
+  "tiles": [
+    [
+      1024,
+      1024,
+      512
+    ],
+    [
+      1024,
+      2048,
+      512
+    ],
+    [
+      2048,
+      1024,
+      512
+    ],
+    [
+      1024,
+      2048,
+      1024
+    ],
+    [
+      2048,
+      1024,
+      1024
+    ],
+    [
+      2048,
+      2048,
+      512
+    ],
+    [
+      2048,
+      2048,
+      1024
+    ],
+    [
+      2048,
+      2048,
+      2048
+    ]
+  ],
+  "screen_seed": 2026092141,
+  "order_seed": 92741,
+  "confirm_seeds": [
+    2026092241,
+    2026092341,
+    2026092441
+  ]
+}

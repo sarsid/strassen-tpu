@@ -1,0 +1,61 @@
+{
+  "diagnosed_utc": "2026-10-16T11:52:34.855365+00:00",
+  "run": "20261016-gemma4-31b-v001",
+  "diagnosis": "Native versus official Torch full-depth qualification failed only the propagated per-layer hidden-state relative-L2 gate.",
+  "failed_zero_based_layers": [
+    {
+      "layer": 51,
+      "relative_l2": 0.021495023742318153
+    },
+    {
+      "layer": 52,
+      "relative_l2": 0.026105260476469994
+    },
+    {
+      "layer": 53,
+      "relative_l2": 0.026696592569351196
+    },
+    {
+      "layer": 54,
+      "relative_l2": 0.024677319452166557
+    },
+    {
+      "layer": 55,
+      "relative_l2": 0.022680042311549187
+    },
+    {
+      "layer": 56,
+      "relative_l2": 0.02444673702120781
+    },
+    {
+      "layer": 57,
+      "relative_l2": 0.025114992633461952
+    }
+  ],
+  "hidden_limit": 0.02,
+  "layers_completed": 60,
+  "logits": {
+    "finite": true,
+    "relative_l2": 0.01201322115957737,
+    "max_abs": 0.6875,
+    "maxnorm_relative": 0.02350427396595478
+  },
+  "predictive": {
+    "absolute_loss_delta": 0.005640058190719654,
+    "mean_kl_nats": 0.0010376296178768842,
+    "top1_agreement": 1.0
+  },
+  "qualification_batch": 1,
+  "qualification_sequence": 32,
+  "timing_batches_completed": 0,
+  "tuning_started": false,
+  "tpu_released_verified_absent": true,
+  "source_inspection": {
+    "confirmed_difference": "Our wrapper invokes jax.nn.dot_product_attention, whose JAX 0.11.2 implementation keeps QK scores in FP32 through softmax; official Transformers 5.5.0 eager attention produces BF16 QK scores before upcasting for softmax.",
+    "wrapper": "tools/gemma4_parent_model_v001.py:196",
+    "jax_source": "https://raw.githubusercontent.com/jax-ml/jax/jax-v0.11.2/jax/_src/nn/functions.py",
+    "official_source": "Transformers 5.5.0 modeling_gemma4.py eager_attention_forward, pinned SHA-256 6a86e03348df5ec104703e7161de9a911137cba500a0be0f133e2850ef0bf935",
+    "causality": "Plausible contributor, not confirmed as the sole cause; requires an isolated attention comparison and a new full-checkpoint qualification."
+  },
+  "next_step": "Align and independently validate attention rounding before a versioned full-checkpoint retry; keep existing gates and failed evidence."
+}

@@ -1,0 +1,39 @@
+CHECK tests/test_gemma4_validation_v001.py
+test_bos_sequence_boundaries_and_no_repeated_positions (__main__.ApprovedValidation.test_bos_sequence_boundaries_and_no_repeated_positions) ... ok
+test_qualified_evidence_and_tamper_rejection (__main__.ApprovedValidation.test_qualified_evidence_and_tamper_rejection) ... ok
+test_timing_tuning_and_algorithm_quality_unchanged (__main__.ApprovedValidation.test_timing_tuning_and_algorithm_quality_unchanged) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.021s
+
+OK
+CHECK tests/test_gemma4_fp32_semantics_v001.py
+test_local_global_layers_and_boundary_restoration (__main__.FP32Semantics.test_local_global_layers_and_boundary_restoration) ... {'layer': 0, 'attention_type': 'sliding_attention', 'finite': True, 'relative_l2': 3.121089216490035e-07, 'max_abs': 3.5762786865234375e-06, 'different_fraction': 0.8851102941176471}
+{'layer': 1, 'attention_type': 'full_attention', 'finite': True, 'relative_l2': 3.827426159529662e-07, 'max_abs': 3.814697265625e-06, 'different_fraction': 0.9030330882352942}
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 2.713s
+
+OK
+CHECK tools/check_gemma4_controller_v004.py
+{"started_utc": "2026-10-16T14:42:01.904520+00:00", "session": "simulated-b64-recovered", "status": "completed", "endpoint": "owned-test-endpoint", "remote_summary": {"status": "completed", "batches": [{"batch": 64, "status": "completed", "quality_pass": true}], "batch_archives": []}, "result_sha256": "a6726aef3890031f65148ac06d3488920c55e858e31535dadf4d3411bd0d9f35", "release_exit_code": 0, "release_attempted": true, "allocation_retained": false, "finished_utc": "2026-10-16T14:42:01.906441+00:00"}
+{"started_utc": "2026-10-16T14:42:01.907844+00:00", "session": "simulated-b64-lost", "status": "runtime_lost", "endpoint": "owned-test-endpoint", "allocation_verified_absent": true, "release_not_needed": true, "error": "Colab confirms the owned endpoint is absent; no result completeness is inferred.", "release_exit_code": 0, "release_attempted": false, "allocation_retained": false, "finished_utc": "2026-10-16T14:42:01.909077+00:00"}
+{"started_utc": "2026-10-16T14:42:01.910694+00:00", "session": "simulated-b64-empty", "status": "controller_failed", "endpoint": "owned-test-endpoint", "error_type": "RuntimeError", "error": "Three successful polls found no worker status; refusing to label the experiment running", "release_exit_code": null, "release_attempted": false, "allocation_retained": true, "retention_reason": "User requested troubleshooting errors on the same owned TPU.", "finished_utc": "2026-10-16T14:42:01.911828+00:00"}
+{"started_utc": "2026-10-16T14:42:01.912895+00:00", "session": "simulated-b64-worker_failed", "status": "failed", "endpoint": "owned-test-endpoint", "remote_summary": {"status": "failed", "batches": [{"batch": 64, "status": "completed", "quality_pass": true}], "batch_archives": []}, "result_sha256": "5fd4988bb8aec9b9dbf970462873cc05c1581add4996a3ed66f205a9d9b269e1", "release_exit_code": null, "release_attempted": false, "allocation_retained": true, "retention_reason": "User requested troubleshooting errors on the same owned TPU.", "finished_utc": "2026-10-16T14:42:01.914369+00:00"}
+{"started_utc": "2026-10-16T14:42:01.915529+00:00", "session": "simulated-b64-bad_export", "status": "controller_failed", "endpoint": "owned-test-endpoint", "error_type": "RuntimeError", "error": "Result download not verified", "release_exit_code": null, "release_attempted": false, "allocation_retained": true, "retention_reason": "User requested troubleshooting errors on the same owned TPU.", "finished_utc": "2026-10-16T14:42:01.916883+00:00"}
+{"started_utc": "2026-10-16T14:42:01.918288+00:00", "session": "simulated-b64-quality_failed", "status": "completed", "endpoint": "owned-test-endpoint", "remote_summary": {"status": "completed", "batches": [{"batch": 64, "status": "completed", "quality_pass": false}], "batch_archives": []}, "result_sha256": "5fcb5a43901ce8e2a9aaf6d845f9a45dbcf452b14b5192c2b372784281f1da79", "release_exit_code": null, "release_attempted": false, "allocation_retained": true, "retention_reason": "User requested troubleshooting errors on the same owned TPU.", "finished_utc": "2026-10-16T14:42:01.920161+00:00"}
+{"status": "passed", "actual_subprocess_timeout": "recovered", "controller_poll_timeout": "retried_without_release_or_relaunch", "archive_download": "verified_or_failure_preserved", "retained_on_failure_and_released_only_after_full_success": true, "checkpoint_integrity": "passed", "verified_absent_runtime": "stopped_without_unassigning", "scope": "local orchestration regression; no TPU/network"}
+CHECK tools/check_gemma4_launch_v004.py
+{"status": "passed", "sibling_import_after_extract": true, "duplicate_launch_rejected": true, "source_hash_checked": true, "scope": "local launcher check; no TPU"}
+CHECK tests/test_gemma4_retained_supervisor_v003.py
+test_owned_allocation_reused_and_watch_recovers_from_timeout (__main__.RetainedSupervisorTest.test_owned_allocation_reused_and_watch_recovers_from_timeout) ... /Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261016T144151Z-gemma4-approved-validation-v001-88b197/source/tests/test_gemma4_retained_supervisor_v003.py:49: ResourceWarning: unclosed file <_io.BufferedWriter name='/private/var/folders/xx/kh2csrxx21z4d80xqhvg0hh80000gn/T/tmptakc80zd/runs/owned-diagnostic/starter.lock'>
+  self.assertEqual(supervisor.main(),1)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.007s
+
+OK
+All approved-validation checks passed

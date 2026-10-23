@@ -1,0 +1,32 @@
+CHECK tests/test_gemma4_error_metrics_v001.py
+......
+----------------------------------------------------------------------
+Ran 6 tests in 1.019s
+
+OK
+CHECK tests/test_gemma4_residency_v001.py
+..F..
+======================================================================
+FAIL: test_projection_inputs_and_final_outputs_unchanged (__main__.Checks.test_projection_inputs_and_final_outputs_unchanged)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261017T023251Z-gemma4-b64-residency-repair-v001-68155d/source/tests/test_gemma4_residency_v001.py", line 94, in test_projection_inputs_and_final_outputs_unchanged
+    self.assertEqual(outputs[0],outputs[1])
+AssertionError: Lists differ: [('q', {'native': '482f39c87a1bf3ee1f1e9d365[634 chars]f'})] != [('down', {'native_tuned': '58a0043cce878879[634 chars]c'})]
+
+First differing element 0:
+('q', {'native': '482f39c87a1bf3ee1f1e9d365[290 chars]3c'})
+('down', {'native_tuned': '58a0043cce878879[293 chars]ff'})
+
+Diff is 1392 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 5 tests in 2.449s
+
+FAILED (failures=1)
+Traceback (most recent call last):
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261017T023251Z-gemma4-b64-residency-repair-v001-68155d/source/tools/check_gemma4_residency_repair_v001.py", line 9, in <module>
+    subprocess.run([sys.executable,str(ROOT/name)],cwd=ROOT,check=True)
+  File "/Users/bagheera/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/.runtime_private/gemma4-oracle-v001/bin/python', '/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261017T023251Z-gemma4-b64-residency-repair-v001-68155d/source/tests/test_gemma4_residency_v001.py']' returned non-zero exit status 1.

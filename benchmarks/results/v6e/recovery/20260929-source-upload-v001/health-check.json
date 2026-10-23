@@ -1,0 +1,75 @@
+{
+  "checked_utc": "2026-09-29T05:59:58.003321+00:00",
+  "processes": {
+    "supervisor": {
+      "pid": 19451,
+      "alive": true,
+      "expected_script_present": true,
+      "exclusive_lock_held": true,
+      "ps": "19451     1 01-06:12:08 /Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/.venv-reconcile/bin/python /Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260927-arch-supervised-v001/source-updates/progress-count-v001/source/tools/supervise_arch_studies_v003.py --folder /Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260927-arch-supervised-v001"
+    },
+    "controller": {
+      "pid": 12710,
+      "alive": true,
+      "expected_script_present": true,
+      "exclusive_lock_held": true,
+      "ps": "12710 19451 01:15:14 /Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/.venv-colab/bin/python /Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/auto-v6e-20260929T044310Z-5996/source/tools/run_large_real_v003.py run --cohort /Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/auto-v6e-20260929T044310Z-5996"
+    }
+  },
+  "state": {
+    "action": "measuring",
+    "created_utc": "2026-09-27T21:41:33.658098+00:00",
+    "current_cohort": "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/auto-v6e-20260929T044310Z-5996",
+    "finished": false,
+    "hardware": "v6e",
+    "pending_request": null,
+    "runtime": {
+      "hardware": "v6e",
+      "session": "strassen-auto-v6e-0928-223442",
+      "endpoint": "tpu-v6e1-s-kkb-euw4a0-24j0e0gqv2iqi",
+      "identity": "/content/Strassen_MM_Focus/20260928T223445Z-auto-v6e-setup-v001-f9d28d/identity.json",
+      "setup_run": "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260928T223445Z-auto-v6e-setup-v001-f9d28d"
+    },
+    "source_commit": "0175200465e614578c415f5f0dd2a1a43032c392",
+    "allocation_requests": [
+      1790632006.84671,
+      1790632650.174515,
+      1790633718.615826,
+      1790634882.0669582
+    ],
+    "detail": "Colab did not acknowledge allocation; automatically checking for a late assignment."
+  },
+  "progress": {
+    "title": "v6e: automatic recovery; 105/168 comparison units saved",
+    "stage": "arch-105-screen",
+    "heartbeat_utc": "2026-09-29T05:59:46.276366+00:00",
+    "worker_last_data_utc": "2026-09-29T05:59:38.231602+00:00",
+    "detail": "v6e arch-105-screen"
+  },
+  "active_stages": [
+    {
+      "id": "arch-105-screen",
+      "label": "v6e arch-105-screen",
+      "kind": "measurement",
+      "state": "running",
+      "expected": 829,
+      "completed": 318,
+      "succeeded": 293,
+      "failed": 25,
+      "measured": 293,
+      "detail": "",
+      "evidence": [
+        {
+          "label": "Live phase log",
+          "path": "runs/auto-v6e-20260929T044310Z-5996/phases/auto-v6e-20260929T044310Z-5996-arch-105-screen-563055/benchmark.log"
+        }
+      ],
+      "worker_last_data_utc": "2026-09-29T05:59:52.484218+00:00"
+    }
+  ],
+  "freshness_seconds": {
+    "heartbeat_utc": 0.433464,
+    "worker_last_data_utc": 5.519103
+  },
+  "intervention": "none; supervisor already recovered a source-upload TransportError before launch on the same allocation; current worker is healthy"
+}

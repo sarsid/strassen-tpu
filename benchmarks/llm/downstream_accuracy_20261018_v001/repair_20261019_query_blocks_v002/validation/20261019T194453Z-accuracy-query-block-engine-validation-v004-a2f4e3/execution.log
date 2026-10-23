@@ -1,0 +1,54 @@
+test_gemma_global_variable_lengths_and_block_boundary (__main__.Tests.test_gemma_global_variable_lengths_and_block_boundary) ... ERROR
+test_gemma_local_variable_lengths_and_block_boundary (__main__.Tests.test_gemma_local_variable_lengths_and_block_boundary) ... ERROR
+test_qwen_variable_lengths_and_block_boundary (__main__.Tests.test_qwen_variable_lengths_and_block_boundary) ... ok
+
+======================================================================
+ERROR: test_gemma_global_variable_lengths_and_block_boundary (__main__.Tests.test_gemma_global_variable_lengths_and_block_boundary)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261019T194453Z-accuracy-query-block-engine-validation-v004-a2f4e3/source/tools/check_accuracy_engine_v004.py", line 55, in test_gemma_global_variable_lengths_and_block_boundary
+    def test_gemma_global_variable_lengths_and_block_boundary(self):self.compare('gemma',5)
+                                                                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261019T194453Z-accuracy-query-block-engine-validation-v004-a2f4e3/source/tools/check_accuracy_engine_v004.py", line 29, in compare
+    e=self.engine(kind,index);e.reset(2,64)
+                              ^^^^^^^^^^^^^
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261019T194453Z-accuracy-query-block-engine-validation-v004-a2f4e3/source/tools/accuracy_engine_v004.py", line 107, in reset
+    shapes=[(batch,capacity,geometry(self.config,i)['kv_heads'],geometry(self.config,i)['head_dim']) for i in range(len(self.weights))]
+                            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261019T194453Z-accuracy-query-block-engine-validation-v004-a2f4e3/source/tools/accuracy_decoder_v001.py", line 53, in geometry
+    return layer_geometry(config,index)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261019T194453Z-accuracy-query-block-engine-validation-v004-a2f4e3/source/src/strassen_mm/gemma4_contract_v001.py", line 111, in layer_geometry
+    c = validate_config(raw)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261019T194453Z-accuracy-query-block-engine-validation-v004-a2f4e3/source/src/strassen_mm/gemma4_contract_v001.py", line 83, in validate_config
+    raise ValueError("Explicit layer_types must name every decoder layer")
+ValueError: Explicit layer_types must name every decoder layer
+
+======================================================================
+ERROR: test_gemma_local_variable_lengths_and_block_boundary (__main__.Tests.test_gemma_local_variable_lengths_and_block_boundary)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261019T194453Z-accuracy-query-block-engine-validation-v004-a2f4e3/source/tools/check_accuracy_engine_v004.py", line 54, in test_gemma_local_variable_lengths_and_block_boundary
+    def test_gemma_local_variable_lengths_and_block_boundary(self):self.compare('gemma',0)
+                                                                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261019T194453Z-accuracy-query-block-engine-validation-v004-a2f4e3/source/tools/check_accuracy_engine_v004.py", line 29, in compare
+    e=self.engine(kind,index);e.reset(2,64)
+                              ^^^^^^^^^^^^^
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261019T194453Z-accuracy-query-block-engine-validation-v004-a2f4e3/source/tools/accuracy_engine_v004.py", line 107, in reset
+    shapes=[(batch,capacity,geometry(self.config,i)['kv_heads'],geometry(self.config,i)['head_dim']) for i in range(len(self.weights))]
+                            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261019T194453Z-accuracy-query-block-engine-validation-v004-a2f4e3/source/tools/accuracy_decoder_v001.py", line 53, in geometry
+    return layer_geometry(config,index)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261019T194453Z-accuracy-query-block-engine-validation-v004-a2f4e3/source/src/strassen_mm/gemma4_contract_v001.py", line 111, in layer_geometry
+    c = validate_config(raw)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261019T194453Z-accuracy-query-block-engine-validation-v004-a2f4e3/source/src/strassen_mm/gemma4_contract_v001.py", line 83, in validate_config
+    raise ValueError("Explicit layer_types must name every decoder layer")
+ValueError: Explicit layer_types must name every decoder layer
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.968s
+
+FAILED (errors=2)

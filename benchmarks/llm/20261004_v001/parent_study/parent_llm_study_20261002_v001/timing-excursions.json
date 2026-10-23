@@ -1,0 +1,62 @@
+{
+  "rule": "Flag >3x the same arm/layer sample median. Diagnostic only; all original samples and means are retained. No cause inferred.",
+  "results": [
+    {
+      "source": "results/v6e/parent_llm_replication_20261002_v001/parent-streamed.jsonl",
+      "sha256": "f4aa1e3c0081abaf2f48e15f696bcdb05259d5c48550408ace1a32f6d1b97316",
+      "samples": 960,
+      "excursions": []
+    },
+    {
+      "source": "results/v6e/parent_llm_replication_20261002_v001/current-streamed.jsonl",
+      "sha256": "1d3564e971e9d6558be3dcd1b36aa1e26a957f07bbd92687d9350456cfef0601",
+      "samples": 960,
+      "excursions": []
+    },
+    {
+      "source": "results/v6e/parent_llm_comparison_20261002_v001/s1-bfloat16-streamed.jsonl",
+      "sha256": "699a5c7a66c761ca27d680eea04c58a05a8e78052d2ad7d0cfd1cf9a9771b25e",
+      "samples": 960,
+      "excursions": [
+        {
+          "layer_zero_based": 50,
+          "arm": "gated_strassen",
+          "sample_index": 1,
+          "ms": 197.153625,
+          "within_layer_median_ms": 13.841739,
+          "ratio": 14.243414429357466
+        }
+      ]
+    },
+    {
+      "source": "results/v6e/parent_llm_comparison_20261002_v001/s2-bfloat16-streamed.jsonl",
+      "sha256": "4eeca6496a8baf5f22e5f678a57ea99c2e2d3c5f18fbd36c228382c80e1e2422",
+      "samples": 960,
+      "excursions": []
+    },
+    {
+      "source": "results/v6e/parent_llm_comparison_20261002_v001/s1-float32-streamed.jsonl",
+      "sha256": "bee25abf060df96a7a32bb124f655e8474a0590bc48b2a546ace37aad933f985",
+      "samples": 960,
+      "excursions": []
+    },
+    {
+      "source": "results/v6e/parent_llm_comparison_20261002_v001/s2-float32-streamed.jsonl",
+      "sha256": "05057bdf346cdedce952871fd05902b593c833e9ea876ef27643ad1b5a686ab3",
+      "samples": 960,
+      "excursions": []
+    },
+    {
+      "source": "results/v6e/parent_llm_followup_20261002_v001/s1-bfloat16-repeat.jsonl",
+      "sha256": "d9d8471e6e7c33544f197610b498570a131895ea6fde018f112b261c49cd7640",
+      "samples": 960,
+      "excursions": []
+    },
+    {
+      "source": "results/v6e/parent_llm_followup_20261002_v001/s1-bfloat16-streamed.jsonl",
+      "sha256": "73f0ddca0c27c0efea653503200acf31f7ec0eafa2245cfe4c2d344a60438994",
+      "samples": 960,
+      "excursions": []
+    }
+  ]
+}

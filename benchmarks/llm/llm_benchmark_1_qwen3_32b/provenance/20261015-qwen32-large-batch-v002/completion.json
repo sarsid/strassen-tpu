@@ -1,0 +1,141 @@
+{
+  "started_utc": "2026-10-15T11:23:54.674494+00:00",
+  "session": "20261015-qwen32-large-batch-v002",
+  "status": "completed_with_failures",
+  "endpoint": "tpu-v6e1-s-kkb-euw4a1-18df8bc1jgg8h",
+  "remote_summary": {
+    "started_utc": "2026-10-15T11:24:10.433792+00:00",
+    "status": "completed_with_failures",
+    "stages": [
+      {
+        "name": "b32-qualify-a0",
+        "batch": 32,
+        "stage": "qualify",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 87.070961044
+      },
+      {
+        "name": "b32-confirm-a0",
+        "batch": 32,
+        "stage": "confirm",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 1214.718417401
+      },
+      {
+        "name": "b32-quality-a0",
+        "batch": 32,
+        "stage": "quality",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 296.26564717400015
+      },
+      {
+        "name": "b32-prefill-a0",
+        "batch": 32,
+        "stage": "prefill",
+        "attempt": 0,
+        "returncode": 0,
+        "seconds": 2222.771255616
+      },
+      {
+        "name": "b64-qualify-a0",
+        "batch": 64,
+        "stage": "qualify",
+        "attempt": 0,
+        "returncode": -11,
+        "seconds": 15.581154123000488
+      },
+      {
+        "name": "b64-qualify-a1",
+        "batch": 64,
+        "stage": "qualify",
+        "attempt": 1,
+        "returncode": -11,
+        "seconds": 16.18569538199972
+      }
+    ],
+    "batches": [
+      {
+        "batch": 32,
+        "status": "completed",
+        "attempts": [
+          {
+            "name": "b32-qualify-a0",
+            "batch": 32,
+            "stage": "qualify",
+            "attempt": 0,
+            "returncode": 0,
+            "seconds": 87.070961044
+          },
+          {
+            "name": "b32-confirm-a0",
+            "batch": 32,
+            "stage": "confirm",
+            "attempt": 0,
+            "returncode": 0,
+            "seconds": 1214.718417401
+          },
+          {
+            "name": "b32-quality-a0",
+            "batch": 32,
+            "stage": "quality",
+            "attempt": 0,
+            "returncode": 0,
+            "seconds": 296.26564717400015
+          },
+          {
+            "name": "b32-prefill-a0",
+            "batch": 32,
+            "stage": "prefill",
+            "attempt": 0,
+            "returncode": 0,
+            "seconds": 2222.771255616
+          }
+        ]
+      },
+      {
+        "batch": 64,
+        "status": "partial_or_failed",
+        "attempts": [
+          {
+            "name": "b64-qualify-a0",
+            "batch": 64,
+            "stage": "qualify",
+            "attempt": 0,
+            "returncode": -11,
+            "seconds": 15.581154123000488
+          },
+          {
+            "name": "b64-qualify-a1",
+            "batch": 64,
+            "stage": "qualify",
+            "attempt": 1,
+            "returncode": -11,
+            "seconds": 16.18569538199972
+          }
+        ]
+      }
+    ],
+    "batch_archives": [
+      {
+        "batch": 32,
+        "path": "/content/Strassen_MM_Focus/runs/20261015-qwen32-large-batch-v002/b32-results.tar.gz",
+        "sha256": "1cd6909be791623321e7d2eaaa1d9da5dbbe6ce38e6a0ab717227664ee77abcb",
+        "bytes": 1482729
+      },
+      {
+        "batch": 64,
+        "path": "/content/Strassen_MM_Focus/runs/20261015-qwen32-large-batch-v002/b64-results.tar.gz",
+        "sha256": "dd6619dfd8cffe0cdb04292c2900df39547d63a5e0a897eaba3923be91f22c23",
+        "bytes": 5927
+      }
+    ],
+    "active_batch": 64,
+    "finished_utc": "2026-10-15T12:28:54.215909+00:00"
+  },
+  "result_sha256": "d658828e895265553ce7a2115823a97e601d0ac00e06d179d5400ef3b334ac8f",
+  "release_exit_code": 0,
+  "finished_utc": "2026-10-15T12:29:33.926039+00:00"
+}

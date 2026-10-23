@@ -1,0 +1,69 @@
+{
+  "version": "gemma4_numerics_diagnostic_v001",
+  "model": "google/gemma-4-31B",
+  "revision": "5bbc2fb1c1b2c611d06e3d9f23c170ba21659d89",
+  "batches": [],
+  "sequence": 32,
+  "arms": [
+    "native",
+    "native_tuned",
+    "cubic_tuned",
+    "strassen_tuned"
+  ],
+  "stages": [],
+  "native_vmem_mib": [
+    null,
+    32,
+    48,
+    64,
+    96,
+    112,
+    128
+  ],
+  "block_warmups": 3,
+  "block_runs": 20,
+  "layer_warmups": 2,
+  "layer_runs": 5,
+  "projection_warmups": 3,
+  "projection_runs": 20,
+  "quality_segments": 4,
+  "offloaded_prefill_warmups": 1,
+  "offloaded_prefill_runs": 3,
+  "per_stage_retry_limit": 1,
+  "stage_timeouts_seconds": {
+    "oracle": 10800,
+    "tune": 14400,
+    "qualify": 3600,
+    "confirm": 14400,
+    "quality": 21600,
+    "prefill": 7200
+  },
+  "repetitive_quality_gates": {
+    "absolute_loss_delta": 0.01,
+    "mean_kl_nats": 0.005,
+    "top1_agreement": 0.99
+  },
+  "natural_quality_gates": {
+    "absolute_loss_delta": 0.01,
+    "mean_kl_nats": 0.02,
+    "top1_agreement": 0.97
+  },
+  "result_root": "results/v6e/gemma4_numerics_diagnostic_20261016_v001",
+  "software": {
+    "jax": "0.11.2",
+    "jaxlib": "0.11.2",
+    "libtpu": "0.0.48",
+    "transformers": "5.5.0"
+  },
+  "attention_contract": "BF16 QK scores before FP32 softmax, BF16 probabilities and BF16 output; DEFAULT dot precision with FP32 accumulation",
+  "diagnostic_layers": [
+    0,
+    1,
+    5,
+    39,
+    52,
+    53,
+    58,
+    59
+  ]
+}

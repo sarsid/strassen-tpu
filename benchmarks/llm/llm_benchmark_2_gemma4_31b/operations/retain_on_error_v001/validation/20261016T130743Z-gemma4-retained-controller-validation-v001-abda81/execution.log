@@ -1,0 +1,16 @@
+{"started_utc": "2026-10-16T13:07:45.843771+00:00", "session": "simulated-b64-recovered", "status": "completed", "endpoint": "owned-test-endpoint", "remote_summary": {"status": "completed", "batches": [{"batch": 64, "status": "completed"}], "batch_archives": []}, "result_sha256": "1a77abcbe7026a551b7418a47d60e4f3f8af746eb7358e95718004c7328aa279", "allocation_retained": true, "release_attempted": false, "release_exit_code": null, "retention_reason": "User requested retaining the TPU for diagnosis and repair, including after errors.", "finished_utc": "2026-10-16T13:07:45.846244+00:00"}
+{"started_utc": "2026-10-16T13:07:45.848098+00:00", "session": "simulated-b64-lost", "status": "runtime_lost", "endpoint": "owned-test-endpoint", "allocation_verified_absent": true, "release_not_needed": true, "error": "Colab confirms the owned endpoint is absent; no result completeness is inferred.", "allocation_retained": false, "release_attempted": false, "release_exit_code": 0, "retention_reason": null, "finished_utc": "2026-10-16T13:07:45.849547+00:00"}
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import runpy,sys; sys.path.insert(0,"tools"); runpy.run_path("tools/check_gemma4_diagnostic_controller_v002.py",run_name="__main__"); sys.argv=["retention-test"]; runpy.run_path("tests/test_gemma4_retained_supervisor_v001.py",run_name="__main__")
+                                                  ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "tools/check_gemma4_diagnostic_controller_v002.py", line 106, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "tools/check_gemma4_diagnostic_controller_v002.py", line 100, in main
+    assert not any('allocate' in ' '.join(c) for c in calls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

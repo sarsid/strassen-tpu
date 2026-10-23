@@ -1,0 +1,19 @@
+{"count": 0, "kind": "preflight_assignments", "utc": "2026-10-20T01:08:19.203095+00:00"}
+{"kind": "provisioning_request", "method": "GET", "request_notebook_uuid": "b47c1fad-7101-5e20-ad80-21280c5bbd22", "timeout_seconds": 600, "utc": "2026-10-20T01:08:19.205205+00:00"}
+{"elapsed_seconds": 0.193, "http_status": 200, "kind": "provisioning_response", "method": "GET", "utc": "2026-10-20T01:08:19.398357+00:00"}
+{"kind": "provisioning_request", "method": "POST", "request_notebook_uuid": "b47c1fad-7101-5e20-ad80-21280c5bbd22", "timeout_seconds": 600, "utc": "2026-10-20T01:08:19.400603+00:00"}
+{"elapsed_seconds": 30, "kind": "provisioning_wait", "measurement_started": false, "phase": "assign_post", "request_notebook_uuid": "b47c1fad-7101-5e20-ad80-21280c5bbd22", "utc": "2026-10-20T01:08:48.910952+00:00"}
+Exception in thread Thread-1 (progress):
+Traceback (most recent call last):
+  File "/Users/bagheera/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+    self.run()
+  File "/Users/bagheera/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/threading.py", line 1012, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runtime/allocate_accuracy_logged_v001.py", line 32, in progress
+    '--evidence',str(a.events.relative_to(a.journal_root))],stdout=subprocess.DEVNULL,check=False)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bagheera/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 682, in relative_to
+    raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
+ValueError: 'runs/20261020-accuracy-study-v009/allocation-events.jsonl' is not in the subpath of '/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus'
+{"elapsed_seconds": 240.059, "http_status": 502, "kind": "provisioning_response", "method": "POST", "utc": "2026-10-20T01:12:19.466077+00:00"}
+{"elapsed_seconds": 240.563, "error_type": "ColabRequestError", "http_status": 502, "kind": "allocation_error", "phase": "assign_post", "utc": "2026-10-20T01:12:19.472996+00:00"}

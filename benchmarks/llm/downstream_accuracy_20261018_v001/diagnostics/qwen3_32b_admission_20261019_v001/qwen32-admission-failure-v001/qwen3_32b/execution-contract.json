@@ -1,0 +1,81 @@
+{
+  "model": "Qwen/Qwen3-32B",
+  "revision": "9216db5781bf21249d130ec9da846c4624c16137",
+  "tile": [
+    128,
+    256,
+    256
+  ],
+  "depth": 1,
+  "sites": [
+    "q",
+    "k",
+    "v",
+    "o",
+    "gate",
+    "up",
+    "down"
+  ],
+  "strassen_prefill": true,
+  "strassen_decode": true,
+  "fused_epilogues": false,
+  "precision": "DEFAULT",
+  "dtype": "bfloat16",
+  "batch_policy": "matched fixed rows",
+  "checkpoint_weights": "unchanged; canonical transpose only",
+  "hardware": [
+    "TPU_0(process=0,(0,0,0,0))"
+  ],
+  "software": {
+    "jax": "0.11.2",
+    "jaxlib": "0.11.2",
+    "libtpu": "0.0.48",
+    "numpy": "2.2.6",
+    "transformers": "5.5.0",
+    "tokenizers": "0.22.2",
+    "scipy": "1.15.3"
+  },
+  "source_sha256": {
+    "tools/accuracy_study_v001.py": "191196de86a032aea816a448eebbaf6841ed5c8a6f67ff6267eb2723a7669716",
+    "tools/accuracy_engine_v003.py": "cbe504a1faa3870c1ff801aa20dd000aed2c9dff2969f0870b0cf5848406c9af",
+    "tools/accuracy_decoder_v001.py": "ebe99fc638c3f859566ac45b8f0772e2beedc5585336d610b045f0284b3e4459",
+    "tools/accuracy_mm_v001.py": "93eb5130cdc7b5ff021f6dc5a299c62581cc984eb0e599f259cf87c3c1fa201f",
+    "tools/accuracy_scoring_v001.py": "4ea0d1866f019c8f2b8d9db3178903795d1afb0751fd1bab71d01a94c6b3adb0",
+    "tools/accuracy_analysis_v003.py": "eadb929cfd1079819974ef75d62b87e545feecb3ff961429d1293be2dea72b88"
+  },
+  "bundle_sha256": "162116e4ef16f4f7b24a713211e5d7b70c91b739b42d7a3d88734ae097bc091d",
+  "batch_size": 8,
+  "max_new_tokens": 1024,
+  "do_sample": false,
+  "local_admission": {
+    "validations": [
+      {
+        "run": "20261018T183246Z-accuracy-decoder-admission-v001-f0efb8",
+        "status": "completed",
+        "exit_code": 0,
+        "source_commit": "4ed09561790aa139095534728aa4321fe47b561c",
+        "source_archive_sha256": "3f4649329952d920b6b5858ad361c5cfd36bf39b13f523763287bfb68534f8f9"
+      },
+      {
+        "run": "20261018T184639Z-accuracy-gemma-driver-v003-af566e",
+        "status": "completed",
+        "exit_code": 0,
+        "source_commit": "89bca3412c619d3a3289cd01cd5c405848b4d7a4",
+        "source_archive_sha256": "8e51a3f6d7b9f08dcf355c4f52dfc855e947efbb4309621c9805242d5588b80b"
+      },
+      {
+        "run": "20261018T185458Z-accuracy-subset-scoring-v001-b73a2c",
+        "status": "completed",
+        "exit_code": 0,
+        "source_commit": "24783f0de197eb70036df4dbdd77461a7688b837",
+        "source_archive_sha256": "cf98d9423d74eadedcf151d2c46b5be8d16a0bc40403785d86e8ca10c3af99a2"
+      }
+    ],
+    "scope": "local formula, cache, padding and scoring admission; no downstream test scores"
+  },
+  "environment": {
+    "XLA_FLAGS": null,
+    "LIBTPU_INIT_ARGS": "--xla_tpu_use_enhanced_launch_barrier=true --xla_tpu_scoped_vmem_limit_kib=49152",
+    "JAX_PLATFORMS": "tpu"
+  }
+}

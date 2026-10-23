@@ -1,0 +1,42 @@
+test_new_starter_actual_observer_command (check_accuracy_checkpoint_recovery_v001.Tests.test_new_starter_actual_observer_command) ... ok
+test_reject_changed_archive (check_accuracy_checkpoint_recovery_v001.Tests.test_reject_changed_archive) ... ok
+test_reject_changed_member (check_accuracy_checkpoint_recovery_v001.Tests.test_reject_changed_member) ... ok
+test_reject_changed_source (check_accuracy_checkpoint_recovery_v001.Tests.test_reject_changed_source) ... ok
+test_reject_unexpected_files_and_path_traversal (check_accuracy_checkpoint_recovery_v001.Tests.test_reject_unexpected_files_and_path_traversal) ... ok
+test_restore_exact_bytes_and_unchanged_worker (check_accuracy_checkpoint_recovery_v001.Tests.test_restore_exact_bytes_and_unchanged_worker) ... ERROR
+check_accuracy_driver_integration_v001 (unittest.loader._FailedTest.check_accuracy_driver_integration_v001) ... ERROR
+
+======================================================================
+ERROR: test_restore_exact_bytes_and_unchanged_worker (check_accuracy_checkpoint_recovery_v001.Tests.test_restore_exact_bytes_and_unchanged_worker)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261019T054227Z-accuracy-checkpoint-recovery-v001-658b94/source/tools/check_accuracy_checkpoint_recovery_v001.py", line 41, in test_restore_exact_bytes_and_unchanged_worker
+    run,cmd=remote.prepare(self.source,self.source_sha,self.seed,seed_sha,'recovery')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261019T054227Z-accuracy-checkpoint-recovery-v001-658b94/source/runtime/resume_accuracy_remote_v001.py", line 43, in prepare
+    raise ValueError('Source archive path/hash mismatch')
+ValueError: Source archive path/hash mismatch
+
+======================================================================
+ERROR: check_accuracy_driver_integration_v001 (unittest.loader._FailedTest.check_accuracy_driver_integration_v001)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: check_accuracy_driver_integration_v001
+Traceback (most recent call last):
+  File "/Users/bagheera/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bagheera/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261019T054227Z-accuracy-checkpoint-recovery-v001-658b94/source/tools/check_accuracy_driver_integration_v001.py", line 16, in <module>
+    import accuracy_study_v001 as driver
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261019T054227Z-accuracy-checkpoint-recovery-v001-658b94/source/tools/accuracy_study_v001.py", line 16, in <module>
+    from accuracy_engine_v003 import Engine,MODELS,ROOT
+  File "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261019T054227Z-accuracy-checkpoint-recovery-v001-658b94/source/tools/accuracy_engine_v003.py", line 22, in <module>
+    from accuracy_decoder_v001 import make_layer,native_projection,geometry
+ModuleNotFoundError: No module named 'accuracy_decoder_v001'
+
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.040s
+
+FAILED (errors=2)

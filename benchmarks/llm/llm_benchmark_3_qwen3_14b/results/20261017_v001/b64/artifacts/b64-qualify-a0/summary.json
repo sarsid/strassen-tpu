@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "scope": "untimed memory/finite preflight; not quality or performance confirmation",
+  "batch": 64,
+  "capture_native_reconstruction": {
+    "max_abs": 0.0625,
+    "rmse": 0.00016291292558889836,
+    "maxnorm_relative": 0.0021929824724793434,
+    "l2_relative": 0.0007242790306918323
+  },
+  "finite": true,
+  "errors": {
+    "native_tuned": {
+      "max_abs": 0.0078125,
+      "rmse": 1.3999924703966826e-05,
+      "maxnorm_relative": 0.0002741228090599179,
+      "l2_relative": 6.224093522178009e-05
+    },
+    "cubic_tuned": {
+      "max_abs": 0.125,
+      "rmse": 0.0006745053105987608,
+      "maxnorm_relative": 0.004385964944958687,
+      "l2_relative": 0.0029987189918756485
+    },
+    "strassen_tuned": {
+      "max_abs": 0.125,
+      "rmse": 0.0009684347896836698,
+      "maxnorm_relative": 0.004385964944958687,
+      "l2_relative": 0.004305471666157246
+    }
+  }
+}

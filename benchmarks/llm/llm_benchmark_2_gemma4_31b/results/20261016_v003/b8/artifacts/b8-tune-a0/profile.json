@@ -1,0 +1,170 @@
+{
+  "batch": 8,
+  "sequence": 1024,
+  "profiles": {
+    "sliding_attention": {
+      "native_options": {
+        "xla_tpu_scoped_vmem_limit_kib": 131072
+      },
+      "strassen": {
+        "q": {
+          "tile": [
+            2048,
+            1024,
+            5376
+          ],
+          "fused": true,
+          "estimate_bytes": 82837504
+        },
+        "k": {
+          "tile": [
+            2048,
+            1024,
+            5376
+          ],
+          "fused": true,
+          "estimate_bytes": 82837504
+        },
+        "gateup": {
+          "tile": [
+            2048,
+            1536,
+            5376
+          ],
+          "fused": true,
+          "estimate_bytes": 102236160
+        },
+        "o": {
+          "tile": [
+            512,
+            5376,
+            1024
+          ],
+          "fused": true,
+          "estimate_bytes": 57147392
+        },
+        "down": {
+          "tile": [
+            2048,
+            1792,
+            1024
+          ],
+          "fused": false,
+          "estimate_bytes": 45088768
+        }
+      },
+      "cubic": {
+        "gateup": {
+          "tile": [
+            2048,
+            1024,
+            5376
+          ],
+          "fused": false,
+          "estimate_bytes": 82837504
+        },
+        "o": {
+          "tile": [
+            2048,
+            1792,
+            1024
+          ],
+          "fused": false,
+          "estimate_bytes": 45088768
+        },
+        "down": {
+          "tile": [
+            2048,
+            1792,
+            1024
+          ],
+          "fused": false,
+          "estimate_bytes": 45088768
+        }
+      }
+    },
+    "full_attention": {
+      "native_options": {
+        "xla_tpu_scoped_vmem_limit_kib": 98304
+      },
+      "strassen": {
+        "q": {
+          "tile": [
+            2048,
+            1024,
+            5376
+          ],
+          "fused": true,
+          "estimate_bytes": 82837504
+        },
+        "k": {
+          "tile": [
+            1024,
+            1024,
+            768
+          ],
+          "fused": true
+        },
+        "gateup": {
+          "tile": [
+            2048,
+            1536,
+            5376
+          ],
+          "fused": true,
+          "estimate_bytes": 102236160
+        },
+        "o": {
+          "tile": [
+            2048,
+            1792,
+            1024
+          ],
+          "fused": false,
+          "estimate_bytes": 45088768
+        },
+        "down": {
+          "tile": [
+            2048,
+            1792,
+            1024
+          ],
+          "fused": false,
+          "estimate_bytes": 45088768
+        }
+      },
+      "cubic": {
+        "gateup": {
+          "tile": [
+            2048,
+            1024,
+            5376
+          ],
+          "fused": false,
+          "estimate_bytes": 82837504
+        },
+        "o": {
+          "tile": [
+            2048,
+            1792,
+            1024
+          ],
+          "fused": false,
+          "estimate_bytes": 45088768
+        },
+        "down": {
+          "tile": [
+            2048,
+            1792,
+            1024
+          ],
+          "fused": false,
+          "estimate_bytes": 45088768
+        }
+      }
+    }
+  },
+  "selection": "independent per layer type and batch, lowest warmed mean",
+  "model": "google/gemma-4-31B",
+  "revision": "5bbc2fb1c1b2c611d06e3d9f23c170ba21659d89"
+}

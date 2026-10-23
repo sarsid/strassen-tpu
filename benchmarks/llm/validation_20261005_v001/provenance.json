@@ -1,0 +1,48 @@
+{
+  "export_run": "runs/20261005T180415Z-codex-cloud-handoff-export-v001-a456c5",
+  "export_execution": {
+    "command": [
+      "/bin/bash",
+      "-c",
+      "python3 tools/export_public_llm_v002.py --root \"$STRASSEN_PROJECT_ROOT\" --output \"$STRASSEN_EXECUTION_DIR/snapshot\""
+    ],
+    "label": "codex-cloud-handoff-export-v001",
+    "run_id": "20261005T180415Z-codex-cloud-handoff-export-v001-a456c5",
+    "scope": "local preparation or correctness; never TPU performance",
+    "source_commit": "53ffaf7796267982cc4cdb07ee901cde7530eefd",
+    "started_utc": "2026-10-05T18:04:16.540164+00:00",
+    "timeout_seconds": 900
+  },
+  "export_completion": {
+    "elapsed_seconds": 40.94601404108107,
+    "error_type": null,
+    "exit_code": 0,
+    "finished_utc": "2026-10-05T18:04:57.486884+00:00",
+    "status": "completed"
+  },
+  "validation_run": "runs/20261005T180626Z-codex-cloud-handoff-validation-v001-1c6a88",
+  "validation_execution": {
+    "command": [
+      "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/.venv-llm-reporting/bin/python",
+      "tools/validate_codex_cloud_handoff_v001.py",
+      "--snapshot",
+      "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20261005T180415Z-codex-cloud-handoff-export-v001-a456c5/snapshot"
+    ],
+    "label": "codex-cloud-handoff-validation-v001",
+    "run_id": "20261005T180626Z-codex-cloud-handoff-validation-v001-1c6a88",
+    "scope": "local preparation or correctness; never TPU performance",
+    "source_commit": "cdc533c89d6c25c1f876bd1025141cc4fca50e79",
+    "started_utc": "2026-10-05T18:06:27.529874+00:00",
+    "timeout_seconds": 600
+  },
+  "validation_completion": {
+    "elapsed_seconds": 12.909498542547226,
+    "error_type": null,
+    "exit_code": 0,
+    "finished_utc": "2026-10-05T18:06:40.439690+00:00",
+    "status": "completed"
+  },
+  "copied_file_hashes_verified": 1981,
+  "cloud_environment_created": false,
+  "new_tpu_work": false
+}

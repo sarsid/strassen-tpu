@@ -1,0 +1,84 @@
+{
+  "status": "passed",
+  "scope": "training-only actual two-arm engine validation; no downstream scores",
+  "model": "Qwen/Qwen3-32B",
+  "revision": "9216db5781bf21249d130ec9da846c4624c16137",
+  "query_block": 16,
+  "train_example_ids": [
+    4826,
+    2644,
+    5927,
+    985,
+    1737,
+    3852,
+    4419,
+    2398
+  ],
+  "train_input_sha256": "fa6c68f0945b6e2580231932f748235b40f6d7ddb80002bbd4611e37e9a227ea",
+  "checks": [
+    {
+      "prefix_length": 64,
+      "status": "passed",
+      "native_cached_full_relative_l2": 0.0,
+      "native_cached_full_max_abs": 0.0,
+      "relative_l2_limit": 0.005,
+      "native_greedy_agreement": 1.0,
+      "train_example_ids": [
+        4826,
+        2644,
+        5927,
+        985,
+        1737,
+        3852,
+        4419,
+        2398
+      ],
+      "train_input_sha256": "fa6c68f0945b6e2580231932f748235b40f6d7ddb80002bbd4611e37e9a227ea",
+      "all_logits_finite": true,
+      "strassen_quality_is_not_an_admission_gate": true
+    },
+    {
+      "prefix_length": 129,
+      "status": "passed",
+      "relative_l2_limit": 0.005,
+      "all_logits_finite": true,
+      "cached_full_metrics": {
+        "native": {
+          "relative_l2": 0.0,
+          "max_abs": 0.0,
+          "greedy_agreement": 1.0
+        },
+        "strassen": {
+          "relative_l2": 0.0,
+          "max_abs": 0.0,
+          "greedy_agreement": 1.0
+        }
+      },
+      "strassen_quality_is_not_an_admission_gate": true
+    },
+    {
+      "prefix_length": 1024,
+      "status": "passed",
+      "relative_l2_limit": 0.005,
+      "all_logits_finite": true,
+      "cached_full_metrics": {
+        "native": {
+          "relative_l2": 0.0,
+          "max_abs": 0.0,
+          "greedy_agreement": 1.0
+        },
+        "strassen": {
+          "relative_l2": 0.0,
+          "max_abs": 0.0,
+          "greedy_agreement": 1.0
+        }
+      },
+      "strassen_quality_is_not_an_admission_gate": true
+    }
+  ],
+  "source_sha256": {
+    "accuracy_engine_v004.py": "96e5b6908b8c8ea23de47825cefb3b4023001cee27f25d68308f01f2aab05d67",
+    "accuracy_study_v002.py": "94a7b3f37a6b2df4888f60e8a904ae7da85afb322af7079d314cee20908e229e",
+    "accuracy_query_block_preflight_v001.py": "b8272aca5656d80716400cc177c78dc992117090cb3f7ec83e437dee0b212dc8"
+  }
+}

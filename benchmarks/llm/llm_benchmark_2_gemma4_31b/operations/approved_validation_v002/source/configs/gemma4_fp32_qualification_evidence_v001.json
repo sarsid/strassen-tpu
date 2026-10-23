@@ -1,0 +1,58 @@
+{
+  "model": "google/gemma-4-31B",
+  "revision": "5bbc2fb1c1b2c611d06e3d9f23c170ba21659d89",
+  "control_run": "20261016-gemma4-fp32-semantics-v001",
+  "report_sha256": "1f7746ab2e8c79cd5de4fad6e1b69f732716c50a1c8057607ec9515d2c27e405",
+  "report": {
+    "scope": "Independent CPU FP32 formulation control on real weights and official activations; not BF16 qualification or performance",
+    "layers": [
+      {
+        "layer": 0,
+        "attention_type": "sliding_attention",
+        "finite": true,
+        "relative_l2": 4.939035273893441e-07,
+        "max_abs": 1.52587890625e-05,
+        "different_fraction": 0.9132893880208334,
+        "kind": "fp32_semantics",
+        "capture_sha256": "c10cf503d878a1b85e6f88aa9bfb1f28d7414a9506c37c84ff11c9af27846d8e"
+      },
+      {
+        "layer": 5,
+        "attention_type": "full_attention",
+        "finite": true,
+        "relative_l2": 1.0343918550227655e-07,
+        "max_abs": 2.288818359375e-05,
+        "different_fraction": 0.8554164341517857,
+        "kind": "fp32_semantics",
+        "capture_sha256": "a20cf4dd1675cbd312ae0df98bb3472105605dafffc42af028f6196230da2c8c"
+      },
+      {
+        "layer": 53,
+        "attention_type": "full_attention",
+        "finite": true,
+        "relative_l2": 4.188440823601097e-07,
+        "max_abs": 1.1444091796875e-05,
+        "different_fraction": 0.9350179036458334,
+        "kind": "fp32_semantics",
+        "capture_sha256": "14cc73e0892a2a8341e499c39c33ff228005939ebc8faddd1a0c91969ba21b8e"
+      }
+    ],
+    "all_pass": null,
+    "source_sha256": "db831c0a847ad83c9d24464b6dfb9c7fd858fa6b7373c38b3aa2bb33b255d990",
+    "numerical_gates_unchanged": true,
+    "diagnosis_complete": true
+  },
+  "verified_source_files": {
+    "tools/gemma4_parent_model_v002.py": "bcb1e7da0ea18f72410ad3639c509a7fb534c54bc9e82e41e9b4fd8032c8e46b",
+    "tools/gemma4_numerics_probe_v001.py": "792481ab7425d77520a5de98f5879b5c76257a773e75470f8bc516324e8a25c3",
+    "src/strassen_mm/model_gemma4_v001.py": "6bc5f316e97eb419883410d20684549202b51ca2141aa7fa5dc6a9829815e572",
+    "src/strassen_mm/gemma4_contract_v001.py": "272b9b7e705820c213f47ad7f8b8abb5ee71503f0826b0e76c9682e56247c864",
+    "plans/parent_llm_models_20261013_v001/metadata/gemma4_31b.config.json": "6a81841cad2b6ba06841e23c6afb5f0a27827bc12c64328ffa6338831a21267e",
+    "tools/gemma4_fp32_semantics_v001.py": "db831c0a847ad83c9d24464b6dfb9c7fd858fa6b7373c38b3aa2bb33b255d990",
+    "src/strassen_mm/fusion_v003.py": "7f93da36b546043e72b678dd56c38dae695d4779952c71e8b2aa53b96a2d75a7",
+    "tools/parent_stage_v001.py": "10e470f861b9ef16e8303ceb310fb38728fa291a40b923152283a0cc514bd299"
+  },
+  "official_source_sha256": "6a86e03348df5ec104703e7161de9a911137cba500a0be0f133e2850ef0bf935",
+  "cross_backend_bf16_diagnostic_run": "20261016-gemma4-numerics-v001",
+  "prior_bf16_gates_status": "failed; historical results preserved"
+}

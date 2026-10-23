@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/.venv-colab/bin/python",
+    "-c",
+    "import os,json,pathlib,subprocess,sys,tempfile,hashlib; root=pathlib.Path(\"/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/strassen-tpu-benchmarks-publish/benchmarks/llm/20261004_v001\"); out=pathlib.Path(os.environ[\"STRASSEN_EXECUTION_DIR\"])/\"artifacts\"; out.mkdir(); result=json.loads(subprocess.check_output([sys.executable,\"tools/verify_public_llm_v001.py\",\"--root\",str(root)],text=True)); result[\"checked_manifest_sha256\"]=hashlib.sha256((root/\"MANIFEST.json\").read_bytes()).hexdigest(); (out/\"integrity.json\").write_text(json.dumps(result,indent=2)+\"\\n\"); print(json.dumps(result),flush=True); subprocess.run([sys.executable,\"tools/scan_public_checkpoint_v001.py\",\"--root\",str(root),\"--output\",str(out/\"credential-scan.json\")],check=True); temporary=tempfile.TemporaryDirectory(); restored=pathlib.Path(temporary.name)/\"case\"; subprocess.run([sys.executable,\"tools/restore_public_llm_v001.py\",\"--root\",str(root),\"--group\",\"qwen3_32b-b1s4096\",\"--output\",str(restored)],check=True); rows=[json.loads(l) for l in (restored/\"main-prefill/completed_entries.jsonl\").read_text().splitlines() if l]; assert len(rows)==5 and all(r[\"quality_gate_passed\"] and len(r[\"measurement\"][\"samples\"])==15 for r in rows); (out/\"restore-check.json\").write_text(json.dumps(dict(passed=True,group=\"qwen3_32b-b1s4096\",comparisons=5,all_quality_gates_passed=True))+\"\\n\"); temporary.cleanup(); print(\"Publication validation passed\",flush=True)"
+  ],
+  "label": "public-llm-validation-v001",
+  "run_id": "20261004T024448Z-public-llm-validation-v001-1a481d",
+  "scope": "local preparation or correctness; never TPU performance",
+  "source_commit": "95e7eb93e3a678c56fc9994dd744ed8220457e8c",
+  "started_utc": "2026-10-04T02:44:49.678107+00:00",
+  "timeout_seconds": 600
+}

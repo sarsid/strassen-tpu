@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "device": {
+    "target": "v5e",
+    "single_device": true,
+    "reuse_same_allocation": true,
+    "allow_v6e": false,
+    "allow_concurrent_timing": false,
+    "require_identity_match": true,
+    "identity_fields": [
+      "allocation_id",
+      "device_kind",
+      "device_id",
+      "process_index",
+      "jax_version",
+      "jaxlib_version",
+      "libtpu_version",
+      "runtime_image",
+      "runtime_flags",
+      "host_id"
+    ],
+    "identity_missing_policy": "Record unknown explicitly; do not describe unverified physical identity as the same chip."
+  },
+  "precision": {
+    "input_dtype": "bfloat16",
+    "pre_add_dtype": "bfloat16",
+    "accumulator_dtype": "float32",
+    "output_dtype": "float32",
+    "native_precision": "DEFAULT",
+    "reference_dtype": "float32",
+    "note": "The Strassen pre-add rounding is part of the algorithm under test; its numerical cost must remain visible. FP32 output differs from some historical BF16-output experiments."
+  },
+  "memory": {
+    "kernel_vmem_limit_mib": 48,
+    "estimated_live_device_budget_gib": 8,
+    "max_reference_output_elements": 1048576,
+    "max_full_reference_flops": 2000000000,
+    "execution_order": "smoke first; remaining shapes in ascending estimated live bytes, largest anchor last",
+    "preflight": "Estimate and record bytes for original inputs, padded inputs, FP32 output, one result, and reference samples. Conservative estimate is not measured peak memory.",
+    "on_preflight_over_budget": "Record skipped_memory_preflight with estimate and limit; do not silently remove shape.",
+    "on_device_oom": "Record oom, clear executable/input buffers before the next case; retry only in a new immutable run."
+  },
+  "correctness": {
+    "input_reference": "Use the exact BF16-quantized operands cast to NumPy float32, not the pre-quantization random source.",
+    "reference": "host_numpy_fp32",
+    "mode": "full_if_both_limits_allow_else_sampled_cross_product",
+    "sample_rows": 128,
+    "sample_columns": 128,
+    "sampling": "seeded without replacement, always including first and last row/column; record indices; reference uses all K",
+    "gate": {
+      "require_finite": true,
+      "relative_l2_max": 0.02,
+      "max_abs_atol": 0.001,
+      "max_abs_reference_rtol": 0.05
+    },
+    "gate_expression": "finite && relative_l2 <= 0.02 && max_abs_error <= 0.001 + 0.05 * max_abs_reference",
+    "metrics": [
+      "reference_scope",
+      "sample_count",
+      "relative_l2",
+      "max_abs_error",
+      "max_abs_reference",
+      "rmse",
+      "mean_abs_error",
+      "p50_abs_error",
+      "p99_abs_error",
+      "normwise_error",
+      "finite",
+      "pass"
+    ],
+    "near_zero_denominator": 1e-30,
+    "failure_policy": "Record failures and measurements; failing rows cannot count as valid speedup wins. Fixed thresholds never change to rescue an arm.",
+    "scope": "Finite synthetic numerical eligibility only; no bound on model quality or worst-case error."
+  },
+  "execution_contract": {
+    "immutable_run_id": "UTC timestamp plus unique suffix",
+    "archive_before_run": [
+      "source tree snapshot",
+      "configuration JSON",
+      "source/configuration SHA256 manifests",
+      "git commit",
+      "environment fingerprint",
+      "planned cases"
+    ],
+    "archive_during_run": [
+      "append-only events.jsonl",
+      "stdout/stderr",
+      "raw timing samples",
+      "errors"
+    ],
+    "archive_after_run": [
+      "summary.json",
+      "status snapshot",
+      "artifact SHA256 manifest",
+      "completion/failure marker"
+    ],
+    "commit_policy": "Root orchestrator commits source snapshot before execution and records a commit after every completed or failed execution. Existing source snapshots and result directories are never overwritten.",
+    "resume": "A retry/new version receives a new run id and references previous run ids; never appends measurements to a sealed run.",
+    "record_statuses": [
+      "ok",
+      "input_error",
+      "numerical_failure",
+      "compile_error",
+      "oom",
+      "unsupported",
+      "skipped_memory_preflight",
+      "interrupted",
+      "not_run"
+    ],
+    "external_changes": "Any device or environment change creates a new cohort; do not pool it silently with the original allocation."
+  },
+  "campaign_id": "alphatensor_poc_v001",
+  "shape_manifest": "shapes.json",
+  "distribution_manifest": "distributions.json",
+  "upstream": {
+    "repository": "https://github.com/google-deepmind/alphatensor",
+    "commit": "1949163da3bef7e3eb268a3ac015fd1c2dbfc767",
+    "files": {
+      "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "README.md": "bfdcfb91b5e82aec13f3d0117246b92bedbc0b342543ef072e8a48d16bfb6c1d",
+      "benchmarking/README.md": "9f2ac61cc689a550f2f229cd0b97c6cb5a78010bb78f585c9137f981bd9b3e7b",
+      "benchmarking/utils.py": "a5d3b7cd15f9c28b6ea1bf9377bfd1e137f9074bc2ad9304d56c9d786de61c3c",
+      "benchmarking/factorizations.py": "bfbc0000c756e42f33cb1bd54dcc0370eb021ef2b7783f74de1f9773edf455dd",
+      "benchmarking/run_gpu_benchmark.py": "c2654cc18344a24cd42b72cf0670edaf3219d0b363e5bbac1737ad0b824931a0",
+      "benchmarking/test_correctness.py": "12ad90fc410debb4ffaeabb6eab654e3abc96e91e40e3c1be47e44d0f9bbce97",
+      "benchmarking/requirements.txt": "db3ea63ad6f4febfe3958dbbaf33b9e2096d062fb7206a383d64eaa5a0244380"
+    },
+    "note": "Exact upstream bytes; no GPU clock commands or original timing loop executed."
+  },
+  "seed": 2026092111,
+  "timing": {
+    "poc": {
+      "warmups": 5,
+      "repeats": 30
+    }
+  },
+  "arms": [
+    "native_xla",
+    "cubic_fixed",
+    "our_strassen",
+    "alpha_upstream_bf16",
+    "alpha_fp32_recombine",
+    "native_bf16"
+  ]
+}

@@ -1,0 +1,1220 @@
+{
+  "shapes": [
+    {
+      "id": "k8192",
+      "m": 8192,
+      "k": 8192,
+      "n": 8192,
+      "seed_offset": 0,
+      "arms_by_dtype": {
+        "float32": [
+          {
+            "algorithm": "native",
+            "arm_id": "Broad_native",
+            "buffers": 2,
+            "candidate_id": "Broad_native",
+            "compiler_options": {
+              "xla_tpu_scoped_vmem_limit_kib": 98304
+            },
+            "depth": 0,
+            "family": "native",
+            "headline_roles": [
+              "native"
+            ],
+            "implementation": "native",
+            "output_dtype": "float32",
+            "tile": null,
+            "variant": "Native_96MiB",
+            "vmem_limit_bytes": 117440512,
+            "role": "native"
+          },
+          {
+            "algorithm": "native",
+            "arm_id": "Broad_native_default",
+            "buffers": 2,
+            "candidate_id": "Broad_native_default",
+            "compiler_options": {},
+            "depth": 0,
+            "family": "native",
+            "headline_roles": [
+              "native_default"
+            ],
+            "implementation": "native",
+            "output_dtype": "float32",
+            "tile": null,
+            "variant": "Native_default",
+            "vmem_limit_bytes": 117440512,
+            "role": "native_default"
+          },
+          {
+            "algorithm": "current",
+            "arm_id": "Broad_short_s1",
+            "buffers": 2,
+            "candidate_id": "Broad_short_s1",
+            "compiler_options": {},
+            "depth": 1,
+            "family": "current",
+            "headline_roles": [
+              "short_s1"
+            ],
+            "implementation": "current",
+            "output_dtype": "float32",
+            "role": "short_s1",
+            "tile": [
+              2048,
+              2048,
+              2048
+            ],
+            "variant": "S1_2048_2048_2048_b2",
+            "vmem_limit_bytes": 117440512
+          },
+          {
+            "algorithm": "current",
+            "arm_id": "Broad_full_s1",
+            "buffers": 2,
+            "candidate_id": "Broad_full_s1",
+            "compiler_options": {},
+            "depth": 1,
+            "family": "current",
+            "headline_roles": [
+              "full_s1"
+            ],
+            "implementation": "current",
+            "output_dtype": "float32",
+            "role": "full_s1",
+            "tile": [
+              1024,
+              1024,
+              8192
+            ],
+            "variant": "S1_1024_1024_8192_b2",
+            "vmem_limit_bytes": 117440512
+          },
+          {
+            "algorithm": "current",
+            "arm_id": "Broad_short_s2",
+            "buffers": 2,
+            "candidate_id": "Broad_short_s2",
+            "compiler_options": {},
+            "depth": 2,
+            "family": "current",
+            "headline_roles": [
+              "short_s2"
+            ],
+            "implementation": "current",
+            "output_dtype": "float32",
+            "role": "short_s2",
+            "tile": [
+              4096,
+              1024,
+              2048
+            ],
+            "variant": "S2_4096_1024_2048_b2",
+            "vmem_limit_bytes": 117440512
+          },
+          {
+            "algorithm": "current",
+            "arm_id": "Broad_full_s2",
+            "buffers": 2,
+            "candidate_id": "Broad_full_s2",
+            "compiler_options": {},
+            "depth": 2,
+            "family": "current",
+            "headline_roles": [
+              "full_s2"
+            ],
+            "implementation": "current",
+            "output_dtype": "float32",
+            "role": "full_s2",
+            "tile": [
+              1024,
+              1024,
+              8192
+            ],
+            "variant": "S2_1024_1024_8192_b2",
+            "vmem_limit_bytes": 117440512
+          },
+          {
+            "arm_id": "Pilot_S1_1024_512_b1",
+            "candidate_id": "Pilot_S1_1024_512_b1",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S1_1024_512_b1",
+            "depth": 1,
+            "tile": [
+              1024,
+              512,
+              8192
+            ],
+            "buffers": 1,
+            "output_dtype": "float32",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s1",
+            "headline_roles": [
+              "Pilot_S1_1024_512_b1"
+            ]
+          },
+          {
+            "arm_id": "Pilot_S1_1024_512_b2",
+            "candidate_id": "Pilot_S1_1024_512_b2",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S1_1024_512_b2",
+            "depth": 1,
+            "tile": [
+              1024,
+              512,
+              8192
+            ],
+            "buffers": 2,
+            "output_dtype": "float32",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s1",
+            "headline_roles": [
+              "Pilot_S1_1024_512_b2"
+            ]
+          },
+          {
+            "arm_id": "Pilot_S1_2048_1024_b1",
+            "candidate_id": "Pilot_S1_2048_1024_b1",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S1_2048_1024_b1",
+            "depth": 1,
+            "tile": [
+              2048,
+              1024,
+              8192
+            ],
+            "buffers": 1,
+            "output_dtype": "float32",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s1",
+            "headline_roles": [
+              "Pilot_S1_2048_1024_b1"
+            ]
+          },
+          {
+            "arm_id": "Pilot_S1_2048_1024_b2",
+            "candidate_id": "Pilot_S1_2048_1024_b2",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S1_2048_1024_b2",
+            "depth": 1,
+            "tile": [
+              2048,
+              1024,
+              8192
+            ],
+            "buffers": 2,
+            "output_dtype": "float32",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s1",
+            "headline_roles": [
+              "Pilot_S1_2048_1024_b2"
+            ]
+          },
+          {
+            "arm_id": "Original_S1_1024_512_b2",
+            "candidate_id": "Original_S1_1024_512_b2",
+            "algorithm": "incumbent",
+            "family": "incumbent",
+            "implementation": "incumbent",
+            "variant": "Original_S1_1024_512_b2",
+            "depth": 1,
+            "tile": [
+              1024,
+              512,
+              8192
+            ],
+            "buffers": 2,
+            "output_dtype": "float32",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "original_s1",
+            "headline_roles": [
+              "Original_S1_1024_512_b2"
+            ]
+          },
+          {
+            "arm_id": "Pilot_S2_1024_512_b1",
+            "candidate_id": "Pilot_S2_1024_512_b1",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S2_1024_512_b1",
+            "depth": 2,
+            "tile": [
+              1024,
+              512,
+              8192
+            ],
+            "buffers": 1,
+            "output_dtype": "float32",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s2",
+            "headline_roles": [
+              "Pilot_S2_1024_512_b1"
+            ]
+          },
+          {
+            "arm_id": "Pilot_S2_1024_512_b2",
+            "candidate_id": "Pilot_S2_1024_512_b2",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S2_1024_512_b2",
+            "depth": 2,
+            "tile": [
+              1024,
+              512,
+              8192
+            ],
+            "buffers": 2,
+            "output_dtype": "float32",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s2",
+            "headline_roles": [
+              "Pilot_S2_1024_512_b2"
+            ]
+          },
+          {
+            "arm_id": "Pilot_S2_2048_1024_b1",
+            "candidate_id": "Pilot_S2_2048_1024_b1",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S2_2048_1024_b1",
+            "depth": 2,
+            "tile": [
+              2048,
+              1024,
+              8192
+            ],
+            "buffers": 1,
+            "output_dtype": "float32",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s2",
+            "headline_roles": [
+              "Pilot_S2_2048_1024_b1"
+            ]
+          },
+          {
+            "arm_id": "Pilot_S2_2048_1024_b2",
+            "candidate_id": "Pilot_S2_2048_1024_b2",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S2_2048_1024_b2",
+            "depth": 2,
+            "tile": [
+              2048,
+              1024,
+              8192
+            ],
+            "buffers": 2,
+            "output_dtype": "float32",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s2",
+            "headline_roles": [
+              "Pilot_S2_2048_1024_b2"
+            ]
+          },
+          {
+            "arm_id": "Original_S2_1024_512_b2",
+            "candidate_id": "Original_S2_1024_512_b2",
+            "algorithm": "incumbent",
+            "family": "incumbent",
+            "implementation": "incumbent",
+            "variant": "Original_S2_1024_512_b2",
+            "depth": 2,
+            "tile": [
+              1024,
+              512,
+              8192
+            ],
+            "buffers": 2,
+            "output_dtype": "float32",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "original_s2",
+            "headline_roles": [
+              "Original_S2_1024_512_b2"
+            ]
+          }
+        ],
+        "bfloat16": [
+          {
+            "algorithm": "native",
+            "arm_id": "Broad_native",
+            "buffers": 2,
+            "candidate_id": "Broad_native",
+            "compiler_options": {
+              "xla_tpu_scoped_vmem_limit_kib": 114688
+            },
+            "depth": 0,
+            "family": "native",
+            "headline_roles": [
+              "native"
+            ],
+            "implementation": "native",
+            "output_dtype": "bfloat16",
+            "tile": null,
+            "variant": "Native_112MiB",
+            "vmem_limit_bytes": 117440512,
+            "role": "native"
+          },
+          {
+            "algorithm": "native",
+            "arm_id": "Broad_native_default",
+            "buffers": 2,
+            "candidate_id": "Broad_native_default",
+            "compiler_options": {},
+            "depth": 0,
+            "family": "native",
+            "headline_roles": [
+              "native_default"
+            ],
+            "implementation": "native",
+            "output_dtype": "bfloat16",
+            "tile": null,
+            "variant": "Native_default",
+            "vmem_limit_bytes": 117440512,
+            "role": "native_default"
+          },
+          {
+            "algorithm": "incumbent",
+            "arm_id": "Broad_short_s1",
+            "buffers": 2,
+            "candidate_id": "Broad_short_s1",
+            "compiler_options": {},
+            "depth": 1,
+            "family": "incumbent",
+            "headline_roles": [
+              "short_s1"
+            ],
+            "implementation": "incumbent",
+            "output_dtype": "bfloat16",
+            "role": "short_s1",
+            "tile": [
+              2048,
+              2048,
+              2048
+            ],
+            "variant": "Existing_S1",
+            "vmem_limit_bytes": 117440512
+          },
+          {
+            "algorithm": "current",
+            "arm_id": "Broad_full_s1",
+            "buffers": 2,
+            "candidate_id": "Broad_full_s1",
+            "compiler_options": {},
+            "depth": 1,
+            "family": "current",
+            "headline_roles": [
+              "full_s1"
+            ],
+            "implementation": "current",
+            "output_dtype": "bfloat16",
+            "role": "full_s1",
+            "tile": [
+              1024,
+              1024,
+              8192
+            ],
+            "variant": "S1_1024_1024_8192_b2",
+            "vmem_limit_bytes": 117440512
+          },
+          {
+            "algorithm": "current",
+            "arm_id": "Broad_short_s2",
+            "buffers": 2,
+            "candidate_id": "Broad_short_s2",
+            "compiler_options": {},
+            "depth": 2,
+            "family": "current",
+            "headline_roles": [
+              "short_s2"
+            ],
+            "implementation": "current",
+            "output_dtype": "bfloat16",
+            "role": "short_s2",
+            "tile": [
+              4096,
+              1024,
+              2048
+            ],
+            "variant": "S2_4096_1024_2048_b2",
+            "vmem_limit_bytes": 117440512
+          },
+          {
+            "algorithm": "current",
+            "arm_id": "Broad_full_s2",
+            "buffers": 2,
+            "candidate_id": "Broad_full_s2",
+            "compiler_options": {},
+            "depth": 2,
+            "family": "current",
+            "headline_roles": [
+              "full_s2"
+            ],
+            "implementation": "current",
+            "output_dtype": "bfloat16",
+            "role": "full_s2",
+            "tile": [
+              1024,
+              1024,
+              8192
+            ],
+            "variant": "S2_1024_1024_8192_b2",
+            "vmem_limit_bytes": 117440512
+          },
+          {
+            "arm_id": "Pilot_S1_1024_512_b1",
+            "candidate_id": "Pilot_S1_1024_512_b1",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S1_1024_512_b1",
+            "depth": 1,
+            "tile": [
+              1024,
+              512,
+              8192
+            ],
+            "buffers": 1,
+            "output_dtype": "bfloat16",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s1",
+            "headline_roles": [
+              "Pilot_S1_1024_512_b1"
+            ]
+          },
+          {
+            "arm_id": "Pilot_S1_1024_512_b2",
+            "candidate_id": "Pilot_S1_1024_512_b2",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S1_1024_512_b2",
+            "depth": 1,
+            "tile": [
+              1024,
+              512,
+              8192
+            ],
+            "buffers": 2,
+            "output_dtype": "bfloat16",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s1",
+            "headline_roles": [
+              "Pilot_S1_1024_512_b2"
+            ]
+          },
+          {
+            "arm_id": "Pilot_S1_2048_1024_b1",
+            "candidate_id": "Pilot_S1_2048_1024_b1",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S1_2048_1024_b1",
+            "depth": 1,
+            "tile": [
+              2048,
+              1024,
+              8192
+            ],
+            "buffers": 1,
+            "output_dtype": "bfloat16",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s1",
+            "headline_roles": [
+              "Pilot_S1_2048_1024_b1"
+            ]
+          },
+          {
+            "arm_id": "Pilot_S1_2048_1024_b2",
+            "candidate_id": "Pilot_S1_2048_1024_b2",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S1_2048_1024_b2",
+            "depth": 1,
+            "tile": [
+              2048,
+              1024,
+              8192
+            ],
+            "buffers": 2,
+            "output_dtype": "bfloat16",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s1",
+            "headline_roles": [
+              "Pilot_S1_2048_1024_b2"
+            ]
+          },
+          {
+            "arm_id": "Pilot_S2_1024_512_b1",
+            "candidate_id": "Pilot_S2_1024_512_b1",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S2_1024_512_b1",
+            "depth": 2,
+            "tile": [
+              1024,
+              512,
+              8192
+            ],
+            "buffers": 1,
+            "output_dtype": "bfloat16",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s2",
+            "headline_roles": [
+              "Pilot_S2_1024_512_b1"
+            ]
+          },
+          {
+            "arm_id": "Pilot_S2_1024_512_b2",
+            "candidate_id": "Pilot_S2_1024_512_b2",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S2_1024_512_b2",
+            "depth": 2,
+            "tile": [
+              1024,
+              512,
+              8192
+            ],
+            "buffers": 2,
+            "output_dtype": "bfloat16",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s2",
+            "headline_roles": [
+              "Pilot_S2_1024_512_b2"
+            ]
+          },
+          {
+            "arm_id": "Pilot_S2_2048_1024_b1",
+            "candidate_id": "Pilot_S2_2048_1024_b1",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S2_2048_1024_b1",
+            "depth": 2,
+            "tile": [
+              2048,
+              1024,
+              8192
+            ],
+            "buffers": 1,
+            "output_dtype": "bfloat16",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s2",
+            "headline_roles": [
+              "Pilot_S2_2048_1024_b1"
+            ]
+          },
+          {
+            "arm_id": "Pilot_S2_2048_1024_b2",
+            "candidate_id": "Pilot_S2_2048_1024_b2",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S2_2048_1024_b2",
+            "depth": 2,
+            "tile": [
+              2048,
+              1024,
+              8192
+            ],
+            "buffers": 2,
+            "output_dtype": "bfloat16",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s2",
+            "headline_roles": [
+              "Pilot_S2_2048_1024_b2"
+            ]
+          }
+        ]
+      },
+      "pilot_winning_tiles": {
+        "1": [
+          1024,
+          512,
+          8192
+        ],
+        "2": [
+          1024,
+          512,
+          8192
+        ]
+      },
+      "replay_tiles": {
+        "1": [
+          [
+            1024,
+            512,
+            8192
+          ],
+          [
+            2048,
+            1024,
+            8192
+          ]
+        ],
+        "2": [
+          [
+            1024,
+            512,
+            8192
+          ],
+          [
+            2048,
+            1024,
+            8192
+          ]
+        ]
+      }
+    },
+    {
+      "id": "parent",
+      "m": 8192,
+      "k": 5120,
+      "n": 51200,
+      "seed_offset": 1,
+      "arms_by_dtype": {
+        "float32": [
+          {
+            "algorithm": "native",
+            "arm_id": "Broad_native",
+            "buffers": 2,
+            "candidate_id": "Broad_native",
+            "compiler_options": {
+              "xla_tpu_scoped_vmem_limit_kib": 98304
+            },
+            "depth": 0,
+            "family": "native",
+            "headline_roles": [
+              "native"
+            ],
+            "implementation": "native",
+            "output_dtype": "float32",
+            "tile": null,
+            "variant": "Native_96MiB",
+            "vmem_limit_bytes": 117440512,
+            "role": "native"
+          },
+          {
+            "algorithm": "native",
+            "arm_id": "Broad_native_default",
+            "buffers": 2,
+            "candidate_id": "Broad_native_default",
+            "compiler_options": {},
+            "depth": 0,
+            "family": "native",
+            "headline_roles": [
+              "native_default"
+            ],
+            "implementation": "native",
+            "output_dtype": "float32",
+            "tile": null,
+            "variant": "Native_default",
+            "vmem_limit_bytes": 117440512,
+            "role": "native_default"
+          },
+          {
+            "algorithm": "current",
+            "arm_id": "Broad_short_s1",
+            "buffers": 2,
+            "candidate_id": "Broad_short_s1",
+            "compiler_options": {},
+            "depth": 1,
+            "family": "current",
+            "headline_roles": [
+              "short_s1"
+            ],
+            "implementation": "current",
+            "output_dtype": "float32",
+            "role": "short_s1",
+            "tile": [
+              2048,
+              2048,
+              2560
+            ],
+            "variant": "S1_2048_2048_2560_b2",
+            "vmem_limit_bytes": 117440512
+          },
+          {
+            "algorithm": "current",
+            "arm_id": "Broad_full_s1",
+            "buffers": 2,
+            "candidate_id": "Broad_full_s1",
+            "compiler_options": {},
+            "depth": 1,
+            "family": "current",
+            "headline_roles": [
+              "full_s1"
+            ],
+            "implementation": "current",
+            "output_dtype": "float32",
+            "role": "full_s1",
+            "tile": [
+              1024,
+              1024,
+              5120
+            ],
+            "variant": "S1_1024_1024_5120_b2",
+            "vmem_limit_bytes": 117440512
+          },
+          {
+            "algorithm": "current",
+            "arm_id": "Broad_short_s2",
+            "buffers": 2,
+            "candidate_id": "Broad_short_s2",
+            "compiler_options": {},
+            "depth": 2,
+            "family": "current",
+            "headline_roles": [
+              "short_s2"
+            ],
+            "implementation": "current",
+            "output_dtype": "float32",
+            "role": "short_s2",
+            "tile": [
+              2048,
+              2048,
+              2560
+            ],
+            "variant": "S2_2048_2048_2560_b2",
+            "vmem_limit_bytes": 117440512
+          },
+          {
+            "algorithm": "current",
+            "arm_id": "Broad_full_s2",
+            "buffers": 2,
+            "candidate_id": "Broad_full_s2",
+            "compiler_options": {},
+            "depth": 2,
+            "family": "current",
+            "headline_roles": [
+              "full_s2"
+            ],
+            "implementation": "current",
+            "output_dtype": "float32",
+            "role": "full_s2",
+            "tile": [
+              1024,
+              1024,
+              5120
+            ],
+            "variant": "S2_1024_1024_5120_b2",
+            "vmem_limit_bytes": 117440512
+          },
+          {
+            "arm_id": "Pilot_S1_2048_1024_b1",
+            "candidate_id": "Pilot_S1_2048_1024_b1",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S1_2048_1024_b1",
+            "depth": 1,
+            "tile": [
+              2048,
+              1024,
+              5120
+            ],
+            "buffers": 1,
+            "output_dtype": "float32",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s1",
+            "headline_roles": [
+              "Pilot_S1_2048_1024_b1"
+            ]
+          },
+          {
+            "arm_id": "Pilot_S1_2048_1024_b2",
+            "candidate_id": "Pilot_S1_2048_1024_b2",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S1_2048_1024_b2",
+            "depth": 1,
+            "tile": [
+              2048,
+              1024,
+              5120
+            ],
+            "buffers": 2,
+            "output_dtype": "float32",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s1",
+            "headline_roles": [
+              "Pilot_S1_2048_1024_b2"
+            ]
+          },
+          {
+            "arm_id": "Original_S1_2048_1024_b2",
+            "candidate_id": "Original_S1_2048_1024_b2",
+            "algorithm": "incumbent",
+            "family": "incumbent",
+            "implementation": "incumbent",
+            "variant": "Original_S1_2048_1024_b2",
+            "depth": 1,
+            "tile": [
+              2048,
+              1024,
+              5120
+            ],
+            "buffers": 2,
+            "output_dtype": "float32",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "original_s1",
+            "headline_roles": [
+              "Original_S1_2048_1024_b2"
+            ]
+          },
+          {
+            "arm_id": "Pilot_S2_2048_1024_b1",
+            "candidate_id": "Pilot_S2_2048_1024_b1",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S2_2048_1024_b1",
+            "depth": 2,
+            "tile": [
+              2048,
+              1024,
+              5120
+            ],
+            "buffers": 1,
+            "output_dtype": "float32",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s2",
+            "headline_roles": [
+              "Pilot_S2_2048_1024_b1"
+            ]
+          },
+          {
+            "arm_id": "Pilot_S2_2048_1024_b2",
+            "candidate_id": "Pilot_S2_2048_1024_b2",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S2_2048_1024_b2",
+            "depth": 2,
+            "tile": [
+              2048,
+              1024,
+              5120
+            ],
+            "buffers": 2,
+            "output_dtype": "float32",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s2",
+            "headline_roles": [
+              "Pilot_S2_2048_1024_b2"
+            ]
+          },
+          {
+            "arm_id": "Original_S2_2048_1024_b2",
+            "candidate_id": "Original_S2_2048_1024_b2",
+            "algorithm": "incumbent",
+            "family": "incumbent",
+            "implementation": "incumbent",
+            "variant": "Original_S2_2048_1024_b2",
+            "depth": 2,
+            "tile": [
+              2048,
+              1024,
+              5120
+            ],
+            "buffers": 2,
+            "output_dtype": "float32",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "original_s2",
+            "headline_roles": [
+              "Original_S2_2048_1024_b2"
+            ]
+          }
+        ],
+        "bfloat16": [
+          {
+            "algorithm": "native",
+            "arm_id": "Broad_native",
+            "buffers": 2,
+            "candidate_id": "Broad_native",
+            "compiler_options": {
+              "xla_tpu_scoped_vmem_limit_kib": 98304
+            },
+            "depth": 0,
+            "family": "native",
+            "headline_roles": [
+              "native"
+            ],
+            "implementation": "native",
+            "output_dtype": "bfloat16",
+            "tile": null,
+            "variant": "Native_96MiB",
+            "vmem_limit_bytes": 117440512,
+            "role": "native"
+          },
+          {
+            "algorithm": "native",
+            "arm_id": "Broad_native_default",
+            "buffers": 2,
+            "candidate_id": "Broad_native_default",
+            "compiler_options": {},
+            "depth": 0,
+            "family": "native",
+            "headline_roles": [
+              "native_default"
+            ],
+            "implementation": "native",
+            "output_dtype": "bfloat16",
+            "tile": null,
+            "variant": "Native_default",
+            "vmem_limit_bytes": 117440512,
+            "role": "native_default"
+          },
+          {
+            "algorithm": "current",
+            "arm_id": "Broad_short_s1",
+            "buffers": 2,
+            "candidate_id": "Broad_short_s1",
+            "compiler_options": {},
+            "depth": 1,
+            "family": "current",
+            "headline_roles": [
+              "short_s1"
+            ],
+            "implementation": "current",
+            "output_dtype": "bfloat16",
+            "role": "short_s1",
+            "tile": [
+              2048,
+              2048,
+              2560
+            ],
+            "variant": "S1_2048_2048_2560_b2",
+            "vmem_limit_bytes": 117440512
+          },
+          {
+            "algorithm": "current",
+            "arm_id": "Broad_full_s1",
+            "buffers": 2,
+            "candidate_id": "Broad_full_s1",
+            "compiler_options": {},
+            "depth": 1,
+            "family": "current",
+            "headline_roles": [
+              "full_s1"
+            ],
+            "implementation": "current",
+            "output_dtype": "bfloat16",
+            "role": "full_s1",
+            "tile": [
+              1024,
+              1024,
+              5120
+            ],
+            "variant": "S1_1024_1024_5120_b2",
+            "vmem_limit_bytes": 117440512
+          },
+          {
+            "algorithm": "current",
+            "arm_id": "Broad_short_s2",
+            "buffers": 2,
+            "candidate_id": "Broad_short_s2",
+            "compiler_options": {},
+            "depth": 2,
+            "family": "current",
+            "headline_roles": [
+              "short_s2"
+            ],
+            "implementation": "current",
+            "output_dtype": "bfloat16",
+            "role": "short_s2",
+            "tile": [
+              4096,
+              1024,
+              2560
+            ],
+            "variant": "S2_4096_1024_2560_b2",
+            "vmem_limit_bytes": 117440512
+          },
+          {
+            "algorithm": "current",
+            "arm_id": "Broad_full_s2",
+            "buffers": 2,
+            "candidate_id": "Broad_full_s2",
+            "compiler_options": {},
+            "depth": 2,
+            "family": "current",
+            "headline_roles": [
+              "full_s2"
+            ],
+            "implementation": "current",
+            "output_dtype": "bfloat16",
+            "role": "full_s2",
+            "tile": [
+              1024,
+              1024,
+              5120
+            ],
+            "variant": "S2_1024_1024_5120_b2",
+            "vmem_limit_bytes": 117440512
+          },
+          {
+            "arm_id": "Pilot_S1_2048_1024_b1",
+            "candidate_id": "Pilot_S1_2048_1024_b1",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S1_2048_1024_b1",
+            "depth": 1,
+            "tile": [
+              2048,
+              1024,
+              5120
+            ],
+            "buffers": 1,
+            "output_dtype": "bfloat16",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s1",
+            "headline_roles": [
+              "Pilot_S1_2048_1024_b1"
+            ]
+          },
+          {
+            "arm_id": "Pilot_S1_2048_1024_b2",
+            "candidate_id": "Pilot_S1_2048_1024_b2",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S1_2048_1024_b2",
+            "depth": 1,
+            "tile": [
+              2048,
+              1024,
+              5120
+            ],
+            "buffers": 2,
+            "output_dtype": "bfloat16",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s1",
+            "headline_roles": [
+              "Pilot_S1_2048_1024_b2"
+            ]
+          },
+          {
+            "arm_id": "Pilot_S2_2048_1024_b1",
+            "candidate_id": "Pilot_S2_2048_1024_b1",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S2_2048_1024_b1",
+            "depth": 2,
+            "tile": [
+              2048,
+              1024,
+              5120
+            ],
+            "buffers": 1,
+            "output_dtype": "bfloat16",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s2",
+            "headline_roles": [
+              "Pilot_S2_2048_1024_b1"
+            ]
+          },
+          {
+            "arm_id": "Pilot_S2_2048_1024_b2",
+            "candidate_id": "Pilot_S2_2048_1024_b2",
+            "algorithm": "current",
+            "family": "current",
+            "implementation": "current",
+            "variant": "Pilot_S2_2048_1024_b2",
+            "depth": 2,
+            "tile": [
+              2048,
+              1024,
+              5120
+            ],
+            "buffers": 2,
+            "output_dtype": "bfloat16",
+            "compiler_options": {},
+            "vmem_limit_bytes": 117440512,
+            "role": "pilot_s2",
+            "headline_roles": [
+              "Pilot_S2_2048_1024_b2"
+            ]
+          }
+        ]
+      },
+      "pilot_winning_tiles": {
+        "1": [
+          2048,
+          1024,
+          5120
+        ],
+        "2": [
+          2048,
+          1024,
+          5120
+        ]
+      },
+      "replay_tiles": {
+        "1": [
+          [
+            2048,
+            1024,
+            5120
+          ]
+        ],
+        "2": [
+          [
+            2048,
+            1024,
+            5120
+          ]
+        ]
+      }
+    }
+  ],
+  "input_sha256": {
+    "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260924-fullk-precision-v001/operations/report/artifacts/results.json": "5d87128be09b1b773f09d4ff9c6d75c7c4ea18ad574a0dff3dd5f1d26d8ec7cb",
+    "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260924-fullk-v001/operations/report/artifacts/results.json": "c498c1a823e389f4167afef1e344ca7714b801d69015057a5566ef7cd74081bd"
+  }
+}

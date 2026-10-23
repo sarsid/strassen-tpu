@@ -1,0 +1,466 @@
+{
+  "device": {
+    "allow_concurrent_timing": false,
+    "allow_v6e": true,
+    "identity_fields": [
+      "allocation_id",
+      "device_kind",
+      "device_id",
+      "process_index",
+      "jax_version",
+      "jaxlib_version",
+      "libtpu_version",
+      "runtime_image",
+      "runtime_flags",
+      "host_id"
+    ],
+    "identity_missing_policy": "Record unknown explicitly; do not describe unverified physical identity as the same chip.",
+    "require_identity_match": true,
+    "reuse_same_allocation": true,
+    "single_device": true,
+    "target": "v6e"
+  },
+  "precision": {
+    "accumulator_dtype": "float32",
+    "input_dtype": "bfloat16",
+    "native_precision": "DEFAULT",
+    "note": "BF16 inputs; preadditions round to BF16 at every recursive level, FP32 leaf dots and reconstruction.",
+    "output_dtype": "float32",
+    "pre_add_dtype": "bfloat16",
+    "reference_dtype": "float64"
+  },
+  "memory": {
+    "estimated_live_device_budget_gib": 12,
+    "execution_order": "Randomized small compiler batches for screen; frozen finalists paired on fresh seeds; profiling separate from all reported latency samples.",
+    "kernel_vmem_limit_mib": 112,
+    "max_full_reference_flops": 3000000000,
+    "max_reference_output_elements": 1048576,
+    "on_device_oom": "Record oom, clear executable/input buffers before the next case; retry only in a new immutable run.",
+    "on_preflight_over_budget": "Record skipped_memory_preflight with estimate and limit; do not silently remove shape.",
+    "preflight": "Estimate and record bytes for original inputs, padded inputs, FP32 output, one result, and reference samples. Conservative estimate is not measured peak memory."
+  },
+  "correctness": {
+    "failure_policy": "Record failures and measurements; failing rows cannot count as valid speedup wins. Fixed thresholds never change to rescue an arm.",
+    "gate": {
+      "max_abs_atol": 0.001,
+      "max_abs_reference_rtol": 0.05,
+      "relative_l2_max": 0.02,
+      "require_finite": true
+    },
+    "gate_expression": "finite && relative_l2 <= 0.02 && max_abs_error <= 0.001 + 0.05 * max_abs_reference",
+    "input_reference": "Use the exact BF16-quantized operands cast to NumPy float32, not the pre-quantization random source.",
+    "metrics": [
+      "reference_scope",
+      "sample_count",
+      "relative_l2",
+      "max_abs_error",
+      "max_abs_reference",
+      "rmse",
+      "mean_abs_error",
+      "p50_abs_error",
+      "p99_abs_error",
+      "normwise_error",
+      "finite",
+      "pass"
+    ],
+    "mode": "full_if_both_limits_allow_else_sampled_cross_product",
+    "near_zero_denominator": 1e-30,
+    "reference": "host_numpy_fp64",
+    "sample_columns": 128,
+    "sample_rows": 128,
+    "sampling": "seeded without replacement, always including first and last row/column; record indices; reference uses all K",
+    "scope": "Full-output finiteness plus full or sampled all-K FP64 numerical metrics; eligibility threshold is not a model-quality guarantee."
+  },
+  "execution_contract": {
+    "archive_after_run": [
+      "summary.json",
+      "status snapshot",
+      "artifact SHA256 manifest",
+      "completion/failure marker"
+    ],
+    "archive_before_run": [
+      "source tree snapshot",
+      "configuration JSON",
+      "source/configuration SHA256 manifests",
+      "git commit",
+      "environment fingerprint",
+      "planned cases"
+    ],
+    "archive_during_run": [
+      "append-only events.jsonl",
+      "stdout/stderr",
+      "raw timing samples",
+      "errors"
+    ],
+    "commit_policy": "Root orchestrator commits source snapshot before execution and records a commit after every completed or failed execution. Existing source snapshots and result directories are never overwritten.",
+    "external_changes": "Any device or environment change creates a new cohort; do not pool it silently with the original allocation.",
+    "immutable_run_id": "UTC timestamp plus unique suffix",
+    "record_statuses": [
+      "ok",
+      "input_error",
+      "numerical_failure",
+      "compile_error",
+      "oom",
+      "unsupported",
+      "skipped_memory_preflight",
+      "interrupted",
+      "not_run"
+    ],
+    "resume": "A retry/new version receives a new run id and references previous run ids; never appends measurements to a sealed run."
+  },
+  "schema_version": 1,
+  "campaign_id": "v6e_opt_v002",
+  "shape_manifest": "shapes.json",
+  "distribution_manifest": "distributions.json",
+  "arms": [
+    "native",
+    "original1",
+    "original2",
+    "optimized1",
+    "optimized2",
+    "hybrid2"
+  ],
+  "order_seed": 92371,
+  "screen_seed": 2026092371,
+  "confirm_seeds": [
+    2026092372,
+    2026092373,
+    2026092374
+  ],
+  "timing": {
+    "smoke": {
+      "warmups": 0,
+      "repeats": 1
+    },
+    "screen": {
+      "warmups": 3,
+      "repeats": 8
+    },
+    "confirm": {
+      "warmups": 5,
+      "repeats": 30
+    },
+    "profile": {
+      "warmups": 3,
+      "repeats": 10
+    }
+  },
+  "candidate_families": {
+    "native": [
+      {
+        "candidate_id": "native_default",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile": null,
+        "compiler_options": {},
+        "profile": true
+      },
+      {
+        "candidate_id": "native_vmem_32m",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile": null,
+        "compiler_options": {
+          "xla_tpu_scoped_vmem_limit_kib": 32768
+        }
+      },
+      {
+        "candidate_id": "native_vmem_64m",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile": null,
+        "compiler_options": {
+          "xla_tpu_scoped_vmem_limit_kib": 65536
+        },
+        "profile": false
+      },
+      {
+        "candidate_id": "native_vmem_96m",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile": null,
+        "compiler_options": {
+          "xla_tpu_scoped_vmem_limit_kib": 98304
+        },
+        "profile": true
+      },
+      {
+        "candidate_id": "native_vmem_112m",
+        "algorithm": "native",
+        "variant": "plain",
+        "tile": null,
+        "compiler_options": {
+          "xla_tpu_scoped_vmem_limit_kib": 114688
+        },
+        "profile": false
+      }
+    ],
+    "original1": [
+      {
+        "algorithm": "strassen",
+        "candidate_id": "original1_2048_2048_2048__mistral_7b_v03_down_m16384",
+        "compiler_options": {},
+        "depth": 1,
+        "family": "original1",
+        "implementation": "original",
+        "profile": false,
+        "tile": [
+          2048,
+          2048,
+          2048
+        ],
+        "variant": "original",
+        "vmem_limit_bytes": 117440512,
+        "only_shape": "mistral_7b_v03_down_m16384"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "original1_2048_2048_2048__qwen_3_8b_down_m2048",
+        "compiler_options": {},
+        "depth": 1,
+        "family": "original1",
+        "implementation": "original",
+        "profile": false,
+        "tile": [
+          2048,
+          2048,
+          2048
+        ],
+        "variant": "original",
+        "vmem_limit_bytes": 117440512,
+        "only_shape": "qwen_3_8b_down_m2048"
+      }
+    ],
+    "original2": [
+      {
+        "algorithm": "strassen",
+        "candidate_id": "original2_2048_2048_2048__mistral_7b_v03_down_m16384",
+        "compiler_options": {},
+        "depth": 2,
+        "family": "original2",
+        "implementation": "original",
+        "profile": false,
+        "tile": [
+          2048,
+          2048,
+          2048
+        ],
+        "variant": "original",
+        "vmem_limit_bytes": 117440512,
+        "only_shape": "mistral_7b_v03_down_m16384"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "original2_1024_2048_4096__qwen_3_8b_down_m2048",
+        "compiler_options": {},
+        "depth": 2,
+        "family": "original2",
+        "implementation": "original",
+        "profile": false,
+        "tile": [
+          1024,
+          2048,
+          4096
+        ],
+        "variant": "original",
+        "vmem_limit_bytes": 117440512,
+        "only_shape": "qwen_3_8b_down_m2048"
+      }
+    ],
+    "optimized1": [
+      {
+        "algorithm": "strassen",
+        "candidate_id": "optimized1_deferred_interleaved_2048_2048_2048__mistral_7b_v03_down_m16384",
+        "compiler_options": {},
+        "depth": 1,
+        "family": "optimized1",
+        "implementation": "optimized",
+        "mode": "deferred",
+        "order": "interleaved",
+        "profile": false,
+        "tile": [
+          2048,
+          2048,
+          2048
+        ],
+        "variant": "deferred_interleaved",
+        "vmem_limit_bytes": 117440512,
+        "only_shape": "mistral_7b_v03_down_m16384"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "optimized1_panel_interleaved_2048_2048_2048__qwen_3_8b_down_m2048",
+        "compiler_options": {},
+        "depth": 1,
+        "family": "optimized1",
+        "implementation": "optimized",
+        "mode": "panel",
+        "order": "interleaved",
+        "profile": false,
+        "tile": [
+          2048,
+          2048,
+          2048
+        ],
+        "variant": "panel_interleaved",
+        "vmem_limit_bytes": 117440512,
+        "only_shape": "qwen_3_8b_down_m2048"
+      }
+    ],
+    "optimized2": [
+      {
+        "algorithm": "strassen",
+        "candidate_id": "optimized2_panel_interleaved_2048_2048_2048__mistral_7b_v03_down_m16384",
+        "compiler_options": {},
+        "depth": 2,
+        "family": "optimized2",
+        "implementation": "optimized",
+        "mode": "panel",
+        "order": "interleaved",
+        "profile": false,
+        "tile": [
+          2048,
+          2048,
+          2048
+        ],
+        "variant": "panel_interleaved",
+        "vmem_limit_bytes": 117440512,
+        "only_shape": "mistral_7b_v03_down_m16384"
+      },
+      {
+        "algorithm": "strassen",
+        "candidate_id": "optimized2_panel_interleaved_2048_2048_2048__qwen_3_8b_down_m2048",
+        "compiler_options": {},
+        "depth": 2,
+        "family": "optimized2",
+        "implementation": "optimized",
+        "mode": "panel",
+        "order": "interleaved",
+        "profile": false,
+        "tile": [
+          2048,
+          2048,
+          2048
+        ],
+        "variant": "panel_interleaved",
+        "vmem_limit_bytes": 117440512,
+        "only_shape": "qwen_3_8b_down_m2048"
+      }
+    ],
+    "hybrid2": [
+      {
+        "candidate_id": "hybrid2_2048_1024_1024",
+        "algorithm": "strassen",
+        "variant": "outer_deferred_interleaved",
+        "implementation": "hybrid",
+        "depth": 2,
+        "mode": "outer_deferred",
+        "order": "interleaved",
+        "tile": [
+          2048,
+          1024,
+          1024
+        ],
+        "compiler_options": {},
+        "vmem_limit_bytes": 117440512,
+        "profile": false
+      },
+      {
+        "candidate_id": "hybrid2_1024_2048_2048",
+        "algorithm": "strassen",
+        "variant": "outer_deferred_interleaved",
+        "implementation": "hybrid",
+        "depth": 2,
+        "mode": "outer_deferred",
+        "order": "interleaved",
+        "tile": [
+          1024,
+          2048,
+          2048
+        ],
+        "compiler_options": {},
+        "vmem_limit_bytes": 117440512,
+        "profile": false
+      },
+      {
+        "candidate_id": "hybrid2_2048_2048_2048",
+        "algorithm": "strassen",
+        "variant": "outer_deferred_interleaved",
+        "implementation": "hybrid",
+        "depth": 2,
+        "mode": "outer_deferred",
+        "order": "interleaved",
+        "tile": [
+          2048,
+          2048,
+          2048
+        ],
+        "compiler_options": {},
+        "vmem_limit_bytes": 117440512,
+        "profile": false
+      },
+      {
+        "candidate_id": "hybrid2_1024_2048_4096",
+        "algorithm": "strassen",
+        "variant": "outer_deferred_interleaved",
+        "implementation": "hybrid",
+        "depth": 2,
+        "mode": "outer_deferred",
+        "order": "interleaved",
+        "tile": [
+          1024,
+          2048,
+          4096
+        ],
+        "compiler_options": {},
+        "vmem_limit_bytes": 117440512,
+        "profile": false
+      },
+      {
+        "candidate_id": "hybrid2_2048_1024_2048",
+        "algorithm": "strassen",
+        "variant": "outer_deferred_interleaved",
+        "implementation": "hybrid",
+        "depth": 2,
+        "mode": "outer_deferred",
+        "order": "interleaved",
+        "tile": [
+          2048,
+          1024,
+          2048
+        ],
+        "compiler_options": {},
+        "vmem_limit_bytes": 117440512,
+        "profile": false
+      },
+      {
+        "candidate_id": "hybrid2_2048_1024_4096",
+        "algorithm": "strassen",
+        "variant": "outer_deferred_interleaved",
+        "implementation": "hybrid",
+        "depth": 2,
+        "mode": "outer_deferred",
+        "order": "interleaved",
+        "tile": [
+          2048,
+          1024,
+          4096
+        ],
+        "compiler_options": {},
+        "vmem_limit_bytes": 117440512,
+        "profile": false
+      }
+    ]
+  },
+  "selection_policy": "Fastest passing candidate per family; fastest finite failure retained as explicitly ineligible diagnostic if none passes. No reselection on confirmation.",
+  "profile_shapes": [
+    "qwen_3_8b_down_m2048",
+    "mistral_7b_v03_down_m16384"
+  ],
+  "followup_provenance": {
+    "prior_cohort": "runs/20260923-v6e-opt-v001",
+    "prior_selection": "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260923-v6e-opt-v001/phases/20260923-v6e-opt-v001-opt-screen-7c8813/artifacts/selections.json",
+    "prior_selection_sha256": "5c976313dcffe6f0406a4503d0ad3bf8da651bbf6d96df786d41d0cc17de5d2a",
+    "rationale": "49 leaf accumulators exceeded VMEM on large tiles; retain 7 outer accumulators, reconstruct inner level per K panel. New allocation requires remeasurement of all controls; no cross-allocation pooling."
+  }
+}

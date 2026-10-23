@@ -1,0 +1,42 @@
+{
+  "utc": "2026-10-16T12:38:35.007359+00:00",
+  "diagnosis": "The BF16 attention repair improved early-layer agreement but did not eliminate full-depth numerical drift.",
+  "checks": {
+    "logits": true,
+    "propagated_hidden": false,
+    "isolated_hidden": true,
+    "loss": true,
+    "kl": true,
+    "top1": false
+  },
+  "maximum_propagated_relative_l2": 0.02372058294713497,
+  "maximum_historical_relative_l2": 0.026696592569351196,
+  "maximum_isolated_relative_l2": 0.002818844746798277,
+  "failed_zero_based_layers": [
+    52,
+    53,
+    54,
+    55,
+    56,
+    57
+  ],
+  "logits": {
+    "finite": true,
+    "relative_l2": 0.0128006087616086,
+    "max_abs": 0.625,
+    "maxnorm_relative": 0.021367521956562996
+  },
+  "predictive": {
+    "absolute_loss_delta": 0.00952243458715232,
+    "mean_kl_nats": 0.0012559473206035698,
+    "top1_agreement": 0.967741935483871
+  },
+  "top1_matches": 30,
+  "top1_positions": 31,
+  "threshold_note": "A 97% top-1 requirement on 31 positions requires all 31 matches; 30/31 is 96.774%. No threshold was changed.",
+  "all_layer_values_finite": true,
+  "root_cause_status": "Attention score boundary mismatch repaired. Remaining mismatch is not yet localized to a specific operation; all isolated layers pass but small differences accumulate in independent propagation. CPU-versus-TPU arithmetic and remaining operation boundaries require a controlled comparison.",
+  "timing_batches_completed": 0,
+  "tpu_released_verified_absent": true,
+  "next_diagnostic": "Capture matched real intermediate tensors and compare normalization, rotary, attention, GELU and projections before changing further math or restarting the full sweep."
+}

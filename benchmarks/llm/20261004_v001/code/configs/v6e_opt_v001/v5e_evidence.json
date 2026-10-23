@@ -1,0 +1,410 @@
+{
+  "source": "runs/20260921T212710Z-strassen2-interim-scan-v001-6331e5/artifacts/shape_results.json",
+  "selection": "Four shapes with eligible S2 confidence intervals above 1 versus default and tuned Native; chosen before new v6e measurements.",
+  "rows": [
+    {
+      "all_five_eligible": true,
+      "comparisons": {
+        "cubic": {
+          "baseline_mean_ms": 1.3371576333333335,
+          "ci95": [
+            1.1550973885728348,
+            1.1708187665580327
+          ],
+          "ci_loss": false,
+          "ci_win": true,
+          "mean_win": true,
+          "speedup": 1.1631833385824901,
+          "strassen2_mean_ms": 1.1495673888888889
+        },
+        "native": {
+          "baseline_mean_ms": 1.3877516222222221,
+          "ci95": [
+            1.199673856048422,
+            1.2146464061492046
+          ],
+          "ci_loss": false,
+          "ci_win": true,
+          "mean_win": true,
+          "speedup": 1.207194667868536,
+          "strassen2_mean_ms": 1.1495673888888889
+        },
+        "native_default": {
+          "baseline_mean_ms": 1.4562527555555553,
+          "ci95": [
+            1.2576052526541726,
+            1.2753804106258955
+          ],
+          "ci_loss": false,
+          "ci_win": true,
+          "mean_win": true,
+          "speedup": 1.2667832870268636,
+          "strassen2_mean_ms": 1.1495673888888889
+        },
+        "one_level": {
+          "baseline_mean_ms": 1.2669085777777778,
+          "ci95": [
+            1.0933527438602795,
+            1.1106230689156031
+          ],
+          "ci_loss": false,
+          "ci_win": true,
+          "mean_win": true,
+          "speedup": 1.102074215068248,
+          "strassen2_mean_ms": 1.1495673888888889
+        }
+      },
+      "evidence": "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260921-mlsys-main-v5e-v001/phases/20260921-mlsys-main-v5e-v001-llm-confirm-f1c02f/artifacts",
+      "fastest_mean_method": "two_level",
+      "k": 12288,
+      "m": 2048,
+      "max_relative_l2": {
+        "cubic": 1.0764323160436634e-07,
+        "native": 1.9266150634011662e-07,
+        "native_default": 1.9266150634011662e-07,
+        "one_level": 0.004423939332467233,
+        "two_level": 0.009834001209269295
+      },
+      "mean_ms": {
+        "cubic": 1.3371576333333333,
+        "native": 1.3877516222222221,
+        "native_default": 1.4562527555555556,
+        "one_level": 1.2669085777777778,
+        "two_level": 1.1495673888888889
+      },
+      "n": 4096,
+      "numerically_eligible": {
+        "cubic": true,
+        "native": true,
+        "native_default": true,
+        "one_level": true,
+        "two_level": true
+      },
+      "shape_id": "qwen_3_8b_down_m2048",
+      "strassen2_clear_win_all_four": true,
+      "study": "mlsys_llm_shapes_v001",
+      "tiles": {
+        "cubic": [
+          1024,
+          1024,
+          1536
+        ],
+        "native": null,
+        "native_default": null,
+        "one_level": [
+          2048,
+          2048,
+          512
+        ],
+        "two_level": [
+          2048,
+          1024,
+          1024
+        ]
+      }
+    },
+    {
+      "all_five_eligible": true,
+      "comparisons": {
+        "cubic": {
+          "baseline_mean_ms": 10.259043477777777,
+          "ci95": [
+            1.2105937946589627,
+            1.2129837060597184
+          ],
+          "ci_loss": false,
+          "ci_win": true,
+          "mean_win": true,
+          "speedup": 1.2117883331483434,
+          "strassen2_mean_ms": 8.466035855555555
+        },
+        "native": {
+          "baseline_mean_ms": 10.212427388888887,
+          "ci95": [
+            1.2050167720689313,
+            1.2077003118256135
+          ],
+          "ci_loss": false,
+          "ci_win": true,
+          "mean_win": true,
+          "speedup": 1.2062820856336582,
+          "strassen2_mean_ms": 8.466035855555555
+        },
+        "native_default": {
+          "baseline_mean_ms": 10.423719277777778,
+          "ci95": [
+            1.2293401534659096,
+            1.233334547955997
+          ],
+          "ci_loss": false,
+          "ci_win": true,
+          "mean_win": true,
+          "speedup": 1.2312396800135872,
+          "strassen2_mean_ms": 8.466035855555555
+        },
+        "one_level": {
+          "baseline_mean_ms": 9.488054555555555,
+          "ci95": [
+            1.119257365071874,
+            1.1222219507752182
+          ],
+          "ci_loss": false,
+          "ci_win": true,
+          "mean_win": true,
+          "speedup": 1.1207198643423337,
+          "strassen2_mean_ms": 8.466035855555555
+        }
+      },
+      "evidence": "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260921-mlsys-main-v5e-v001/phases/20260921-mlsys-main-v5e-v001-llm-confirm-f1c02f/artifacts",
+      "fastest_mean_method": "two_level",
+      "k": 14336,
+      "m": 16384,
+      "max_relative_l2": {
+        "cubic": 1.1140573194457369e-07,
+        "native": 2.0318719806295155e-07,
+        "native_default": 2.0318719806295155e-07,
+        "one_level": 0.0044329885661244595,
+        "two_level": 0.010114409774184017
+      },
+      "mean_ms": {
+        "cubic": 10.259043477777778,
+        "native": 10.212427388888889,
+        "native_default": 10.423719277777778,
+        "one_level": 9.488054555555555,
+        "two_level": 8.466035855555555
+      },
+      "n": 4096,
+      "numerically_eligible": {
+        "cubic": true,
+        "native": true,
+        "native_default": true,
+        "one_level": true,
+        "two_level": true
+      },
+      "shape_id": "mistral_7b_v03_down_m16384",
+      "strassen2_clear_win_all_four": true,
+      "study": "mlsys_llm_shapes_v001",
+      "tiles": {
+        "cubic": [
+          2048,
+          1024,
+          1024
+        ],
+        "native": null,
+        "native_default": null,
+        "one_level": [
+          2048,
+          2048,
+          512
+        ],
+        "two_level": [
+          2048,
+          1024,
+          1024
+        ]
+      }
+    },
+    {
+      "all_five_eligible": true,
+      "comparisons": {
+        "cubic": {
+          "baseline_mean_ms": 8.933003,
+          "ci95": [
+            1.1793548224240844,
+            1.1821989342397319
+          ],
+          "ci_loss": false,
+          "ci_win": true,
+          "mean_win": true,
+          "speedup": 1.1807059018448116,
+          "strassen2_mean_ms": 7.565815488888888
+        },
+        "native": {
+          "baseline_mean_ms": 8.858816355555556,
+          "ci95": [
+            1.1687694653037324,
+            1.17279851013698
+          ],
+          "ci_loss": false,
+          "ci_win": true,
+          "mean_win": true,
+          "speedup": 1.1709003964695623,
+          "strassen2_mean_ms": 7.565815488888888
+        },
+        "native_default": {
+          "baseline_mean_ms": 8.930375433333333,
+          "ci95": [
+            1.178472759883727,
+            1.1822807120081693
+          ],
+          "ci_loss": false,
+          "ci_win": true,
+          "mean_win": true,
+          "speedup": 1.1803586072708792,
+          "strassen2_mean_ms": 7.565815488888888
+        },
+        "one_level": {
+          "baseline_mean_ms": 8.32211821111111,
+          "ci95": [
+            1.098742890467692,
+            1.1011492854227156
+          ],
+          "ci_loss": false,
+          "ci_win": true,
+          "mean_win": true,
+          "speedup": 1.0999631465151276,
+          "strassen2_mean_ms": 7.565815488888888
+        }
+      },
+      "evidence": "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260921-mlsys-main-v5e-v001/phases/20260921-mlsys-main-v5e-v001-llm-confirm-f1c02f/artifacts",
+      "fastest_mean_method": "two_level",
+      "k": 4096,
+      "m": 8192,
+      "max_relative_l2": {
+        "cubic": 9.372242374244259e-08,
+        "native": 1.237612105991965e-07,
+        "native_default": 1.237612105991965e-07,
+        "one_level": 0.0044346324908877376,
+        "two_level": 0.009917711141665144
+      },
+      "mean_ms": {
+        "cubic": 8.933003,
+        "native": 8.858816355555556,
+        "native_default": 8.930375433333333,
+        "one_level": 8.32211821111111,
+        "two_level": 7.565815488888889
+      },
+      "n": 24576,
+      "numerically_eligible": {
+        "cubic": true,
+        "native": true,
+        "native_default": true,
+        "one_level": true,
+        "two_level": true
+      },
+      "shape_id": "qwen_3_8b_gate_up_concat_m8192",
+      "strassen2_clear_win_all_four": true,
+      "study": "mlsys_llm_shapes_v001",
+      "tiles": {
+        "cubic": [
+          2048,
+          1024,
+          1024
+        ],
+        "native": null,
+        "native_default": null,
+        "one_level": [
+          1024,
+          2048,
+          1024
+        ],
+        "two_level": [
+          2048,
+          1024,
+          1024
+        ]
+      }
+    },
+    {
+      "all_five_eligible": true,
+      "comparisons": {
+        "cubic": {
+          "baseline_mean_ms": 1.0040844555555555,
+          "ci95": [
+            1.117001253120217,
+            1.1350326730273923
+          ],
+          "ci_loss": false,
+          "ci_win": true,
+          "mean_win": true,
+          "speedup": 1.1260699630875508,
+          "strassen2_mean_ms": 0.8916714666666665
+        },
+        "native": {
+          "baseline_mean_ms": 1.0000350888888887,
+          "ci95": [
+            1.0997557274138505,
+            1.137816204238252
+          ],
+          "ci_loss": false,
+          "ci_win": true,
+          "mean_win": true,
+          "speedup": 1.1215286417398973,
+          "strassen2_mean_ms": 0.8916714666666665
+        },
+        "native_default": {
+          "baseline_mean_ms": 1.0211559222222222,
+          "ci95": [
+            1.1382556990361152,
+            1.1517315397442878
+          ],
+          "ci_loss": false,
+          "ci_win": true,
+          "mean_win": true,
+          "speedup": 1.14521543011756,
+          "strassen2_mean_ms": 0.8916714666666665
+        },
+        "one_level": {
+          "baseline_mean_ms": 0.9533963777777775,
+          "ci95": [
+            1.0620516795504127,
+            1.0756922535280986
+          ],
+          "ci_loss": false,
+          "ci_win": true,
+          "mean_win": true,
+          "speedup": 1.0692238267327956,
+          "strassen2_mean_ms": 0.8916714666666665
+        }
+      },
+      "evidence": "/Users/bagheera/Documents/ChatGPT/Faster Strassen TPU/Strassen_MM_Focus/runs/20260921-mlsys-main-v5e-v001/phases/20260921-mlsys-main-v5e-v001-main-06-confirm-5c54db/artifacts",
+      "fastest_mean_method": "two_level",
+      "k": 4096,
+      "m": 4096,
+      "max_relative_l2": {
+        "cubic": 9.323579433329256e-08,
+        "native": 1.2397522545627367e-07,
+        "native_default": 1.2397522545627367e-07,
+        "one_level": 0.004439479727564921,
+        "two_level": 0.009941790392980293
+      },
+      "mean_ms": {
+        "cubic": 1.0040844555555555,
+        "native": 1.000035088888889,
+        "native_default": 1.0211559222222222,
+        "one_level": 0.9533963777777777,
+        "two_level": 0.8916714666666666
+      },
+      "n": 4096,
+      "numerically_eligible": {
+        "cubic": true,
+        "native": true,
+        "native_default": true,
+        "one_level": true,
+        "two_level": true
+      },
+      "shape_id": "shape_m4096_k4096_n4096",
+      "strassen2_clear_win_all_four": true,
+      "study": "mlsys_shapes_v001",
+      "tiles": {
+        "cubic": [
+          1024,
+          2048,
+          1024
+        ],
+        "native": null,
+        "native_default": null,
+        "one_level": [
+          1024,
+          2048,
+          1024
+        ],
+        "two_level": [
+          2048,
+          1024,
+          1024
+        ]
+      }
+    }
+  ]
+}
